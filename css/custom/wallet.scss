@@ -1,0 +1,67 @@
+.view-wallet {
+  .padding-b-10 {
+    padding-bottom: 10px;
+  }
+  .tabs-container-primary {
+    .tabs-primary {
+      border: 1px solid transparent;
+      padding: 10px;
+      li.active {
+        border-top: 3px solid transparent;
+      }
+      li:not(:last-child) {
+        border-right: 1px solid transparent;
+      }
+    }
+  }
+  .tabs--folder .tabs-content {
+    border: 1px solid transparent;
+    padding-top: 0;
+  }
+  .table-amount {
+    tbody {
+      tr {
+        td:nth-child(1) {
+          width: 70%;
+          p:nth-child(1) {
+            font-weight: bold;
+          }
+        }
+        td {
+          p {
+            margin-bottom: 0;
+          }
+        }
+        td:nth-child(2) {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .table-permission {
+    tbody {
+      tr {
+        td:nth-child(1) {
+          width: 70%;
+          p:nth-child(1) {
+            font-weight: bold;
+          }
+          p:nth-child(2) {
+            img {
+              width: 45px !important;
+              margin-right: 10px;
+            }
+          }
+        }
+        td {
+          p {
+            margin-bottom: 0;
+          }
+        }
+        td:nth-child(2) {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

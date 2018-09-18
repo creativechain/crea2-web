@@ -1,0 +1,27 @@
+@import "color";
+
+.banner-welcome-1 {
+  left: 0 !important;
+}
+
+[data-overlay="4"]:before {
+  opacity: 0 !important;
+}
+.col-banner-content {
+  margin-left: 50% !important;
+}
+.imagebg:not(.image--light) h1, .imagebg:not(.image--light) h2, .imagebg:not(.image--light) h3, .imagebg:not(.image--light) h4, .imagebg:not(.image--light) h5, .imagebg:not(.image--light) h6, .imagebg:not(.image--light) p, .imagebg:not(.image--light) ul, .imagebg:not(.image--light) blockquote {
+  color: $color-dark-primary;
+}
+[data-overlay]:before {
+  background: #f9f9f9;
+}
+.slide-img-1 {
+  background-image: url('/img/crea-web/welcome/slide-1.jpg');
+}
+.position-img-slide {
+  background-size: contain;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+}

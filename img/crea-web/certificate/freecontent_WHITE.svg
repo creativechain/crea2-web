@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-size: 18px;
+        font-family: HelveticaNeue, Helvetica Neue;
+      }
+    </style>
+  </defs>
+  <g id="Group_8670" data-name="Group 8670" transform="translate(-378.5 -1883)">
+    <circle id="Ellipse_45" data-name="Ellipse 45" class="cls-1" cx="10.5" cy="10.5" r="10.5" transform="translate(379.5 1884)"/>
+    <text id="_0" data-name="0" class="cls-2" transform="translate(385 1901)"><tspan x="0" y="0">0</tspan></text>
+    <path id="Path_10177" data-name="Path 10177" class="cls-3" d="M5,0,0,10" transform="translate(387.5 1889.5)"/>
+  </g>
+</svg>

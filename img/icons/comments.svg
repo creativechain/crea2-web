@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20.065 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #505050;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Path_8855" data-name="Path 8855" class="cls-1" d="M0-64.448H20.065v20H0Z" transform="translate(0 64.448)"/>
+    </clipPath>
+  </defs>
+  <g id="Group_8642" data-name="Group 8642" transform="translate(-26.236 -457.067)">
+    <g id="Group_4505" data-name="Group 4505" class="cls-2" transform="translate(26.237 457.067)">
+      <g id="Group_4501" data-name="Group 4501" transform="translate(13.032 8.438)">
+        <path id="Path_8851" data-name="Path 8851" class="cls-1" d="M-3.471,0A1.564,1.564,0,0,0-5.033,1.562,1.563,1.563,0,0,0-3.471,3.123,1.563,1.563,0,0,0-1.91,1.562,1.564,1.564,0,0,0-3.471,0" transform="translate(5.033)"/>
+      </g>
+      <g id="Group_4502" data-name="Group 4502" transform="translate(0 0)">
+        <path id="Path_8852" data-name="Path 8852" class="cls-1" d="M-22.369-40.4h-8.245v-8.18a8.189,8.189,0,0,1,8.18-8.18,8.2,8.2,0,0,1,5.885,2.431,8.133,8.133,0,0,1,2.36,5.749,8.189,8.189,0,0,1-8.18,8.18m7.121-15.2a10,10,0,0,0-7.186-2.981,10.011,10.011,0,0,0-10,10v8.438a1.563,1.563,0,0,0,1.562,1.562h8.5a10.011,10.011,0,0,0,10-10,9.936,9.936,0,0,0-.765-3.835A9.986,9.986,0,0,0-15.248-55.6" transform="translate(32.434 58.583)"/>
+      </g>
+      <g id="Group_4503" data-name="Group 4503" transform="translate(8.471 8.438)">
+        <path id="Path_8853" data-name="Path 8853" class="cls-1" d="M-3.47,0A1.563,1.563,0,0,0-5.032,1.562,1.563,1.563,0,0,0-3.47,3.123,1.563,1.563,0,0,0-1.909,1.562,1.564,1.564,0,0,0-3.47,0" transform="translate(5.032)"/>
+      </g>
+      <g id="Group_4504" data-name="Group 4504" transform="translate(3.91 8.438)">
+        <path id="Path_8854" data-name="Path 8854" class="cls-1" d="M-3.47,0A1.563,1.563,0,0,0-5.032,1.562,1.563,1.563,0,0,0-3.47,3.123,1.563,1.563,0,0,0-1.909,1.562,1.563,1.563,0,0,0-3.47,0" transform="translate(5.032)"/>
+      </g>
+    </g>
+  </g>
+</svg>

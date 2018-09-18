@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Group_8668" data-name="Group 8668" transform="translate(-433.5 -2261.5)">
+    <g id="Group_3574" data-name="Group 3574" transform="translate(441 2270)">
+      <rect id="Rectangle_882" data-name="Rectangle 882" class="cls-1" width="8.227" height="1.952" transform="translate(0 0)"/>
+      <rect id="Rectangle_883" data-name="Rectangle 883" class="cls-1" width="8.227" height="1.952" transform="translate(0 4.044)"/>
+    </g>
+    <circle id="Ellipse_46" data-name="Ellipse 46" class="cls-2" cx="10.5" cy="10.5" r="10.5" transform="translate(434.5 2262.5)"/>
+  </g>
+</svg>

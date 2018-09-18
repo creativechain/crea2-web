@@ -1,0 +1,199 @@
+@import "welcome";
+@import "simple-view-home";
+@import "color";
+@import "profile";
+@import "wallet";
+
+body {
+  color: $color-dark-primary;
+  font-size: 12px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: $color-dark-primary;
+}
+.btn--primary, .btn--primary:visited {
+  background: $color-blue-primary;
+  border-color: $color-blue-primary;
+}
+
+.masonry__item:not(:empty) {
+  margin-bottom: 30px;
+  transform-style: flat;
+}
+#slide-home {
+  padding: 10em 0;
+}
+img {
+  margin-bottom: 0;
+}
+.card-home {
+  .dropdown-price {
+    border: 1px solid #505050;
+    border-radius: 25px;
+    padding: 0 10px;
+  }
+  .li-like {
+    width: auto;
+    a {
+      color: $color-dark-primary;
+      img {
+        width: 14px;
+      }
+    }
+  }
+  .li-comment {
+    width: auto;
+    a {
+      color: $color-dark-primary;
+      img {
+        width: 14px;
+      }
+    }
+  }
+  .li-certificate {
+    img {
+      width: 15px;
+    }
+  }
+  .dropdown-price {
+    .dropdown__content {
+      p {
+        margin: 0;
+      }
+      p.title {
+        color: $color-blue-primary;
+      }
+    }
+  }
+  .dropdown-autor {
+    .dropdown__content {
+      p {
+        margin: 0;
+      }
+
+    }
+  }
+  .card-show {
+    overflow: visible;
+  }
+  .dropdown-info-user {
+    .btn {
+      border-radius: 25px;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-right: 2em;
+      padding-left: 2em;
+      border: 1px solid white;
+      border-width: 1px;
+      font-size: inherit;
+      line-height: 1.85714286em;
+    }
+    .btn .btn__text, .btn i {
+      color: white;
+      border-color: white;
+    }
+    .avatare-info {
+      width: 55px;
+      margin: 10px 0;
+    }
+    p.name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    p.description-user {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    p.email-user {
+      margin: 10px 0;
+    }
+    p.title-stats {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+.dropdown .dropdown__content {
+  border-radius: 1px;
+  border: solid 1px $borde-dropdown-price;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
+  padding: 1.23809524em 1.85714286em;
+}
+
+
+
+.card-2 .card__body {
+  padding: 10px;
+}
+.card-2 .card__bottom {
+  padding: 10px;
+}
+.background-navbar-dark {
+  background-color: $background-navbar-dark;
+  .menu-horizontal > li > a, .menu-horizontal > li > span, .menu-horizontal > li > .modal-instance > .modal-trigger {
+    color: $color-white;
+    text-transform: none;
+  }
+  .btn .btn__text, .btn i {
+    color: $color-white;
+    border-color: $color-white;
+  }
+  .menu-horizontal > li:not(:hover) > a, .menu-horizontal > li:not(:hover) > span, .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger {
+    opacity: 1;
+  }
+  .btn {
+    border-radius: 25px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 2em;
+    padding-left: 2em;
+    border: 1px solid $color-white;
+    border-width: 1px;
+    font-size: inherit;
+    line-height: 1.85714286em;
+  }
+  .log-in {
+    color: $color-blue-primary !important;
+  }
+  .btn:not([class*='primary']):hover {
+    border-color: $color-blue-primary;
+    background-color: $color-blue-primary;
+  }
+}
+
+
+
+@media (min-width: 1200px) {
+  #menu1 {
+    .container {
+      max-width: 100%;
+    }
+  }
+  .container {
+    max-width: 1200px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 100%;
+  }
+  #menu1 {
+    .bar__module {
+      display: inline-block;
+    }
+  }
+}
+@media (min-width: 768px) {
+  #menu1 {
+    .container {
+      max-width: 100%;
+    }
+    .bar__module {
+      display: inline-block;
+    }
+  }
+}
+

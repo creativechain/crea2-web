@@ -1,0 +1,29 @@
+<svg id="Group_6991" data-name="Group 6991" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.029 59.029">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0569ef;
+        font-size: 25px;
+        font-family: PTMono-Regular, PT Mono;
+      }
+
+      .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #0569ef;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <text id="T" class="cls-1" transform="translate(21.748 16.757)"><tspan x="0" y="22">T</tspan></text>
+  <g id="Ellipse_2179" data-name="Ellipse 2179" class="cls-2" transform="translate(0 0)">
+    <circle class="cls-3" cx="29.515" cy="29.515" r="29.515"/>
+    <circle class="cls-4" cx="29.515" cy="29.515" r="28.515"/>
+  </g>
+</svg>

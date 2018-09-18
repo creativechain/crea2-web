@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.167 20.167">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #505050;
+      }
+    </style>
+  </defs>
+  <g id="outline-filter_none-24px" transform="translate(0.167 0.167)">
+    <g id="Bounding_Boxes">
+      <path id="Path_9767" data-name="Path 9767" class="cls-1" d="M0,0H20V20H0Z"/>
+    </g>
+    <g id="Outline_1_" transform="translate(-0.167 -0.167)">
+      <path id="Path_9768" data-name="Path 9768" class="cls-2" d="M2.818,4.636H1V19.182A1.824,1.824,0,0,0,2.818,21H17.364V19.182H2.818ZM19.182,1H6.455A1.824,1.824,0,0,0,4.636,2.818V15.545a1.824,1.824,0,0,0,1.818,1.818H19.182A1.824,1.824,0,0,0,21,15.545V2.818A1.824,1.824,0,0,0,19.182,1Zm0,14.545H6.455V2.818H19.182Z" transform="translate(-1 -1)"/>
+    </g>
+  </g>
+</svg>

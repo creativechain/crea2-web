@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.5 21.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f9f9f9;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #0073ff;
+        stroke-width: 1.5px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_8652" data-name="Group 8652" transform="translate(-44.25 -311.25)">
+    <circle id="Ellipse_2225" data-name="Ellipse 2225" class="cls-1" cx="3.889" cy="3.889" r="3.889" transform="translate(48.333 316.444)"/>
+    <path id="Path_10155" data-name="Path 10155" class="cls-2" d="M-9263.9-3172.207a3.457,3.457,0,0,1,2.443,3.143c.006.293-.008,1.069,0,1.7" transform="translate(9324.673 3495.229)"/>
+    <g id="Ellipse_2230" data-name="Ellipse 2230" class="cls-3" transform="translate(53.169 316.085)">
+      <circle class="cls-4" cx="4.595" cy="4.595" r="4.595"/>
+      <circle class="cls-5" cx="4.595" cy="4.595" r="3.845"/>
+    </g>
+    <path id="Path_10149" data-name="Path 10149" class="cls-1" d="M4354.563,537.926a42.917,42.917,0,0,1,6.805,0s2.984,1.316,1.988,8.679c0,0-5.064-.4-5.064-.339-1.51.02-4.725-1.788-4.725-1.788S4352.013,538.258,4354.563,537.926Z" transform="translate(-4305.766 -214.914)"/>
+    <path id="Path_10154" data-name="Path 10154" class="cls-2" d="M10,0A10,10,0,1,1,0,10,10,10,0,0,1,10,0Z" transform="translate(45 312)"/>
+    <g id="Group_8649" data-name="Group 8649" transform="translate(46.038 323.021)">
+      <path id="Path_10155-2" data-name="Path 10155" class="cls-2" d="M-9263.9-3172.207a3.457,3.457,0,0,1,2.443,3.143c.053,2.459,0,5.751,0,5.751" transform="translate(9272.508 3172.207)"/>
+      <path id="Path_10156" data-name="Path 10156" class="cls-2" d="M-9261.409-3172.207a3.471,3.471,0,0,0-2.471,3.143c0,.017,0,.034-.007.373" transform="translate(9263.887 3172.207)"/>
+    </g>
+    <g id="Ellipse_2229" data-name="Ellipse 2229" class="cls-3" transform="translate(47.042 316.085)">
+      <circle class="cls-4" cx="4.595" cy="4.595" r="4.595"/>
+      <circle class="cls-5" cx="4.595" cy="4.595" r="3.845"/>
+    </g>
+  </g>
+</svg>
