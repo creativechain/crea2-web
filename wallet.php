@@ -142,10 +142,8 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                                                         <ul class="menu-vertical">
-                                                                                            <li>Enviar</li>
-                                                                                            <li>Transferir ahorros</li>
-                                                                                            <li>Energize</li>
-                                                                                            <li>Mercado</li>
+                                                                                            <li>De-energize</li>
+                                                                                            <li>Cancel De-energize</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div><!--end row-->
@@ -169,7 +167,6 @@
                                                                                         <ul class="menu-vertical">
                                                                                             <li>Enviar</li>
                                                                                             <li>Transferir ahorros</li>
-                                                                                            <li>Energize</li>
                                                                                             <li>Mercado</li>
                                                                                         </ul>
                                                                                     </div>
@@ -192,10 +189,8 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                                                         <ul class="menu-vertical">
-                                                                                            <li>Enviar</li>
-                                                                                            <li>Transferir ahorros</li>
-                                                                                            <li>Energize</li>
-                                                                                            <li>Mercado</li>
+                                                                                            <li>Retirar CREA</li>
+                                                                                            <li>Retirar CBD</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div><!--end row-->
