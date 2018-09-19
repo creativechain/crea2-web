@@ -323,4 +323,4 @@
     </section>
 
 
-<? include ('element/footer.php'); ?>
+<?php include ('element/footer.php'); ?>
