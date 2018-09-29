@@ -1,9 +1,9 @@
-<?php include ('element/navbar.php'); ?>
+<?php include('element/navbar.php'); ?>
 <div class="main-container view-profile view-wallet">
     <section class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
-                <?php include ('modules/navbar-profile.php') ?>
+                <?php include('modules/navbar-profile.php') ?>
             </div>
         </div>
     </section>
@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-xl-3">
-                    <?php include ('modules/profile-info.php') ?>
+                    <?php include('modules/profile-info.php') ?>
                 </div>
                 <div class="col-lg-8 col-xl-9">
                     <section class="unpad--bottom unpad--top">
@@ -47,16 +47,19 @@
                                                     <div class="tab__content">
                                                         <table class="table-amount table">
                                                             <thead class="hidden">
-                                                                <tr>
-                                                                    <th style="width: 70%">Value 1</th>
-                                                                    <th style="width: 30%">Value 2</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th style="width: 70%">Value 1</th>
+                                                                <th style="width: 30%">Value 2</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody>
                                                             <tr>
                                                                 <td>
                                                                     <p>CREA</p>
-                                                                    <p>Son los tokens que funcionan como activo líquido, pueden ser transferidos a otros usuarios y pueden convertirse en CREA ENERGY con el método de conversión conocido como Energize.</p>
+                                                                    <p>Son los tokens que funcionan como activo líquido,
+                                                                        pueden ser transferidos a otros usuarios y
+                                                                        pueden convertirse en CREA ENERGY con el método
+                                                                        de conversión conocido como Energize.</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
@@ -67,53 +70,87 @@
                                                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                                                         <ul class="menu-vertical">
                                                                                             <li>
-                                                                                                <div class="modal-instance">
+                                                                                                <div class="modal-instance block">
                                                                                                     <a class="modal-trigger" href="#">
-                                                                                                        <span class="btn__text">
-                                                                                                            Enviar
-                                                                                                        </span>
+                                                                                                            <span class="btn__text">
+                                                                                                                Enviar
+                                                                                                            </span>
                                                                                                     </a>
-                                                                                                    <div class="modal-container">
-                                                                                                        <div class="modal-content">
-                                                                                                            <div class="boxed boxed--lg">
-                                                                                                                <h2>Enviar CREA</h2>
-                                                                                                                <hr class="short">
-                                                                                                                <p>Mover fondos a otras cuents</p>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-3">
-                                                                                                                        <p>DE</p>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-md-9">
-                                                                                                                        <div class="input-icon input-icon--left">
-                                                                                                                            <i class="fas fa-at"></i>
-                                                                                                                            <input type="text" name="input" placeholder="Enter your name">
+                                                                                                    <div class="modal-container modal-send">
+                                                                                                        <div class="modal-content section-modal">
+                                                                                                            <section class="unpad ">
+                                                                                                                <div class="container">
+                                                                                                                    <div class="row justify-content-center">
+                                                                                                                        <div class="col-lg-6 col-md-8 col-sm-12">
+                                                                                                                            <div class="feature feature-1">
+                                                                                                                                <div class="feature__body boxed boxed--lg boxed--border">
+                                                                                                                                    <div class="modal-close modal-close-cross"></div>
+                                                                                                                                    <div class="text-block">
+                                                                                                                                        <h3>Enviar CREA</h3>
+                                                                                                                                        <hr class="short">
+                                                                                                                                        <p>Mover fondos a otras cuentas</p>
+                                                                                                                                    </div>
+                                                                                                                                    <form>
+                                                                                                                                        <div class="row">
+                                                                                                                                            <div class="col-md-1">
+                                                                                                                                                <p class="text-p-form">DE</p>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-11">
+                                                                                                                                                <div class="input-icon input-icon--left">
+                                                                                                                                                    <i class="fas fa-at"></i>
+                                                                                                                                                    <input type="text" name="input" placeholder="Enter your name">
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <div class="row">
+                                                                                                                                            <div class="col-md-1">
+                                                                                                                                                <p class="text-p-form">A</p>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-11">
+                                                                                                                                                <div class="input-icon input-icon--left">
+                                                                                                                                                    <i class="fas fa-at"></i>
+                                                                                                                                                    <input type="text" name="input" placeholder="Enter your name">
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <div class="row">
+                                                                                                                                            <div class="col-md-1">
+                                                                                                                                                <p class="text-p-form">Cantidad</p>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-11">
+                                                                                                                                                <div class="input-icon input-icon--right">
+                                                                                                                                                    <i class="">CREA</i>
+                                                                                                                                                    <input type="text" name="input" placeholder="Enter your name">
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <div class="row">
+                                                                                                                                            <div class="col-md-1"></div>
+                                                                                                                                            <div class="col-md-11">
+                                                                                                                                                <p>Esta memo es pública</p>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <div class="row">
+                                                                                                                                            <div class="col-md-1">
+                                                                                                                                                <p class="text-p-form">Memo</p>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-11">
+                                                                                                                                                <div class="input-icon input-icon--right">
+                                                                                                                                                    <input type="text" name="input" placeholder="Enter your name">
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <!--end of row-->
+                                                                                                                                    </form>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <!--end feature-->
                                                                                                                         </div>
                                                                                                                     </div>
+                                                                                                                    <!--end of row-->
                                                                                                                 </div>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-3">
-                                                                                                                        <p>A</p>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-md-9">
-                                                                                                                        <div class="input-icon input-icon--left">
-                                                                                                                            <i class="fas fa-at"></i>
-                                                                                                                            <input type="text" name="input" placeholder="Enter your name">
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-3">
-                                                                                                                        <p>Cantidad</p>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-md-9">
-                                                                                                                        <div class="input-icon input-icon--right">
-                                                                                                                            <i class="">CREA</i>
-                                                                                                                            <input type="text" name="input" placeholder="Enter your name">
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="modal-close modal-close-cross"></div>
+                                                                                                                <!--end of container-->
+                                                                                                            </section>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -132,7 +169,10 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>CREA ENERGY</p>
-                                                                    <p>Son los tokens que te dan poder de influencia en la comunidad, el nivel de influencia de tus votos será relativo al nivel de CREA ENERGY acumulado.</p>
+                                                                    <p>Son los tokens que te dan poder de influencia en
+                                                                        la comunidad, el nivel de influencia de tus
+                                                                        votos será relativo al nivel de CREA ENERGY
+                                                                        acumulado.</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
@@ -155,7 +195,8 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>CREA DOLLAR</p>
-                                                                    <p>Son tokens que pueden ser transferidos e intercambiables en cualquier lugar.</p>
+                                                                    <p>Son tokens que pueden ser transferidos e
+                                                                        intercambiables en cualquier lugar.</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
@@ -179,7 +220,8 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>AHORRAS</p>
-                                                                    <p>Este saldo está sujeto un periodo de 3 días de espera para ser retirado.</p>
+                                                                    <p>Este saldo está sujeto un periodo de 3 días de
+                                                                        espera para ser retirado.</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
@@ -202,7 +244,8 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>Valor de la cuenta aproximada</p>
-                                                                    <p>Es un valor estimado basado en el valor de 1 CREA en US Dollars. </p>
+                                                                    <p>Es un valor estimado basado en el valor de 1 CREA
+                                                                        en US Dollars. </p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <p>55,28$</p>
@@ -219,59 +262,74 @@
                                                     <div class="tab__content">
                                                         <table class="table-permission table">
                                                             <thead class="hidden">
-                                                                <tr>
-                                                                    <th style="width: 70%">Value 1</th>
-                                                                    <th style="width: 30%">Value 2</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th style="width: 70%">Value 1</th>
+                                                                <th style="width: 30%">Value 2</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <p>PUBLICANDO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La contraseña de publicación se usa para votar y publicar contenido. Debería ser diferente a la contraseña activa y a la contraseña de propietario.</p>
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <a class="btn btn--sm" href="#">
-                                                                            <span class="btn__text">Mostrar clave privada</span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <p>ACTIVO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La Contraseña activa se usa para hacer transferencias y poner órdenes de compra o venta en el Mercado de CREA/CBD.</p>
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <a class="btn btn--sm" href="#">
-                                                                            <span class="btn__text">Acceder para mostrar</span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <p>PROPIETARIO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La Contraseña personal es la contraseña maestra para la cuenta y se requiere para cambiar el resto de tus contraseñas.</p>
-                                                                        <p>La contraseña privada para la cuenta personal debería estar fuera del acceso a internet. Se recomienda imprimirla y guardarla una copia de seguridad en lugar seguro.</p>
-                                                                    </td>
-                                                                    <td style="text-align: right">
+                                                            <tr>
+                                                                <td>
+                                                                    <p>PUBLICANDO</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY
+                                                                    </p>
+                                                                    <p>La contraseña de publicación se usa para votar y
+                                                                        publicar contenido. Debería ser diferente a la
+                                                                        contraseña activa y a la contraseña de
+                                                                        propietario.</p>
+                                                                </td>
+                                                                <td style="text-align: right">
+                                                                    <a class="btn btn--sm" href="#">
+                                                                        <span class="btn__text">Mostrar clave privada</span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p>ACTIVO</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY
+                                                                    </p>
+                                                                    <p>La Contraseña activa se usa para hacer
+                                                                        transferencias y poner órdenes de compra o venta
+                                                                        en el Mercado de CREA/CBD.</p>
+                                                                </td>
+                                                                <td style="text-align: right">
+                                                                    <a class="btn btn--sm" href="#">
+                                                                        <span class="btn__text">Acceder para mostrar</span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p>PROPIETARIO</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY
+                                                                    </p>
+                                                                    <p>La Contraseña personal es la contraseña maestra
+                                                                        para la cuenta y se requiere para cambiar el
+                                                                        resto de tus contraseñas.</p>
+                                                                    <p>La contraseña privada para la cuenta personal
+                                                                        debería estar fuera del acceso a internet. Se
+                                                                        recomienda imprimirla y guardarla una copia de
+                                                                        seguridad en lugar seguro.</p>
+                                                                </td>
+                                                                <td style="text-align: right">
 
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <p>MEMO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La contraseña memo se usa para crear y leer memos.</p>
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <a class="btn btn--sm" href="#">
-                                                                            <span class="btn__text">Mostrar clave privada</span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p>MEMO</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY
+                                                                    </p>
+                                                                    <p>La contraseña memo se usa para crear y leer
+                                                                        memos.</p>
+                                                                </td>
+                                                                <td style="text-align: right">
+                                                                    <a class="btn btn--sm" href="#">
+                                                                        <span class="btn__text">Mostrar clave privada</span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -282,7 +340,12 @@
                                                     </div>
                                                     <div class="tab__content">
                                                         <p class="lead">
-                                                            Medium Rare is an elite author known for offering high-quality, high-value products backed by timely and personable support. Recognised and awarded by Envato on multiple occasions for producing consistently outstanding products, it's no wonder over 20,000 customers enjoy using Medium Rare templates.
+                                                            Medium Rare is an elite author known for offering
+                                                            high-quality, high-value products backed by timely and
+                                                            personable support. Recognised and awarded by Envato on
+                                                            multiple occasions for producing consistently outstanding
+                                                            products, it's no wonder over 20,000 customers enjoy using
+                                                            Medium Rare templates.
                                                         </p>
                                                     </div>
                                                 </li>
@@ -291,19 +354,11 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="boxed boxed--border">
-                                        <h5>Modern Aesthetic</h5>
-                                        <p>
-                                            Build a beautifully performant site with Stack's vast collection of modular elements.
-                                        </p>
-                                        <a class="btn btn--primary" href="#">
-                                            <span class="btn__text">
-                                                Build Now
-                                            </span>
-                                        </a>
-                                    </div>
+                                    <?php include ('modules/list-historial.php') ?>
                                 </div>
                             </div>
                             <!--end of row-->
@@ -318,4 +373,4 @@
     </section>
 
 
-<?php include ('element/footer.php'); ?>
+    <?php include('element/footer.php'); ?>
