@@ -65,6 +65,7 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 <script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/vue.js"></script>
 <script src="js/flickity.min.js"></script>
 <script src="js/easypiechart.min.js"></script>
 <script src="js/parallax.js"></script>
@@ -80,5 +81,21 @@
 <script src="js/spectragram.min.js"></script>
 <script src="js/smooth-scroll.min.js"></script>
 <script src="js/scripts.js"></script>
+<script src="js/moment.min.js"></script>
+
+<script src="js/crea.min.js"></script>
+<script src="language/lang-en.js"></script>
+<script src="js/common/ls.js"></script>
+<script src="js/common/util.js"></script>
+
+<script src="js/lib/error.js"></script>
+<script src="js/lib/account.js"></script>
+<script src="js/lib/session.js"></script>
+<script src="js/common/login.js"></script>
+<script src="js/common/common.js"></script>
+
+<script src="js/common/navbar.js"></script>
+<script src="js/common/wallet.js"></script>
+<script src="js/common/profile.js"></script>
 </body>
 </html>

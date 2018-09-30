@@ -1,7 +1,7 @@
-<div class="boxed boxed--sm boxed--border">
+<div id="wallet-profile" class="boxed boxed--sm boxed--border">
     <div class="text-block text-center">
         <img alt="avatar" src="img/profile/avatar-round-3.png" class="image--sm" />
-        <span class="h5">Casmic Lab</span>
+        <span class="h5">{{ session.account.username }} </span>
         <p>casmiclab.com</p>
         <p>Casmic Lab is a Valencia based design studio founded in 2006 by Amadeo Castroviejo and Roser Miquel. We love old science fiction movies and books.</p>
     </div>
@@ -9,7 +9,7 @@
         <div class="col">
             <a href="">casmic@lab.com</a>
         </div>
-        <div class="col">Se unió en enero 2018</div>
+        <div id="wallet-profile-join-date" class="col">{{ getJoinDate() }}</div>
     </div>
     <hr>
     <div class="row">
@@ -38,7 +38,7 @@
                     </td>
                     <td>
                         <a class="btn btn--sm" href="#">
-                            <span class="btn__text">Follow</span>
+                            <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
                         </a>
                     </td>
                 </tr>
@@ -61,7 +61,7 @@
                     <td>
                         <p>
                             <img src="img/icons/like.svg" alt="">
-                            <span>Me gusta</span>
+                            <span>{{ lang.PROFILE.LIKES }}</span>
                         </p>
                     </td>
                     <td class="text-right">
@@ -72,7 +72,7 @@
                     <td>
                         <p>
                             <img src="img/icons/comments.svg" alt="">
-                            <span>Comentarios</span>
+                            <span>{{ lang.PROFILE.COMMENTS }}</span>
                         </p>
                     </td>
                     <td class="text-right">
@@ -83,7 +83,7 @@
                     <td>
                         <p>
                             <img src="img/icons/followers.svg" alt="">
-                            <span>Seguidores</span>
+                            <span>{{ lang.PROFILE.FOLLOWERS }}</span>
                         </p>
                     </td>
                     <td class="text-right">
@@ -94,7 +94,7 @@
                     <td>
                         <p>
                             <img src="img/icons/following.svg" alt="">
-                            <span>Siguiendo</span>
+                            <span>{{ lang.PROFILE.FOLLOWING }}</span>
                         </p>
                     </td>
                     <td class="text-right">
@@ -105,7 +105,7 @@
                     <td>
                         <p>
                             <img src="img/icons/projects.svg" alt="">
-                            <span>Publicaciones</span>
+                            <span>{{ lang.PROFILE.POSTS }}</span>
                         </p>
                     </td>
                     <td class="text-right">

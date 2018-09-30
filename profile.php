@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container view-profile">
-    <section class="cta cta-4 space--xxs border--bottom ">
+    <section id="profile-menu" class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
                 <?php include ('modules/navbar-profile.php') ?>
@@ -8,7 +8,7 @@
         </div>
     </section>
 
-    <section class="bg--secondary p-top-15">
+    <section id="profile-container" class="bg--secondary p-top-15">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-xl-3">

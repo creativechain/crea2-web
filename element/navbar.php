@@ -21,18 +21,17 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-
 </head>
 <body class=" ">
 <a id="start"></a>
 
-<div class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
+<div id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
      data-animation="from-right">
     <div class="side-menu__module">
         <a class="btn btn--icon bg--facebook block" href="#">
             <span class="btn__text">
                 <i class="socicon-facebook"></i>
-                Sign up with Facebook
+                {{ lang.LOGIN.FACEBOOK }}
             </span>
         </a>
         <a class="btn btn--icon bg--dark block" href="#">
@@ -113,19 +112,19 @@
         </ul>
     </div>
 </div>
-<div class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
+<div id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
      data-notification-link="search-box">
     <form>
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <input type="search" name="query" placeholder="Type search query and hit enter"/>
+                <input type="search" name="query" v-bind:placeholder="lang.HOME.SEARCH_ACTIVE"/>
             </div>
         </div>
         <!--end of row-->
     </form>
 </div>
 <!--end of notification-->
-<div class="nav-container background-navbar-dark">
+<div id="navbar-container"  class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
         <div class="container">
             <div class="row">
@@ -160,11 +159,11 @@
                 <div class="col-lg-10 col-md-10 text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li><a href="">Siguiendo</a></li>
-                            <li><a href="">Popular</a></li>
-                            <li><a href="">En alza</a></li>
-                            <li><a href="">Ahora</a></li>
-                            <li><a href="">Promocionado</a></li>
+                            <li><a href="">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
+                            <li><a href="">{{ lang.HOME.MENU_POPULAR }}</a></li>
+                            <li><a href="">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
+                            <li><a href="">{{ lang.HOME.MENU_NOW }}</a></li>
+                            <li><a href="">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
                     <div class="bar__module float-right">
@@ -181,8 +180,9 @@
                             </li>
                             <li>
                                 <div class="modal-instance">
-                                    <a href="#" class="modal-trigger log-in">Iniciar sesión</a>
-                                    <div class="modal-container">
+                                    <span  v-if="session" v-on:click="window.location.href = 'profile.php'" class="log-in cursor">{{ session.account.username }}</span>
+                                    <a href="#" v-else class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+                                    <div v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
                                                 <div class="container">
@@ -190,45 +190,45 @@
                                                         <div class="col-md-6">
                                                             <div class="boxed boxed--lg bg--white text-center feature">
                                                                 <div class="modal-close modal-close-cross"></div>
-                                                                <h3>Iniciar la sesión en creary</h3>
+                                                                <h3>{{ lang.LOGIN.TITLE }}</h3>
                                                                 <a class="btn block btn--icon bg--facebook type--uppercase"
                                                                    href="#">
                                                                         <span class="btn__text">
                                                                             <i class="socicon-facebook"></i>
-                                                                            Login with Facebook
+                                                                            {{ lang.LOGIN.FACEBOOK }}
                                                                         </span>
                                                                 </a>
                                                                 <a class="btn block btn--icon bg--twitter type--uppercase"
                                                                    href="#">
                                                                         <span class="btn__text">
                                                                             <i class="socicon-twitter"></i>
-                                                                            Login with Twitter
+                                                                            {{ lang.LOGIN.TWITTER }}
                                                                         </span>
                                                                 </a>
-                                                                <hr data-title="OR">
+                                                                <hr v-bind:data-title="lang.COMMON.OR_CAP">
                                                                 <div class="feature__body">
-                                                                    <form>
+                                                                    <form id="login-form" action="#" v-on:submit="login">
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <input type="text" placeholder="Username"/>
+                                                                                <input id="login-username" type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
                                                                             </div>
                                                                             <div class="col-md-12">
-                                                                                <input type="password"
-                                                                                       placeholder="Password"/>
+                                                                                <input id="login-password" type="password"
+                                                                                       v-bind:placeholder="lang.LOGIN.PASSWORD"/>
                                                                             </div>
                                                                             <div class="col-md-12">
-                                                                                <button
+                                                                                <button id="login-button"
                                                                                     class="btn btn--primary type--uppercase"
-                                                                                    type="submit">Login
+                                                                                    type="submit">{{ lang.BUTTON.LOGIN }}
                                                                                 </button>
                                                                             </div>
                                                                         </div>
                                                                         <!--end of row-->
                                                                     </form>
-                                                                        <span class="type--fine-print block">Dont have an account yet?
+                                                                        <span class="type--fine-print block"> {{ lang.LOGIN.NOT_USER }}
                                                                             <a href="#">Create account</a>
                                                                         </span>
-                                                                        <span class="type--fine-print block">Forgot your username or password?
+                                                                        <span class="type--fine-print block">{{ lang.LOGIN.FORGOT_ACCOUNT }}
                                                                             <a href="#">Recover account</a>
                                                                         </span>
                                                                 </div>
@@ -244,9 +244,9 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="btn btn--sm type--uppercase" href="#">
+                                <a class="btn btn--sm type--uppercase" href="#" onclick="return startLogin()">
                                     <span class="btn__text">
-                                        Inscribirse
+                                        {{ lang.BUTTON.SIGN_UP }}
                                     </span>
                                 </a>
                             </li>

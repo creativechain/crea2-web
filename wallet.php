@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container view-profile view-wallet">
-    <section class="cta cta-4 space--xxs border--bottom ">
+    <section id="wallet-menu" class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
                 <?php include ('modules/navbar-profile.php') ?>
@@ -8,7 +8,7 @@
         </div>
     </section>
 
-    <section class="bg--secondary p-top-15">
+    <section id="wallet-container" class="bg--secondary p-top-15">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-xl-3">
@@ -55,12 +55,12 @@
                                                             <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <p>CREA</p>
-                                                                    <p>Son los tokens que funcionan como activo líquido, pueden ser transferidos a otros usuarios y pueden convertirse en CREA ENERGY con el método de conversión conocido como Energize.</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_CREA_TITLE }}</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_CREA_TEXT }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">2850 CREA</span>
+                                                                        <span class="dropdown__trigger">{{ funds.crea }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -131,12 +131,12 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <p>CREA ENERGY</p>
-                                                                    <p>Son los tokens que te dan poder de influencia en la comunidad, el nivel de influencia de tus votos será relativo al nivel de CREA ENERGY acumulado.</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_CGY_TITLE }}</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_CGY_TEXT }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">2850 CREA</span>
+                                                                        <span class="dropdown__trigger">{{ funds.cgy }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -156,12 +156,12 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <p>CREA DOLLAR</p>
-                                                                    <p>Son tokens que pueden ser transferidos e intercambiables en cualquier lugar.</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_CBD_TITLE }}</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_CBD_TEXT }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">2850 CREA</span>
+                                                                        <span class="dropdown__trigger">{{ funds.cbd }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -181,12 +181,12 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <p>AHORRAS</p>
-                                                                    <p>Este saldo está sujeto un periodo de 3 días de espera para ser retirado.</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_SAVING_TITLE }}</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_SAVING_TEXT }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">2850 CREA</span>
+                                                                        <span class="dropdown__trigger">{{ funds.vests }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -207,7 +207,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>Valor de la cuenta aproximada</p>
-                                                                    <p>Es un valor estimado basado en el valor de 1 CREA en US Dollars. </p>
+                                                                    <p>{{ lang.WALLET.BALANCES_ACCOUNT }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <p>55,28$</p>
@@ -232,9 +232,9 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <p>PUBLICANDO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La contraseña de publicación se usa para votar y publicar contenido. Debería ser diferente a la contraseña activa y a la contraseña de propietario.</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TITLE_POSTING }}</p>
+                                                                        <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.posting.pub }}</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                                                     </td>
                                                                     <td style="text-align: right">
                                                                         <a class="btn btn--sm" href="#">
@@ -244,9 +244,9 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <p>ACTIVO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La Contraseña activa se usa para hacer transferencias y poner órdenes de compra o venta en el Mercado de CREA/CBD.</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
+                                                                        <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.active.pub }}</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                                                     </td>
                                                                     <td style="text-align: right">
                                                                         <a class="btn btn--sm" href="#">
@@ -256,10 +256,9 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <p>PROPIETARIO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La Contraseña personal es la contraseña maestra para la cuenta y se requiere para cambiar el resto de tus contraseñas.</p>
-                                                                        <p>La contraseña privada para la cuenta personal debería estar fuera del acceso a internet. Se recomienda imprimirla y guardarla una copia de seguridad en lugar seguro.</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TITLE_OWNER }}</p>
+                                                                        <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.owner.pub }}</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TEXT_OWNER }}</p>
                                                                     </td>
                                                                     <td style="text-align: right">
 
@@ -267,9 +266,9 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <p>MEMO</p>
-                                                                        <p><img src="img/qr-demo-permisos.png" alt="">KDHFSG89H6DF89SH6SIDUHG7687656gfKHGFUY</p>
-                                                                        <p>La contraseña memo se usa para crear y leer memos.</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TITLE_MEMO }}</p>
+                                                                        <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.memo.pub }}</p>
+                                                                        <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                                                     </td>
                                                                     <td style="text-align: right">
                                                                         <a class="btn btn--sm" href="#">
