@@ -35,7 +35,7 @@ function login(username, password) {
             console.error(err);
         } else {
             session.save();
-            setNavbarSession(session);
+            updateNavbarSession(session);
         }
     });
 
@@ -43,7 +43,7 @@ function login(username, password) {
 
 function logout() {
     localStorage.setItem(CREARY.SESSION, false);
-    setNavbarSession(false);
+    updateNavbarSession(false);
     toHome();
 }
 

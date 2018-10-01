@@ -2,44 +2,50 @@
  * Created by ander on 25/09/18.
  */
 
-let navbarSearch = new Vue({
-    el: '#navbar-search',
-    data: {
-        lang: lang
+(function () {
+    let navbarContainer;
+
+    let navbarSearch = new Vue({
+        el: '#navbar-search',
+        data: {
+            lang: lang
+        }
+    });
+
+    let navbarRightMenu = new Vue({
+        el: '#navbar-right-menu',
+        data: {
+            lang: lang
+        }
+    });
+
+    /**
+     *
+     * @param {Session} session
+     */
+    function updateNavbarSession(session) {
+        if (!navbarContainer) {
+            navbarContainer = new Vue({
+                el: '#navbar-container',
+                data: {
+                    lang: lang,
+                    session: session
+                },
+                methods: {
+                    login: startLogin,
+                    goTo: goTo
+                }
+            });
+        } else {
+            navbarContainer.session = session;
+        }
     }
-});
 
-let navbarRightMenu = new Vue({
-    el: '#navbar-right-menu',
-    data: {
-        lang: lang
+    function setUpNavbar() {
+        let session = Session.getAlive();
+        updateNavbarSession(session);
     }
-});
 
-let navbarContainer = new Vue({
-    el: '#navbar-container',
-    data: {
-        lang: lang,
-        session: false
-    },
-    methods: {
-        login: startLogin
-    }
-});
+    setUpNavbar();
+})();
 
-/**
- *
- * @param {Session} session
- */
-function setNavbarSession(session) {
-    navbarContainer.$data.session = session;
-}
-
-function setUpNavbar() {
-    let session = Session.getAlive();
-    if (session) {
-        setNavbarSession(session);
-    }
-}
-
-setUpNavbar();

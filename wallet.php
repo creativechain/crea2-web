@@ -60,7 +60,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account ? account.balance : '0.000 CREA' }}</span>
+                                                                        <span id="wallet-balance-crea" class="dropdown__trigger">{{ account.balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -170,7 +170,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ '0.000000 CGY' }}</span>
+                                                                        <span class="dropdown__trigger">{{ account.cgy_balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -193,7 +193,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account ? account.cbd_balance : '0.000 CBD' }}</span>
+                                                                        <span class="dropdown__trigger">{{ account.cbd_balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -217,7 +217,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account ? account.vesting_balance : '0.000 CREA' }}</span>
+                                                                        <span class="dropdown__trigger">{{ account.vesting_balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">

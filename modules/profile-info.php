@@ -33,7 +33,7 @@
                     <td>
                         <p>
                             <img src="img/icons/buzz.svg" alt="">
-                            <span>385 Buzz</span>
+                            <span>{{ account.reputation }} Buzz</span>
                         </p>
                     </td>
                     <td>
@@ -65,7 +65,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>974</p>
+                        <p>0</p>
                     </td>
                 </tr>
                 <tr>
@@ -76,7 +76,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>16</p>
+                        <p>{{ account.comment_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -87,7 +87,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>753</p>
+                        <p>{{ account.followers_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +98,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>594</p>
+                        <p>{{ account.following_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -109,7 +109,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>74</p>
+                        <p>{{ account.post_count }}</p>
                     </td>
                 </tr>
                 </tbody>

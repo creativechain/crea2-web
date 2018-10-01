@@ -82,8 +82,9 @@
 <script src="js/smooth-scroll.min.js"></script>
 <script src="js/scripts.js"></script>
 <script src="js/moment.min.js"></script>
-
 <script src="js/crea.min.js"></script>
+
+<script src="js/common/conf.js"></script>
 <script src="language/lang-en.js"></script>
 <script src="js/common/ls.js"></script>
 <script src="js/common/util.js"></script>
