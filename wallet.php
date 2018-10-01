@@ -217,7 +217,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account.vesting_balance }}</span>
+                                                                        <span class="dropdown__trigger">{{ account.savings_balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
