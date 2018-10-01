@@ -21,7 +21,7 @@ class Account {
     static generate(username, password, role='owner') {
         if (crea.auth.isWif(password)) {
             let keys = {};
-            if (ROLES.indexOf(role)) {
+            if (DEFAULT_ROLES.indexOf(role)) {
                 keys[role] = {
                     prv: password,
                     pub: crea.auth.wifToPublic(password)

@@ -50,6 +50,16 @@ class Session {
         })
     }
 
+    save() {
+        if (this.keepAlive) {
+            localStorage.setItem(CREARY.SESSION, jsonstring(this));
+            sessionStorage.setItem(CREARY.SESSION, false);
+        } else {
+            sessionStorage.setItem(CREARY.SESSION, jsonstring(this));
+            localStorage.setItem(CREARY.SESSION, false);
+        }
+    }
+
     /**
      *
      * @param username
@@ -62,6 +72,10 @@ class Session {
         return new Session(account);
     }
 
+    /**
+     *
+     * @returns {Session}
+     */
     static getAlive() {
         let session = jsonify(localStorage.getItem(CREARY.SESSION));
 

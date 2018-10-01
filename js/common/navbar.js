@@ -33,12 +33,10 @@ let navbarContainer = new Vue({
  */
 function setNavbarSession(session) {
     navbarContainer.$data.session = session;
-    localStorage.setItem(CREARY.SESSION, jsonstring(session));
 }
 
 function setUpNavbar() {
-    let session = localStorage.getItem(CREARY.SESSION);
-    session = jsonify(session);
+    let session = Session.getAlive();
     if (session) {
         setNavbarSession(session);
     }

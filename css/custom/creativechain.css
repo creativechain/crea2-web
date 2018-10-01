@@ -65,6 +65,37 @@
 .view-wallet .table-permission tbody tr td:nth-child(2) {
   vertical-align: middle; }
 
+.row-list-user {
+  display: flex;
+  border-bottom: solid 1px #DFDFDF; }
+  .row-list-user .avatare-list {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px; }
+    .row-list-user .avatare-list img {
+      border-radius: 20px; }
+  .row-list-user .list-data-user {
+    width: 80%;
+    margin: 0 5px;
+    padding: 10px 0; }
+    .row-list-user .list-data-user p:nth-child(1) {
+      font-size: 14px;
+      font-weight: 600; }
+      .row-list-user .list-data-user p:nth-child(1) span {
+        font-size: 12px;
+        color: #999999;
+        font-weight: normal; }
+    .row-list-user .list-data-user p {
+      margin-bottom: 0; }
+  .row-list-user .list-amount {
+    width: 15%;
+    font-weight: 600;
+    position: relative;
+    top: 33px; }
+
+.modal-send .text-p-form {
+  margin-top: 5px; }
+
 body {
   color: #222222;
   font-size: 12px; }

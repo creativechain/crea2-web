@@ -15,6 +15,22 @@ crea.api.setOptions(apiOptions);
 crea.config.set('address_prefix', apiOptions.addressPrefix);
 crea.config.set('chain_id', apiOptions.chainId);
 
+/**
+ *
+ * @param {string} location
+ */
+function toHome(location) {
+    console.log('Real location:', window.location.href, 'Checked location:', location, location && window.location.href.indexOf(location) > -1);
+    if (location) {
+        if (window.location.href.indexOf(location) > -1) {
+            window.location.href = '/crea';
+            return;
+        }
+    } else {
+        window.location.href = '/crea';
+    }
+}
+
 function createAuth(key) {
     return {
         weight_threshold: 1,

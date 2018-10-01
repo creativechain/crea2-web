@@ -1,0 +1,35 @@
+.row-list-user {
+  display: flex;
+  border-bottom: solid 1px $borde-dropdown-price;
+  .avatare-list {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    img {
+      border-radius: 20px;
+    }
+  }
+  .list-data-user {
+    width: 80%;
+    margin: 0 5px;
+    padding: 10px 0;
+    p:nth-child(1) {
+      font-size: 14px;
+      font-weight: 600;
+      span {
+        font-size:12px;
+        color: $grey-light;
+        font-weight: normal;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .list-amount {
+    width: 15%;
+    font-weight: 600;
+    position: relative;
+    top: 33px;
+  }
+}

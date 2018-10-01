@@ -245,7 +245,10 @@ let lang = {
         "DROPDOWN_MENU_TRANS_SAVINGS": "Tranfer to savings",
         "DROPDOWN_MENU_DE_ENERGIZE": "De-energize",
         "WITHDRAW_TEXT": "Withdraw funds. A 3 day waiting period is required.",
-        "HISTORY": "HISTORY"
+        "HISTORY": "HISTORY",
+        "BALANCES": "Balances",
+        "PERMISSIONS": "Permissions",
+        "PASSWORDS": "Passwords",
     },
     "DROPDOWN": {
         "ADULT_WARN": "Warn",
@@ -255,16 +258,16 @@ let lang = {
         "REWARDS_100": "Energize 100%",
         "ADULT_SHOW": "Show"
     },
-    "MODALS": {
-        "MODAL_WALLET_FROM": "From",
-        "MODAL_ADVANCED": "Advanced",
-        "MODAL_WALLET_TO": "To",
-        "MODAL_WALLET_INPUT_AMOUNT": "Enter an amount",
-        "MODAL_WALLET__MEMO_TEXT": "This memo is public",
-        "MODAL_WALLET_AMOUNT": "Amount",
-        "MODAL_WALLET_INPUT_USER": "Search user",
-        "MODAL_WALLET__MEMO": "Memo",
-        "MODAL_WALLET_BALANCE": "Balance"
+    "MODAL": {
+        "WALLET_FROM": "From",
+        "ADVANCED": "Advanced",
+        "WALLET_TO": "To",
+        "WALLET_INPUT_AMOUNT": "Enter an amount",
+        "WALLET_MEMO_TEXT": "This memo is public",
+        "WALLET_AMOUNT": "Amount",
+        "WALLET_INPUT_USER": "Search user",
+        "WALLET_MEMO": "Memo",
+        "WALLET_BALANCE": "Balance"
     },
     "ACCOUNT_RECOVERY": {
         "INPUT_USERNAME": "Enter your username",

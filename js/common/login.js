@@ -11,23 +11,40 @@ function startLogin() {
     return false;
 }
 
+/**
+ *
+ * @param {string} username
+ * @param {string} password
+ */
 function login(username, password) {
-    //Check user exists
+    //Check roles;
+    let roles = username.split('/');
 
-    let session = Session.create(username, password);
+    let session;
+    if (roles.length > 1) {
+        username = roles[0]; //First must be a username
+        let role = roles[1];
+
+        session = Session.create(username, password, role);
+    } else {
+        session = Session.create(username, password);
+    }
+
     session.login(function (err, account) {
         if (err) {
             console.error(err);
         } else {
-            console.log(account)
+            session.save();
             setNavbarSession(session);
         }
     });
+
 }
 
 function logout() {
     localStorage.setItem(CREARY.SESSION, false);
-    setNavbarSession(false)
+    setNavbarSession(false);
+    toHome();
 }
 
 function formSubmit(event) {
