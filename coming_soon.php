@@ -23,7 +23,7 @@
 
 
 </head>
-<body class="">
+<body class="coming-soon">
 <a id="start"></a>
 
 <div class="main-container">
@@ -32,27 +32,30 @@
             <img alt="background" src="img/crea-web/coming_soon/fons_creary_coming_soon.jpg" />
         </div>
         <div class="container pos-vertical-center">
-            <div class="row">
+            <div class="row row-content align-items-center">
                 <div class="col-md-12">
                     <ul>
                         <li>
-                            <img src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="">
+                            <img class="logo-coming" src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="">
                         </li>
                         <li>
-                            <h2>COMING SOON</h2>
+                            <h2 class="h2-title">COMING SOON</h2>
                         </li>
                         <li>
-                            <p>Subsribe to our mailing list and we will inform you of the progress</p>
-                        </li>
-                        <li>
-                            <a class="btn btn--icon bg--dark block" href="http://eepurl.com/dwE-ZP" target="_blank">
-                                <span class="btn__text">
-                                    Subscribe to list
-                                </span>
-                            </a>
+                            <p class="p-subscribe">Subsribe to our mailing list and we will inform you of the progress</p>
                         </li>
                     </ul>
+                    <div class="row">
+                        <div class="col-md-4 offset-md-4 col-xs-12">
+                            <a class="btn bg--dark block btn-dark-primary" href="http://eepurl.com/dwE-ZP" target="_blank">
+                        <span class="btn__text">
+                            Subscribe to list
+                        </span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
