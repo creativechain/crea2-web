@@ -1,1 +1,1 @@
-<?php include ('coming_soon.php'); ?>
+<?php include ('home.php'); ?>
