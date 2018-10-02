@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Stack Multipurpose HTML Template</title>
+    <title>CREARY</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:url" content="https://creary.net/">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+    <link rel="icon" type="image/ico" href="img/favicon.ico"
 </head>
 <body class=" ">
 <a id="start"></a>
