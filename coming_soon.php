@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>CREARY</title>
     <meta property="og:url" content="https://creary.net/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CREARY">
