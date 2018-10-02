@@ -9,7 +9,7 @@
     <meta property="og:image" content="https://creary.net/img/creary-social-media.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Site Description Here">
+    <meta name="description" content="Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.">
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+    <link rel="icon" type="image/ico" href="img/favicon.ico"
 
 </head>
 <body class="coming-soon">
