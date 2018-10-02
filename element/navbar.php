@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <title>Stack Multipurpose HTML Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Site Description Here">
+    <meta property="og:url" content="https://creary.net/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CREARY">
+    <meta property="og:description" content="Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.">
+    <meta property="og:image" content="https://creary.net/img/creary-social-media.jpg">
+
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
