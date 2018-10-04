@@ -48,7 +48,7 @@
                             <h2 class="h2-title">COMING SOON</h2>
                         </li>
                         <li>
-                            <p class="p-subscribe">Subsribe to our mailing list and we will inform you of the progress</p>
+                            <p class="p-subscribe">Subscribe to our mailing list and we will inform you of the progress</p>
                         </li>
                     </ul>
                     <div class="row">
