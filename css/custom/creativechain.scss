@@ -18,7 +18,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   background: $color-blue-primary;
   border-color: $color-blue-primary;
 }
+.btn--black, .btn--black:visited {
+  background: $color-dark-primary;
+  border-color: $color-dark-primary;
+  color: $color-white;
+}
+.color--white {
+  color: $color-white !important;
+}
 
+.btn--transparent {
+  border: solid 1px $border-btn-transparent !important;
+}
 .masonry__item:not(:empty) {
   margin-bottom: 30px;
   transform-style: flat;
@@ -28,6 +39,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 img {
   margin-bottom: 0;
+}
+.no-padding {
+  padding: 0 !important;
 }
 .card-home {
   .dropdown-price {

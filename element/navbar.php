@@ -33,16 +33,9 @@
 <div id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
      data-animation="from-right">
     <div class="side-menu__module">
-        <a class="btn btn--icon bg--facebook block" href="#">
+        <a class="btn bg--dark block" href="../welcome.php">
             <span class="btn__text">
-                <i class="socicon-facebook"></i>
-                {{ lang.LOGIN.FACEBOOK }}
-            </span>
-        </a>
-        <a class="btn btn--icon bg--dark block" href="#">
-            <span class="btn__text">
-                <i class="socicon-mail"></i>
-                Sign up with Email
+                Sign up
             </span>
         </a>
     </div>
@@ -60,27 +53,52 @@
         <ul class="list--loose list--hover">
             <li>
                 <a href="#">
-                    <span class="h5">About Stack</span>
+                    <span class="h5">FAQs</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Careers</span>
+                    <span class="h5">Vota testigos</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Investors</span>
+                    <span class="h5">Explorar</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Locations</span>
+                    <span class="h5">Mercado</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Contact</span>
+                    <span class="h5">Contraseña robada</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Actualización a 2.0</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Política de privacidad</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Whitepaper</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Términos y condiciones</span>
                 </a>
             </li>
         </ul>

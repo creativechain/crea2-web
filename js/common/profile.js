@@ -75,7 +75,7 @@
 
         } else {
             //Not logged, redirect to Home if location is wallet.php
-            toHome('profile.php');
+            //toHome('profile.php');
         }
     }
 

@@ -60,6 +60,11 @@ class Session {
         }
     }
 
+    logout() {
+        localStorage.setItem(CREARY.SESSION, false);
+        sessionStorage.setItem(CREARY.SESSION, false);
+    }
+
     /**
      *
      * @param username

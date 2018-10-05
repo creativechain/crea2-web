@@ -4297,7 +4297,7 @@ ol.lead li:not(:last-child) {
   padding: 0;
 }
 .list-inline li:not(:last-child) {
-  margin-right: 1.85714286em;
+  margin-right: 0.85714286em;
 }
 .list-inline:not(:last-child) {
   margin-right: 1.85714286em;
