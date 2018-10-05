@@ -42,9 +42,9 @@ function login(username, password) {
 }
 
 function logout() {
-    localStorage.setItem(CREARY.SESSION, false);
-    updateNavbarSession(false);
-    toHome();
+    Session.getAlive().logout();
+    //updateNavbarSession(false);
+    //toHome();
 }
 
 function formSubmit(event) {
