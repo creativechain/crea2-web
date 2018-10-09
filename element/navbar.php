@@ -19,6 +19,7 @@
     <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
           rel="stylesheet">
@@ -30,25 +31,7 @@
 <body class=" ">
 <a id="start"></a>
 
-<div id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
-     data-animation="from-right">
-    <div class="side-menu__module">
-        <a class="btn bg--dark block" href="../welcome.php">
-            <span class="btn__text">
-                Sign up
-            </span>
-        </a>
-    </div>
-    <!--end module-->
-    <hr>
-    <div class="side-menu__module">
-        <span class="type--fine-print float-left">Already have an account?</span>
-        <a class="btn type--uppercase float-right" href="#">
-            <span class="btn__text">Login</span>
-        </a>
-    </div>
-    <!--end module-->
-    <hr>
+<div id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu" data-animation="from-right">
     <div class="side-menu__module">
         <ul class="list--loose list--hover">
             <li>
@@ -76,6 +59,18 @@
                     <span class="h5">Contraseña robada</span>
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Cambiar Contraseña</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+    <hr>
+    <div class="side-menu__module">
+        <ul class="list--loose list--hover">
             <li>
                 <a href="#">
                     <span class="h5">About</span>
@@ -214,20 +209,6 @@
                                                             <div class="boxed boxed--lg bg--white text-center feature">
                                                                 <div class="modal-close modal-close-cross"></div>
                                                                 <h3>{{ lang.LOGIN.TITLE }}</h3>
-                                                                <a class="btn block btn--icon bg--facebook type--uppercase"
-                                                                   href="#">
-                                                                        <span class="btn__text">
-                                                                            <i class="socicon-facebook"></i>
-                                                                            {{ lang.LOGIN.FACEBOOK }}
-                                                                        </span>
-                                                                </a>
-                                                                <a class="btn block btn--icon bg--twitter type--uppercase"
-                                                                   href="#">
-                                                                        <span class="btn__text">
-                                                                            <i class="socicon-twitter"></i>
-                                                                            {{ lang.LOGIN.TWITTER }}
-                                                                        </span>
-                                                                </a>
                                                                 <hr v-bind:data-title="lang.COMMON.OR_CAP">
                                                                 <div class="feature__body">
                                                                     <form id="login-form" action="#" v-on:submit="login">
@@ -265,6 +246,13 @@
                                         </div>
                                     </div>
                                 </div>
+                            </li>
+                            <li>
+                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
+                                    <span class="btn__text">
+                                        {{ lang.BUTTON.PUBLISH }}
+                                    </span>
+                                </a>
                             </li>
                             <li>
                                 <a class="btn btn--sm type--uppercase" href="#" onclick="return startLogin()">

@@ -68,6 +68,9 @@
   font-size: 12px;
   margin-bottom: 15px; }
 
+#profile-edit > .row {
+  margin-bottom: 20px; }
+
 .view-wallet .padding-b-10 {
   padding-bottom: 10px; }
 .view-wallet .tabs-container-primary .tabs-primary {
@@ -161,6 +164,14 @@ body {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #222222; }
+
+.btn .btn__text, .btn i {
+  font-size: 12px; }
+
+.bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .5px; }
 
 .btn--primary, .btn--primary:visited {
   background: #0569EF;
@@ -264,26 +275,35 @@ img {
   .background-navbar-dark .menu-horizontal > li > a, .background-navbar-dark .menu-horizontal > li > span, .background-navbar-dark .menu-horizontal > li > .modal-instance > .modal-trigger {
     color: white;
     text-transform: none; }
-  .background-navbar-dark .btn .btn__text, .background-navbar-dark .btn i {
-    color: white;
-    border-color: white; }
   .background-navbar-dark .menu-horizontal > li:not(:hover) > a, .background-navbar-dark .menu-horizontal > li:not(:hover) > span, .background-navbar-dark .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger {
     opacity: 1; }
-  .background-navbar-dark .btn {
-    border-radius: 25px;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 2em;
-    padding-left: 2em;
-    border: 1px solid white;
-    border-width: 1px;
-    font-size: inherit;
-    line-height: 1.85714286em; }
   .background-navbar-dark .log-in {
     color: #0569EF !important; }
-  .background-navbar-dark .btn:not([class*='primary']):hover {
-    border-color: #0569EF;
-    background-color: #0569EF; }
+
+.text__dark {
+  color: #3B3B3C !important; }
+
+.btn:hover .text__dark {
+  color: white !important; }
+
+.btn .btn__text, .btn i {
+  color: white;
+  border-color: white; }
+
+.btn {
+  border-radius: 25px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 2em;
+  padding-left: 2em;
+  border: 1px solid white;
+  border-width: 1px;
+  font-size: inherit;
+  line-height: 1.85714286em; }
+
+.btn:not([class*='primary']):hover {
+  border-color: #0569EF;
+  background-color: #0569EF; }
 
 @media (min-width: 1200px) {
   #menu1 .container {

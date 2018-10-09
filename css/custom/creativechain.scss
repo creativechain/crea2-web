@@ -14,6 +14,12 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: $color-dark-primary;
 }
+.btn .btn__text, .btn i {
+  font-size: 12px;
+}
+.bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
+  font-size: 14px;
+}
 .btn--primary, .btn--primary:visited {
   background: $color-blue-primary;
   border-color: $color-blue-primary;
@@ -154,33 +160,42 @@ img {
     color: $color-white;
     text-transform: none;
   }
-  .btn .btn__text, .btn i {
-    color: $color-white;
-    border-color: $color-white;
-  }
   .menu-horizontal > li:not(:hover) > a, .menu-horizontal > li:not(:hover) > span, .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger {
     opacity: 1;
   }
-  .btn {
-    border-radius: 25px;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 2em;
-    padding-left: 2em;
-    border: 1px solid $color-white;
-    border-width: 1px;
-    font-size: inherit;
-    line-height: 1.85714286em;
-  }
+
   .log-in {
     color: $color-blue-primary !important;
   }
-  .btn:not([class*='primary']):hover {
-    border-color: $color-blue-primary;
-    background-color: $color-blue-primary;
+
+}
+.text__dark {
+  color: $border-btn-transparent !important;
+}
+.btn:hover {
+  .text__dark {
+    color: $color-white !important;
   }
 }
-
+.btn .btn__text, .btn i {
+  color: $color-white;
+  border-color: $color-white;
+}
+.btn {
+  border-radius: 25px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 2em;
+  padding-left: 2em;
+  border: 1px solid $color-white;
+  border-width: 1px;
+  font-size: inherit;
+  line-height: 1.85714286em;
+}
+.btn:not([class*='primary']):hover {
+  border-color: $color-blue-primary;
+  background-color: $color-blue-primary;
+}
 
 
 @media (min-width: 1200px) {
