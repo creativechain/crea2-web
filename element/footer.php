@@ -98,6 +98,7 @@
 <script src="js/common/navbar.js"></script>
 <script src="js/common/wallet.js"></script>
 <script src="js/common/profile.js"></script>
+<script src="js/common/home.js"></script>
 
 <script src="js/custom.js"></script>
 </body>

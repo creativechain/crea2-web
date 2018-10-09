@@ -2,17 +2,17 @@
     <div class="card card-2 card-home">
         <div class="card__top">
             <a href="#">
-                <img alt="Image" src="img/landing-8.jpg">
+                <img alt="Image" src="https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA">
             </a>
         </div>
         <div class="card__body">
-            <h4>International Film Festival</h4>
-            <p>Promotional video for music festival in Berna.</p>
+            <h4>{{ p.title }}</h4>
+            <p>{{ JSON.parse(p.json_metadata).description || "--" }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
                     <a href="#">
                         <img src="img/crea-web/like/like.svg" alt="">
-                        <span>108</span>
+                        <span>{{ p.active_votes.length }}</span>
                     </a>
                 </li>
                 <li>
@@ -48,7 +48,7 @@
                 <li>
                     <div class="dropdown dropdown-autor">
 
-                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">Anagrama estudio</span>
+                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ JSON.parse(p.json_metadata).author || p.author }}</span>
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
