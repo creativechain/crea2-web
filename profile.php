@@ -17,9 +17,8 @@
                 <div class="col-lg-8 col-xl-9">
                     <section class="space--sm unpad--top">
                         <div class="container">
-                            <div class="row">
-                                <?php include ('modules/post-view-home.php') ?>
-                            </div>
+                            <?php include ('modules/post-view-home.php') ?>
+                            <?php include ('modules/profile-edit.php') ?>
                         </div>
                     </section>
                 </div>

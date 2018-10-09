@@ -37,8 +37,13 @@
                         </p>
                     </td>
                     <td>
-                        <a class="btn btn--sm" href="#">
+                        <a class="btn btn--sm btn--primary" href="#">
                             <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
+                        </a>
+
+
+                        <a class="btn btn--sm btn--transparent" href="#">
+                            <span class="btn__text text__dark">Edit profile</span>
                         </a>
                     </td>
                 </tr>
