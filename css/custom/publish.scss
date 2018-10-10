@@ -1,0 +1,19 @@
+.view-publish {
+  .steps {
+    margin-bottom: 60px;
+    li {
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+  .title-steps {
+    font-size: 14px;
+    color: $color-blue-primary;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .description-step-title {
+    font-size: 14px;
+  }
+}
