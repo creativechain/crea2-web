@@ -56,7 +56,12 @@
                             </div>
 
                             <div class="section-editor">
-                                <!-- AQUI EL EDITOR -->
+                                <textarea name="editor" id="editor" rows="30" cols="80">
+
+                                </textarea>
+                                <script>
+                                    CKEDITOR.replace('editor');
+                                </script>
                             </div>
 
 

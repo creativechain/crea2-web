@@ -4,7 +4,7 @@
 <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
     <i class="stack-interface stack-up-open-big"></i>
 </a>
-<script src="js/jquery-3.1.1.min.js"></script>
+
 <script src="js/vue.js"></script>
 <script src="js/flickity.min.js"></script>
 <script src="js/easypiechart.min.js"></script>
