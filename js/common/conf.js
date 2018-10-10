@@ -3,7 +3,7 @@
  */
 
 let apiOptions = {
-    url: 'http://localhost/node/',
+    url: 'http://crea.owldevelopers.site',
     addressPrefix: 'CREA',
     symbol: {
         CREA: 'CREA',
