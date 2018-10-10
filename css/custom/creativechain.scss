@@ -15,6 +15,19 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: $color-dark-primary;
 }
+label {
+  font-size: 12px;
+}
+.row-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 100;
+  font-size: 20px;
+  a {
+    color: $color-white !important;
+  }
+}
 .btn .btn__text, .btn i {
   font-size: 12px;
 }
@@ -36,13 +49,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .btn--transparent {
   border: solid 1px $border-btn-transparent !important;
+  background-color: transparent !important;
 }
 .masonry__item:not(:empty) {
   margin-bottom: 30px;
   transform-style: flat;
 }
 #slide-home {
-  padding: 10em 0;
+  padding: 15em 0;
+  h1, h3, span {
+    color: $color-white;
+  }
 }
 img {
   margin-bottom: 0;
