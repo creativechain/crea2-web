@@ -11,6 +11,11 @@ let apiOptions = {
         CBD: 'CBD',
         VESTS: 'VESTS',
     },
+    nai: {
+        CREA: '@@000000021',
+        CBD: '@@000000013',
+        VESTS: ''
+    },
     chainId: '0000000000000000000000000000000000000000000000000000000000000000',
     accountCreator: 'initminer',
     privCreator: '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'

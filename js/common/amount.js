@@ -88,6 +88,25 @@ class Asset {
      */
     static parse(assetData) {
         let nai = NAI[assetData.nai];
+
+        if (typeof assetData.amount === 'number') {
+            assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
+        } else if (typeof assetData.amount === 'string') {
+            assetData.amount = assetData.amount.replace(',', '.');
+
+            if (!isNaN(assetData.amount)) {
+                if (assetData.amount.indexOf('.') > 0) {
+                    assetData.amount = parseFloat(assetData.amount)
+                } else {
+                    assetData.amount = parseInt(assetData.amount);
+                }
+
+                return Asset.parse(assetData);
+            }
+        } else {
+            assetData.amount = 0;
+        }
+
         switch (nai) {
             case ASSET_CBD:
                 return new CreaDollar(assetData.amount);
@@ -96,6 +115,19 @@ class Asset {
         }
 
         return undefined;
+    }
+
+    /**
+     *
+     * @param assetString
+     * @returns {Asset}
+     */
+    static parseString(assetString) {
+        let strSplitted = assetString.split(' ');
+        return Asset.parse({
+            amount: strSplitted[0],
+            nai: apiOptions.nai[strSplitted[1]],
+        })
     }
 }
 

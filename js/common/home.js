@@ -4,23 +4,42 @@
 
 let homePosts;
 
-function showPosts(posts) {
+function showPosts(filter, data) {
     if (!homePosts) {
         homePosts = new Vue({
             el: '#home-posts',
             data: {
-                posts: posts,
+                session: Session.getAlive() != false,
+                filter: filter,
+                data: data,
                 lang: lang
             },
             methods: {
-                retrieveNowContent: retrieveNowContent,
-                retrieveTrendingContent: retrieveTrendingContent,
-                retrieveHotContent: retrieveHotContent,
-                retrievePromotedContent: retrievePromotedContent
+                parseAsset: function (asset) {
+                    return Asset.parse(asset).toFriendlyString();
+                },
+                getFutureDate: function (date) {
+                    date = new Date(date);
+                    return moment(date.getTime(), 'x').endOf('day').fromNow();
+                },
+                parseJSON: function (strJson) {
+
+                    if (strJson && strJson.length > 0) {
+                        try {
+                            return JSON.parse(strJson);
+                        } catch (e) {
+                            console.error('JSON Error parsing', strJson);
+                        }
+                    }
+
+                    return {};
+                }
             }
         })
     } else {
-        homePosts.$data.posts = posts;
+        homePosts.$data.filter = filter;
+        homePosts.$data.data = data;
+        homePosts.$data.session = Session.getAlive() != false;
     }
 }
 
@@ -28,7 +47,7 @@ function showPosts(posts) {
 
 if (Session.getAlive()) {
     //TODO: REPLACE BY FOLLOWING CONTENT
-    retrieveNowContent();
+    creaEvents.emit('crea.content.filter', 'created');
 } else {
-    retrieveNowContent();
+    creaEvents.emit('crea.content.filter', 'created');
 }

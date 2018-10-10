@@ -27,4 +27,5 @@ CKEDITOR.editorConfig = function( config ) {
     config.format_tags = 'p;h1;h2;h3;h4;pre';
     // Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
+    config.resize_enabled = true;
 };

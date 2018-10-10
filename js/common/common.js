@@ -2,6 +2,8 @@
  * Created by ander on 25/09/18.
  */
 
+let creaEvents = new EventEmitter();
+
 function goTo(location) {
     window.location.href = location;
 }
