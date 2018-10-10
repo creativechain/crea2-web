@@ -177,11 +177,11 @@
                 <div class="col-lg-10 col-md-10 text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li><a href="">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_POPULAR }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_NOW }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_PROMOTED }}</a></li>
+                            <li><a href="#">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
+                            <li><a href="#" v-on:click="retrieveTrendingContent()">{{ lang.HOME.MENU_POPULAR }}</a></li>
+                            <li><a href="#" v-on:click="retrieveHotContent()">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
+                            <li><a href="#" v-on:click="retrieveNowContent()">{{ lang.HOME.MENU_NOW }}</a></li>
+                            <li><a href="#" v-on:click="retrievePromotedContent()">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
                     <div class="bar__module float-right">
@@ -247,14 +247,14 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li v-if="session">
                                 <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
                                 </a>
                             </li>
-                            <li>
+                            <li v-if="!session">
                                 <a class="btn btn--sm type--uppercase" href="#" onclick="return startLogin()">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.SIGN_UP }}

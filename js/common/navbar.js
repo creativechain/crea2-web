@@ -32,7 +32,11 @@ function updateNavbarSession(session) {
             },
             methods: {
                 login: startLogin,
-                goTo: goTo
+                goTo: goTo,
+                retrieveNowContent: retrieveNowContent,
+                retrieveTrendingContent: retrieveTrendingContent,
+                retrieveHotContent: retrieveHotContent,
+                retrievePromotedContent: retrievePromotedContent
             }
         });
     } else {
@@ -43,6 +47,74 @@ function updateNavbarSession(session) {
 function setUpNavbar() {
     let session = Session.getAlive();
     updateNavbarSession(session);
+}
+
+function retrieveNowContent(limit = 20) {
+    let params = {
+        limit: limit
+    };
+
+    crea.api.getDiscussionsByCreatedWith(params, function (err, result) {
+        if (err) {
+            console.error(err);
+        } else if (result.discussions) {
+            result = result.discussions;
+            console.log(result);
+            showPosts(result);
+
+        }
+    })
+}
+
+function retrieveTrendingContent(limit = 20) {
+    let params = {
+        limit: limit
+    };
+
+    crea.api.getDiscussionsByTrendingWith(params, function (err, result) {
+        if (err) {
+            console.error(err);
+        } else if (result.discussions) {
+            result = result.discussions;
+            console.log(result);
+            showPosts(result);
+
+        }
+    })
+}
+
+function retrieveHotContent(limit = 20) {
+    let params = {
+        limit: limit
+    };
+
+    crea.api.getDiscussionsByHotWith(params, function (err, result) {
+        if (err) {
+            console.error(err);
+        } else if (result.discussions) {
+            result = result.discussions;
+            console.log(result);
+            showPosts(result);
+
+        }
+    })
+}
+
+function retrievePromotedContent(limit = 20) {
+    let params = {
+        limit: limit
+    };
+
+    crea.api.getDiscussionsByPromotedWith(params, function (err, result) {
+        if (err) {
+            console.error(err);
+        } else if (result.discussions) {
+            result = result.discussions;
+            console.log(result);
+            showPosts(result);
+
+        }
+    })
 }
 
 setUpNavbar();
