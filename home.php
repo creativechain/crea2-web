@@ -27,11 +27,9 @@
         <div class="container">
             <div class="masonry">
                 <div class="masonry__container row">
-                    <div class="row">
-                        <template v-for="p in posts">
-                            <?php include ('modules/post-view-home.php') ?>
-                        </template>
-                    </div>
+                    <template v-for="p in posts">
+                        <?php include ('modules/post-view-home.php') ?>
+                    </template>
                 </div>
             </div>
         </div>

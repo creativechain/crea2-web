@@ -158,6 +158,32 @@
   .coming-soon .cover .row .row:last-child {
     margin-top: -1.428571em; } }
 
+.view-publish .li-title-steps {
+  font-size: 14px; }
+  .view-publish .li-title-steps p.active {
+    color: #0569EF; }
+.view-publish .section-title-step, .view-publish .section-text-step {
+  margin-bottom: 20px; }
+  .view-publish .section-title-step .title-steps, .view-publish .section-text-step .title-steps {
+    font-size: 14px;
+    color: #0569EF;
+    font-weight: bold;
+    margin-bottom: 0; }
+  .view-publish .section-title-step .description-step-title, .view-publish .section-text-step .description-step-title {
+    font-size: 14px; }
+.view-publish .step-1 .upload-img {
+  position: relative;
+  margin-bottom: 10px; }
+  .view-publish .step-1 .upload-img .delete-img-step-1 {
+    position: absolute;
+    right: 10px;
+    top: 5px; }
+    .view-publish .step-1 .upload-img .delete-img-step-1 a {
+      color: white; }
+.view-publish .step-1 .row-options-steps-1 {
+  margin-top: 160px;
+  margin-bottom: -50px; }
+
 body {
   color: #222222;
   font-size: 12px; }
@@ -169,9 +195,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-size: 12px; }
 
 .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .5px; }
+  font-size: 14px; }
 
 .btn--primary, .btn--primary:visited {
   background: #0569EF;

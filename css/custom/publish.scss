@@ -1,0 +1,40 @@
+.view-publish {
+  .li-title-steps {
+    font-size: 14px;
+    p.active {
+      color: $color-blue-primary;
+    }
+  }
+  .section-title-step, .section-text-step {
+    margin-bottom: 20px;
+    .title-steps {
+      font-size: 14px;
+      color: $color-blue-primary;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+    .description-step-title {
+      font-size: 14px;
+    }
+  }
+
+  .step-1 {
+    .upload-img {
+      position: relative;
+      margin-bottom: 10px;
+      .delete-img-step-1 {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        a {
+          color: $color-white;
+        }
+      }
+    }
+    .row-options-steps-1 {
+      margin-top: 160px;
+      margin-bottom: -50px;
+    }
+  }
+
+}
