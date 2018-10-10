@@ -1,5 +1,6 @@
 <?php include('element/navbar.php'); ?>
 <div class="main-container view-profile view-wallet">
+    <?php include ('modules/banner.php') ?>
     <section id="wallet-menu" class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">

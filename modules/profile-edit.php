@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-12">
             <label>ETIQUETAS</label>
-            <input class="validate-required" type="text" data-role="tagsinput" value="" placeholder="Escribe etiquetas">
+            <input class="validate-required" type="text" data-role="tagsinput" value="" placeholder="Usa espacios para separar etiquetas">
         </div>
     </div>
     <div class="row">

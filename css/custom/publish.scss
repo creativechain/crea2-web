@@ -1,4 +1,13 @@
 .view-publish {
+  label {
+    font-size: 14px;
+  }
+  .input-radio .input__label {
+    font-size: 14px;
+  }
+  input, select {
+    height: auto;
+  }
   .li-title-steps {
     font-size: 14px;
     p.active {
@@ -36,5 +45,65 @@
       margin-bottom: -50px;
     }
   }
-
+  .step-2 {
+    .row-options-steps-1 {
+      margin-top: 160px;
+      margin-bottom: -50px;
+    }
+    .input-radio input:checked + label:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 7px;
+      top: 7px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    .input-radio-step-2 {
+      display: flex;
+      margin-top: 10px;
+      .input-radio:nth-child(2) {
+        margin-left: 15px;
+      }
+      .input-radio {
+        display: flex;
+        label {
+          margin-left:5px;
+        }
+      }
+    }
+  }
+  .step-4 {
+    .row-options-steps-1 {
+      margin-top: 160px;
+      margin-bottom: -50px;
+    }
+    .input-radio input:checked + label:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 7px;
+      top: 7px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    .input-radio-step-2 {
+      display: flex;
+      margin-top: 10px;
+      .input-radio:nth-child(2) {
+        margin-left: 15px;
+      }
+      .input-radio:nth-child(3) {
+        margin-left: 15px;
+      }
+      .input-radio {
+        display: flex;
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
 }
