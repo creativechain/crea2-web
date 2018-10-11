@@ -10,8 +10,9 @@
             <p>{{ JSON.parse(data.content[p].json_metadata).description || "--" }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
-                    <a href="#">
-                        <img src="img/crea-web/like/like.svg" alt="">
+                    <a href="#" v-on:click="makeVote(data.content[p])">
+                        <img v-if="userHasVote(data.content[p])" src="img/crea-web/like/like_ACT_RED.svg" alt="">
+                        <img v-else src="img/crea-web/like/like.svg" alt="">
                         <span>{{ data.content[p].active_votes.length }}</span>
                     </a>
                 </li>
@@ -34,7 +35,7 @@
                     </div>
                 </li>
                 <li class="float-right li-comment">
-                    <a href="#">
+                    <a href="">
                         <img src="img/crea-web/comments.svg" alt="">
                         <span>{{ data.content[p].children }}</span>
                     </a>
@@ -69,7 +70,7 @@
                                                 <p class="name">{{ JSON.parse(data.content[p].json_metadata).author || data.content[p].author }}</p>
                                                 <p class="user">@{{ data.content[p].author }}</p>
                                                 <p class="description-user">{{ parseJSON(data.accounts[data.content[p].author].json_metadata).description || '-' }}</p>
-                                                <p class="email-user">casmic@lab.com</p>
+                                                <p class="email-user">{{ parseJSON(data.accounts[data.content[p].author].json_metadata).email || '-' }}</p>
                                             </div>
                                         </div>
                                         <div class="row">

@@ -1,6 +1,9 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container">
-    <?php include ('modules/banner.php') ?>
+    <div id="home-banner">
+        <?php include ('modules/banner.php') ?>
+    </div>
+
     <section class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">

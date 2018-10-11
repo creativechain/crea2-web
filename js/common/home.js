@@ -3,6 +3,18 @@
  */
 
 let homePosts;
+let homeBanner;
+
+homeBanner =  new Vue({
+    el: '#home-banner',
+    data: {
+        showBanner: true,
+        lang: lang
+    },
+    methods: {
+        closeBanner: showBanner
+    }
+});
 
 function showPosts(filter, data) {
     if (!homePosts) {
@@ -12,7 +24,7 @@ function showPosts(filter, data) {
                 session: Session.getAlive() != false,
                 filter: filter,
                 data: data,
-                lang: lang
+                lang: lang,
             },
             methods: {
                 parseAsset: function (asset) {
@@ -33,7 +45,24 @@ function showPosts(filter, data) {
                     }
 
                     return {};
-                }
+                },
+                userHasVote: function (post) {
+                    let session = Session.getAlive();
+
+                    if (session) {
+                        let activeVotes = post.active_votes;
+
+                        for (let x = 0; x < activeVotes.length; x++) {
+                            let vote = activeVotes[x];
+                            if (session.account.username === vote.voter) {
+                                return true;
+                            }
+                        }
+                    }
+
+                    return false;
+                },
+                makeVote: makeVote,
             }
         })
     } else {
@@ -43,6 +72,13 @@ function showPosts(filter, data) {
     }
 }
 
+function showBanner(show = true) {
+    homeBanner.$data.showBanner = show;
+}
+
+creaEvents.on('crea.login', function (session) {
+    showBanner(session == false);
+});
 
 
 if (Session.getAlive()) {

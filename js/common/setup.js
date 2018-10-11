@@ -7,3 +7,5 @@ if (Session.getAlive()) {
 } else {
     creaEvents.emit('crea.login', false);
 }
+
+new ClipboardJS('.btn_copy');

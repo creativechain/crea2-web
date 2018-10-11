@@ -23,12 +23,14 @@
 <script src="js/scripts.js"></script>
 <script src="js/moment.min.js"></script>
 <script src="js/event-emitter.js"></script>
+<script src="js/clipboard.min.js"></script>
 <script src="js/crea.min.js"></script>
 
 <script src="js/common/conf.js"></script>
 <script src="language/lang-en.js"></script>
 <script src="js/common/ls.js"></script>
 <script src="js/common/util.js"></script>
+<script src="js/common/http.js"></script>
 <script src="js/common/amount.js"></script>
 
 <script src="js/lib/error.js"></script>
@@ -41,6 +43,7 @@
 <script src="js/common/wallet.js"></script>
 <script src="js/common/profile.js"></script>
 <script src="js/common/home.js"></script>
+<script src="js/common/welcome.js"></script>
 
 <script src="js/common/setup.js"></script>
 

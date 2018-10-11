@@ -1,8 +1,8 @@
 <?php include ('element/navbar.php'); ?>
-<div class="main-container view-welcome">
+<div id="welcome" class="main-container view-welcome">
 
     <!-- Slide 1-->
-    <section class="imageblock switchable height-100">
+    <section v-if="slide === 1" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
@@ -17,19 +17,19 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-justify">
-                            <h1>Descubre la comunidad Crea!</h1>
-                            <p class="lead">Creary es la comunidad creativa descentralizada conectada a la blockchain de Crea.  No somos una red social convencional controlada por una entidad centralizada.</p>
-                            <p class="lead">La blockchain de Crea se sostienen de manera transversal por los miembros de la comunidad de todo el mundo.</p>
-                            <p class="lead">Para poder crear una cuenta en Creary se cobra una micro tarifa para evitar el registro masivo de bots o cuentas malintencionadas. Con mucho gusto Creary cubrirá esta tarifa, solo necesitaremos su correo electrónico con el objetivo de poder verificar que usted es una persona real.</p>
+                            <h1>{{ lang.WELCOME.SLIDE1_TITLE }}</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT1 }}</p>
+                            <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT2 }}</p>
+                            <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT3 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <a id="welcome-slide1-button-signup" class="btn btn--primary type--uppercase w-100" href="#"  v-on:click="changeSlide(2)">
                                         <span class="btn__text">
-                                            Inscribirse
+                                            {{ lang.BUTTON.SIGN_UP }}
                                         </span>
                                     </a>
                                 </div>
@@ -52,7 +52,7 @@
     </section>
 
     <!-- Slide 2-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 2" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
@@ -66,22 +66,22 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <h1>Empieza el registro</h1>
-                            <p class="lead">Tu nombre de usuario será público y es cómo te conocerán en la comunidad de Creary y en otras aplicaciones basadas en Crea.</p>
+                            <h1>{{ lang.WELCOME.SLIDE2_TITLE }}</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE2_TEXT1 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <input class="validate-required" type="text" name="My Input" placeholder="Escribe un nombre para tu usuario" />
+                            <input v-on:input="checkUsername" class="validate-required" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <a class="btn btn--primary type--uppercase w-100" v-on:click="changeSlide(3, validUsername)">
                                         <span class="btn__text">
-                                            Continuar
+                                            {{ lang.BUTTON.CONTINUE }}
                                         </span>
                                     </a>
                                 </div>
@@ -107,7 +107,7 @@
     </section>
 
     <!-- Slide 3-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 3" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
@@ -121,29 +121,29 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <h1>Introduce tu dirección email</h1>
-                            <p class="lead">Introduce un email válido para seguir con el proceso de validación</p>
+                            <h1>{{ lang.WELCOME.SLIDE3_TITLE }}</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE3_TEXT1 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <input class="validate-required" type="text" name="My Input" placeholder="Escribe tu email" />
+                            <input v-on:input="checkEmail" class="validate-required" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a class="btn btn--transparent type--uppercase w-100" href="#">
-                                        <span class="btn__text">
-                                            Volver
+                                    <a class="btn btn--transparent type--uppercase w-100" href="#"  v-on:click="changeSlide(2)">
+                                        <span id="welcome-slide3-button-back" class="btn__text">
+                                            {{ lang.BUTTON.GO_BACK }}
                                         </span>
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
-                                        <span class="btn__text">
-                                            Continuar
+                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="sendConfirmationMail()">
+                                        <span id="welcome-slide3-button-continue" class="btn__text">
+                                            {{ lang.BUTTON.CONTINUE}}
                                         </span>
                                     </a>
                                 </div>
@@ -169,7 +169,7 @@
     </section>
 
     <!-- Slide 4-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 4" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
@@ -183,28 +183,28 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <h1>Revisa tu email</h1>
-                            <p class="lead">Verifique su correo electrónico y haga clic en el enlace de validación de correo electrónico.</p>
+                            <h1>{{ lang.WELCOME.SLIDE4_TITLE }}</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE4_TEXT1 }}</p>
                         </div>
                     </div>
-                    <div class="row">
+<!--                    <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <input class="validate-required" type="text" name="My Input" placeholder="Escribe tu email" />
+                            <input id="welcome-slide4-email" class="validate-required" type="text" name="My Input" placeholder="Escribe tu email" />
                         </div>
-                    </div>
-                    <div class="row">
+                    </div>-->
+<!--                    <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
                                     <a class="btn btn--primary type--uppercase w-100" href="#">
-                                        <span class="btn__text">
+                                        <span id="welcome-slide4-button-continue" class="btn__text" v-on:click="changeSlide(5)">
                                             Continuar
                                         </span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <ul class="list-inline list-unstyled">
@@ -224,7 +224,7 @@
     </section>
 
     <!-- Slide 5-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 5" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
@@ -238,17 +238,17 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
-                            <h1>¡Felicidades Annori!</h1>
-                            <p class="lead">Tu email ha sido verificado correctamente.</p>
+                            <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ username }}!</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="changeSlide(6)">
                                         <span class="btn__text">
-                                            Continuar
+                                            {{ lang.BUTTON.CONTINUE }}
                                         </span>
                                     </a>
                                 </div>
@@ -271,7 +271,7 @@
     </section>
 
     <!-- Slide 6-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 6" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
@@ -285,13 +285,13 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <h1>Contraseña</h1>
-                            <p class="lead">Guarde su contraseña en un lugar seguro. <strong>IMPORTANTE:</strong> Si alguna vez pierde su contraseña, su cuenta se perderá irremediablemente y no podrá acceder a su contenido o a sus tokens. No tenemos su contraseña, y no podremos ayudarlo a recuperarla.</p>
+                            <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
+                            <p class="lead">{{ lang.SLIDE6_TEXT1 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <input class="validate-required" type="text" name="My Input" placeholder="Escribe tu contraseña" />
+                            <input v-on:input="inputPassword" class="validate-required" type="text" v-bind:value="suggestedPassword" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
                         </div>
                     </div>
                     <div class="row">
@@ -299,24 +299,24 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <a class="btn btn--transparent type--uppercase w-100" href="#">
-                                        <span class="btn__text">
-                                            Copiar contraseña
+                                        <span class="btn__text btn_copy" data-clipboard-target="#welcome-slide6-input">
+                                            {{ lang.BUTTON.COPY_PASSWORD }}
                                         </span>
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn--black type--uppercase w-100" href="#">
+                                    <a class="btn btn--black type--uppercase w-100" href="#" v-on:click="suggestPassword()">
                                         <span class="btn__text color--white">
-                                            Crear nueva
+                                            {{ lang.BUTTON.NEW_PASSWORD }}
                                         </span>
                                     </a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="changeSlide(7)">
                                         <span class="btn__text">
-                                            Continuar
+                                            {{ lang.BUTTON.CONTINUE }}
                                         </span>
                                     </a>
                                 </div>
@@ -339,7 +339,7 @@
     </section>
 
     <!-- Slide 7-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 7" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
@@ -353,41 +353,41 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <h1>Confirma tu contraseña</h1>
-                            <p class="lead">Añada de nuevo la contraseña para asegurarnos de que ha sido copiada correctamente. Asegúrese de haber guardado su contraseña en un lugar seguro.</p>
-                            <p class="lead">Le recomendamos guardar copias de su contraseña en diferentes soportes como un pendrive, un papel impreso o en su gestor de claves preferido. </p>
+                            <h1>{{ lang.WELCOME.SLIDE7_TITLE }}</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT1 }}</p>
+                            <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT2 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <input class="validate-required" type="text" name="My Input" placeholder="Escribe tu contraseña" />
+                            <input v-on:input="inputCheckPassword" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE7_INPUT_PLACEHOLDER" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 col-terms">
                             <div class="input-checkbox">
-                                <input id="checkbox" type="checkbox" name="agree" />
-                                <label for="checkbox"></label>
+                                <input v-on:change="checkTerms" id="welcome-check-terms" type="checkbox" name="agree_terms" />
+                                <label for="welcome-check-terms"></label>
                             </div>
-                            <span>Estoy de acuerdo con los términos y condiciones del servicio de Creary</span>
+                            <span>{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
                             <div class="input-checkbox">
-                                <input id="checkbox" type="checkbox" name="agree" />
-                                <label for="checkbox"></label>
+                                <input v-on:change="checkPolicy" id="welcome-check-policy" type="checkbox" name="agree_policy" />
+                                <label for="welcome-check-policy"></label>
                             </div>
-                            <span>Estoy de acuerdo con la política de privacidad de Creary</span>
+                            <span>{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="createAccount()">
                                         <span class="btn__text">
-                                            Crear cuenta
+                                            {{ lang.BUTTON.CREATE_ACCOUNT }}
                                         </span>
                                     </a>
                                 </div>
@@ -410,7 +410,7 @@
     </section>
 
     <!-- Slide 8-->
-    <section class="imageblock switchable height-100">
+    <section v-else-if="slide === 8" class="imageblock switchable height-100">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
@@ -424,17 +424,17 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
-                            <h1>¡Felicidades ya formas parte de la comunidad Crea!</h1>
-                            <p class="lead">Ahora estás listo para empezar a viajar en el universo de Creary. Publica tus creaciones y empieza a ganar tus primeras criptomonedas.</p>
+                            <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
+                            <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-md-2 text-center">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <a class="btn btn--primary type--uppercase w-100" href="/">
                                         <span class="btn__text">
-                                            Continuar
+                                            {{ lang.BUTTON.CONTINUE }}
                                         </span>
                                     </a>
                                 </div>

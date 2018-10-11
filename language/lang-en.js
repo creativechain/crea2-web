@@ -98,7 +98,7 @@ let lang = {
     },
     "BUTTON": {
         "FOLLOW": "Follow",
-        "REDDEM_REWARDS": "Redeem rewards (transfer to balance)",
+        "REDEEM_REWARDS": "Redeem rewards (transfer to balance)",
         "BROWSE": "Browse",
         "CONFIRM_PASSWORD": "Confirm password",
         "DOWNLOAD": "Download",
@@ -136,7 +136,43 @@ let lang = {
         "TITLE": "Download",
         "SUBTITLE": "Select a file and set the price you want for its download."
     },
-    "WELCOME": {},
+    "WELCOME": {
+        SLIDE1_TITLE: "Discover the Crea comunity!",
+        SLIDE1_TEXT1: "Creary is the decentralized creative community connected to the blockchain of Crea. We are not a " +
+        "conventional social network controlled by a centralized entity.",
+        SLIDE1_TEXT2: "The blockchain of Crea is supported transversally by the members of the community around the world.",
+        SLIDE1_TEXT3: "In order to create an account in Creary, a micro fee is charged to avoid the massive registration" +
+        " of bots or malicious accounts. With great pleasure Creary will cover this rate, we will only need your email " +
+        "in order to verify that you are a real person.",
+        SLIDE2_TITLE: "The registration begins",
+        SLIDE2_TEXT1: "Your username will be public and it is how you will be known in the community of Creary and in " +
+        "other applications based on Crea.",
+        SLIDE2_INPUT_PLACEHOLDER: "Type a name for your user",
+        SLIDE3_TITLE: "Enter your email address",
+        SLIDE3_TEXT1: "Enter a valid email to continue with the validation process",
+        SLIDE3_INPUT_PLACEHOLDER: "Type your mail",
+        SLIDE4_TITLE: "Check your email",
+        SLIDE4_TEXT1: "Check your email and click on the email validation link.",
+        SLIDE5_TITLE: "Congratulations",
+        SLIDE5_TEXT1: "Your email has been verified correctly.",
+        SLIDE6_TITLE: "Password",
+        SLIDE6_TEXT1: "Keep your password in a safe place. <strong>IMPORTANTE:</strong> If you ever lose your password, " +
+        "your account will be irretrievably lost and you will not be able to access your content or your tokens. We do " +
+        "not have your password, and we can not help you recover it.",
+        SLIDE6_INPUT_PLACEHOLDER: "Type your password",
+        SLIDE7_TITLE: "Confirm your password",
+        SLIDE7_TEXT1: "Add the password again to make sure it has been copied correctly. Make sure you have stored your " +
+        "password in a safe place.",
+        SLIDE7_TEXT2: "We recommend that you keep copies of your password in different media such as a flash drive, a " +
+        "printed paper or in your preferred key manager.",
+        SLIDE7_INPUT_PLACEHOLDER: "Type your password",
+        SLIDE7_CHECKBOX1: "I agree to the terms and conditions of the Creary service",
+        SLIDE7_CHECKBOX2: "I agree with the Creary privacy policy",
+        SLIDE8_TITLE: "Congratulations and you are part of the Crea community!",
+        SLIDE8_TEXT1: "Now you are ready to start traveling in the universe of Creary. Publish your creations and start " +
+        "earning your first cryptocurrencies."
+
+    },
     "CHANGE_PASSWORD": {
         "ACCOUNT_NAME": "ACCOUNT NAME",
         "RECOVERY": "ACCOUNT RECOVERY",

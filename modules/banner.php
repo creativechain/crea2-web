@@ -1,6 +1,6 @@
-<section class="imagebg image--light cover cover-blocks bg--secondary" id="slide-home">
-    <div class="row-close">
-        <a href=""><i class="fas fa-times"></i></a>
+<section v-if="showBanner" class="imagebg image--light cover cover-blocks bg--secondary" id="slide-home">
+    <div class="row-close" v-on:click="closeBanner()">
+        <a href="#"><i class="fas fa-times"></i></a>
     </div>
     <div class="background-image-holder hidden-xs">
         <img alt="background" src="img/crea-web/slide_casmiclab_logo.jpg"/>
@@ -12,7 +12,7 @@
                 <h3>Un mundo sin intermediarios</h3>
                 <a href="#" onclick="return startLogin()" class="btn btn--primary btn--sm btn--transparent type--uppercase">
                     <span class="btn__text">
-                            Sign up
+                            {{ lang.BUTTON.SIGN_UP }}
                     </span>
                 </a>
             </div>
