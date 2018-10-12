@@ -1,6 +1,8 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container view-profile">
-    <?php include ('modules/banner.php') ?>
+    <div id="home-banner">
+        <?php include ('modules/banner.php') ?>
+    </div>
     <section id="profile-menu" class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
@@ -18,7 +20,9 @@
                 <div class="col-lg-8 col-xl-9">
                     <section class="space--sm unpad--top">
                         <div class="container">
-                            <?php include ('modules/post-view-home.php') ?>
+                            <template v-for="p in data.discussion_idx[''][filter]">
+                                <?php include ('modules/post-view-home.php') ?>
+                            </template>
                             <?php include ('modules/profile-edit.php') ?>
                         </div>
                     </section>
