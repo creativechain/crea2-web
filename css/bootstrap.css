@@ -3026,7 +3026,8 @@ button.bg-dark:focus {
   float: left !important; }
 
 .float-right {
-  float: right !important; }
+  float: right !important;
+  }
 
 .float-none {
   float: none !important; }

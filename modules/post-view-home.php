@@ -1,7 +1,7 @@
 <div class="col-sm-6 col-md-6 col-lg-3 masonry__item">
     <div class="card card-2 card-home">
         <div class="card__top">
-            <a href="#">
+            <a href="/post-view.php">
                 <img alt="Image" src="https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA">
             </a>
         </div>

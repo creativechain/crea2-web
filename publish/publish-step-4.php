@@ -4,8 +4,22 @@
             <h4 class="title-steps">Licencia</h4>
             <span class="description-step-title">Selecciona el tipo de licencia más adequado para tu publicación. </span>
         </div>
-
         <form action="" class="row">
+            <div class="col-md-12">
+                <label>¿Quieres que tu obra sea de dominio público?</label>
+                <div class="input-radio-step-2">
+                    <div class="input-radio">
+                        <input id="radio-1a-1" type="radio" name="radio" value="radio-1a-1" />
+                        <label for="radio-1a-1"></label>
+                        <span class="input__label">Si</span>
+                    </div>
+                    <div class="input-radio">
+                        <input id="radio-1a-2" type="radio" name="radio" value="radio-1a-2" />
+                        <label for="radio-1a-2"></label>
+                        <span class="input__label">no</span>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <label>¿Quiéres permitir que se compartan las adaptaciones de tu obra?</label>
                 <div class="input-radio-step-2">
@@ -52,6 +66,34 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="boxed boxed--border">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="list-unstyled list-inline ul-icon-license">
+                            <li><img src="/img/icons/license/attribution.svg" alt=""></li>
+                            <li><img src="/img/icons/license/creativecommons.svg" alt=""></li>
+                            <li><img src="/img/icons/license/freecontent.svg" alt=""></li>
+                            <li><img src="/img/icons/license/noncomercial.svg" alt=""></li>
+                            <li><img src="/img/icons/license/nonderivates.svg" alt=""></li>
+                            <li><img src="/img/icons/license/sharealike.svg" alt=""></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 text-center row-text-license">
+                        <p>Attribution + Noncommercial + ShareALike</p>
+                        <span>Reconocimiento 4.0 Internacional</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center row-text-finish">
+            <p>Estás apunto de publicar tu proyecto. Dale!</p>
+            <span>El contenido de tu proyecto es inmutable. Se puede re-editar pero no borrar de la blockchain.</span>
+        </div>
     </div>
 </div>
 

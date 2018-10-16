@@ -233,10 +233,214 @@
     display: flex; }
     .view-publish .step-4 .input-radio-step-2 .input-radio span {
       margin-left: 5px; }
+.view-publish .step-4 .ul-icon-license img {
+  width: 30px; }
+.view-publish .step-4 .row-text-license {
+  margin-top: 20px; }
+  .view-publish .step-4 .row-text-license p {
+    font-size: 14px;
+    margin-bottom: 0; }
+  .view-publish .step-4 .row-text-license span {
+    font-size: 14px;
+    color: #0569EF; }
+.view-publish .step-4 .row-text-finish {
+  margin-bottom: 20px; }
+  .view-publish .step-4 .row-text-finish p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0; }
+  .view-publish .step-4 .row-text-finish span {
+    font-size: 12px; }
+
+.post-view {
+  background: #F9F9F9 !important; }
+  .post-view section {
+    padding-top: 50px; }
+  .post-view .border-post-view {
+    border: 1px solid #DFDFDF;
+    border-radius: 10px;
+    overflow: hidden; }
+    .post-view .border-post-view .border-box {
+      border-right: 1px solid #DFDFDF;
+      overflow: hidden;
+      padding: 0 0 0 15px; }
+    .post-view .border-post-view .full-post .content-post h2.title-view-post {
+      margin: 20px 0;
+      font-size: 40px;
+      font-weight: 400; }
+    .post-view .border-post-view .full-post .content-post p {
+      font-size: 14px; }
+    .post-view .border-post-view .full-post .img-post-view img {
+      margin-bottom: 20px; }
+    .post-view .border-post-view .full-post .row-promote {
+      margin: 20px 0; }
+    .post-view .border-post-view .full-post .subtitle-content-publish {
+      font-size: 14px;
+      margin: 20px 0 20px; }
+    .post-view .border-post-view .full-post .img-more-projects {
+      background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+      height: 164px;
+      background-size: cover;
+      background-position: 50% 50%;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0; }
+    .post-view .border-post-view .full-post .box-comment {
+      background: white; }
+      .post-view .border-post-view .full-post .box-comment .row-comment {
+        display: flex; }
+        .post-view .border-post-view .full-post .box-comment .row-comment .textarea {
+          margin-left: 10px;
+          width: 100%; }
+      .post-view .border-post-view .full-post .box-comment h3 {
+        font-size: 14px;
+        font-weight: 600; }
+      .post-view .border-post-view .full-post .box-comment .row-post-comments {
+        display: flex; }
+        .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments {
+          margin-left: 10px; }
+          .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments p {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 0; }
+            .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments p img {
+              margin: 0 10px;
+              width: 20px;
+              height: 20px; }
+            .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments p span {
+              font-size: 12px;
+              color: #999999; }
+          .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments .comment-user {
+            color: #484848; }
+          .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments .ul-row-share-comment li:nth-child(2) {
+            border: solid 1px #3B3B3C;
+            border-radius: 20px;
+            padding: 0 15px; }
+          .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments .ul-row-share-comment img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px; }
+          .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments .ul-row-share-comment p {
+            font-size: 12px;
+            font-weight: 400;
+            color: #484848; }
+      .post-view .border-post-view .full-post .box-comment .more-comments {
+        color: #999999;
+        font-weight: 600; }
+    .post-view .border-post-view .full-post .box-report img {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px; }
+    .post-view .border-post-view .full-post .box-report p {
+      color: #999999; }
+    .post-view .border-post-view .full-post .box-blockchain-certificate .certificat-flag {
+      position: absolute;
+      top: 0px;
+      z-index: 1000000; }
+    .post-view .border-post-view .full-post .box-blockchain-certificate .feature:not(.boxed) {
+      margin-bottom: 10px; }
+    .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body {
+      width: 90%;
+      float: right; }
+      .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body p {
+        margin-bottom: 0; }
+      .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body h2.title-certificate {
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: 600; }
+      .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body .li-blockchain-certificate {
+        background-color: #222222;
+        padding: 5px 10px;
+        border-radius: 20px; }
+        .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body .li-blockchain-certificate img {
+          width: 20px;
+          height: 20px;
+          margin-right: 5px; }
+  .post-view .menu-right {
+    padding-left: 0; }
+    .post-view .menu-right hr {
+      margin: 20px 0;
+      border-color: #CACACA; }
+    .post-view .menu-right .row {
+      padding-left: 15px;
+      padding-right: 15px; }
+    .post-view .menu-right .row-user-name {
+      display: flex;
+      margin-top: 10px; }
+    .post-view .menu-right .user-data {
+      padding: 0 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+      .post-view .menu-right .user-data .name {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      .post-view .menu-right .user-data .website {
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+    .post-view .menu-right .row-master {
+      margin: 20px 0; }
+      .post-view .menu-right .row-master .col-md-6 {
+        display: flex; }
+        .post-view .menu-right .row-master .col-md-6 p {
+          margin-left: 10px;
+          margin-top: 3px; }
+      .post-view .menu-right .row-master img {
+        width: 28px;
+        height: 28px; }
+    .post-view .menu-right .row-publish-description p {
+      font-size: 14px;
+      font-weight: bold; }
+    .post-view .menu-right .row-publish-tags p {
+      font-size: 14px;
+      font-weight: bold; }
+    .post-view .menu-right .row-social .ul-social li:nth-child(1) {
+      padding-top: 0;
+      padding-bottom: 10px;
+      border-bottom: solid 1px #CACACA; }
+    .post-view .menu-right .row-social .ul-social li {
+      display: flex;
+      padding: 10px;
+      border-bottom: solid 1px #CACACA; }
+      .post-view .menu-right .row-social .ul-social li p {
+        margin-left: 10px;
+        margin-top: 3px; }
+      .post-view .menu-right .row-social .ul-social li img {
+        width: 30px;
+        height: 30px; }
+    .post-view .menu-right .row-download {
+      margin-top: 20px; }
+      .post-view .menu-right .row-download .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 0px; }
+      .post-view .menu-right .row-download .row-format {
+        padding-top: 20px;
+        padding-bottom: 0; }
+  .post-view .user-avatar {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 50px; }
+  .post-view .img-user-avatar {
+    background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    background-position: 50% 50%; }
 
 body {
   color: #222222;
-  font-size: 12px; }
+  font-size: 12px;
+  background: #F9F9F9; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #222222; }
@@ -290,61 +494,75 @@ img {
 .no-padding {
   padding: 0 !important; }
 
-.card-home .dropdown-price {
-  border: 1px solid #505050;
-  border-radius: 25px;
-  padding: 0 10px; }
-.card-home .li-like {
-  width: auto; }
-  .card-home .li-like a {
-    color: #222222; }
-    .card-home .li-like a img {
-      width: 14px; }
-.card-home .li-comment {
-  width: auto; }
-  .card-home .li-comment a {
-    color: #222222; }
-    .card-home .li-comment a img {
-      width: 14px; }
-.card-home .li-certificate img {
-  width: 15px; }
-.card-home .dropdown-price .dropdown__content p {
-  margin: 0; }
-.card-home .dropdown-price .dropdown__content p.title {
-  color: #0569EF; }
-.card-home .dropdown-autor .dropdown__content p {
-  margin: 0; }
-.card-home .card-show {
-  overflow: visible; }
-.card-home .dropdown-info-user .btn {
-  border-radius: 25px;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-right: 2em;
-  padding-left: 2em;
-  border: 1px solid white;
-  border-width: 1px;
-  font-size: inherit;
-  line-height: 1.85714286em; }
-.card-home .dropdown-info-user .btn .btn__text, .card-home .dropdown-info-user .btn i {
-  color: white;
-  border-color: white; }
-.card-home .dropdown-info-user .avatare-info {
-  width: 55px;
-  margin: 10px 0; }
-.card-home .dropdown-info-user p.name {
-  font-size: 16px;
-  font-weight: bold; }
-.card-home .dropdown-info-user p.description-user {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden; }
-.card-home .dropdown-info-user p.email-user {
-  margin: 10px 0; }
-.card-home .dropdown-info-user p.title-stats {
-  font-size: 16px;
-  font-weight: bold; }
+.card-home {
+  background-color: white; }
+  .card-home .card__top {
+    height: 212px; }
+    .card-home .card__top .img-post-list {
+      background-image: url("https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA");
+      height: 212px;
+      background-size: cover;
+      background-position: 50% 50%;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0; }
+  .card-home .modal-instance {
+    width: 100%; }
+  .card-home .dropdown-price {
+    border: 1px solid #505050;
+    border-radius: 25px;
+    padding: 0 10px; }
+  .card-home .li-like {
+    width: auto; }
+    .card-home .li-like a {
+      color: #222222; }
+      .card-home .li-like a img {
+        width: 14px; }
+  .card-home .li-comment {
+    width: auto; }
+    .card-home .li-comment a {
+      color: #222222; }
+      .card-home .li-comment a img {
+        width: 14px; }
+  .card-home .li-certificate img {
+    width: 15px; }
+  .card-home .dropdown-price .dropdown__content p {
+    margin: 0; }
+  .card-home .dropdown-price .dropdown__content p.title {
+    color: #0569EF; }
+  .card-home .dropdown-autor .dropdown__content p {
+    margin: 0; }
+  .card-home .card-show {
+    overflow: visible; }
+  .card-home .dropdown-info-user .btn {
+    border-radius: 25px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 2em;
+    padding-left: 2em;
+    border: 1px solid white;
+    border-width: 1px;
+    font-size: inherit;
+    line-height: 1.85714286em; }
+  .card-home .dropdown-info-user .btn .btn__text, .card-home .dropdown-info-user .btn i {
+    color: white;
+    border-color: white; }
+  .card-home .dropdown-info-user .avatare-info {
+    width: 55px;
+    margin: 10px 0; }
+  .card-home .dropdown-info-user p.name {
+    font-size: 16px;
+    font-weight: bold; }
+  .card-home .dropdown-info-user p.description-user {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden; }
+  .card-home .dropdown-info-user p.email-user {
+    margin: 10px 0; }
+  .card-home .dropdown-info-user p.title-stats {
+    font-size: 16px;
+    font-weight: bold; }
 
 .dropdown .dropdown__content {
   border-radius: 1px;

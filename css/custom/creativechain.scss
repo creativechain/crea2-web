@@ -7,10 +7,12 @@
 @import "modal";
 @import "coming-soon";
 @import "publish";
+@import "view-publish-post";
 
 body {
   color: $color-dark-primary;
   font-size: 12px;
+  background: $background-modal;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: $color-dark-primary;
@@ -68,6 +70,22 @@ img {
   padding: 0 !important;
 }
 .card-home {
+  background-color: $color-white;
+  .card__top {
+    height: 212px;
+    .img-post-list {
+      background-image: url("https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA");
+      height: 212px;
+      background-size: cover;
+      background-position: 50% 50%;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0;
+    }
+  }
+  .modal-instance {
+    width: 100%;
+  }
   .dropdown-price {
     border: 1px solid #505050;
     border-radius: 25px;
