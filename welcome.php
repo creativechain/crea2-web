@@ -2,7 +2,7 @@
 <div v-cloak id="welcome" class="main-container view-welcome">
 
     <!-- Slide 1-->
-    <section v-if="slide === 1" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 1, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
@@ -52,7 +52,7 @@
     </section>
 
     <!-- Slide 2-->
-    <section v-else-if="slide === 2" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 2, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
@@ -107,7 +107,7 @@
     </section>
 
     <!-- Slide 3-->
-    <section v-else-if="slide === 3" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 3, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
@@ -169,7 +169,7 @@
     </section>
 
     <!-- Slide 4-->
-    <section v-else-if="slide === 4" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 4, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
@@ -224,7 +224,7 @@
     </section>
 
     <!-- Slide 5-->
-    <section v-else-if="slide === 5" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 5, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
@@ -271,7 +271,7 @@
     </section>
 
     <!-- Slide 6-->
-    <section v-else-if="slide === 6" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 6, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
@@ -339,7 +339,7 @@
     </section>
 
     <!-- Slide 7-->
-    <section v-else-if="slide === 7" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 7, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
@@ -410,7 +410,7 @@
     </section>
 
     <!-- Slide 8-->
-    <section v-else-if="slide === 8" class="imageblock switchable height-100">
+    <section v-bind:class="{ hidden: slide !== 8, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-4 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
