@@ -2,7 +2,7 @@
     <div class="row-close">
         <a href=""><i class="fas fa-times"></i></a>
     </div>
-    <div class="background-image-holder hidden-xs">
+    <div class="background-image-holder">
         <img alt="background" src="img/crea-web/slide_casmiclab_logo.jpg"/>
     </div>
     <div class="container">
