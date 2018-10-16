@@ -77,3 +77,32 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+/**
+ *
+ * @param base64
+ * @returns {ArrayBuffer}
+ */
+function base64ToBuffer(base64) {
+    let binary_string = window.atob(base64);
+    let len = binary_string.length;
+    let bytes = new Uint8Array( len );
+    for (let i = 0; i < len; i++)        {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+
+/**
+ *
+ * @param ab
+ * @returns {*|s|i|l|o|t}
+ */
+function toBuffer(ab) {
+    let buf = new ipfs.Buffer(ab.byteLength);
+    let view = new Uint8Array(ab);
+    for (let i = 0; i < buf.length; ++i) {
+        buf[i] = view[i];
+    }
+    return buf;
+}

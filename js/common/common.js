@@ -4,6 +4,22 @@
 
 let creaEvents = new EventEmitter();
 
+const ipfs = IpfsApi('144.217.106.119', '5001');
+
+const CONSTANTS = {
+    FILE_MAX_SIZE: {
+        AUDIO: 1024 * 1024,
+        VIDEO: 5 * 1024 * 1024,
+        IMAGE: 1024 * 1024,
+        DOWNLOAD: 200 * 1024 * 1024, //200 MB
+    },
+    TEXT_MAX_SIZE: {
+        TITLE: 55,
+        DESCRIPTION: 233,
+        TAG: 21,
+    }
+};
+
 function goTo(location) {
     window.location.href = location;
 }

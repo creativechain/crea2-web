@@ -1,6 +1,8 @@
 let lang = {
     "COMMON": {
-        "OR_CAP": "OR"
+        "OR_CAP": "OR",
+        "YES": "Yes",
+        "NO": "No",
     },
     "TRENDING_TOPICS": {
         "TRENDING_PAYOUTS": "PAYOUTS",
@@ -203,6 +205,7 @@ let lang = {
         "INFO_POST": "Post Information",
         "SECONDARY_MENU_LICENSE": "License",
         "INFO_DESCRIPTION": "SHORT DESCRIPTION",
+        "INFO_TAGS": "TAGS",
         "CONTENT_SECONDARY_SENTENCE": "Enter a text that explains the development of your project.",
         "FILE": "File"
     },

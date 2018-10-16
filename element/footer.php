@@ -5,7 +5,6 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 
-<script src="js/vue.js"></script>
 <script src="js/flickity.min.js"></script>
 <script src="js/easypiechart.min.js"></script>
 <script src="js/parallax.js"></script>
@@ -20,11 +19,18 @@
 <script src="js/twitterfetcher.min.js"></script>
 <script src="js/spectragram.min.js"></script>
 <script src="js/smooth-scroll.min.js"></script>
+<script src="js/tagsinput.min.js"></script>
 <script src="js/scripts.js"></script>
 <script src="js/moment.min.js"></script>
+<script src="js/buffer.js"></script>
 <script src="js/event-emitter.js"></script>
 <script src="js/clipboard.min.js"></script>
 <script src="js/crea.min.js"></script>
+<script src="https://unpkg.com/ipfs-api@24.0.2/dist/index.js"
+        integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
+        crossorigin="anonymous"></script>
+
+<script src="js/vue.js"></script>
 
 <script src="js/common/conf.js"></script>
 <script src="language/lang-en.js"></script>
@@ -44,6 +50,7 @@
 <script src="js/common/profile.js"></script>
 <script src="js/common/home.js"></script>
 <script src="js/common/welcome.js"></script>
+<script src="js/common/publish.js"></script>
 
 <script src="js/common/setup.js"></script>
 
