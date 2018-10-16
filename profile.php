@@ -3,7 +3,7 @@
     <div id="home-banner">
         <?php include ('modules/banner.php') ?>
     </div>
-    <section id="profile-menu" class="cta cta-4 space--xxs border--bottom ">
+    <section v-cloak id="profile-menu" class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
                 <?php include ('modules/navbar-profile.php') ?>
@@ -11,7 +11,7 @@
         </div>
     </section>
 
-    <section id="profile-container" class="bg--secondary p-top-15">
+    <section v-cloak id="profile-container" class="bg--secondary p-top-15">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-xl-3">

@@ -9,7 +9,6 @@
         </div>
     </section>
 
-
     <section class="space--sm">
         <div class="container">
             <div class="masonry">

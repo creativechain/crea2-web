@@ -20,6 +20,7 @@
     <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
           rel="stylesheet">
@@ -33,7 +34,7 @@
 <body class=" ">
 <a id="start"></a>
 
-<div id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu" data-animation="from-right">
+<div v-cloak id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu" data-animation="from-right">
     <div class="side-menu__module">
         <ul class="list--loose list--hover">
             <li>
@@ -132,7 +133,7 @@
         </ul>
     </div>
 </div>
-<div id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
+<div v-cloak id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
      data-notification-link="search-box">
     <form>
         <div class="row justify-content-center">
@@ -144,7 +145,7 @@
     </form>
 </div>
 <!--end of notification-->
-<div id="navbar-container"  class="nav-container background-navbar-dark">
+<div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
         <div class="container">
             <div class="row">

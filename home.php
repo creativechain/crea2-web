@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container">
-    <div id="home-banner">
+    <div v-cloak id="home-banner">
         <?php include ('modules/banner.php') ?>
     </div>
 
@@ -13,7 +13,7 @@
     </section>
 
 
-    <section id="home-posts" class="space--sm">
+    <section v-cloak id="home-posts" class="space--sm">
         <div class="container">
             <div class="masonry">
                 <div class="masonry__container row">

@@ -1,1 +1,4 @@
 /*! Place your custom styles here */
+[v-cloak] {
+    display: none;
+}

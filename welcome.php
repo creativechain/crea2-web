@@ -1,5 +1,5 @@
 <?php include ('element/navbar.php'); ?>
-<div id="welcome" class="main-container view-welcome">
+<div v-cloak id="welcome" class="main-container view-welcome">
 
     <!-- Slide 1-->
     <section v-if="slide === 1" class="imageblock switchable height-100">

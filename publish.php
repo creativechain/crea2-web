@@ -3,7 +3,7 @@
     <div id="home-banner">
         <?php include ('modules/banner.php') ?>
     </div>
-    <div id="publish-container">
+    <div v-cloak id="publish-container">
         <section class="cta cta-4 space--xxs border--bottom ">
             <div class="container">
                 <div class="row">
