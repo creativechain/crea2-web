@@ -37,12 +37,12 @@
                         </p>
                     </td>
                     <td>
-                        <a class="btn btn--sm btn--primary" href="#">
+                        <a v-if="account.name != session.account.username" class="btn btn--sm btn--primary" href="#">
                             <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
                         </a>
 
 
-                        <a class="btn btn--sm btn--transparent" href="#">
+                        <a v-else class="btn btn--sm btn--transparent" href="#">
                             <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                         </a>
                     </td>

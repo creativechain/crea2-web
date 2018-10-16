@@ -28,9 +28,12 @@ let profileContainer;
      *
      * @param {Session} session
      * @param account
+     * @param {string} usernameFilter
      */
-    function updateProfile(session, account) {
-        let usernameFilter = '/@' + session.account.username;
+    function showProfile(session, account, usernameFilter) {
+        if (!usernameFilter) {
+            usernameFilter = '/@' + session.account.username;
+        }
 
         crea.api.getState(usernameFilter, function (err, data) {
             if (err) {
@@ -75,13 +78,6 @@ let profileContainer;
                                 let date = new Date(this.account.created);
                                 return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                             },
-                            onEditProfileField: function (event, field) {
-                                console.log(event, field);
-                                this.profile[field] = event.target.value;
-                            },
-                            onEditPublicName: function (event) {
-                                this.onEditProfileField(event, 'publicName');
-                            }
                         }
                     });
                 } else {
@@ -112,7 +108,7 @@ let profileContainer;
 
                 account.followers_count = result.follower_count;
                 account.following_count = result.following_count;
-                updateProfile(session, account);
+                showProfile(session, account);
             }
         });
     }

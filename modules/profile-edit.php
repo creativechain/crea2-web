@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <label>{{ lang.EDIT_PROFILE.PUBLIC_NAME }}</label>
             <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.PUBLIC_NAME"
-                   v-on:keypress="onEditPublicName"
+                   v-model="profile.publicName"
                    v-bind:placeholder="lang.EDIT_PROFILE.INPUT_PUBLIC_NAME"/>
         </div>
     </div>
@@ -17,6 +17,7 @@
         <div class="col-md-12">
             <label>{{ lang.EDIT_PROFILE.ABOUT }}</label>
             <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.ABOUT"
+                   v-model="profile.about"
                    v-bind:placeholder="lang.EDIT_PROFILE.INPUT_ABOUT" />
         </div>
     </div>
@@ -24,6 +25,7 @@
         <div class="col-md-12">
             <label>WEB</label>
             <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.WEB"
+                   v-model="profile.web"
                    v-bind:placeholder="lang.EDIT_PROFILE.INPUT_WEBSITE" />
         </div>
     </div>
@@ -31,13 +33,15 @@
         <div class="col-md-12">
             <label>{{ lang.EDIT_PROFILE.CONTACT_INFO }}</label>
             <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.CONTACT"
+                   v-model="profile.contact"
                    v-bind:placeholder="lang.EDIT_PROFILE.INPUT_CONTACT_INFO" />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <label>{{ lang.EDIT_PROFILE.TAGS }}</label>
-            <input class="validate-required" type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS">
+            <input id="profile-edit-tags" class="validate-required" data-role="tagsinput" value="" v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS"
+                      v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + ', delimiter: \' \' }'">
         </div>
     </div>
     <div class="row">

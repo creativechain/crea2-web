@@ -14,7 +14,7 @@
     function updateWalletAccount(account) {
         account.reputation = crea.formatter.reputation(account.reputation);
 
-        console.log('Updating account', account);
+        //console.log('Updating account', account);
         if (!walletContainer) {
             walletContainer = new Vue({
                 el: '#wallet-container',

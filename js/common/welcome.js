@@ -48,7 +48,7 @@ function welcomeSetUp() {
     });
 
     let token = getParameterByName('token');
-    console.log('Token', token);
+    //console.log('Token', token);
 
     if (token) {
         refreshAccessToken(function (accessToken) {

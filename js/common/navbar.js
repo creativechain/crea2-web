@@ -51,7 +51,7 @@
             if (err) {
                 console.error(err);
             } else  {
-                console.log(result);
+                //console.log(result);
                 showPosts(filter, result);
             }
         })
