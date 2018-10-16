@@ -79,6 +79,7 @@ function showBanner(show = true) {
 
 creaEvents.on('crea.login', function (session) {
     showBanner(session == false);
+    creaEvents.emit('crea.content.filter', 'promoted');
 });
 
 
