@@ -130,14 +130,6 @@ let lang = {
         "PROMOTE": "PROMOTE",
         "WITHDRAW_SAVINGS": "Withdraw savings"
     },
-    "DOWNLOAD": {
-        "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
-        "PRICE": "PRICE",
-        "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
-        "SELECT_FILE": "SELECT FILE",
-        "TITLE": "Download",
-        "SUBTITLE": "Select a file and set the price you want for its download."
-    },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",
         SLIDE1_TEXT1: "Creary is the decentralized creative community connected to the blockchain of Crea. We are not a " +
@@ -207,7 +199,13 @@ let lang = {
         "INFO_DESCRIPTION": "SHORT DESCRIPTION",
         "INFO_TAGS": "TAGS",
         "CONTENT_SECONDARY_SENTENCE": "Enter a text that explains the development of your project.",
-        "FILE": "File"
+        "FILE": "File",
+        "PRICE": "PRICE",
+        "DOWNLOAD_TITLE": "Download",
+        "DOWNLOAD_SUBTITLE": "Select a file and set the price you want for its download.",
+        "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
+        "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
+        "SELECT_FILE": "SELECT FILE",
     },
     "WITNESS": {
         "VOTE_WITNESSES": "WITNESSES",

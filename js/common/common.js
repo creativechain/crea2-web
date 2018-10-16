@@ -17,7 +17,9 @@ const CONSTANTS = {
         TITLE: 55,
         DESCRIPTION: 233,
         TAG: 21,
-    }
+    },
+    MAX_TAGS: 8,
+
 };
 
 function goTo(location) {

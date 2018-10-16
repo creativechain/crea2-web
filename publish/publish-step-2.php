@@ -33,15 +33,15 @@
         <form action="" class="row">
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_POST_TITLE }}</label>
-                    <input v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
+                    <input v-on:keypress="onTitleChange" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_DESCRIPTION }}</label>
-                    <input v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.DESCRIPTION" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_DESCRIPTION" />
+                    <input v-on:keypress="onDescriptionChange" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.DESCRIPTION" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_DESCRIPTION" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_TAGS }}</label>
-                    <input class="validate-required" v-bind:data-options="{maxTags: + CONSTANTS.MAX_TAGS, maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG}"
+                    <input class="validate-required" v-on:keypress="onTagsChange" v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + '}'"
                            type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS"
                            tags-view >
                 </div>

@@ -86,5 +86,5 @@ if (Session.getAlive()) {
     //TODO: REPLACE BY FOLLOWING CONTENT
     creaEvents.emit('crea.content.filter', 'created');
 } else {
-    creaEvents.emit('crea.content.filter', 'created');
+    creaEvents.emit('crea.content.filter', 'promoted');
 }

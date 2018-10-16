@@ -179,7 +179,7 @@
                 <div class="col-lg-10 col-md-10 text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li><a href="#">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
+                            <li v-if="session"><a href="#">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
                             <li><a href="#" v-on:click="retrieveTrendingContent()">{{ lang.HOME.MENU_POPULAR }}</a></li>
                             <li><a href="#" v-on:click="retrieveHotContent()">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
                             <li><a href="#" v-on:click="retrieveNowContent()">{{ lang.HOME.MENU_NOW }}</a></li>

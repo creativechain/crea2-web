@@ -96,7 +96,14 @@ let publishContainer;
                 tags: [],
                 uploadedFiles: [],
                 updatingIndex: -1,
-                featuredImage: {}
+                featuredImage: {},
+                title: '',
+                description: '',
+                price: 0,
+                adult: false,
+                downloadFile: {},
+                license: -1,
+
             },
             methods: {
                 nextStep: function () {
@@ -136,7 +143,16 @@ let publishContainer;
                 },
                 updateText: updateText,
                 editText: editText,
-                removeElement: removeElement
+                removeElement: removeElement,
+                onTitleChange: function (event) {
+                    this.title = event.target.value;
+                },
+                onDescriptionChange: function (event) {
+                    this.description = event.target.value;
+                },
+                onTagsChange: function (event) {
+                    this.tags = event.target.value.split(' ');
+                }
             }
         })
     }
