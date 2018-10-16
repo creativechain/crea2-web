@@ -9,7 +9,7 @@ class Session {
      * @param {Account} account
      * @param keepAlive
      */
-    constructor(account, keepAlive=false) {
+    constructor(account, keepAlive=true) {
         this.account = account;
         this.keepAlive = keepAlive;
     }
