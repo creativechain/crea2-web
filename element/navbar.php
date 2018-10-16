@@ -257,7 +257,7 @@
                                 </a>
                             </li>
                             <li v-if="!session">
-                                <a class="btn btn--sm type--uppercase" href="#" onclick="return startLogin()">
+                                <a class="btn btn--sm type--uppercase" href="welcome.php">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.SIGN_UP }}
                                     </span>

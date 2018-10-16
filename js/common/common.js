@@ -31,10 +31,10 @@ function toHome(location) {
     console.log('Real location:', window.location.href, 'Checked location:', location, location && window.location.href.indexOf(location) > -1);
     if (location) {
         if (window.location.href.indexOf(location) > -1) {
-            goTo('/crea');
+            goTo('/');
         }
     } else {
-        goTo('/crea');
+        goTo('/');
     }
 }
 

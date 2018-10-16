@@ -10,7 +10,7 @@
             <div class="col-md-6 col-lg-5 offset-1">
                 <h1>Bienvenidos a la blockchain de las comunidades creativas</h1>
                 <h3>Un mundo sin intermediarios</h3>
-                <a href="#" onclick="return startLogin()" class="btn btn--primary btn--sm btn--transparent type--uppercase">
+                <a href="welcome.php" class="btn btn--primary btn--sm btn--transparent type--uppercase">
                     <span class="btn__text">
                             {{ lang.BUTTON.SIGN_UP }}
                     </span>

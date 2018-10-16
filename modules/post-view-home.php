@@ -7,7 +7,7 @@
         </div>
         <div class="card__body">
             <h4>{{ data.content[p].title }}</h4>
-            <p>{{ JSON.parse(data.content[p].json_metadata).description || "--" }}</p>
+            <p>{{ parseJSON(data.content[p].json_metadata).description || "--" }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
                     <a href="#" v-on:click="makeVote(data.content[p])">
@@ -48,7 +48,7 @@
             <ul class="list-inline list-unstyled w-100">
                 <li>
                     <div class="dropdown dropdown-autor">
-                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ JSON.parse(data.content[p].json_metadata).author || data.content[p].author }}</span>
+                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ parseJSON(data.content[p].json_metadata).author || data.content[p].author }}</span>
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
@@ -67,7 +67,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
-                                                <p class="name">{{ JSON.parse(data.content[p].json_metadata).author || data.content[p].author }}</p>
+                                                <p class="name">{{ parseJSON(data.content[p].json_metadata).author || data.content[p].author }}</p>
                                                 <p class="user">@{{ data.content[p].author }}</p>
                                                 <p class="description-user">{{ parseJSON(data.accounts[data.content[p].author].json_metadata).description || '-' }}</p>
                                                 <p class="email-user">{{ parseJSON(data.accounts[data.content[p].author].json_metadata).email || '-' }}</p>

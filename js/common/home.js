@@ -17,6 +17,7 @@ homeBanner =  new Vue({
 });
 
 function showPosts(filter, data) {
+    console.log(filter, data);
     if (!homePosts) {
         homePosts = new Vue({
             el: '#home-posts',
