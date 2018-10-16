@@ -7,31 +7,42 @@
 <div id="profile-edit" class="boxed boxed--sm boxed--border">
     <div class="row">
         <div class="col-md-12">
-            <label>NOMBRE DE VISUALIZACIÓN</label>
-            <input class="validate-required" type="text" name="My Input" placeholder="Escribe tu nombre de visualización" />
+            <label>{{ lang.EDIT_PROFILE.PUBLIC_NAME }}</label>
+            <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.PUBLIC_NAME"
+                   v-on:keypress="onEditPublicName"
+                   v-bind:placeholder="lang.EDIT_PROFILE.INPUT_PUBLIC_NAME"/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <label>SOBRE</label>
-            <input class="validate-required" type="text" name="My Input" placeholder="Escribe una descripción corta" />
+            <label>{{ lang.EDIT_PROFILE.ABOUT }}</label>
+            <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.ABOUT"
+                   v-bind:placeholder="lang.EDIT_PROFILE.INPUT_ABOUT" />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <label>WEB</label>
-            <input class="validate-required" type="text" name="My Input" placeholder="Escribe una web" />
+            <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.WEB"
+                   v-bind:placeholder="lang.EDIT_PROFILE.INPUT_WEBSITE" />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <label>ETIQUETAS</label>
-            <input class="validate-required" type="text" data-role="tagsinput" value="" placeholder="Usa espacios para separar etiquetas">
+            <label>{{ lang.EDIT_PROFILE.CONTACT_INFO }}</label>
+            <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.CONTACT"
+                   v-bind:placeholder="lang.EDIT_PROFILE.INPUT_CONTACT_INFO" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>{{ lang.EDIT_PROFILE.TAGS }}</label>
+            <input class="validate-required" type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS">
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>IDIOMA</label>
+            <label>{{ lang.EDIT_PROFILE.LANGUAGE }}</label>
             <div class="input-select">
                 <select>
                     <option selected="" value="Default">Selecciona idioma</option>
@@ -44,7 +55,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>CONTENIDO PARA ADULTOS</label>
+            <label>{{ lang.EDIT_PROFILE.ADULT_CONTENT }}</label>
             <div class="input-select">
                 <select>
                     <option selected="" value="Default">Selecciona contenido</option>
@@ -57,7 +68,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>RECOMPENSA DE PUBLICACIÓN</label>
+            <label>{{ lang.EDIT_PROFILE.POST_REWARDS }}</label>
             <div class="input-select">
                 <select>
                     <option selected="" value="Default">Selecciona recompensa publicación</option>
@@ -70,7 +81,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>RECOMPENSA DE COMENTARIO</label>
+            <label>{{ lang.EDIT_PROFILE.COMMENT_REWARDS }}</label>
             <div class="input-select">
                 <select>
                     <option selected="" value="Default">Selecciona recompensa comentario</option>
@@ -85,7 +96,9 @@
     <div class="row">
         <div class="col">
             <a class="btn btn--sm btn--primary" href="#">
-                <span class="btn__text">Guardar</span>
+                <span class="btn__text">
+                    {{ lang.BUTTON.SAVE }}
+                </span>
             </a>
         </div>
     </div>

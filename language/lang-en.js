@@ -96,7 +96,10 @@ let lang = {
         "ADULT_CONTENT": "ADULT CONTENT",
         "INPUT_TAGS": "Insert tags",
         "ABOUT": "ABOUT",
-        "WEBSITE": "WEBSITE"
+        "WEBSITE": "WEBSITE",
+        "TAGS": "TAGS",
+        "CONTACT_INFO": "CONTACT INFO",
+        "INPUT_CONTACT_INFO": "Add information so other users can contact you"
     },
     "BUTTON": {
         "FOLLOW": "Follow",

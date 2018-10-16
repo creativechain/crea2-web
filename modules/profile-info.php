@@ -1,13 +1,13 @@
 <div id="wallet-profile" class="boxed boxed--sm boxed--border">
     <div class="text-block text-center">
         <img alt="avatar" src="img/profile/avatar-round-3.png" class="image--sm" />
-        <span class="h5">{{ session.account.username }} </span>
-        <p>casmiclab.com</p>
-        <p>Casmic Lab is a Valencia based design studio founded in 2006 by Amadeo Castroviejo and Roser Miquel. We love old science fiction movies and books.</p>
+        <span class="h5">{{ profile.publicName || '@' + session.account.username }} </span>
+        <p>{{ profile.web || '-' }}</p>
+        <p>{{ profile.about || '-' }}</p>
     </div>
     <div class="row">
         <div class="col">
-            <a href="">casmic@lab.com</a>
+            <a href="#">{{ profile.contact || '-' }}</a>
         </div>
         <div id="wallet-profile-join-date" class="col">{{ getJoinDate() }}</div>
     </div>
@@ -43,7 +43,7 @@
 
 
                         <a class="btn btn--sm btn--transparent" href="#">
-                            <span class="btn__text text__dark">Edit profile</span>
+                            <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                         </a>
                     </td>
                 </tr>

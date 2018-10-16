@@ -1,8 +1,21 @@
 /**
  * Created by ander on 25/09/18.
  */
+
+let profileContainer;
+
 (function () {
-    let profileContainer;
+    let defaultProfile = {
+        publicName: '',
+        about: '',
+        web: '',
+        contact: '',
+        tags: [],
+        adultContent: 0,
+        lang: 'en',
+        valid: true
+    };
+
 
     let profileMenu = new Vue({
         el: '#profile-menu',
@@ -36,21 +49,38 @@
                 });
 
                 data.discussion_idx[''] = posts;
+                try {
+                    let prof = JSON.parse(data.accounts[session.account.username].json_metadata);
+
+                    defaultProfile =  prof.valid ? prof : defaultProfile;
+                } catch (e) {
+                    //INVALID json_metadata
+                    console.error(e);
+                }
 
                 if (!profileContainer) {
                     profileContainer = new Vue({
                         el: '#profile-container',
                         data: {
+                            CONSTANTS: CONSTANTS,
                             lang: lang,
                             session: session,
                             account: account,
                             data: data,
-                            filter: usernameFilter
+                            filter: usernameFilter,
+                            profile: defaultProfile
                         },
                         methods: {
                             getJoinDate: function () {
                                 let date = new Date(this.account.created);
                                 return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
+                            },
+                            onEditProfileField: function (event, field) {
+                                console.log(event, field);
+                                this.profile[field] = event.target.value;
+                            },
+                            onEditPublicName: function (event) {
+                                this.onEditProfileField(event, 'publicName');
                             }
                         }
                     });

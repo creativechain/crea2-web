@@ -14,9 +14,16 @@ const CONSTANTS = {
         DOWNLOAD: 200 * 1024 * 1024, //200 MB
     },
     TEXT_MAX_SIZE: {
+        PROFILE: {
+            PUBLIC_NAME: 21,
+            ABOUT: 144,
+            CONTACT: 55,
+            WEB: 55,
+        },
         TITLE: 55,
         DESCRIPTION: 233,
         TAG: 21,
+
     },
     MAX_TAGS: 8,
 
