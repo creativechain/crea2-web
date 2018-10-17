@@ -1,6 +1,8 @@
 <?php include('element/navbar.php'); ?>
 <div class="main-container view-profile view-wallet">
-    <?php include ('modules/banner.php') ?>
+    <div v-cloak id="home-banner">
+        <?php include ('modules/banner.php') ?>
+    </div>
     <section v-cloak id="wallet-menu" class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
@@ -22,7 +24,10 @@
                                 <div class="col-md-12">
                                     <div class="alert bg--primary">
                                         <div class="alert__body">
-                                            <span>Your current rewards: 0.877 CREA, 0.665 CREA EURO and 1.357 CREA POWER</span>
+                                            <span>Your current rewards: {{ account.reward_crea_balance}},
+                                                {{ account.reward_cbd_balance}} and
+                                                {{ getCGYReward() }}
+                                            </span>
                                         </div>
                                         <div class="alert__close">
                                             ×
@@ -171,7 +176,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account.cgy_balance }}</span>
+                                                                        <span class="dropdown__trigger">{{ getCGYBalance() }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">

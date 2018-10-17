@@ -2,6 +2,8 @@
  * Created by ander on 16/10/18.
  */
 
+
+
 Vue.component('taginput', {
     template: `<input :id="id" class="validate-required" type="text" :value="value" :data-role="data-role" :data-options="data-options" :placeholder="placeholder">`,
     props: {
@@ -26,7 +28,7 @@ Vue.component('taginput', {
         let el = $('#' + this.id);
         //this['data-options'] = JSON.parse(this['data-options']);
         console.log('Mounted tags', el, this.id, this.options, this.role);
-        el.tagsinput();
+        //tags(this.id);
     }
 });
 

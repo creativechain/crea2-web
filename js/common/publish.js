@@ -19,12 +19,6 @@ let publishContainer;
     if (!publishContainer) {
         publishContainer = new Vue({
             el: '#publish-container',
-            mounted: function () {
-                this.$nextTick(function () {
-                    $('#profile-edit-tags').tagsinput();
-                    console.log('Mounting tags');
-                });
-            },
             data: {
                 lang: lang,
                 CONSTANTS: CONSTANTS,

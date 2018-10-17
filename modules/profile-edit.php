@@ -40,8 +40,8 @@
     <div class="row">
         <div class="col-md-12">
             <label>{{ lang.EDIT_PROFILE.TAGS }}</label>
-            <input id="profile-edit-tags" class="validate-required" data-role="tagsinput" value="" v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS"
-                      v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + ', delimiter: \' \' }'">
+            <input id="profile-edit-tags" class="validate-required" data-role="tagsinput"
+                   v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS">
         </div>
     </div>
     <div class="row">

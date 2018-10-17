@@ -6,6 +6,7 @@ let profileContainer;
 
 (function () {
     let defaultProfile = {
+        avatar: {},
         publicName: '',
         about: '',
         web: '',
@@ -23,6 +24,10 @@ let profileContainer;
             lang: lang
         }
     });
+
+    function tags(element) {
+        $('#' + element).tagsinput();
+    }
 
     /**
      *
@@ -71,7 +76,16 @@ let profileContainer;
                             account: account,
                             data: data,
                             filter: usernameFilter,
-                            profile: defaultProfile
+                            profile: defaultProfile,
+                        },
+                        mounted: function () {
+                            console.log('Mounted! ');
+                            $('#profile-edit-tags').tagsinput({
+                                maxTags: CONSTANTS.MAX_TAGS,
+                                maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
+                                delimiter: ' '
+                            });
+
                         },
                         methods: {
                             getJoinDate: function () {

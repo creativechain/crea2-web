@@ -4,6 +4,18 @@
 (function () {
     let walletContainer;
 
+    let defaultProfile = {
+        avatar: {},
+        publicName: '',
+        about: '',
+        web: '',
+        contact: '',
+        tags: [],
+        adultContent: 0,
+        lang: 'en',
+        valid: true
+    };
+
     let walletMenu = new Vue({
         el: '#wallet-menu',
         data: {
@@ -11,42 +23,67 @@
         }
     });
 
-    function updateWalletAccount(account) {
-        account.reputation = crea.formatter.reputation(account.reputation);
-
+    function updateWalletAccount(state) {
         //console.log('Updating account', account);
+        let session = Session.getAlive();
+        let account = state.accounts[session.account.username];
+        account.reputation = crea.formatter.reputation(account.reputation);
+        state.accounts[session.account.username] = account;
+
         if (!walletContainer) {
             walletContainer = new Vue({
                 el: '#wallet-container',
                 data: {
                     lang: lang,
-                    session: Session.getAlive(),
-                    account: account
+                    session: session,
+                    state: state,
+                    account: account,
+                    profile: defaultProfile,
+                    tab: 'balances',
                 },
                 methods: {
                     getJoinDate: function () {
                         let date = new Date(this.account.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
+                    },
+                    getCGYReward() {
+                        let reward = parseFloat(this.account.reward_vesting_crea.split(' ')[0]);
+                        return reward + ' CGY';
+                    },
+                    getCGYBalance() {
+                        let vest = parseFloat(this.account.vesting_shares.split(' ')[0]);
+                        let totalVests = parseFloat(state.props.total_vesting_shares.split(' ')[0]);
+                        let totalVestCrea = parseFloat(state.props.total_vesting_fund_crea.split(' ')[0]);
+
+                        let energy = totalVestCrea * (vest / totalVests);
+                        return Asset.parse({
+                            amount: energy,
+                            nai: apiOptions.nai.CREA
+                        }).toFriendlyString();
+                    },
+                    changeTab(tab) {
+                        this.tab = tab;
                     }
                 }
             });
         } else {
             //Vue.set(walletContainer, 'account', account);
+            walletContainer.$data.state = state;
             walletContainer.$data.account = account;
-            walletContainer.$forceUpdate();
+            //walletContainer.$forceUpdate();
         }
     }
 
-    function updateWalletProfile(account) {
+    function updateWalletProfile(state) {
         let session = Session.getAlive();
         crea.api.getFollowCount(session.account.username, function(err, result) {
             if (err) {
                 console.error(err);
             } else {
 
-                account.followers_count = result.follower_count;
-                account.following_count = result.following_count;
-                updateWalletAccount(account);
+                state.accounts[session.account.username].followers_count = result.follower_count;
+                state.accounts[session.account.username].following_count = result.following_count;
+                updateWalletAccount(state);
             }
         });
 
@@ -56,17 +93,13 @@
         let session = Session.getAlive();
 
         if (session) {
-            crea.api.getAccounts([session.account.username], function (err, result) {
+            crea.api.getState('@' + session.account.username, function (err, result) {
 
                 if (err) {
                     console.error(err);
                     //TODO: Show an error
-                } else if (result.length > 0) {
-                    let account = result[0];
-                    account.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
-                    updateWalletProfile(account);
                 } else {
-                    //TODO: Account not exists
+                    updateWalletProfile(result);
                 }
             });
 

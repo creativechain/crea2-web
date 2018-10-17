@@ -12,9 +12,15 @@ const ASSET_CBD = {
     symbol: apiOptions.symbol.CBD
 };
 
+const ASSET_CGY = {
+    precision: 3,
+    symbol: apiOptions.symbol.CGY
+};
+
 const NAI = {
     "@@000000013": ASSET_CBD,
-    "@@000000021": ASSET_CREA
+    "@@000000021": ASSET_CREA,
+    "cgy": ASSET_CGY
 };
 
 class MonetaryFormat {
@@ -112,6 +118,9 @@ class Asset {
                 return new CreaDollar(assetData.amount);
             case ASSET_CREA:
                 return new Crea(assetData.amount);
+            case ASSET_CGY:
+                return new CreaEnergy(assetData.amount);
+
         }
 
         return undefined;
@@ -140,5 +149,11 @@ class Crea extends Asset {
 class CreaDollar extends Asset {
     constructor(amount) {
         super(amount, ASSET_CBD);
+    }
+}
+
+class CreaEnergy extends Asset {
+    constructor(amount) {
+        super(amount, ASSET_CGY);
     }
 }
