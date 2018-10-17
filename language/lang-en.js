@@ -209,6 +209,16 @@ let lang = {
         "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
         "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
         "SELECT_FILE": "SELECT FILE",
+        "LICENSE_TITLE": "License",
+        "LICENSE_SUBTITLE": "Choose the most suitable type of license for your publication.",
+        "LICENSE_PUBLIC_DOMAIN" : "Do you want your work to be in the public domain?",
+        "LICENSE_ADAPTATIONS": "Do you want to allow the adaptations of your work to be shared?",
+        "LICENSE_COMMERCIAL": "Do you want to allow commercial uses of your work?",
+        "LICENSE_SHARE": "Yes, as long as they are shared in the same way",
+        "LICENSE_NO_LICENSE": "No license. (no one is allowed to use your work without your permission).",
+        "LICENSE_TEXT_PUBLISH": "You are about to publish your project. Let\u2019s go!",
+        "LICENSE_TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
+
     },
     "WITNESS": {
         "VOTE_WITNESSES": "WITNESSES",
@@ -326,16 +336,6 @@ let lang = {
         "TWITTER": "Login with Twitter"
     },
     "FAQS": {"FAQ_TITLE": "Frequently Asked Questions"},
-    "LICENSE": {
-        "TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
-        "COMMERCIAL": "Do you want to allow commercial uses of your work?",
-        "TEXT_PUBLISH": "You are about to publish your project. Let\u2019s go!",
-        "NO_LICENSE": "No license. (no one is allowed to use your work without your permission).",
-        "TITLE": "License",
-        "ADAPTATIONS": "Do you want to allow the adaptations of your work to be shared?",
-        "SHARE": "Yes, as long as they are shared in the same way",
-        "SUBTITLE": "Choose the most suitable type of license for your publication."
-    },
     "HOME": {
         "DROPDOWN_USER_PROFILE_LIKES": "Likes",
         "DROPDOWN_USER_PROFILE_FOLLOWERS": "Followers",

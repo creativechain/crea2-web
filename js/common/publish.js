@@ -21,6 +21,7 @@ let publishContainer;
             el: '#publish-container',
             data: {
                 lang: lang,
+                LICENSES: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,
                 bodyElements: [],
@@ -34,6 +35,7 @@ let publishContainer;
                 adult: false,
                 downloadFile: {},
                 license: -1,
+                publicDomain: LICENSE.NO_LICENSE.flag
 
             },
             methods: {

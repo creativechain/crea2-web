@@ -109,10 +109,11 @@ class License {
 }
 
 let LICENSE = {
-    FREE_CONTENT: new LicensePermission(0x00, 'FreeContent'),
+    NO_LICENSE: new LicensePermission(0x00, 'WithoutLicense'),
     CREATIVE_COMMONS: new LicensePermission(0x01, 'CreativeCommons'),
     ATTRIBUTION: new LicensePermission(0x02, 'Attribution'),
     SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike'),
     NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial'),
     NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates'),
+    FREE_CONTENT: new LicensePermission(0x80, 'FreeContent'),
 };
