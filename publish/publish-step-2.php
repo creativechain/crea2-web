@@ -33,11 +33,11 @@
         <form action="" class="row">
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_POST_TITLE }}</label>
-                    <input v-on:keypress="onTitleChange" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
+                    <input v-model="title" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_DESCRIPTION }}</label>
-                    <input v-on:keypress="onDescriptionChange" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.DESCRIPTION" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_DESCRIPTION" />
+                    <input v-model="description" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.DESCRIPTION" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_DESCRIPTION" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_TAGS }}</label>
@@ -50,12 +50,12 @@
                     <div class="input-radio-step-2">
                         <div class="input-radio">
                             <span class="input__label">{{ lang.COMMON.YES }}</span>
-                            <input id="radio-1" type="radio" name="radio" value="radio1" />
+                            <input id="radio-1" type="radio" name="adult" v-model="adult" v-bind:value="true" />
                             <label for="radio-1"></label>
                         </div>
                         <div class="input-radio">
                             <span class="input__label">{{ lang.COMMON.NO }}</span>
-                            <input id="radio-2" type="radio" name="radio" value="radio2" />
+                            <input id="radio-2" type="radio" name="adult" v-model="adult" v-bind:value="false"/>
                             <label for="radio-2"></label>
                         </div>
                     </div>

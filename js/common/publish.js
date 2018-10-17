@@ -21,7 +21,7 @@ let publishContainer;
             el: '#publish-container',
             data: {
                 lang: lang,
-                LICENSES: LICENSE,
+                LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,
                 bodyElements: [],
@@ -34,11 +34,22 @@ let publishContainer;
                 price: 0,
                 adult: false,
                 downloadFile: {},
-                license: -1,
-                publicDomain: LICENSE.NO_LICENSE.flag
-
+                publicDomain: LICENSE.NO_LICENSE.flag,
+                share: LICENSE.NO_LICENSE.flag,
+                commercial: LICENSE.NO_LICENSE.flag
             },
             methods: {
+                getLicense: function () {
+                    let license;
+                    if (this.publicDomain === LICENSE.FREE_CONTENT.flag) {
+                        license = License.fromFlag(this.publicDomain);
+                    } else {
+                        license = LICENSE.CREATIVE_COMMONS.flag | LICENSE.ATTRIBUTION.flag | this.share | this.commercial;
+                        license = License.fromFlag(license);
+                    }
+
+                    return license;
+                },
                 nextStep: function () {
                     this.step += 1;
                 },
@@ -77,12 +88,7 @@ let publishContainer;
                 updateText: updateText,
                 editText: editText,
                 removeElement: removeElement,
-                onTitleChange: function (event) {
-                    this.title = event.target.value;
-                },
-                onDescriptionChange: function (event) {
-                    this.description = event.target.value;
-                },
+                makePublication: makePublication,
                 onTagsChange: function (event) {
                     this.tags = event.target.value.split(' ');
                 }
@@ -120,6 +126,58 @@ let publishContainer;
         if (index > -1 && index <= (publishContainer.bodyElements.length -1)) {
             publishContainer.bodyElements.splice(index, 1);
         }
+    }
+
+    function makePublication() {
+        let metadata = {
+            description: publishContainer.description,
+            tags: publishContainer.tags,
+            adult: publishContainer.adult,
+            price: publishContainer.price,
+            featuredImage: publishContainer.featuredImage.url,
+            download: publishContainer.downloadFile.url || '',
+            license: publishContainer.getLicense().getFlag()
+        };
+
+        //Build body
+        let body = '';
+
+        let elements = publishContainer.bodyElements;
+        let keys = Object.keys(elements);
+        keys.forEach(function (k) {
+            let el = elements[k];
+            if (el.type.indexOf('text/html') > -1) {
+                body += el.value;
+            } else if (el.type.indexOf('image/') > -1) {
+                body += '<p><div class="upload-img"> <img src="' + el.url + '"</img></div></p>';
+            } else if (el.type.indexOf('video/') > -1) {
+                body += '<p>' +
+                    '<div class="upload-img"> ' +
+                    '   <video controls>' +
+                    '       <source src="' + el.url + '" type="' + el.type +'">' +
+                    '   </video>' +
+                    '</div></p>';
+            } else if (el.type.indexOf('audio/') > -1) {
+                body += '<p>' +
+                    '<div class="upload-img"> ' +
+                    '   <audio controls>' +
+                    '       <source src="' + el.url + '" type="' + el.type +'">' +
+                    '   </audio>' +
+                    '</div></p>';
+            }
+        });
+
+        let title = publishContainer.title;
+        let permlink = toPermalink(title);
+        console.log(title, body, metadata);
+        let session = Session.getAlive();
+        crea.broadcast.comment(session.account.keys.posting.prv, '', metadata.tags[0], session.account.username, permlink, title, body, JSON.stringify(metadata), function (err, result) {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log(result);
+            }
+        })
     }
 
     function uploadToIpfs(file, callback) {

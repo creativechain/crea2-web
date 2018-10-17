@@ -9,12 +9,12 @@
                 <label>{{ lang.PUBLISH.LICENSE_PUBLIC_DOMAIN }}</label>
                 <div class="input-radio-step-2">
                     <div class="input-radio">
-                        <input id="radio-1a-1" type="radio" v-bind:value="LICENSES.FREE_CONTENT.flag" v-model="publicDomain"/>
+                        <input id="radio-1a-1" type="radio" v-bind:value="LICENSE.FREE_CONTENT.flag" v-model="publicDomain"/>
                         <label for="radio-1a-1" ></label>
                         <span class="input__label">{{ lang.COMMON.YES }}</span>
                     </div>
                     <div class="input-radio">
-                        <input id="radio-1a-2" type="radio" v-bind:value="LICENSES.NO_LICENSE.flag"  v-model="publicDomain" />
+                        <input id="radio-1a-2" type="radio" v-bind:value="LICENSE.NO_LICENSE.flag" v-model="publicDomain" />
                         <label for="radio-1a-2" ></label>
                         <span class="input__label">{{ lang.COMMON.NO }}</span>
                     </div>
@@ -24,19 +24,19 @@
                 <label>{{ lang.PUBLISH.LICENSE_ADAPTATIONS }}</label>
                 <div class="input-radio-step-2">
                     <div class="input-radio">
-                        <input id="radio-1-1" type="radio" name="radio" value="radio-1-1" />
+                        <input id="radio-1-1" type="radio" name="share" v-model="share" v-bind:value="LICENSE.NO_LICENSE.flag" v-bind:disabled="publicDomain !== LICENSE.NO_LICENSE.flag" />
                         <label for="radio-1-1"></label>
-                        <span class="input__label">Si</span>
+                        <span class="input__label">{{ lang.COMMON.YES }}</span>
                     </div>
                     <div class="input-radio">
-                        <input id="radio-1-2" type="radio" name="radio" value="radio-1-2" />
+                        <input id="radio-1-2" type="radio" name="share" v-model="share" v-bind:value="LICENSE.NON_DERIVATES.flag" v-bind:disabled="publicDomain !== LICENSE.NO_LICENSE.flag"/>
                         <label for="radio-1-2"></label>
-                        <span class="input__label">no</span>
+                        <span class="input__label">{{ lang.COMMON.NO }}</span>
                     </div>
                     <div class="input-radio">
-                        <input id="radio-1-3" type="radio" name="radio" value="radio-1-3" />
+                        <input id="radio-1-3" type="radio" name="share" v-model="share" v-bind:value="LICENSE.SHARE_ALIKE.flag" v-bind:disabled="publicDomain !== LICENSE.NO_LICENSE.flag" />
                         <label for="radio-1-3"></label>
-                        <span class="input__label">Sí, mientras se compartan de la misma manera</span>
+                        <span class="input__label">{{ lang.PUBLISH.LICENSE_SHARE }}</span>
                     </div>
                 </div>
             </div>
@@ -44,14 +44,14 @@
                 <label>{{ lang.PUBLISH.LICENSE_COMMERCIAL }}</label>
                 <div class="input-radio-step-2">
                     <div class="input-radio">
-                        <input id="radio-2-1" type="radio" name="radio" value="radio-2-1" />
+                        <input id="radio-2-1" type="radio" name="commercial" v-model="commercial" v-bind:value="LICENSE.NO_LICENSE.flag" v-bind:disabled="publicDomain !== LICENSE.NO_LICENSE.flag" />
                         <label for="radio-2-1"></label>
-                        <span class="input__label">Si</span>
+                        <span class="input__label">{{ lang.COMMON.YES }}</span>
                     </div>
                     <div class="input-radio">
-                        <input id="radio-2-2" type="radio" name="radio" value="radio-2-2" />
+                        <input id="radio-2-2" type="radio" name="commercial" v-model="commercial" v-bind:value="LICENSE.NON_COMMERCIAL.flag" v-bind:disabled="publicDomain !== LICENSE.NO_LICENSE.flag" />
                         <label for="radio-2-2"></label>
-                        <span class="input__label">no</span>
+                        <span class="input__label">{{ lang.COMMON.NO }}</span>
                     </div>
                 </div>
             </div>
@@ -59,9 +59,9 @@
                 <label>{{ lang.PUBLISH.LICENSE_NO_LICENSE }}</label>
                 <div class="input-radio-step-2">
                     <div class="input-radio">
-                        <input id="radio-3-1" type="radio" name="radio" value="radio-3-1" />
+                        <input id="radio-3-1" type="radio" name="nolicense" v-bind:value="LICENSE.NON_PERMISSION.flag" />
                         <label for="radio-3-1"></label>
-                        <span class="input__label">Si</span>
+                        <span class="input__label">{{ lang.COMMON.YES }}</span>
                     </div>
                 </div>
             </div>
@@ -73,17 +73,14 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <ul class="list-unstyled list-inline ul-icon-license">
-                            <li><img src="/img/icons/license/attribution.svg" alt=""></li>
-                            <li><img src="/img/icons/license/creativecommons.svg" alt=""></li>
-                            <li><img src="/img/icons/license/freecontent.svg" alt=""></li>
-                            <li><img src="/img/icons/license/noncomercial.svg" alt=""></li>
-                            <li><img src="/img/icons/license/nonderivates.svg" alt=""></li>
-                            <li><img src="/img/icons/license/sharealike.svg" alt=""></li>
+                            <template v-for="i in getLicense().getIcons()">
+                                <li><img v-bind:src="i" alt=""></li>
+                            </template>
                         </ul>
                     </div>
                     <div class="col-md-12 text-center row-text-license">
-                        <p>Attribution + Noncommercial + ShareALike</p>
-                        <span>Reconocimiento 4.0 Internacional</span>
+                        <p>{{ getLicense().toString() }}</p>
+                        <span>{{ getLicense().toLocaleString() }} 4.0 {{ lang.LICENSE.INTERNATIONAL }} </span>
                     </div>
                 </div>
             </div>

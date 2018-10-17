@@ -2,7 +2,7 @@
     <div class="card card-2 card-home">
         <div class="card__top">
             <a href="/post-view.php">
-                <img alt="Image" src="https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA">
+                <img alt="Image" v-bind:src="parseJSON(data.content[p].json_metadata).featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA'">
             </a>
         </div>
         <div class="card__body">

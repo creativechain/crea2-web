@@ -349,5 +349,13 @@ let lang = {
         "DROPDOWN_PENDING_PAYOUT": "Pending Payout",
         "MENU_SKYROCKETS": "Skyrockets",
         "MENU_LOGIN": "Login"
+    },
+    "LICENSE": {
+        "FREECONTENT": "FreeContent",
+        "ATTRIBUTION": "Attribution",
+        "NONCOMMERCIAL": "NonCommercial",
+        "SHAREALIKE": "ShareAlike",
+        "NONDERIVATES": "NonDerivates",
+        "INTERNATIONAL": "International"
     }
 };
