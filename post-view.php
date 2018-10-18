@@ -253,7 +253,7 @@
                                         <div class="col-md-12 row-format">
                                             <p class="title">{{ lang.PUBLICATION.PRICE }}</p>
                                             <span v-if="state.content.metadata.price === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
-                                            <span v-else class="description">{{ state.content.metadate.price }}</span>
+                                            <span v-else class="description">{{ state.content.metadata.price }}</span>
                                         </div>
                                     </div>
                                 </div>
