@@ -78,7 +78,7 @@ function showPosts(filter, data) {
 }
 
 function showBanner(show = true) {
-    homeBanner.$data.showBanner = show;
+        homeBanner.$data.showBanner = show;
 }
 
 creaEvents.on('crea.login', function (session) {

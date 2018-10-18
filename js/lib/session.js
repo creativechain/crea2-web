@@ -84,13 +84,13 @@ class Session {
     static getAlive() {
         let session = jsonify(localStorage.getItem(CREARY.SESSION));
 
-        if (session) {
+        if (session.account) {
             return new Session(session.account, session.keepAlive);
         }
 
         session = jsonify(sessionStorage.getItem(CREARY.SESSION));
 
-        if (session) {
+        if (session.account) {
             return new Session(session.account, session.keepAlive);
         }
 
