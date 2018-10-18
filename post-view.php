@@ -83,7 +83,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <ul class="list-inline list-unstyled ul-row-share-comment">
-                                                                                <li><a href="#/" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].net_votes }}</a></li>
+                                                                                <li><a href="#/" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</a></li>
                                                                                 <li><p>{{ state.content[c].pending_payout_value }}</p></li>
                                                                                 <li><p>Comentar</p></li>
                                                                             </ul>
@@ -225,7 +225,7 @@
                                             <ul class="ul-social">
                                                 <li>
                                                     <img src="/img/icons/like_BLUE.svg" alt="">
-                                                    <p>{{ state.post.net_votes}} {{ lang.PUBLICATION.LIKES }}</p>
+                                                    <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
                                                 </li>
                                                 <li>
                                                     <img src="/img/icons/downloads.svg" alt="">

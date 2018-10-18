@@ -81,11 +81,16 @@ let postContainer;
             if (err) {
                 console.error(err);
             } else {
+                //Resolve metadata
+                let aKeys = Object.keys(result.accounts);
+                aKeys.forEach(function (k) {
+                    result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
+                });
+
                 result.postKey = getPostKey();
                 result.post = result.content[result.postKey];
                 result.post.metadata = jsonify(result.post.json_metadata);
                 result.author = result.accounts[result.post.author];
-                result.author.metadata = jsonify(result.author.json_metadata);
 
                 //Order comments by date, latest first
                 let cKeys = Object.keys(result.content);
