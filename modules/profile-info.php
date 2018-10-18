@@ -42,7 +42,7 @@
                         </a>
 
 
-                        <a v-else class="btn btn--sm btn--transparent" href="#">
+                        <a v-else class="btn btn--sm btn--transparent" href="#/" v-on:click="navfilter = 'edit'">
                             <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                         </a>
                     </td>

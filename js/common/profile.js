@@ -17,14 +17,6 @@ let profileContainer;
         valid: true
     };
 
-
-    let profileMenu = new Vue({
-        el: '#profile-menu',
-        data: {
-            lang: lang
-        }
-    });
-
     function tags(element) {
         $('#' + element).tagsinput();
     }
@@ -77,6 +69,7 @@ let profileContainer;
                             data: data,
                             filter: usernameFilter,
                             profile: defaultProfile,
+                            navfilter: 'projects'
                         },
                         mounted: function () {
                             console.log('Mounted! ');
