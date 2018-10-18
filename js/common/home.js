@@ -3,18 +3,6 @@
  */
 
 let homePosts;
-let homeBanner;
-
-homeBanner =  new Vue({
-    el: '#home-banner',
-    data: {
-        showBanner: true,
-        lang: lang
-    },
-    methods: {
-        closeBanner: showBanner
-    }
-});
 
 function showPosts(filter, data) {
     //console.log(filter, data);
@@ -77,9 +65,7 @@ function showPosts(filter, data) {
     }
 }
 
-function showBanner(show = true) {
-        homeBanner.$data.showBanner = show;
-}
+
 
 creaEvents.on('crea.login', function (session) {
     showBanner(session == false);

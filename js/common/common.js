@@ -6,6 +6,14 @@ let creaEvents = new EventEmitter();
 
 const ipfs = IpfsApi('144.217.106.119', '5001');
 
+let bannerVue =  new Vue({
+    el: '#home-banner',
+    data: {
+        showBanner: true,
+        lang: lang
+    }
+});
+
 const CONSTANTS = {
     FILE_MAX_SIZE: {
         AUDIO: 1024 * 1024,
@@ -28,6 +36,10 @@ const CONSTANTS = {
     MAX_TAGS: 8,
 
 };
+function showBanner(show = true) {
+    bannerVue.showBanner = show;
+}
+
 
 function goTo(location) {
     window.location.href = location;

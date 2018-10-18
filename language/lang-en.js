@@ -4,6 +4,10 @@ let lang = {
         "YES": "Yes",
         "NO": "No",
     },
+    "BANNER": {
+        TITLE: "Welcome to the blockchain of creative communities",
+        SUBTITLE: "A world without intermediaries"
+    },
     "TRENDING_TOPICS": {
         "TRENDING_PAYOUTS": "PAYOUTS",
         "TRENDING_TITLE": "Trendins Topics",
