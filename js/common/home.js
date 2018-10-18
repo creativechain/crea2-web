@@ -6,6 +6,21 @@ let homePosts;
 
 function showPosts(filter, data) {
     //console.log(filter, data);
+    let content = data.content;
+    let accounts = data.accounts;
+
+    let cKeys = Object.keys(content);
+    cKeys.forEach(function (k) {
+        content[k].metadata = jsonify(content[k].json_metadata);
+    });
+    data.content = content;
+
+    let aKeys = Object.keys(accounts);
+    aKeys.forEach(function (k) {
+        accounts[k].metadata = jsonify(accounts[k].json_metadata);
+    });
+    data.accounts = accounts;
+
     if (!homePosts) {
         homePosts = new Vue({
             el: '#home-posts',
@@ -52,10 +67,18 @@ function showPosts(filter, data) {
                     return false;
                 },
                 makeVote: function (post) {
+                    let filter = this.filter;
                     makeVote(post, function () {
-                        creaEvents.emit('crea.content.filter', this.filter);
+                        creaEvents.emit('crea.content.filter', filter);
                     })
                 },
+                getLicense(flag) {
+                    if (flag) {
+                        return License.fromFlag(flag);
+                    }
+
+                    return new License(LICENSE.FREE_CONTENT);
+                }
             }
         })
     } else {

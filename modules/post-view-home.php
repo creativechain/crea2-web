@@ -10,7 +10,7 @@
             <p>{{ parseJSON(data.content[p].json_metadata).description || "--" }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
-                    <a href="#" v-on:click="makeVote(data.content[p])">
+                    <a href="#/" v-on:click="makeVote(data.content[p])">
                         <img v-if="userHasVote(data.content[p])" src="img/crea-web/like/like_ACT_RED.svg" alt="">
                         <img v-else src="img/crea-web/like/like.svg" alt="">
                         <span>{{ data.content[p].active_votes.length }}</span>
@@ -67,10 +67,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
-                                                <p class="name">{{ parseJSON(data.content[p].json_metadata).author || data.content[p].author }}</p>
+                                                <p class="name">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</p>
                                                 <p class="user">@{{ data.content[p].author }}</p>
-                                                <p class="description-user">{{ parseJSON(data.accounts[data.content[p].author].json_metadata).description || '-' }}</p>
-                                                <p class="email-user">{{ parseJSON(data.accounts[data.content[p].author].json_metadata).email || '-' }}</p>
+                                                <p class="description-user">{{ data.accounts[data.content[p].author].metadata.description || '-' }}</p>
+                                                <p class="email-user">{{ data.accounts[data.content[p].author].metadata.email || '-' }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -94,7 +94,9 @@
                     </div>
                 </li>
                 <li class="float-right li-certificate">
-                    <img src="img/crea-web/certificate/attribution.svg" alt="">
+                    <template v-for="i in getLicense(data.content[p].metadata.license).getIcons()">
+                        <img v-bind:src="i" alt="">
+                    </template>
                 </li>
             </ul>
         </div>
