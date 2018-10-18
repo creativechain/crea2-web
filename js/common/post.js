@@ -109,4 +109,12 @@ let postContainer;
     }
 
     fetchContent();
+
+    creaEvents.on('crea.login', function () {
+        fetchContent();
+    });
+
+    creaEvents.on('crea.logout', function () {
+        fetchContent();
+    })
 })();

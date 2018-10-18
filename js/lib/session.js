@@ -51,11 +51,12 @@ class Session {
     }
 
     save() {
+        let session = jsonstring(this);
         if (this.keepAlive) {
-            localStorage.setItem(CREARY.SESSION, jsonstring(this));
+            localStorage.setItem(CREARY.SESSION, session);
             sessionStorage.setItem(CREARY.SESSION, false);
         } else {
-            sessionStorage.setItem(CREARY.SESSION, jsonstring(this));
+            sessionStorage.setItem(CREARY.SESSION, session);
             localStorage.setItem(CREARY.SESSION, false);
         }
     }

@@ -36,13 +36,13 @@
                                             <div class="img-more-projects"></div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!--<div class="row">
                                         <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.YOUR_COMMENTS }}</p></div>
-                                    </div>
+                                    </div>-->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="boxed boxed--border box-comment">
-                                                <div class="row">
+                                                <div v-if="session" class="row">
                                                     <div class="col-md-12 row-comment">
                                                         <div class="user-avatar">
                                                             <div class="img-user-avatar"></div>
@@ -85,7 +85,7 @@
                                                                             <ul class="list-inline list-unstyled ul-row-share-comment">
                                                                                 <li><a href="#/" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</a></li>
                                                                                 <li><p>{{ state.content[c].pending_payout_value }}</p></li>
-                                                                                <li><p>Comentar</p></li>
+                                                                                <li v-if="session"><p>Comentar</p></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>

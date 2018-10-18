@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
-                                                <img src="img/crea-web/like/like.svg" alt="" class="avatare-info">
+                                                <img src="/img/crea-web/like/like.svg" alt="" class="avatare-info">
                                             </div>
                                         </div>
                                         <div class="row">

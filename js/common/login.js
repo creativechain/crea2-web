@@ -44,7 +44,7 @@ function login(username, password) {
 function logout() {
     Session.getAlive().logout();
     //updateNavbarSession(false);
-    toHome();
+    creaEvents.emit('crea.logout')
 }
 
 function formSubmit(event) {
