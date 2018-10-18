@@ -21,6 +21,83 @@ let profileContainer;
         $('#' + element).tagsinput();
     }
 
+    function updateProfile(data, session, account, usernameFilter) {
+        if (!profileContainer) {
+            profileContainer = new Vue({
+                el: '#profile-container',
+                data: {
+                    CONSTANTS: CONSTANTS,
+                    lang: lang,
+                    session: session,
+                    account: account,
+                    data: data,
+                    filter: usernameFilter,
+                    profile: defaultProfile,
+                    navfilter: 'projects'
+                },
+                mounted: function () {
+                    console.log('Mounted! ');
+                    $('#profile-edit-tags').tagsinput({
+                        maxTags: CONSTANTS.MAX_TAGS,
+                        maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
+                        delimiter: ' '
+                    });
+
+                },
+                methods: {
+                    getJoinDate: function () {
+                        let date = new Date(this.account.created);
+                        return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
+                    },
+                    userHasVote: function (post) {
+                        let session = Session.getAlive();
+
+                        if (session) {
+                            let activeVotes = post.active_votes;
+
+                            for (let x = 0; x < activeVotes.length; x++) {
+                                let vote = activeVotes[x];
+                                if (session.account.username === vote.voter) {
+                                    return true;
+                                }
+                            }
+                        }
+
+                        return false;
+                    },
+                    getFutureDate: function (date) {
+                        date = new Date(date);
+                        return moment(date.getTime(), 'x').endOf('day').fromNow();
+                    },
+                    makeVote: function (post) {
+                        let filter = this.filter;
+                        makeVote(post, function () {
+                            setUpProfile();
+                        })
+                    },
+                    getLicense(flag) {
+                        if (flag) {
+                            return License.fromFlag(flag);
+                        }
+
+                        return new License(LICENSE.FREE_CONTENT);
+                    }
+                }
+            });
+        } else {
+            if (session) {
+                profileContainer.$data.session = session;
+            }
+
+            if (account) {
+                profileContainer.$data.account = account;
+            }
+
+            profileContainer.$data.data = data;
+            profileContainer.$data.filter = usernameFilter;
+            profileContainer.$forceUpdate();
+        }
+    }
     /**
      *
      * @param {Session} session
@@ -37,10 +114,19 @@ let profileContainer;
                 console.error(err);
             } else  {
                 console.log(data);
+                let accounts = Object.keys(data.accounts);
 
-                data.discussion_idx = {};
+                accounts.forEach(function (k) {
+                    data.accounts[k].metadata = jsonify(data.accounts[k].json_metadata);
+                });
+
                 let posts = Object.keys(data.content);
 
+                posts.forEach(function (k) {
+                    data.content[k].metadata = jsonify(data.content[k].json_metadata);
+                });
+
+                data.discussion_idx = {};
                 posts.sort(function (k1, k2) {
                     let d1 = new Date(data.content[k1].created);
                     let d2 = new Date(data.content[k2].created);
@@ -49,57 +135,10 @@ let profileContainer;
                 });
 
                 data.discussion_idx[''] = posts;
-                try {
-                    let prof = jsonify(data.accounts[session.account.username].json_metadata);
 
-                    defaultProfile =  prof.valid ? prof : defaultProfile;
-                } catch (e) {
-                    //INVALID json_metadata
-                    console.error(e);
-                }
+                defaultProfile =  data.accounts[session.account.username].metadata;
 
-                if (!profileContainer) {
-                    profileContainer = new Vue({
-                        el: '#profile-container',
-                        data: {
-                            CONSTANTS: CONSTANTS,
-                            lang: lang,
-                            session: session,
-                            account: account,
-                            data: data,
-                            filter: usernameFilter,
-                            profile: defaultProfile,
-                            navfilter: 'projects'
-                        },
-                        mounted: function () {
-                            console.log('Mounted! ');
-                            $('#profile-edit-tags').tagsinput({
-                                maxTags: CONSTANTS.MAX_TAGS,
-                                maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
-                                delimiter: ' '
-                            });
-
-                        },
-                        methods: {
-                            getJoinDate: function () {
-                                let date = new Date(this.account.created);
-                                return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
-                            },
-                        }
-                    });
-                } else {
-                    if (session) {
-                        profileContainer.$data.session = session;
-                    }
-
-                    if (account) {
-                        profileContainer.$data.account = account;
-                    }
-
-                    profileContainer.$data.data = data;
-                    profileContainer.$data.filter = usernameFilter;
-                    profileContainer.$forceUpdate();
-                }
+                updateProfile(data, session, account, usernameFilter);
             }
         });
     }

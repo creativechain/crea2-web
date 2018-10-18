@@ -2,12 +2,12 @@
     <div class="card card-2 card-home">
         <div class="card__top">
             <a v-bind:href="'/post-view.php?url=' + data.content[p].url">
-                <img alt="Image" v-bind:src="parseJSON(data.content[p].json_metadata).featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA'">
+                <img alt="Image" v-bind:src="data.content[p].metadata.featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA'">
             </a>
         </div>
         <div class="card__body">
             <h4>{{ data.content[p].title }}</h4>
-            <p>{{ parseJSON(data.content[p].json_metadata).description || "--" }}</p>
+            <p>{{ data.content[p].metadata.description || "--" }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
                     <a href="#/" v-on:click="makeVote(data.content[p])">
@@ -48,7 +48,7 @@
             <ul class="list-inline list-unstyled w-100">
                 <li>
                     <div class="dropdown dropdown-autor">
-                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ parseJSON(data.content[p].json_metadata).author || data.content[p].author }}</span>
+                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
