@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-md-9 border-box full-post">
                                 <div class="row">
-                                    <div class="col-md-12 img-post-view content-post" v-html="state.content.body">
+                                    <div class="col-md-12 img-post-view content-post" v-html="state.post.body">
 
                                     </div>
                                 </div>
@@ -48,11 +48,11 @@
                                                             <div class="img-user-avatar"></div>
                                                         </div>
                                                         <div class="textarea">
-                                                            <textarea name="text" placeholder="Message" rows="4"></textarea>
+                                                            <textarea name="text" placeholder="Message" rows="4" v-model="comment"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 m-3">
-                                                        <a class="btn btn--primary w-100" href="#">
+                                                        <a class="btn btn--primary w-100" href="#/" v-on:click="makeComment">
                                                             <span class="btn__text">
                                                                 {{ lang.BUTTON.POST_COMMENT }}
                                                             </span>
@@ -64,32 +64,37 @@
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <h3>{{ lang.PUBLICATION.COMMENTS }}</h3>
+                                                        <h3>{{ lang.PUBLICATION.COMMENTS + ' (' + state.post.children + ')' }}</h3>
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="row-post-comments">
-                                                            <div class="user-avatar">
-                                                                <div class="img-user-avatar"></div>
-                                                            </div>
-                                                            <div class="user-comments">
-                                                                <p>Bert Black <img src="/img/icons/trainer.svg" alt=""><span>9 hours ago</span></p>
-                                                                <span class="comment-user">Well done, contratulations!</span>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <ul class="list-inline list-unstyled ul-row-share-comment">
-                                                                            <li><img src="/img/icons/like.svg" alt="">31</li>
-                                                                            <li><p>10,37€</p></li>
-                                                                            <li><p>Comentar</p></li>
-                                                                        </ul>
+                                                <template v-for="c in state.comments">
+                                                    <div v-if="c != state.postKey" class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row-post-comments">
+                                                                <div class="user-avatar">
+                                                                    <div class="img-user-avatar"></div>
+                                                                </div>
+                                                                <div class="user-comments">
+                                                                    <p>{{ state.accounts[state.content[c].author].metadata.publicName || state.content[c].author }}
+                                                                        <img src="/img/icons/trainer.svg" alt="">
+                                                                        <span>{{ dateFromNow(state.content[c].created) }}</span></p>
+                                                                    <span class="comment-user">{{ state.content[c].body }}</span>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ul class="list-inline list-unstyled ul-row-share-comment">
+                                                                                <li><a href="#/" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].net_votes }}</a></li>
+                                                                                <li><p>{{ state.content[c].pending_payout_value }}</p></li>
+                                                                                <li><p>Comentar</p></li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </template>
+
 
                                                 <hr>
 
@@ -123,8 +128,8 @@
                                                                 </ul>
                                                                 <hr>
                                                                 <p>License: Creative Commons BY-SA</p>
-                                                                <p>Time stamp: 22:08 hours 20.08.2017</p>
-                                                                <p>{{ state.content.metadata.hash || '-' }}</p>
+                                                                <p>Timestamp: {{ new Date(state.post.created).toLocaleString() }}</p>
+                                                                <p>{{ state.post.metadata.hash || '-' }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -194,8 +199,8 @@
                                     </div>
                                     <div class="row row-publish-description">
                                         <div class="col-md-12">
-                                            <p class="title">{{ state.content.title }}</p>
-                                            <span class="description">{{ state.content.description }}</span>
+                                            <p class="title">{{ state.post.title }}</p>
+                                            <span class="description">{{ state.post.metadata.description }}</span>
                                             <span class="date-publish">Lorem 24 ipsum, 2017</span>
                                         </div>
                                     </div>
@@ -207,7 +212,7 @@
                                     <div class="row row-publish-tags">
                                         <div class="col-md-12">
                                             <p class="title">TAGS</p>
-                                            <span class="description">{{ state.content.metadata.tags.join(', ') || '' }}</span>
+                                            <span class="description">{{ state.post.metadata.tags.join(', ') || '' }}</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -220,7 +225,7 @@
                                             <ul class="ul-social">
                                                 <li>
                                                     <img src="/img/icons/like_BLUE.svg" alt="">
-                                                    <p>{{ state.content.net_votes}} {{ lang.PUBLICATION.LIKES }}</p>
+                                                    <p>{{ state.post.net_votes}} {{ lang.PUBLICATION.LIKES }}</p>
                                                 </li>
                                                 <li>
                                                     <img src="/img/icons/downloads.svg" alt="">
@@ -244,16 +249,16 @@
                                         </div>
                                         <div class="col-md-12 row-format">
                                             <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
-                                            <span class="description">{{ state.content.metadata.download.type || '-' }}</span>
+                                            <span class="description">{{ state.post.metadata.download.type || '-' }}</span>
                                         </div>
                                         <div class="col-md-12 row-format">
                                             <p class="title">{{ lang.PUBLICATION.SIZE }}</p>
-                                            <span class="description">{{ state.content.metadata.download.size || '-' }}</span>
+                                            <span class="description">{{ state.post.metadata.download.size || '-' }}</span>
                                         </div>
                                         <div class="col-md-12 row-format">
                                             <p class="title">{{ lang.PUBLICATION.PRICE }}</p>
-                                            <span v-if="state.content.metadata.price === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
-                                            <span v-else class="description">{{ state.content.metadata.price }}</span>
+                                            <span v-if="state.post.metadata.price === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
+                                            <span v-else class="description">{{ state.post.metadata.price }}</span>
                                         </div>
                                     </div>
                                 </div>

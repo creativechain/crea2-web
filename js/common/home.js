@@ -63,7 +63,11 @@ function showPosts(filter, data) {
 
                     return false;
                 },
-                makeVote: makeVote,
+                makeVote: function (post) {
+                    makeVote(post, function () {
+                        creaEvents.emit('crea.content.filter', this.filter);
+                    })
+                },
             }
         })
     } else {

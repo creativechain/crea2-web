@@ -70,14 +70,17 @@ function createBlockchainAccount(username, password, callback) {
     });
 }
 
-function makeVote(post) {
+function makeVote(post, callback) {
     let session = Session.getAlive();
     if (session) {
-        crea.broadcast.vote(session.account.keys.active.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
+        crea.broadcast.vote(session.account.keys.posting.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
             if (err) {
                 console.error(err);
             } else {
                 console.log(result);
+                if (callback) {
+                    callback();
+                }
             }
         })
     }
