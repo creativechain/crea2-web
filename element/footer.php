@@ -50,6 +50,7 @@
 <script src="/js/common/home.js"></script>
 <script src="/js/common/welcome.js"></script>
 <script src="/js/common/publish.js"></script>
+<script src="/js/common/post.js"></script>
 
 <script src="/js/custom.js"></script>
 <script src="/js/tagsinput.js"></script>

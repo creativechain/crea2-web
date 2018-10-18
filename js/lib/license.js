@@ -67,7 +67,7 @@ class License {
     getIcons(color = '') {
         let icons = [];
         this.licensePermissions.forEach(function (perm) {
-            icons.push(perm.getIcon())
+            icons.push(perm.getIcon(color))
         });
 
         return icons;

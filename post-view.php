@@ -1,8 +1,10 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container post-view">
-    <?php include ('modules/banner.php') ?>
+    <div id="home-banner">
+        <?php include ('modules/banner.php') ?>
+    </div>
 
-    <section>
+    <section id="post-view">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-11">
@@ -10,29 +12,18 @@
                         <div class="row">
                             <div class="col-md-9 border-box full-post">
                                 <div class="row">
-                                    <div class="col-md-12 img-post-view">
-                                        <img src="/img/crea-web/publish/demo-upload.png" class="img--fullwidth" alt="">
-                                        <img src="/img/crea-web/publish/demo-upload.png" class="img--fullwidth" alt="">
+                                    <div class="col-md-12 img-post-view content-post" v-html="state.content.body">
+
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12 content-post">
-                                            <h2 class="title-view-post">Lorem ipsum dolor sit amet.</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-                                            <p>Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-                                            <p>Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam </p>
-                                        </div>
-                                    </div>
                                     <div class="row row-promote justify-content-center">
                                         <div class=" col-md-4">
-                                            <button type="submit" class="btn btn--primary type--uppercase">Promocionar</button>
+                                            <button type="submit" class="btn btn--primary type--uppercase">{{ lang.BUTTON.PROMOTE }}</button>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12"><p class="subtitle-content-publish">More projects</p></div>
+                                        <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
@@ -46,7 +37,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12"><p class="subtitle-content-publish">Your comments</p></div>
+                                        <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.YOUR_COMMENTS }}</p></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -63,7 +54,7 @@
                                                     <div class="col-md-2 m-3">
                                                         <a class="btn btn--primary w-100" href="#">
                                                             <span class="btn__text">
-                                                                Post comment
+                                                                {{ lang.BUTTON.POST_COMMENT }}
                                                             </span>
                                                         </a>
                                                     </div>
@@ -73,7 +64,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <h3>Comments (2)</h3>
+                                                        <h3>{{ lang.PUBLICATION.COMMENTS }}</h3>
                                                     </div>
                                                 </div>
 
@@ -104,7 +95,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-12 text-center">
-                                                        <a href="" class="more-comments">Ver más comentarios</a>
+                                                        <a href="" class="more-comments">{{ lang.PUBLICATION.MORE_COMMENTS }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,22 +112,19 @@
                                                         <div class="feature feature-2">
                                                             <div class="feature__body">
                                                                 <ul class="list-unstyled list-inline w-100 mb-0">
-                                                                    <li><h2 class="title-certificate">Blockchain Certificate</h2></li>
+                                                                    <li><h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2></li>
                                                                     <ul class="float-right">
                                                                         <li class="li-blockchain-certificate">
-                                                                            <img src="/img/icons/license/nonderivates_WHITE.svg" alt="">
-                                                                            <img src="/img/icons/license/attribution_WHITE.svg" alt="">
-                                                                            <img src="/img/icons/license/creativecommons_WHITE.svg" alt="">
-                                                                            <img src="/img/icons/license/freecontent_WHITE.svg" alt="">
-                                                                            <img src="/img/icons/license/noncomercial_WHITE.svg" alt="">
-                                                                            <img src="/img/icons/license/sharealike_WHITE.svg" alt="">
+                                                                            <template v-for="i in getLicense().getIcons('white')">
+                                                                                <img v-bind:src="i" alt="">
+                                                                            </template>
                                                                         </li>
                                                                     </ul>
                                                                 </ul>
                                                                 <hr>
                                                                 <p>License: Creative Commons BY-SA</p>
                                                                 <p>Time stamp: 22:08 hours 20.08.2017</p>
-                                                                <p>chssfg6f7ds5gs854d7878d5gsdf586543j367ghd6sjhkdgfñkñgñas9fh5ds6</p>
+                                                                <p>{{ state.content.metadata.hash || '-' }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,8 +162,8 @@
                                                     <div class="img-user-avatar"></div>
                                                 </div>
                                                 <div class="user-data">
-                                                    <p class="name">CasmiLab</p>
-                                                    <p class="website">venenatistheworld.com</p>
+                                                    <p class="name">{{ state.author.name }}</p>
+                                                    <p class="website">{{ state.author.metadata.web || '-' }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -194,7 +182,7 @@
                                         <div class="col-md-12">
                                             <a class="btn btn--primary type--uppercase w-100" href="#">
                                             <span class="btn__text">
-                                                Follow
+                                                {{ lang.BUTTON.FOLLOW }}
                                             </span>
                                             </a>
                                         </div>
@@ -206,8 +194,8 @@
                                     </div>
                                     <div class="row row-publish-description">
                                         <div class="col-md-12">
-                                            <p class="title">A peich ese pedazo de hasta luego Lucas benemerita.</p>
-                                            <span class="description">Lorem ipsum dolor sit amet, conse tetur adipiscing elit. Sed bibendum ut turpis ut sagittis. Ut placerat et sem eu fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum ut turpis ut sagittis. Ut placerat et sem e 233.</span>
+                                            <p class="title">{{ state.content.title }}</p>
+                                            <span class="description">{{ state.content.description }}</span>
                                             <span class="date-publish">Lorem 24 ipsum, 2017</span>
                                         </div>
                                     </div>
@@ -219,7 +207,7 @@
                                     <div class="row row-publish-tags">
                                         <div class="col-md-12">
                                             <p class="title">TAGS</p>
-                                            <span class="description">Digital, agency, about, loop, ilustration</span>
+                                            <span class="description">{{ state.content.metadata.tags.join(', ') || '' }}</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -232,15 +220,15 @@
                                             <ul class="ul-social">
                                                 <li>
                                                     <img src="/img/icons/like_BLUE.svg" alt="">
-                                                    <p>55 Likes</p>
+                                                    <p>{{ state.content.net_votes}} {{ lang.PUBLICATION.LIKES }}</p>
                                                 </li>
                                                 <li>
                                                     <img src="/img/icons/downloads.svg" alt="">
-                                                    <p>34 Descargas</p>
+                                                    <p>0 {{ lang.PUBLICATION.DOWNLOADS }}</p>
                                                 </li>
                                                 <li>
                                                     <img src="/img/icons/ic_share_black_24px.svg" alt="">
-                                                    <p>Compartir</p>
+                                                    <p>{{ lang.PUBLICATION.SHARE }}</p>
                                                 </li>
                                             </ul>
 
@@ -250,21 +238,22 @@
                                         <div class="col-md-12">
                                             <a class="btn btn--primary type--uppercase w-100" href="#">
                                             <span class="btn__text">
-                                                Download
+                                                {{ lang.BUTTON.DOWNLOAD }}
                                             </span>
                                             </a>
                                         </div>
                                         <div class="col-md-12 row-format">
-                                            <p class="title">Format</p>
-                                            <span class="description">pdf</span>
+                                            <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
+                                            <span class="description">{{ state.content.metadata.download.type || '-' }}</span>
                                         </div>
                                         <div class="col-md-12 row-format">
-                                            <p class="title">Size</p>
-                                            <span class="description">2,5 MB</span>
+                                            <p class="title">{{ lang.PUBLICATION.SIZE }}</p>
+                                            <span class="description">{{ state.content.metadata.download.size || '-' }}</span>
                                         </div>
                                         <div class="col-md-12 row-format">
-                                            <p class="title">Price</p>
-                                            <span class="description">Free Download</span>
+                                            <p class="title">{{ lang.PUBLICATION.PRICE }}</p>
+                                            <span v-if="state.content.metadata.price === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
+                                            <span v-else class="description">{{ state.content.metadate.price }}</span>
                                         </div>
                                     </div>
                                 </div>

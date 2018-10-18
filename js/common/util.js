@@ -43,10 +43,14 @@ String.prototype.capitalize = function() {
  */
 function jsonify(obj) {
     if (obj && typeof obj == 'string') {
-        return JSON.parse(obj);
+        try {
+            return JSON.parse(obj);
+        } catch (e) {
+            console.error('JSON error', e, 'Object:', obj);
+        }
     }
 
-    return obj;
+    return {};
 }
 
 function jsonstring(obj) {

@@ -61,8 +61,8 @@ let lang = {
         "FORMAT": "FORMAT",
         "CERTIFICATE": "Blockchain certificate",
         "SIZE": "SIZE",
-        "DOWNLOAD": "Downloads",
-        "COMMENTS": "Comentarios",
+        "DOWNLOADS": "Downloads",
+        "COMMENTS": "Comments",
         "TIME_STAMP": "Time Stamp",
         "SHARE": "Share",
         "LIKES": "Likes",
@@ -72,7 +72,8 @@ let lang = {
         "MORE_COMMENTS": "See more comments",
         "YOUR_COMMENTS": "Your comments",
         "LICENSE": "License",
-        "TAGS": "TAGS"
+        "TAGS": "TAGS",
+        "FREE_DOWNLOAD": "Free Download"
     },
     "PROFILE_MENU": {
         "LOGOUT": "Logout",
@@ -131,7 +132,8 @@ let lang = {
         "SHOW_KEY": "Show private key",
         "BUY_CREA": "Buy CREA or CREA Energy",
         "PROMOTE": "PROMOTE",
-        "WITHDRAW_SAVINGS": "Withdraw savings"
+        "WITHDRAW_SAVINGS": "Withdraw savings",
+        "POST_COMMENT": "Post comment"
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",

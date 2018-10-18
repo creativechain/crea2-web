@@ -58,7 +58,7 @@ let profileContainer;
 
                 data.discussion_idx[''] = posts;
                 try {
-                    let prof = JSON.parse(data.accounts[session.account.username].json_metadata);
+                    let prof = jsonify(data.accounts[session.account.username].json_metadata);
 
                     defaultProfile =  prof.valid ? prof : defaultProfile;
                 } catch (e) {
