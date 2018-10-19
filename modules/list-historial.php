@@ -62,6 +62,39 @@
             </div>
             <hr>
         </div>
+        <div v-else-if="op.op.type == 'vote_operation'" class="row-list-user">
+            <div class="avatare-list">
+                <img v-bind:src="history.accounts[op.op.value.voter].metadata.avatar || '/img/avatar/avatar1.png'" alt="">
+            </div>
+            <div class="list-data-user">
+                <p>{{ history.accounts[op.op.value.voter].metadata.publicName || op.op.value.voter }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
+                <p>
+                    {{ lang.HISTORY.VOTED_FOR + op.op.value.permlink }}
+                </p>
+                <p></p>
+            </div>
+            <div class="list-amount">
+                <p>{{ (op.op.value.weight * 100 / 10000).toFixed(0) }}%</p>
+            </div>
+            <hr>
+        </div>
+        <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
+            <div class="avatare-list">
+                <img v-bind:src="history.accounts[op.op.value.creator].metadata.avatar || '/img/avatar/avatar1.png'" alt="">
+            </div>
+            <div class="list-data-user">
+                <p>{{ history.accounts[op.op.value.creator].metadata.publicName || op.op.value.creator }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
+                <p>
+                    {{ (history.accounts[op.op.value.creator].metadata.publicName || op.op.value.creator) +
+                    lang.HISTORY.CREATE_ACCOUNT + op.op.value.new_account_name }}
+                </p>
+                <p></p>
+            </div>
+            <div class="list-amount">
+                <p>{{ parseAsset(op.op.value.fee) }}</p>
+            </div>
+            <hr>
+        </div>
     </template>
     <!--<div class="row-list-user">
         <div class="avatare-list">

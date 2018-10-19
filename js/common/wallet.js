@@ -157,7 +157,6 @@ let walletContainer;
                 if (err) {
                     console.error(err);
                 } else {
-                    console.log(result);
                     result.history = result.history.reverse();
                     let accounts = [];
                     let history = [];
@@ -185,8 +184,6 @@ let walletContainer;
 
                         history.push(h);
                     });
-
-                    console.log(accounts);
 
                     crea.api.getAccounts(accounts, function (err, result) {
                         if (err) {
