@@ -31,6 +31,9 @@ function showPosts(filter, data) {
                 lang: lang,
             },
             methods: {
+                openPost: function (post) {
+                    window.location.href = '/post-view.php?url=' + post.url;
+                },
                 parseAsset: function (asset) {
                     return Asset.parse(asset).toFriendlyString();
                 },
