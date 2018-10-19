@@ -46,11 +46,30 @@
                                     <div class="boxed boxed--border">
                                         <div class="tabs-container tabs--folder tabs-container-primary">
                                             <ul class="tabs tabs-primary">
-                                                <li class="active">
+                                                <li v-bind:class="{ active: tab === 'balances' }" v-on:click="tab = 'balances'">
                                                     <div class="tab__title">
                                                         <span class="h5">{{ lang.WALLET.BALANCES }}</span>
                                                     </div>
-                                                    <div class="tab__content">
+
+                                                </li>
+                                                <li v-bind:class="{ active: tab === 'permissions' }" v-on:click="tab = 'permissions'">
+                                                    <div class="tab__title">
+                                                        <span class="h5">{{ lang.WALLET.PERMISSIONS }}</span>
+                                                    </div>
+
+                                                </li>
+                                                <li v-bind:class="{ active: tab === 'passwords' }" v-on:click="tab = 'passwords'">
+                                                    <div class="tab__title">
+                                                        <span class="h5">{{ lang.WALLET.PASSWORDS }}</span>
+                                                    </div>
+
+                                                </li>
+
+                                            </ul>
+
+                                            <ul id="wallet-tabs" class="tabs-content">
+                                                <li v-bind:class="{ active: tab === 'balances' }">
+                                                    <div v-bind:class="{ tab__content: true, hidden: tab !== 'balances' }">
                                                         <table class="table-amount table">
                                                             <thead class="hidden">
                                                             <tr>
@@ -252,11 +271,8 @@
                                                         </table>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="tab__title">
-                                                        <span class="h5">{{ lang.WALLET.PERMISSIONS }}</span>
-                                                    </div>
-                                                    <div class="tab__content">
+                                                <li v-bind:class="{ active: tab === 'permissions' }">
+                                                    <div v-bind:class="{ tab__content: true, hidden: tab !== 'permissions' }">
                                                         <table class="table-permission table">
                                                             <thead class="hidden">
                                                             <tr>
@@ -315,11 +331,8 @@
                                                         </table>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="tab__title">
-                                                        <span class="h5">{{ lang.WALLET.PASSWORDS }}</span>
-                                                    </div>
-                                                    <div class="tab__content">
+                                                <li v-bind:class="{ active: tab === 'passwords' }">
+                                                    <div v-bind:class="{ tab__content: true, hidden: tab !== 'passwords' }">
                                                         <p class="lead">
                                                             Medium Rare is an elite author known for offering
                                                             high-quality, high-value products backed by timely and

@@ -46,6 +46,10 @@ let walletContainer;
                         accounts: {}
                     }
                 },
+                mounted: function () {
+                    $('#wallet-tabs').prev().remove();
+                    console.log('Element deleted');
+                },
                 methods: {
                     openPost: function (post) {
                         window.location.href = '/post-view.php?url=' + post.url;
