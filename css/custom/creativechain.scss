@@ -82,7 +82,7 @@ img {
     height: 136px;
     .img-post-list {
       background-image: url("https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA");
-      height: 212px;
+      height: 136px;
       background-size: cover;
       background-position: 50% 50%;
       width: 100%;
@@ -119,6 +119,7 @@ img {
   .li-certificate {
     img {
       width: 15px;
+      margin-left: 5px;
     }
   }
   .dropdown-price {
