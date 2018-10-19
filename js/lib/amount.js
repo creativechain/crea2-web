@@ -96,7 +96,9 @@ class Asset {
         let nai = NAI[assetData.nai];
 
         if (typeof assetData.amount === 'number') {
-            assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
+            if (assetData.amount % 1 != 0) {
+                assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
+            }
         } else if (typeof assetData.amount === 'string') {
             assetData.amount = assetData.amount.replace(',', '.');
 

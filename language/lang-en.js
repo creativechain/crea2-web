@@ -364,5 +364,13 @@ let lang = {
         "SHAREALIKE": "ShareAlike",
         "NONDERIVATES": "NonDerivates",
         "INTERNATIONAL": "International"
+    },
+    "HISTORY": {
+        TRANSFER_FROM: 'Transfer from ',
+        TRANSFER_TO: 'Transfer to ',
+        TRANSFER_VESTING_FROM: 'Transfer to vesting from ',
+        TRANSFER_VESTING_TO: 'Transfer to vesting to ',
+        POSTED: 'Posted ',
+        COMMENTED: 'Commented in '
     }
 };

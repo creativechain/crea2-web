@@ -1,8 +1,9 @@
 /**
  * Created by ander on 25/09/18.
  */
+let walletContainer;
 (function () {
-    let walletContainer;
+
 
     let defaultProfile = {
         avatar: {},
@@ -46,6 +47,12 @@
                     }
                 },
                 methods: {
+                    openPost: function (post) {
+                        window.location.href = '/post-view.php?url=' + post.url;
+                    },
+                    parseAsset: function (asset) {
+                        return Asset.parse(asset).toFriendlyString();
+                    },
                     dateFromNow(date) {
                         date = new Date(date);
                         return moment(date.getTime()).fromNow();
