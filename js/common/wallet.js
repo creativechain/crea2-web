@@ -40,8 +40,16 @@
                     account: account,
                     profile: defaultProfile,
                     tab: 'balances',
+                    history: {
+                        data: [],
+                        accounts: {}
+                    }
                 },
                 methods: {
+                    dateFromNow(date) {
+                        date = new Date(date);
+                        return moment(date.getTime()).fromNow();
+                    },
                     getJoinDate: function () {
                         let date = new Date(this.account.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
@@ -68,8 +76,8 @@
             });
         } else {
             //Vue.set(walletContainer, 'account', account);
-            walletContainer.$data.state = state;
-            walletContainer.$data.account = account;
+            walletContainer.state = state;
+            walletContainer.account = account;
             //walletContainer.$forceUpdate();
         }
     }
@@ -87,26 +95,6 @@
             }
         });
 
-    }
-
-    function setUpWallet() {
-        let session = Session.getAlive();
-
-        if (session) {
-            crea.api.getState('@' + session.account.username, function (err, result) {
-
-                if (err) {
-                    console.error(err);
-                    //TODO: Show an error
-                } else {
-                    updateWalletProfile(result);
-                }
-            });
-
-        } else {
-            //Not logged, redirect to Home if location is wallet.php
-            toHome('wallet.php');
-        }
     }
 
     /**
@@ -149,6 +137,93 @@
         }
 
         sendMoney(destiny, amount, memo);
+    }
+
+    /**
+     *
+     * @param {string} username
+     */
+    function fetchHistory(username) {
+
+        setTimeout(function () {
+            crea.api.getAccountHistory(username, -1, 50, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(result);
+                    result.history = result.history.reverse();
+                    let accounts = [];
+                    let history = [];
+                    result.history.forEach(function (h) {
+                        h = h[1];
+                        let addIfNotExists = function(account) {
+                            if (account && accounts.indexOf(account) < 0) {
+                                accounts.push(account);
+                            }
+                        };
+
+                        if (h.op.type == 'transfer_operation') {
+                            addIfNotExists(h.op.value.from);
+                            addIfNotExists(h.op.value.to);
+                        } else if (h.op.type == 'transfer_to_vesting_operation') {
+                            addIfNotExists(h.op.value.from);
+                            addIfNotExists(h.op.value.to);
+                        } else if (h.op.type == 'vote_operation') {
+                            addIfNotExists(h.op.value.voter);
+                            addIfNotExists(h.op.value.author);
+                        } else if (h.op.type == 'comment_operation') {
+                            addIfNotExists(h.op.value.parent_author);
+                            addIfNotExists(h.op.value.author);
+                        }
+
+                        history.push(h);
+                    });
+
+                    console.log(accounts);
+
+                    crea.api.getAccounts(accounts, function (err, result) {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            let opsAccounts = {};
+                            accounts.forEach(function (u) {
+                                for (let x = 0; x < result.length; x++) {
+                                    if (u == result[x].name) {
+                                        opsAccounts[u] = result[x];
+                                        opsAccounts[u].metadata = jsonify(opsAccounts[u].json_metadata);
+                                        break;
+                                    }
+                                }
+                            });
+
+                            walletContainer.history.data = history;
+                            walletContainer.history.accounts = opsAccounts;
+                        }
+                    })
+                }
+            })
+        });
+    }
+
+    function setUpWallet() {
+        let session = Session.getAlive();
+
+        if (session) {
+            crea.api.getState('@' + session.account.username, function (err, result) {
+
+                if (err) {
+                    console.error(err);
+                    //TODO: Show an error
+                } else {
+                    fetchHistory(session.account.username);
+                    updateWalletProfile(result);
+                }
+            });
+
+        } else {
+            //Not logged, redirect to Home if location is wallet.php
+            toHome('wallet.php');
+        }
     }
 
     setUpWallet();
