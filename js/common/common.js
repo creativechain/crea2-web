@@ -5,7 +5,7 @@
 let creaEvents = new EventEmitter();
 
 const ipfs = IpfsApi({
-    host: 'ipfs.owldevelopers.site',
+    host: 'ipfs.creary.net',
     port: 443,
     protocol: 'https'
 });

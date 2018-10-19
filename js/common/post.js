@@ -90,6 +90,7 @@ let postContainer;
                 result.postKey = getPostKey();
                 result.post = result.content[result.postKey];
                 result.post.metadata = jsonify(result.post.json_metadata);
+                result.post.body = jsonify(result.post.body);
                 result.author = result.accounts[result.post.author];
 
                 //Order comments by date, latest first

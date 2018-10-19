@@ -140,32 +140,7 @@ let publishContainer;
         };
 
         //Build body
-        let body = '';
-
-        let elements = publishContainer.bodyElements;
-        let keys = Object.keys(elements);
-        keys.forEach(function (k) {
-            let el = elements[k];
-            if (el.type.indexOf('text/html') > -1) {
-                body += el.value;
-            } else if (el.type.indexOf('image/') > -1) {
-                body += '<p><div class="upload-img"> <img src="' + el.url + '"</img></div></p>';
-            } else if (el.type.indexOf('video/') > -1) {
-                body += '<p>' +
-                    '<div class="upload-img"> ' +
-                    '   <video controls>' +
-                    '       <source src="' + el.url + '" type="' + el.type +'">' +
-                    '   </video>' +
-                    '</div></p>';
-            } else if (el.type.indexOf('audio/') > -1) {
-                body += '<p>' +
-                    '<div class="upload-img"> ' +
-                    '   <audio controls>' +
-                    '       <source src="' + el.url + '" type="' + el.type +'">' +
-                    '   </audio>' +
-                    '</div></p>';
-            }
-        });
+        let body = jsonstring(publishContainer.bodyElements);
 
         let title = publishContainer.title;
         let permlink = toPermalink(title);
