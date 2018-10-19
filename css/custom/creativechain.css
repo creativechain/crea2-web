@@ -289,7 +289,8 @@
     padding-top: 50px; }
   .post-view .upload-img {
     margin-left: -10px;
-    margin-right: -10px; }
+    margin-right: -10px;
+    text-align: center; }
   .post-view .border-post-view {
     border: 1px solid #DFDFDF;
     border-radius: 10px;
@@ -545,7 +546,7 @@ img {
     height: 136px; }
     .card-home .card__top .img-post-list {
       background-image: url("https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA");
-      height: 212px;
+      height: 136px;
       background-size: cover;
       background-position: 50% 50%;
       width: 100%;

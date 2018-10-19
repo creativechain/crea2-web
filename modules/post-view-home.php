@@ -1,9 +1,10 @@
 <div class="col-sm-6 col-md-6 col-lg-3 masonry__item">
     <div class="card card-2 card-home">
         <div class="card__top">
-            <a v-bind:href="'/post-view.php?url=' + data.content[p].url">
+            <div class="img-post-list"></div>
+            <!--<a v-bind:href="'/post-view.php?url=' + data.content[p].url">
                 <img alt="Image" v-bind:src="data.content[p].metadata.featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA'">
-            </a>
+            </a>-->
         </div>
         <div class="card__body">
             <h4>{{ data.content[p].title }}</h4>
