@@ -4,7 +4,11 @@
 
 let creaEvents = new EventEmitter();
 
-const ipfs = IpfsApi('144.217.106.119', '5001');
+const ipfs = IpfsApi({
+    host: 'ipfs.owldevelopers.site',
+    port: 443,
+    protocol: 'https'
+});
 
 let bannerVue =  new Vue({
     el: '#home-banner',
@@ -59,22 +63,13 @@ function toHome(location) {
     }
 }
 
-function createAuth(key) {
-    return {
-        weight_threshold: 1,
-        account_auths: [],
-        key_auths: [
-            [key, 1]
-        ]
-    }
-}
-
 function createBlockchainAccount(username, password, callback) {
     console.log(password);
     let keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
     console.log(keys);
 
-    crea.broadcast.accountCreate(apiOptions.privCreator, "0.001 CREA", apiOptions.accountCreator, username, createAuth(keys.ownerPubkey), createAuth(keys.activePubkey), createAuth(keys.postingPubkey), keys.memoPubkey, {}, function (err, result) {
+    crea.broadcast.accountCreate(apiOptions.privCreator, "0.001 CREA", apiOptions.accountCreator, username,
+        createAuth(keys.ownerPubkey), createAuth(keys.activePubkey), createAuth(keys.postingPubkey), keys.memoPubkey, {}, function (err, result) {
         console.log(err, result);
         if (callback) {
             callback(err, result);

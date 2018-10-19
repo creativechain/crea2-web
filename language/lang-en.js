@@ -90,6 +90,7 @@ let lang = {
         "FOLLOWING": "Following"
     },
     "EDIT_PROFILE": {
+        "SECTION_TITLE": "Edit profile",
         "LANGUAGE": "LANGUAGE",
         "COMMENT_REWARDS": "COMMENT POST REWARDS",
         "INPUT_ABOUT": "Add a short description",

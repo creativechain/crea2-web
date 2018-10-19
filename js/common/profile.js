@@ -21,7 +21,7 @@ let profileContainer;
         $('#' + element).tagsinput();
     }
 
-    function updateProfile(data, session, account, usernameFilter) {
+    function updateProfileView(data, session, account, usernameFilter) {
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -35,7 +35,7 @@ let profileContainer;
                     profile: defaultProfile,
                     navfilter: 'projects'
                 },
-                mounted: function () {
+                updated: function () {
                     console.log('Mounted! ');
                     $('#profile-edit-tags').tagsinput({
                         maxTags: CONSTANTS.MAX_TAGS,
@@ -81,23 +81,42 @@ let profileContainer;
                         }
 
                         return new License(LICENSE.FREE_CONTENT);
-                    }
+                    },
+                    updateProfile: updateProfile
                 }
             });
         } else {
             if (session) {
-                profileContainer.$data.session = session;
+                profileContainer.session = session;
             }
 
             if (account) {
-                profileContainer.$data.account = account;
+                profileContainer.account = account;
             }
 
-            profileContainer.$data.data = data;
-            profileContainer.$data.filter = usernameFilter;
+            profileContainer.data = data;
+            profileContainer.filter = usernameFilter;
             profileContainer.$forceUpdate();
         }
     }
+
+    function updateProfile() {
+        let session = Session.getAlive();
+        let metadata = profileContainer.profile;
+        metadata.tags = $('#profile-edit-tags').val().split(' ');
+        metadata = jsonstring(metadata);
+        crea.broadcast.accountUpdate(session.account.keys.owner.prv, session.account.username,
+            createAuth(session.account.keys.owner.pub), createAuth(session.account.keys.active.pub),
+            createAuth(session.account.keys.posting.pub), session.account.keys.memo.pub,
+            metadata, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    setUpProfile();
+                }
+            })
+    }
+
     /**
      *
      * @param {Session} session
@@ -138,7 +157,7 @@ let profileContainer;
 
                 defaultProfile =  data.accounts[session.account.username].metadata;
 
-                updateProfile(data, session, account, usernameFilter);
+                updateProfileView(data, session, account, usernameFilter);
             }
         });
     }

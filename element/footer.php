@@ -5,7 +5,6 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 
-<script src="/js/vue.js"></script>
 <script src="/js/flickity.min.js"></script>
 <script src="/js/easypiechart.min.js"></script>
 <script src="/js/parallax.js"></script>
@@ -20,6 +19,8 @@
 <script src="/js/twitterfetcher.min.js"></script>
 <script src="/js/spectragram.min.js"></script>
 <script src="/js/smooth-scroll.min.js"></script>
+<script src="/js/tagsinput.js"></script>
+<script src="/js/vue.js"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="/js/buffer.js"></script>
@@ -53,7 +54,6 @@
 <script src="/js/common/post.js"></script>
 
 <script src="/js/custom.js"></script>
-<script src="/js/tagsinput.js"></script>
 
 <script src="/js/common/setup.js"></script>
 </body>

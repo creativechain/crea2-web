@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h4>Edit profile</h4>
+        <h4>{{ lang.EDIT_PROFILE.SECTION_TITLE }}</h4>
     </div>
 </div>
 
@@ -99,7 +99,7 @@
 
     <div class="row">
         <div class="col">
-            <a class="btn btn--sm btn--primary" href="#">
+            <a class="btn btn--sm btn--primary" href="#/" v-on:click="updateProfile">
                 <span class="btn__text">
                     {{ lang.BUTTON.SAVE }}
                 </span>

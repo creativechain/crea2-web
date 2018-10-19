@@ -122,3 +122,13 @@ function toPermalink(str) {
     str = str.replace(re, '-');  // perform the 1st regexp
     return str.replace(re2, '').toLowerCase();
 }
+
+function createAuth(key) {
+    return {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [
+            [key, 1]
+        ]
+    }
+}

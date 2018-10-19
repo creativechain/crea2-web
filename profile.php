@@ -21,9 +21,11 @@
                     <div class="col-lg-8 col-xl-9">
                         <section class="space--sm unpad--top">
                             <div class="container">
-                                <template v-if="navfilter === 'projects'" v-for="p in data.discussion_idx['']">
-                                    <?php include ('modules/post-view-home.php') ?>
-                                </template>
+                                <div v-if="navfilter === 'projects'" >
+                                    <template v-for="p in data.discussion_idx['']">
+                                        <?php include ('modules/post-view-home.php') ?>
+                                    </template>
+                                </div>
                                 <div v-else-if="navfilter === 'edit'">
                                     <?php include ('modules/profile-edit.php') ?>
                                 </div>
