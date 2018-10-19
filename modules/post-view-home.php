@@ -48,7 +48,7 @@
             <ul class="list-inline list-unstyled w-100">
                 <li>
                     <div class="dropdown dropdown-autor">
-                        <span><img src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
+                        <span><img class="avatar-dropdown-autor" src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
