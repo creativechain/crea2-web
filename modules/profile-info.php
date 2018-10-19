@@ -1,4 +1,4 @@
-<div id="wallet-profile" class="boxed boxed--sm boxed--border">
+<div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
         <img alt="avatar" src="img/profile/avatar-round-3.png" class="image--sm" />
         <span class="h5">{{ profile.publicName || '@' + session.account.username }} </span>
@@ -6,49 +6,32 @@
         <p>{{ profile.about || '-' }}</p>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col text-center">
             <a href="#">{{ profile.contact || '-' }}</a>
         </div>
-        <div id="wallet-profile-join-date" class="col">{{ getJoinDate() }}</div>
+        <div class="col text-center">
+            <p id="wallet-profile-join-date">{{ getJoinDate() }}</p>
+        </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row ranking-user-info">
         <div class="col">
-            <table>
-                <thead class="hidden">
-                <tr>
-                    <th>Value 1</th>
-                    <th>Value 2</th>
-                    <th>Value 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/trainer.svg" alt="">
-                            <span>Traineer</span>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <img src="img/icons/buzz.svg" alt="">
-                            <span>{{ account.reputation }} Buzz</span>
-                        </p>
-                    </td>
-                    <td>
-                        <a v-if="account.name != session.account.username" class="btn btn--sm btn--primary" href="#">
-                            <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                        </a>
+            <img src="img/icons/trainer.svg" alt="">
+            <span>Traineer</span>
+        </div>
+        <div class="col">
+            <img src="img/icons/buzz.svg" alt="">
+            <span>{{ account.reputation }} Buzz</span>
+        </div>
+        <div class="col">
+            <a v-if="account.name != session.account.username" class="btn btn--sm btn--primary" href="#">
+                <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
+            </a>
 
 
-                        <a v-else class="btn btn--sm btn--transparent" href="#/" v-on:click="navfilter = 'edit'">
-                            <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <a v-else class="btn btn--sm btn--transparent" href="#/" v-on:click="navfilter = 'edit'">
+                <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
+            </a>
         </div>
     </div>
     <hr>
@@ -122,6 +105,11 @@
         </div>
     </div>
     <hr>
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
 
 
 </div>
