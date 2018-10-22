@@ -32,4 +32,20 @@
     position: relative;
     top: 33px;
   }
+  .user-avatar {
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50px;
+    margin: 10px auto;
+  }
+  .img-user-avatar {
+    background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    background-position: 50% 50%;
+  }
 }

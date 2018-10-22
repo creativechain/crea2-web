@@ -96,6 +96,20 @@
 #profile-edit > .row {
   margin-bottom: 20px; }
 
+.menu-profile-user .user-avatar {
+  height: 70px;
+  width: 70px;
+  overflow: hidden;
+  min-height: 70px;
+  min-width: 70px;
+  border-radius: 50px;
+  margin: 0 auto; }
+.menu-profile-user .img-user-avatar {
+  background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+  background-size: cover;
+  width: 70px;
+  height: 70px;
+  background-position: 50% 50%; }
 .menu-profile-user .h5 {
   font-size: 14px;
   font-weight: 600; }
@@ -161,6 +175,20 @@
     font-weight: 600;
     position: relative;
     top: 33px; }
+  .row-list-user .user-avatar {
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50px;
+    margin: 10px auto; }
+  .row-list-user .img-user-avatar {
+    background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    background-position: 50% 50%; }
 
 .modal-send .text-p-form {
   margin-top: 5px; }
@@ -577,10 +605,12 @@ img {
     margin: 0; }
   .card-home .dropdown-price .dropdown__content p.title {
     color: #0569EF; }
-  .card-home .dropdown-autor .dropdown__content p {
-    margin: 0; }
-  .card-home .dropdown-autor .avatar-dropdown-autor {
-    margin-right: 5px; }
+  .card-home .dropdown-autor {
+    cursor: pointer; }
+    .card-home .dropdown-autor .dropdown__content p {
+      margin: 0; }
+    .card-home .dropdown-autor .avatar-dropdown-autor {
+      margin-right: 5px; }
   .card-home .card-show {
     overflow: visible; }
   .card-home .dropdown-info-user .user-avatar {

@@ -44,6 +44,9 @@
             <hr>
         </div>
         <div v-else-if="op.op.type == 'comment_operation'" class="row-list-user">
+            <div class="user-avatar">
+                <div class="img-user-avatar"></div>
+            </div>
             <div class="avatare-list">
                 <img v-bind:src="history.accounts[op.op.value.author].metadata.avatar || getDefaultAvatar(op.op.value.author)" alt="">
             </div>

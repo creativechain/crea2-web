@@ -13,7 +13,7 @@
         </section>
 
         <section class="bg--secondary p-top-15">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-xl-3">
                         <?php include ('modules/profile-info.php') ?>
