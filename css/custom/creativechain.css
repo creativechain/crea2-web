@@ -571,7 +571,8 @@ img {
       .card-home .li-comment a img {
         width: 14px; }
   .card-home .li-certificate img {
-    width: 15px; }
+    width: 15px;
+    margin-left: 5px; }
   .card-home .dropdown-price .dropdown__content p {
     margin: 0; }
   .card-home .dropdown-price .dropdown__content p.title {
@@ -611,6 +612,24 @@ img {
   .card-home .dropdown-info-user p.title-stats {
     font-size: 16px;
     font-weight: bold; }
+  .card-home .user-avatar {
+    height: 30px;
+    width: 30px;
+    overflow: hidden;
+    min-height: 30px;
+    min-width: 30px;
+    border-radius: 50px; }
+  .card-home .img-user-avatar {
+    background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    background-position: 50% 50%; }
+  .card-home .dropdown-autor-span-name {
+    margin-top: 5px;
+    margin-left: 10px; }
+  .card-home .row-flex {
+    display: flex; }
 
 .dropdown .dropdown__content {
   border-radius: 1px;
@@ -623,7 +642,7 @@ img {
   padding: 10px; }
 
 .card-2 .card__bottom {
-  padding: 10px; }
+  padding: 10px 10px 3px; }
 
 .background-navbar-dark {
   background-color: #181818; }
