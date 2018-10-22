@@ -45,6 +45,7 @@ let profileContainer;
 
                 },
                 methods: {
+                    getDefaultAvatar: R.getDefaultAvatar,
                     getJoinDate: function () {
                         let date = new Date(this.account.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
@@ -137,6 +138,7 @@ let profileContainer;
 
                 accounts.forEach(function (k) {
                     data.accounts[k].metadata = jsonify(data.accounts[k].json_metadata);
+                    data.accounts[k].metadata.avatar = data.accounts[k].metadata.avatar || {};
                 });
 
                 let posts = Object.keys(data.content);
