@@ -22,9 +22,9 @@
                 </li>
                 <li>
                     <div class="dropdown dropdown-price">
-                                                <span class="dropdown__trigger"> {{ data.content[p].pending_payout_value }}
-                                                <i class="stack-down-open"></i>
-                                            </span>
+                        <span class="dropdown__trigger"> {{ data.content[p].pending_payout_value }}
+                            <i class="stack-down-open"></i>
+                        </span>
                         <div class="dropdown__container">
                             <div class="container">
                                 <div class="row">
@@ -52,7 +52,15 @@
             <ul class="list-inline list-unstyled w-100">
                 <li>
                     <div class="dropdown dropdown-autor">
-                        <span><img class="avatar-dropdown-autor" v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
+                        <div class="row-flex">
+                            <div class="user-avatar">
+                                <div class="img-user-avatar"></div>
+                            </div>
+                            <span class="dropdown-autor-span-name">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
+                        </div>
+                        <!--<span>
+                            <img class="avatar-dropdown-autor" v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}
+                        </span>-->
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
