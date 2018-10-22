@@ -39,22 +39,22 @@
         <ul class="list--loose list--hover">
             <li>
                 <a href="#">
-                    <span class="h5">FAQs</span>
+                    <span class="h5">{{ lang.DOTS_MENU.FAQ }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Vota testigos</span>
+                    <span class="h5">{{ lang.DOTS_MENU.VOTE_FOR_WITNESS }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Explorar</span>
+                    <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Mercado</span>
+                    <span class="h5">{{ lang.DOTS_MENU.MARKET }}</span>
                 </a>
             </li>
             <li>
@@ -76,22 +76,22 @@
         <ul class="list--loose list--hover">
             <li>
                 <a href="#">
-                    <span class="h5">About</span>
+                    <span class="h5">{{ lang.DOTS_MENU.ABOUT }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Actualización a 2.0</span>
+                    <span class="h5">{{ lang.DOTS_MENU.CREA_UPDATE }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Política de privacidad</span>
+                    <span class="h5">{{ lang.DOTS_MENU.PRIVACY }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Whitepaper</span>
+                    <span class="h5">{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                 </a>
             </li>
             <li>
