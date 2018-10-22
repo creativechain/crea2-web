@@ -201,7 +201,7 @@
                             </li>
                             <li>
                                 <div class="modal-instance">
-                                    <span v-if="session" v-on:click="goTo('profile.php')" class="log-in">{{ session.account.username }}</span>
+                                    <a href="/profile.php" v-if="session" class="log-in">{{ session.account.username }}</a>
                                     <a href="#" v-else class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
                                     <div v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
