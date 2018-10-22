@@ -195,14 +195,19 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="" class="navbar-notification" style="display: inline-grid;">
                                     <i class="far fa-bell"></i>
+                                    <i class="fas fa-circle"></i>
                                 </a>
                             </li>
                             <li>
                                 <div class="modal-instance">
-                                    <a href="/profile.php" v-if="session" class="log-in">{{ session.account.username }}</a>
+
+
+                                    <!-- <a href="/profile.php" v-if="session" class="log-in">{{ session.account.username }}</a>-->
+
                                     <a href="#" v-else class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+
                                     <div v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
@@ -232,12 +237,12 @@
                                                                         </div>
                                                                         <!--end of row-->
                                                                     </form>
-                                                                        <span class="type--fine-print block"> {{ lang.LOGIN.NOT_USER }}
-                                                                            <a href="#">Create account</a>
-                                                                        </span>
-                                                                        <span class="type--fine-print block">{{ lang.LOGIN.FORGOT_ACCOUNT }}
-                                                                            <a href="#">Recover account</a>
-                                                                        </span>
+                                                                    <span class="type--fine-print block"> {{ lang.LOGIN.NOT_USER }}
+                                                                        <a href="#">Create account</a>
+                                                                    </span>
+                                                                    <span class="type--fine-print block">{{ lang.LOGIN.FORGOT_ACCOUNT }}
+                                                                        <a href="#">Recover account</a>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -265,6 +270,10 @@
                                 </a>
                             </li>
                             <li>
+                                <div class="user-avatar">
+                                    <div class="img-user-avatar"></div>
+                                </div>
+                            </li>
 
 
                             <li>

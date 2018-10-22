@@ -32,7 +32,7 @@
             </a>
 
 
-            <a v-else class="btn btn--sm btn--transparent" href="#/" v-on:click="navfilter = 'edit'">
+            <a v-else class="btn btn--sm" href="#/" v-on:click="navfilter = 'edit'">
                 <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
             </a>
         </div>
