@@ -147,6 +147,13 @@
   margin-bottom: 0; }
 .view-wallet .table-permission tbody tr td:nth-child(2) {
   vertical-align: middle; }
+.view-wallet .wallet-password-tab .alert-wallet-tab {
+  font-size: 14px;
+  color: #0569EF; }
+.view-wallet .wallet-password-tab .content-tab-password .col-md-* {
+  margin-bottom: 20px; }
+.view-wallet .wallet-password-tab label {
+  font-weight: 600; }
 
 .row-list-user {
   display: flex;

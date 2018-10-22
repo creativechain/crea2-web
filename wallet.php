@@ -332,13 +332,13 @@
                                                         </table>
                                                     </div>
                                                 </li>
-                                                <li v-bind:class="{ active: tab === 'passwords' }">
+                                                <li v-bind:class="{ active: tab === 'passwords' }" class="wallet-password-tab">
                                                     <div v-bind:class="{ tab__content: true, hidden: tab !== 'passwords' }">
-                                                        <div class="row">
+                                                        <div class="row content-tab-password">
                                                             <div class="col-md-12">
                                                                 <h3>Restablecer la contraseña de annori</h3>
-                                                                <p>RECUERDA:</p>
-                                                                <ul>
+                                                                <p class="alert-wallet-tab">RECUERDA:</p>
+                                                                <ul class="alert-wallet-tab">
                                                                     <li><p>Si alguna vez pierdes tu contraseña, tu cuenta se perderá irremediablemente y no podrás acceder a su contenido o a sus tokens.</p></li>
                                                                     <li><p>No guardamos tu contraseña, y no podremos ayudarte a recuperarla.</p></li>
                                                                     <li><p>Si añades una nueva contraseña que puede memorizar, esta no es una contraseña segura.</p></li>
@@ -347,13 +347,42 @@
                                                                     <li><p>Haz siempre alguna copia de seguridad de tu contraseña.</p></li>
                                                                 </ul>
                                                             </div>
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-12 mt-3">
                                                                 <label>NOMBRE DE CUENTA</label>
-                                                                <input class="validate-required" type="text" />
+                                                                <input class="validate-required" type="text" placeholder="Escribe tu nombre de usario"/>
+                                                            </div>
+                                                            <div class="col-md-12 mt-3">
+                                                                <label>CONTRASEÑA ACTUAL</label>
+                                                                <input class="validate-required" type="password" placeholder="Contraseña"/>
+                                                            </div>
+                                                            <div class="col-md-4 mt-3">
+                                                                <label>CONTRASEÑA GENERADA</label>
+                                                                <a class="btn btn--sm btn--black mt-3" href="">
+                                                                    <span class="btn__text">Confirmar contraseña</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-12 mt-3">
+                                                                <label>REINTRODUCE LA CONTRASEÑA GENERADA</label>
+                                                                <input class="validate-required" type="password" placeholder="Contraseña"/>
+                                                            </div>
+                                                            <div class="col-md-12 mt-3">
+                                                                <div class="input-checkbox">
+                                                                    <input id="" type="checkbox" name="" />
+                                                                    <label for=""></label>
+                                                                </div>
+                                                                <span>Entiendo y soy consciente que Creary no puede recuperar contraseñas perdidas.</span>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <label>CONTRASEÑA ACTUAL</label>
-                                                                <input class="validate-required" type="password" />
+                                                                <div class="input-checkbox">
+                                                                    <input id="" type="checkbox" name="" />
+                                                                    <label for=""></label>
+                                                                </div>
+                                                                <span>He guardado de forma segura mi nueva contraseña generada.</span>
+                                                            </div>
+                                                            <div class="col-md-4 mt-3">
+                                                                <a class="btn btn--sm btn--primary" href="">
+                                                                    <span class="btn__text">Actualizar contraseña</span>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>

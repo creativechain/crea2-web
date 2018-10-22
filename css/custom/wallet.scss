@@ -64,4 +64,18 @@
       }
     }
   }
+  .wallet-password-tab {
+    .alert-wallet-tab {
+      font-size: 14px;
+      color: $color-blue-primary;
+    }
+    .content-tab-password {
+      .col-md-* {
+        margin-bottom: 20px;
+      }
+    }
+    label {
+      font-weight: 600;
+    }
+  }
 }
