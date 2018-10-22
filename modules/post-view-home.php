@@ -5,9 +5,6 @@
                  v-bind:style="{ 'background-image': 'url(' + (data.content[p].metadata.featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA') + ')' }">
 
             </div>
-            <!--<a >
-                <img alt="Image" v-bind:src="data.content[p].metadata.featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA'">
-            </a>-->
         </div>
         <div class="card__body">
             <h4>{{ data.content[p].title }}</h4>
@@ -54,7 +51,8 @@
                     <div class="dropdown dropdown-autor">
                         <div class="row-flex">
                             <div class="user-avatar">
-                                <div class="img-user-avatar"></div>
+
+                                <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)) + ')'}"></div>
                             </div>
                             <span class="dropdown-autor-span-name">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
                         </div>
@@ -75,9 +73,8 @@
                                         <div class="row">
                                             <div class="col text-center">
                                                 <div class="user-avatar">
-                                                    <div class="img-user-avatar"></div>
+                                                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)) + ')'}"></div>
                                                 </div>
-                                                <img v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="" class="avatare-info">
                                             </div>
                                         </div>
                                         <div class="row">

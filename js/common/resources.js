@@ -15,7 +15,7 @@ const R = {
  * @returns {string}
  */
 R.getDefaultAvatar = function (username) {
-    let buffer = new Buffer(username);
+    let buffer = new window.Buffer(username);
     let n = parseInt(buffer.toString('hex'), 16);
     n = n % R.IMG.DEFAULT_AVATAR.length;
     return R.IMG.DEFAULT_AVATAR[n];
