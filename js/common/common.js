@@ -95,6 +95,29 @@ function makeVote(post, callback) {
     return false;
 }
 
+function followUser(following, callback) {
+    let s = Session.getAlive();
+    if (s) {
+        let followJson = {
+            follower: s.account.username,
+            following: following,
+            what: ['blog']
+        };
+
+        followJson = ['follow', followJson];
+        crea.broadcast.customJson(s.account.keys.posting.prv, [], [s.account.username], 'follow', jsonstring(followJson), function (err, result) {
+            if (err) {
+                console.error(err);
+                callback(err);
+            } else {
+                callback(null, result);
+            }
+        })
+    } else if (callback) {
+        callback(Errors.USER_NOT_LOGGED)
+    }
+}
+
 function refreshAccessToken(callback) {
     let now = new Date().getTime();
     let expiration = localStorage.getItem(CREARY.ACCESS_TOKEN_EXPIRATION);

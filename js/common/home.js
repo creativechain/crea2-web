@@ -26,13 +26,18 @@ function showPosts(filter, data) {
         homePosts = new Vue({
             el: '#home-posts',
             data: {
-                session: Session.getAlive() != false,
+                session: Session.getAlive(),
                 filter: filter,
                 data: data,
                 lang: lang,
             },
             methods: {
                 getDefaultAvatar: R.getDefaultAvatar,
+                followUser: function (user) {
+                    followUser(user, function (err, result) {
+                        console.log('User followed!');
+                    })
+                },
                 openPost: function (post) {
                     window.location.href = '/post-view.php?url=' + post.url;
                 },
@@ -89,7 +94,7 @@ function showPosts(filter, data) {
     } else {
         homePosts.$data.filter = filter;
         homePosts.$data.data = data;
-        homePosts.$data.session = Session.getAlive() != false;
+        homePosts.$data.session = Session.getAlive();
     }
 }
 

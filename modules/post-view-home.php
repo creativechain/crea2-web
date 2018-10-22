@@ -56,16 +56,13 @@
                             </div>
                             <span class="dropdown-autor-span-name">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
                         </div>
-                        <!--<span>
-                            <img class="avatar-dropdown-autor" v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}
-                        </span>-->
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4 col-lg-4 dropdown__content">
-                                        <div v-if="session" class="row">
+                                        <div v-if="session && data.content[p].author !== session.account.username" class="row">
                                             <div class="col text-right">
-                                                <a class="btn btn--primary" href="#">
+                                                <a class="btn btn--primary" href="#/" v-on:click="followUser(data.content[p].author)">
                                                     <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
                                                 </a>
                                             </div>
