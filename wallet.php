@@ -290,7 +290,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <a class="btn btn--sm" href="#/" v-on:click="showPriv.posting = true">
-                                                                        <span class="btn__text">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                                                        <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -302,7 +302,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <a class="btn btn--sm" href="#/" v-on:click="showPriv.active = true">
-                                                                        <span class="btn__text">Acceder para mostrar</span>
+                                                                        <span class="btn__text text__dark">Acceder para mostrar</span>
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -324,7 +324,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <a class="btn btn--sm" href="#/" v-on:click="showPriv.memo = true">
-                                                                        <span class="btn__text">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                                                        <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -334,14 +334,28 @@
                                                 </li>
                                                 <li v-bind:class="{ active: tab === 'passwords' }">
                                                     <div v-bind:class="{ tab__content: true, hidden: tab !== 'passwords' }">
-                                                        <p class="lead">
-                                                            Medium Rare is an elite author known for offering
-                                                            high-quality, high-value products backed by timely and
-                                                            personable support. Recognised and awarded by Envato on
-                                                            multiple occasions for producing consistently outstanding
-                                                            products, it's no wonder over 20,000 customers enjoy using
-                                                            Medium Rare templates.
-                                                        </p>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h3>Restablecer la contraseña de annori</h3>
+                                                                <p>RECUERDA:</p>
+                                                                <ul>
+                                                                    <li><p>Si alguna vez pierdes tu contraseña, tu cuenta se perderá irremediablemente y no podrás acceder a su contenido o a sus tokens.</p></li>
+                                                                    <li><p>No guardamos tu contraseña, y no podremos ayudarte a recuperarla.</p></li>
+                                                                    <li><p>Si añades una nueva contraseña que puede memorizar, esta no es una contraseña segura.</p></li>
+                                                                    <li><p>Usa contraseñas creadas de forma aleatoria, contra más caracteres de longitud tenga más segura será.</p></li>
+                                                                    <li><p>No le digas a nadie cuál es tu contraseña de Creary.</p></li>
+                                                                    <li><p>Haz siempre alguna copia de seguridad de tu contraseña.</p></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label>NOMBRE DE CUENTA</label>
+                                                                <input class="validate-required" type="text" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label>CONTRASEÑA ACTUAL</label>
+                                                                <input class="validate-required" type="password" />
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </li>
                                             </ul>
