@@ -580,6 +580,16 @@ img {
       width: 100%;
       cursor: pointer;
       border-radius: 6px 6px 0 0; }
+  .card-home .card__body h4 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; }
+  .card-home .card__body p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 70px; }
   .card-home .modal-instance {
     width: 100%; }
   .card-home .dropdown-price {

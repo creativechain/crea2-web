@@ -91,6 +91,20 @@ img {
       border-radius: 6px 6px 0 0;
     }
   }
+  .card__body {
+    h4 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 70px;
+    }
+  }
   .modal-instance {
     width: 100%;
   }
