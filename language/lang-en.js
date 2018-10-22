@@ -134,11 +134,12 @@ let lang = {
         "CANCEL": "Cancel",
         "SELECT_FILE": "Select file",
         "CREATE_ACCOUNT": "Create account",
-        "SHOW_KEY": "Show private key",
+        "SHOW_PRIV_KEY": "Show private key",
         "BUY_CREA": "Buy CREA or CREA Energy",
         "PROMOTE": "PROMOTE",
         "WITHDRAW_SAVINGS": "Withdraw savings",
-        "POST_COMMENT": "Post comment"
+        "POST_COMMENT": "Post comment",
+        "SEND": "Send"
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",
@@ -284,7 +285,7 @@ let lang = {
         "BALANCES_CREA_TITLE": "CREA",
         "TRANSFER_CBD_TEXT": "Move funds to another CBD account.",
         "BALANCES_CGY_TITLE": "CREA ENERGY",
-        "DROPDOWN_MENU_CANCEL": "Cancel De-energize",
+        "DROPDOWN_MENU_CANCEL_DE_ENERGIZE": "Cancel De-energize",
         "TRANSFER_CBD_TITLE": "Transfer CREA DOLLAR",
         "WITHDRAW_SAVING_TEXT": "Withdraw funds. A 3 day waiting period is required.",
         "PERMISSIONS_TEXT_POSTING": "With the posting key users can vote and post contens. It should be different from the active and owner keys.",
@@ -296,7 +297,8 @@ let lang = {
         "WITHDRAW_CBD_TEXT": "Withdraw funds. A 3 day waiting period is required.",
         "BALANCES_CREA_TEXT": "Tokens that work as a liquid asset (easily convertible to cash); they can be transferred to other users and can be converted into CREA ENERGY in a process known as \u201cEnergize\u201d.",
         "BALANCES_SAVING_TITLE": "SAVINGS",
-        "BALANCES_ACCOUNT": "It is an estimated value based on the value of CREA in US Dollars.",
+        "BALANCES_ACCOUNT_TITLE": "Approximate account value",
+        "BALANCES_ACCOUNT_TEXT": "It is an estimated value based on the value of CREA in US Dollars.",
         "DROPDOWN_MENU_MARKET": "Market",
         "UPDATE_INPUT": "Browse file.dat",
         "DROPDOWN_MENU_TRANS_SAVINGS": "Tranfer to savings",
@@ -324,7 +326,9 @@ let lang = {
         "WALLET_AMOUNT": "Amount",
         "WALLET_INPUT_USER": "Search user",
         "WALLET_MEMO": "Memo",
-        "WALLET_BALANCE": "Balance"
+        "WALLET_BALANCE": "Balance",
+        "WALLET_INPUT_ORIGIN_PLACEHOLDER": "Enter your username",
+        "WALLET_INPUT_DESTINY_PLACEHOLDER": "Enter destiny username"
     },
     "ACCOUNT_RECOVERY": {
         "INPUT_USERNAME": "Enter your username",
@@ -374,5 +378,5 @@ let lang = {
         COMMENTED: 'Commented in ',
         VOTED_FOR: 'Voted for ',
         CREATE_ACCOUNT: ' create account '
-    }
+    },
 };

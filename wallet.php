@@ -95,7 +95,7 @@
                                                                                                 <div class="modal-instance block">
                                                                                                     <a class="modal-trigger" href="#">
                                                                                                             <span class="btn__text">
-                                                                                                                Enviar
+                                                                                                                {{ lang.BUTTON.SEND }}
                                                                                                             </span>
                                                                                                     </a>
                                                                                                     <div class="modal-container modal-send">
@@ -120,7 +120,7 @@
                                                                                                                                             <div class="col-md-11">
                                                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                                                    <input id="wallet-send-origin" type="text" name="input" placeholder="Enter your name">
+                                                                                                                                                    <input id="wallet-send-origin" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
@@ -131,7 +131,7 @@
                                                                                                                                             <div class="col-md-11">
                                                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                                                    <input id="wallet-send-destiny" type="text" name="input" placeholder="Enter your name">
+                                                                                                                                                    <input id="wallet-send-destiny" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
@@ -177,9 +177,10 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </li>
-                                                                                            <li>Transferir ahorros</li>
-                                                                                            <li>Energize</li>
-                                                                                            <li>Mercado</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_MARKET }}</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div><!--end row-->
@@ -201,8 +202,8 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                                                         <ul class="menu-vertical">
-                                                                                            <li>De-energize</li>
-                                                                                            <li>Cancel De-energize</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div><!--end row-->
@@ -224,9 +225,9 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                                                         <ul class="menu-vertical">
-                                                                                            <li>Enviar</li>
-                                                                                            <li>Transferir ahorros</li>
-                                                                                            <li>Mercado</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_MARKET }}</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div><!--end row-->
@@ -248,8 +249,8 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                                                         <ul class="menu-vertical">
-                                                                                            <li>Retirar CREA</li>
-                                                                                            <li>Retirar CBD</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}</li>
+                                                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div><!--end row-->
@@ -260,8 +261,8 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <p>Valor de la cuenta aproximada</p>
-                                                                    <p>{{ lang.WALLET.BALANCES_ACCOUNT }}</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_ACCOUNT_TITLE }}</p>
+                                                                    <p>{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <p>55,28$</p>
@@ -284,23 +285,23 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_POSTING }}</p>
-                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.posting ? session.account.keys.posting.pub : '---' }}</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('posting') }}</p>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
-                                                                    <a class="btn btn--sm" href="#">
-                                                                        <span class="btn__text">Mostrar clave privada</span>
+                                                                    <a class="btn btn--sm" href="#/" v-on:click="showPriv.posting = true">
+                                                                        <span class="btn__text">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
-                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.active ? session.account.keys.active.pub : '---' }}</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('active') }}</p>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
-                                                                    <a class="btn btn--sm" href="#">
+                                                                    <a class="btn btn--sm" href="#/" v-on:click="showPriv.active = true">
                                                                         <span class="btn__text">Acceder para mostrar</span>
                                                                     </a>
                                                                 </td>
@@ -308,7 +309,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_OWNER }}</p>
-                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.owner ? session.account.keys.owner.pub : '---' }}</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('owner') }}</p>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_OWNER }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
@@ -318,12 +319,12 @@
                                                             <tr>
                                                                 <td>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_MEMO }}</p>
-                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ session.account.keys.owner ? session.account.keys.memo.pub : '---' }}</p>
+                                                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('memo') }}</p>
                                                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                                                 </td>
                                                                 <td style="text-align: right">
-                                                                    <a class="btn btn--sm" href="#">
-                                                                        <span class="btn__text">Mostrar clave privada</span>
+                                                                    <a class="btn btn--sm" href="#/" v-on:click="showPriv.memo = true">
+                                                                        <span class="btn__text">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                                                     </a>
                                                                 </td>
                                                             </tr>

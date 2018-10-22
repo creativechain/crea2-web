@@ -44,6 +44,12 @@ let walletContainer;
                     history: {
                         data: [],
                         accounts: {}
+                    },
+                    showPriv: {
+                        posting: false,
+                        active: false,
+                        owner: false,
+                        memo: false
                     }
                 },
                 mounted: function () {
@@ -51,6 +57,15 @@ let walletContainer;
                     console.log('Element deleted');
                 },
                 methods: {
+                    getKey: function (auth) {
+                        if (this.showPriv[auth] && this.session.account.keys[auth]) {
+                            return this.session.account.keys[auth].prv;
+                        } else if (this.session.account.keys[auth]) {
+                            return this.session.account.keys[auth].pub;
+                        }
+
+                        return '----';
+                    },
                     openPost: function (post) {
                         window.location.href = '/post-view.php?url=' + post.url;
                     },
