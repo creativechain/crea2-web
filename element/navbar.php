@@ -200,11 +200,30 @@
                                     <i class="fas fa-circle"></i>
                                 </a>
                             </li>
+
+                            <li v-if="session">
+                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
+                                    <span class="btn__text">
+                                        {{ lang.BUTTON.PUBLISH }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li v-if="!session">
+                                <a class="btn btn--sm type--uppercase" href="welcome.php">
+                                    <span class="btn__text">
+                                        {{ lang.BUTTON.SIGN_UP }}
+                                    </span>
+                                </a>
+                            </li>
                             <li>
                                 <div class="modal-instance">
 
 
                                     <!-- <a href="/profile.php" v-if="session" class="log-in">{{ session.account.username }}</a>-->
+
+                                    <div class="user-avatar" v-if="session">
+                                        <div class="img-user-avatar"></div>
+                                    </div>
 
                                     <a href="#" v-else class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
@@ -230,8 +249,8 @@
                                                                             </div>
                                                                             <div class="col-md-12">
                                                                                 <button id="login-button"
-                                                                                    class="btn btn--primary type--uppercase"
-                                                                                    type="submit">{{ lang.BUTTON.LOGIN }}
+                                                                                        class="btn btn--primary type--uppercase"
+                                                                                        type="submit">{{ lang.BUTTON.LOGIN }}
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -255,27 +274,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li v-if="session">
-                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
-                                    <span class="btn__text">
-                                        {{ lang.BUTTON.PUBLISH }}
-                                    </span>
-                                </a>
-                            </li>
-                            <li v-if="!session">
-                                <a class="btn btn--sm type--uppercase" href="welcome.php">
-                                    <span class="btn__text">
-                                        {{ lang.BUTTON.SIGN_UP }}
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <div class="user-avatar">
-                                    <div class="img-user-avatar"></div>
-                                </div>
-                            </li>
-
-
                             <li>
                                 <a href="#" data-notification-link="side-menu">
                                     <i class="stack-menu"></i>
