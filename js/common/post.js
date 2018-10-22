@@ -9,18 +9,21 @@ let postContainer;
     let query = window.location.search;
     let url = getParameterByName('url', query);
 
+    let session, user;
+
     function setUp(state) {
-        let session = Session.getAlive();
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',
                 data: {
                     lang: lang,
                     session: session,
+                    user: user,
                     state: state,
                     comment: '',
                 },
                 methods: {
+                    getDefaultAvatar: R.getDefaultAvatar,
                     getLicense: function () {
                         return License.fromFlag(this.state.post.metadata.license);
                     },
@@ -39,6 +42,7 @@ let postContainer;
         } else {
             postContainer.state = state;
             postContainer.session = session;
+            postContainer.user = user;
         }
     }
 
@@ -85,6 +89,7 @@ let postContainer;
                 let aKeys = Object.keys(result.accounts);
                 aKeys.forEach(function (k) {
                     result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
+                    result.accounts[k].metadata.avatar = result.accounts[k].metadata.avatar || {};
                 });
 
                 result.postKey = getPostKey();
@@ -111,7 +116,9 @@ let postContainer;
 
     fetchContent();
 
-    creaEvents.on('crea.login', function () {
+    creaEvents.on('crea.login', function (s, a) {
+        session = s;
+        user = a;
         fetchContent();
     });
 

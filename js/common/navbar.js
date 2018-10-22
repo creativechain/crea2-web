@@ -22,18 +22,22 @@
     /**
      *
      * @param {Session} session
+     * @param userData
      */
-    function updateNavbarSession(session) {
+    function updateNavbarSession(session, userData) {
+        console.log(session, userData);
         if (!navbarContainer) {
             navbarContainer = new Vue({
                 el: '#navbar-container',
                 data: {
                     lang: lang,
-                    session: session
+                    session: session,
+                    user: userData,
                 },
                 methods: {
                     login: startLogin,
                     goTo: goTo,
+                    getDefaultAvatar: R.getDefaultAvatar,
                     retrieveNowContent: retrieveNewContent,
                     retrieveTrendingContent: retrieveTrendingContent,
                     retrieveHotContent: retrieveHotContent,
@@ -42,6 +46,7 @@
             });
         } else {
             navbarContainer.session = session;
+            navbarContainer.user = userData;
         }
     }
 
@@ -76,9 +81,13 @@
         retrieveContent("promoted");
     }
 
-    creaEvents.on('crea.login', function (session) {
+    creaEvents.on('crea.user.update', function (userData) {
+        updateNavbarSession(navbarContainer.session, userData);
+    });
+
+    creaEvents.on('crea.login', function (session, account) {
         console.log('Executing login');
-        updateNavbarSession(session)
+        updateNavbarSession(session, account)
     });
 
     creaEvents.on('crea.logout', function () {

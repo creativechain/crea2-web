@@ -206,7 +206,7 @@
 
                                     <!-- <a href="/profile.php" v-if="session" class="log-in">{{ session.account.username }}</a>-->
 
-                                    <a href="#" v-else class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+                                    <a href="#" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
                                     <div v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
@@ -263,15 +263,15 @@
                                 </a>
                             </li>
                             <li v-if="!session">
-                                <a class="btn btn--sm type--uppercase" href="welcome.php">
+                                <a class="btn btn--sm type--uppercase" href="/welcome.php">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.SIGN_UP }}
                                     </span>
                                 </a>
                             </li>
-                            <li>
+                            <li v-if="session">
                                 <div class="user-avatar">
-                                    <div class="img-user-avatar"></div>
+                                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (user.metadata.avatar.url || getDefaultAvatar(user.name)) + ')' }"></div>
                                 </div>
                             </li>
 

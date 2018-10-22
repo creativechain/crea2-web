@@ -66,7 +66,7 @@
                                         <div v-if="session" class="row">
                                             <div class="col-md-12 row-comment">
                                                 <div class="user-avatar">
-                                                    <div class="img-user-avatar"></div>
+                                                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (user.metadata.avatar.url || getDefaultAvatar(user.name)) + ')' }"></div>
                                                 </div>
                                                 <div class="textarea">
                                                     <textarea name="text" placeholder="Message" rows="4" v-model="comment"></textarea>
@@ -94,7 +94,7 @@
                                                 <div class="col-md-12">
                                                     <div class="row-post-comments">
                                                         <div class="user-avatar">
-                                                            <div class="img-user-avatar"></div>
+                                                            <div class="img-user-avatar" v-bind:style=" { 'background-image': 'url(' + (state.accounts[state.content[c].author].metadata.avatar.url || getDefaultAvatar(state.accounts[state.content[c].author].name)) +')' }"></div>
                                                         </div>
                                                         <div class="user-comments">
                                                             <p>{{ state.accounts[state.content[c].author].metadata.publicName || state.content[c].author }}
@@ -183,10 +183,10 @@
                                 <div class="col-md-12">
                                     <div class="row-user-name">
                                         <div class="user-avatar">
-                                            <div class="img-user-avatar"></div>
+                                            <div class="img-user-avatar" v-bind:style=" { 'background-image': 'url(' + (state.author.metadata.avatar.url || getDefaultAvatar(state.author.name)) +')' }"></div>
                                         </div>
                                         <div class="user-data">
-                                            <p class="name">{{ state.author.name }}</p>
+                                            <p class="name">{{ state.author.metadata.publicName || state.author.name }}</p>
                                             <p class="website">{{ state.author.metadata.web || '-' }}</p>
                                         </div>
                                     </div>
