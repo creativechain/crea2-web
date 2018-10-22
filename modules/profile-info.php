@@ -1,6 +1,6 @@
 <div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
-        <img alt="avatar" src="img/profile/avatar-round-3.png" class="image--sm" />
+        <img alt="avatar" v-bind:src="profile.avatar.url || getDefaultAvatar(session.account.username)" class="image--sm" />
         <span class="h5">{{ profile.publicName || '@' + session.account.username }} </span>
         <p>{{ profile.web || '-' }}</p>
         <p>{{ profile.about || '-' }}</p>

@@ -57,6 +57,7 @@ let walletContainer;
                     console.log('Element deleted');
                 },
                 methods: {
+                    getDefaultAvatar: R.getDefaultAvatar,
                     getKey: function (auth) {
                         if (this.showPriv[auth] && this.session.account.keys[auth]) {
                             return this.session.account.keys[auth].prv;

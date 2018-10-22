@@ -2016,5 +2016,6 @@
         return obj !== obj // eslint-disable-line no-self-compare
     }
 
+    window.Buffer = Buffer
 },{"base64-js":1,"ieee754":2}]},{},[])("buffer")
 });

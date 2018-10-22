@@ -18,6 +18,7 @@ function showPosts(filter, data) {
     let aKeys = Object.keys(accounts);
     aKeys.forEach(function (k) {
         accounts[k].metadata = jsonify(accounts[k].json_metadata);
+        accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
     });
     data.accounts = accounts;
 
@@ -31,6 +32,7 @@ function showPosts(filter, data) {
                 lang: lang,
             },
             methods: {
+                getDefaultAvatar: R.getDefaultAvatar,
                 openPost: function (post) {
                     window.location.href = '/post-view.php?url=' + post.url;
                 },

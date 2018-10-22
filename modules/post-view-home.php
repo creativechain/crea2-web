@@ -52,7 +52,7 @@
             <ul class="list-inline list-unstyled w-100">
                 <li>
                     <div class="dropdown dropdown-autor">
-                        <span><img class="avatar-dropdown-autor" src="img/crea-web/ficha/avatare-ficha-demo.png" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
+                        <span><img class="avatar-dropdown-autor" v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="">{{ data.accounts[data.content[p].author].metadata.publicName || data.content[p].author }}</span>
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
-                                                <img src="/img/crea-web/like/like.svg" alt="" class="avatare-info">
+                                                <img v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="" class="avatare-info">
                                             </div>
                                         </div>
                                         <div class="row">
