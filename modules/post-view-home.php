@@ -74,6 +74,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
+                                                <div class="user-avatar">
+                                                    <div class="img-user-avatar"></div>
+                                                </div>
                                                 <img v-bind:src="data.accounts[data.content[p].author].metadata.avatar.url || getDefaultAvatar(data.content[p].author)" alt="" class="avatare-info">
                                             </div>
                                         </div>

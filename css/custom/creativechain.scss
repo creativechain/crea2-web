@@ -147,6 +147,17 @@ img {
     overflow: visible;
   }
   .dropdown-info-user {
+    .user-avatar {
+      margin: 0 auto;
+    }
+    .user-avatar {
+      height: 50px;
+      width: 50px;
+    }
+    .img-user-avatar {
+      width: 50px;
+      height: 50px;
+    }
     .btn {
       border-radius: 25px;
       padding-top: 0;
@@ -235,6 +246,7 @@ img {
 
   .log-in {
     color: $color-blue-primary !important;
+    cursor: pointer;
   }
 
 }
