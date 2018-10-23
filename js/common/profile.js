@@ -67,6 +67,10 @@ let profileContainer;
                         return false;
                     },
                     getFutureDate: function (date) {
+                        if (typeof date === 'string') {
+                            date += 'Z';
+                        }
+
                         date = new Date(date);
                         return moment(date.getTime(), 'x').endOf('day').fromNow();
                     },

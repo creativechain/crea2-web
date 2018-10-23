@@ -96,6 +96,10 @@ let walletContainer;
                         return Asset.parse(asset).toFriendlyString();
                     },
                     dateFromNow(date) {
+                        if (typeof date === 'string') {
+                            date += 'Z';
+                        }
+
                         date = new Date(date);
                         return moment(date.getTime()).fromNow();
                     },

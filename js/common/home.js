@@ -45,6 +45,10 @@ function showPosts(filter, data) {
                     return Asset.parse(asset).toFriendlyString();
                 },
                 getFutureDate: function (date) {
+                    if (typeof date === 'string') {
+                        date += 'Z';
+                    }
+
                     date = new Date(date);
                     return moment(date.getTime(), 'x').endOf('day').fromNow();
                 },
