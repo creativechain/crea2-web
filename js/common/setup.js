@@ -9,8 +9,8 @@
             if (err) {
                 console.error(err);
             } else {
-                account.metadata = jsonify(account.json_metadata);
-                account.metadata.avatar = account.metadata.avatar || {};
+                account.user.metadata = jsonify(account.user.json_metadata);
+                account.user.metadata.avatar = account.user.metadata.avatar || {};
                 creaEvents.emit('crea.login', session, account);
             }
         })

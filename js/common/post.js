@@ -18,7 +18,7 @@ let postContainer;
                 data: {
                     lang: lang,
                     session: session,
-                    user: user,
+                    user: user.user,
                     state: state,
                     comment: '',
                 },
@@ -74,44 +74,50 @@ let postContainer;
      * @returns {string}
      */
     function getPostKey() {
-        let route = url.replace('@', '').split('/');
-        route.splice(0, 2);
-        return route.join('/');
+        if (url) {
+            let route = url.replace('@', '').split('/');
+            route.splice(0, 2);
+            return route.join('/');
+        }
+
     }
 
     function fetchContent() {
-        
-        crea.api.getState(url, function (err, result) {
-            if (err) {
-                console.error(err);
-            } else {
-                //Resolve metadata
-                let aKeys = Object.keys(result.accounts);
-                aKeys.forEach(function (k) {
-                    result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
-                    result.accounts[k].metadata.avatar = result.accounts[k].metadata.avatar || {};
-                });
 
-                result.postKey = getPostKey();
-                result.post = result.content[result.postKey];
-                result.post.metadata = jsonify(result.post.json_metadata);
-                result.post.body = jsonify(result.post.body);
-                result.author = result.accounts[result.post.author];
+        if (url) {
+            crea.api.getState(url, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    //Resolve metadata
+                    let aKeys = Object.keys(result.accounts);
+                    aKeys.forEach(function (k) {
+                        result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
+                        result.accounts[k].metadata.avatar = result.accounts[k].metadata.avatar || {};
+                    });
 
-                //Order comments by date, latest first
-                let cKeys = Object.keys(result.content);
-                cKeys.sort(function (k1, k2) {
-                    let d1 = new Date(result.content[k1].created);
-                    let d2 = new Date(result.content[k2].created);
+                    result.postKey = getPostKey();
+                    result.post = result.content[result.postKey];
+                    result.post.metadata = jsonify(result.post.json_metadata);
+                    result.post.body = jsonify(result.post.body);
+                    result.author = result.accounts[result.post.author];
 
-                    return d2.getTime() - d1.getTime();
-                });
+                    //Order comments by date, latest first
+                    let cKeys = Object.keys(result.content);
+                    cKeys.sort(function (k1, k2) {
+                        let d1 = new Date(result.content[k1].created);
+                        let d2 = new Date(result.content[k2].created);
 
-                result.comments = cKeys;
-                console.log(result.comments);
-                setUp(result);
-            }
-        })
+                        return d2.getTime() - d1.getTime();
+                    });
+
+                    result.comments = cKeys;
+                    console.log(result.comments);
+                    setUp(result);
+                }
+            })
+        }
+
     }
 
     fetchContent();

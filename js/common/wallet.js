@@ -4,6 +4,7 @@
 let walletContainer;
 (function () {
 
+    let walletModalSend;
 
     let defaultProfile = {
         avatar: {},
@@ -24,13 +25,34 @@ let walletContainer;
         }
     });
 
-    function updateWalletAccount(state) {
-        //console.log('Updating account', account);
-        let session = Session.getAlive();
-        let account = state.accounts[session.account.username];
-        account.reputation = crea.formatter.reputation(account.reputation);
-        state.accounts[session.account.username] = account;
+    function updateModalSend(state) {
+        if (!walletModalSend) {
+            walletModalSend = new Vue({
+                el: '#wallet-send-crea',
+                data: {
+                    state: state,
+                    lang: lang,
+                    from: state.user.name,
+                    to: '',
+                    amount: 0,
+                    memo: ''
+                },
+                methods: {
+                    sendCrea: function () {
+                        let amount = this.amount + ' CREA';
+                        sendMoney(this.to, amount, this.memo, function (err, result) {
+                            console.log(err, result);
+                        })
+                    }
+                }
+            });
+        } else {
+            walletModalSend.from = state.user.name;
+        }
 
+    }
+
+    function updateWallet(session, state) {
         if (!walletContainer) {
             walletContainer = new Vue({
                 el: '#wallet-container',
@@ -38,7 +60,7 @@ let walletContainer;
                     lang: lang,
                     session: session,
                     state: state,
-                    account: account,
+                    account: state.user,
                     profile: defaultProfile,
                     tab: 'balances',
                     history: {
@@ -109,16 +131,26 @@ let walletContainer;
         }
     }
 
-    function updateWalletProfile(state) {
-        let session = Session.getAlive();
+    function updateWalletAccount(session, state) {
+        //console.log('Updating account', account);
+
+        state.user.reputation = crea.formatter.reputation(state.user.reputation);
+        state.accounts[session.account.username] = state.user;
+
+        updateModalSend(state);
+        updateWallet(session, state);
+    }
+
+    function updateWalletProfile(session, state) {
+
         crea.api.getFollowCount(session.account.username, function(err, result) {
             if (err) {
                 console.error(err);
             } else {
 
-                state.accounts[session.account.username].followers_count = result.follower_count;
-                state.accounts[session.account.username].following_count = result.following_count;
-                updateWalletAccount(state);
+                state.user.followers_count = result.follower_count;
+                state.user.following_count = result.following_count;
+                updateWalletAccount(session, state);
             }
         });
 
@@ -229,28 +261,17 @@ let walletContainer;
         });
     }
 
-    function setUpWallet() {
-        let session = Session.getAlive();
-
+    creaEvents.on('crea.login', function (session, account) {
         if (session) {
-            crea.api.getState('@' + session.account.username, function (err, result) {
-
-                if (err) {
-                    console.error(err);
-                    //TODO: Show an error
-                } else {
-                    fetchHistory(session.account.username);
-                    updateWalletProfile(result);
-                }
-            });
+            fetchHistory(session.account.username);
+            updateWalletProfile(session, account);
 
         } else {
             //Not logged, redirect to Home if location is wallet.php
             toHome('wallet.php');
         }
-    }
+    });
 
-    setUpWallet();
 })();
 
 

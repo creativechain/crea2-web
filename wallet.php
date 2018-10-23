@@ -93,12 +93,12 @@
                                                                                         <ul class="menu-vertical">
                                                                                             <li>
                                                                                                 <div class="modal-instance block">
-                                                                                                    <a class="modal-trigger" href="#">
+                                                                                                    <a class="modal-trigger" href="#wallet-send-crea">
                                                                                                             <span class="btn__text">
                                                                                                                 {{ lang.BUTTON.SEND }}
                                                                                                             </span>
                                                                                                     </a>
-                                                                                                    <div class="modal-container modal-send">
+                                                                                                    <div id="wallet-send-crea" class="modal-container modal-send" data-modal-id="wallet-send-crea">
                                                                                                         <div class="modal-content section-modal">
                                                                                                             <section class="unpad ">
                                                                                                                 <div class="container">
@@ -120,7 +120,7 @@
                                                                                                                                             <div class="col-md-11">
                                                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                                                    <input id="wallet-send-origin" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                                                    <input disabled type="text" v-model="from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
@@ -131,7 +131,7 @@
                                                                                                                                             <div class="col-md-11">
                                                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                                                    <input id="wallet-send-destiny" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                                                    <input v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
@@ -142,7 +142,7 @@
                                                                                                                                             <div class="col-md-11">
                                                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                                                     <i class="">CREA</i>
-                                                                                                                                                    <input id="wallet-send-amount" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                                                    <input v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>

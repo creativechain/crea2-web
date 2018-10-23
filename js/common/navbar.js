@@ -1,9 +1,9 @@
 /**
  * Created by ander on 25/09/18.
  */
-
+let navbarContainer;
 (function () {
-    let navbarContainer;
+
 
     let navbarSearch = new Vue({
         el: '#navbar-search',
@@ -32,7 +32,7 @@
                 data: {
                     lang: lang,
                     session: session,
-                    user: userData,
+                    user: userData.user,
                 },
                 methods: {
                     login: startLogin,

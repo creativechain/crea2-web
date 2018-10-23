@@ -16,23 +16,24 @@ class Session {
 
     login(callback) {
         let that = this;
-        crea.api.getAccounts([this.account.username], function (err, result) {
+        crea.api.getState('@' + this.account.username, function (err, result) {
             console.log(result.length);
             if (err) {
                 callback(err);
-            } else if (result.length > 0) {
+            } else {
 
-                let accountData = result[0];
+                let accountData = result;
+                accountData.user = accountData.accounts[that.account.username];
                 let auths = Object.keys(that.account.keys);
                 let logged = true;
-                console.log(auths);
+
                 auths.forEach(function (auth) {
                     if (that.account.keys[auth]) {
                         let pubKey;
                         if (auth == 'memo') {
-                            pubKey = accountData[auth+ '_key'];
+                            pubKey = accountData.user[auth + '_key'];
                         } else {
-                            pubKey = accountData[auth].key_auths[0][0];
+                            pubKey = accountData.user[auth].key_auths[0][0];
                         }
                         logged = logged && that.account.keys[auth].pub == pubKey;
                         console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
@@ -44,8 +45,6 @@ class Session {
                 } else {
                     callback(Errors.USER_LOGIN_ERROR);
                 }
-            } else {
-                callback(Errors.USER_NOT_FOUND)
             }
         })
     }

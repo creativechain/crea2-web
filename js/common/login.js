@@ -35,8 +35,8 @@ function login(username, password) {
             console.error(err);
         } else {
             session.save();
-            account.metadata = jsonify(account.json_metadata);
-            account.metadata.avatar = account.metadata.avatar || {};
+            account.user.metadata = jsonify(account.user.json_metadata);
+            account.user.metadata.avatar = account.metadata.avatar || {};
             creaEvents.emit('crea.login', session, account);
         }
     });

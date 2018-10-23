@@ -4,7 +4,7 @@
 
 let apiOptions = {
     url: 'https://crea.owldevelopers.site',
-    ipfs: 'https://ipfs.owldevelopers.site',
+    ipfs: 'https://ipfs.creary.net',
     addressPrefix: 'CREA',
     symbol: {
         CREA: 'CREA',

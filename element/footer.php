@@ -5,23 +5,8 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 
-<script src="/js/flickity.min.js"></script>
-<script src="/js/easypiechart.min.js"></script>
-<script src="/js/parallax.js"></script>
-<script src="/js/typed.min.js"></script>
-<script src="/js/datepicker.js"></script>
-<script src="/js/isotope.min.js"></script>
-<script src="/js/ytplayer.min.js"></script>
-<script src="/js/lightbox.min.js"></script>
-<script src="/js/granim.min.js"></script>
-<script src="/js/jquery.steps.min.js"></script>
-<script src="/js/countdown.min.js"></script>
-<script src="/js/twitterfetcher.min.js"></script>
-<script src="/js/spectragram.min.js"></script>
-<script src="/js/smooth-scroll.min.js"></script>
+
 <script src="/js/tagsinput.js"></script>
-<script src="/js/vue.js"></script>
-<script src="/js/scripts.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="/js/buffer.js"></script>
 <script src="/js/event-emitter.js"></script>
@@ -53,6 +38,22 @@
 <script src="/js/common/welcome.js"></script>
 <script src="/js/common/publish.js"></script>
 <script src="/js/common/post.js"></script>
+
+<script src="/js/flickity.min.js"></script>
+<script src="/js/easypiechart.min.js"></script>
+<script src="/js/parallax.js"></script>
+<script src="/js/typed.min.js"></script>
+<script src="/js/datepicker.js"></script>
+<script src="/js/isotope.min.js"></script>
+<script src="/js/ytplayer.min.js"></script>
+<script src="/js/lightbox.min.js"></script>
+<script src="/js/granim.min.js"></script>
+<script src="/js/jquery.steps.min.js"></script>
+<script src="/js/countdown.min.js"></script>
+<script src="/js/twitterfetcher.min.js"></script>
+<script src="/js/spectragram.min.js"></script>
+<script src="/js/smooth-scroll.min.js"></script>
+<script src="/js/scripts.js"></script>
 
 <script src="/js/custom.js"></script>
 
