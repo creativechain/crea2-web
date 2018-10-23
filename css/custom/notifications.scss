@@ -1,0 +1,43 @@
+.view-notifications {
+  .row-img-notification {
+    height: 53px;
+    width: 72px;
+    overflow: hidden;
+    min-height: 53px;
+    min-width: 70px;
+    border-radius: 5px;
+    position: relative;
+    top: 6px;
+  }
+  .img-user-notification {
+    background-size: cover;
+    width: 72px;
+    height: 53px;
+    background-position: 50% 50%;
+  }
+  .user-avatar {
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50px;
+    margin-bottom: -10px;
+  }
+  .img-user-avatar {
+    background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    background-position: 50% 50%;
+  }
+  .list-data-user {
+    width: 90%;
+    margin: 0 5px;
+    padding: 10px 0;
+  }
+  .icon-notification-list {
+    width: 20px;
+    margin-right: 10px;
+  }
+}
