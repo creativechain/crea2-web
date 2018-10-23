@@ -107,12 +107,11 @@ function showPosts(filter, data) {
 creaEvents.on('crea.login', function (session) {
     showBanner(session == false);
     creaEvents.emit('crea.content.filter', 'promoted');
+
+    if (session) {
+        //TODO: REPLACE BY FOLLOWING CONTENT
+        creaEvents.emit('crea.content.filter', 'created');
+    } else {
+        creaEvents.emit('crea.content.filter', 'promoted');
+    }
 });
-
-
-if (Session.getAlive()) {
-    //TODO: REPLACE BY FOLLOWING CONTENT
-    creaEvents.emit('crea.content.filter', 'created');
-} else {
-    creaEvents.emit('crea.content.filter', 'promoted');
-}

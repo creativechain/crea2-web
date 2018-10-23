@@ -48,6 +48,10 @@ function showBanner(show = true) {
 function goTo(location) {
     window.location.href = location;
 }
+
+function updateUrl(url) {
+    window.history.pushState('', '', url);
+}
 /**
  *
  * @param {string} location

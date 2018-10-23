@@ -58,6 +58,7 @@ let navbarContainer;
             } else  {
                 //console.log(result);
                 showPosts(filter, result);
+                //updateUrl(filter)
             }
         })
     }
