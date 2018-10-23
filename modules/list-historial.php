@@ -4,8 +4,8 @@
     </div>
     <template v-for="op in history.data">
         <div v-if="op.op.type == 'transfer_operation'" class="row-list-user">
-            <div class="avatare-list">
-                <img v-bind:src="history.accounts[op.op.value.from].metadata.avatar || getDefaultAvatar(op.op.value.from)" alt="">
+            <div class="user-avatar">
+                <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.from].metadata.avatar || getDefaultAvatar(op.op.value.from)) + ')' }"></div>
             </div>
             <div class="list-data-user">
                 <p>{{ history.accounts[op.op.value.from].metadata.publicName || history.accounts[op.op.value.from].name }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
@@ -24,8 +24,8 @@
             <hr>
         </div>
         <div v-else-if="op.op.type == 'transfer_to_vesting_operation'" class="row-list-user">
-            <div class="avatare-list">
-                <img v-bind:src="history.accounts[op.op.value.from].metadata.avatar || getDefaultAvatar(op.op.value.from)" alt="">
+            <div class="user-avatar">
+                <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.from].metadata.avatar || getDefaultAvatar(op.op.value.from)) + ')' }"></div>
             </div>
             <div class="list-data-user">
                 <p>{{ history.accounts[op.op.value.from].metadata.publicName || history.accounts[op.op.value.from].name }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
@@ -45,10 +45,7 @@
         </div>
         <div v-else-if="op.op.type == 'comment_operation'" class="row-list-user">
             <div class="user-avatar">
-                <div class="img-user-avatar"></div>
-            </div>
-            <div class="avatare-list">
-                <img v-bind:src="history.accounts[op.op.value.author].metadata.avatar || getDefaultAvatar(op.op.value.author)" alt="">
+                <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.author].metadata.avatar || getDefaultAvatar(op.op.value.author)) + ')' }"></div>
             </div>
             <div class="list-data-user">
                 <p>{{ history.accounts[op.op.value.author].metadata.publicName || op.op.value.author }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
@@ -66,8 +63,8 @@
             <hr>
         </div>
         <div v-else-if="op.op.type == 'vote_operation'" class="row-list-user">
-            <div class="avatare-list">
-                <img v-bind:src="history.accounts[op.op.value.voter].metadata.avatar || getDefaultAvatar(op.op.value.voter)" alt="">
+            <div class="user-avatar">
+                <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.voter].metadata.avatar || getDefaultAvatar(op.op.value.voter)) + ')' }"></div>
             </div>
             <div class="list-data-user">
                 <p>{{ history.accounts[op.op.value.voter].metadata.publicName || op.op.value.voter }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
@@ -82,8 +79,8 @@
             <hr>
         </div>
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
-            <div class="avatare-list">
-                <img v-bind:src="history.accounts[op.op.value.creator].metadata.avatar || getDefaultAvatar(op.op.value.creator)" alt="">
+            <div class="user-avatar">
+                <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.creator].metadata.avatar || getDefaultAvatar(op.op.value.creator)) + ')' }"></div>
             </div>
             <div class="list-data-user">
                 <p>{{ history.accounts[op.op.value.creator].metadata.publicName || op.op.value.creator }} <span>{{ dateFromNow(op.timestamp) }}</span></p>
