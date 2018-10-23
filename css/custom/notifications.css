@@ -1,0 +1,14 @@
+.view-notifications .row-img-notification {
+  height: 53px;
+  width: 72px;
+  overflow: hidden;
+  min-height: 53px;
+  min-width: 70px;
+  border-radius: 50px; }
+.view-notifications .img-user-notification {
+  background-size: cover;
+  width: 72px;
+  height: 53px;
+  background-position: 50% 50%; }
+
+/*# sourceMappingURL=notifications.css.map */
