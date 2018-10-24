@@ -32,7 +32,7 @@ let navbarContainer;
                 data: {
                     lang: lang,
                     session: session,
-                    user: userData.user,
+                    user: userData ? userData.user : {},
                 },
                 methods: {
                     login: startLogin,
