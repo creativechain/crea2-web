@@ -60,7 +60,7 @@ let walletContainer;
                     lang: lang,
                     session: session,
                     state: state,
-                    account: state.user,
+                    account: state,
                     profile: defaultProfile,
                     tab: 'balances',
                     history: {
@@ -104,15 +104,15 @@ let walletContainer;
                         return moment(date.getTime()).fromNow();
                     },
                     getJoinDate: function () {
-                        let date = new Date(this.account.created);
+                        let date = new Date(this.account.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                     },
                     getCGYReward() {
-                        let reward = parseFloat(this.account.reward_vesting_crea.split(' ')[0]);
+                        let reward = parseFloat(this.account.user.reward_vesting_crea.split(' ')[0]);
                         return reward + ' CGY';
                     },
                     getCGYBalance() {
-                        let vest = parseFloat(this.account.vesting_shares.split(' ')[0]);
+                        let vest = parseFloat(this.account.user.vesting_shares.split(' ')[0]);
                         let totalVests = parseFloat(state.props.total_vesting_shares.split(' ')[0]);
                         let totalVestCrea = parseFloat(state.props.total_vesting_fund_crea.split(' ')[0]);
 

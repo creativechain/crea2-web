@@ -24,8 +24,8 @@
                                 <div class="col-md-12">
                                     <div class="alert bg--primary">
                                         <div class="alert__body">
-                                            <span>Your current rewards: {{ account.reward_crea_balance}},
-                                                {{ account.reward_cbd_balance}} and
+                                            <span>Your current rewards: {{ account.user.reward_crea_balance}},
+                                                {{ account.user.reward_cbd_balance}} and
                                                 {{ getCGYReward() }}
                                             </span>
                                         </div>
@@ -85,7 +85,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span id="wallet-balance-crea" class="dropdown__trigger">{{ account.balance }}</span>
+                                                                        <span id="wallet-balance-crea" class="dropdown__trigger">{{ account.user.balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -219,7 +219,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account.cbd_balance }}</span>
+                                                                        <span class="dropdown__trigger">{{ account.user.cbd_balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
@@ -243,7 +243,7 @@
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <div class="dropdown">
-                                                                        <span class="dropdown__trigger">{{ account.savings_balance }}</span>
+                                                                        <span class="dropdown__trigger">{{ account.user.savings_balance }}</span>
                                                                         <div class="dropdown__container">
                                                                             <div class="container">
                                                                                 <div class="row">
