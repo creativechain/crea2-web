@@ -96,9 +96,9 @@ function showPosts(filter, state) {
             }
         })
     } else {
-        homePosts.$data.filter = filter;
-        homePosts.$data.state = state;
-        homePosts.$data.session = Session.getAlive();
+        homePosts.filter = filter;
+        homePosts.state = state;
+        homePosts.session = Session.getAlive();
     }
 }
 

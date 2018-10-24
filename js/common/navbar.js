@@ -35,7 +35,10 @@ let navbarContainer;
                     user: userData ? userData.user : {},
                 },
                 methods: {
-                    login: startLogin,
+                    login: function (event) {
+                        event.preventDefault();
+                        startLogin();
+                    },
                     goTo: goTo,
                     getDefaultAvatar: R.getDefaultAvatar,
                     retrieveNowContent: retrieveNewContent,
@@ -96,6 +99,7 @@ let navbarContainer;
     });
 
     creaEvents.on('crea.content.filter', function (filter) {
+        console.log('Retrieve', filter, 'content');
         retrieveContent(filter);
     })
 })();

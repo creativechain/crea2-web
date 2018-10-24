@@ -37,7 +37,6 @@ function login(username, password) {
         } else {
             session.save();
             creaEvents.emit('crea.login', session, account);
-            console.log(session, jsonstring(account));
         }
     });
 
@@ -47,9 +46,4 @@ function logout() {
     Session.getAlive().logout();
     //updateNavbarSession(false);
     creaEvents.emit('crea.logout')
-}
-
-function formSubmit(event) {
-    event.preventDefault();
-    return startLogin();
 }
