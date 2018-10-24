@@ -33,12 +33,18 @@ let profileContainer;
                 },
                 updated: function () {
                     console.log('Mounted! ');
-                    $('#profile-edit-tags').tagsinput({
+                    let inputTags = $('#profile-edit-tags');
+                    inputTags.tagsinput({
                         maxTags: CONSTANTS.MAX_TAGS,
                         maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
                         delimiter: ' '
                     });
 
+                    if (this.profile.tags) {
+                        this.profile.tags.forEach(function (t) {
+                            inputTags.tagsinput('add', t);
+                        })
+                    }
                 },
                 methods: {
                     openPost: function (post) {

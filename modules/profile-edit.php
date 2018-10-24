@@ -99,7 +99,7 @@
 
     <div class="row">
         <div class="col">
-            <a class="btn btn--sm btn--primary" href="#/" v-on:click="updateProfile">
+            <a class="btn btn--sm btn--primary" href="#0" v-on:click="sendAccountUpdate">
                 <span class="btn__text">
                     {{ lang.BUTTON.SAVE }}
                 </span>
