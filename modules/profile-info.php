@@ -16,17 +16,8 @@
             <p id="wallet-profile-join-date">{{ getJoinDate() }}</p>
         </div>
     </div>
-    <hr>
-    <div class="row ranking-user-info">
-        <div class="col">
-            <img src="img/icons/trainer.svg" alt="">
-            <span>Traineer</span>
-        </div>
-        <div class="col">
-            <img src="img/icons/buzz.svg" alt="">
-            <span>{{ state.user.reputation }} Buzz</span>
-        </div>
-        <div class="col">
+    <div class="row">
+        <div class="col text-center">
             <div v-if="session">
                 <a v-if="state.user.name != account.user.name" class="btn btn--sm btn--primary" href="#0"
                    v-on:click="makeFollow(state.user.name)">
@@ -38,6 +29,17 @@
                 </a>
             </div>
 
+        </div>
+    </div>
+    <hr>
+    <div class="row ranking-user-info">
+        <div class="col">
+            <img src="img/icons/trainer.svg" alt="">
+            <span>Traineer</span>
+        </div>
+        <div class="col">
+            <img src="img/icons/buzz.svg" alt="">
+            <span>{{ state.user.reputation }} Buzz</span>
         </div>
     </div>
     <hr>
@@ -111,13 +113,18 @@
         </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row profile-tags">
         <div class="col">
-            <p>
-                {{ profile.tags ? profile.tags.join(', ') : '' }}
-            </p>
+            <p class="title-tags">Tags</p>
+            <span> {{ profile.tags ? profile.tags.join(', ') : '' }}</span>
         </div>
     </div>
-
-
+    <hr>
+    <div class="row block-all">
+        <div class="col-md-12">
+            <ul class="list-inline list-unstyled">
+                <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+            </ul>
+        </div>
+    </div>
 </div>

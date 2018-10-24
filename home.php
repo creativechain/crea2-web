@@ -1,4 +1,5 @@
 <?php include ('element/navbar.php'); ?>
+
 <div class="main-container">
     <div v-cloak id="home-banner">
         <?php include ('modules/banner.php') ?>

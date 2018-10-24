@@ -26,6 +26,18 @@
                                         <?php include ('modules/post-view-home.php') ?>
                                     </template>
                                 </div>
+                                <div v-else-if="navfilter === 'notifications'" class="row view-notifications" >
+                                    <?php include ('modules/list-notifications.php') ?>
+                                </div>
+                                <div v-else-if="navfilter === 'author-rewards'" class="row view-rewards" >
+                                    <?php include ('modules/view-rewards-autor.php') ?>
+                                </div>
+                                <div v-else-if="navfilter === 'curation-rewards'" class="row view-rewards" >
+                                    <?php include ('modules/view-rewards-curacion.php') ?>
+                                </div>
+                                <div v-else-if="navfilter === 'wallet'" class="row view-wallet" id="wallet-container">
+                                    <?php include ('modules/view-wallet.php') ?>
+                                </div>
                                 <div v-else-if="navfilter === 'edit'">
                                     <?php include ('modules/profile-edit.php') ?>
                                 </div>

@@ -5,6 +5,14 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 
+<div class="loading hidden">
+    <div class="center-loading">
+        <svg viewBox="0 0 50 50" class="spinner">
+            <circle class="ring" cx="25" cy="25" r="22.5" />
+            <circle class="line" cx="25" cy="25" r="22.5" />
+        </svg>
+    </div>
+</div>
 
 <script src="/js/tagsinput.js"></script>
 <script src="/js/moment.min.js"></script>

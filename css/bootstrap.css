@@ -177,7 +177,8 @@ img {
 
 svg:not(:root) {
   overflow: hidden;
-  vertical-align: middle; }
+  vertical-align: middle;
+  }
 
 table {
   border-collapse: collapse; }
