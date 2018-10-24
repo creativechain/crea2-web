@@ -11,39 +11,76 @@
     font-size: 12px;
     margin-bottom: 15px;
   }
-}
-#profile-edit {
-  > .row {
-    margin-bottom:x;
+  .menu-secondary-profile {
+    .dropdown {
+
+      span {
+        color: $color-dark-primary;
+      }
+    }
+    a {
+      color: $color-dark-primary;
+    }
+    a.active {
+      font-weight: bold;
+    }
   }
-}
-.menu-profile-user {
-  .user-avatar {
-    height: 70px;
-    width: 70px;
-    overflow: hidden;
-    min-height: 70px;
-    min-width: 70px;
-    border-radius: 50px;
-    margin: 0 auto;
+  .dropdown {
+    a {
+      color: $color-dark-primary;
+    }
+    span {
+      color: $color-dark-primary;
+    }
   }
-  .img-user-avatar {
-    background-image: url("/img/crea-web/publish/demo-vertical.jpg");
-    background-size: cover;
-    width: 70px;
-    height: 70px;
-    background-position: 50% 50%;
+  .profile-tags {
+    .title-tags {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
   }
-  .h5 {
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .ranking-user-info {
+  .block-all {
     img {
       width: 20px;
+      margin-right: 5px;
+    }
+    p {
+      color: $grey-light;
+    }
+  }
+  .menu-profile-user {
+    hr {
+      margin: 1.85714286em -20px;
+    }
+    .user-avatar {
+      height: 70px;
+      width: 70px;
+      overflow: hidden;
+      min-height: 70px;
+      min-width: 70px;
+      border-radius: 50px;
+      margin: 0 auto;
+    }
+    .img-user-avatar {
+      background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+      background-size: cover;
+      width: 70px;
+      height: 70px;
+      background-position: 50% 50%;
+    }
+    .h5 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .ranking-user-info {
+      img {
+        width: 20px;
+      }
     }
   }
 }
+
+
 .view-rewards {
   .box-rewards-autor {
     font-size: 14px;

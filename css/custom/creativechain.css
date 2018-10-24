@@ -92,11 +92,27 @@
 .view-profile .card.card-2.card-home {
   font-size: 12px;
   margin-bottom: 15px; }
-
-#profile-edit > .row {
-  margin-bottom: x; }
-
-.menu-profile-user .user-avatar {
+.view-profile .menu-secondary-profile .dropdown span {
+  color: #222222; }
+.view-profile .menu-secondary-profile a {
+  color: #222222; }
+.view-profile .menu-secondary-profile a.active {
+  font-weight: bold; }
+.view-profile .dropdown a {
+  color: #222222; }
+.view-profile .dropdown span {
+  color: #222222; }
+.view-profile .profile-tags .title-tags {
+  font-weight: bold;
+  margin-bottom: 5px; }
+.view-profile .block-all img {
+  width: 20px;
+  margin-right: 5px; }
+.view-profile .block-all p {
+  color: #999999; }
+.view-profile .menu-profile-user hr {
+  margin: 1.85714286em -20px; }
+.view-profile .menu-profile-user .user-avatar {
   height: 70px;
   width: 70px;
   overflow: hidden;
@@ -104,16 +120,16 @@
   min-width: 70px;
   border-radius: 50px;
   margin: 0 auto; }
-.menu-profile-user .img-user-avatar {
+.view-profile .menu-profile-user .img-user-avatar {
   background-image: url("/img/crea-web/publish/demo-vertical.jpg");
   background-size: cover;
   width: 70px;
   height: 70px;
   background-position: 50% 50%; }
-.menu-profile-user .h5 {
+.view-profile .menu-profile-user .h5 {
   font-size: 14px;
   font-weight: 600; }
-.menu-profile-user .ranking-user-info img {
+.view-profile .menu-profile-user .ranking-user-info img {
   width: 20px; }
 
 .view-rewards .box-rewards-autor {
@@ -564,6 +580,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 label {
   font-size: 12px; }
+
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(../../img/200_s.gif) center no-repeat rgba(84, 84, 84, 0.41);
+  }
+
+.container-fluid {
+  max-width: 1500px; }
 
 #menu1 .user-avatar {
   height: 30px;

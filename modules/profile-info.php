@@ -16,6 +16,18 @@
             <p id="wallet-profile-join-date">{{ getJoinDate() }}</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col text-center">
+            <a v-if="account.name != session.account.username" class="btn btn--sm btn--primary" href="#">
+                <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
+            </a>
+
+
+            <a v-else class="btn btn--sm" href="#/" v-on:click="navfilter = 'edit'">
+                <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
+            </a>
+        </div>
+    </div>
     <hr>
     <div class="row ranking-user-info">
         <div class="col">
@@ -26,16 +38,7 @@
             <img src="img/icons/buzz.svg" alt="">
             <span>{{ account.reputation }} Buzz</span>
         </div>
-        <div class="col">
-            <a v-if="account.name != session.account.username" class="btn btn--sm btn--primary" href="#">
-                <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-            </a>
 
-
-            <a v-else class="btn btn--sm" href="#/" v-on:click="navfilter = 'edit'">
-                <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
-            </a>
-        </div>
     </div>
     <hr>
     <div class="row">
@@ -108,11 +111,18 @@
         </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row profile-tags">
         <div class="col">
-
+            <p class="title-tags">Tags</p>
+            <span>Digital, agency, about, loop, ilustration</span>
         </div>
     </div>
-
-
+    <hr>
+    <div class="row block-all">
+        <div class="col-md-12">
+            <ul class="list-inline list-unstyled">
+                <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+            </ul>
+        </div>
+    </div>
 </div>

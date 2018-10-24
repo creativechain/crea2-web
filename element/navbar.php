@@ -10,26 +10,27 @@
     <meta property="og:description" content="Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.">
     <meta property="og:image" content="https://creary.net/img/creary-social-media.jpg">
 
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="icon" type="image/ico" href="img/favicon.ico" />
-    <script src="ckeditor/ckeditor.js"></script>
-    <script src="js/jquery-3.1.1.min.js"></script>
+    <link rel="icon" type="image/ico" href="/img/favicon.ico" />
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
 </head>
 <body class=" ">
 <a id="start"></a>

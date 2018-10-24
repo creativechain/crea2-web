@@ -5,6 +5,8 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 
+<div class="loading hidden"></div>
+
 <script src="/js/flickity.min.js"></script>
 <script src="/js/easypiechart.min.js"></script>
 <script src="/js/parallax.js"></script>
