@@ -1,8 +1,8 @@
 <div class="col-md-12 padding-b-10">
     <div class="alert bg--primary">
         <div class="alert__body">
-            <span>Your current rewards: {{ account.reward_crea_balance}},
-                {{ account.reward_cbd_balance}} and
+            <span>Pending Rewards: {{ state.user.reward_crea_balance}},
+                {{ state.user.reward_cbd_balance}} {{ lang.COMMON.AND }}
                 {{ getCGYReward() }}
             </span>
         </div>
@@ -12,26 +12,23 @@
     </div>
 </div>
 
-
-
-
 <div class="col-md-12">
     <div class="boxed boxed--border">
         <div class="tabs-container tabs--folder tabs-container-primary">
             <ul class="tabs tabs-primary">
-                <li v-bind:class="{ active: tab === 'balances' }" v-on:click="tab = 'balances'">
+                <li v-bind:class="{ active: walletTab === 'balances' }" v-on:click="walletTab = 'balances'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.BALANCES }}</span>
                     </div>
 
                 </li>
-                <li v-bind:class="{ active: tab === 'permissions' }" v-on:click="tab = 'permissions'">
+                <li v-if="session" v-bind:class="{ active: walletTab === 'permissions' }" v-on:click="walletTab = 'permissions'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.PERMISSIONS }}</span>
                     </div>
 
                 </li>
-                <li v-bind:class="{ active: tab === 'passwords' }" v-on:click="tab = 'passwords'">
+                <li v-if="session" v-bind:class="{ active: walletTab === 'passwords' }" v-on:click="walletTab = 'passwords'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.PASSWORDS }}</span>
                     </div>
@@ -41,8 +38,8 @@
             </ul>
 
             <ul id="wallet-tabs" class="tabs-content">
-                <li v-bind:class="{ active: tab === 'balances' }">
-                    <div v-bind:class="{ tab__content: true, hidden: tab !== 'balances' }">
+                <li v-bind:class="{ active: walletTab === 'balances' }">
+                    <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'balances' }">
                         <table class="table-amount table">
                             <thead class="hidden">
                             <tr>
@@ -58,7 +55,7 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div class="dropdown">
-                                        <span id="wallet-balance-crea" class="dropdown__trigger">{{ account.balance }}</span>
+                                        <span id="wallet-balance-crea" class="dropdown__trigger">{{ state.user.balance }}</span>
                                         <div class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -66,12 +63,12 @@
                                                         <ul class="menu-vertical">
                                                             <li>
                                                                 <div class="modal-instance block">
-                                                                    <a class="modal-trigger" href="#">
-                                                                                                            <span class="btn__text">
-                                                                                                                {{ lang.BUTTON.SEND }}
-                                                                                                            </span>
+                                                                    <a class="modal-trigger" href="#wallet-send-crea">
+                                                                        <span class="btn__text">
+                                                                            {{ lang.BUTTON.SEND }}
+                                                                        </span>
                                                                     </a>
-                                                                    <div class="modal-container modal-send">
+                                                                    <div class="modal-container modal-send" data-modal-id="wallet-send-crea">
                                                                         <div class="modal-content section-modal">
                                                                             <section class="unpad ">
                                                                                 <div class="container">
@@ -93,7 +90,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input id="wallet-send-origin" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input disabled type="text" v-model="wallet.sendModal.from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -104,7 +101,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input id="wallet-send-destiny" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input v-model="wallet.sendModal.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -115,7 +112,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
-                                                                                                                    <input id="wallet-send-amount" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                    <input v-model="wallet.sendModal.amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -131,7 +128,7 @@
                                                                                                             </div>
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--right">
-                                                                                                                    <input id="wallet-send-memo" type="text" name="input" placeholder="Enter your name">
+                                                                                                                    <input v-model="wallet.sendModal.memo" type="text" placeholder="Enter your name">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -192,7 +189,7 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ account.cbd_balance }}</span>
+                                        <span class="dropdown__trigger">{{ state.user.cbd_balance }}</span>
                                         <div class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -216,7 +213,7 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ account.savings_balance }}</span>
+                                        <span class="dropdown__trigger">{{ state.user.savings_balance }}</span>
                                         <div class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -245,8 +242,8 @@
                         </table>
                     </div>
                 </li>
-                <li v-bind:class="{ active: tab === 'permissions' }">
-                    <div v-bind:class="{ tab__content: true, hidden: tab !== 'permissions' }">
+                <li v-if="session" v-bind:class="{ active: walletTab === 'permissions' }">
+                    <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'permissions' }">
                         <table class="table-permission table">
                             <thead class="hidden">
                             <tr>
@@ -262,7 +259,7 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <a class="btn btn--sm" href="#/" v-on:click="showPriv.posting = true">
+                                    <a v-if="session" class="btn btn--sm" href="#0" v-on:click="showPriv.posting = true">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                     </a>
                                 </td>
@@ -274,7 +271,7 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <a class="btn btn--sm" href="#/" v-on:click="showPriv.active = true">
+                                    <a v-if="session" class="btn btn--sm" href="#0" v-on:click="showPriv.active = true">
                                         <span class="btn__text text__dark">Acceder para mostrar</span>
                                     </a>
                                 </td>
@@ -296,7 +293,7 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <a class="btn btn--sm" href="#/" v-on:click="showPriv.memo = true">
+                                    <a v-if="session" class="btn btn--sm" href="#0" v-on:click="showPriv.memo = true">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                     </a>
                                 </td>
@@ -305,8 +302,8 @@
                         </table>
                     </div>
                 </li>
-                <li v-bind:class="{ active: tab === 'passwords' }" class="wallet-password-tab">
-                    <div v-bind:class="{ tab__content: true, hidden: tab !== 'passwords' }">
+                <li v-if="session" v-bind:class="{ active: walletTab === 'passwords' }" class="wallet-password-tab">
+                    <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'passwords' }">
                         <div class="row content-tab-password">
                             <div class="col-md-12">
                                 <h3>Restablecer la contraseña de annori</h3>

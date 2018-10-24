@@ -29,10 +29,31 @@ let profileContainer;
                     state: state,
                     filter: usernameFilter,
                     profile: state.user.metadata,
-                    navfilter: 'projects'
+                    navfilter: 'projects',
+                    walletTab: 'balances',
+                    history: {
+                        data: [],
+                        accounts: {}
+                    },
+                    wallet: {
+                        sendModal: {
+                            from: session ? session.account.username : '',
+                            to: '',
+                            amount: 0,
+                            memo: '',
+                        }
+                    },
+                    showPriv: {
+                        posting: false,
+                        active: false,
+                        owner: false,
+                        memo: false
+                    }
+                },
+                mounted: function () {
+                    $('#wallet-tabs').prev().remove();
                 },
                 updated: function () {
-                    console.log('Mounted! ');
                     let inputTags = $('#profile-edit-tags');
                     inputTags.tagsinput({
                         maxTags: CONSTANTS.MAX_TAGS,
@@ -47,10 +68,30 @@ let profileContainer;
                     }
                 },
                 methods: {
+                    getDefaultAvatar: R.getDefaultAvatar,
+                    getKey: function (auth) {
+                        if (this.showPriv[auth] && session) {
+                            if (this.session.account.keys[auth]) {
+                                return this.session.account.keys[auth].prv;
+                            }
+                        } else if (auth === 'memo') {
+                            return state.user['memo_key'];
+                        } else {
+                            return state.user[auth].key_auths[0][0];
+                        }
+                    },
+                    parseAsset: function (asset) {
+                        return Asset.parse(asset).toFriendlyString();
+                    },
+                    sendCrea: function () {
+                        let amount = this.amount + ' CREA';
+                        sendMoney(this.to, amount, this.memo, function (err, result) {
+                            console.log(err, result);
+                        })
+                    },
                     openPost: function (post) {
                         window.location.href = '/post-view.php?url=' + post.url;
                     },
-                    getDefaultAvatar: R.getDefaultAvatar,
                     getJoinDate: function () {
                         let date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
@@ -70,6 +111,10 @@ let profileContainer;
                         }
 
                         return false;
+                    },
+                    dateFromNow(date) {
+                        date = new Date(date);
+                        return moment(date.getTime()).fromNow();
                     },
                     getFutureDate: function (date) {
                         if (typeof date === 'string') {
@@ -96,6 +141,21 @@ let profileContainer;
                         }
 
                         return new License(LICENSE.FREE_CONTENT);
+                    },
+                    getCGYReward() {
+                        let reward = parseFloat(this.state.user.reward_vesting_crea.split(' ')[0]);
+                        return reward + ' CGY';
+                    },
+                    getCGYBalance() {
+                        let vest = parseFloat(this.state.user.vesting_shares.split(' ')[0]);
+                        let totalVests = parseFloat(state.props.total_vesting_shares.split(' ')[0]);
+                        let totalVestCrea = parseFloat(state.props.total_vesting_fund_crea.split(' ')[0]);
+
+                        let energy = totalVestCrea * (vest / totalVests);
+                        return Asset.parse({
+                            amount: energy,
+                            nai: apiOptions.nai.CREA
+                        }).toFriendlyString();
                     },
                     sendAccountUpdate: sendAccountUpdate
                 }
@@ -166,6 +226,70 @@ let profileContainer;
     /**
      *
      * @param {string} username
+     */
+    function fetchHistory(username) {
+
+        setTimeout(function () {
+            crea.api.getAccountHistory(username, -1, 50, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    result.history = result.history.reverse();
+                    let accounts = [];
+                    let history = [];
+                    result.history.forEach(function (h) {
+                        h = h[1];
+                        let addIfNotExists = function(account) {
+                            if (account && accounts.indexOf(account) < 0) {
+                                accounts.push(account);
+                            }
+                        };
+
+                        if (h.op.type == 'transfer_operation') {
+                            addIfNotExists(h.op.value.from);
+                            addIfNotExists(h.op.value.to);
+                        } else if (h.op.type == 'transfer_to_vesting_operation') {
+                            addIfNotExists(h.op.value.from);
+                            addIfNotExists(h.op.value.to);
+                        } else if (h.op.type == 'vote_operation') {
+                            addIfNotExists(h.op.value.voter);
+                            addIfNotExists(h.op.value.author);
+                        } else if (h.op.type == 'comment_operation') {
+                            addIfNotExists(h.op.value.parent_author);
+                            addIfNotExists(h.op.value.author);
+                        }
+
+                        history.push(h);
+                    });
+
+                    crea.api.getAccounts(accounts, function (err, result) {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            let opsAccounts = {};
+                            accounts.forEach(function (u) {
+                                for (let x = 0; x < result.length; x++) {
+                                    if (u == result[x].name) {
+                                        opsAccounts[u] = result[x];
+                                        opsAccounts[u].metadata = jsonify(opsAccounts[u].json_metadata);
+                                        opsAccounts[u].metadata.avatar = opsAccounts[u].metadata.avatar || {};
+                                        break;
+                                    }
+                                }
+                            });
+
+                            profileContainer.history.data = history;
+                            profileContainer.history.accounts = opsAccounts;
+                        }
+                    })
+                }
+            })
+        });
+    }
+
+    /**
+     *
+     * @param {string} username
      * @param callback
      */
     function fetchUserState(username, callback) {
@@ -228,6 +352,7 @@ let profileContainer;
             }
         }
 
+        fetchHistory(user);
         fetchUserState(user, function (err, state) {
             if (err) {
                 console.error(err);
@@ -247,14 +372,42 @@ let profileContainer;
         });
     }
 
+    /**
+     *
+     * @param {string} destiny
+     * @param {string} amount
+     * @param {string} memo
+     * @param callback
+     */
+    function sendMoney(destiny, amount, memo, callback) {
+        let session = Session.getAlive();
+        crea.api.getAccounts([destiny], function (err, result) {
+            if (err) {
+                console.error(err);
+            } else if (result.length > 0) {
+                if (amount.indexOf(apiOptions.addressPrefix) < 0) {
+                    amount += ' ' + apiOptions.addressPrefix;
+                }
+
+                crea.broadcast.transfer(session.account.keys.active.prv, session.account.username, destiny, amount, memo, function (err, result) {
+                    console.log(err, result);
+                    callback(err, result);
+                    updateData(session);
+                })
+
+            } else {
+                callback(Errors.USER_NOT_FOUND);
+            }
+        });
+    }
+
     creaEvents.on('crea.login', function (session, userAccount) {
         console.log(session, userAccount);
         if (session) {
             userAccount.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
-            handleProfile(session, userAccount);
-        } else {
-            toHome('profile.php');
         }
+
+        handleProfile(session, userAccount);
 
     });
 

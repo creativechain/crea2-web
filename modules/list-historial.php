@@ -17,7 +17,7 @@
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
 
-                    <p v-if="op.op.value.from == account.name">
+                    <p v-if="account && op.op.value.from == account.name">
                         {{ lang.HISTORY.TRANSFER_TO }}
                         <a v-bind:href="'/profile.php?profile=' + op.op.value.to">
                              {{ (history.accounts[op.op.value.to].metadata.publicName || op.op.value.to) }}
@@ -32,7 +32,7 @@
                 <p>{{ op.op.value.memo || '' }}</p>
             </div>
             <div class="list-amount">
-                <p v-if="op.op.value.from == account.name">+{{ parseAsset(op.op.value.amount) }}</p>
+                <p v-if="account && op.op.value.from == account.name">+{{ parseAsset(op.op.value.amount) }}</p>
                 <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
             </div>
             <hr>
@@ -51,7 +51,7 @@
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
 
-                <p v-if="op.op.value.from == account.name">
+                <p v-if="account && op.op.value.from == account.name">
                     {{ lang.HISTORY.TRANSFER_VESTING_TO }}
                     <a  v-bind:href="'/profile.php?profile=' + op.op.value.to">
                         {{ (history.accounts[op.op.value.to].metadata.publicName || op.op.value.to) }}
@@ -67,7 +67,7 @@
                 <p>{{ op.op.value.memo || '' }}</p>
             </div>
             <div class="list-amount">
-                <p v-if="op.op.value.from == account.name">+{{ parseAsset(op.op.value.amount) }}</p>
+                <p v-if="account && op.op.value.from == account.name">+{{ parseAsset(op.op.value.amount) }}</p>
                 <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
             </div>
             <hr>
@@ -95,7 +95,7 @@
                 <p>{{ op.op.value.parent_author != '' ? op.op.value.body : '' }}</p>
             </div>
             <div class="list-amount">
-                <p v-if="op.op.value.from == account.name">-</p>
+                <p v-if="account && op.op.value.from == account.name">-</p>
             </div>
             <hr>
         </div>

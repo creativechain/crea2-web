@@ -3,6 +3,7 @@ let lang = {
         "OR_CAP": "OR",
         "YES": "Yes",
         "NO": "No",
+        "AND": 'and'
     },
     "BANNER": {
         TITLE: "Welcome to the blockchain of creative communities",
