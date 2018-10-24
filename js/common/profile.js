@@ -21,7 +21,15 @@ let profileContainer;
         $('#' + element).tagsinput();
     }
 
-    function updateProfileView(data, session, account, usernameFilter) {
+    /**
+     *
+     * @param state
+     * @param session
+     * @param account
+     * @param usernameFilter
+     * @returns {License}
+     */
+    function updateProfileView(state, session, account, usernameFilter) {
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -30,9 +38,9 @@ let profileContainer;
                     lang: lang,
                     session: session,
                     account: account,
-                    data: data,
+                    state: state,
                     filter: usernameFilter,
-                    profile: defaultProfile,
+                    profile: state.user.metadata,
                     navfilter: 'projects'
                 },
                 updated: function () {
@@ -47,11 +55,11 @@ let profileContainer;
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
                     getJoinDate: function () {
-                        let date = new Date(this.account.created);
+                        let date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                     },
                     userHasVote: function (post) {
-                        let session = Session.getAlive();
+                        let session = this.session;
 
                         if (session) {
                             let activeVotes = post.active_votes;
@@ -74,10 +82,15 @@ let profileContainer;
                         date = new Date(date);
                         return moment(date.getTime(), 'x').endOf('day').fromNow();
                     },
+                    makeFollow: function (user) {
+                        followUser(user, function (err, result) {
+                            updateData(Session.getAlive());
+                        })
+                    },
                     makeVote: function (post) {
                         let filter = this.filter;
                         makeVote(post, function () {
-                            setUpProfile();
+                            updateData(Session.getAlive());
                         })
                     },
                     getLicense(flag) {
@@ -87,7 +100,7 @@ let profileContainer;
 
                         return new License(LICENSE.FREE_CONTENT);
                     },
-                    updateProfile: updateProfile
+                    sendAccountUpdate: sendAccountUpdate
                 }
             });
         } else {
@@ -99,13 +112,13 @@ let profileContainer;
                 profileContainer.account = account;
             }
 
-            profileContainer.data = data;
+            profileContainer.state = state;
             profileContainer.filter = usernameFilter;
-            profileContainer.$forceUpdate();
+            profileContainer.profile = state.user.metadata;
         }
     }
 
-    function updateProfile() {
+    function sendAccountUpdate() {
         let session = Session.getAlive();
         let metadata = profileContainer.profile;
         metadata.tags = $('#profile-edit-tags').val().split(' ');
@@ -113,11 +126,11 @@ let profileContainer;
         crea.broadcast.accountUpdate(session.account.keys.owner.prv, session.account.username,
             createAuth(session.account.keys.owner.pub), createAuth(session.account.keys.active.pub),
             createAuth(session.account.keys.posting.pub), session.account.keys.memo.pub,
-            metadata, function (err, result) {
+            metadata, function (err, data) {
                 if (err) {
                     console.error(err);
                 } else {
-                    setUpProfile();
+                    updateData(session);
                 }
             })
     }
@@ -125,87 +138,127 @@ let profileContainer;
     /**
      *
      * @param {Session} session
-     * @param account
-     * @param {string} usernameFilter
      */
-    function showProfile(session, account, usernameFilter) {
-        if (!usernameFilter) {
-            usernameFilter = '/@' + session.account.username;
+    function updateData(session) {
+        fetchUserState(session.account.username, function (err, result) {
+            if (err) {
+                console.error(err);
+            } else {
+                handleProfile(session, result, session.account.username);
+            }
+        });
+    }
+    /**
+     *
+     * @param {string} username
+     * @param callback
+     */
+    function fetchFollowCount(username, callback) {
+
+        crea.api.getFollowCount(username, function(err, result) {
+            if (err) {
+                console.error(err);
+            } else {
+                if (callback) {
+                    callback(err, result);
+                }
+            }
+        });
+    }
+
+    /**
+     *
+     * @param {string} username
+     * @param callback
+     */
+    function fetchUserState(username, callback) {
+        let usernameFilter;
+        if (!username.startsWith('/@')) {
+            usernameFilter = '/@' + username;
         }
 
-        crea.api.getState(usernameFilter, function (err, data) {
+        crea.api.getState(usernameFilter, function (err, state) {
             if (err) {
                 console.error(err);
             } else  {
-                console.log(data);
-                let accounts = Object.keys(data.accounts);
+                console.log(state);
+                let accounts = Object.keys(state.accounts);
 
                 accounts.forEach(function (k) {
-                    data.accounts[k].metadata = jsonify(data.accounts[k].json_metadata);
-                    data.accounts[k].metadata.avatar = data.accounts[k].metadata.avatar || {};
+                    state.accounts[k].metadata = jsonify(state.accounts[k].json_metadata);
+                    state.accounts[k].metadata.avatar = state.accounts[k].metadata.avatar || {};
                 });
 
-                let posts = Object.keys(data.content);
+                state.user = state.accounts[username];
+
+                let posts = Object.keys(state.content);
 
                 posts.forEach(function (k) {
-                    data.content[k].metadata = jsonify(data.content[k].json_metadata);
+                    state.content[k].metadata = jsonify(state.content[k].json_metadata);
                 });
 
-                data.discussion_idx = {};
+                state.discussion_idx = {};
                 posts.sort(function (k1, k2) {
-                    let d1 = new Date(data.content[k1].created);
-                    let d2 = new Date(data.content[k2].created);
+                    let d1 = new Date(state.content[k1].created);
+                    let d2 = new Date(state.content[k2].created);
 
                     return d2.getTime() - d1.getTime();
                 });
 
-                data.discussion_idx[''] = posts;
+                state.discussion_idx[''] = posts;
 
-                defaultProfile =  data.accounts[session.account.username].metadata;
-
-                updateProfileView(data, session, account, usernameFilter);
+                if (callback) {
+                    callback(err, state);
+                }
             }
         });
     }
 
-    function updateProfileAccount(session, account) {
-        if (!session) {
-            session = Session.getAlive();
+    function handleProfile(session, userAccount, user = null) {
+        if (!user) {
+            let path = window.location.pathname;
+            user = path.split('/')[1];
         }
-        crea.api.getFollowCount(session.account.username, function(err, result) {
+
+        if (user.startsWith('@')) {
+            user = user.replace('@', '');
+        } else {
+            //Handle use rby parameter profile
+            user = getParameterByName('profile', window.location.href);
+            if (!user) {
+                //No user found
+                user = session.account.username;
+            }
+        }
+
+        fetchUserState(user, function (err, state) {
             if (err) {
                 console.error(err);
             } else {
+                fetchFollowCount(user, function (err, followCount) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log(state, followCount);
+                        state.user.followers_count = followCount.follower_count;
+                        state.user.following_count = followCount.following_count;
 
-                account.followers_count = result.follower_count;
-                account.following_count = result.following_count;
-                showProfile(session, account);
+                        updateProfileView(state, session, userAccount, user);
+                    }
+                })
             }
         });
     }
 
-    function setUpProfile() {
-        let session = Session.getAlive();
+    creaEvents.on('crea.login', function (session, userAccount) {
+        console.log(session, userAccount);
         if (session) {
-            crea.api.getAccounts([session.account.username], function (err, result) {
-
-                if (err) {
-                    console.error(err);
-                    //TODO: Show an error
-                } else if (result.length > 0) {
-                    let account = result[0];
-                    account.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
-                    updateProfileAccount(session, account);
-                } else {
-                    //TODO: Account not exists
-                }
-            });
-
+            userAccount.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
+            handleProfile(session, userAccount);
         } else {
-            //Not logged, redirect to Home if location is wallet.php
             toHome('profile.php');
         }
-    }
 
-    setUpProfile();
+    });
+
 })();

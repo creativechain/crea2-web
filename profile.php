@@ -22,7 +22,7 @@
                         <section class="space--sm unpad--top">
                             <div class="container">
                                 <div class="row" v-if="navfilter === 'projects'" >
-                                    <template v-for="p in data.discussion_idx['']">
+                                    <template v-for="p in state.discussion_idx['']">
                                         <?php include ('modules/post-view-home.php') ?>
                                     </template>
                                 </div>

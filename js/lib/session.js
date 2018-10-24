@@ -24,6 +24,9 @@ class Session {
 
                 let accountData = result;
                 accountData.user = accountData.accounts[that.account.username];
+                accountData.user.metadata = jsonify(accountData.user.json_metadata);
+                accountData.user.metadata.avatar = accountData.user.metadata.avatar || {};
+
                 let auths = Object.keys(that.account.keys);
                 let logged = true;
 

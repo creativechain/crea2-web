@@ -4,23 +4,23 @@
 
 let homePosts;
 
-function showPosts(filter, data) {
+function showPosts(filter, state) {
     //console.log(filter, data);
-    let content = data.content;
-    let accounts = data.accounts;
+    let content = state.content;
+    let accounts = state.accounts;
 
     let cKeys = Object.keys(content);
     cKeys.forEach(function (k) {
         content[k].metadata = jsonify(content[k].json_metadata);
     });
-    data.content = content;
+    state.content = content;
 
     let aKeys = Object.keys(accounts);
     aKeys.forEach(function (k) {
         accounts[k].metadata = jsonify(accounts[k].json_metadata);
         accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
     });
-    data.accounts = accounts;
+    state.accounts = accounts;
 
     if (!homePosts) {
         homePosts = new Vue({
@@ -28,7 +28,7 @@ function showPosts(filter, data) {
             data: {
                 session: Session.getAlive(),
                 filter: filter,
-                data: data,
+                state: state,
                 lang: lang,
             },
             methods: {
@@ -97,7 +97,7 @@ function showPosts(filter, data) {
         })
     } else {
         homePosts.$data.filter = filter;
-        homePosts.$data.data = data;
+        homePosts.$data.state = state;
         homePosts.$data.session = Session.getAlive();
     }
 }

@@ -1,7 +1,7 @@
 <div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
         <div class="user-avatar">
-            <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (profile.avatar.url || getDefaultAvatar(session.account.username)) + ')' }"></div>
+            <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (state.user.metadata.avatar.url || getDefaultAvatar(state.user.name)) + ')' }"></div>
         </div>
 
         <span class="h5">{{ profile.publicName || '@' + session.account.username }} </span>
@@ -24,17 +24,20 @@
         </div>
         <div class="col">
             <img src="img/icons/buzz.svg" alt="">
-            <span>{{ account.reputation }} Buzz</span>
+            <span>{{ state.user.reputation }} Buzz</span>
         </div>
         <div class="col">
-            <a v-if="account.name != session.account.username" class="btn btn--sm btn--primary" href="#">
-                <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-            </a>
+            <div v-if="session">
+                <a v-if="state.user.name != account.user.name" class="btn btn--sm btn--primary" href="#/"
+                   v-on:click="makeFollow(state.user.name)">
+                    <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
+                </a>
 
+                <a v-else class="btn btn--sm" href="#/" v-on:click="navfilter = 'edit'">
+                    <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
+                </a>
+            </div>
 
-            <a v-else class="btn btn--sm" href="#/" v-on:click="navfilter = 'edit'">
-                <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
-            </a>
         </div>
     </div>
     <hr>
@@ -67,7 +70,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.comment_count }}</p>
+                        <p>{{ state.user.comment_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -78,7 +81,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.followers_count }}</p>
+                        <p>{{ state.user.followers_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +92,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.following_count }}</p>
+                        <p>{{ state.user.following_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -100,7 +103,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.post_count }}</p>
+                        <p>{{ state.user.post_count }}</p>
                     </td>
                 </tr>
                 </tbody>
@@ -110,7 +113,9 @@
     <hr>
     <div class="row">
         <div class="col">
-
+            <p>
+                {{ profile.tags }}
+            </p>
         </div>
     </div>
 
