@@ -94,7 +94,7 @@
   margin-bottom: 15px; }
 
 #profile-edit > .row {
-  margin-bottom: 20px; }
+  margin-bottom: x; }
 
 .menu-profile-user .user-avatar {
   height: 70px;
@@ -115,6 +115,13 @@
   font-weight: 600; }
 .menu-profile-user .ranking-user-info img {
   width: 20px; }
+
+.view-rewards .box-rewards-autor {
+  font-size: 14px; }
+.view-rewards .box-summary p {
+  margin-bottom: 0; }
+.view-rewards .box-summary .blue-summary {
+  color: #0569EF; }
 
 .view-wallet .padding-b-10 {
   padding-bottom: 10px; }
@@ -642,7 +649,7 @@ img {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; }
-  .card-home .card__body p {
+  .card-home .card__body .description-post-box {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

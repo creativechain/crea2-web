@@ -8,7 +8,7 @@
         </div>
         <div class="card__body">
             <h4>{{ data.content[p].title }}</h4>
-            <p>{{ data.content[p].metadata.description || "--" }}</p>
+            <p class="description-post-box">{{ data.content[p].metadata.description || "--" }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
                     <a href="#/" v-on:click="makeVote(data.content[p])">

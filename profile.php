@@ -21,10 +21,22 @@
                     <div class="col-lg-8 col-xl-9">
                         <section class="space--sm unpad--top">
                             <div class="container">
-                                <div class="row" v-if="navfilter === 'projects'" >
+                                <div class="row" v-if="navfilter === 'projects'">
                                     <template v-for="p in data.discussion_idx['']">
                                         <?php include ('modules/post-view-home.php') ?>
                                     </template>
+                                </div>
+                                <div class="row view-notifications" >
+                                    <?php include ('modules/list-notifications.php') ?>
+                                </div>
+                                <div class="row view-rewards" >
+                                    <?php include ('modules/view-rewards-autor.php') ?>
+                                </div>
+                                <div class="row view-rewards" >
+                                    <?php include ('modules/view-rewards-curacion.php') ?>
+                                </div>
+                                <div class="row view-wallet" v-cloak id="wallet-container">
+                                    <?php include ('modules/view-wallet.php') ?>
                                 </div>
                                 <div v-else-if="navfilter === 'edit'">
                                     <?php include ('modules/profile-edit.php') ?>

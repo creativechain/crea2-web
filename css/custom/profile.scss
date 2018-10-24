@@ -14,7 +14,7 @@
 }
 #profile-edit {
   > .row {
-    margin-bottom: 20px;
+    margin-bottom:x;
   }
 }
 .menu-profile-user {
@@ -41,6 +41,19 @@
   .ranking-user-info {
     img {
       width: 20px;
+    }
+  }
+}
+.view-rewards {
+  .box-rewards-autor {
+    font-size: 14px;
+  }
+  .box-summary {
+    p {
+      margin-bottom: 0;
+    }
+    .blue-summary {
+      color: $color-blue-primary;
     }
   }
 }
