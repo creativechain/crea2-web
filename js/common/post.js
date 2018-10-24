@@ -9,7 +9,7 @@ let postContainer;
     let query = window.location.search;
     let url = getParameterByName('url', query);
 
-    let session, user;
+    let session, userAccount;
 
     function setUp(state) {
         if (!postContainer) {
@@ -18,7 +18,7 @@ let postContainer;
                 data: {
                     lang: lang,
                     session: session,
-                    user: user.user,
+                    user: userAccount.user,
                     state: state,
                     comment: '',
                 },
@@ -28,7 +28,7 @@ let postContainer;
                         return License.fromFlag(this.state.post.metadata.license);
                     },
                     dateFromNow(date) {
-                        date = new Date(date);
+                        date = new Date(date + 'Z');
                         return moment(date.getTime()).fromNow();
                     },
                     makeComment: makeComment,
@@ -42,7 +42,7 @@ let postContainer;
         } else {
             postContainer.state = state;
             postContainer.session = session;
-            postContainer.user = user;
+            postContainer.user = userAccount.user;
         }
     }
 
@@ -124,7 +124,7 @@ let postContainer;
 
     creaEvents.on('crea.login', function (s, a) {
         session = s;
-        user = a;
+        userAccount = a;
         fetchContent();
     });
 
