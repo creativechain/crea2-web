@@ -4,7 +4,7 @@
             <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (state.user.metadata.avatar.url || getDefaultAvatar(state.user.name)) + ')' }"></div>
         </div>
 
-        <span class="h5">{{ profile.publicName || '@' + session.account.username }} </span>
+        <span class="h5">{{ profile.publicName || '@' + state.user.name }} </span>
         <p>{{ profile.web || '-' }}</p>
         <p>{{ profile.about || '-' }}</p>
     </div>

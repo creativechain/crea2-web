@@ -5,18 +5,6 @@
 let profileContainer;
 
 (function () {
-    let defaultProfile = {
-        avatar: {},
-        publicName: '',
-        about: '',
-        web: '',
-        contact: '',
-        tags: [],
-        adultContent: 0,
-        lang: 'en',
-        valid: true
-    };
-
     function tags(element) {
         $('#' + element).tagsinput();
     }
@@ -53,6 +41,9 @@ let profileContainer;
 
                 },
                 methods: {
+                    openPost: function (post) {
+                        window.location.href = '/post-view.php?url=' + post.url;
+                    },
                     getDefaultAvatar: R.getDefaultAvatar,
                     getJoinDate: function () {
                         let date = new Date(this.state.user.created);
@@ -223,7 +214,7 @@ let profileContainer;
         if (user.startsWith('@')) {
             user = user.replace('@', '');
         } else {
-            //Handle use rby parameter profile
+            //Handle use by parameter profile
             user = getParameterByName('profile', window.location.href);
             if (!user) {
                 //No user found

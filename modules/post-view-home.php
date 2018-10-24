@@ -51,7 +51,6 @@
                     <div class="dropdown dropdown-autor">
                         <div class="row-flex">
                             <div class="user-avatar">
-
                                 <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (state.accounts[state.content[p].author].metadata.avatar.url || getDefaultAvatar(state.content[p].author)) + ')'}"></div>
                             </div>
                             <span class="dropdown-autor-span-name">{{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}</span>
@@ -70,14 +69,24 @@
                                         <div class="row">
                                             <div class="col text-center">
                                                 <div class="user-avatar">
-                                                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (state.accounts[state.content[p].author].metadata.avatar.url || getDefaultAvatar(state.content[p].author)) + ')'}"></div>
+                                                    <a v-bind:href="'/profile.php?profile=' + state.content[p].author">
+                                                        <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (state.accounts[state.content[p].author].metadata.avatar.url || getDefaultAvatar(state.content[p].author)) + ')'}"></div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
-                                                <p class="name">{{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}</p>
-                                                <p class="user">@{{ state.content[p].author }}</p>
+                                                <p class="name">
+                                                    <a v-bind:href="'/profile.php?profile=' + state.content[p].author">
+                                                        {{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}
+                                                    </a>
+                                                </p>
+                                                <p class="user">
+                                                    <a v-bind:href="'/profile.php?profile=' + state.content[p].author">
+                                                        @{{ state.content[p].author }}
+                                                    </a>
+                                                </p>
                                                 <p class="description-user">{{ state.accounts[state.content[p].author].metadata.description || '-' }}</p>
                                                 <p class="email-user">{{ state.accounts[state.content[p].author].metadata.email || '-' }}</p>
                                             </div>

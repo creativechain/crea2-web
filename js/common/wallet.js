@@ -6,18 +6,6 @@ let walletContainer;
 
     let walletModalSend;
 
-    let defaultProfile = {
-        avatar: {},
-        publicName: '',
-        about: '',
-        web: '',
-        contact: '',
-        tags: [],
-        adultContent: 0,
-        lang: 'en',
-        valid: true
-    };
-
     let walletMenu = new Vue({
         el: '#wallet-menu',
         data: {
@@ -61,7 +49,7 @@ let walletContainer;
                     session: session,
                     state: state,
                     account: state,
-                    profile: defaultProfile,
+                    profile: state.user.metadata,
                     tab: 'balances',
                     history: {
                         data: [],
@@ -236,6 +224,8 @@ let walletContainer;
                         } else if (h.op.type == 'comment_operation') {
                             addIfNotExists(h.op.value.parent_author);
                             addIfNotExists(h.op.value.author);
+                        } else if (h.op.type == 'account_create_operation') {
+                            addIfNotExists(h.op.value.creator);
                         }
 
                         history.push(h);
@@ -251,6 +241,7 @@ let walletContainer;
                                     if (u == result[x].name) {
                                         opsAccounts[u] = result[x];
                                         opsAccounts[u].metadata = jsonify(opsAccounts[u].json_metadata);
+                                        opsAccounts[u].metadata.avatar = opsAccounts[u].metadata.avatar || {};
                                         break;
                                     }
                                 }
