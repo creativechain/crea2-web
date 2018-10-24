@@ -46,7 +46,7 @@ let navbarContainer;
             });
         } else {
             navbarContainer.session = session;
-            navbarContainer.user = userData;
+            navbarContainer.user = userData ? userData.user : {};
         }
     }
 

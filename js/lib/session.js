@@ -17,7 +17,6 @@ class Session {
     login(callback) {
         let that = this;
         crea.api.getState('@' + this.account.username, function (err, result) {
-            console.log(result.length);
             if (err) {
                 callback(err);
             } else {

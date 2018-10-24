@@ -31,13 +31,13 @@ function login(username, password) {
     }
 
     session.login(function (err, account) {
+        console.log(err, account);
         if (err) {
             console.error(err);
         } else {
             session.save();
-            account.user.metadata = jsonify(account.user.json_metadata);
-            account.user.metadata.avatar = account.metadata.avatar || {};
             creaEvents.emit('crea.login', session, account);
+            console.log(session, jsonstring(account));
         }
     });
 
