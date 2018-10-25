@@ -3,13 +3,14 @@
  */
 
 let profileContainer;
+let walletModalSend;
 
 (function () {
     function tags(element) {
         $('#' + element).tagsinput();
     }
 
-    let walletModalSend;
+
     function updateModalSendView(state) {
         if (!walletModalSend) {
             walletModalSend = new Vue({
@@ -24,7 +25,7 @@ let profileContainer;
                 },
                 methods: {
                     sendCrea: function () {
-                        let amount = this.amount + ' CREA';
+                        let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
                         sendMoney(this.to, amount, this.memo, function (err, result) {
                             console.log(err, result);
                         })
@@ -125,7 +126,7 @@ let profileContainer;
                         return false;
                     },
                     dateFromNow(date) {
-                        date = new Date(date);
+                        date = new Date(date + 'Z');
                         return moment(date.getTime()).fromNow();
                     },
                     getFutureDate: function (date) {
@@ -355,7 +356,7 @@ let profileContainer;
 
         if (user.startsWith('@')) {
             user = user.replace('@', '');
-        } else {
+        } else if (session) {
             //Handle use by parameter profile
             user = getParameterByName('profile', window.location.href);
             if (!user) {
@@ -364,25 +365,28 @@ let profileContainer;
             }
         }
 
-        fetchHistory(user);
-        fetchUserState(user, function (err, state) {
-            if (err) {
-                console.error(err);
-            } else {
-                fetchFollowCount(user, function (err, followCount) {
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        console.log(state, followCount);
-                        state.user.followers_count = followCount.follower_count;
-                        state.user.following_count = followCount.following_count;
+        if (user) {
+            fetchHistory(user);
+            fetchUserState(user, function (err, state) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    fetchFollowCount(user, function (err, followCount) {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            console.log(state, followCount);
+                            state.user.followers_count = followCount.follower_count;
+                            state.user.following_count = followCount.following_count;
 
-                        updateProfileView(state, session, userAccount, user);
-                        updateModalSendView(state);
-                    }
-                })
-            }
-        });
+                            updateProfileView(state, session, userAccount, user);
+                            updateModalSendView(state);
+                        }
+                    })
+                }
+            });
+        }
+
     }
 
     /**

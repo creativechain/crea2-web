@@ -5,7 +5,7 @@
     <i class="stack-interface stack-up-open-big"></i>
 </a>
 
-<div class="loading hidden">
+<div id="global-loading" v-bind:class="{ loading: true, hidden: !show }">
     <div class="center-loading">
         <svg viewBox="0 0 50 50" class="spinner">
             <circle class="ring" cx="25" cy="25" r="22.5" />

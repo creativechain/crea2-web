@@ -135,9 +135,15 @@ class Asset {
      */
     static parseString(assetString) {
         let strSplitted = assetString.split(' ');
+        let amount = parseFloat(strSplitted[0]);
+        let nai = apiOptions.nai[strSplitted[1]];
+
+        if (amount % 1 == 0) {
+            amount = Math.round(amount * Math.pow(10, NAI[nai].precision))
+        }
         return Asset.parse({
-            amount: strSplitted[0],
-            nai: apiOptions.nai[strSplitted[1]],
+            amount: amount,
+            nai: nai,
         })
     }
 }

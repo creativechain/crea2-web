@@ -18,6 +18,13 @@ let bannerVue =  new Vue({
     }
 });
 
+let globalLoading = new Vue({
+    el: '#global-loading',
+    data: {
+        show: false
+    }
+});
+
 const CONSTANTS = {
     FILE_MAX_SIZE: {
         AUDIO: 1024 * 1024,
