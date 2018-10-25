@@ -9,6 +9,32 @@ let profileContainer;
         $('#' + element).tagsinput();
     }
 
+    let walletModalSend;
+    function updateModalSendView(state) {
+        if (!walletModalSend) {
+            walletModalSend = new Vue({
+                el: '#wallet-send-crea',
+                data: {
+                    state: state,
+                    lang: lang,
+                    from: state.user.name,
+                    to: '',
+                    amount: 0,
+                    memo: ''
+                },
+                methods: {
+                    sendCrea: function () {
+                        let amount = this.amount + ' CREA';
+                        sendMoney(this.to, amount, this.memo, function (err, result) {
+                            console.log(err, result);
+                        })
+                    }
+                }
+            });
+        } else {
+            walletModalSend.from = state.user.name;
+        }
+    }
     /**
      *
      * @param state
@@ -34,14 +60,6 @@ let profileContainer;
                     history: {
                         data: [],
                         accounts: {}
-                    },
-                    wallet: {
-                        sendModal: {
-                            from: session ? session.account.username : '',
-                            to: '',
-                            amount: 0,
-                            memo: '',
-                        }
                     },
                     showPriv: {
                         posting: false,
@@ -82,12 +100,6 @@ let profileContainer;
                     },
                     parseAsset: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
-                    },
-                    sendCrea: function () {
-                        let amount = this.amount + ' CREA';
-                        sendMoney(this.to, amount, this.memo, function (err, result) {
-                            console.log(err, result);
-                        })
                     },
                     openPost: function (post) {
                         window.location.href = '/post-view.php?url=' + post.url;
@@ -366,6 +378,7 @@ let profileContainer;
                         state.user.following_count = followCount.following_count;
 
                         updateProfileView(state, session, userAccount, user);
+                        updateModalSendView(state);
                     }
                 })
             }

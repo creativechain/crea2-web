@@ -65,10 +65,10 @@
                                                                 <div class="modal-instance block">
                                                                     <a class="modal-trigger" href="#wallet-send-crea">
                                                                         <span class="btn__text">
-                                                                            {{ lang.BUTTON.SEND }}
+                                                                            {{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}
                                                                         </span>
                                                                     </a>
-                                                                    <div class="modal-container modal-send" data-modal-id="wallet-send-crea">
+                                                                    <div id="wallet-send-crea" class="modal-container modal-send" data-modal-id="wallet-send-crea">
                                                                         <div class="modal-content section-modal">
                                                                             <section class="unpad ">
                                                                                 <div class="container">
@@ -90,7 +90,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input disabled type="text" v-model="wallet.sendModal.from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input disabled type="text" v-model="from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -101,7 +101,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input v-model="wallet.sendModal.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -112,7 +112,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
-                                                                                                                    <input v-model="wallet.sendModal.amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                    <input v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -128,7 +128,7 @@
                                                                                                             </div>
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--right">
-                                                                                                                    <input v-model="wallet.sendModal.memo" type="text" placeholder="Enter your name">
+                                                                                                                    <input v-model="memo" type="text" placeholder="Enter your name">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -147,7 +147,6 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}</li>
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}</li>
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}</li>
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_MARKET }}</li>
