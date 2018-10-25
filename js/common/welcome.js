@@ -127,6 +127,7 @@ function inputPassword(event) {
 }
 
 function sendConfirmationMail(callback) {
+    globalLoading.show = true;
     refreshAccessToken(function (accessToken) {
         let url = 'https://platform.creativechain.net/crearySignUp';
         let http = new HttpClient(url);
@@ -138,6 +139,7 @@ function sendConfirmationMail(callback) {
         }).on('done', function (data) {
             console.log('SignUp', data);
             welcomeVue.slide = 4;
+            globalLoading.show = false;
             if (callback) {
                 callback();
             }
