@@ -3,13 +3,14 @@
  */
 
 let profileContainer;
+let walletModalSend;
 
 (function () {
     function tags(element) {
         $('#' + element).tagsinput();
     }
 
-    let walletModalSend;
+
     function updateModalSendView(state) {
         if (!walletModalSend) {
             walletModalSend = new Vue({
@@ -24,7 +25,7 @@ let profileContainer;
                 },
                 methods: {
                     sendCrea: function () {
-                        let amount = this.amount + ' CREA';
+                        let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
                         sendMoney(this.to, amount, this.memo, function (err, result) {
                             console.log(err, result);
                         })
@@ -125,7 +126,7 @@ let profileContainer;
                         return false;
                     },
                     dateFromNow(date) {
-                        date = new Date(date);
+                        date = new Date(date + 'Z');
                         return moment(date.getTime()).fromNow();
                     },
                     getFutureDate: function (date) {
