@@ -270,6 +270,8 @@ let walletModalSend;
                         } else if (h.op.type == 'comment_operation') {
                             addIfNotExists(h.op.value.parent_author);
                             addIfNotExists(h.op.value.author);
+                        } else if (h.op.type == 'account_create_operation') {
+                            addIfNotExists(h.op.value.creator);
                         }
 
                         history.push(h);
