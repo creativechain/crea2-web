@@ -5,6 +5,9 @@
     margin: 0 0 120px;
     width: 105px;
   }
+  .welcome-content {
+    min-height: 520px;
+  }
   .show-row {
     overflow: visible !important;
   }
@@ -70,6 +73,13 @@
     }
     .switchable .row > div[class*='col-']:last-child:not(:only-child) {
       margin-top: 0;
+    }
+    .imageblock > .container, .imageblock > div[class*='col-']:not(.imageblock__content) {
+      padding-top: 5.57142857em !important;
+      padding-bottom: 5.57142857em !important;
+    }
+    .content-slide-welcome {
+      line-height: 5;
     }
   }
 
