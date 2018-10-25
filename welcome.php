@@ -8,7 +8,7 @@
                 <img alt="image" src="img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -58,7 +58,7 @@
                 <img alt="image" src="img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -113,7 +113,7 @@
                 <img alt="image" src="img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome ">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -175,7 +175,7 @@
                 <img alt="image" src="img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome ">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -210,7 +210,7 @@
                 <img alt="image" src="img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome ">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -257,7 +257,7 @@
                 <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome ">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -326,7 +326,7 @@
                 <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome ">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
@@ -397,7 +397,7 @@
                 <img alt="image" src="img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
             </div>
         </div>
-        <div class="container pos-vertical-center content-slide-welcome no-padding">
+        <div class="container pos-vertical-center content-slide-welcome ">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="welcome-content">
