@@ -239,30 +239,51 @@
                                                                 <h3>{{ lang.LOGIN.TITLE }}</h3>
                                                                 <hr v-bind:data-title="lang.COMMON.OR_CAP">
                                                                 <div class="feature__body">
-                                                                    <form id="login-form" action="#/" v-on:submit="login">
+                                                                    <form id="login-form" action="#/" v-on:submit="login" class="content-login">
                                                                         <div class="row">
-                                                                            <div class="col-md-12">
+                                                                            <div class="col-md-12 text-left">
                                                                                 <input id="login-username" type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                                                <span class="error-color-form">El usuario ya existe</span>
                                                                             </div>
-                                                                            <div class="col-md-12">
+                                                                            <div class="col-md-12 text-left">
                                                                                 <input id="login-password" type="password"
                                                                                        v-bind:placeholder="lang.LOGIN.PASSWORD"/>
+                                                                                <span class="error-color-form">La contraseña no coincide</span>
                                                                             </div>
-                                                                            <div class="col-md-12">
+                                                                            <div class="col">
+                                                                                <button class="btn btn--transparent color--dark"
+                                                                                        type="submit">Cancel
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="col">
                                                                                 <button id="login-button"
-                                                                                        class="btn btn--primary type--uppercase"
+                                                                                        class="btn btn--primary"
                                                                                         type="submit">{{ lang.BUTTON.LOGIN }}
                                                                                 </button>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 text-center">
+                                                                                <h3 class="login-description">Aún no eres usuario? Entra en el universo crea</h3>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-8 offset-md-2 text-center">
+                                                                                <span>Únete a nuestra comunidad y muestra tus proyectos artísticos. </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-3">
+                                                                            <div class="col-md-8 offset-md-2 text-center">
+                                                                                <a class="btn btn--black" href="#">
+                                                                                    <span class="btn__text color--white">
+                                                                                        Inscribirse
+                                                                                    </span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
                                                                         <!--end of row-->
                                                                     </form>
-                                                                    <span class="type--fine-print block"> {{ lang.LOGIN.NOT_USER }}
-                                                                        <a href="#">Create account</a>
-                                                                    </span>
-                                                                    <span class="type--fine-print block">{{ lang.LOGIN.FORGOT_ACCOUNT }}
-                                                                        <a href="#">Recover account</a>
-                                                                    </span>
+
                                                                 </div>
                                                             </div>
                                                         </div>

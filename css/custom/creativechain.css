@@ -581,13 +581,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 label {
   font-size: 12px; }
 
+.error-color-form {
+  color: #FF5666 !important; }
+
 .spinner {
-  --spinner-size: 5;
-  --line-color: #0ebeff;
+  --spinner-size: 2;
+  --line-color: #0073ff;
   --line-alpha: 1;
-  --ring-color: #000000;
-  --ring-alpha: .3;
-  --ring-size: 10;
+  --ring-color: #05132f;
+  --ring-alpha: .2;
+  --ring-size: 12;
   position: absolute;
   bottom: 50%;
   font-size: calc(var(--spinner-size) * 1em);
@@ -636,6 +639,11 @@ label {
   to {
     stroke-dasharray: 100 150;
     stroke-dashoffset: -140; } }
+.login-description {
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: 600; }
+
 .loading {
   position: fixed;
   left: 0;
