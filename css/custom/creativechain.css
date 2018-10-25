@@ -3,6 +3,8 @@
   .view-welcome .logo-welcome {
     margin: 0 0 120px;
     width: 105px; }
+  .view-welcome .welcome-content {
+    min-height: 520px; }
   .view-welcome .show-row {
     overflow: visible !important; }
   .view-welcome h1 {
