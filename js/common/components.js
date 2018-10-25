@@ -3,11 +3,11 @@
  */
 
 Vue.component('btn-follow',  {
-    template: `<a v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !following }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: following }">{{ followText() }}</span></a>`,
+    template: `<a v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !following }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: following }">{{ followText() }}</span></a>`,
     props: {
         following: {
             type: Boolean,
-            default: false
+            default: 0
         }
     },
     data: function () {
@@ -24,8 +24,11 @@ Vue.component('btn-follow',  {
 
             return this.lang.BUTTON.FOLLOW
         },
-        onhover: function () {
+        onover: function () {
             this.over = true;
+        },
+        onleave: function () {
+            this.over = false;
         }
     }
 });
