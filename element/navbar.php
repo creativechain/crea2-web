@@ -239,7 +239,7 @@
                                                                 <h3>{{ lang.LOGIN.TITLE }}</h3>
                                                                 <hr v-bind:data-title="lang.COMMON.OR_CAP">
                                                                 <div class="feature__body">
-                                                                    <form id="login-form" action="#/" v-on:submit="login" class="content-login">
+                                                                    <form id="login-form" action="#0" v-on:submit="login" class="content-login">
                                                                         <div class="row">
                                                                             <div class="col-md-12 text-left">
                                                                                 <input id="login-username" type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>

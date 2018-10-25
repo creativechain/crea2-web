@@ -5,6 +5,17 @@ let lang = {
         "NO": "No",
         "AND": 'and'
     },
+    ERROR: {
+        INVALID_USERNAME: "Username is not valid",
+        INVALID_EMAIL: "Email is not valid",
+        INVALID_PASSWORD: "Password is not valid",
+        USERNAME_EXISTS: "Username already exist",
+        EMAIL_EXISTS: "Email already exist",
+        PASSWORDS_NOT_MATCH: "Password does not match",
+        DENIED_TERMS: "You must read and accept the terms and conditions",
+        DENIED_POLICY: "You must read and accept the privacy policy",
+
+    },
     "BANNER": {
         TITLE: "Welcome to the blockchain of creative communities",
         SUBTITLE: "A world without intermediaries"

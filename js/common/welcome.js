@@ -16,6 +16,14 @@ function welcomeSetUp() {
             slide: 0,
             username: '',
             email: '',
+            error: {
+                username: lang.ERROR.INVALID_USERNAME,
+                email: lang.ERROR.INVALID_EMAIL,
+                password: null,
+                matchPassword: lang.ERROR.PASSWORDS_NOT_MATCH,
+                terms: lang.ERROR.DENIED_TERMS,
+                policy: lang.ERROR.DENIED_POLICY,
+            },
             validUsername: false,
             validEmail: false,
             passwordMatch: false,
@@ -26,14 +34,12 @@ function welcomeSetUp() {
             lang: lang
         },
         methods: {
-            checkTerms: checkTerms,
-            checkPolicy: checkPolicy,
             inputPassword: inputPassword,
             inputCheckPassword: inputCheckPassword,
             checkEmail: checkEmail,
-            changeSlide: function (slide, change = true) {
-                console.log("Change to slide", slide, change);
-                if (change === true) {
+            changeSlide: function (slide, error = null) {
+                console.log("Change to slide", slide, error);
+                if (!error) {
                     this.slide = slide;
                 }
             },
@@ -43,7 +49,7 @@ function welcomeSetUp() {
             },
             checkUsername: checkUsername,
             sendConfirmationMail: sendConfirmationMail,
-            createAccount: createAccount
+            createAccount: createAccount,
         }
     });
 
@@ -51,6 +57,7 @@ function welcomeSetUp() {
     //console.log('Token', token);
 
     if (token) {
+        globalLoading.show = true;
         refreshAccessToken(function (accessToken) {
             let url = 'https://platform.creativechain.net/validate/' + token;
             let http = new HttpClient(url);
@@ -58,6 +65,7 @@ function welcomeSetUp() {
                 Authorization: 'Bearer ' + accessToken
             }).get().on('done', function (data) {
 
+                globalLoading.show = false;
                 data = JSON.parse(data);
                 console.log('SignUp', data);
                 welcomeVue.username = data.data.username;
@@ -80,76 +88,85 @@ function checkUsername(event) {
         crea.api.lookupAccountNames(accounts, function (err, result) {
             if (err) {
                 console.error(err);
-                welcomeVue.validUsername = false;
+                welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
+            } else if (result[0] != null) {
+                welcomeVue.error.username = lang.ERROR.USERNAME_EXISTS;
             } else {
-                result = result[0];
-                console.log(result, result === null);
-                welcomeVue.validUsername = result === null;
-                if (welcomeVue.validUsername) {
-                    welcomeVue.username = username;
-                }
+                welcomeVue.error.username = null;
+                welcomeVue.username = username;
             }
         })
     } else {
-        welcomeVue.validUsername = false;
+        welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
     }
 }
 
 function checkEmail(event) {
     let email = event.target.value;
     console.log("Checking mail", email, validateEmail(email));
-    welcomeVue.validEmail = validateEmail(email);
-    if (welcomeVue.validEmail) {
+
+    if (validateEmail(email)) {
+        welcomeVue.error.email = null;
         welcomeVue.email = email;
+    } else {
+        welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
+        welcomeVue.email = '';
     }
-}
-
-function checkTerms(event) {
-    welcomeVue.checkedTerms = event.target.checked;
-    console.log('Terms', welcomeVue.checkedTerms);
-}
-
-function checkPolicy(event) {
-    welcomeVue.checkedPolicy = event.target.checked;
-    console.log('Policy', welcomeVue.checkedPolicy);
 }
 
 function inputCheckPassword(event) {
     let password = event.target.value;
     console.log("Input check password", password);
 
-    welcomeVue.passwordMatch = welcomeVue.password === password;
+    let match = welcomeVue.password === password;
+    if (match) {
+        welcomeVue.error.matchPassword = null;
+    } else {
+        welcomeVue.error.matchPassword = lang.ERROR.PASSWORDS_NOT_MATCH;
+    }
 }
 
 function inputPassword(event) {
-    welcomeVue.password = event.target.value;
-    console.log("Input password", welcomeVue.password);
+    let pass = event.target.value;
+    console.log("Input password", pass);
+    if (pass && !pass.isEmpty()) {
+        welcomeVue.password = event.target.value;
+        welcomeVue.error.password = null;
+    } else {
+        welcomeVue.error.password = lang.ERROR.INVALID_PASSWORD;
+    }
+
+
 }
 
 function sendConfirmationMail(callback) {
-    globalLoading.show = true;
-    refreshAccessToken(function (accessToken) {
-        let url = 'https://platform.creativechain.net/crearySignUp';
-        let http = new HttpClient(url);
-        http.setHeaders({
-            Authorization: 'Bearer ' + accessToken
-        }).post({
-            username: welcomeVue.username,
-            email: welcomeVue.email
-        }).on('done', function (data) {
-            console.log('SignUp', data);
-            welcomeVue.slide = 4;
-            globalLoading.show = false;
-            if (callback) {
-                callback();
-            }
+    if (!welcomeVue.error.email) {
+        globalLoading.show = true;
+        refreshAccessToken(function (accessToken) {
+            let url = 'https://platform.creativechain.net/crearySignUp';
+            let http = new HttpClient(url);
+            http.setHeaders({
+                Authorization: 'Bearer ' + accessToken
+            }).post({
+                username: welcomeVue.username,
+                email: welcomeVue.email
+            }).on('done', function (data) {
+                console.log('SignUp', data);
+                welcomeVue.slide = 4;
+                globalLoading.show = false;
+                if (callback) {
+                    callback();
+                }
+            });
         });
-    });
+    }
+
 }
 
 function createAccount() {
 
-    if (welcomeVue.passwordMatch && welcomeVue.checkedTerms && welcomeVue.checkedPolicy) {
+    if (!welcomeVue.error.matchPassword && welcomeVue.checkedTerms && welcomeVue.checkedPolicy) {
+        globalLoading.show = true;
         let username = welcomeVue.username;
         let password = welcomeVue.password;
         createBlockchainAccount(username, password, function (err, result) {
@@ -158,6 +175,7 @@ function createAccount() {
             } else {
                 console.log(result);
                 welcomeVue.slide = 8;
+                globalLoading.show = false;
             }
         })
     } else {

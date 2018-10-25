@@ -132,3 +132,15 @@ function createAuth(key) {
         ]
     }
 }
+
+function copyToClipboard(element) {
+    if (element) {
+        element.select();
+
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error()
+        }
+    }
+}

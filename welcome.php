@@ -68,14 +68,15 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
-                            <input v-on:input="checkUsername" class="validate-required" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
+                            <input v-on:input="checkUsername" v-bind:class="{ 'validate-required': true, 'field-error': error.username }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
+                            <span v-if="error.username" class="error-color-form">{{ error.username }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <a class="btn btn--primary" v-on:click="changeSlide(3, validUsername)">
+                                    <a class="btn btn--primary" v-on:click="changeSlide(3, error.username)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -121,14 +122,15 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
-                            <input v-on:input="checkEmail" class="validate-required" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
+                            <input v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
+                            <span v-if="error.email" class="error-color-form">{{ error.email }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row">
                                 <div class="col-md-6 col-6">
-                                    <a class="btn btn--transparent" href="#"  v-on:click="changeSlide(2)">
+                                    <a class="btn btn--transparent" href="#"  v-on:click="changeSlide(2, null)">
                                         <span id="welcome-slide3-button-back" class="btn__text">
                                             {{ lang.BUTTON.GO_BACK }}
                                         </span>
@@ -260,15 +262,16 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
-                            <input v-on:input="inputPassword" class="validate-required" type="text" v-bind:value="suggestedPassword" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
+                            <input id="welcome-slide6-input" v-on:input="inputPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.password }" type="text" v-bind:value="suggestedPassword" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
+                            <span v-if="error.password" class="error-color-form">{{ error.password }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a class="btn btn--transparent w-100" href="#">
-                                        <span class="btn__text btn_copy" data-clipboard-target="#welcome-slide6-input">
+                                    <a class="btn btn--transparent w-100 btn_copy" data-clipboard-target="#welcome-slide6-input" href="#0">
+                                        <span class="btn__text" >
                                             {{ lang.BUTTON.COPY_PASSWORD }}
                                         </span>
                                     </a>
@@ -283,7 +286,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary w-100" href="#" v-on:click="changeSlide(7)">
+                                    <a class="btn btn--primary w-100" href="#" v-on:click="changeSlide(7, error.password)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -327,25 +330,31 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
-                            <input v-on:input="inputCheckPassword" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE7_INPUT_PLACEHOLDER" />
+                            <input v-on:input="inputCheckPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.matchPassword }" type="text" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE7_INPUT_PLACEHOLDER" />
+                            <span v-if="error.matchPassword" class="error-color-form">{{ error.matchPassword }}</span>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12 col-terms">
                             <div class="input-checkbox">
-                                <input v-on:change="checkTerms" id="welcome-check-terms" type="checkbox" name="agree_terms" />
+                                <input v-model="checkedTerms" type="checkbox" />
                                 <label for="welcome-check-terms"></label>
                             </div>
-                            <span>{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}</span>
+                            <span v-bind:class="{ 'error-color-form': !checkedTerms }">
+                                {{ lang.WELCOME.SLIDE7_CHECKBOX1 }}
+                            </span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 col-md-12">
                             <div class="input-checkbox">
-                                <input v-on:change="checkPolicy" id="welcome-check-policy" type="checkbox" name="agree_policy" />
+                                <input v-model="checkedPolicy"  type="checkbox" />
                                 <label for="welcome-check-policy"></label>
                             </div>
-                            <span>{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}</span>
+                            <span v-bind:class="{ 'error-color-form': !checkedPolicy }">
+                                {{ lang.WELCOME.SLIDE7_CHECKBOX2 }}
+                            </span>
                         </div>
                     </div>
                     <div class="row">
