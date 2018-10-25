@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
 
                             <h1>{{ lang.WELCOME.SLIDE1_TITLE }}</h1>
@@ -25,7 +25,7 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <a id="welcome-slide1-button-signup" class="btn btn--primary type--uppercase w-100" href="#"  v-on:click="changeSlide(2)">
+                                    <a id="welcome-slide1-button-signup" class="btn btn--primary" href="#"  v-on:click="changeSlide(2)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.SIGN_UP }}
                                         </span>
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
                             <h1>{{ lang.WELCOME.SLIDE2_TITLE }}</h1>
                             <p class="lead">{{ lang.WELCOME.SLIDE2_TEXT1 }}</p>
@@ -75,7 +75,7 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <a class="btn btn--primary type--uppercase w-100" v-on:click="changeSlide(3, validUsername)">
+                                    <a class="btn btn--primary" v-on:click="changeSlide(3, validUsername)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
                             <h1>{{ lang.WELCOME.SLIDE3_TITLE }}</h1>
                             <p class="lead">{{ lang.WELCOME.SLIDE3_TEXT1 }}</p>
@@ -128,14 +128,14 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row">
                                 <div class="col-md-6 col-6">
-                                    <a class="btn btn--transparent type--uppercase w-100" href="#"  v-on:click="changeSlide(2)">
+                                    <a class="btn btn--transparent" href="#"  v-on:click="changeSlide(2)">
                                         <span id="welcome-slide3-button-back" class="btn__text">
                                             {{ lang.BUTTON.GO_BACK }}
                                         </span>
                                     </a>
                                 </div>
                                 <div class="col-md-6 col-6">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="sendConfirmationMail()">
+                                    <a class="btn btn--primary" href="#" v-on:click="sendConfirmationMail()">
                                         <span id="welcome-slide3-button-continue" class="btn__text">
                                             {{ lang.BUTTON.CONTINUE}}
                                         </span>
@@ -173,7 +173,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
                             <h1>{{ lang.WELCOME.SLIDE4_TITLE }}</h1>
                             <p class="lead">{{ lang.WELCOME.SLIDE4_TEXT1 }}</p>
@@ -206,7 +206,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
                             <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ username }}!</h1>
                             <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
@@ -216,7 +216,7 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="changeSlide(6)">
+                                    <a class="btn btn--primary  " href="#" v-on:click="changeSlide(6)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -251,7 +251,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
 
                             <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
@@ -267,14 +267,14 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a class="btn btn--transparent type--uppercase w-100" href="#">
+                                    <a class="btn btn--transparent w-100" href="#">
                                         <span class="btn__text btn_copy" data-clipboard-target="#welcome-slide6-input">
                                             {{ lang.BUTTON.COPY_PASSWORD }}
                                         </span>
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn--black type--uppercase w-100" href="#" v-on:click="suggestPassword()">
+                                    <a class="btn btn--black w-100" href="#" v-on:click="suggestPassword()">
                                         <span class="btn__text color--white">
                                             {{ lang.BUTTON.NEW_PASSWORD }}
                                         </span>
@@ -283,7 +283,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="changeSlide(7)">
+                                    <a class="btn btn--primary w-100" href="#" v-on:click="changeSlide(7)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -318,7 +318,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
                             <h1>{{ lang.WELCOME.SLIDE7_TITLE }}</h1>
                             <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT1 }}</p>
@@ -352,7 +352,7 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#" v-on:click="createAccount()">
+                                    <a class="btn btn--primary  " href="#" v-on:click="createAccount()">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CREATE_ACCOUNT }}
                                         </span>
@@ -387,7 +387,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-10 offset-lg-1 col-md-12 text-justify">
+                        <div class="col-lg-10 offset-lg-1 col-md-12 ">
                             <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
                             <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
                             <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
@@ -397,7 +397,7 @@
                         <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <a class="btn btn--primary type--uppercase w-100" href="/">
+                                    <a class="btn btn--primary  " href="/">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
