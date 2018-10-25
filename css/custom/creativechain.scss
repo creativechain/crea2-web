@@ -213,13 +213,14 @@ img {
       overflow: hidden;
     }
     .description-post-box {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      min-height: auto;
-      font-size: 11px;
       margin-bottom: 0.92857143em;
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      word-wrap: break-word;
+      text-overflow: ellipsis;
+      max-height: 16px;
+      line-height: 16px;
     }
   }
   .modal-instance {
