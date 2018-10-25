@@ -4,18 +4,20 @@
             <avatar v-bind:username="state.user.name " v-bind:url="state.user.metadata.avatar.url "></avatar>
         </div>
         <span class="h5">{{ profile.publicName || '@' + state.user.name }} </span>
-        <p>{{ profile.web || '-' }}</p>
+        <p class="mb-0">{{ profile.web || '-' }}</p>
         <p>{{ profile.about || '-' }}</p>
     </div>
     <div class="row">
         <div class="col text-center">
             <a href="#">{{ profile.contact || '-' }}</a>
         </div>
+    </div>
+    <div class="row">
         <div class="col text-center">
             <p id="wallet-profile-join-date">{{ getJoinDate() }}</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col text-center">
             <div v-if="session">
                 <a v-if="state.user.name != account.user.name" class="btn btn--sm btn--primary" href="#0"

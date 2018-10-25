@@ -21,16 +21,30 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 label {
   font-size: 12px;
 }
-
-
-
+.error-color-form {
+  color: $notification-navbar !important;
+}
+input[type], textarea, select {
+  border-radius: 3px;
+}
+.input-checkbox label {
+  width: 20px;
+  height: 20px;
+  background: #000;
+}
+.input-checkbox label:before {
+  border: 1px solid $color-blue-primary;
+}
+.input-checkbox + span {
+  bottom: 7px;
+}
 .spinner {
-  --spinner-size: 5;
-  --line-color: #0ebeff;
+  --spinner-size: 2;
+  --line-color: $color-blue-primary;
   --line-alpha: 1;
-  --ring-color: #000000;
-  --ring-alpha: .3;
-  --ring-size: 10;
+  --ring-color: #05132f;
+  --ring-alpha: .2;
+  --ring-size: 12;
 
   position: absolute;
   bottom: 50%;
@@ -78,7 +92,11 @@ label {
   to { stroke-dasharray: 100 150; stroke-dashoffset: -140; }
 }
 
-
+.login-description {
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: 600;
+}
 
 
 .loading {
@@ -227,6 +245,7 @@ img {
     }
   }
   .li-certificate {
+    margin-top: 5px;
     img {
       width: 15px;
       margin-left: 5px;

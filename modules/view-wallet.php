@@ -106,10 +106,10 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div class="col-md-1">
+                                                                                                            <div class="col-md-2">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
                                                                                                             </div>
-                                                                                                            <div class="col-md-11">
+                                                                                                            <div class="col-md-10">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
                                                                                                                     <input v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
@@ -117,19 +117,26 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div class="col-md-1"></div>
-                                                                                                            <div class="col-md-11">
+                                                                                                            <div class="col-md-2"></div>
+                                                                                                            <div class="col-md-10">
                                                                                                                 <p>{{ lang.MODAL.WALLET_MEMO_TEXT }}</p>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div class="col-md-1">
+                                                                                                            <div class="col-2">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_MEMO }}</p>
                                                                                                             </div>
-                                                                                                            <div class="col-md-11">
+                                                                                                            <div class="col-md-10">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <input v-model="memo" type="text" placeholder="Enter your name">
                                                                                                                 </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row mt-3">
+                                                                                                            <div class="col text-right">
+                                                                                                                <a href="/publish.php" class="btn btn--sm btn--primary type--uppercase">
+                                                                                                                    <span class="btn__text">Enviar</span>
+                                                                                                                </a>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <!--end of row-->
