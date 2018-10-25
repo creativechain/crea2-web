@@ -216,11 +216,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
+                                    <!--<a class="btn btn--primary type--uppercase w-100" href="#">
                                             <span class="btn__text">
                                                 {{ lang.BUTTON.FOLLOW }}
                                             </span>
-                                    </a>
+                                    </a>-->
+                                    <btn-follow following="true"></btn-follow>
                                 </div>
                             </div>
                             <div class="row">

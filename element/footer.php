@@ -26,8 +26,8 @@
 
 <script src="/js/common/conf.js"></script>
 <script src="/js/common/resources.js"></script>
-<script src="/js/common/components.js"></script>
 <script src="/language/lang-en.js"></script>
+<script src="/js/common/components.js"></script>
 <script src="/js/common/ls.js"></script>
 <script src="/js/common/util.js"></script>
 <script src="/js/common/http.js"></script>

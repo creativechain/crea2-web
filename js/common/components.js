@@ -2,6 +2,33 @@
  * Created by ander on 16/10/18.
  */
 
+Vue.component('btn-follow',  {
+    template: `<a v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !following }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: following }">{{ followText() }}</span></a>`,
+    props: {
+        following: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function () {
+        return {
+            lang: lang,
+            over: false
+        }
+    },
+    methods: {
+        followText: function () {
+            if (this.$props.following) {
+                return this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
+            }
+
+            return this.lang.BUTTON.FOLLOW
+        },
+        onhover: function () {
+            this.over = true;
+        }
+    }
+});
 
 Vue.component('username', {
     template: `<p class="cursor" v-bind:style="{ display: inline > 0 ? 'inline' : 'inherit' }" v-on:click="seeProfile(user)">{{ name || user }}</p>`,
