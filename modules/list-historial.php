@@ -4,31 +4,22 @@
     </div>
     <template v-for="op in history.data">
         <div v-if="op.op.type == 'transfer_operation'" class="row-list-user">
-            <div class="user-avatar">
-                <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
-                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.from].metadata.avatar.url || getDefaultAvatar(op.op.value.from)) + ')' }"></div>
-                </a>
+            <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
+                <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
             </div>
             <div class="list-data-user">
                 <p>
-                    <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
-                        {{ history.accounts[op.op.value.from].metadata.publicName || op.op.value.from }}
-                    </a>
+                    <username v-bind:user="op.op.value.from" v-bind:name="history.accounts[op.op.value.from].metadata.publicName"></username>
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
-
-                    <p v-if="account && op.op.value.from == account.user.name">
-                        {{ lang.HISTORY.TRANSFER_TO }}
-                        <a v-bind:href="'/profile.php?profile=' + op.op.value.to">
-                             {{ (history.accounts[op.op.value.to].metadata.publicName || op.op.value.to) }}
-                        </a>
-                    </p>
-                    <p v-else>
-                        {{ lang.HISTORY.TRANSFER_FROM }}
-                        <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
-                            {{ (history.accounts[op.op.value.from].metadata.publicName || op.op.value.from) }}
-                        </a>
-                    </p>
+                <p v-if="account && op.op.value.from == account.user.name">
+                    {{ lang.HISTORY.TRANSFER_TO }}
+                    <linkname v-bind:user="op.op.value.to" v-bind:name="history.accounts[op.op.value.to].metadata.publicName"></linkname>
+                </p>
+                <p v-else>
+                    {{ lang.HISTORY.TRANSFER_FROM }}
+                    <linkname v-bind:user="op.op.value.from" v-bind:name="history.accounts[op.op.value.from].metadata.publicName"></linkname>
+                </p>
                 <p>{{ op.op.value.memo || '' }}</p>
             </div>
             <div class="list-amount">
@@ -40,28 +31,22 @@
         <div v-else-if="op.op.type == 'transfer_to_vesting_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
-                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.from].metadata.avatar.url || getDefaultAvatar(op.op.value.from)) + ')' }"></div>
+                    <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
                 </a>
             </div>
             <div class="list-data-user">
                 <p>
-                    <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
-                        {{ history.accounts[op.op.value.from].metadata.publicName || op.op.value.from }}
-                    </a>
+                    <username v-bind:user="op.op.value.from" v-bind:name="history.accounts[op.op.value.from].metadata.publicName"></username>
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
 
                 <p v-if="account && op.op.value.from == account.user.name">
                     {{ lang.HISTORY.TRANSFER_VESTING_TO }}
-                    <a  v-bind:href="'/profile.php?profile=' + op.op.value.to">
-                        {{ (history.accounts[op.op.value.to].metadata.publicName || op.op.value.to) }}
-                    </a>
+                    <linkname v-bind:user="op.op.value.to" v-bind:name="history.accounts[op.op.value.to].metadata.publicName"></linkname>
                 </p>
                 <p v-else >
                     {{ lang.HISTORY.TRANSFER_VESTING_FROM }}
-                    <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
-                        {{ (history.accounts[op.op.value.from].metadata.publicName || op.op.value.from) }}
-                    </a>
+                    <linkname v-bind:user="op.op.value.from" v-bind:name="history.accounts[op.op.value.from].metadata.publicName"></linkname>
                 </p>
 
                 <p>{{ op.op.value.memo || '' }}</p>
@@ -75,14 +60,12 @@
         <div v-else-if="op.op.type == 'comment_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/profile.php?profile=' + op.op.value.author">
-                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.author].metadata.avatar.url || getDefaultAvatar(op.op.value.author)) + ')' }"></div>
+                    <avatar v-bind:username="op.op.value.author" v-bind:url="history.accounts[op.op.value.author].metadata.avatar.url"></avatar>
                 </a>
             </div>
             <div class="list-data-user">
                 <p>
-                    <a v-bind:href="'/profile.php?profile=' + op.op.value.author">
-                        {{ history.accounts[op.op.value.author].metadata.publicName || op.op.value.author }}
-                    </a>
+                    <username v-bind:user="op.op.value.author" v-bind:name="history.accounts[op.op.value.author].metadata.publicName"></username>
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
 
@@ -102,14 +85,12 @@
         <div v-else-if="op.op.type == 'vote_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/profile.php?profile=' + op.op.value.voter">
-                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.voter].metadata.avatar.url || getDefaultAvatar(op.op.value.voter)) + ')' }"></div>
+                    <avatar v-bind:username="op.op.value.voter" v-bind:url="history.accounts[op.op.value.voter].metadata.avatar.url"></avatar>
                 </a>
             </div>
             <div class="list-data-user">
                 <p>
-                    <a v-bind:href="'/profile.php?profile=' + op.op.value.voter">
-                        {{ history.accounts[op.op.value.voter].metadata.publicName || op.op.value.voter }}
-                    </a>
+                    <username v-bind:user="op.op.value.voter" v-bind:name="history.accounts[op.op.value.voter].metadata.publicName"></username>
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
                 <p>
@@ -125,19 +106,17 @@
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/profile.php?profile=' + op.op.value.creator">
-                    <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (history.accounts[op.op.value.creator].metadata.avatar.url || getDefaultAvatar(op.op.value.creator)) + ')' }"></div>
+                    <avatar v-bind:username="op.op.value.creator" v-bind:url="history.accounts[op.op.value.creator].metadata.avatar.url"></avatar>
                 </a>
             </div>
             <div class="list-data-user">
                 <p>
-                    <a v-bind:href="'/profile.php?profile=' + op.op.value.creator">
-                        {{ history.accounts[op.op.value.creator].metadata.publicName || op.op.value.creator }}
-                    </a>
+                    <username v-bind:user="op.op.value.creator" v-bind:name="history.accounts[op.op.value.creator].metadata.publicName"></username>
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
                 <p>
-                    {{ (history.accounts[op.op.value.creator].metadata.publicName || op.op.value.creator) +
-                    lang.HISTORY.CREATE_ACCOUNT + op.op.value.new_account_name }}
+                    <linkname v-bind:user="op.op.value.creator" v-bind:name="history.accounts[op.op.value.creator].metadata.publicName"></linkname>
+                    {{ lang.HISTORY.CREATE_ACCOUNT + op.op.value.new_account_name }}
                 </p>
                 <p></p>
             </div>

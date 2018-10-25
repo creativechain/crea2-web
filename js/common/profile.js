@@ -102,9 +102,8 @@ let walletModalSend;
                     parseAsset: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
-                    openPost: function (post) {
-                        window.location.href = '/post-view.php?url=' + post.url;
-                    },
+                    openPost: showPost,
+                    showProfile: showProfile,
                     getJoinDate: function () {
                         let date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');

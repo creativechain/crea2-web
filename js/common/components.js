@@ -3,6 +3,51 @@
  */
 
 
+Vue.component('username', {
+    template: `<p class="cursor" v-bind:style="{ display: inline > 0 ? 'inline' : 'inherit' }" v-on:click="seeProfile(user)">{{ name || user }}</p>`,
+    props: {
+        user: {
+            type: String
+        },
+        name: {
+            type: String
+        },
+        inline: {
+            type: Number,
+            default: 1
+        }
+    },
+    methods: {
+        seeProfile: function (username) {
+            showProfile(username)
+        }
+    }
+});
+
+Vue.component('linkname', {
+    template: `<span class="cursor" v-on:click="seeProfile(user)">{{ name || '@' + user }}</span>`,
+    props: {
+        user: {
+            type: String
+        },
+        name: {
+            type: String
+        }
+    },
+    methods: {
+        seeProfile: function (username) {
+            showProfile(username)
+        }
+    }
+});
+
+Vue.component('avatar', {
+    template: `<div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + ( url || getDefaultAvatar(username)) + ')' }"></div>`,
+    props: ['url', 'username'],
+    methods: {
+        getDefaultAvatar: R.getDefaultAvatar
+    }
+});
 
 Vue.component('taginput', {
     template: `<input :id="id" class="validate-required" type="text" :value="value" :data-role="data-role" :data-options="data-options" :placeholder="placeholder">`,

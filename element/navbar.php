@@ -222,7 +222,7 @@
 
                                     <div class="user-avatar" v-if="session">
                                         <a href="/profile.php">
-                                            <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (user.metadata.avatar.url || getDefaultAvatar(user.name)) + ')' }"></div>
+                                            <avatar v-bind:username="user.name" v-bind:url="user.metadata.avatar.url"></avatar>
                                         </a>
                                     </div>
 

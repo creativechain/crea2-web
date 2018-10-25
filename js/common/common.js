@@ -56,9 +56,18 @@ function goTo(location) {
     window.location.href = location;
 }
 
+function showPost(post) {
+    goTo('/post-view.php?url=' + post.url)
+}
+
+function showProfile(user) {
+    goTo('/profile.php?profile=' + user);
+}
+
 function updateUrl(url) {
     window.history.pushState('', '', url);
 }
+
 /**
  *
  * @param {string} location

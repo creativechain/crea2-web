@@ -1,9 +1,8 @@
 <div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
         <div class="user-avatar">
-            <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (state.user.metadata.avatar.url || getDefaultAvatar(state.user.name)) + ')' }"></div>
+            <avatar v-bind:username="state.user.name " v-bind:url="state.user.metadata.avatar.url "></avatar>
         </div>
-
         <span class="h5">{{ profile.publicName || '@' + state.user.name }} </span>
         <p>{{ profile.web || '-' }}</p>
         <p>{{ profile.about || '-' }}</p>
