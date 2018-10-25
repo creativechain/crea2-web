@@ -35,6 +35,9 @@
                                 <div v-else-if="navfilter === 'curation-rewards'" class="row view-rewards" >
                                     <?php include ('modules/view-rewards-curacion.php') ?>
                                 </div>
+                                <div v-else-if="session && account.user.name === state.user.name && navfilter === 'blocked'" class="row view-notifications" >
+                                    <?php include ('modules/list-blocked.php') ?>
+                                </div>
                                 <div v-else-if="navfilter === 'wallet'" class="row view-wallet">
                                     <?php include ('modules/view-wallet.php') ?>
                                 </div>

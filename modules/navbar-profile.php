@@ -20,19 +20,11 @@
                                         {{ lang.REWARDS.SECONDARY_MENU_CURATION }}
                                     </a>
                                 </li>
-                                <!--<li class="">
-                                    <a href="shop-terms.html">
-                                        Terms
-                                    </a>
-                                </li>-->
                             </ul>
                         </div>
-                        <!--end dropdown content-->
                     </div>
-                    <!--end row-->
                 </div>
             </div>
-            <!--end dropdown container-->
         </li>
 
         <li><a href="#0" v-on:click="navfilter = 'blocked'" v-bind:class="{ active: navfilter == 'blocked' }">{{ lang.PROFILE.SECONDARY_MENU_BLOCKED }}</a></li>
