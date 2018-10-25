@@ -44,6 +44,11 @@ function showPosts(filter, state) {
                 parseAsset: function (asset) {
                     return Asset.parse(asset).toFriendlyString();
                 },
+                getTags: function (post) {
+                    let tags = post.metadata.tags;
+                    tags = tags.slice(0, 7);
+                    return tags.join(', ');
+                },
                 getFutureDate: function (date) {
                     if (typeof date === 'string') {
                         date += 'Z';
