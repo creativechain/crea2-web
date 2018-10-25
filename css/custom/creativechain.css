@@ -760,9 +760,11 @@ img {
       color: #222222; }
       .card-home .li-comment a img {
         width: 14px; }
-  .card-home .li-certificate img {
-    width: 15px;
-    margin-left: 5px; }
+  .card-home .li-certificate {
+    margin-top: 5px; }
+    .card-home .li-certificate img {
+      width: 15px;
+      margin-left: 5px; }
   .card-home .dropdown-price .dropdown__content p {
     margin: 0; }
   .card-home .dropdown-price .dropdown__content p.title {
