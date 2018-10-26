@@ -56,19 +56,19 @@
                                 <td style="text-align: right">
                                     <div class="dropdown">
                                         <span id="wallet-balance-crea" class="dropdown__trigger">{{ state.user.balance }}</span>
-                                        <div class="dropdown__container">
+                                        <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
                                                             <li>
                                                                 <div class="modal-instance block">
-                                                                    <a class="modal-trigger" href="#wallet-send-crea">
-                                                                        <span class="btn__text">
+                                                                    <a class="modal-trigger" href="#wallet-send">
+                                                                        <span class="btn__text" v-on:click="prepareModal('transfer_crea')">
                                                                             {{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}
                                                                         </span>
                                                                     </a>
-                                                                    <div id="wallet-send-crea" class="modal-container modal-send" data-modal-id="wallet-send-crea">
+                                                                    <div id="wallet-send" class="modal-container modal-send" data-modal-id="wallet-send">
                                                                         <div class="modal-content section-modal">
                                                                             <section class="unpad ">
                                                                                 <div class="container">
@@ -78,9 +78,9 @@
                                                                                                 <div class="feature__body boxed boxed--lg boxed--border">
                                                                                                     <div class="modal-close modal-close-cross"></div>
                                                                                                     <div class="text-block">
-                                                                                                        <h3>{{ lang.WALLET.TRANSFER_CREA_TITLE }}</h3>
+                                                                                                        <h3>{{ config.title }}</h3>
                                                                                                         <hr class="short">
-                                                                                                        <p>{{ lang.WALLET.TRANSFER_CREA_TEXT }}</p>
+                                                                                                        <p>{{ config.text }}</p>
                                                                                                     </div>
                                                                                                     <form>
                                                                                                         <div class="row">
@@ -94,14 +94,14 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div class="row">
+                                                                                                        <div v-if="config.op != 'transfer_to_vests' && config.op != 'transfer_to_savings'" class="row">
                                                                                                             <div class="col-md-1">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_TO}}</p>
                                                                                                             </div>
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -116,13 +116,13 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div class="row">
+                                                                                                        <div v-if="config.op != 'transfer_to_vests' && config.op != 'transfer_to_savings'" class="row">
                                                                                                             <div class="col-md-2"></div>
                                                                                                             <div class="col-md-10">
                                                                                                                 <p>{{ lang.MODAL.WALLET_MEMO_TEXT }}</p>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div class="row">
+                                                                                                        <div v-if="config.op != 'transfer_to_vests' && config.op != 'transfer_to_savings'" class="row">
                                                                                                             <div class="col-2">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_MEMO }}</p>
                                                                                                             </div>
@@ -134,8 +134,8 @@
                                                                                                         </div>
                                                                                                         <div class="row mt-3">
                                                                                                             <div class="col text-right">
-                                                                                                                <a href="/publish.php" class="btn btn--sm btn--primary type--uppercase">
-                                                                                                                    <span class="btn__text">Enviar</span>
+                                                                                                                <a href="#0" class="btn btn--sm btn--primary type--uppercase" v-on:click="sendCrea">
+                                                                                                                    <span class="btn__text">{{ config.button }}</span>
                                                                                                                 </a>
                                                                                                             </div>
                                                                                                         </div>
@@ -154,8 +154,24 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}</li>
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}</li>
+                                                            <li>
+                                                                <div class="modal-instance block">
+                                                                    <a class="modal-trigger" href="#wallet-send">
+                                                                        <span class="btn__text" v-on:click="prepareModal('transfer_to_savings')">
+                                                                            {{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="modal-instance block">
+                                                                    <a class="modal-trigger" href="#wallet-send">
+                                                                        <span class="btn__text" v-on:click="prepareModal('transfer_to_vests')">
+                                                                            {{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </li>
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_MARKET }}</li>
                                                         </ul>
                                                     </div>
@@ -173,7 +189,7 @@
                                 <td style="text-align: right">
                                     <div class="dropdown">
                                         <span class="dropdown__trigger">{{ getCGYBalance() }}</span>
-                                        <div class="dropdown__container">
+                                        <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
@@ -196,7 +212,7 @@
                                 <td style="text-align: right">
                                     <div class="dropdown">
                                         <span class="dropdown__trigger">{{ state.user.cbd_balance }}</span>
-                                        <div class="dropdown__container">
+                                        <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
@@ -220,7 +236,7 @@
                                 <td style="text-align: right">
                                     <div class="dropdown">
                                         <span class="dropdown__trigger">{{ state.user.savings_balance }}</span>
-                                        <div class="dropdown__container">
+                                        <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">

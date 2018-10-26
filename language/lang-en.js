@@ -293,6 +293,8 @@ let lang = {
         "CONVERT_CGY_TITLE": "Convert to CREA ENERGY",
         "TRANSFER_CREA_TEXT": "Move funds to another CREA account.",
         "TRANSFER_CREA_TITLE": "Transfer CREA",
+        "TRANSFER_SAVINGS_TITLE": "Transfer to Savings",
+        "TRANSFER_SAVINGS_TEXT": "The withdrawal has a period of 3 days of waiting",
         "UPDATE_TITLE": "Update your wallet",
         "BALANCES_CREA_TITLE": "CREA",
         "TRANSFER_CBD_TEXT": "Move funds to another CBD account.",

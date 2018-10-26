@@ -26,6 +26,11 @@ let globalLoading = new Vue({
 });
 
 const CONSTANTS = {
+    TRANSFER: {
+        TRANSFER_CREA: 'transfer_crea',
+        TRANSFER_TO_SAVINGS: 'transfer_to_savings',
+        TRANSFER_TO_VESTS: 'transfer_to_vests',
+    },
     FILE_MAX_SIZE: {
         AUDIO: 1024 * 1024,
         VIDEO: 5 * 1024 * 1024,

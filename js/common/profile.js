@@ -11,28 +11,61 @@ let walletModalSend;
     }
 
 
-    function updateModalSendView(state) {
+    function updateModalSendView(state, session) {
         if (!walletModalSend) {
             walletModalSend = new Vue({
-                el: '#wallet-send-crea',
+                el: '#wallet-send',
                 data: {
+                    CONSTANTS: CONSTANTS,
+                    session: session,
                     state: state,
                     lang: lang,
                     from: state.user.name,
                     to: '',
                     amount: 0,
-                    memo: ''
+                    memo: '',
+                    config: {
+                        op: 'transfer_crea',
+                        title: lang.WALLET.TRANSFER_CREA_TITLE,
+                        text: lang.WALLET.TRANSFER_CREA_TEXT,
+                        button: lang.BUTTON.SEND
+                    },
+                    toError: false,
                 },
                 methods: {
                     sendCrea: function () {
+                        let that = this;
                         let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
-                        sendMoney(this.to, amount, this.memo, function (err, result) {
+                        transfer(this.config.op, this.session, this.to, amount, this.memo, function (err, result) {
                             console.log(err, result);
-                        })
+                            if (result) {
+                                //TODO: Update wallet
+                            }
+                        });
+                    },
+                    validateDestiny: function(event) {
+                        let username = event.target.value;
+                        if (!crea.utils.validateAccountName(username)) {
+                            let accounts = [ username ];
+                            console.log("Checking", accounts);
+                            let that = this;
+                            crea.api.lookupAccountNames(accounts, function (err, result) {
+                                if (err) {
+                                    console.error(err);
+                                    that.toError = true;
+                                } else {
+                                    that.toError = result[0] == null;
+                                }
+                            })
+                        } else {
+                            this.toError = true;
+                        }
                     }
                 }
             });
         } else {
+            walletModalSend.state = state;
+            walletModalSend.session = session;
             walletModalSend.from = state.user.name;
         }
     }
@@ -98,6 +131,29 @@ let walletModalSend;
                         } else {
                             return state.user[auth].key_auths[0][0];
                         }
+                    },
+                    prepareModal: function(op) {
+                        let config;
+                        switch (op) {
+                            case 'transfer_crea':
+                                config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE, text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.SEND};
+                                break;
+                            case 'transfer_to_savings':
+                                config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE, text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER};
+                                break;
+                            case 'transfer_to_vests':
+                                config = {title: this.lang.WALLET.CONVERT_CGY_TITLE, text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER};
+                                break;
+                            case 'transfer_cbd':
+                                config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE, text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: lang.BUTTON.SEND};
+                                break;
+
+                        }
+                        config.op = op;
+                        walletModalSend.config = config;
+                    },
+                    canWithdraw: function () {
+                        return this.session && this.session.account.username == state.user.name;
                     },
                     parseAsset: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
@@ -386,7 +442,7 @@ let walletModalSend;
                             state.user.following_count = followCount.following_count;
 
                             updateProfileView(state, session, userAccount, user);
-                            updateModalSendView(state);
+                            updateModalSendView(state, session);
                         }
                     })
                 }
@@ -397,31 +453,37 @@ let walletModalSend;
 
     /**
      *
-     * @param {string} destiny
+     * @param {string} op
+     * @param {Session} session
+     * @param {string} to
      * @param {string} amount
-     * @param {string} memo
-     * @param callback
+     * @param {string} [memo]
+     * @param {Function} [callback]
      */
-    function sendMoney(destiny, amount, memo, callback) {
-        let session = Session.getAlive();
-        crea.api.getAccounts([destiny], function (err, result) {
-            if (err) {
-                console.error(err);
-            } else if (result.length > 0) {
-                if (amount.indexOf(apiOptions.addressPrefix) < 0) {
-                    amount += ' ' + apiOptions.addressPrefix;
-                }
+    function transfer(op, session, to, amount, memo, callback) {
+        if (typeof memo === 'function') {
+            callback = memo;
+            memo = '';
+        }
 
-                crea.broadcast.transfer(session.account.keys.active.prv, session.account.username, destiny, amount, memo, function (err, result) {
-                    console.log(err, result);
-                    callback(err, result);
-                    updateData(session);
-                })
+        if (session) {
+            let from = session.account.username;
+            let wif = session.account.keys.active.prv;
 
-            } else {
-                callback(Errors.USER_NOT_FOUND);
+            switch (op) {
+                case CONSTANTS.TRANSFER.TRANSFER_CREA:
+                    crea.broadcast.transfer(wif, from, to, amount, memo, callback);
+                    break;
+                case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS:
+                    crea.broadcast.transferToSavings(wif, from, to, amount, memo, callback);
+                    break;
+                case CONSTANTS.TRANSFER.TRANSFER_TO_VESTS:
+                    crea.broadcast.transferToVesting(wif, from, to, amount, callback);
+                    break;
             }
-        });
+        } else if(callback) {
+            callback(Errors.USER_NOT_LOGGED);
+        }
     }
 
     creaEvents.on('crea.login', function (session, userAccount) {
