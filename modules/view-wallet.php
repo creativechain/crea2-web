@@ -94,7 +94,7 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div v-if="config.op != 'transfer_to_vests' && config.op != 'transfer_to_savings'" class="row">
+                                                                                                        <div class="row">
                                                                                                             <div class="col-md-1">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_TO}}</p>
                                                                                                             </div>
@@ -116,13 +116,13 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div v-if="config.op != 'transfer_to_vests' && config.op != 'transfer_to_savings'" class="row">
+                                                                                                        <div v-if="config.op != 'transfer_to_vests'" class="row">
                                                                                                             <div class="col-md-2"></div>
                                                                                                             <div class="col-md-10">
                                                                                                                 <p>{{ lang.MODAL.WALLET_MEMO_TEXT }}</p>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div v-if="config.op != 'transfer_to_vests' && config.op != 'transfer_to_savings'" class="row">
+                                                                                                        <div v-if="config.op != 'transfer_to_vests'" class="row">
                                                                                                             <div class="col-2">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_MEMO }}</p>
                                                                                                             </div>
@@ -194,7 +194,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}</li>
+                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_DE_ENERGIZE }}</li>
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</li>
                                                         </ul>
                                                     </div>
