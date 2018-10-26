@@ -388,6 +388,8 @@ let lang = {
         TRANSFER_TO: 'Transfer to ',
         TRANSFER_VESTING_FROM: 'Transfer to vesting from ',
         TRANSFER_VESTING_TO: 'Transfer to vesting to ',
+        TRANSFER_SAVINGS_FROM: 'Transfer to vesting from ',
+        TRANSFER_SAVINGS_TO: 'Transfer to vesting to ',
         POSTED: 'Posted ',
         COMMENTED: 'Commented in ',
         VOTED_FOR: 'Voted for ',

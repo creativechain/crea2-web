@@ -28,6 +28,31 @@
             </div>
             <hr>
         </div>
+        <div v-if="op.op.type == 'transfer_to_savings_operation'" class="row-list-user">
+            <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
+                <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
+            </div>
+            <div class="list-data-user">
+                <p>
+                    <username v-bind:user="op.op.value.from" v-bind:name="history.accounts[op.op.value.from].metadata.publicName"></username>
+                    <span>{{ dateFromNow(op.timestamp) }}</span>
+                </p>
+                <p v-if="account && op.op.value.from == account.user.name">
+                    {{ lang.HISTORY.TRANSFER_SAVINGS_TO }}
+                    <linkname v-bind:user="op.op.value.to" v-bind:name="history.accounts[op.op.value.to].metadata.publicName"></linkname>
+                </p>
+                <p v-else>
+                    {{ lang.HISTORY.TRANSFER_SAVINGS_FROM }}
+                    <linkname v-bind:user="op.op.value.from" v-bind:name="history.accounts[op.op.value.from].metadata.publicName"></linkname>
+                </p>
+                <p>{{ op.op.value.memo || '' }}</p>
+            </div>
+            <div class="list-amount">
+                <p v-if="account && op.op.value.from == account.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
+                <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
+            </div>
+            <hr>
+        </div>
         <div v-else-if="op.op.type == 'transfer_to_vesting_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
