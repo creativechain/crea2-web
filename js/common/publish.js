@@ -130,6 +130,7 @@ let publishContainer;
 
     function makePublication() {
         //All tags must be lowercase;
+        globalLoading.show = true;
         let tags = publishContainer.tags;
         for (let x = 0; x < tags.length; x++)  {
             tags[x] = tags[x].toLowerCase();
@@ -155,8 +156,13 @@ let publishContainer;
         crea.broadcast.comment(session.account.keys.posting.prv, '', toPermalink(metadata.tags[0]), session.account.username, permlink, title, body, JSON.stringify(metadata), function (err, result) {
             if (err) {
                 console.error(err);
+                globalLoading.show = false;
             } else {
                 console.log(result);
+                let post = {
+                    url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
+                };
+                showPost(post);
             }
         })
     }
