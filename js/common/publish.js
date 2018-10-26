@@ -129,9 +129,15 @@ let publishContainer;
     }
 
     function makePublication() {
+        //All tags must be lowercase;
+        let tags = publishContainer.tags;
+        for (let x = 0; x < tags.length; x++)  {
+            tags[x] = tags[x].toLowerCase();
+        }
+
         let metadata = {
             description: publishContainer.description,
-            tags: publishContainer.tags,
+            tags: tags,
             adult: publishContainer.adult,
             price: publishContainer.price,
             featuredImage: publishContainer.featuredImage.url,
@@ -146,7 +152,7 @@ let publishContainer;
         let permlink = toPermalink(title);
         console.log(title, body, metadata);
         let session = Session.getAlive();
-        crea.broadcast.comment(session.account.keys.posting.prv, '', metadata.tags[0], session.account.username, permlink, title, body, JSON.stringify(metadata), function (err, result) {
+        crea.broadcast.comment(session.account.keys.posting.prv, '', toPermalink(metadata.tags[0]), session.account.username, permlink, title, body, JSON.stringify(metadata), function (err, result) {
             if (err) {
                 console.error(err);
             } else {
