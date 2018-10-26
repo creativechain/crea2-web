@@ -102,9 +102,6 @@ let walletModalSend;
                         memo: false
                     }
                 },
-                mounted: function () {
-                    $('#wallet-tabs').prev().remove();
-                },
                 updated: function () {
                     let inputTags = $('#profile-edit-tags');
                     inputTags.tagsinput({
@@ -118,6 +115,8 @@ let walletModalSend;
                             inputTags.tagsinput('add', t);
                         })
                     }
+
+                    //$('#wallet-tabs').prev().remove();
                 },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
