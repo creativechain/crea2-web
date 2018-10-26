@@ -1,4 +1,4 @@
-<section v-if="showBanner" class="imagebg image--light cover cover-blocks bg--secondary" id="slide-home">
+<section v-cloak v-if="showBanner" class="imagebg image--light cover cover-blocks bg--secondary" id="slide-home">
     <div class="row-close" v-on:click="showBanner = false">
         <a href="#"><i class="fas fa-times"></i></a>
     </div>
