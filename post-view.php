@@ -221,7 +221,7 @@
                                                 {{ lang.BUTTON.FOLLOW }}
                                             </span>
                                     </a>-->
-                                    <btn-follow class="type--uppercase w-100" v-bind:following="false" ></btn-follow>
+                                    <btn-follow class="type--uppercase w-100" v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.post.author" v-bind:following="false" ></btn-follow>
                                 </div>
                             </div>
                             <div class="row">

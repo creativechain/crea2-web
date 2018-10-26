@@ -3,22 +3,56 @@
  */
 
 Vue.component('btn-follow',  {
-    template: `<a v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !following }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: following }">{{ followText() }}</span></a>`,
+    template: `<a v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !innerFollowing }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: innerFollowing }">{{ followText() }}</span></a>`,
     props: {
         following: {
             type: Boolean,
             default: 0
+        },
+        self: {
+            type: Object
+        },
+        user: {
+            type: String
         }
+
     },
     data: function () {
         return {
             lang: lang,
-            over: false
+            over: false,
+            innerFollowing: this.$props.following
         }
     },
     methods: {
+        performFollow: function () {
+            let operation = this.innerFollowing ? 'unfollow' : 'follow';
+            let that = this;
+            let s = this.$props.self;
+            if (s) {
+                let followJson = {
+                    follower: s.account.username,
+                    following: this.$props.user,
+                    what: ['blog']
+                };
+
+                followJson = [operation, followJson];
+                crea.broadcast.customJson(s.account.keys.posting.prv, [], [s.account.username], operation, jsonstring(followJson), function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        that.$emit('follow', err)
+                    } else {
+                        that.innerFollowing = !that.innerFollowing;
+                        that.$emit('follow', null, result);
+                    }
+                })
+            } else {
+                this.$emit('follow', Errors.USER_NOT_LOGGED)
+            }
+
+        },
         followText: function () {
-            if (this.$props.following) {
+            if (this.innerFollowing) {
                 return this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
             }
 

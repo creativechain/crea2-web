@@ -36,6 +36,9 @@ let postContainer;
                         makeVote(post, function () {
                             fetchContent();
                         })
+                    },
+                    onFollow: function (err, result) {
+                        console.log('onFollow', err, result);
                     }
                 }
             })
@@ -119,8 +122,6 @@ let postContainer;
         }
 
     }
-
-    fetchContent();
 
     creaEvents.on('crea.login', function (s, a) {
         session = s;
