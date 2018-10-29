@@ -1,12 +1,53 @@
-# Crea 2.0 Web
 
-Creativechain is a decentralized platform for the registration and distribution of content that certifies the authorship and license of any work or creation making them indelible. A tool for the empowerment of artists and all kinds of creative people who produce, share and distribute digital content. The platform applies the power of attorney of the revolutionary Blockchain technology in the process of registering content to create incorruptible time stamps that certify the intellectual property of any digital work. Creativechain incorporates all the advantages derived from the innovation of crypto coins. In this way, without the need to use bank accounts, purchases, micropayments or donations can be made to the authors of the registered contents. For the platform, creative chains are the ability of art and culture to interweave any kind of intellectual creation. When it is decided to use a copyleft licensed image to complete a new work of art, an invisible link is created that unites these two works forever. In that sense, the platform has been designed to strengthen the relationships that are generated in the processes of collective creation, therefore, any payment or donation can be chained to reward with a percentage to all the authors that are aligned in a creative chain.
+![alt text](https://i.imgur.com/kmr8biL.jpg)
 
-When someone makes a payment to a work, a percentage is distributed to the entire chain of works that follow. In this way the payment or donation is extended in an "automagic" way to all the derivative works that have participated giving away part of its content.
+# Creary.net
 
-If the innovative blockchain technology is used in Bitcoin to certify monetary transactions, in Creativechain it is used to certify content registrations (distribution licenses, smart contracts, metadata or files). This technological adaptation makes it possible for the first time in history to create a content distribution system that is decentralized, public, transparent, traceable, incorruptible and free code.
+Creary is the social network of creative portfolios based on the blockchain that rewards creatives and curators.
 
-Creativechain is a bet for the public benefit of free culture and common creation as a collaborative method of growing and guaranteeing the right to culture.
+An algorithm distributes tokens constantly to authors and curators as a reward according to the vote of all users in the community. In Creary, authors can register the copyright of a creation and distribute their work directly to their fans.
+Join the decentralized community of Creary now and start making profits from your creative works.
+
+### Create, inspire, influence
+Creary is the social network of creative portfolios based on the blockchain that rewards creatives and curators. In Creary, authors can register the copyright of a creation and distribute their work directly to their fans.
+
+### Share your creative works and start earning rewards. 
+Publish your creative portfolio and make your community of followers grow. Follow your friends and favorite creatives and earn rewards in digital tokens getting votes (likes) from the community. An algorithm distributes tokens constantly to authors and curators as a reward according to the vote of all users in the community.
+
+In Creary you can sell your content directly to your followers without intermediaries or commissions. Now you will be your own bank and you will be able to manage your earnings in tokens inside the platform. You can sell and change these tokens or transfer them to other users.
+
+### Certify your creations safely
+Creary offers a public and transparent alternative of intellectual property registration making intelligent use of the revolutionary distributed blockchain technology. The platform automatically creates incorruptible timestamps that issue a certificate of authorship and a distribution license for any digital work.
+
+This feature automatically protects the work of artists, designers, and multimedia creatives who share their works on the platform.
+
+### TECHNOLOGY
+Main features of the technological ecosystem of Creary
+
+#### Proof of Existence
+Certificate of creation registration based on the blockchain.
+
+#### IPFS 
+InterPlanetary File System protocol.
+
+#### Marketplace
+P2P marketplace of graphic and multimedia resources.
+
+#### Tokens wallet
+Send, receive and manage your earnings.
+
+#### Proof of Creation (POC)
+An algorithm rewards authors and curators for their work.
+
+#### Reputation y Voting power
+Those who get more tokens will have more influence in the community.
+
+#### Tokens Exchange
+Tokens exchange markets without fees.
+
+#### Data transparency
+Open source data ledger. Public and transparent.
+
 
 ### License
 
