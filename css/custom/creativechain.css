@@ -614,7 +614,7 @@ input[type], textarea, select {
 
 .spinner {
   --spinner-size: 2;
-  --line-color: $color-blue-primary;
+  --line-color: #0569EF;
   --line-alpha: 1;
   --ring-color: #05132f;
   --ring-alpha: .2;
@@ -930,22 +930,45 @@ img {
   border-color: #0569EF;
   background-color: #0569EF; }
 
-@media (min-width: 1200px) {
-  #menu1 .container {
-    max-width: 100%; }
-
-  .container {
-    max-width: 1200px !important; } }
-@media (min-width: 992px) {
-  .container {
-    max-width: 100%; }
-
-  #menu1 .bar__module {
-    display: inline-block; } }
 @media (min-width: 768px) {
   #menu1 .container {
     max-width: 100%; }
   #menu1 .bar__module {
     display: inline-block; } }
+@media (min-width: 992px) {
+  .container {
+    max-width: 100%; }
+
+  #menu1 .bar__module {
+    display: inline-block; }
+
+  .project-profile .col-lg-4-cust {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%; } }
+@media (min-width: 1200px) {
+  #menu1 .container {
+    max-width: 100%; }
+
+  .container {
+    max-width: 1200px; }
+
+  .post-container-home .col-xl-3-cust {
+    flex: 0 0 25%;
+    max-width: 25%; }
+
+  .project-profile .col-xl-3-cust {
+    flex: 0 0 25%;
+    max-width: 25%; } }
+@media (min-width: 1500px) {
+  .post-container-home {
+    max-width: 1500px; }
+
+  .post-container-home .col-xl-2-cust {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%; }
+
+  .project-profile .col-xl-3-cust {
+    flex: 0 0 25%;
+    max-width: 25%; } }
 
 /*# sourceMappingURL=creativechain.css.map */
