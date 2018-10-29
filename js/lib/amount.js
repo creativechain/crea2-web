@@ -19,8 +19,11 @@ const ASSET_CGY = {
 
 const NAI = {
     "@@000000013": ASSET_CBD,
+    "cbd": ASSET_CBD,
     "@@000000021": ASSET_CREA,
-    "cgy": ASSET_CGY
+    "crea": ASSET_CREA,
+    "@@000000037": ASSET_CGY,
+    "cgy": ASSET_CGY,
 };
 
 class MonetaryFormat {

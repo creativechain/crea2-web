@@ -226,7 +226,7 @@ let walletModalSend;
                         let totalVests = parseFloat(state.props.total_vesting_shares.split(' ')[0]);
                         let totalVestCrea = parseFloat(state.props.total_vesting_fund_crea.split(' ')[0]);
 
-                        let energy = totalVestCrea * (vest / totalVests);
+                        let energy = crea.formatter.vestToCrea(vest, totalVests, totalVestCrea);
                         return Asset.parse({
                             amount: energy,
                             nai: apiOptions.nai.CREA
