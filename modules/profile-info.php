@@ -1,49 +1,46 @@
-<div id="wallet-profile" class="boxed boxed--sm boxed--border">
+<div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
-        <img alt="avatar" src="img/profile/avatar-round-3.png" class="image--sm" />
-        <span class="h5">{{ session.account.username }} </span>
-        <p>casmiclab.com</p>
-        <p>Casmic Lab is a Valencia based design studio founded in 2006 by Amadeo Castroviejo and Roser Miquel. We love old science fiction movies and books.</p>
+        <div class="user-avatar">
+            <avatar v-bind:username="state.user.name " v-bind:url="state.user.metadata.avatar.url "></avatar>
+        </div>
+        <span class="h5">{{ profile.publicName || '@' + state.user.name }} </span>
+        <p class="mb-0">{{ profile.web || '-' }}</p>
+        <p>{{ profile.about || '-' }}</p>
     </div>
     <div class="row">
-        <div class="col">
-            <a href="">casmic@lab.com</a>
+        <div class="col text-center">
+            <a href="#">{{ profile.contact || '-' }}</a>
         </div>
-        <div id="wallet-profile-join-date" class="col">{{ getJoinDate() }}</div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <p id="wallet-profile-join-date">{{ getJoinDate() }}</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col text-center">
+            <div v-if="session">
+                <a v-if="state.user.name != account.user.name" class="btn btn--sm btn--primary" href="#0"
+                   v-on:click="makeFollow(state.user.name)">
+                    <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
+                </a>
+
+                <a v-else class="btn btn--sm" href="#0" v-on:click="navfilter = 'edit'">
+                    <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
+                </a>
+            </div>
+
+        </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row ranking-user-info">
         <div class="col">
-            <table>
-                <thead class="hidden">
-                <tr>
-                    <th>Value 1</th>
-                    <th>Value 2</th>
-                    <th>Value 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/trainer.svg" alt="">
-                            <span>Traineer</span>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <img src="img/icons/buzz.svg" alt="">
-                            <span>{{ account.reputation }} Buzz</span>
-                        </p>
-                    </td>
-                    <td>
-                        <a class="btn btn--sm" href="#">
-                            <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <img src="img/icons/trainer.svg" alt="">
+            <span>Traineer</span>
+        </div>
+        <div class="col">
+            <img src="img/icons/buzz.svg" alt="">
+            <span>{{ state.user.reputation }} Buzz</span>
         </div>
     </div>
     <hr>
@@ -76,7 +73,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.comment_count }}</p>
+                        <p>{{ state.user.comment_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -87,7 +84,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.followers_count }}</p>
+                        <p>{{ state.user.followers_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +95,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.following_count }}</p>
+                        <p>{{ state.user.following_count }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -109,7 +106,7 @@
                         </p>
                     </td>
                     <td class="text-right">
-                        <p>{{ account.post_count }}</p>
+                        <p>{{ state.user.post_count }}</p>
                     </td>
                 </tr>
                 </tbody>
@@ -117,6 +114,18 @@
         </div>
     </div>
     <hr>
-
-
+    <div class="row profile-tags">
+        <div class="col">
+            <p class="title-tags">Tags</p>
+            <span> {{ profile.tags ? profile.tags.join(', ') : '' }}</span>
+        </div>
+    </div>
+    <hr>
+    <div class="row block-all">
+        <div class="col-md-12">
+            <ul class="list-inline list-unstyled">
+                <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+            </ul>
+        </div>
+    </div>
 </div>

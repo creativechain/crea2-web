@@ -177,7 +177,8 @@ img {
 
 svg:not(:root) {
   overflow: hidden;
-  vertical-align: middle; }
+  vertical-align: middle;
+  }
 
 table {
   border-collapse: collapse; }
@@ -455,7 +456,8 @@ pre {
   }
   @media (min-width: 576px) {
     .container {
-      max-width: 540px; } }
+      max-width: 540px;
+      } }
   @media (min-width: 768px) {
     .container {
       max-width: 720px; } }
@@ -3026,7 +3028,8 @@ button.bg-dark:focus {
   float: left !important; }
 
 .float-right {
-  float: right !important; }
+  float: right !important;
+  }
 
 .float-none {
   float: none !important; }

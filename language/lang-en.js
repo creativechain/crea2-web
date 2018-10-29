@@ -1,6 +1,24 @@
 let lang = {
     "COMMON": {
-        "OR_CAP": "OR"
+        "OR_CAP": "OR",
+        "YES": "Yes",
+        "NO": "No",
+        "AND": 'and'
+    },
+    ERROR: {
+        INVALID_USERNAME: "Username is not valid",
+        INVALID_EMAIL: "Email is not valid",
+        INVALID_PASSWORD: "Password is not valid",
+        USERNAME_EXISTS: "Username already exist",
+        EMAIL_EXISTS: "Email already exist",
+        PASSWORDS_NOT_MATCH: "Password does not match",
+        DENIED_TERMS: "You must read and accept the terms and conditions",
+        DENIED_POLICY: "You must read and accept the privacy policy",
+
+    },
+    "BANNER": {
+        TITLE: "Welcome to the blockchain of creative communities",
+        SUBTITLE: "A world without intermediaries"
     },
     "TRENDING_TOPICS": {
         "TRENDING_PAYOUTS": "PAYOUTS",
@@ -59,8 +77,8 @@ let lang = {
         "FORMAT": "FORMAT",
         "CERTIFICATE": "Blockchain certificate",
         "SIZE": "SIZE",
-        "DOWNLOAD": "Downloads",
-        "COMMENTS": "Comentarios",
+        "DOWNLOADS": "Downloads",
+        "COMMENTS": "Comments",
         "TIME_STAMP": "Time Stamp",
         "SHARE": "Share",
         "LIKES": "Likes",
@@ -70,7 +88,8 @@ let lang = {
         "MORE_COMMENTS": "See more comments",
         "YOUR_COMMENTS": "Your comments",
         "LICENSE": "License",
-        "TAGS": "TAGS"
+        "TAGS": "TAGS",
+        "FREE_DOWNLOAD": "Free Download"
     },
     "PROFILE_MENU": {
         "LOGOUT": "Logout",
@@ -83,6 +102,7 @@ let lang = {
         "FOLLOWING": "Following"
     },
     "EDIT_PROFILE": {
+        "SECTION_TITLE": "Edit profile",
         "LANGUAGE": "LANGUAGE",
         "COMMENT_REWARDS": "COMMENT POST REWARDS",
         "INPUT_ABOUT": "Add a short description",
@@ -94,11 +114,14 @@ let lang = {
         "ADULT_CONTENT": "ADULT CONTENT",
         "INPUT_TAGS": "Insert tags",
         "ABOUT": "ABOUT",
-        "WEBSITE": "WEBSITE"
+        "WEBSITE": "WEBSITE",
+        "TAGS": "TAGS",
+        "CONTACT_INFO": "CONTACT INFO",
+        "INPUT_CONTACT_INFO": "Add information so other users can contact you"
     },
     "BUTTON": {
         "FOLLOW": "Follow",
-        "REDDEM_REWARDS": "Redeem rewards (transfer to balance)",
+        "REDEEM_REWARDS": "Redeem rewards (transfer to balance)",
         "BROWSE": "Browse",
         "CONFIRM_PASSWORD": "Confirm password",
         "DOWNLOAD": "Download",
@@ -123,29 +146,66 @@ let lang = {
         "CANCEL": "Cancel",
         "SELECT_FILE": "Select file",
         "CREATE_ACCOUNT": "Create account",
-        "SHOW_KEY": "Show private key",
+        "SHOW_PRIV_KEY": "Show private key",
         "BUY_CREA": "Buy CREA or CREA Energy",
         "PROMOTE": "PROMOTE",
-        "WITHDRAW_SAVINGS": "Withdraw savings"
+        "WITHDRAW_SAVINGS": "Withdraw savings",
+        "POST_COMMENT": "Post comment",
+        "SEND": "Send"
     },
-    "DOWNLOAD": {
-        "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
-        "PRICE": "PRICE",
-        "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
-        "SELECT_FILE": "SELECT FILE",
-        "TITLE": "Download",
-        "SUBTITLE": "Select a file and set the price you want for its download."
+    "WELCOME": {
+        SLIDE1_TITLE: "Discover the Crea comunity!",
+        SLIDE1_TEXT1: "Creary is the decentralized creative community connected to the blockchain of Crea. We are not a " +
+        "conventional social network controlled by a centralized entity.",
+        SLIDE1_TEXT2: "The blockchain of Crea is supported transversally by the members of the community around the world.",
+        SLIDE1_TEXT3: "In order to create an account in Creary, a micro fee is charged to avoid the massive registration" +
+        " of bots or malicious accounts. With great pleasure Creary will cover this rate, we will only need your email " +
+        "in order to verify that you are a real person.",
+        SLIDE2_TITLE: "The registration begins",
+        SLIDE2_TEXT1: "Your username will be public and it is how you will be known in the community of Creary and in " +
+        "other applications based on Crea.",
+        SLIDE2_INPUT_PLACEHOLDER: "Type a name for your user",
+        SLIDE3_TITLE: "Enter your email address",
+        SLIDE3_TEXT1: "Enter a valid email to continue with the validation process",
+        SLIDE3_INPUT_PLACEHOLDER: "Type your mail",
+        SLIDE4_TITLE: "Check your email",
+        SLIDE4_TEXT1: "Check your email and click on the email validation link.",
+        SLIDE5_TITLE: "Congratulations",
+        SLIDE5_TEXT1: "Your email has been verified correctly.",
+        SLIDE6_TITLE: "Password",
+        SLIDE6_TEXT1: "Keep your password in a safe place. <strong>IMPORTANTE:</strong> If you ever lose your password, " +
+        "your account will be irretrievably lost and you will not be able to access your content or your tokens. We do " +
+        "not have your password, and we can not help you recover it.",
+        SLIDE6_INPUT_PLACEHOLDER: "Type your password",
+        SLIDE7_TITLE: "Confirm your password",
+        SLIDE7_TEXT1: "Add the password again to make sure it has been copied correctly. Make sure you have stored your " +
+        "password in a safe place.",
+        SLIDE7_TEXT2: "We recommend that you keep copies of your password in different media such as a flash drive, a " +
+        "printed paper or in your preferred key manager.",
+        SLIDE7_INPUT_PLACEHOLDER: "Type your password",
+        SLIDE7_CHECKBOX1: "I agree to the terms and conditions of the Creary service",
+        SLIDE7_CHECKBOX2: "I agree with the Creary privacy policy",
+        SLIDE8_TITLE: "Congratulations and you are part of the Crea community!",
+        SLIDE8_TEXT1: "Now you are ready to start traveling in the universe of Creary. Publish your creations and start " +
+        "earning your first cryptocurrencies."
+
     },
-    "WELCOME": {},
     "CHANGE_PASSWORD": {
         "ACCOUNT_NAME": "ACCOUNT NAME",
         "RECOVERY": "ACCOUNT RECOVERY",
         "INSERT_PASSWORD": "INSERT THE PASSWORD CREATED",
         "CURRENT_PASSWORD": "CURRENT PASSWORD",
         "TITLE": "Change password",
+        "SUBTITLE": "REMEMBER:",
         "PASSWORD_CREATED": "PASSWORD CREATED",
-        "RADIO_INPUT_SAFELY": "I have safely stored my new password",
-        "RADIO_INPUT_UNDERSTAND": "I understand that Creary can\u2019t recover lost passwords "
+        "RADIO_INPUT_SAFELY": "I have safely stored my new password.",
+        "RADIO_INPUT_UNDERSTAND": "I understand that Creary can\u2019t recover lost passwords.",
+        RULE_1: "If you ever lose your password, your account will be irretrievably lost and you will not be able to access its content or its tokens.",
+        RULE_2: "We do not save your password, and we can not help you recover it.",
+        RULE_3: "If you add a new password that you can memorize, this is not a secure password.",
+        RULE_4: "Use passwords created in a random way, against more characters of length have more secure will be.",
+        RULE_5: "Do not tell anyone your Creary password.",
+        RULE_6: "Always make some backup of your password.",
     },
     "PUBLISH": {
         "INFO_SUBTITLE": "Select or drag a featured image for the cover of your post.",
@@ -167,8 +227,25 @@ let lang = {
         "INFO_POST": "Post Information",
         "SECONDARY_MENU_LICENSE": "License",
         "INFO_DESCRIPTION": "SHORT DESCRIPTION",
+        "INFO_TAGS": "TAGS",
         "CONTENT_SECONDARY_SENTENCE": "Enter a text that explains the development of your project.",
-        "FILE": "File"
+        "FILE": "File",
+        "PRICE": "PRICE",
+        "DOWNLOAD_TITLE": "Download",
+        "DOWNLOAD_SUBTITLE": "Select a file and set the price you want for its download.",
+        "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
+        "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
+        "SELECT_FILE": "SELECT FILE",
+        "LICENSE_TITLE": "License",
+        "LICENSE_SUBTITLE": "Choose the most suitable type of license for your publication.",
+        "LICENSE_PUBLIC_DOMAIN" : "Do you want your work to be in the public domain?",
+        "LICENSE_ADAPTATIONS": "Do you want to allow the adaptations of your work to be shared?",
+        "LICENSE_COMMERCIAL": "Do you want to allow commercial uses of your work?",
+        "LICENSE_SHARE": "Yes, as long as they are shared in the same way",
+        "LICENSE_NO_LICENSE": "No license. (no one is allowed to use your work without your permission).",
+        "LICENSE_TEXT_PUBLISH": "You are about to publish your project. Let\u2019s go!",
+        "LICENSE_TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
+
     },
     "WITNESS": {
         "VOTE_WITNESSES": "WITNESSES",
@@ -223,11 +300,13 @@ let lang = {
         "CONVERT_CGY_TITLE": "Convert to CREA ENERGY",
         "TRANSFER_CREA_TEXT": "Move funds to another CREA account.",
         "TRANSFER_CREA_TITLE": "Transfer CREA",
+        "TRANSFER_SAVINGS_TITLE": "Transfer to Savings",
+        "TRANSFER_SAVINGS_TEXT": "The withdrawal has a period of 3 days of waiting",
         "UPDATE_TITLE": "Update your wallet",
         "BALANCES_CREA_TITLE": "CREA",
         "TRANSFER_CBD_TEXT": "Move funds to another CBD account.",
         "BALANCES_CGY_TITLE": "CREA ENERGY",
-        "DROPDOWN_MENU_CANCEL": "Cancel De-energize",
+        "DROPDOWN_MENU_CANCEL_DE_ENERGIZE": "Cancel De-energize",
         "TRANSFER_CBD_TITLE": "Transfer CREA DOLLAR",
         "WITHDRAW_SAVING_TEXT": "Withdraw funds. A 3 day waiting period is required.",
         "PERMISSIONS_TEXT_POSTING": "With the posting key users can vote and post contens. It should be different from the active and owner keys.",
@@ -239,7 +318,8 @@ let lang = {
         "WITHDRAW_CBD_TEXT": "Withdraw funds. A 3 day waiting period is required.",
         "BALANCES_CREA_TEXT": "Tokens that work as a liquid asset (easily convertible to cash); they can be transferred to other users and can be converted into CREA ENERGY in a process known as \u201cEnergize\u201d.",
         "BALANCES_SAVING_TITLE": "SAVINGS",
-        "BALANCES_ACCOUNT": "It is an estimated value based on the value of CREA in US Dollars.",
+        "BALANCES_ACCOUNT_TITLE": "Approximate account value",
+        "BALANCES_ACCOUNT_TEXT": "It is an estimated value based on the value of CREA in US Dollars.",
         "DROPDOWN_MENU_MARKET": "Market",
         "UPDATE_INPUT": "Browse file.dat",
         "DROPDOWN_MENU_TRANS_SAVINGS": "Tranfer to savings",
@@ -267,7 +347,9 @@ let lang = {
         "WALLET_AMOUNT": "Amount",
         "WALLET_INPUT_USER": "Search user",
         "WALLET_MEMO": "Memo",
-        "WALLET_BALANCE": "Balance"
+        "WALLET_BALANCE": "Balance",
+        "WALLET_INPUT_ORIGIN_PLACEHOLDER": "Enter your username",
+        "WALLET_INPUT_DESTINY_PLACEHOLDER": "Enter destiny username"
     },
     "ACCOUNT_RECOVERY": {
         "INPUT_USERNAME": "Enter your username",
@@ -286,16 +368,6 @@ let lang = {
         "TWITTER": "Login with Twitter"
     },
     "FAQS": {"FAQ_TITLE": "Frequently Asked Questions"},
-    "LICENSE": {
-        "TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
-        "COMMERCIAL": "Do you want to allow commercial uses of your work?",
-        "TEXT_PUBLISH": "You are about to publish your project. Let\u2019s go!",
-        "NO_LICENSE": "No license. (no one is allowed to use your work without your permission).",
-        "TITLE": "License",
-        "ADAPTATIONS": "Do you want to allow the adaptations of your work to be shared?",
-        "SHARE": "Yes, as long as they are shared in the same way",
-        "SUBTITLE": "Choose the most suitable type of license for your publication."
-    },
     "HOME": {
         "DROPDOWN_USER_PROFILE_LIKES": "Likes",
         "DROPDOWN_USER_PROFILE_FOLLOWERS": "Followers",
@@ -309,5 +381,25 @@ let lang = {
         "DROPDOWN_PENDING_PAYOUT": "Pending Payout",
         "MENU_SKYROCKETS": "Skyrockets",
         "MENU_LOGIN": "Login"
-    }
+    },
+    "LICENSE": {
+        "FREECONTENT": "FreeContent",
+        "ATTRIBUTION": "Attribution",
+        "NONCOMMERCIAL": "NonCommercial",
+        "SHAREALIKE": "ShareAlike",
+        "NONDERIVATES": "NonDerivates",
+        "INTERNATIONAL": "International"
+    },
+    "HISTORY": {
+        TRANSFER_FROM: 'Transfer from ',
+        TRANSFER_TO: 'Transfer to ',
+        TRANSFER_VESTING_FROM: 'Transfer to vesting from ',
+        TRANSFER_VESTING_TO: 'Transfer to vesting to ',
+        TRANSFER_SAVINGS_FROM: 'Transfer to vesting from ',
+        TRANSFER_SAVINGS_TO: 'Transfer to vesting to ',
+        POSTED: 'Posted ',
+        COMMENTED: 'Commented in ',
+        VOTED_FOR: 'Voted for ',
+        CREATE_ACCOUNT: ' create account '
+    },
 };

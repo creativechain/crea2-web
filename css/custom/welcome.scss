@@ -1,5 +1,109 @@
 @import "color";
+.view-welcome {
+  background-color: $color-white;
+  .logo-welcome {
+    margin: 0 0 120px;
+    width: 105px;
+  }
+  .welcome-content {
+    min-height: 520px;
+  }
+  .show-row {
+    overflow: visible !important;
+  }
+  h1 {
+    font-size: 25px;
+    font-weight: 400;
+    color: $color-dark-primary;
+  }
+  .lead {
+    font-size: 14px;
+    color: $color-dark-primary;
+  }
+  .circle-welcome {
+    width: 9px;
+    height: 9px;
+    border-radius: 5px;
+    background-color: $grey-circle;
+  }
+  .circle-welcome.active {
+    background-color: $active-circle;
+  }
+  .list-inline li:not(:last-child) {
+    margin-right: 0.85714286em;
+  }
+  .btn {
+    border-radius: 25px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 2em;
+    padding-left: 2em;
+    border: 1px solid white;
+    border-width: 1px;
+    font-size: inherit;
+    line-height: 1.85714286em;
+  }
+  .content-slide-welcome {
+    line-height: 74px;
+  }
+  .row-inputs {
+    line-height: 3;
+    text-align: left !important;
+    margin-top: 20px;
+  }
+  .col-terms {
+    margin-bottom: -40px;
+  }
+  .btn--transparent {
+    span {
+      color: $color-dark-primary;
+    }
+  }
+  @media (min-width: 300px) and (max-width: 575px) {
+    .container {
+      max-width: 90%;
+    }
+    .logo-welcome {
+      margin: 200px 0 30px;
+      width: 160px;
+    }
+    .ul-row-pagination {
+      display: flex !important;
+    }
+    .background-image-holder {
+      height: 400px;
+    }
+    .switchable .row > div[class*='col-']:last-child:not(:only-child) {
+      margin-top: 0;
+    }
+    .switchable .row > div[class*='col-']:last-child:not(:only-child) {
+      margin-top: 0;
+    }
+    .imageblock > .container, .imageblock > div[class*='col-']:not(.imageblock__content) {
+      padding-top: 5.57142857em !important;
+      padding-bottom: 5.57142857em !important;
+    }
+    .content-slide-welcome {
+      line-height: 5;
+    }
+  }
 
+  @media (min-width: 576px) and (max-width: 768px) {
+    .logo-welcome {
+      margin: 200px 0 60px;
+    }
+    .ul-row-pagination {
+      display: flex !important;
+    }
+    .background-image-holder {
+      height: 400px;
+    }
+    .switchable .row > div[class*='col-']:last-child:not(:only-child) {
+      margin-top: 0;
+    }
+
+  }
+}
 .banner-welcome-1 {
   left: 0 !important;
 }

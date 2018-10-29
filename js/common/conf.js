@@ -3,13 +3,19 @@
  */
 
 let apiOptions = {
-    url: 'http://localhost/node/',
+    url: 'https://crea.owldevelopers.site',
+    ipfs: 'https://ipfs.creary.net',
     addressPrefix: 'CREA',
     symbol: {
         CREA: 'CREA',
         CGY: 'CGY',
         CBD: 'CBD',
         VESTS: 'VESTS',
+    },
+    nai: {
+        CREA: '@@000000021',
+        CBD: '@@000000013',
+        VESTS: ''
     },
     chainId: '0000000000000000000000000000000000000000000000000000000000000000',
     accountCreator: 'initminer',

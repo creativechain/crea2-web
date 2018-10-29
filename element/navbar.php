@@ -10,77 +10,95 @@
     <meta property="og:description" content="Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.">
     <meta property="og:image" content="https://creary.net/img/creary-social-media.jpg">
 
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="icon" type="image/ico" href="img/favicon.ico"
+    <link rel="icon" type="image/ico" href="/img/favicon.ico" />
+
+    <script src="/js/vue.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
 </head>
 <body class=" ">
 <a id="start"></a>
 
-<div id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
-     data-animation="from-right">
+<div v-cloak id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu" data-animation="from-right">
     <div class="side-menu__module">
-        <a class="btn btn--icon bg--facebook block" href="#">
-            <span class="btn__text">
-                <i class="socicon-facebook"></i>
-                {{ lang.LOGIN.FACEBOOK }}
-            </span>
-        </a>
-        <a class="btn btn--icon bg--dark block" href="#">
-            <span class="btn__text">
-                <i class="socicon-mail"></i>
-                Sign up with Email
-            </span>
-        </a>
+        <ul class="list--loose list--hover">
+            <li>
+                <a href="#">
+                    <span class="h5">{{ lang.DOTS_MENU.FAQ }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">{{ lang.DOTS_MENU.VOTE_FOR_WITNESS }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">{{ lang.DOTS_MENU.MARKET }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Contraseña robada</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Cambiar Contraseña</span>
+                </a>
+            </li>
+
+        </ul>
+
     </div>
-    <!--end module-->
-    <hr>
-    <div class="side-menu__module">
-        <span class="type--fine-print float-left">Already have an account?</span>
-        <a class="btn type--uppercase float-right" href="#">
-            <span class="btn__text">Login</span>
-        </a>
-    </div>
-    <!--end module-->
     <hr>
     <div class="side-menu__module">
         <ul class="list--loose list--hover">
             <li>
                 <a href="#">
-                    <span class="h5">About Stack</span>
+                    <span class="h5">{{ lang.DOTS_MENU.ABOUT }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Careers</span>
+                    <span class="h5">{{ lang.DOTS_MENU.CREA_UPDATE }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Investors</span>
+                    <span class="h5">{{ lang.DOTS_MENU.PRIVACY }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Locations</span>
+                    <span class="h5">{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Contact</span>
+                    <span class="h5">Términos y condiciones</span>
                 </a>
             </li>
         </ul>
@@ -117,7 +135,7 @@
         </ul>
     </div>
 </div>
-<div id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
+<div v-cloak id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
      data-notification-link="search-box">
     <form>
         <div class="row justify-content-center">
@@ -129,7 +147,7 @@
     </form>
 </div>
 <!--end of notification-->
-<div id="navbar-container"  class="nav-container background-navbar-dark">
+<div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
         <div class="container">
             <div class="row">
@@ -151,7 +169,7 @@
     </div>
     <!--end bar-->
     <nav id="menu1" class="bar bar--sm bar-1 hidden-xs ">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 col-md-2 hidden-xs">
                     <div class="bar__module">
@@ -164,11 +182,11 @@
                 <div class="col-lg-10 col-md-10 text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li><a href="">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_POPULAR }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_NOW }}</a></li>
-                            <li><a href="">{{ lang.HOME.MENU_PROMOTED }}</a></li>
+                            <li v-if="session"><a href="#">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
+                            <li><a href="#" v-on:click="retrieveTrendingContent()">{{ lang.HOME.MENU_POPULAR }}</a></li>
+                            <li><a href="#" v-on:click="retrieveHotContent()">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
+                            <li><a href="#" v-on:click="retrieveNowContent()">{{ lang.HOME.MENU_NOW }}</a></li>
+                            <li><a href="#" v-on:click="retrievePromotedContent()">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
                     <div class="bar__module float-right">
@@ -179,14 +197,37 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="" class="navbar-notification" style="display: inline-grid;">
                                     <i class="far fa-bell"></i>
+                                    <i class="fas fa-circle"></i>
+                                </a>
+                            </li>
+
+                            <li v-if="session">
+                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
+                                    <span class="btn__text">
+                                        {{ lang.BUTTON.PUBLISH }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li v-if="!session">
+                                <a class="btn btn--sm type--uppercase" href="/welcome.php">
+                                    <span class="btn__text">
+                                        {{ lang.BUTTON.SIGN_UP }}
+                                    </span>
                                 </a>
                             </li>
                             <li>
                                 <div class="modal-instance">
-                                    <span v-if="session" v-on:click="goTo('profile.php')" class="log-in">{{ session.account.username }}</span>
-                                    <a href="#" v-else class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+
+                                    <div class="user-avatar" v-if="session">
+                                        <a href="/profile.php">
+                                            <avatar v-bind:username="user.name" v-bind:url="user.metadata.avatar.url"></avatar>
+                                        </a>
+                                    </div>
+
+                                    <a href="#" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+
                                     <div v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
@@ -196,46 +237,53 @@
                                                             <div class="boxed boxed--lg bg--white text-center feature">
                                                                 <div class="modal-close modal-close-cross"></div>
                                                                 <h3>{{ lang.LOGIN.TITLE }}</h3>
-                                                                <a class="btn block btn--icon bg--facebook type--uppercase"
-                                                                   href="#">
-                                                                        <span class="btn__text">
-                                                                            <i class="socicon-facebook"></i>
-                                                                            {{ lang.LOGIN.FACEBOOK }}
-                                                                        </span>
-                                                                </a>
-                                                                <a class="btn block btn--icon bg--twitter type--uppercase"
-                                                                   href="#">
-                                                                        <span class="btn__text">
-                                                                            <i class="socicon-twitter"></i>
-                                                                            {{ lang.LOGIN.TWITTER }}
-                                                                        </span>
-                                                                </a>
                                                                 <hr v-bind:data-title="lang.COMMON.OR_CAP">
                                                                 <div class="feature__body">
-                                                                    <form id="login-form" action="#" v-on:submit="login">
+                                                                    <form id="login-form" action="#0" v-on:submit="login" class="content-login">
                                                                         <div class="row">
-                                                                            <div class="col-md-12">
+                                                                            <div class="col-md-12 text-left">
                                                                                 <input id="login-username" type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                                                <span class="error-color-form">El usuario ya existe</span>
                                                                             </div>
-                                                                            <div class="col-md-12">
+                                                                            <div class="col-md-12 text-left">
                                                                                 <input id="login-password" type="password"
                                                                                        v-bind:placeholder="lang.LOGIN.PASSWORD"/>
+                                                                                <span class="error-color-form">La contraseña no coincide</span>
                                                                             </div>
-                                                                            <div class="col-md-12">
-                                                                                <button id="login-button"
-                                                                                    class="btn btn--primary type--uppercase"
-                                                                                    type="submit">{{ lang.BUTTON.LOGIN }}
+                                                                            <div class="col">
+                                                                                <button class="btn btn--transparent color--dark"
+                                                                                        type="submit">Cancel
                                                                                 </button>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <button id="login-button"
+                                                                                        class="btn btn--primary"
+                                                                                        type="submit">{{ lang.BUTTON.LOGIN }}
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 text-center">
+                                                                                <h3 class="login-description">Aún no eres usuario? Entra en el universo crea</h3>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-8 offset-md-2 text-center">
+                                                                                <span>Únete a nuestra comunidad y muestra tus proyectos artísticos. </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-3">
+                                                                            <div class="col-md-8 offset-md-2 text-center">
+                                                                                <a class="btn btn--black" href="#">
+                                                                                    <span class="btn__text color--white">
+                                                                                        Inscribirse
+                                                                                    </span>
+                                                                                </a>
                                                                             </div>
                                                                         </div>
                                                                         <!--end of row-->
                                                                     </form>
-                                                                        <span class="type--fine-print block"> {{ lang.LOGIN.NOT_USER }}
-                                                                            <a href="#">Create account</a>
-                                                                        </span>
-                                                                        <span class="type--fine-print block">{{ lang.LOGIN.FORGOT_ACCOUNT }}
-                                                                            <a href="#">Recover account</a>
-                                                                        </span>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -248,16 +296,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <a class="btn btn--sm type--uppercase" href="#" onclick="return startLogin()">
-                                    <span class="btn__text">
-                                        {{ lang.BUTTON.SIGN_UP }}
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-
-
                             <li>
                                 <a href="#" data-notification-link="side-menu">
                                     <i class="stack-menu"></i>

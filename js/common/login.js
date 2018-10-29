@@ -31,23 +31,31 @@ function login(username, password) {
     }
 
     session.login(function (err, account) {
+        console.log(err, account);
         if (err) {
             console.error(err);
         } else {
             session.save();
-            updateNavbarSession(session);
+            let followings = [];
+            crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    result.following.forEach(function (f) {
+                        followings.push(f.following);
+                    });
+                    account.user.followings = followings;
+                    creaEvents.emit('crea.session.login', session, account);
+                }
+            });
+
         }
     });
 
 }
 
 function logout() {
-    localStorage.setItem(CREARY.SESSION, false);
-    updateNavbarSession(false);
-    toHome();
-}
-
-function formSubmit(event) {
-    event.preventDefault();
-    return startLogin();
+    Session.getAlive().logout();
+    //updateNavbarSession(false);
+    creaEvents.emit('crea.session.logout')
 }

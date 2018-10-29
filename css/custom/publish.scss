@@ -1,0 +1,136 @@
+.view-publish {
+  label {
+    font-size: 14px;
+  }
+  .input-radio .input__label {
+    font-size: 14px;
+  }
+  input, select {
+    height: auto;
+  }
+  .li-title-steps {
+    font-size: 14px;
+    p.active {
+      color: $color-blue-primary;
+    }
+  }
+  .section-title-step, .section-text-step {
+    margin-bottom: 20px;
+    .title-steps {
+      font-size: 14px;
+      color: $color-blue-primary;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+    .description-step-title {
+      font-size: 14px;
+    }
+  }
+
+  .step-1 {
+    .upload-img {
+      position: relative;
+      margin-bottom: 10px;
+      .delete-img-step-1 {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        a {
+          color: $color-white;
+        }
+      }
+    }
+    .row-options-steps-1 {
+      margin-top: 160px;
+      margin-bottom: -50px;
+    }
+  }
+  .step-2 {
+    .row-options-steps-1 {
+      margin-top: 160px;
+      margin-bottom: -50px;
+    }
+    .input-radio input:checked + label:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 7px;
+      top: 7px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    .input-radio-step-2 {
+      display: flex;
+      margin-top: 10px;
+      .input-radio:nth-child(2) {
+        margin-left: 15px;
+      }
+      .input-radio {
+        display: flex;
+        label {
+          margin-left:5px;
+        }
+      }
+    }
+  }
+  .step-4 {
+    .row-options-steps-1 {
+      margin-top: 160px;
+      margin-bottom: -50px;
+    }
+    .input-radio input:checked + label:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 7px;
+      top: 7px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    .input-radio-step-2 {
+      display: flex;
+      margin-top: 10px;
+      .input-radio:nth-child(2) {
+        margin-left: 15px;
+      }
+      .input-radio:nth-child(3) {
+        margin-left: 15px;
+      }
+      .input-radio {
+        display: flex;
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+    .ul-icon-license {
+      img {
+        width: 30px;
+      }
+    }
+    .row-text-license {
+      margin-top: 20px;
+      p {
+        font-size: 14px;
+        margin-bottom: 0;
+      }
+      span {
+        font-size: 14px;
+        color: $color-blue-primary;
+      }
+    }
+    .row-text-finish {
+      margin-bottom: 20px;
+      p {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+}

@@ -9,30 +9,33 @@ class Session {
      * @param {Account} account
      * @param keepAlive
      */
-    constructor(account, keepAlive=false) {
+    constructor(account, keepAlive=true) {
         this.account = account;
         this.keepAlive = keepAlive;
     }
 
     login(callback) {
         let that = this;
-        crea.api.getAccounts([this.account.username], function (err, result) {
-            console.log(result.length);
+        crea.api.getState('@' + this.account.username, function (err, result) {
             if (err) {
                 callback(err);
-            } else if (result.length > 0) {
+            } else {
 
-                let accountData = result[0];
+                let accountData = result;
+                accountData.user = accountData.accounts[that.account.username];
+                accountData.user.metadata = jsonify(accountData.user.json_metadata);
+                accountData.user.metadata.avatar = accountData.user.metadata.avatar || {};
+
                 let auths = Object.keys(that.account.keys);
                 let logged = true;
-                console.log(auths);
+
                 auths.forEach(function (auth) {
                     if (that.account.keys[auth]) {
                         let pubKey;
                         if (auth == 'memo') {
-                            pubKey = accountData[auth+ '_key'];
+                            pubKey = accountData.user[auth + '_key'];
                         } else {
-                            pubKey = accountData[auth].key_auths[0][0];
+                            pubKey = accountData.user[auth].key_auths[0][0];
                         }
                         logged = logged && that.account.keys[auth].pub == pubKey;
                         console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
@@ -44,20 +47,24 @@ class Session {
                 } else {
                     callback(Errors.USER_LOGIN_ERROR);
                 }
-            } else {
-                callback(Errors.USER_NOT_FOUND)
             }
         })
     }
 
     save() {
+        let session = jsonstring(this);
         if (this.keepAlive) {
-            localStorage.setItem(CREARY.SESSION, jsonstring(this));
+            localStorage.setItem(CREARY.SESSION, session);
             sessionStorage.setItem(CREARY.SESSION, false);
         } else {
-            sessionStorage.setItem(CREARY.SESSION, jsonstring(this));
+            sessionStorage.setItem(CREARY.SESSION, session);
             localStorage.setItem(CREARY.SESSION, false);
         }
+    }
+
+    logout() {
+        localStorage.setItem(CREARY.SESSION, false);
+        sessionStorage.setItem(CREARY.SESSION, false);
     }
 
     /**
@@ -79,13 +86,13 @@ class Session {
     static getAlive() {
         let session = jsonify(localStorage.getItem(CREARY.SESSION));
 
-        if (session) {
+        if (session.account) {
             return new Session(session.account, session.keepAlive);
         }
 
         session = jsonify(sessionStorage.getItem(CREARY.SESSION));
 
-        if (session) {
+        if (session.account) {
             return new Session(session.account, session.keepAlive);
         }
 
