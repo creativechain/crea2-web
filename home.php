@@ -15,7 +15,7 @@
 
 
     <section v-cloak id="home-posts" class="space--sm">
-        <div class="container">
+        <div class="container post-container-home">
             <div class="masonry">
                 <div class="masonry__container row">
                     <template v-for="p in state.discussion_idx[''][filter]">
