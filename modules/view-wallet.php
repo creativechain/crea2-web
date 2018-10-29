@@ -328,23 +328,23 @@
                     <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'passwords' }">
                         <div class="row content-tab-password">
                             <div class="col-md-12">
-                                <h3>Restablecer la contraseña de annori</h3>
-                                <p class="alert-wallet-tab">RECUERDA:</p>
+                                <h3>{{ lang.CHANGE_PASSWORD.TITLE }}</h3>
+                                <p class="alert-wallet-tab">{{ lang.CHANGE_PASSWORD.SUBTITLE }}</p>
                                 <ul class="alert-wallet-tab">
-                                    <li><p>Si alguna vez pierdes tu contraseña, tu cuenta se perderá irremediablemente y no podrás acceder a su contenido o a sus tokens.</p></li>
-                                    <li><p>No guardamos tu contraseña, y no podremos ayudarte a recuperarla.</p></li>
-                                    <li><p>Si añades una nueva contraseña que puede memorizar, esta no es una contraseña segura.</p></li>
-                                    <li><p>Usa contraseñas creadas de forma aleatoria, contra más caracteres de longitud tenga más segura será.</p></li>
-                                    <li><p>No le digas a nadie cuál es tu contraseña de Creary.</p></li>
-                                    <li><p>Haz siempre alguna copia de seguridad de tu contraseña.</p></li>
+                                    <li><p>{{ lang.CHANGE_PASSWORD.RULE_1 }}</p></li>
+                                    <li><p>{{ lang.CHANGE_PASSWORD.RULE_2 }}</p></li>
+                                    <li><p>{{ lang.CHANGE_PASSWORD.RULE_3 }}</p></li>
+                                    <li><p>{{ lang.CHANGE_PASSWORD.RULE_4 }}</p></li>
+                                    <li><p>{{ lang.CHANGE_PASSWORD.RULE_5 }}</p></li>
+                                    <li><p>{{ lang.CHANGE_PASSWORD.RULE_6 }}</p></li>
                                 </ul>
                             </div>
                             <div class="col-md-12 mt-3">
-                                <label>NOMBRE DE CUENTA</label>
-                                <input class="validate-required" type="text" placeholder="Escribe tu nombre de usario"/>
+                                <label>{{ lang.CHANGE_PASSWORD.ACCOUNT_NAME }}</label>
+                                <input class="validate-required" disabled type="text" v-bind:value="session.account.username"/>
                             </div>
                             <div class="col-md-12 mt-3">
-                                <label>CONTRASEÑA ACTUAL</label>
+                                <label>{{ lang.CHANGE_PASSWORD.CURRENT_PASSWORD }}</label>
                                 <input class="validate-required" type="password" placeholder="Contraseña"/>
                             </div>
                             <div class="col-md-4 mt-3">
@@ -362,14 +362,14 @@
                                     <input id="" type="checkbox" name="" />
                                     <label for=""></label>
                                 </div>
-                                <span>Entiendo y soy consciente que Creary no puede recuperar contraseñas perdidas.</span>
+                                <span>{{ lang.CHANGE_PASSWORD.RADIO_INPUT_UNDERSTAND }}</span>
                             </div>
                             <div class="col-md-12">
                                 <div class="input-checkbox">
                                     <input id="" type="checkbox" name="" />
                                     <label for=""></label>
                                 </div>
-                                <span>He guardado de forma segura mi nueva contraseña generada.</span>
+                                <span>{{ lang.CHANGE_PASSWORD.RADIO_INPUT_SAFELY }}</span>
                             </div>
                             <div class="col-md-4 mt-3">
                                 <a class="btn btn--sm btn--primary" href="">

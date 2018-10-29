@@ -196,9 +196,16 @@ let lang = {
         "INSERT_PASSWORD": "INSERT THE PASSWORD CREATED",
         "CURRENT_PASSWORD": "CURRENT PASSWORD",
         "TITLE": "Change password",
+        "SUBTITLE": "REMEMBER:",
         "PASSWORD_CREATED": "PASSWORD CREATED",
-        "RADIO_INPUT_SAFELY": "I have safely stored my new password",
-        "RADIO_INPUT_UNDERSTAND": "I understand that Creary can\u2019t recover lost passwords "
+        "RADIO_INPUT_SAFELY": "I have safely stored my new password.",
+        "RADIO_INPUT_UNDERSTAND": "I understand that Creary can\u2019t recover lost passwords.",
+        RULE_1: "If you ever lose your password, your account will be irretrievably lost and you will not be able to access its content or its tokens.",
+        RULE_2: "We do not save your password, and we can not help you recover it.",
+        RULE_3: "If you add a new password that you can memorize, this is not a secure password.",
+        RULE_4: "Use passwords created in a random way, against more characters of length have more secure will be.",
+        RULE_5: "Do not tell anyone your Creary password.",
+        RULE_6: "Always make some backup of your password.",
     },
     "PUBLISH": {
         "INFO_SUBTITLE": "Select or drag a featured image for the cover of your post.",
