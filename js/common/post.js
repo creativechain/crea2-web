@@ -123,13 +123,21 @@ let postContainer;
 
     }
 
-    creaEvents.on('crea.login', function (s, a) {
+    creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         userAccount = a;
         fetchContent();
     });
 
-    creaEvents.on('crea.logout', function () {
+    creaEvents.on('crea.session.update', function (s, a) {
+        session = s;
+        userAccount = a;
+        fetchContent();
+    });
+
+    creaEvents.on('crea.session.logout', function () {
+        session = false;
+        userAccount = false;
         fetchContent();
     })
 })();

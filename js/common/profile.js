@@ -10,7 +10,6 @@ let walletModalSend;
         $('#' + element).tagsinput();
     }
 
-
     function updateModalSendView(state, session) {
         if (!walletModalSend) {
             walletModalSend = new Vue({
@@ -196,10 +195,8 @@ let walletModalSend;
                         date = new Date(date);
                         return moment(date.getTime(), 'x').endOf('day').fromNow();
                     },
-                    makeFollow: function (user) {
-                        followUser(user, function (err, result) {
-                            updateData(Session.getAlive());
-                        })
+                    onFollow: function (err, result) {
+                        console.log('onFollow', err, result);
                     },
                     makeVote: function (post) {
                         let filter = this.filter;
@@ -485,14 +482,20 @@ let walletModalSend;
         }
     }
 
-    creaEvents.on('crea.login', function (session, userAccount) {
-        console.log(session, userAccount);
+    creaEvents.on('crea.session.login', function (session, account) {
+        if (session) {
+            account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
+        }
+
+        handleProfile(session, account);
+    });
+
+    creaEvents.on('crea.session.update', function (session, userAccount) {
         if (session) {
             userAccount.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
         }
 
         handleProfile(session, userAccount);
-
     });
 
 })();

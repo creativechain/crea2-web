@@ -4,119 +4,133 @@
 
 let homePosts;
 
-function showPosts(filter, state) {
-    //console.log(filter, data);
-    let content = state.content;
-    let accounts = state.accounts;
+(function () {
+    let session, account;
 
-    let cKeys = Object.keys(content);
-    cKeys.forEach(function (k) {
-        content[k].metadata = jsonify(content[k].json_metadata);
-    });
-    state.content = content;
+    function showPosts(filter, state) {
+        //console.log(filter, data);
+        let content = state.content;
+        let accounts = state.accounts;
 
-    let aKeys = Object.keys(accounts);
-    aKeys.forEach(function (k) {
-        accounts[k].metadata = jsonify(accounts[k].json_metadata);
-        accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
-    });
-    state.accounts = accounts;
+        let cKeys = Object.keys(content);
+        cKeys.forEach(function (k) {
+            content[k].metadata = jsonify(content[k].json_metadata);
+        });
+        state.content = content;
 
-    if (!homePosts) {
-        homePosts = new Vue({
-            el: '#home-posts',
-            data: {
-                session: Session.getAlive(),
-                filter: filter,
-                state: state,
-                lang: lang,
-            },
-            methods: {
-                getDefaultAvatar: R.getDefaultAvatar,
-                followUser: function (user) {
-                    followUser(user, function (err, result) {
-                        console.log('User followed!');
-                    })
-                },
-                openPost: function (post) {
-                    window.location.href = '/post-view.php?url=' + post.url;
-                },
-                parseAsset: function (asset) {
-                    return Asset.parse(asset).toFriendlyString();
-                },
-                getTags: function (post) {
-                    let tags = post.metadata.tags;
-                    tags = tags.slice(0, 7);
-                    return tags.join(', ');
-                },
-                getFutureDate: function (date) {
-                    if (typeof date === 'string') {
-                        date += 'Z';
-                    }
+        let aKeys = Object.keys(accounts);
+        aKeys.forEach(function (k) {
+            accounts[k].metadata = jsonify(accounts[k].json_metadata);
+            accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
+        });
+        state.accounts = accounts;
 
-                    date = new Date(date);
-                    return moment(date.getTime(), 'x').endOf('day').fromNow();
+        if (!homePosts) {
+            homePosts = new Vue({
+                el: '#home-posts',
+                data: {
+                    session: session,
+                    account: account,
+                    filter: filter,
+                    state: state,
+                    lang: lang,
                 },
-                parseJSON: function (strJson) {
-
-                    if (strJson && strJson.length > 0) {
-                        try {
-                            return JSON.parse(strJson);
-                        } catch (e) {
-                            console.error('JSON Error parsing', strJson);
+                methods: {
+                    getDefaultAvatar: R.getDefaultAvatar,
+                    onFollow: function (err, result) {
+                        console.log('onFollow', err, result);
+                    },
+                    openPost: function (post) {
+                        window.location.href = '/post-view.php?url=' + post.url;
+                    },
+                    parseAsset: function (asset) {
+                        return Asset.parse(asset).toFriendlyString();
+                    },
+                    getTags: function (post) {
+                        let tags = post.metadata.tags;
+                        tags = tags.slice(0, 7);
+                        return tags.join(', ');
+                    },
+                    getFutureDate: function (date) {
+                        if (typeof date === 'string') {
+                            date += 'Z';
                         }
-                    }
 
-                    return {};
-                },
-                userHasVote: function (post) {
-                    let session = Session.getAlive();
+                        date = new Date(date);
+                        return moment(date.getTime(), 'x').endOf('day').fromNow();
+                    },
+                    parseJSON: function (strJson) {
 
-                    if (session) {
-                        let activeVotes = post.active_votes;
-
-                        for (let x = 0; x < activeVotes.length; x++) {
-                            let vote = activeVotes[x];
-                            if (session.account.username === vote.voter) {
-                                return true;
+                        if (strJson && strJson.length > 0) {
+                            try {
+                                return JSON.parse(strJson);
+                            } catch (e) {
+                                console.error('JSON Error parsing', strJson);
                             }
                         }
-                    }
 
-                    return false;
-                },
-                makeVote: function (post) {
-                    let filter = this.filter;
-                    makeVote(post, function () {
-                        creaEvents.emit('crea.content.filter', filter);
-                    })
-                },
-                getLicense(flag) {
-                    if (flag) {
-                        return License.fromFlag(flag);
-                    }
+                        return {};
+                    },
+                    userHasVote: function (post) {
+                        let session = Session.getAlive();
 
-                    return new License(LICENSE.FREE_CONTENT);
+                        if (session) {
+                            let activeVotes = post.active_votes;
+
+                            for (let x = 0; x < activeVotes.length; x++) {
+                                let vote = activeVotes[x];
+                                if (session.account.username === vote.voter) {
+                                    return true;
+                                }
+                            }
+                        }
+
+                        return false;
+                    },
+                    makeVote: function (post) {
+                        let filter = this.filter;
+                        makeVote(post, function () {
+                            creaEvents.emit('crea.content.filter', filter);
+                        })
+                    },
+                    getLicense(flag) {
+                        if (flag) {
+                            return License.fromFlag(flag);
+                        }
+
+                        return new License(LICENSE.FREE_CONTENT);
+                    }
                 }
-            }
-        })
-    } else {
-        homePosts.filter = filter;
-        homePosts.state = state;
-        homePosts.session = Session.getAlive();
+            })
+        } else {
+            homePosts.filter = filter;
+            homePosts.state = state;
+            homePosts.session = session;
+            homePosts.account = account;
+        }
     }
-}
 
+    creaEvents.on('crea.posts', function (filter, state) {
+        showPosts(filter, state);
+    });
 
+    creaEvents.on('crea.session.update', function (s, a) {
+        homePosts.session = session = s;
+        homePosts.aaccount = account = a;
+    });
 
-creaEvents.on('crea.login', function (session) {
-    showBanner(session == false);
-    creaEvents.emit('crea.content.filter', 'promoted');
+    creaEvents.on('crea.session.login', function (s, a) {
+        showBanner(s == false);
 
-    if (session) {
-        //TODO: REPLACE BY FOLLOWING CONTENT
-        creaEvents.emit('crea.content.filter', 'created');
-    } else {
-        creaEvents.emit('crea.content.filter', 'promoted');
-    }
-});
+        session = s;
+        account = a;
+        console.log(s, a);
+        if (s) {
+            //TODO: REPLACE BY FOLLOWING CONTENT
+            creaEvents.emit('crea.content.filter', 'created');
+        } else {
+            creaEvents.emit('crea.content.filter', 'promoted');
+        }
+    });
+})();
+

@@ -9,14 +9,23 @@
             if (err) {
                 console.error(err);
             } else {
-                account.user.metadata = jsonify(account.user.json_metadata);
-                account.user.metadata.avatar = account.user.metadata.avatar || {};
-                creaEvents.emit('crea.login', session, account);
+                let followings = [];
+                crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        result.following.forEach(function (f) {
+                            followings.push(f.following);
+                        });
+                        account.user.followings = followings;
+                        creaEvents.emit('crea.session.login', session, account);
+                    }
+                });
             }
         })
 
     } else {
-        creaEvents.emit('crea.login', false);
+        creaEvents.emit('crea.session.login', false);
     }
 
     new ClipboardJS('.btn_copy');

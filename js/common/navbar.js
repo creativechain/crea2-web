@@ -59,9 +59,7 @@ let navbarContainer;
             if (err) {
                 console.error(err);
             } else  {
-                //console.log(result);
-                showPosts(filter, result);
-                //updateUrl(filter)
+                creaEvents.emit('crea.posts', filter, result);
             }
         })
     }
@@ -85,17 +83,17 @@ let navbarContainer;
         retrieveContent("promoted");
     }
 
-    creaEvents.on('crea.user.update', function (userData) {
-        updateNavbarSession(navbarContainer.session, userData);
+    creaEvents.on('crea.session.update', function (session, account) {
+        updateNavbarSession(session, account);
     });
 
-    creaEvents.on('crea.login', function (session, account) {
+    creaEvents.on('crea.session.login', function (session, account) {
         console.log('Executing login');
         updateNavbarSession(session, account)
     });
 
-    creaEvents.on('crea.logout', function () {
-        updateNavbarSession(false);
+    creaEvents.on('crea.session.logout', function () {
+        updateNavbarSession(false, false);
     });
 
     creaEvents.on('crea.content.filter', function (filter) {

@@ -36,7 +36,19 @@ function login(username, password) {
             console.error(err);
         } else {
             session.save();
-            creaEvents.emit('crea.login', session, account);
+            let followings = [];
+            crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    result.forEach(function (f) {
+                        followings.push(f.following);
+                    });
+                    account.user.followings = followings;
+                    creaEvents.emit('crea.session.login', session, account);
+                }
+            });
+
         }
     });
 
@@ -45,5 +57,5 @@ function login(username, password) {
 function logout() {
     Session.getAlive().logout();
     //updateNavbarSession(false);
-    creaEvents.emit('crea.logout')
+    creaEvents.emit('crea.session.logout')
 }

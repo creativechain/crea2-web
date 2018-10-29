@@ -61,9 +61,10 @@
                                     <div class="col-md-4 col-lg-4 dropdown__content">
                                         <div v-if="session && state.content[p].author !== session.account.username" class="row">
                                             <div class="col text-right">
-                                                <a class="btn btn--primary" href="#/" v-on:click="followUser(state.content[p].author)">
+                                                <btn-follow v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.content[p].author" v-bind:following="account.user.followings.indexOf(state.content[p].author)>-1" ></btn-follow>
+                                                <!--<a class="btn btn--primary" href="#/" v-on:click="followUser(state.content[p].author)">
                                                     <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                                                </a>
+                                                </a>-->
                                             </div>
                                         </div>
                                         <div class="row">
