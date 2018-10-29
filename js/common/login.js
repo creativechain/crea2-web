@@ -41,7 +41,7 @@ function login(username, password) {
                 if (err) {
                     console.error(err);
                 } else {
-                    result.forEach(function (f) {
+                    result.following.forEach(function (f) {
                         followings.push(f.following);
                     });
                     account.user.followings = followings;
