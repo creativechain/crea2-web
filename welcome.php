@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <input v-on:input="checkUsername" v-bind:class="{ 'validate-required': true, 'field-error': error.username }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
                                 <span v-if="error.username" class="error-color-form">{{ error.username }}</span>
                             </div>
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <input v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
                                 <span v-if="error.email" class="error-color-form">{{ error.email }}</span>
                             </div>
@@ -272,13 +272,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <input id="welcome-slide6-input" v-on:input="inputPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.password }" type="text" v-bind:value="suggestedPassword" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
                             <span v-if="error.password" class="error-color-form">{{ error.password }}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a class="btn btn--transparent w-100 btn_copy" data-clipboard-target="#welcome-slide6-input" href="#0">
@@ -342,7 +342,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <input v-on:input="inputCheckPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.matchPassword }" type="text" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE7_INPUT_PLACEHOLDER" />
                                 <span v-if="error.matchPassword" class="error-color-form">{{ error.matchPassword }}</span>
                             </div>

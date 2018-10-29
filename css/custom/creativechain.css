@@ -35,6 +35,10 @@
     line-height: 1.85714286em; }
   .view-welcome .content-slide-welcome {
     line-height: 74px; }
+  .view-welcome .row-inputs {
+    line-height: 3;
+    text-align: left !important;
+    margin-top: 20px; }
   .view-welcome .col-terms {
     margin-bottom: -40px; }
   .view-welcome .btn--transparent span {
