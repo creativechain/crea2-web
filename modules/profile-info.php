@@ -20,10 +20,16 @@
     <div class="row mt-3">
         <div class="col text-center">
             <div v-if="session">
-                <a v-if="state.user.name != account.user.name" class="btn btn--sm btn--primary" href="#0"
+                <btn-follow v-if="state.user.name != account.user.name"
+                            v-on:follow="onFollow" v-bind:self="session"
+                            v-bind:user="state.user.name"
+                            v-bind:following="account.user.followings.indexOf(state.user.name)>-1" >
+                </btn-follow>
+
+                <!--<a  class="btn btn--sm btn--primary" href="#0"
                    v-on:click="makeFollow(state.user.name)">
                     <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                </a>
+                </a>-->
 
                 <a v-else class="btn btn--sm" href="#0" v-on:click="navfilter = 'edit'">
                     <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
