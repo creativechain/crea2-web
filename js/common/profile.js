@@ -102,6 +102,12 @@ let walletModalSend;
                     }
                 },
                 updated: function () {
+                    let t = $('#wallet-tabs').prev();
+                    if (t.is(':empty')) {
+                        t.remove();
+                        console.log('Removed generated tabs');
+                    }
+
                     let inputTags = $('#profile-edit-tags');
                     inputTags.tagsinput({
                         maxTags: CONSTANTS.MAX_TAGS,
