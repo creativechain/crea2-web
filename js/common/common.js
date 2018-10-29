@@ -13,7 +13,7 @@ const ipfs = IpfsApi({
 let bannerVue =  new Vue({
     el: '#home-banner',
     data: {
-        showBanner: true,
+        showBanner: false,
         lang: lang
     }
 });
@@ -52,6 +52,11 @@ const CONSTANTS = {
     MAX_TAGS: 8,
 
 };
+
+creaEvents.on('crea.session.login', function (session, account) {
+    showBanner(session == false);
+});
+
 function showBanner(show = true) {
     bannerVue.showBanner = show;
 }

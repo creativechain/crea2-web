@@ -120,8 +120,6 @@ let homePosts;
     });
 
     creaEvents.on('crea.session.login', function (s, a) {
-        showBanner(s == false);
-
         session = s;
         account = a;
         console.log(s, a);
