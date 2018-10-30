@@ -153,6 +153,22 @@
 .view-rewards .box-summary .blue-summary {
   color: #0569EF; }
 
+.view-wallet .dropdown > .dropdown__trigger:after {
+  content: '\e80a';
+  margin-left: 4px; }
+.view-wallet .dropdown > .dropdown__trigger:after {
+  font-family: "stack-interface";
+  display: inline-block;
+  font-size: 8px;
+  position: relative;
+  bottom: 2px; }
+.view-wallet .dropdown > .active {
+  font-weight: bold; }
+.view-wallet .li-buy-crea {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  opacity: 1 !important; }
 .view-wallet .padding-b-10 {
   padding-bottom: 10px; }
 .view-wallet .tabs-container-primary .tabs-primary {
@@ -191,6 +207,12 @@
   margin-bottom: 20px; }
 .view-wallet .wallet-password-tab label {
   font-weight: 600; }
+
+#wallet-send .amount-save {
+  margin: 5px 0 10px;
+  color: #999999; }
+#wallet-send .input-icon {
+  margin-bottom: 10px; }
 
 .row-list-user {
   display: flex;
@@ -594,6 +616,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 label {
   font-size: 12px; }
+
+.slide-energize .tooltip {
+  background: transparent; }
 
 .error-color-form {
   color: #FF5666 !important; }

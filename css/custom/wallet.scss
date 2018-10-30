@@ -1,4 +1,24 @@
 .view-wallet {
+  .dropdown > .dropdown__trigger:after {
+    content: '\e80a';
+    margin-left: 4px;
+  }
+  .dropdown > .dropdown__trigger:after {
+    font-family: "stack-interface";
+    display: inline-block;
+    font-size: 8px;
+    position: relative;
+    bottom: 2px;
+  }
+  .dropdown > .active {
+    font-weight: bold;
+  }
+  .li-buy-crea {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    opacity: 1 !important;
+  }
   .padding-b-10 {
     padding-bottom: 10px;
   }
@@ -77,5 +97,14 @@
     label {
       font-weight: 600;
     }
+  }
+}
+#wallet-send {
+  .amount-save {
+    margin: 5px 0 10px;
+    color: $grey-light;
+  }
+  .input-icon {
+    margin-bottom: 10px;
   }
 }

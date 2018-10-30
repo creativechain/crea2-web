@@ -65,5 +65,6 @@
 <script src="/js/custom.js"></script>
 
 <script src="/js/common/setup.js"></script>
+
 </body>
 </html>
