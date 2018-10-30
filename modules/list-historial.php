@@ -128,6 +128,28 @@
             </div>
             <hr>
         </div>
+        <div v-else-if="op.op.type == 'producer_reward_operation'" class="row-list-user">
+            <div class="user-avatar">
+                <a v-bind:href="'/profile.php?profile=' + op.op.value.producer">
+                    <avatar v-bind:username="op.op.value.producer" v-bind:url="history.accounts[op.op.value.producer].metadata.avatar.url"></avatar>
+                </a>
+            </div>
+            <div class="list-data-user">
+                <p>
+                    <username v-bind:user="op.op.value.producer" v-bind:name="history.accounts[op.op.value.producer].metadata.publicName"></username>
+                    <span>{{ dateFromNow(op.timestamp) }}</span>
+                </p>
+                <p>
+                    {{ parseAsset(op.op.value.vesting_shares) }} {{ lang.HISTORY.PRODUCED }}
+                    <linkname v-bind:user="op.op.value.producer" v-bind:name="history.accounts[op.op.value.producer].metadata.publicName"></linkname>
+                </p>
+                <p></p>
+            </div>
+            <div class="list-amount">
+                <p>+{{ parseAsset(op.op.value.vesting_shares) }}</p>
+            </div>
+            <hr>
+        </div>
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/profile.php?profile=' + op.op.value.creator">

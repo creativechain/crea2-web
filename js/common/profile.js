@@ -170,8 +170,12 @@ let walletModalSend;
                     },
                     getTags: function (post) {
                         let tags = post.metadata.tags;
-                        tags = tags.slice(0, 7);
-                        return tags.join(', ');
+                        if (tags) {
+                            tags = tags.slice(0, 7);
+                            return tags.join(', ');
+                        }
+
+                        return '';
                     },
                     userHasVote: function (post) {
                         let session = this.session;
@@ -332,6 +336,8 @@ let walletModalSend;
                         } else if (h.op.type == 'comment_operation') {
                             addIfNotExists(h.op.value.parent_author);
                             addIfNotExists(h.op.value.author);
+                        } else if (h.op.type == 'producer_reward_operation') {
+                            addIfNotExists(h.op.value.producer);
                         } else if (h.op.type == 'account_create_operation') {
                             addIfNotExists(h.op.value.creator);
                         }
