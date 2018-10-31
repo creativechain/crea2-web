@@ -32,6 +32,9 @@ input[type], textarea, select {
   height: 20px;
   background: #000;
 }
+.color--dark {
+  color: $color-dark-primary !important;
+}
 .input-checkbox label:before {
   border: 1px solid $color-blue-primary;
 }

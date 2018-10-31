@@ -25,8 +25,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a id="welcome-slide1-button-signup" class="btn btn--primary" href="#"  v-on:click="changeSlide(2)">
+                                    <div class="col-6">
+                                        <a id="welcome-slide1-button-signup" class="btn btn--primary w-100" href="#"  v-on:click="changeSlide(2)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.SIGN_UP }}
                                         </span>
@@ -78,8 +78,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary" v-on:click="changeSlide(3, error.username)">
+                                    <div class="col-6">
+                                        <a class="btn btn--primary w-100" v-on:click="changeSlide(3, error.username)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -135,14 +135,14 @@
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row">
                                     <div class="col-md-6 col-6">
-                                        <a class="btn btn--transparent" href="#"  v-on:click="changeSlide(2, null)">
+                                        <a class="btn btn--transparent w-100" href="#"  v-on:click="changeSlide(2, null)">
                                         <span id="welcome-slide3-button-back" class="btn__text">
                                             {{ lang.BUTTON.GO_BACK }}
                                         </span>
                                         </a>
                                     </div>
                                     <div class="col-md-6 col-6">
-                                        <a class="btn btn--primary" href="#" v-on:click="sendConfirmationMail()">
+                                        <a class="btn btn--primary w-100" href="#" v-on:click="sendConfirmationMail()">
                                         <span id="welcome-slide3-button-continue" class="btn__text">
                                             {{ lang.BUTTON.CONTINUE}}
                                         </span>
@@ -226,8 +226,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary  " href="#" v-on:click="changeSlide(6)">
+                                    <div class="col-6">
+                                        <a class="btn btn--primary w-100" href="#" v-on:click="changeSlide(6)">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>
@@ -372,8 +372,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary " href="#" v-on:click="createAccount()">
+                                    <div class="col-6">
+                                        <a class="btn btn--primary w-100" href="#" v-on:click="createAccount()">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CREATE_ACCOUNT }}
                                         </span>
@@ -419,8 +419,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary  " href="/">
+                                    <div class="col-6">
+                                        <a class="btn btn--primary w-100" href="/">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.CONTINUE }}
                                         </span>

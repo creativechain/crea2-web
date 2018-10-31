@@ -1,8 +1,8 @@
 <div class="col-md-12">
+    <h3 class="title-profile">Notifications</h3>
+</div>
+<div class="col-md-12">
     <div class="boxed boxed--border">
-        <div class="col-md-12">
-            <h3>Notifications</h3>
-        </div>
         <div class="row-list-user">
             <div class="user-avatar">
                 <div class="img-user-avatar"></div>
