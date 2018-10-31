@@ -1,4 +1,39 @@
 .view-wallet {
+  .ul-submenu-wallet {
+    li:nth-child(1) {
+      padding: 0.92857143em 4px;
+    }
+  }
+  .tabs li.active .tab__title span {
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .row-liquid {
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    a {
+      text-decoration: none;
+    }
+  }
+  hr {
+    margin-left: -30px;
+    margin-right: -30px;
+  }
+  .total-active {
+    font-weight: bold;
+  }
+  .title-wallet {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .tabs li.active .tab__title span {
+    color: $border-btn-transparent;
+  }
+  .tabs--folder .tab__title .h5 {
+    text-transform: uppercase;
+    color: $border-btn-transparent;
+  }
   .dropdown > .dropdown__trigger:after {
     content: '\e80a';
     margin-left: 4px;
@@ -88,6 +123,7 @@
     .alert-wallet-tab {
       font-size: 14px;
       color: $color-blue-primary;
+
     }
     .content-tab-password {
       .col-md-* {

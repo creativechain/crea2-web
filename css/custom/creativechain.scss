@@ -166,6 +166,13 @@ input[type], textarea, select {
   background: $color-blue-primary;
   border-color: $color-blue-primary;
 }
+.btn--secondary, .btn--secondary:visited {
+  background: $background-btn-secondary;
+  border-color: $background-btn-secondary;
+}
+.color-secondary {
+  color: $background-navbar-dark !important;
+}
 .btn--black, .btn--black:visited {
   background: $color-dark-primary;
   border-color: $color-dark-primary;

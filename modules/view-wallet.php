@@ -5,9 +5,11 @@
                 {{ state.user.reward_cbd_balance}} {{ lang.COMMON.AND }}
                 {{ getCGYReward() }}
             </span>
-        </div>
-        <div class="alert__close">
-            ×
+            <span class="row-liquid">
+                <a href="" class="btn btn--sm btn--secondary">
+                    <span class="btn__text color-secondary">Liquidar cuentas (transferir a saldo)</span>
+                </a>
+            </span>
         </div>
     </div>
 </div>
@@ -15,7 +17,7 @@
 <div class="col-md-12">
     <div class="boxed boxed--border no-padding">
         <div class="tabs-container tabs--folder tabs-container-primary">
-            <ul class="tabs tabs-primary">
+            <ul class="tabs tabs-primary ul-submenu-wallet">
                 <li v-bind:class="{ active: walletTab === 'balances' }" v-on:click="walletTab = 'balances'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.BALANCES }}</span>
@@ -42,7 +44,7 @@
 
             </ul>
 
-            <ul id="wallet-tabs" class="tabs-content">
+            <ul id="wallet-tabs" class="tabs-content no-padding">
                 <li v-bind:class="{ active: walletTab === 'balances' }">
                     <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'balances' }">
                         <table class="table-amount table">
@@ -317,6 +319,21 @@
                                             </div><!--end container-->
                                         </div><!--end dropdown container-->
                                     </div>
+                                    <div class="dropdown">
+                                        <span class="dropdown__trigger">2850 CBD</span>
+                                        <div v-if="canWithdraw()" class="dropdown__container">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-lg-2 dropdown__content">
+                                                        <ul class="menu-vertical">
+                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}</li>
+                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!--end row-->
+                                            </div><!--end container-->
+                                        </div><!--end dropdown container-->
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -325,7 +342,7 @@
                                     <p>{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <p>55,28$</p>
+                                    <p class="total-active">55,28$</p>
                                 </td>
                             </tr>
                             </tbody>
