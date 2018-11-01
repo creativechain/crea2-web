@@ -21,6 +21,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 label {
   font-size: 12px;
 }
+.slide-energize {
+  .tooltip {
+    background: transparent;
+  }
+}
 .error-color-form {
   color: $notification-navbar !important;
 }
@@ -160,6 +165,13 @@ input[type], textarea, select {
 .btn--primary, .btn--primary:visited {
   background: $color-blue-primary;
   border-color: $color-blue-primary;
+}
+.btn--secondary, .btn--secondary:visited {
+  background: $background-btn-secondary;
+  border-color: $background-btn-secondary;
+}
+.color-secondary {
+  color: $background-navbar-dark !important;
 }
 .btn--black, .btn--black:visited {
   background: $color-dark-primary;

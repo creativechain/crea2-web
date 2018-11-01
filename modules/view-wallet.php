@@ -5,17 +5,19 @@
                 {{ state.user.reward_cbd_balance}} {{ lang.COMMON.AND }}
                 {{ getCGYReward() }}
             </span>
-        </div>
-        <div class="alert__close">
-            ×
+            <span class="row-liquid">
+                <a href="" class="btn btn--sm btn--secondary">
+                    <span class="btn__text color-secondary">Liquidar cuentas (transferir a saldo)</span>
+                </a>
+            </span>
         </div>
     </div>
 </div>
 
 <div class="col-md-12">
-    <div class="boxed boxed--border">
+    <div class="boxed boxed--border no-padding">
         <div class="tabs-container tabs--folder tabs-container-primary">
-            <ul class="tabs tabs-primary">
+            <ul class="tabs tabs-primary ul-submenu-wallet">
                 <li v-bind:class="{ active: walletTab === 'balances' }" v-on:click="walletTab = 'balances'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.BALANCES }}</span>
@@ -34,10 +36,15 @@
                     </div>
 
                 </li>
+                <li class="text-right li-buy-crea">
+                    <a href="" class="btn btn--sm btn--primary type--uppercase">
+                        <span class="btn__text">Comprar CREA o CREA Energy</span>
+                    </a>
+                </li>
 
             </ul>
 
-            <ul id="wallet-tabs" class="tabs-content">
+            <ul id="wallet-tabs" class="tabs-content no-padding">
                 <li v-bind:class="{ active: walletTab === 'balances' }">
                     <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'balances' }">
                         <table class="table-amount table">
@@ -55,7 +62,7 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div class="dropdown">
-                                        <span id="wallet-balance-crea" class="dropdown__trigger">{{ state.user.balance }}</span>
+                                        <span id="wallet-balance-crea" class="dropdown__trigger active">{{ state.user.balance }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -79,7 +86,6 @@
                                                                                                     <div class="modal-close modal-close-cross"></div>
                                                                                                     <div class="text-block">
                                                                                                         <h3>{{ config.title }}</h3>
-                                                                                                        <hr class="short">
                                                                                                         <p>{{ config.text }}</p>
                                                                                                     </div>
                                                                                                     <form>
@@ -113,6 +119,7 @@
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
                                                                                                                     <input v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                    <p class="amount-save">Total ahorros: 345,67 CREA</p>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -194,7 +201,70 @@
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_DE_ENERGIZE }}</li>
+                                                            <li>
+                                                                <div class="modal-instance block">
+                                                                    <a class="modal-trigger" href="#crea-de-energize">
+                                                                        <span class="btn__text">
+                                                                            {{ lang.WALLET.DROPDOWN_MENU_DE_ENERGIZE }}
+                                                                        </span>
+                                                                    </a>
+                                                                    <div id="crea-de-energize" class="modal-container" data-modal-id="crea-de-energize">
+                                                                        <div class="modal-content section-modal">
+                                                                            <section class="unpad ">
+                                                                                <div class="container">
+                                                                                    <div class="row justify-content-center">
+                                                                                        <div class="col-lg-6 col-md-8 col-sm-12">
+                                                                                            <div class="feature">
+                                                                                                <div class="feature__body boxed boxed--lg boxed--border">
+                                                                                                    <div class="modal-close modal-close-cross"></div>
+                                                                                                    <div class="text-block">
+                                                                                                        <h3>De-Energize</h3>
+                                                                                                        <div class="slide-energize">
+                                                                                                            <input id="ex6" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="3"/>
+                                                                                                            <span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">3</span></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <form>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-md-2">
+                                                                                                                <p class="text-p-form">Cantidad</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-md-10">
+                                                                                                                <div class="input-icon input-icon--right">
+                                                                                                                    <i class="">CREA</i>
+                                                                                                                    <input v-model="amount" type="number" name="input">
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-md-12">
+                                                                                                                <p class="mt--1">Eso es 0,0000 por semana</p>
+                                                                                                                <p class="error-color-form">No se recomienda dejar menos de 5 CREA ENERGY en su cuenta, ya que puede dejar su cuenta en un estado inutilizable.</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row mt-1">
+                                                                                                            <div class="col text-right">
+                                                                                                                <a href="#0" class="btn btn--sm btn--primary type--uppercase">
+                                                                                                                    <span class="btn__text">De-Energize</span>
+                                                                                                                </a>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+
+
+
+
+
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</li>
                                                         </ul>
                                                     </div>
@@ -249,6 +319,21 @@
                                             </div><!--end container-->
                                         </div><!--end dropdown container-->
                                     </div>
+                                    <div class="dropdown">
+                                        <span class="dropdown__trigger">2850 CBD</span>
+                                        <div v-if="canWithdraw()" class="dropdown__container">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-lg-2 dropdown__content">
+                                                        <ul class="menu-vertical">
+                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}</li>
+                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!--end row-->
+                                            </div><!--end container-->
+                                        </div><!--end dropdown container-->
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -257,7 +342,7 @@
                                     <p>{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <p>55,28$</p>
+                                    <p class="total-active">55,28$</p>
                                 </td>
                             </tr>
                             </tbody>

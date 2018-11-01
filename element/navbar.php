@@ -22,6 +22,8 @@
     <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
 
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -32,6 +34,8 @@
     <script src="/js/vue.js"></script>
     <script src="/ckeditor/ckeditor.js"></script>
     <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap-slider.min.js"></script>
+
 </head>
 <body class=" ">
 <a id="start"></a>
