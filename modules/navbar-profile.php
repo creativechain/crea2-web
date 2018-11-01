@@ -8,7 +8,7 @@
             <div class="dropdown__container">
                 <div class="container">
                     <div class="row">
-                        <div class="dropdown__content col-lg-2 col-md-4">
+                        <div class="dropdown__content col-lg-2 col-md-4 text-left">
                             <ul class="menu-vertical">
                                 <li class="">
                                     <a href="#0" v-on:click="navfilter = 'author-rewards'">

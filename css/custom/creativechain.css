@@ -607,10 +607,11 @@
   width: 72px;
   overflow: hidden;
   min-height: 53px;
-  min-width: 70px;
+  min-width: 72px;
   border-radius: 5px;
-  position: relative;
-  top: 6px; }
+  position: absolute;
+  top: 6px;
+  right: 11px; }
 .view-notifications .img-user-notification {
   background-size: cover;
   width: 72px;
