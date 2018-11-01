@@ -71,8 +71,8 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input v-on:input="checkUsername" v-bind:class="{ 'validate-required': true, 'field-error': error.username }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
-                                <span v-if="error.username" class="error-color-form">{{ error.username }}</span>
+                                <input v-on:input="checkUsername" v-bind:class="{ 'validate-required': true, 'field-error': error.username && error.username.length > 0 }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
+                                <span v-if="error.username && error.username.length > 0" class="error-color-form">{{ error.username }}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -127,8 +127,8 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
-                                <span v-if="error.email" class="error-color-form">{{ error.email }}</span>
+                                <input v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email && error.email.length > 0 }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
+                                <span v-if="error.email && error.email.length > 0" class="error-color-form">{{ error.email }}</span>
                             </div>
                         </div>
                         <div class="row">

@@ -17,12 +17,12 @@ function welcomeSetUp() {
             username: '',
             email: '',
             error: {
-                username: lang.ERROR.INVALID_USERNAME,
-                email: lang.ERROR.INVALID_EMAIL,
+                username: '',
+                email: '',
                 password: null,
-                matchPassword: lang.ERROR.PASSWORDS_NOT_MATCH,
-                terms: lang.ERROR.DENIED_TERMS,
-                policy: lang.ERROR.DENIED_POLICY,
+                matchPassword: '',
+                terms: '',
+                policy: '',
             },
             validUsername: false,
             validEmail: false,
@@ -39,7 +39,7 @@ function welcomeSetUp() {
             checkEmail: checkEmail,
             changeSlide: function (slide, error = null) {
                 console.log("Change to slide", slide, error);
-                if (!error) {
+                if (!error || error.length == 0) {
                     this.slide = slide;
                 }
             },
@@ -106,8 +106,36 @@ function checkEmail(event) {
     console.log("Checking mail", email, validateEmail(email));
 
     if (validateEmail(email)) {
-        welcomeVue.error.email = null;
-        welcomeVue.email = email;
+
+        refreshAccessToken(function (accessToken) {
+            let url = 'https://platform.creativechain.net/validateAccount';
+            let http = new HttpClient(url);
+            http.setHeaders({
+                Authorization: 'Bearer ' + accessToken
+            }).post({
+                username: welcomeVue.username,
+                email: email
+            }).on('fail', function (data, status, error) {
+                console.error('Request failed', data, status, error);
+                if (data.responseText) {
+                    let response = jsonify(data.responseText);
+                    if (response.error === 'REGISTERED_EMAIL') {
+                        welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
+                        return;
+                    }
+                }
+
+                welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
+            });
+
+            http.on('done', function (data) {
+                console.log('Validate', data);
+                welcomeVue.error.email = null;
+                welcomeVue.email = email;
+            });
+        });
+
+
     } else {
         welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
         welcomeVue.email = '';
