@@ -99,6 +99,9 @@
 .simple-view-home .container {
   max-width: 500px; }
 
+.view-profile .title-profile {
+  font-size: 14px;
+  color: #3B3B3C; }
 .view-profile table img {
   width: 20px; }
 .view-profile .p-top-15 {
@@ -658,6 +661,9 @@ input[type], textarea, select {
   width: 20px;
   height: 20px;
   background: #000; }
+
+.color--dark {
+  color: #222222 !important; }
 
 .input-checkbox label:before {
   border: 1px solid #0569EF; }

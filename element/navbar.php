@@ -241,7 +241,6 @@
                                                             <div class="boxed boxed--lg bg--white text-center feature">
                                                                 <div class="modal-close modal-close-cross"></div>
                                                                 <h3>{{ lang.LOGIN.TITLE }}</h3>
-                                                                <hr v-bind:data-title="lang.COMMON.OR_CAP">
                                                                 <div class="feature__body">
                                                                     <form id="login-form" action="#0" v-on:submit="login" class="content-login">
                                                                         <div class="row">
@@ -255,11 +254,22 @@
                                                                                 <span class="error-color-form">La contraseña no coincide</span>
                                                                             </div>
                                                                             <div class="col">
+                                                                                <a class="btn btn--transparent w-100" href="#">
+                                                                                    <span class="btn__text color--dark">
+                                                                                        Cancel
+                                                                                    </span>
+                                                                                </a>
+
                                                                                 <button class="btn btn--transparent color--dark"
                                                                                         type="submit">Cancel
                                                                                 </button>
                                                                             </div>
                                                                             <div class="col">
+                                                                                <a class="btn btn--primary w-100" href="#" id="login-button">
+                                                                                    <span class="btn__text">
+                                                                                        {{ lang.BUTTON.LOGIN }}
+                                                                                    </span>
+                                                                                </a>
                                                                                 <button id="login-button"
                                                                                         class="btn btn--primary"
                                                                                         type="submit">{{ lang.BUTTON.LOGIN }}
