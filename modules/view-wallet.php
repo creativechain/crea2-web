@@ -411,7 +411,7 @@
                 </li>
                 <li v-if="session" v-bind:class="{ active: walletTab === 'passwords' }" class="wallet-password-tab">
                     <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'passwords' }">
-                        <div class="row content-tab-password">
+                        <div class="content-tab-password">
                             <div class="col-md-12">
                                 <h3>{{ lang.CHANGE_PASSWORD.TITLE }}</h3>
                                 <p class="alert-wallet-tab">{{ lang.CHANGE_PASSWORD.SUBTITLE }}</p>
