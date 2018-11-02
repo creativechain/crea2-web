@@ -1,11 +1,15 @@
 .post-view {
   background: $background-modal !important;
+  .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   section {
     padding-top: 50px;
   }
   .upload-img {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -15px;
+    margin-right: -15px;
     text-align: center;
   }
   .border-post-view {
@@ -47,7 +51,7 @@
         background-position: 50% 50%;
         width: 100%;
         cursor: pointer;
-        border-radius: 6px 6px 0 0;
+        border-radius: 6px 6px 6px 6px;
       }
       .box-comment {
         margin-top: 10px;
@@ -157,8 +161,9 @@
 
   .menu-right {
     padding-left: 0;
+    padding-right: 0;
     hr {
-      margin: 20px -10px 20px -6px;
+      margin: 10px -30px 10px -11px;
       border-color: $grey-circle;
 
     }
@@ -192,7 +197,7 @@
       }
     }
     .row-master {
-      margin: 20px 0;
+      margin: 20px -15px 20px -15px;
       .col-md-6 {
         display: flex;
         p {
@@ -201,8 +206,8 @@
         }
       }
       img {
-        width: 28px;
-        height: 28px;
+        width: 27px;
+        height: 27px;
       }
     }
     .row-publish-description {
@@ -221,7 +226,7 @@
       margin-top: 10px;
       .ul-social {
         hr {
-          margin: 10px -20px 10px -6px;
+          margin: 10px -30px 10px -11px;
         }
         li:nth-child(1) {
           padding-top: 0;
@@ -235,8 +240,8 @@
             margin-top: 5px;
           }
           img {
-            width: 30px;
-            height: 30px;
+            width: 27px;
+            height: 27px;
           }
         }
       }

@@ -40,7 +40,11 @@
                             </div>
                             <div class="row row-promote justify-content-center">
                                 <div class=" col-md-4">
-                                    <button type="submit" class="btn btn--primary type--uppercase">{{ lang.BUTTON.PROMOTE }}</button>
+                                    <a href="#" class="btn btn--transparent ">
+                                        <span class="btn__text color--dark">
+                                            {{ lang.BUTTON.PROMOTE }}
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                             <div class="row">
@@ -60,11 +64,15 @@
                             <!--<div class="row">
                                 <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.YOUR_COMMENTS }}</p></div>
                             </div>-->
-                            <div class="row">
+                            <div class="row mt--1">
+                                <div class="col-md-12">
+                                    <p class="subtitle-content-publish">Your comments</p>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="boxed boxed--border box-comment">
                                         <div v-if="session" class="row">
                                             <div class="col-md-12 row-comment">
+
                                                 <div class="user-avatar">
                                                     <a href="/profile.php">
                                                         <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (user.metadata.avatar.url || getDefaultAvatar(user.name)) + ')' }"></div>
@@ -74,11 +82,11 @@
                                                     <textarea name="text" placeholder="Message" rows="4" v-model="comment"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 m-3">
-                                                <a class="btn btn--primary w-100" href="#/" v-on:click="makeComment">
-                                                            <span class="btn__text">
-                                                                {{ lang.BUTTON.POST_COMMENT }}
-                                                            </span>
+                                            <div class="col-md-12 mt--1 text-right">
+                                                <a class="btn btn--primary" href="#/" v-on:click="makeComment">
+                                                    <span class="btn__text">
+                                                        {{ lang.BUTTON.POST_COMMENT }}
+                                                    </span>
                                                 </a>
                                             </div>
                                         </div>
@@ -215,13 +223,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <!--<a class="btn btn--primary type--uppercase w-100" href="#">
-                                            <span class="btn__text">
-                                                {{ lang.BUTTON.FOLLOW }}
-                                            </span>
-                                    </a>-->
-                                    <btn-follow class="type--uppercase w-100" v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.post.author" v-bind:following="false" ></btn-follow>
+                                <div class="col-md-12 text-center">
+                                    <btn-follow class="" v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.post.author" v-bind:following="false" ></btn-follow>
                                 </div>
                             </div>
                             <div class="row">
@@ -272,11 +275,11 @@
                                 </div>
                             </div>
                             <div class="row row-download">
-                                <div class="col-md-12">
-                                    <a class="btn btn--primary type--uppercase w-100" href="#">
-                                            <span class="btn__text">
-                                                {{ lang.BUTTON.DOWNLOAD }}
-                                            </span>
+                                <div class="col-md-12 text-center">
+                                    <a class="btn btn--primary" href="#">
+                                        <span class="btn__text">
+                                            {{ lang.BUTTON.DOWNLOAD }}
+                                        </span>
                                     </a>
                                 </div>
                                 <div class="col-md-12 row-format">
