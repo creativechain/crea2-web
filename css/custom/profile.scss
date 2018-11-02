@@ -3,9 +3,16 @@
     font-size: 14px;
     color: $border-btn-transparent;
   }
-  table {
+  .profile-summary {
+    .col-md-7 {
+      margin-bottom: 10px;
+    }
     img {
       width: 20px;
+      margin-right: 5px;
+    }
+    span {
+      font-weight: 600;
     }
   }
   .p-top-15 {
@@ -63,7 +70,8 @@
       min-height: 70px;
       min-width: 70px;
       border-radius: 50px;
-      margin: 0 auto;
+      margin: 20px auto;
+
     }
     .img-user-avatar {
       background-image: url("/img/crea-web/publish/demo-vertical.jpg");
@@ -79,6 +87,7 @@
     .ranking-user-info {
       img {
         width: 20px;
+        margin-right: 5px;
       }
     }
   }
@@ -97,4 +106,15 @@
       color: $color-blue-primary;
     }
   }
+}
+.view-edit-profile {
+ #profile-edit {
+   .row {
+     margin-bottom: 15px;
+   }
+   label {
+     margin-bottom: 5px;
+     font-weight: 600;
+   }
+ }
 }

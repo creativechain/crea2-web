@@ -196,12 +196,12 @@
                     <div class="bar__module float-right">
                         <ul class="menu-horizontal text-left">
                             <li>
-                                <a href="#" data-notification-link="search-box">
+                                <a href="#" data-notification-link="search-box" class="icons-navbar">
                                     <i class="stack-search"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="" class="navbar-notification" style="display: inline-grid;">
+                                <a href="" class="navbar-notification icons-navbar" style="display: inline-grid;">
                                     <i class="far fa-bell"></i>
                                     <i class="fas fa-circle"></i>
                                 </a>
@@ -209,14 +209,14 @@
 
                             <li v-if="session">
                                 <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
-                                    <span class="btn__text">
+                                    <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
                                 </a>
                             </li>
                             <li v-if="!session">
-                                <a class="btn btn--sm type--uppercase" href="/welcome.php">
-                                    <span class="btn__text">
+                                <a class="btn btn--sm type--uppercase " href="/welcome.php">
+                                    <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.SIGN_UP }}
                                     </span>
                                 </a>

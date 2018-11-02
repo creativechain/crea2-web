@@ -41,7 +41,7 @@
                                 <div v-else-if="navfilter === 'wallet'" class="row view-wallet">
                                     <?php include ('modules/view-wallet.php') ?>
                                 </div>
-                                <div v-else-if="navfilter === 'edit'">
+                                <div v-else-if="navfilter === 'edit'" class="row view-edit-profile">
                                     <?php include ('modules/profile-edit.php') ?>
                                 </div>
                             </div>

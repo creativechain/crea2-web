@@ -102,8 +102,13 @@
 .view-profile .title-profile {
   font-size: 14px;
   color: #3B3B3C; }
-.view-profile table img {
-  width: 20px; }
+.view-profile .profile-summary .col-md-7 {
+  margin-bottom: 10px; }
+.view-profile .profile-summary img {
+  width: 20px;
+  margin-right: 5px; }
+.view-profile .profile-summary span {
+  font-weight: 600; }
 .view-profile .p-top-15 {
   padding-top: 15px; }
 .view-profile .card.card-2.card-home {
@@ -136,7 +141,7 @@
   min-height: 70px;
   min-width: 70px;
   border-radius: 50px;
-  margin: 0 auto; }
+  margin: 20px auto; }
 .view-profile .menu-profile-user .img-user-avatar {
   background-image: url("/img/crea-web/publish/demo-vertical.jpg");
   background-size: cover;
@@ -147,7 +152,8 @@
   font-size: 14px;
   font-weight: 600; }
 .view-profile .menu-profile-user .ranking-user-info img {
-  width: 20px; }
+  width: 20px;
+  margin-right: 5px; }
 
 .view-rewards .box-rewards-autor {
   font-size: 14px; }
@@ -155,6 +161,12 @@
   margin-bottom: 0; }
 .view-rewards .box-summary .blue-summary {
   color: #0569EF; }
+
+.view-edit-profile #profile-edit .row {
+  margin-bottom: 15px; }
+.view-edit-profile #profile-edit label {
+  margin-bottom: 5px;
+  font-weight: 600; }
 
 .view-wallet .ul-submenu-wallet li:nth-child(1) {
   padding: 0.92857143em 4px; }
@@ -783,6 +795,9 @@ input[type], textarea, select {
 .btn .btn__text, .btn i {
   font-size: 12px; }
 
+.icons-navbar {
+  font-size: 16px !important; }
+
 .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
   font-size: 14px; }
 
@@ -841,7 +856,8 @@ img {
     font-weight: bold;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden; }
+    overflow: hidden;
+    cursor: pointer; }
   .card-home .card__body .description-post-box {
     margin-bottom: 0.92857143em;
     display: block;
@@ -886,6 +902,8 @@ img {
       margin-right: 5px; }
   .card-home .card-show {
     overflow: visible; }
+  .card-home .dropdown-info-user .container {
+    width: 960px; }
   .card-home .dropdown-info-user .user-avatar {
     margin: 0 auto; }
   .card-home .dropdown-info-user .user-avatar {
@@ -981,7 +999,12 @@ img {
 
 .btn .btn__text, .btn i {
   color: white;
-  border-color: white; }
+  border-color: white;
+  font-weight: normal; }
+
+.btn-publish-navbar {
+  position: relative;
+  top: -4px; }
 
 .btn {
   border-radius: 25px;
@@ -992,7 +1015,10 @@ img {
   border: 1px solid white;
   border-width: 1px;
   font-size: inherit;
-  line-height: 1.85714286em; }
+  line-height: 1.85714286em;
+  min-width: 155px;
+  max-height: 25px;
+  font-weight: normal; }
 
 .btn:not([class*='primary']):hover {
   border-color: #0569EF;

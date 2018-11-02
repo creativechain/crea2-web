@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card__body">
-            <h4>{{ state.content[p].title }}</h4>
+            <h4 v-on:click="openPost(state.content[p])">{{ state.content[p].title }}</h4>
             <p class="description-post-box">{{ getTags(state.content[p]) }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">

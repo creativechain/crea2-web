@@ -162,6 +162,9 @@ input[type], textarea, select {
 .btn .btn__text, .btn i {
   font-size: 12px;
 }
+.icons-navbar {
+  font-size: 16px !important;
+}
 .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
   font-size: 14px;
 }
@@ -226,6 +229,7 @@ img {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      cursor: pointer;
     }
     .description-post-box {
       margin-bottom: 0.92857143em;
@@ -296,6 +300,9 @@ img {
     overflow: visible;
   }
   .dropdown-info-user {
+    .container {
+      width: 960px;
+    }
     .user-avatar {
       margin: 0 auto;
     }
@@ -418,6 +425,11 @@ img {
 .btn .btn__text, .btn i {
   color: $color-white;
   border-color: $color-white;
+  font-weight: normal;
+}
+.btn-publish-navbar{
+  position: relative;
+  top: -4px;
 }
 .btn {
   border-radius: 25px;
@@ -429,6 +441,10 @@ img {
   border-width: 1px;
   font-size: inherit;
   line-height: 1.85714286em;
+  min-width: 155px;
+  max-height: 25px;
+  font-weight: normal;
+
 }
 .btn:not([class*='primary']):hover {
   border-color: $color-blue-primary;

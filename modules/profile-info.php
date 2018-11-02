@@ -50,74 +50,57 @@
         </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col">
-            <table>
-                <thead class="hidden">
-                <tr>
-                    <th>Value 1</th>
-                    <th>Value 2</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/like.svg" alt="">
-                            <span>{{ lang.PROFILE.LIKES }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>0</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/comments.svg" alt="">
-                            <span>{{ lang.PROFILE.COMMENTS }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.comment_count }}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/followers.svg" alt="">
-                            <span>{{ lang.PROFILE.FOLLOWERS }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.followers_count }}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/following.svg" alt="">
-                            <span>{{ lang.PROFILE.FOLLOWING }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.following_count }}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/projects.svg" alt="">
-                            <span>{{ lang.PROFILE.POSTS }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.post_count }}</p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="row profile-summary">
+        <div class="col-md-7">
+            <p>
+                <img src="img/icons/like.svg" alt="">
+                <span>{{ lang.PROFILE.LIKES }}</span>
+            </p>
         </div>
+        <div class="col-md-5 text-right">
+            <p>0</p>
+        </div>
+
+        <div class="col-md-7">
+            <p>
+                <img src="img/icons/comments.svg" alt="">
+                <span>{{ lang.PROFILE.COMMENTS }}</span>
+            </p>
+        </div>
+        <div class="col-md-5 text-right">
+            <p>{{ state.user.comment_count }}</p>
+        </div>
+
+        <div class="col-md-7">
+            <p>
+                <img src="img/icons/followers.svg" alt="">
+                <span>{{ lang.PROFILE.FOLLOWERS }}</span>
+            </p>
+        </div>
+        <div class="col-md-5 text-right">
+            <p>{{ state.user.followers_count }}</p>
+        </div>
+
+        <div class="col-md-7">
+            <p>
+                <img src="img/icons/following.svg" alt="">
+                <span>{{ lang.PROFILE.FOLLOWING }}</span>
+            </p>
+        </div>
+        <div class="col-md-5 text-right">
+            <p>{{ state.user.following_count }}</p>
+        </div>
+
+        <div class="col-md-7">
+            <p>
+                <img src="img/icons/projects.svg" alt="">
+                <span>{{ lang.PROFILE.POSTS }}</span>
+            </p>
+        </div>
+        <div class="col-md-5 text-right">
+            <p>{{ state.user.post_count }}</p>
+        </div>
+
     </div>
     <hr>
     <div class="row profile-tags">
