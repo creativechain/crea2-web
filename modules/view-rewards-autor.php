@@ -31,7 +31,7 @@
                         <th scope="col">Handle</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody-rewards">
                     <tr>
                         <td>23 Ene 18:34</td>
                         <td>Lorem ipsum dolor sit amet for, consectetur alsgliuasybalg kahsfgljasg</td>

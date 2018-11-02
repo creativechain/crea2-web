@@ -26,6 +26,27 @@ label {
     background: transparent;
   }
 }
+.li-avatar-navbar {
+  .dropdown__content {
+    padding: 0 !important;
+    max-width: 200px;
+  }
+  ul {
+    li:first-child {
+      margin-top: 15px;
+    }
+    li:last-child {
+      margin-bottom: 15px;
+    }
+    li {
+      a {
+        margin-left: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}
 .error-color-form {
   color: $notification-navbar !important;
 }
@@ -244,6 +265,9 @@ img {
       max-height: 16px;
       line-height: 16px;
     }
+    .amount-post-view-home {
+      max-width: 230px;
+    }
   }
   .modal-instance {
     width: 100%;
@@ -258,7 +282,7 @@ img {
     a {
       color: $color-dark-primary;
       img {
-        width: 14px;
+        width: 16px;
       }
     }
   }
@@ -369,8 +393,14 @@ img {
     height: 30px;
     background-position: 50% 50%;
   }
+  .size-25-avatar {
+    width: 25px !important;
+    height: 25px !important;
+    min-height: 25px !important;
+    min-width: 25px !important;
+  }
   .dropdown-autor-span-name {
-    margin-top: 5px;
+    margin-top: 2px;
     margin-left: 10px;
   }
   .row-flex {

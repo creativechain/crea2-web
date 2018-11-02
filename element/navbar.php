@@ -221,14 +221,43 @@
                                     </span>
                                 </a>
                             </li>
+
+
+                            <li v-if="session" class="li-avatar-navbar">
+                                <div class="dropdown">
+                                    <span class="dropdown__trigger">
+                                        <div class="user-avatar" >
+                                            <avatar v-bind:username="user.name" v-bind:url="user.metadata.avatar.url"></avatar>
+                                        </div>
+                                    </span>
+                                    <div class="dropdown__container">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-2 col-lg-2 dropdown__content">
+                                                    <ul class="menu-vertical">
+                                                        <li><a href="">Proyectos</a></li>
+                                                        <li class="separate"><a href="">Siguiendo</a></li>
+                                                        <li class="separate"><a href="">Notificaciones</a></li>
+                                                        <li class="separate"><a href="">Recompensas</a></li>
+                                                        <li class="separate"><a href="">Monedero</a></li>
+                                                        <li class="separate"><a href="">Cambiar contraseña</a></li>
+                                                        <li class="separate"><a href="/profile.php">Configuración</a></li>
+                                                        <li class="separate"><a href="">Cerrar sesión</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div><!--end row-->
+                                        </div><!--end container-->
+                                    </div><!--end dropdown container-->
+                                </div>
+                            </li>
+
+
+
+
                             <li>
                                 <div class="modal-instance">
 
-                                    <div class="user-avatar" v-if="session">
-                                        <a href="/profile.php">
-                                            <avatar v-bind:username="user.name" v-bind:url="user.metadata.avatar.url"></avatar>
-                                        </a>
-                                    </div>
+
 
                                     <a href="#" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 

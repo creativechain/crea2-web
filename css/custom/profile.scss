@@ -113,6 +113,13 @@
       color: $color-blue-primary;
     }
   }
+  .tbody-rewards {
+    tr:first-child {
+      td {
+        border-top: 1px solid transparent !important;
+      }
+    }
+  }
 }
 .view-edit-profile {
  #profile-edit {

@@ -25,7 +25,7 @@
                         <div class="dropdown__container">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-3 col-lg-3 dropdown__content">
+                                    <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
                                         <p class="title">{{ lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ state.content[p].pending_payout_value }} </p>
                                         <p>{{ state.content[p].total_pending_payout_value }}</p>
                                         <p>{{ getFutureDate(state.content[p].cashout_time) }}</p>
@@ -50,8 +50,8 @@
                 <li>
                     <div class="dropdown dropdown-autor">
                         <div class="row-flex">
-                            <div class="user-avatar">
-                                <avatar v-bind:username="state.content[p].author" v-bind:url="state.accounts[state.content[p].author].metadata.avatar.url"></avatar>
+                            <div class="user-avatar size-25-avatar">
+                                <avatar class="size-25-avatar" v-bind:username="state.content[p].author" v-bind:url="state.accounts[state.content[p].author].metadata.avatar.url"></avatar>
                             </div>
                             <span class="dropdown-autor-span-name">{{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}</span>
                         </div>

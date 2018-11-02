@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 align-self-center">
+            <div class="col-md-3 align-self-center text-right">
                 <a href="/publish.php" class="btn btn--sm btn--primary">
                     <span class="btn__text">Unlock</span>
                 </a>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 align-self-center">
+            <div class="col-md-3 align-self-center text-right">
                 <a href="/publish.php" class="btn btn--sm btn--primary">
                     <span class="btn__text">Unlock</span>
                 </a>
