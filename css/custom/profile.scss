@@ -5,6 +5,11 @@
     margin: 10px;
     text-transform: uppercase;
   }
+  .row-list {
+    .row:last-child {
+      border-bottom: solid 1px transparent !important;
+    }
+  }
   .profile-summary {
     .col-md-7 {
       margin-bottom: 10px;

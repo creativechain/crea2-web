@@ -3,7 +3,7 @@
 </div>
 
 <div class="col-md-12">
-    <div class="boxed boxed--border">
+    <div class="boxed boxed--border row-list">
         <div class="row row-list-user">
             <div class="col-md-9">
                 <div class="row-list-user-display">

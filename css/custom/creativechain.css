@@ -104,6 +104,8 @@
   font-weight: bold;
   margin: 10px;
   text-transform: uppercase; }
+.view-profile .row-list .row:last-child {
+  border-bottom: solid 1px transparent !important; }
 .view-profile .profile-summary .col-md-7 {
   margin-bottom: 10px; }
 .view-profile .profile-summary img {
