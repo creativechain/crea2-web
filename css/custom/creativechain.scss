@@ -196,9 +196,12 @@ input[type], textarea, select {
   transform-style: flat;
 }
 #slide-home {
-  padding: 15em 0;
+  padding: 7em 0;
   h1, h3, span {
     color: $color-white;
+  }
+  .background-image-holder {
+    height: 360px;
   }
 }
 img {
@@ -437,7 +440,7 @@ img {
   padding-bottom: 0;
   padding-right: 2em;
   padding-left: 2em;
-  border: 1px solid $color-white;
+  border: 1px solid transparent;
   border-width: 1px;
   font-size: inherit;
   line-height: 1.85714286em;
@@ -450,7 +453,9 @@ img {
   border-color: $color-blue-primary;
   background-color: $color-blue-primary;
 }
-
+.all-licenses {
+  font-size: 14px;
+}
 @media (min-width: 768px) {
   #menu1 {
     .container {

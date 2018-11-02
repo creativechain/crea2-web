@@ -1,10 +1,8 @@
 <div class="col-md-12">
+    <h3 class="title-section-profile">RECOMPENSAS DE CURACIÓN</h3>
+</div>
+<div class="col-md-12">
     <div class="boxed boxed--border box-rewards-autor">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>RECOMPENSAS DE CURACIÓN</h3>
-            </div>
-        </div>
         <div class="row">
             <div class="col">
                 <p>Recompensas de curación aproximadas de la semana pasada:</p>
@@ -17,12 +15,11 @@
 </div>
 
 <div class="col-md-12">
+    <h3 class="title-section-profile">Historial de recompensas de curación</h3>
+</div>
+
+<div class="col-md-12">
     <div class="boxed boxed--border">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Historial de recompensas de curación</h3>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <table class="table">

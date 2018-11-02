@@ -99,9 +99,11 @@
 .simple-view-home .container {
   max-width: 500px; }
 
-.view-profile .title-profile {
-  font-size: 14px;
-  color: #3B3B3C; }
+.view-profile .title-section-profile {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 10px;
+  text-transform: uppercase; }
 .view-profile .profile-summary .col-md-7 {
   margin-bottom: 10px; }
 .view-profile .profile-summary img {
@@ -184,10 +186,6 @@
   margin-right: -30px; }
 .view-wallet .total-active {
   font-weight: bold; }
-.view-wallet .title-wallet {
-  font-size: 12px;
-  font-weight: bold;
-  margin: 10px; }
 .view-wallet .tabs li.active .tab__title span {
   color: #3B3B3C; }
 .view-wallet .tabs--folder .tab__title .h5 {
@@ -829,9 +827,11 @@ input[type], textarea, select {
   transform-style: flat; }
 
 #slide-home {
-  padding: 15em 0; }
+  padding: 7em 0; }
   #slide-home h1, #slide-home h3, #slide-home span {
     color: white; }
+  #slide-home .background-image-holder {
+    height: 360px; }
 
 img {
   margin-bottom: 0; }
@@ -1012,7 +1012,7 @@ img {
   padding-bottom: 0;
   padding-right: 2em;
   padding-left: 2em;
-  border: 1px solid white;
+  border: 1px solid transparent;
   border-width: 1px;
   font-size: inherit;
   line-height: 1.85714286em;
@@ -1023,6 +1023,9 @@ img {
 .btn:not([class*='primary']):hover {
   border-color: #0569EF;
   background-color: #0569EF; }
+
+.all-licenses {
+  font-size: 14px; }
 
 @media (min-width: 768px) {
   #menu1 .container {

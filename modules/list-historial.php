@@ -1,6 +1,6 @@
 <div class="boxed boxed--border no-padding">
     <div class="col-md-12">
-        <h3 class="title-wallet title-list-historial" >{{ lang.WALLET.HISTORY }}</h3>
+        <h3 class="title-section-profile title-list-historial" >{{ lang.WALLET.HISTORY }}</h3>
     </div>
     <div class="col-md-12">
         <hr class="mb-0">

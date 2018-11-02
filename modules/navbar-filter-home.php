@@ -1,6 +1,6 @@
 <div class="col-md-11">
     <div class="dropdown">
-        <span class="dropdown__trigger">Todas las licencias
+        <span class="dropdown__trigger all-licenses">Todas las licencias
             <i class="stack-down-open"></i>
         </span>
         <div class="dropdown__container">

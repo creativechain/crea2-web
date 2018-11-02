@@ -1,10 +1,10 @@
 <div class="col-md-12">
-    <h3 class="title-profile">Notifications</h3>
+    <h3 class="title-section-profile">Notifications</h3>
 </div>
 <div class="col-md-12">
     <div class="boxed boxed--border">
         <div class="row row-list-user">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="row-list-user-display">
                     <div class="user-avatar">
                         <div class="img-user-avatar"></div>
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="row-img-notification">
                     <div class="img-user-notification" style="background-image: url('/img/crea-web/publish/demo-vertical.jpg'); "></div>
                 </div>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="row row-list-user">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="row-list-user-display">
                     <div class="user-avatar">
                         <div class="img-user-avatar"></div>
@@ -34,14 +34,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="row-img-notification">
                     <div class="img-user-notification" style="background-image: url('/img/crea-web/publish/demo-vertical.jpg'); "></div>
                 </div>
             </div>
         </div>
         <div class="row row-list-user align-items-center">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="row-list-user-display">
                     <div class="user-avatar">
                         <div class="img-user-avatar"></div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 text-right">
+            <div class="col-md-3 text-right">
                 <div class="align-self-center">
                     <a href="/publish.php" class="btn btn--sm btn--primary">
                         <span class="btn__text">Follow</span>

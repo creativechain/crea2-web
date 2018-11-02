@@ -1,7 +1,9 @@
 .view-profile {
-  .title-profile {
-    font-size: 14px;
-    color: $border-btn-transparent;
+  .title-section-profile{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px;
+    text-transform: uppercase;
   }
   .profile-summary {
     .col-md-7 {
