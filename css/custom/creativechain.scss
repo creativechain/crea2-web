@@ -9,6 +9,7 @@
 @import "publish";
 @import "view-publish-post";
 @import "notifications";
+@import "explorer";
 
 body {
   color: $color-dark-primary;
@@ -480,8 +481,15 @@ img {
 
 }
 .btn:not([class*='primary']):hover {
-  border-color: $color-blue-primary;
-  background-color: $color-blue-primary;
+  border-color: #333333;
+  background-color: #333333;
+}
+.btn--transparent:hover {
+  border-color: #333333 !important;
+  background-color: #333333 !important;
+  span {
+    color: $color-white !important;
+  }
 }
 .all-licenses {
   font-size: 14px;

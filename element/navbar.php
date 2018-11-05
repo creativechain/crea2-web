@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="../trending-topics.php">
                     <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
                 </a>
             </li>

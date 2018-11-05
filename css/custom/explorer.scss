@@ -1,0 +1,49 @@
+#view-explorer {
+  .title-explorer {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  table {
+    thead {
+      tr {
+        th:first-child {
+          text-align: left;
+          color: $color-dark-primary;
+        }
+        th {
+          color: $color-blue-primary;
+          font-size: 10px;
+          text-transform: uppercase;
+          background: $color-white;
+        }
+      }
+    }
+    tbody {
+      td:first-child {
+        color: $color-blue-primary;
+        text-align: left;
+      }
+      td:last-child {
+        font-weight: 600;
+      }
+    }
+  }
+  .table--alternate-row tbody tr:nth-child(even) {
+    background: $color-white;
+  }
+  .table-vote {
+    img {
+      width: 16px;
+      margin-left: 10px;
+    }
+    tbody {
+      td:first-child {
+        color: $color-dark-primary;
+        text-align: left;
+      }
+      td:last-child {
+        font-weight: normal;
+      }
+    }
+  }
+}
