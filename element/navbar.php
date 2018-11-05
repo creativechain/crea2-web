@@ -49,7 +49,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="../vote-for-witnesses.php">
                     <span class="h5">{{ lang.DOTS_MENU.VOTE_FOR_WITNESS }}</span>
                 </a>
             </li>
