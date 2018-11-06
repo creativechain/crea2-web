@@ -10,7 +10,7 @@ Vue.component('btn-follow',  {
             default: 0
         },
         self: {
-            type: Object
+            type: [Object, Boolean]
         },
         user: {
             type: String

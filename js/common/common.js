@@ -67,6 +67,9 @@ function goTo(location) {
 }
 
 function showPost(post) {
+    if (!post.url) {
+        post.url = '/' + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
+    }
     goTo('/post-view.php?url=' + post.url)
 }
 

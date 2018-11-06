@@ -9,27 +9,36 @@ let postContainer;
     let query = window.location.search;
     let url = getParameterByName('url', query);
 
+    console.log('URL:', url);
     let session, userAccount;
 
     function setUp(state) {
+        console.log('state', !postContainer);
         if (!postContainer) {
+            console.log('Building postContainer');
             postContainer = new Vue({
                 el: '#post-view',
                 data: {
                     lang: lang,
                     session: session,
-                    user: userAccount.user,
+                    user: userAccount ? userAccount.user : null,
                     state: state,
                     comment: '',
+                    otherProjects: []
                 },
                 methods: {
+                    showPost: showPost,
                     getDefaultAvatar: R.getDefaultAvatar,
                     getLicense: function () {
                         return License.fromFlag(this.state.post.metadata.license);
                     },
-                    dateFromNow(date) {
+                    dateFromNow: function(date) {
                         date = new Date(date + 'Z');
                         return moment(date.getTime()).fromNow();
+                    },
+                    formatDate: function (date) {
+                        date = new Date(date + 'Z');
+                        return moment(date.getTime()).format('LLLL');
                     },
                     makeComment: makeComment,
                     makeVote: function (post) {
@@ -38,14 +47,14 @@ let postContainer;
                         })
                     },
                     onFollow: function (err, result) {
-                        console.log('onFollow', err, result);
+                        fetchContent();
                     }
                 }
-            })
+            });
         } else {
             postContainer.state = state;
             postContainer.session = session;
-            postContainer.user = userAccount.user;
+            postContainer.user = userAccount ? userAccount.user : null;
         }
     }
 
@@ -53,6 +62,7 @@ let postContainer;
         let session = Session.getAlive();
         let comment = postContainer.comment;
         if (comment.length > 0) {
+            globalLoading.show = true;
             let parentAuthor = postContainer.state.post.author;
             let parentPermlink = postContainer.state.post.permlink;
             let permlink = crea.formatter.commentPermlink(parentAuthor, parentPermlink);
@@ -67,6 +77,8 @@ let postContainer;
                         postContainer.comment = '';
                         fetchContent();
                     }
+
+                    globalLoading.show = false;
                 })
         }
 
@@ -83,6 +95,36 @@ let postContainer;
             return route.join('/');
         }
 
+    }
+
+    function fetchOtherProjects(author, permlink) {
+        let date = new Date().toISOString().replace('Z', '');
+        crea.api.getDiscussionsByAuthorBeforeDateWith({start_permlink: '', limit: 100, before_date: date, author}, function (err, result) {
+            if (err) {
+                console.error(err);
+            } else {
+
+                let discussions = [];
+                result.discussions.forEach(function (d) {
+                    d.metadata = jsonify(d.json_metadata);
+                    if (d.permlink !== permlink && d.metadata.featuredImage) {
+                        discussions.push(d);
+                    }
+                });
+
+                if (discussions.length > 3) {
+                    let selectedDiscuss = [];
+                    for (let x = 0; x < 3; x++) {
+                        let r = randomNumber(0, discussions.length-1);
+                        selectedDiscuss.push(discussions.splice(r, 1)[0])
+                    }
+
+                    postContainer.otherProjects = selectedDiscuss;
+                } else if (discussions.length > 0) {
+                    postContainer.otherProjects = discussions;
+                }
+            }
+        });
     }
 
     function fetchContent() {
@@ -104,6 +146,7 @@ let postContainer;
                     result.post.metadata = jsonify(result.post.json_metadata);
                     result.post.body = jsonify(result.post.body);
                     result.author = result.accounts[result.post.author];
+                    fetchOtherProjects(result.author.name, result.post.permlink);
 
                     //Order comments by date, latest first
                     let cKeys = Object.keys(result.content);

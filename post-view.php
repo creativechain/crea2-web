@@ -51,15 +51,13 @@
                                 <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="img-more-projects"></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="img-more-projects"></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="img-more-projects"></div>
-                                </div>
+                                <template v-for="o in otherProjects">
+                                    <div class="col-md-4">
+                                        <div class="img-more-projects"
+                                             v-on:click="showPost(o)"
+                                             v-bind:style="{ 'background-image': 'url(' + o.metadata.featuredImage + ')' }"></div>
+                                    </div>
+                                </template>
                             </div>
                             <!--<div class="row">
                                 <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.YOUR_COMMENTS }}</p></div>
@@ -181,7 +179,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <ul class="list-inline list-unstyled">
-                                                    <li><p><img src="/img/icons/report_content.svg" alt="">(47) Report Content</p></li>
+                                                    <li><p><img src="/img/icons/report_content.svg" alt="">(0) Report Content</p></li>
                                                     <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
                                                 </ul>
                                             </div>
@@ -224,7 +222,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <btn-follow class="" v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.post.author" v-bind:following="false" ></btn-follow>
+                                    <btn-follow v-if="session" class="" v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.post.author" v-bind:following="false" ></btn-follow>
                                 </div>
                             </div>
                             <div class="row">
@@ -236,7 +234,7 @@
                                 <div class="col-md-12">
                                     <p class="title">{{ state.post.title }}</p>
                                     <span class="description">{{ state.post.metadata.description }}</span>
-                                    <span class="date-publish">Lorem 24 ipsum, 2017</span>
+                                    <span class="date-publish">{{ formatDate(state.post.created) }}</span>
                                 </div>
                             </div>
                             <div class="row">
