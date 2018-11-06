@@ -109,9 +109,7 @@
                     </div>
                 </li>
                 <li class="float-right li-certificate">
-                    <template v-for="i in getLicense(state.content[p].metadata.license).getIcons()">
-                        <img v-bind:src="i" alt="">
-                    </template>
+                    {{ getBuzz(state.accounts[state.content[p].author].reputation) }} Buzz
                 </li>
             </ul>
         </div>

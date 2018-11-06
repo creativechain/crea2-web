@@ -168,6 +168,9 @@ let walletModalSend;
                         let date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                     },
+                    getBuzz: function (reputation) {
+                        return crea.formatter.reputation(reputation);
+                    },
                     getTags: function (post) {
                         let tags = post.metadata.tags;
                         if (tags) {

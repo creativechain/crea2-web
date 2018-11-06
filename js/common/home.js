@@ -46,6 +46,9 @@ let homePosts;
                     parseAsset: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
+                    getBuzz: function (reputation) {
+                        return crea.formatter.reputation(reputation);
+                    },
                     getTags: function (post) {
                         let tags = post.metadata.tags;
                         tags = tags.slice(0, 7);
