@@ -39,6 +39,7 @@ let homePosts;
                     getDefaultAvatar: R.getDefaultAvatar,
                     onFollow: function (err, result) {
                         console.log('onFollow', err, result);
+                        creaEvents.emit('crea.content.filter', this.filter);
                     },
                     openPost: function (post) {
                         window.location.href = '/post-view.php?url=' + post.url;

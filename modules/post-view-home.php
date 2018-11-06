@@ -61,7 +61,9 @@
                                     <div class="col-md-4 col-lg-4 dropdown__content">
                                         <div v-if="session && state.content[p].author !== session.account.username" class="row">
                                             <div class="col text-right">
-                                                <btn-follow v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.content[p].author" v-bind:following="account.user.followings.indexOf(state.content[p].author)>-1" ></btn-follow>
+                                                <btn-follow v-on:follow="onFollow" v-bind:self="session"
+                                                            v-bind:user="state.content[p].author"
+                                                            v-bind:following="account.user.followings.indexOf(state.content[p].author)>-1" ></btn-follow>
                                                 <!--<a class="btn btn--primary" href="#/" v-on:click="followUser(state.content[p].author)">
                                                     <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
                                                 </a>-->
@@ -89,10 +91,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col">
+                                            <!--<div class="col">
                                                 <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_LIKES }}</p>
                                                 <span>{{ state.accounts[state.content[p].author].reputation }}</span>
-                                            </div>
+                                            </div>-->
                                             <div class="col">
                                                 <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWERS }}</p>
                                                 <span>0</span>
