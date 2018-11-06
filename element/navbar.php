@@ -261,7 +261,7 @@
 
                                     <a href="#" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
-                                    <div v-if="!session" class="modal-container">
+                                    <div id="modal-login" v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
                                                 <div class="container">
@@ -274,35 +274,29 @@
                                                                     <form id="login-form" action="#0" v-on:submit="login" class="content-login">
                                                                         <div class="row">
                                                                             <div class="col-md-12 text-left">
-                                                                                <input id="login-username" type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
-                                                                                <span class="error-color-form">El usuario ya existe</span>
+                                                                                <input id="login-username" v-model="loginForm.username.value"
+                                                                                       v-on:input="checkUsername"
+                                                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                                                <span class="error-color-form">{{ loginForm.username.error || ' ' }}</span>
                                                                             </div>
                                                                             <div class="col-md-12 text-left">
-                                                                                <input id="login-password" type="password"
-                                                                                       v-bind:placeholder="lang.LOGIN.PASSWORD"/>
-                                                                                <span class="error-color-form">La contraseña no coincide</span>
+                                                                                <input id="login-password" v-model="loginForm.password.value"
+                                                                                       type="password" v-bind:placeholder="lang.LOGIN.PASSWORD"/>
+                                                                                <span class="error-color-form">{{ loginForm.password.error || ' ' }}</span>
                                                                             </div>
                                                                             <div class="col">
                                                                                 <a class="btn btn--transparent w-100" href="#">
-                                                                                    <span class="btn__text color--dark">
-                                                                                        Cancel
+                                                                                    <span class="btn__text color--dark" v-on:click="closeLogin">
+                                                                                        {{ lang.BUTTON.CANCEL }}
                                                                                     </span>
                                                                                 </a>
-
-                                                                                <button class="btn btn--transparent color--dark"
-                                                                                        type="submit">Cancel
-                                                                                </button>
                                                                             </div>
                                                                             <div class="col">
-                                                                                <a class="btn btn--primary w-100" href="#" id="login-button">
+                                                                                <a id="login-button" class="btn btn--primary w-100" href="#" v-on:click="login">
                                                                                     <span class="btn__text">
                                                                                         {{ lang.BUTTON.LOGIN }}
                                                                                     </span>
                                                                                 </a>
-                                                                                <button id="login-button"
-                                                                                        class="btn btn--primary"
-                                                                                        type="submit">{{ lang.BUTTON.LOGIN }}
-                                                                                </button>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">

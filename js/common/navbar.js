@@ -33,12 +33,42 @@ let navbarContainer;
                     lang: lang,
                     session: session,
                     user: userData ? userData.user : {},
+                    loginForm: {
+                        username: {
+                            error: null,
+                            value: ''
+                        },
+                        password: {
+                            error: null,
+                            value: ''
+                        }
+                    }
                 },
                 methods: {
+                    closeLogin: function () {
+                        $('#modal-login').removeClass('modal-active');
+                    },
                     login: function (event) {
                         event.preventDefault();
-                        startLogin();
+                        let that = this;
+                        if (!this.loginForm.username.error) {
+                            login(this.loginForm.username.value, this.loginForm.password.value, function (err) {
+                                if (err) {
+                                    console.error(err);
+                                    if (err === Errors.USER_LOGIN_ERROR) {
+                                        that.loginForm.password.error = that.lang.ERROR[err];
+                                        console.error(that.lang.ERROR[err]);
+                                    } else {
+                                        that.loginForm.password.error = that.lang.ERROR.UNKNOWN_ERROR;
+                                        console.error(that.lang.ERROR[err]);
+                                    }
+                                } else {
+                                    that.closeLogin();
+                                }
+                            });
+                        }
                     },
+                    checkUsername: checkUsername,
                     goTo: goTo,
                     getDefaultAvatar: R.getDefaultAvatar,
                     retrieveNowContent: retrieveNewContent,
@@ -52,6 +82,28 @@ let navbarContainer;
             navbarContainer.user = userData ? userData.user : {};
         }
     }
+
+    function checkUsername(event) {
+        let username = event.target.value;
+        console.log("Checking", username);
+        if (!crea.utils.validateAccountName(username)) {
+            let accounts = [ username ];
+            console.log("Checking", accounts);
+            crea.api.lookupAccountNames(accounts, function (err, result) {
+                if (err) {
+                    console.error(err);
+                    navbarContainer.loginForm.username.error = lang.ERROR.INVALID_USERNAME;
+                } else if (result[0] == null) {
+                    navbarContainer.loginForm.username.error = lang.ERROR.USERNAME_NOT_EXISTS;
+                } else {
+                    navbarContainer.loginForm.username.error = null;
+                }
+            })
+        } else {
+            navbarContainer.loginForm.username.error = lang.ERROR.INVALID_USERNAME;
+        }
+    }
+
 
     function retrieveContent(filter) {
 

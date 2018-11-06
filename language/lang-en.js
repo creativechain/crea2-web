@@ -6,6 +6,9 @@ let lang = {
         "AND": 'and'
     },
     ERROR: {
+        1: "Username not exist",
+        2: "Password is not valid",
+        USERNAME_NOT_EXISTS: "Username not exist",
         INVALID_USERNAME: "Username is not valid",
         INVALID_EMAIL: "Email is not valid",
         INVALID_PASSWORD: "Password is not valid",
@@ -14,6 +17,7 @@ let lang = {
         PASSWORDS_NOT_MATCH: "Password does not match",
         DENIED_TERMS: "You must read and accept the terms and conditions",
         DENIED_POLICY: "You must read and accept the privacy policy",
+        UNKNOWN_ERROR: "Unknow error ocurred"
 
     },
     "BANNER": {

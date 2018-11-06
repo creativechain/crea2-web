@@ -15,8 +15,9 @@ function startLogin() {
  *
  * @param {string} username
  * @param {string} password
+ * @param callback
  */
-function login(username, password) {
+function login(username, password, callback) {
     //Check roles;
     let roles = username.split('/');
 
@@ -34,6 +35,9 @@ function login(username, password) {
         console.log(err, account);
         if (err) {
             console.error(err);
+            if (callback) {
+                callback(err);
+            }
         } else {
             session.save();
             let followings = [];
@@ -46,6 +50,9 @@ function login(username, password) {
                     });
                     account.user.followings = followings;
                     creaEvents.emit('crea.session.login', session, account);
+                    if (callback) {
+                        callback(null, session, account);
+                    }
                 }
             });
 
