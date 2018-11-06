@@ -98,13 +98,21 @@ function createBlockchainAccount(username, password, callback) {
     let keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
     console.log(keys);
 
-    crea.broadcast.accountCreate(apiOptions.privCreator, "0.001 CREA", apiOptions.accountCreator, username,
-        createAuth(keys.ownerPubkey), createAuth(keys.activePubkey), createAuth(keys.postingPubkey), keys.memoPubkey, {}, function (err, result) {
-        console.log(err, result);
-        if (callback) {
-            callback(err, result);
+    crea.api.getWitnessSchedule(function (err, result) {
+        if (err) {
+            console.error(err);
+        } else {
+            let creationFee = Asset.parse(result.median_props.account_creation_fee);
+            crea.broadcast.accountCreate(apiOptions.privCreator, creationFee.toFriendlyString(), apiOptions.accountCreator, username,
+                createAuth(keys.ownerPubkey), createAuth(keys.activePubkey), createAuth(keys.postingPubkey), keys.memoPubkey, {}, function (err, result) {
+                    console.log(err, result);
+                    if (callback) {
+                        callback(err, result);
+                    }
+                });
         }
-    });
+    })
+
 }
 
 function makeVote(post, callback) {

@@ -149,9 +149,12 @@ function inputCheckPassword(event) {
     let match = welcomeVue.password === password;
     if (match) {
         welcomeVue.error.matchPassword = null;
+        welcomeVue.passwordMatch = true;
     } else {
         welcomeVue.error.matchPassword = lang.ERROR.PASSWORDS_NOT_MATCH;
     }
+
+    welcomeVue.passwordMatch = match;
 }
 
 function inputPassword(event) {
