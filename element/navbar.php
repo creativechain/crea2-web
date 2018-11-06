@@ -201,9 +201,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="" class="navbar-notification icons-navbar" style="display: inline-grid;">
+                                <a href="/profile.php?nav=notifications" class="navbar-notification icons-navbar" style="display: inline-grid;">
                                     <i class="far fa-bell"></i>
-                                    <i class="fas fa-circle"></i>
+                                    <i class="fas fa-circle hidden"></i>
                                 </a>
                             </li>
 
