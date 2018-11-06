@@ -31,7 +31,7 @@
                     <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
                 </a>-->
 
-                <a v-else class="btn btn--sm" href="#0" v-on:click="navfilter = 'edit'">
+                <a v-else class="btn btn--sm" href="#0" v-on:click="navfilter = 'settings'">
                     <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                 </a>
             </div>

@@ -74,9 +74,10 @@ let walletModalSend;
      * @param session
      * @param account
      * @param usernameFilter
+     * @param navfilter
      * @returns {License}
      */
-    function updateProfileView(state, session, account, usernameFilter) {
+    function updateProfileView(state, session, account, usernameFilter, navfilter = 'projects') {
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -88,7 +89,7 @@ let walletModalSend;
                     state: state,
                     filter: usernameFilter,
                     profile: state.user.metadata,
-                    navfilter: 'projects',
+                    navfilter: navfilter,
                     walletTab: 'balances',
                     history: {
                         data: [],
@@ -254,7 +255,26 @@ let walletModalSend;
             profileContainer.state = state;
             profileContainer.filter = usernameFilter;
             profileContainer.profile = state.user.metadata;
+            profileContainer.navfilter = navfilter;
         }
+    }
+
+    /**
+     *
+     * @param state
+     * @param session
+     * @param account
+     * @param usernameFilter
+     */
+    function detectNav(state, session, account, usernameFilter) {
+
+        let nav = getParameterByName('nav', window.location.href);
+
+        if (!nav) {
+            nav = 'projects';
+        }
+
+        updateProfileView(state, session, account, usernameFilter, nav);
     }
 
     function sendAccountUpdate() {
@@ -452,7 +472,7 @@ let walletModalSend;
                             state.user.followers_count = followCount.follower_count;
                             state.user.following_count = followCount.following_count;
 
-                            updateProfileView(state, session, userAccount, user);
+                            detectNav(state, session, userAccount, user);
                             updateModalSendView(state, session);
                         }
                     })

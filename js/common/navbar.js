@@ -48,6 +48,7 @@ let navbarContainer;
                     closeLogin: function () {
                         $('#modal-login').removeClass('modal-active');
                     },
+                    logout: logout,
                     login: function (event) {
                         event.preventDefault();
                         let that = this;

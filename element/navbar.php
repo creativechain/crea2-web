@@ -49,12 +49,12 @@
                 </a>
             </li>
             <li>
-                <a href="../vote-for-witnesses.php">
+                <a href="/vote-for-witnesses.php">
                     <span class="h5">{{ lang.DOTS_MENU.VOTE_FOR_WITNESS }}</span>
                 </a>
             </li>
             <li>
-                <a href="../trending-topics.php">
+                <a href="/trending-topics.php">
                     <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
                 </a>
             </li>
@@ -235,14 +235,14 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-lg-2 dropdown__content">
                                                     <ul class="menu-vertical">
-                                                        <li><a href="">Proyectos</a></li>
-                                                        <li class="separate"><a href="">Siguiendo</a></li>
-                                                        <li class="separate"><a href="">Notificaciones</a></li>
-                                                        <li class="separate"><a href="">Recompensas</a></li>
-                                                        <li class="separate"><a href="">Monedero</a></li>
-                                                        <li class="separate"><a href="">Cambiar contraseña</a></li>
-                                                        <li class="separate"><a href="/profile.php">Configuración</a></li>
-                                                        <li class="separate"><a href="">Cerrar sesión</a></li>
+                                                        <li><a href="/profile.php?nav=projects">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
+                                                        <li class="separate"><a href="/profile.php?nav=projects">{{ lang.PROFILE_MENU.FOLLOWING }}</a></li>
+                                                        <li class="separate"><a href="/profile.php?nav=notifications">{{ lang.PROFILE_MENU.NOTIFICATIONS }}</a></li>
+                                                        <li class="separate"><a href="/profile.php?nav=author-rewards">{{ lang.PROFILE_MENU.REWARDS }}</a></li>
+                                                        <li class="separate"><a href="/profile.php?nav=wallet">{{ lang.PROFILE_MENU.WALLET }}</a></li>
+                                                        <li class="separate"><a href="/profile.php?nav=wallet">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
+                                                        <li class="separate"><a href="/profile.php?nav=settings">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>
+                                                        <li class="separate"><a href="#0" v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                                                     </ul>
                                                 </div>
                                             </div><!--end row-->
