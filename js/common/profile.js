@@ -12,6 +12,7 @@ let walletModalSend;
         title: lang.WALLET.TRANSFER_CREA_TITLE,
         text: lang.WALLET.TRANSFER_CREA_TEXT,
         button: lang.BUTTON.SEND,
+        total_amount: Asset.parseString('0.000 CREA'),
         confirmed: false
     };
 
@@ -43,7 +44,6 @@ let walletModalSend;
 
                         this.config.confirmed = false;
                     },
-
                     hideModalSend: function (event) {
                         if (event) {
                             event.preventDefault();
@@ -58,6 +58,13 @@ let walletModalSend;
                         this.amount = 0;
                         this.memo = '';
                         this.config = defaultModalConfig;
+                    },
+                    useTotalAmount: function (event) {
+                        if (event) {
+                            event.preventDefault();
+                        }
+
+                        this.amount = this.config.total_amount.toPlainString();
                     },
                     sendCrea: function () {
                         if (this.toError || !this.amount) {
@@ -180,16 +187,34 @@ let walletModalSend;
                         let config;
                         switch (op) {
                             case 'transfer_crea':
-                                config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE, text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.CONFIRM};
+                                config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.CONFIRM,
+                                    total_amount: Asset.parseString(this.state.user.balance)
+                                };
                                 break;
-                            case 'transfer_to_savings':
-                                config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE, text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER};
+                            case 'transfer_to_savings_crea':
+                                config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    total_amount: Asset.parseString(this.state.user.balance)
+                                };
                                 break;
                             case 'transfer_to_vests':
-                                config = {title: this.lang.WALLET.CONVERT_CGY_TITLE, text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER};
+                                config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
+                                    text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER,
+                                    total_amount: Asset.parseString(this.state.user.balance)
+                                };
                                 break;
                             case 'transfer_cbd':
-                                config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE, text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: lang.BUTTON.SEND};
+                                config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: lang.BUTTON.SEND,
+                                    total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                };
+                                break;
+                            case 'transfer_to_savings_cbd':
+                                config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                };
                                 break;
 
                         }

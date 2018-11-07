@@ -119,7 +119,7 @@
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
                                                                                                                     <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
-                                                                                                                    <!--<p class="amount-save">Total ahorros: 345,67 CREA</p>-->
+                                                                                                                    <p class="amount-save" v-on:click="useTotalAmount">{{ lang.WALLET.BALANCE }}: {{ config.total_amount.toFriendlyString() }}</p>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -169,7 +169,7 @@
                                                             <li>
                                                                 <div class="modal-instance block">
                                                                     <a class="modal-trigger" href="#wallet-send">
-                                                                        <span class="btn__text" v-on:click="prepareModal('transfer_to_savings')">
+                                                                        <span class="btn__text" v-on:click="prepareModal('transfer_to_savings_crea')">
                                                                             {{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}
                                                                         </span>
                                                                     </a>
@@ -292,8 +292,20 @@
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}</li>
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}</li>
+                                                            <li>
+                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                    <span class="btn__text" v-on:click="prepareModal('transfer_cbd')">
+                                                                        {{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                    <span class="btn__text" v-on:click="prepareModal('transfer_to_savings_cbd')">
+                                                                        {{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}
+                                                                    </span>
+                                                                </a>
+                                                            </li>
                                                             <li>{{ lang.WALLET.DROPDOWN_MENU_MARKET }}</li>
                                                         </ul>
                                                     </div>
@@ -347,7 +359,7 @@
                                     <p>{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <p class="total-active">55,28$</p>
+                                    <p class="total-active">0.00$</p>
                                 </td>
                             </tr>
                             </tbody>

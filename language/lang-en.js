@@ -336,6 +336,7 @@ let lang = {
         "PERMISSIONS": "Permissions",
         "PASSWORDS": "Passwords",
         "PENDING_REWARDS": "Pending rewards",
+        "BALANCE": "Balance"
     },
     "DROPDOWN": {
         "ADULT_WARN": "Warn",
