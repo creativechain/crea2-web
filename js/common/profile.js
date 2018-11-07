@@ -562,8 +562,7 @@ let walletModalSend;
                 if (err) {
                     console.error(err);
                 } else {
-                    fetchUserState(profileContainer.session.account.username);
-                    fetchHistory(profileContainer.session.account.username);
+                    updateData(profileContainer.session);
                 }
             })
     }
