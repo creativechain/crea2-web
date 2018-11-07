@@ -23,6 +23,7 @@ const NAI = {
     "@@000000021": ASSET_CREA,
     "crea": ASSET_CREA,
     "@@000000037": ASSET_CGY,
+    "vests": ASSET_CGY,
     "cgy": ASSET_CGY,
 };
 
@@ -133,7 +134,7 @@ class Asset {
 
     /**
      *
-     * @param assetString
+     * @param {string} assetString
      * @returns {Asset}
      */
     static parseString(assetString) {

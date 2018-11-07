@@ -71,7 +71,7 @@ let walletModalSend;
     /**
      *
      * @param state
-     * @param session
+     * @param {Session} session
      * @param account
      * @param usernameFilter
      * @param navfilter
@@ -240,6 +240,13 @@ let walletModalSend;
                             nai: apiOptions.nai.CREA
                         }).toFriendlyString();
                     },
+                    hasRewardBalance: function () {
+                        let crea = Asset.parseString(this.state.user.reward_crea_balance);
+                        let cbd = Asset.parseString(this.state.user.reward_cbd_balance);
+                        let cgy = Asset.parseString(this.state.user.reward_vesting_balance);
+                        return crea.amount > 0 || cbd.amount > 0 || cgy.amount > 0;
+                    },
+                    claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate
                 }
             });
@@ -480,6 +487,26 @@ let walletModalSend;
             });
         }
 
+    }
+
+    function claimRewards (event) {
+        if (event) {
+            event.preventDefault();
+        }
+
+        let creaBalance = profileContainer.state.user.reward_crea_balance;
+        let cbd = profileContainer.state.user.reward_cbd_balance;
+        let cgy = profileContainer.state.user.reward_vesting_balance;
+
+        crea.broadcast.claimRewardBalance(profileContainer.session.account.keys.active.prv,
+            profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    fetchUserState(profileContainer.session.account.username);
+                    fetchHistory(profileContainer.session.account.username);
+                }
+            })
     }
 
     /**

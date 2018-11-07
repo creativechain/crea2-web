@@ -1,13 +1,13 @@
-<div class="col-md-12 padding-b-10">
+<div class="col-md-12 padding-b-10" v-bind:class="{ hidden: !(session && state.user.name === session.account.username && hasRewardBalance()) }">
     <div class="alert bg--primary">
         <div class="alert__body">
-            <span>Pending Rewards: {{ state.user.reward_crea_balance}},
+            <span>{{ lang.WALLET.PENDING_REWARDS }}: {{ state.user.reward_crea_balance}},
                 {{ state.user.reward_cbd_balance}} {{ lang.COMMON.AND }}
                 {{ getCGYReward() }}
             </span>
             <span class="row-liquid">
-                <a href="" class="btn btn--sm btn--secondary">
-                    <span class="btn__text color-secondary">Liquidar cuentas (transferir a saldo)</span>
+                <a href="#" class="btn btn--sm btn--secondary" v-on:click="claimRewards">
+                    <span class="btn__text color-secondary">{{ lang.BUTTON.CLAIM_REWARDS }}</span>
                 </a>
             </span>
         </div>
