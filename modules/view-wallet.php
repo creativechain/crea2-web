@@ -38,7 +38,7 @@
                 </li>
                 <li class="text-right li-buy-crea">
                     <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
-                        <span class="btn__text">Comprar CREA o CREA Energy</span>
+                        <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
                     </a>
                 </li>
 
