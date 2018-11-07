@@ -266,12 +266,7 @@ let walletModalSend;
                         return moment(date.getTime()).fromNow();
                     },
                     getFutureDate: function (date) {
-                        if (typeof date === 'string') {
-                            date += 'Z';
-                        }
-
-                        date = new Date(date);
-                        return moment(date.getTime(), 'x').endOf('day').fromNow();
+                        return moment.utc(date).fromNow();
                     },
                     onFollow: function (err, result) {
                         console.log('onFollow', err, result);
