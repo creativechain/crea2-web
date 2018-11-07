@@ -1,4 +1,4 @@
-<div class="boxed boxed--border no-padding">
+<div v-if="walletTab === 'balances'" class="boxed boxed--border no-padding">
     <div class="col-md-12">
         <h3 class="title-section-profile title-list-historial" >{{ lang.WALLET.HISTORY }}</h3>
     </div>
