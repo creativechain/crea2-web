@@ -6,6 +6,15 @@ let profileContainer;
 let walletModalSend;
 
 (function () {
+
+    let defaultModalConfig = {
+        op: 'transfer_crea',
+        title: lang.WALLET.TRANSFER_CREA_TITLE,
+        text: lang.WALLET.TRANSFER_CREA_TEXT,
+        button: lang.BUTTON.SEND,
+        confirmed: false
+    };
+
     function tags(element) {
         $('#' + element).tagsinput();
     }
@@ -23,24 +32,54 @@ let walletModalSend;
                     to: '',
                     amount: 0,
                     memo: '',
-                    config: {
-                        op: 'transfer_crea',
-                        title: lang.WALLET.TRANSFER_CREA_TITLE,
-                        text: lang.WALLET.TRANSFER_CREA_TEXT,
-                        button: lang.BUTTON.SEND
-                    },
+                    config: defaultModalConfig,
                     toError: false,
                 },
                 methods: {
+                    cancelSend: function (event) {
+                        if (event) {
+                            event.preventDefault();
+                        }
+
+                        this.config.confirmed = false;
+                    },
+
+                    hideModalSend: function (event) {
+                        if (event) {
+                            event.preventDefault();
+                        }
+
+                        $('#wallet-send').removeClass('modal-active');
+                        this.clearFields();
+                    },
+                    clearFields: function () {
+                        //Clear fields
+                        this.to = '';
+                        this.amount = 0;
+                        this.memo = '';
+                        this.config = defaultModalConfig;
+                    },
                     sendCrea: function () {
-                        let that = this;
-                        let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
-                        transfer(this.config.op, this.session, this.to, amount, this.memo, function (err, result) {
-                            console.log(err, result);
-                            if (result) {
-                                //TODO: Update wallet
-                            }
-                        });
+                        if (this.toError || !this.amount) {
+                            //TODO: SHOW ERRORS
+                        } else if (this.config.confirmed) {
+                            let that = this;
+                            let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
+                            globalLoading.show = true;
+                            transfer(this.config.op, this.session, this.to, amount, this.memo, function (err, result) {
+                                console.log(err, result);
+                                globalLoading.show  = false;
+                                if (result) {
+                                    fetchUserState(profileContainer.session.account.username);
+                                    fetchHistory(profileContainer.session.account.username);
+                                    that.hideModalSend();
+                                }
+                            });
+                        } else {
+                            this.config.confirmed = true;
+                            this.config.button = this.lang.BUTTON.SEND;
+                        }
+
                     },
                     validateDestiny: function(event) {
                         let username = event.target.value;
@@ -141,7 +180,7 @@ let walletModalSend;
                         let config;
                         switch (op) {
                             case 'transfer_crea':
-                                config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE, text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.SEND};
+                                config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE, text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.CONFIRM};
                                 break;
                             case 'transfer_to_savings':
                                 config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE, text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER};
@@ -155,7 +194,7 @@ let walletModalSend;
 
                         }
                         config.op = op;
-                        walletModalSend.config = config;
+                        walletModalSend.config = Object.assign(defaultModalConfig, config);
                     },
                     canWithdraw: function () {
                         return this.session && this.session.account.username == state.user.name;

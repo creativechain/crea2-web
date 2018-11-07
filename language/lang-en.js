@@ -156,7 +156,8 @@ let lang = {
         "WITHDRAW_SAVINGS": "Withdraw savings",
         "POST_COMMENT": "Post comment",
         "SEND": "Send",
-        "CLAIM_REWARDS": "Settle accounts (transfer to balance)"
+        "CLAIM_REWARDS": "Settle accounts (transfer to balance)",
+        "CONFIRM": "Confirm"
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",

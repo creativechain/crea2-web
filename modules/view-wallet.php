@@ -107,7 +107,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input v-bind:disabled="config.confirmed" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -118,8 +118,8 @@
                                                                                                             <div class="col-md-10">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
-                                                                                                                    <input v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
-                                                                                                                    <p class="amount-save">Total ahorros: 345,67 CREA</p>
+                                                                                                                    <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                    <!--<p class="amount-save">Total ahorros: 345,67 CREA</p>-->
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -135,14 +135,19 @@
                                                                                                             </div>
                                                                                                             <div class="col-md-10">
                                                                                                                 <div class="input-icon input-icon--right">
-                                                                                                                    <input v-model="memo" type="text" placeholder="Enter your name">
+                                                                                                                    <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row mt-3">
                                                                                                             <div class="col text-right">
+                                                                                                                <a v-if="config.confirmed" href="#0"
+                                                                                                                   class="btn btn--sm btn--primary type--uppercase"
+                                                                                                                   v-on:click="cancelSend">
+                                                                                                                    <span class="btn__text">{{ lang.BUTTON.CANCEL}}</span>
+                                                                                                                </a>
                                                                                                                 <a href="#0" class="btn btn--sm btn--primary type--uppercase" v-on:click="sendCrea">
-                                                                                                                    <span class="btn__text">{{ config.button }}</span>
+                                                                                                                    <span class="btn__text">{{ config.confirmed ? config.button : lang.BUTTON.CONFIRM }}</span>
                                                                                                                 </a>
                                                                                                             </div>
                                                                                                         </div>
