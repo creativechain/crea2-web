@@ -45,6 +45,7 @@
 <script src="/js/common/welcome.js"></script>
 <script src="/js/common/publish.js"></script>
 <script src="/js/common/post.js"></script>
+<script src="/js/common/witness.js"></script>
 
 <script src="/js/flickity.min.js"></script>
 <script src="/js/easypiechart.min.js"></script>

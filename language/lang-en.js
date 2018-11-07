@@ -411,4 +411,5 @@ let lang = {
         VOTED_FOR: 'Voted for ',
         CREATE_ACCOUNT: ' create account '
     },
+
 };
