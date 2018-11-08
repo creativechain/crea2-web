@@ -1,4 +1,5 @@
 <?php include ('element/navbar.php'); ?>
+
 <div class="main-container view-profile">
     <div id="home-banner">
         <?php include ('modules/banner.php') ?>
@@ -51,6 +52,7 @@
             </div>
         </section>
     </div>
+    <script src="/js/common/profile.js"></script>
 
 
 

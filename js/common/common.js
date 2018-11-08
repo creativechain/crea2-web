@@ -18,12 +18,7 @@ let bannerVue =  new Vue({
     }
 });
 
-let globalLoading = new Vue({
-    el: '#global-loading',
-    data: {
-        show: false
-    }
-});
+let globalLoading;
 
 const CONSTANTS = {
     TRANSFER: {
@@ -215,4 +210,13 @@ function refreshAccessToken(callback) {
     }
 
 }
+
+creaEvents.on('crea.content.prepare', function () {
+    globalLoading = new Vue({
+        el: '#global-loading',
+        data: {
+            show: false
+        }
+    });
+});
 

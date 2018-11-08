@@ -10,7 +10,7 @@ let witnessContainer;
 
         if (!witnessContainer) {
             witnessContainer = new Vue({
-                el: '#witness-container',
+                el: '#view-explorer',
                 data: {
                     lang: lang,
                     session: session,

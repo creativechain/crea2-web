@@ -36,6 +36,31 @@
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/bootstrap-slider.min.js"></script>
 
+    <script src="/js/tagsinput.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/buffer.js"></script>
+    <script src="/js/event-emitter.js"></script>
+    <script src="/js/clipboard.min.js"></script>
+    <script src="/js/crea.min.js"></script>
+    <script src="https://unpkg.com/ipfs-api@24.0.2/dist/index.js"
+            integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
+            crossorigin="anonymous"></script>
+
+    <script src="/js/common/conf.js"></script>
+    <script src="/js/common/resources.js"></script>
+    <script src="/language/lang-en.js"></script>
+    <script src="/js/common/components.js"></script>
+    <script src="/js/common/ls.js"></script>
+    <script src="/js/common/util.js"></script>
+    <script src="/js/common/http.js"></script>
+    <script src="/js/lib/amount.js"></script>
+    <script src="/js/lib/license.js"></script>
+    <script src="/js/lib/error.js"></script>
+    <script src="/js/lib/account.js"></script>
+    <script src="/js/lib/session.js"></script>
+    <script src="/js/common/login.js"></script>
+    <script src="/js/common/common.js"></script>
+
 </head>
 <body class=" ">
 <a id="start"></a>
@@ -349,3 +374,4 @@
     </nav>
     <!--end bar-->
 </div>
+<script src="/js/common/navbar.js"></script>

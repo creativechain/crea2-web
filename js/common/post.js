@@ -15,7 +15,6 @@ let postContainer;
     function setUp(state) {
         console.log('state', !postContainer);
         if (!postContainer) {
-            console.log('Building postContainer');
             postContainer = new Vue({
                 el: '#post-view',
                 data: {

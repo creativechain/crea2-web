@@ -304,6 +304,6 @@
         </div>
         <!--end of container-->
     </section>
-
+    <script src="/js/common/post.js"></script>
 
 <?php include ('element/footer.php'); ?>

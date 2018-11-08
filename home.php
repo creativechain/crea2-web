@@ -25,6 +25,6 @@
             </div>
         </div>
     </section>
-
+    <script src="/js/common/home.js"></script>
 
 <?php include ('element/footer.php'); ?>

@@ -446,4 +446,5 @@
     </section>
 
 </div>
+    <script src="/js/common/welcome.js"></script>
 <?php include ('element/footer.php'); ?>

@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
-<div v-cloak id="witness-container" class="main-container">
-    <section id="view-explorer" class="space--sm">
+<div class="main-container">
+    <section v-cloak id="view-explorer" class="space--sm">
         <div class="container post-container-home">
             <div class="row">
                 <div class="col-md-12">
@@ -32,7 +32,7 @@
             </table>
         </div>
     </section>
-
+    <script src="/js/common/witness.js"></script>
 
 
 <?php include ('element/footer.php'); ?>
