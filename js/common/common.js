@@ -27,7 +27,7 @@ const CONSTANTS = {
         TRANSFER_TO_VESTS: 'transfer_to_vests',
     },
     FILE_MAX_SIZE: {
-        AUDIO: 1024 * 1024,
+        AUDIO: 5 * 1024 * 1024,
         VIDEO: 5 * 1024 * 1024,
         IMAGE: 1024 * 1024,
         DOWNLOAD: 200 * 1024 * 1024, //200 MB
