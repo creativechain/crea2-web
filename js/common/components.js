@@ -2,6 +2,10 @@
  * Created by ander on 16/10/18.
  */
 
+Vue.component('witness-vote', {
+
+});
+
 Vue.component('btn-follow',  {
     template: `<a v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !innerFollowing }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: innerFollowing }">{{ followText() }}</span></a>`,
     props: {

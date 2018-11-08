@@ -18,7 +18,11 @@
                 <tbody>
                 <template v-for="x in state.ordered_witnesses">
                     <tr>
-                        <td><p>{{ state.ordered_witnesses.indexOf(x) + 1 }} <img src="img/icons/like_BLUE.svg" alt=""></p></td>
+                        <td>
+                            <p>{{ state.ordered_witnesses.indexOf(x) + 1 }}
+                                <img src="img/icons/like_BLUE.svg" alt="">
+                            </p>
+                        </td>
                         <td>{{ x }}</td>
                         <td><a v-bind:href="state.witnesses[x].url"></a> </td>
                     </tr>

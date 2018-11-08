@@ -16,6 +16,9 @@ let witnessContainer;
                     session: session,
                     account: account,
                     state: state
+                },
+                methods: {
+
                 }
             })
         } else {
