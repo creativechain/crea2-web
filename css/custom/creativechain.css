@@ -98,6 +98,9 @@
 
 .simple-view-home .container {
   max-width: 500px; }
+  .simple-view-home .container .masonry__container .col-xl-2-cust {
+    width: 100% !important;
+    max-width: 100%; }
 
 .view-profile .title-section-profile {
   font-size: 12px;
@@ -119,9 +122,11 @@
   font-size: 12px;
   margin-bottom: 15px; }
 .view-profile .menu-secondary-profile .dropdown span {
-  color: #222222; }
+  color: #222222;
+  font-size: 14px; }
 .view-profile .menu-secondary-profile a {
-  color: #222222; }
+  color: #222222;
+  font-size: 14px; }
 .view-profile .menu-secondary-profile a.active {
   font-weight: bold; }
 .view-profile .dropdown a {

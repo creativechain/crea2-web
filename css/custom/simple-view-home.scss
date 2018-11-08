@@ -1,6 +1,12 @@
 .simple-view-home {
   .container{
     max-width: 500px;
+    .masonry__container{
+      .col-xl-2-cust {
+        width: 100% !important;
+        max-width: 100%;
+      }
+    }
   }
 
 }

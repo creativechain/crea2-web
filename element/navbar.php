@@ -112,28 +112,29 @@
     <div class="side-menu__module">
         <ul class="social-list list-inline list--hover">
             <li>
-                <a href="#">
-                    <i class="socicon socicon-google icon icon--xs"></i>
+                <a href="https://t.me/Creary_net" target="_blank">
+                    <i class="socicon socicon-telegram icon icon--xs"></i>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="https://twitter.com/Crearynet" target="_blank">
                     <i class="socicon socicon-twitter icon icon--xs"></i>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="socicon socicon-facebook icon icon--xs"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="https://www.instagram.com/crearynet/" target="_blank">
                     <i class="socicon socicon-instagram icon icon--xs"></i>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="socicon socicon-pinterest icon icon--xs"></i>
+                <a href="https://steemit.com/@creary" target="_blank">
+                    <i class="socicon socicon-steam icon icon--xs"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://medium.com/creary/" target="_blank">
+                    <i class="socicon socicon-medium icon icon--xs"></i>
                 </a>
             </li>
         </ul>

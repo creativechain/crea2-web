@@ -451,9 +451,13 @@
                             </div>
                             <div class="col-md-4 mt-3">
                                 <label>CONTRASEÑA GENERADA</label>
-                                <a class="btn btn--sm btn--black mt-3" href="">
-                                    <span class="btn__text">Confirmar contraseña</span>
-                                </a>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a class="btn btn--sm btn--black mt-3" href="">
+                                            <span class="btn__text">Confirmar contraseña</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>REINTRODUCE LA CONTRASEÑA GENERADA</label>
