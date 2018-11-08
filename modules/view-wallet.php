@@ -337,7 +337,7 @@
                                         </div><!--end dropdown container-->
                                     </div>
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">2850 CBD</span>
+                                        <span class="dropdown__trigger">{{ state.user.savings_cbd_balance }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
