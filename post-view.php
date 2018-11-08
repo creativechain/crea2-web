@@ -260,7 +260,7 @@
                                                     <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
                                                 </div>
                                                 <div class="col-amount">
-                                                    <span>14,84 $</span>
+                                                    <span>{{ getPayout() }}</span>
                                                 </div>
                                             </div>
 

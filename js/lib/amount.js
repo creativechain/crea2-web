@@ -62,9 +62,40 @@ class MonetaryFormat {
 }
 
 class Asset {
+    /**
+     *
+     * @param {Number} amount
+     * @param {{precision: Number, symbol: String}} asset
+     */
     constructor(amount, asset) {
         this.amount = amount;
         this.asset = asset;
+    }
+
+    /**
+     *
+     * @param val
+     * @returns {Asset}
+     */
+    add(val) {
+        if (val.asset.symbol === this.asset.symbol) {
+            this.amount += val.amount;
+        }
+
+        return this;
+    }
+
+    /**
+     *
+     * @param val
+     * @returns {Asset}
+     */
+    subtract(val) {
+        if (val.asset.symbol === this.asset.symbol) {
+            this.amount -= val.amount;
+        }
+
+        return this;
     }
 
     /**

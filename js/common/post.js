@@ -32,12 +32,24 @@ let postContainer;
                         return License.fromFlag(this.state.post.metadata.license);
                     },
                     dateFromNow: function(date) {
-                        date = new Date(date + 'Z');
-                        return moment(date.getTime()).fromNow();
+                        return moment.utc(date).fromNow();
                     },
                     formatDate: function (date) {
-                        date = new Date(date + 'Z');
-                        return moment(date.getTime()).format('LLLL');
+                        return moment.utc(date).format('LLLL');
+                    },
+                    hasPaid: function () {
+                        let now = new Date();
+                        let payout = new Date(this.state.post.cashout_time);
+                        return now.getTime() > payout.getTime();
+                    },
+                    getPayout: function () {
+                        let amount = Asset.parseString(this.state.post.pending_payout_value);
+                        if (this.hasPaid()) {
+                            amount = Asset.parseString(this.state.post.total_payout_value);
+                            amount = amount.add(Asset.parseString(this.state.post.curator_payout_value));
+                        }
+
+                        return amount.toPlainString(2) + '$'
                     },
                     makeComment: makeComment,
                     makeVote: function (post) {
