@@ -126,11 +126,11 @@
                     <i class="socicon socicon-instagram icon icon--xs"></i>
                 </a>
             </li>
-            <li>
+            <!--<li>
                 <a href="https://steemit.com/@creary" target="_blank">
-                    <i class="socicon socicon-steam icon icon--xs"></i>
+                    <i class="socicon socicon-steemit icon icon--xs"></i>
                 </a>
-            </li>
+            </li>-->
 
             <li>
                 <a href="https://medium.com/creary/" target="_blank">
