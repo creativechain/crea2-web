@@ -2,8 +2,134 @@
  * Created by ander on 16/10/18.
  */
 
-Vue.component('witness-vote', {
+Vue.component('post-like', {
+    template: `<div class="col-likes"><img style="cursor: pointer" v-on:click="makeVote" v-bind:src="getIcon()" alt=""><p>{{ post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p></div>`,
+    props: {
+        session: {
+            type: Object
+        },
+        post: {
+            type: Object
+        }
+    },
+    data: function () {
+        return {
+            R: R,
+            lang: lang
+        }
+    },
+    methods: {
+        getIcon: function () {
+            if (this.hasVote()) {
+                return this.R.IMG.LIKE.BLUE.FILLED;
+            }
 
+            return this.R.IMG.LIKE.BLUE.BORDER;
+        },
+        hasVote: function () {
+            let session = this.$props.session;
+            let post = this.$props.post;
+
+            if (session && post) {
+                let activeVotes = post.active_votes;
+
+                for (let x = 0; x < activeVotes.length; x++) {
+                    let vote = activeVotes[x];
+                    if (session.account.username === vote.voter) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        },
+        makeVote: function (event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            if (!this.hasVote()) {
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+
+                crea.broadcast.vote(session.account.keys.posting.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        that.$emit('vote', err);
+                    } else {
+                        console.log(result);
+                        that.$emit('vote', null, result);
+                    }
+                })
+            }
+        }
+    }
+});
+
+Vue.component('like', {
+    template: `<a href="#" v-on:click="makeVote"><img v-bind:src="getIcon()" alt=""> 
+<span>{{ post.active_votes.length }}</span></a>`,
+    props: {
+        session: {
+            type: Object
+        },
+        post: {
+            type: Object
+        }
+    },
+    data: function () {
+        return {
+            R: R
+        }
+    },
+    methods: {
+        getIcon: function () {
+            if (this.hasVote()) {
+                return this.R.IMG.LIKE.RED.FILLED;
+            }
+
+            return this.R.IMG.LIKE.BORDER;
+        },
+        hasVote: function () {
+            let session = this.$props.session;
+            let post = this.$props.post;
+
+            if (session && post) {
+                let activeVotes = post.active_votes;
+
+                for (let x = 0; x < activeVotes.length; x++) {
+                    let vote = activeVotes[x];
+                    if (session.account.username === vote.voter) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        },
+        makeVote: function (event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            if (!this.hasVote()) {
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+
+                crea.broadcast.vote(session.account.keys.posting.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        that.$emit('vote', err);
+                    } else {
+                        console.log(result);
+                        that.$emit('vote', null, result);
+                    }
+                })
+            }
+        }
+    }
 });
 
 Vue.component('btn-follow',  {

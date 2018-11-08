@@ -255,10 +255,11 @@
                                         <hr>
                                         <li>
                                             <div class="row-likes">
-                                                <div class="col-likes">
+                                                <!--<div class="col-likes">
                                                     <img src="/img/icons/like_BLUE.svg" alt="">
                                                     <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
-                                                </div>
+                                                </div>-->
+                                                <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
                                                 <div class="col-amount">
                                                     <span>{{ getPayout() }}</span>
                                                 </div>

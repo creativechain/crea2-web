@@ -11,11 +11,7 @@
             <p class="description-post-box">{{ getTags(state.content[p]) }}</p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
-                    <a href="#/" v-on:click="makeVote(state.content[p])">
-                        <img v-if="userHasVote(state.content[p])" src="img/crea-web/like/like_ACT_RED.svg" alt="">
-                        <img v-else src="img/crea-web/like/like.svg" alt="">
-                        <span>{{ state.content[p].active_votes.length }}</span>
-                    </a>
+                    <like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[p]"></like>
                 </li>
                 <li>
                     <div class="dropdown dropdown-price">

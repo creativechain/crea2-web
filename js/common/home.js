@@ -86,11 +86,8 @@ let homePosts;
 
                         return false;
                     },
-                    makeVote: function (post) {
-                        let filter = this.filter;
-                        makeVote(post, function () {
-                            creaEvents.emit('crea.content.filter', filter);
-                        })
+                    onVote: function (err, result) {
+                        creaEvents.emit('crea.content.filter', filter);
                     },
                     getLicense(flag) {
                         if (flag) {

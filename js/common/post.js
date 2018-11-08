@@ -52,10 +52,8 @@ let postContainer;
                         return amount.toPlainString(2) + '$'
                     },
                     makeComment: makeComment,
-                    makeVote: function (post) {
-                        makeVote(post, function () {
-                            fetchContent();
-                        })
+                    onVote: function () {
+                        fetchContent();
                     },
                     onFollow: function (err, result) {
                         fetchContent();
