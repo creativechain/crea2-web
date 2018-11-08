@@ -245,37 +245,39 @@ let walletModalSend;
 
                         return '';
                     },
-                    userHasVote: function (post) {
-                        let session = this.session;
-
-                        if (session) {
-                            let activeVotes = post.active_votes;
-
-                            for (let x = 0; x < activeVotes.length; x++) {
-                                let vote = activeVotes[x];
-                                if (session.account.username === vote.voter) {
-                                    return true;
-                                }
-                            }
+                    hasPaid: function (post) {
+                        let now = new Date();
+                        let payout = toLocaleDate(post.cashout_time);
+                        return now.getTime() > payout.getTime();
+                    },
+                    getPayoutPostDate: function (post) {
+                        let date = toLocaleDate(post.cashout_time);
+                        if (this.hasPaid(post)) {
+                            date = toLocaleDate(post.last_payout);
                         }
 
-                        return false;
+                        return moment(toLocaleDate(date)).fromNow();
+                    },
+                    getPayout: function (post) {
+                        let amount = Asset.parseString(post.pending_payout_value);
+                        if (this.hasPaid(post)) {
+                            amount = Asset.parseString(post.total_payout_value);
+                            amount = amount.add(Asset.parseString(post.curator_payout_value));
+                        }
+
+                        return amount.toPlainString() + '$'
                     },
                     dateFromNow(date) {
-                        date = new Date(date + 'Z');
-                        return moment(date.getTime()).fromNow();
+                        return moment(toLocaleDate(date)).fromNow();
                     },
                     getFutureDate: function (date) {
-                        return moment.utc(date).fromNow();
+                        return moment(toLocaleDate(date)).fromNow();
                     },
                     onFollow: function (err, result) {
                         console.log('onFollow', err, result);
                     },
-                    makeVote: function (post) {
-                        let filter = this.filter;
-                        makeVote(post, function () {
-                            updateData(Session.getAlive());
-                        })
+                    onVote: function (err, result) {
+                        updateData(Session.getAlive());
                     },
                     getLicense(flag) {
                         if (flag) {

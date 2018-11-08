@@ -32,14 +32,14 @@ let postContainer;
                         return License.fromFlag(this.state.post.metadata.license);
                     },
                     dateFromNow: function(date) {
-                        return moment.utc(date).fromNow();
+                        return moment(toLocaleDate(date)).fromNow();
                     },
                     formatDate: function (date) {
-                        return moment.utc(date).format('LLLL');
+                        return moment(toLocaleDate(date)).format('LLLL');
                     },
                     hasPaid: function () {
                         let now = new Date();
-                        let payout = new Date(this.state.post.cashout_time);
+                        let payout = toLocaleDate(this.state.post.cashout_time);
                         return now.getTime() > payout.getTime();
                     },
                     getPayout: function () {

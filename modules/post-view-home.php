@@ -15,16 +15,16 @@
                 </li>
                 <li>
                     <div class="dropdown dropdown-price">
-                        <span class="dropdown__trigger"> {{ state.content[p].pending_payout_value }}
+                        <span class="dropdown__trigger"> {{ getPayout(state.content[p]) }}
                             <i class="stack-down-open"></i>
                         </span>
                         <div class="dropdown__container">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
-                                        <p class="title">{{ lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ state.content[p].pending_payout_value }} </p>
-                                        <p>{{ state.content[p].total_pending_payout_value }}</p>
-                                        <p>{{ getFutureDate(state.content[p].cashout_time) }}</p>
+                                        <p class="title">{{ lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.content[p]) }} </p>
+                                        <p>{{ getPayout(state.content[p]) }}</p>
+                                        <p>{{ getPayoutPostDate(state.content[p]) }}</p>
                                     </div>
                                 </div><!--end row-->
                             </div><!--end container-->

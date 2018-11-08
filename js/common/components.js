@@ -3,7 +3,7 @@
  */
 
 Vue.component('post-like', {
-    template: `<div class="col-likes"><img style="cursor: pointer" v-on:click="makeVote" v-bind:src="getIcon()" alt=""><p>{{ post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p></div>`,
+    template: `<div class="col-likes"><img style="cursor: pointer" v-on:click="makeVote" v-bind:src="getIcon()" alt=""><p>{{ hasPaid() ? post.net_votes : _post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p></div>`,
     props: {
         session: {
             type: Object
@@ -25,6 +25,11 @@ Vue.component('post-like', {
             }
 
             return this.R.IMG.LIKE.BLUE.BORDER;
+        },
+        hasPaid: function () {
+            let now = new Date();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
+            return now.getTime() > payout.getTime();
         },
         hasVote: function () {
             let session = this.$props.session;
@@ -69,7 +74,7 @@ Vue.component('post-like', {
 
 Vue.component('like', {
     template: `<a href="#" v-on:click="makeVote"><img v-bind:src="getIcon()" alt=""> 
-<span>{{ post.active_votes.length }}</span></a>`,
+<span>{{ hasPaid() ? post.net_votes : post.active_votes.length }}</span></a>`,
     props: {
         session: {
             type: Object
@@ -90,6 +95,11 @@ Vue.component('like', {
             }
 
             return this.R.IMG.LIKE.BORDER;
+        },
+        hasPaid: function () {
+            let now = new Date();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
+            return now.getTime() > payout.getTime();
         },
         hasVote: function () {
             let session = this.$props.session;

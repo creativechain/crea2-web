@@ -148,3 +148,28 @@ function copyToClipboard(element) {
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+/**
+ *
+ * @param {string|number|Date} date
+ * @returns {Date}
+ */
+function toLocaleDate(date) {
+    if (date) {
+        if (typeof date == 'string' || typeof date == 'number') {
+            date = new Date(date);
+        }
+
+        if (typeof date == 'object') {
+            let newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+            let offset = date.getTimezoneOffset() / 60;
+            let hours = date.getHours();
+
+            newDate.setHours(hours - offset);
+            return newDate;
+        }
+    }
+
+    return new Date(0);
+
+}
