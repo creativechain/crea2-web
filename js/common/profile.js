@@ -557,6 +557,7 @@ let walletModalSend;
         let cbd = profileContainer.state.user.reward_cbd_balance;
         let cgy = profileContainer.state.user.reward_vesting_balance;
 
+        globalLoading.show = true;
         crea.broadcast.claimRewardBalance(profileContainer.session.account.keys.active.prv,
             profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
                 if (err) {
@@ -564,6 +565,7 @@ let walletModalSend;
                 } else {
                     updateData(profileContainer.session);
                 }
+                globalLoading.show = false;
             })
     }
 
