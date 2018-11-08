@@ -21,7 +21,7 @@
         <section class="space--sm">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <template v-if="step == 1">
                             <?php include ('publish/publish-step-1.php') ?>
                         </template>
@@ -35,7 +35,7 @@
                             <?php include ('publish/publish-step-4.php') ?>
                         </template>
                         <div class="row">
-                            <div class="col-md-3 offset-9">
+                            <div class="col-md-4 offset-4">
                                 <a v-if="step !== 4" class="btn btn--primary type--uppercase w-100" v-on:click="nextStep">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.CONTINUE }}

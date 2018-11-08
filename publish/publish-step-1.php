@@ -41,19 +41,25 @@
 
         <div class="pos-vertical-center text-center">
             <div class="row">
-                <div class="col-md-4 offset-4">
+                <div class="col-md-6 offset-3">
                     <div class="row row-options-steps-1">
-                        <div class="col-md-6" v-on:click="loadFile">
-                            <img src="/img/crea-web/publish/b-img.png" alt="">
-                            <p>{{ lang.PUBLISH.FILE }}</p>
+                        <div class="col-md-6">
+                            <div class="button-add-file" v-on:click="loadFile"></div>
+                            <p class="title">{{ lang.PUBLISH.FILE }}</p>
+                            <p class="disabled">(imagen, audio, video)</p>
                             <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile">
                         </div>
-                        <div class="col-md-6" v-on:click="updateText(updatingIndex)">
-                            <img src="/img/crea-web/publish/b-img.png" alt="">
-                            <p>{{ lang.PUBLISH.TEXT }}</p>
+                        <div class="col-md-6">
+                            <div class="button-add-text" v-on:click="updateText(updatingIndex)"></div>
+                            <p class="title">{{ lang.PUBLISH.TEXT }}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="disabled">Imagen máximo 0,5MB. Audio máximo 100MB. Video máximo 200MB</p>
             </div>
         </div>
     </div>

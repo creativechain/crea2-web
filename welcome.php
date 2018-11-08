@@ -223,7 +223,7 @@
                                 <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt--1">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
                                     <div class="col-6">

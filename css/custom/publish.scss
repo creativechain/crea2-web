@@ -36,16 +36,62 @@
         right: 10px;
         top: 5px;
         a {
-          color: $color-white;
+          color: $background-modal;
         }
       }
     }
+
     .row-options-steps-1 {
       margin-top: 160px;
       margin-bottom: -50px;
+      .button-add-text {
+        background-image: url("/img/crea-web/publish/b-text.png");
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .button-add-text:hover {
+        background-image: url("/img/crea-web/publish/b-text-hover.png");
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+      }
+      .button-add-file {
+        background-image: url("/img/crea-web/publish/b-img.png");
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .button-add-file:hover {
+        background-image: url("/img/crea-web/publish/b-img-hover.png");
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      p.title {
+        margin-top: 10px;
+      }
+    }
+    p.disabled {
+      color: $grey-light;
     }
   }
   .step-2 {
+
+    p.disabled {
+      color: $grey-light;
+    }
+    .box-image-step-2 {
+      min-height: 300px;
+      .img-protada {
+        margin-top: 60px;
+      }
+    }
     .row-options-steps-1 {
       margin-top: 160px;
       margin-bottom: -50px;
@@ -53,12 +99,20 @@
     .input-radio input:checked + label:after {
       content: '';
       position: absolute;
-      width: 10px;
-      height: 10px;
-      left: 7px;
-      top: 7px;
-      background-color: #fff;
+      width: 20px;
+      height: 20px;
+      left: 2px;
+      top: 2px;
+      background-color: $color-blue-primary;
       border-radius: 50%;
+    }
+    .input-radio input:checked + label {
+      background-color: white;
+    }
+    .input-radio label {
+      position: relative;
+      background: $grey-light;
+      border: 1px solid $grey-light;
     }
     .input-radio-step-2 {
       display: flex;
@@ -82,12 +136,20 @@
     .input-radio input:checked + label:after {
       content: '';
       position: absolute;
-      width: 10px;
-      height: 10px;
-      left: 7px;
-      top: 7px;
-      background-color: #fff;
+      width: 20px;
+      height: 20px;
+      left: 2px;
+      top: 2px;
+      background-color: $color-blue-primary;
       border-radius: 50%;
+    }
+    .input-radio input:checked + label {
+      background-color: white;
+    }
+    .input-radio label {
+      position: relative;
+      background: $grey-light;
+      border: 1px solid $grey-light;
     }
     .input-radio-step-2 {
       display: flex;
