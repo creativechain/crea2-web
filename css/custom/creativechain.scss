@@ -332,7 +332,7 @@ img {
       width: 960px;
     }
     .user-avatar {
-      margin: 0 auto;
+      margin: 20px auto 10px;
     }
     .user-avatar {
       height: 50px;
@@ -362,7 +362,7 @@ img {
       margin: 10px 0;
     }
     p.name {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
     }
     p.description-user {
@@ -375,7 +375,7 @@ img {
       margin: 10px 0;
     }
     p.title-stats {
-      font-size: 16px;
+      font-size: 12px;
       font-weight: bold;
     }
   }
@@ -528,6 +528,9 @@ img {
     .container {
       max-width: 100%;
     }
+    .container-fluid {
+      max-width: 1200px;
+    }
   }
   .container {
     max-width: 1200px;
@@ -549,6 +552,11 @@ img {
 @media (min-width: 1500px) {
   .post-container-home {
     max-width: 1500px;
+  }
+  #menu1 {
+    .container-fluid {
+      max-width: 1500px;
+    }
   }
   .post-container-home {
     .col-xl-2-cust {

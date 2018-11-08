@@ -234,7 +234,7 @@
                                 <div class="col-md-12">
                                     <p class="title">{{ state.post.title }}</p>
                                     <span class="description">{{ state.post.metadata.description }}</span>
-                                    <span class="date-publish">{{ formatDate(state.post.created) }}</span>
+                                    <p class="date-publish description">{{ formatDate(state.post.created) }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -254,8 +254,17 @@
                                     <ul class="ul-social">
                                         <hr>
                                         <li>
-                                            <img src="/img/icons/like_BLUE.svg" alt="">
-                                            <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
+                                            <div class="row-likes">
+                                                <div class="col-likes">
+                                                    <img src="/img/icons/like_BLUE.svg" alt="">
+                                                    <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
+                                                </div>
+                                                <div class="col-amount">
+                                                    <span>14,84 $</span>
+                                                </div>
+                                            </div>
+
+
                                         </li>
                                         <hr>
                                         <li>

@@ -4,14 +4,23 @@
             <h4 class="title-steps">{{ lang.PUBLISH.INFO_TITLE }}</h4>
             <span class="description-step-title">{{ lang.PUBLISH.INFO_SUBTITLE }}</span>
         </div>
-
-        <div class="boxed boxed--border" v-on:click="loadFeaturedImage">
-            <div class="pos-vertical-center text-center">
+        <div class="boxed boxed--border box-image-step-2" v-on:click="loadFeaturedImage">
+            <div class="row row-image">
+                <div v-if="!featuredImage.url" class="col-md-4 offset-4 text-center">
+                    <img src="/img/crea-web/publish/b-img-portada.png" alt="">
+                    <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
+                    <p class="disabled">Imagen máximo 0,5MB</p>
+                </div>
+                <div v-else>
+                    <img v-bind:src="featuredImage.url" alt="">
+                </div>
+            </div>
+            <div class="pos-vertical-center text-center hidden">
                 <div class="row">
                     <div v-if="!featuredImage.url" class="col-md-4 offset-4">
                         <div class="row row-options-steps-1">
                             <div class="col">
-                                <img src="/img/crea-web/publish/b-img-portada.png" alt="">
+                                <img src="/img/crea-web/publish/b-img-portada.png" alt="" class="img-protada">
                                 <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
                             </div>
                         </div>
@@ -24,6 +33,7 @@
             <input ref="publishInputCover" class="hidden" type="file" accept="image/*" v-on:change="onLoadFeaturedImage" >
 
         </div>
+
     </div>
     <div class="boxed boxed--border">
         <div class="section-title-step">
