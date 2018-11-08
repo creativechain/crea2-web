@@ -483,7 +483,10 @@ let walletModalSend;
                 });
 
                 state.user = state.accounts[username];
-
+                crea.formatter.estimateAccountValue(state.user)
+                    .then(function (value) {
+                        state.user.estimate_account_value = value;
+                    });
                 let posts = Object.keys(state.content);
 
                 posts.forEach(function (k) {

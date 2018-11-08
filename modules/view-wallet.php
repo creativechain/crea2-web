@@ -359,7 +359,7 @@
                                     <p>{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <p class="total-active">0.00$</p>
+                                    <p class="total-active">{{ state.user.estimate_account_value }}$</p>
                                 </td>
                             </tr>
                             </tbody>
