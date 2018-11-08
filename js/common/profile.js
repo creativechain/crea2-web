@@ -597,7 +597,8 @@ let walletModalSend;
                 case CONSTANTS.TRANSFER.TRANSFER_CREA:
                     crea.broadcast.transfer(wif, from, to, amount, memo, callback);
                     break;
-                case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS:
+                case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CREA:
+                case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CBD:
                     crea.broadcast.transferToSavings(wif, from, to, amount, memo, callback);
                     break;
                 case CONSTANTS.TRANSFER.TRANSFER_TO_VESTS:
