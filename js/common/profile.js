@@ -4,6 +4,7 @@
 
 let profileContainer;
 let walletModalSend;
+let walletModalDeEnergize;
 
 (function () {
 
@@ -18,6 +19,28 @@ let walletModalSend;
 
     function tags(element) {
         $('#' + element).tagsinput();
+    }
+
+    function updateModalDeEnergize(state, session) {
+        if (!walletModalDeEnergize) {
+            walletModalDeEnergize = new Vue({
+                el: '#crea-de-energize',
+                data: {
+                    lang: lang,
+                    session: session,
+                    state: state,
+                    amount: 0
+                },
+                methods: {
+                    onAmount: function (amount) {
+                        console.log(amount);
+                    }
+                }
+            })
+        } else {
+            walletModalDeEnergize.session = session;
+            walletModalDeEnergize.state = state;
+        }
     }
 
     function updateModalSendView(state, session) {
@@ -545,6 +568,7 @@ let walletModalSend;
 
                             detectNav(state, session, userAccount, user);
                             updateModalSendView(state, session);
+                            updateModalDeEnergize(state, session);
                         }
                     })
                 }

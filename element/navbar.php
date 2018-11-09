@@ -34,7 +34,6 @@
     <script src="/js/vue.js"></script>
     <script src="/ckeditor/ckeditor.js"></script>
     <script src="/js/jquery-3.1.1.min.js"></script>
-    <script src="/js/bootstrap-slider.min.js"></script>
 
     <script src="/js/tagsinput.js"></script>
     <script src="/js/moment.min.js"></script>

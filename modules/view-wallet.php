@@ -225,7 +225,9 @@
                                                                                                     <div class="text-block">
                                                                                                         <h3>De-Energize</h3>
                                                                                                         <div class="slide-energize">
-                                                                                                            <input id="ex6" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="3"/>
+                                                                                                            <input id="ex6" type="text" v-bind:data-slider-formatter="onAmount"
+                                                                                                                   data-slider-min="0" v-bind:data-slider-max="100" data-slider-step="1"
+                                                                                                                   data-slider-value="1"/>
                                                                                                             <span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">3</span></span>
                                                                                                         </div>
                                                                                                     </div>

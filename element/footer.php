@@ -28,6 +28,7 @@
 <script src="/js/twitterfetcher.min.js"></script>
 <script src="/js/spectragram.min.js"></script>
 <script src="/js/smooth-scroll.min.js"></script>
+<script src="/js/bootstrap-slider.js"></script>
 <script src="/js/scripts.js"></script>
 
 <script src="/js/custom.js"></script>
