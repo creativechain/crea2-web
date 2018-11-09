@@ -143,6 +143,8 @@
   color: #999999; }
 .view-profile .menu-profile-user hr {
   margin: 1.85714286em -20px; }
+.view-profile .menu-profile-user .nameUser {
+  color: #999999; }
 .view-profile .menu-profile-user .user-avatar {
   height: 70px;
   width: 70px;
@@ -501,6 +503,8 @@
       font-size: 14px; }
     .post-view .border-post-view .full-post .img-post-view img {
       margin-bottom: 20px; }
+    .post-view .border-post-view .full-post .img-post-view video {
+      width: 100%; }
     .post-view .border-post-view .full-post .row-promote {
       margin: 20px 0; }
     .post-view .border-post-view .full-post .subtitle-content-publish {
