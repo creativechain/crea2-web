@@ -820,6 +820,20 @@
   border: solid 1px #3B3B3C !important;
   background-color: transparent !important; }
 
+.btn-following {
+  border-color: #d3d3d3 !important;
+  background-color: transparent !important; }
+
+.btn-following:hover {
+  border-color: #d3d3d3 !important;
+  background-color: transparent !important; }
+  .btn-following:hover .text__dark {
+    color: #000 !important; }
+
+.btn-unfollow {
+  border-color: #FF5666 !important;
+  background-color: #FF5666 !important; }
+
 .btn-unfollow:hover {
   border-color: #FF5666 !important;
   background-color: #FF5666 !important; }

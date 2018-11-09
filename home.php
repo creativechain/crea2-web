@@ -15,6 +15,23 @@
 
 
     <section v-cloak id="home-posts" class="space--sm">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <a href="#0" class="btn btn--sm btn--primary">
+                    <span class="btn__text">Follow</span>
+                </a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#0" class="btn btn--sm btn-following">
+                    <span class="btn__text text__dark">Following</span>
+                </a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#0" class="btn btn--sm btn-unfollow">
+                    <span class="btn__text">Unfollow</span>
+                </a>
+            </div>
+        </div>
         <div class="container post-container-home">
             <div class="masonry">
                 <div class="masonry__container row">

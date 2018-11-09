@@ -67,6 +67,21 @@
   border: solid 1px $border-btn-transparent !important;
   background-color: transparent !important;
 }
+.btn-following {
+  border-color: #d3d3d3 !important;
+  background-color: transparent !important;
+}
+.btn-following:hover {
+  border-color: #d3d3d3 !important;
+  background-color: transparent !important;
+  .text__dark {
+    color: #000 !important;
+  }
+}
+.btn-unfollow {
+  border-color: $notification-navbar !important;
+  background-color: $notification-navbar !important;
+}
 .btn-unfollow:hover {
   border-color: $notification-navbar !important;
   background-color: $notification-navbar !important;
