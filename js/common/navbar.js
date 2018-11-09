@@ -25,7 +25,6 @@ let navbarContainer;
      * @param userData
      */
     function updateNavbarSession(session, userData) {
-        console.log(session, userData);
         if (!navbarContainer) {
             navbarContainer = new Vue({
                 el: '#navbar-container',
@@ -107,7 +106,7 @@ let navbarContainer;
 
 
     function retrieveContent(filter) {
-
+        updateUrl(filter);
         crea.api.getState(filter, function (err, result) {
             if (err) {
                 console.error(err);
@@ -118,22 +117,22 @@ let navbarContainer;
     }
 
     function retrieveNewContent() {
-        retrieveContent("created");
+        retrieveContent("/created");
     }
 
     function retrieveTrendingContent() {
 
-        retrieveContent("trending");
+        retrieveContent("/trending");
     }
 
     function retrieveHotContent() {
 
-        retrieveContent("hot");
+        retrieveContent("/hot");
     }
 
     function retrievePromotedContent() {
 
-        retrieveContent("promoted");
+        retrieveContent("/promoted");
     }
 
     creaEvents.on('crea.session.update', function (session, account) {
@@ -141,7 +140,6 @@ let navbarContainer;
     });
 
     creaEvents.on('crea.session.login', function (session, account) {
-        console.log('Executing login');
         updateNavbarSession(session, account)
     });
 

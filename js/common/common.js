@@ -66,11 +66,14 @@ function showPost(post) {
     if (!post.url) {
         post.url = '/' + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
     }
-    goTo('/post-view.php?url=' + post.url)
+    goTo(post.url)
 }
 
-function showProfile(user) {
-    goTo('/profile.php?profile=' + user);
+function showProfile(username) {
+    if (!username.startsWith('/@')) {
+        username = '/@' + username;
+    }
+    goTo(username);
 }
 
 function updateUrl(url) {

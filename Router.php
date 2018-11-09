@@ -20,13 +20,11 @@ class Router
 
     /**
      * @param $route
-     * @param $parts
      * @param $includeFile
      */
-    public function addRoute($route, $parts, $includeFile) {
+    public function addRoute($route, $includeFile) {
         $this->routes[] = array(
             'route' => $route,
-            'parts' => $parts,
             'includeFile' => $includeFile
         );
     }
@@ -36,15 +34,34 @@ class Router
      * @return string|null
      */
     public function match($route) {
+        $route = strtok($route, '?');
+
         foreach ($this->routes as $r) {
             $matches = array();
+            error_log('Matching: ' . $r['route'] . ', url: ' . $route);
 
             if ($r['route'] === $route) {
-                error_log('Matched Route: s' . $r['route'] . ', url: ' . $route);
+                error_log('Equal Route: ' . $r['route'] . ', url: ' . $route);
                 return $r['includeFile'];
-            } else if (preg_match_all($r['route']. '/m', $route, $matches, PREG_SET_ORDER, 0)) {
-                error_log('Matched Route: s' . $r['route'] . ', url: ' . $route);
-                return $r['includeFile'];
+            } else if (preg_match('/'. $r['route']. '/', $route, $matches)) {
+
+                $routeParts = explode('/', $route);
+                array_splice($routeParts, 0, 1);
+
+                $fullMatch = true;
+                for ($x = 0; $x < count($routeParts); $x++) {
+                    $part = $routeParts[$x];
+                    $fullMatch = $fullMatch && in_array($part, $matches);
+
+                    if (!$fullMatch ) {
+                        break;
+                    }
+                }
+
+                if ($fullMatch) {
+                    error_log('Matched Route: ' . $r['route'] . ', url: ' . $route);
+                    return $r['includeFile'];
+                }
             }
 
         }

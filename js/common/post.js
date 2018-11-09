@@ -6,8 +6,7 @@ let postContainer;
 
 (function () {
 
-    let query = window.location.search;
-    let url = getParameterByName('url', query);
+    let url = window.location.pathname;
 
     console.log('URL:', url);
     let session, userAccount;

@@ -182,3 +182,34 @@ function humanFileSize(size) {
     let i = Math.floor( Math.log(size) / Math.log(1024) );
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + UNIT[i];
 }
+
+/**
+ *
+ * @param {string} username
+ * @returns {boolean}
+ */
+function isUserFeed(username) {
+    let path = window.location.pathname;
+    if (username.startsWith('@')) {
+        username = '/' + username;
+    } else if (!username.startsWith('/@')) {
+        username = '/@' + username;
+    }
+
+    let feed = username + '/feed';
+    console.log('Checking feed', path, feed);
+    return path === feed;
+}
+
+/**
+ *
+ * @param index
+ * @returns {string}
+ */
+function getPathPart(index = 0) {
+    let path = window.location.pathname;
+    let parts = path.split('/');
+    parts.splice(0, 1);
+
+    return parts[index];
+}

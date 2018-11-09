@@ -354,9 +354,7 @@ let walletModalDeEnergize;
      * @param usernameFilter
      */
     function detectNav(state, session, account, usernameFilter) {
-
-        let nav = getParameterByName('nav', window.location.href);
-
+        let nav = getPathPart(1);
         if (!nav) {
             nav = 'projects';
         }
@@ -517,15 +515,10 @@ let walletModalDeEnergize;
         });
     }
 
-    function handleProfile(session, account, profileName = null) {
-        if (!profileName) {
-            profileName = getParameterByName('profile');
-
-            if (!profileName && session) {
-                profileName = session.account.username;
-            }
-        }
-
+    function handleProfile(session, account) {
+        let profileName = getPathPart();
+        profileName = profileName.replace('@', '');
+        console.log(profileName);
         if (profileName) {
             fetchHistory(profileName);
             fetchUserState(profileName, function (err, state) {
@@ -608,7 +601,6 @@ let walletModalDeEnergize;
     }
 
     function handleSession(session, account) {
-        console.log('hndling session')
         if (session) {
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
         }

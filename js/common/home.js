@@ -8,7 +8,6 @@ let homePosts;
     let session, account;
 
     function showPosts(filter, state) {
-        //console.log(filter, data);
         let content = state.content;
         let accounts = state.accounts;
 
@@ -24,6 +23,19 @@ let homePosts;
             accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
         });
         state.accounts = accounts;
+
+        //Set discussion feed
+        if (!state.discussion_idx['']) {
+
+            cKeys.sort(function (k1, k2) {
+                return new Date(state.content[k2].created).getTime() - new Date(state.content[k1].created).getTime();
+            });
+
+            state.discussion_idx[''] = {};
+            state.discussion_idx[''][filter] = cKeys;
+        }
+
+        console.log(state.discussion_idx[''][filter]);
 
         if (!homePosts) {
             homePosts = new Vue({
@@ -41,9 +53,7 @@ let homePosts;
                         console.log('onFollow', err, result);
                         creaEvents.emit('crea.content.filter', this.filter);
                     },
-                    openPost: function (post) {
-                        window.location.href = '/post-view.php?url=' + post.url;
-                    },
+                    openPost: showPost,
                     parseAsset: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
@@ -113,7 +123,34 @@ let homePosts;
     }
 
     creaEvents.on('crea.posts', function (filter, state) {
-        showPosts(filter, state);
+        if (isUserFeed(getPathPart())) {
+            let authors = [];
+            for (let c in state.content) {
+                let author = state.content[c].author;
+                if (!authors.includes(author)) {
+                    authors.push(author);
+                }
+            }
+
+            crea.api.getAccounts(authors, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    let accounts = {};
+                    result.forEach(function (a) {
+                        a.metadata = jsonify(a.json_metadata);
+                        a.metadata.avatar = a.metadata.avatar || {};
+                        accounts[a.name] = a;
+                    });
+
+                    state.accounts = accounts;
+                    showPosts(filter, state);
+                }
+            })
+
+        } else {
+            showPosts(filter, state);
+        }
     });
 
     creaEvents.on('crea.session.update', function (s, a) {
@@ -124,12 +161,16 @@ let homePosts;
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         account = a;
-        console.log(s, a);
-        if (s) {
-            //TODO: REPLACE BY FOLLOWING CONTENT
-            creaEvents.emit('crea.content.filter', 'created');
+
+        let path = window.location.pathname;
+        if (path === '/') {
+            if (s) {
+                creaEvents.emit('crea.content.filter', '/@' + s.account.username + '/feed');
+            } else {
+                creaEvents.emit('crea.content.filter', '/promoted');
+            }
         } else {
-            creaEvents.emit('crea.content.filter', 'promoted');
+            creaEvents.emit('crea.content.filter', path);
         }
     });
 })();
