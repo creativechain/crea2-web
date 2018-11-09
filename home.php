@@ -15,23 +15,19 @@
 
 
     <section v-cloak id="home-posts" class="space--sm">
+
+        <!-- INICIO ELIMINAR DIV -->
         <div class="row">
-            <div class="col-md-4 text-center">
-                <a href="#0" class="btn btn--sm btn--primary">
-                    <span class="btn__text">Follow</span>
-                </a>
+            <div class="col-md-3 text-center">
+                <div class="lds-heart like-normal size-20"><div></div></div>
+
             </div>
-            <div class="col-md-4 text-center">
-                <a href="#0" class="btn btn--sm btn-following">
-                    <span class="btn__text text__dark">Following</span>
-                </a>
-            </div>
-            <div class="col-md-4 text-center">
-                <a href="#0" class="btn btn--sm btn-unfollow">
-                    <span class="btn__text">Unfollow</span>
-                </a>
+            <div class="col-md-3 text-center">
+                <div class="lds-heart active-like size-20"><div></div></div>
             </div>
         </div>
+        <!-- FIN ELIMINAR DIV -->
+
         <div class="container post-container-home">
             <div class="masonry">
                 <div class="masonry__container row">
