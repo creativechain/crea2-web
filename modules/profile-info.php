@@ -4,6 +4,7 @@
             <avatar v-bind:username="state.user.name " v-bind:url="state.user.metadata.avatar.url "></avatar>
         </div>
         <span class="h5">{{ profile.publicName || '@' + state.user.name }} </span>
+        <p class="mb-2 nameUser">@user</p>
         <p class="mb-0">{{ profile.web || '-' }}</p>
         <p>{{ profile.about || '-' }}</p>
     </div>
