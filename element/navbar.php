@@ -73,12 +73,12 @@
                 </a>
             </li>
             <li>
-                <a href="/vote-for-witnesses.php">
-                    <span class="h5">{{ lang.DOTS_MENU.VOTE_FOR_WITNESS }}</span>
+                <a href="../vote-for-witnesses.php">
+                    <span class="h5">{{ lang.DOTS_MENU.VOTE }}</span>
                 </a>
             </li>
             <li>
-                <a href="/trending-topics.php">
+                <a href="../explorer.php">
                     <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
                 </a>
             </li>
@@ -182,8 +182,7 @@
             <div class="row">
                 <div class="col-3 col-md-2">
                     <a href="/">
-                        <img class="logo logo-dark" alt="logo" src="img/logo-dark.png"/>
-                        <img class="logo logo-light" alt="logo" src="img/logo-light.png"/>
+                        <img class="logo" alt="logo" src="img/logo-light.png"/>
                     </a>
                 </div>
                 <div class="col-9 col-md-10 text-right">
@@ -247,10 +246,10 @@
                                 </a>
                             </li>
 
-
                             <li v-if="session" class="li-avatar-navbar">
                                 <div class="dropdown">
                                     <span class="dropdown__trigger">
+
                                         <div class="user-avatar" >
                                             <avatar v-bind:username="user.name" v-bind:url="user.metadata.avatar.url"></avatar>
                                         </div>
