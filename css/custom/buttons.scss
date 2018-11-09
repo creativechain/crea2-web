@@ -1,0 +1,73 @@
+.btn .btn__text, .btn i {
+  font-size: 12px;
+}
+.icons-navbar {
+  font-size: 16px !important;
+}
+.bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
+  font-size: 14px;
+}
+.btn--primary, .btn--primary:visited {
+  background: $color-blue-primary;
+  border-color: $color-blue-primary;
+}
+.btn--secondary, .btn--secondary:visited {
+  background: $background-btn-secondary;
+  border-color: $background-btn-secondary;
+}
+.color-secondary {
+  color: $background-navbar-dark;
+}
+.btn--black, .btn--black:visited {
+  background: $color-dark-primary;
+  border-color: $color-dark-primary;
+  color: $color-white;
+}
+.btn:hover {
+  .text__dark {
+    color: $color-white !important;
+  }
+}
+.btn .btn__text, .btn i {
+  color: $color-white;
+  border-color: transparent;
+  font-weight: normal;
+}
+.btn-publish-navbar{
+  position: relative;
+  top: -4px;
+}
+.btn {
+  border-radius: 25px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 2em;
+  padding-left: 2em;
+  border: 1px solid transparent;
+  border-width: 1px;
+  font-size: inherit;
+  line-height: 1.85714286em;
+  min-width: 155px;
+  max-height: 25px;
+  font-weight: normal;
+
+}
+.btn:not([class*='primary']):hover {
+  border-color: #333333;
+  background-color: #333333;
+}
+.btn--transparent:hover {
+  border-color: #333333 !important;
+  background-color: #333333 !important;
+  span {
+    color: $color-white !important;
+  }
+}
+.btn--transparent {
+  border: solid 1px $border-btn-transparent !important;
+  background-color: transparent !important;
+}
+.btn-unfollow:hover {
+  border-color: $notification-navbar !important;
+  background-color: $notification-navbar !important;
+}
