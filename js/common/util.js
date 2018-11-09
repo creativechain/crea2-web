@@ -171,5 +171,10 @@ function toLocaleDate(date) {
     }
 
     return new Date(0);
+}
 
+function humanFileSize(size) {
+    const UNIT = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    let i = Math.floor( Math.log(size) / Math.log(1024) );
+    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + UNIT[i];
 }

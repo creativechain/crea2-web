@@ -17,10 +17,6 @@ let walletModalDeEnergize;
         confirmed: false
     };
 
-    function tags(element) {
-        $('#' + element).tagsinput();
-    }
-
     function updateModalDeEnergize(state, session) {
         if (!walletModalDeEnergize) {
             walletModalDeEnergize = new Vue({
@@ -172,6 +168,7 @@ let walletModalDeEnergize;
                     }
                 },
                 updated: function () {
+                    console.log('Updating profile', this.profile.tags);
                     let t = $('#wallet-tabs').prev();
                     if (t.is(':empty')) {
                         t.remove();
@@ -190,8 +187,6 @@ let walletModalDeEnergize;
                             inputTags.tagsinput('add', t);
                         })
                     }
-
-                    //$('#wallet-tabs').prev().remove();
                 },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
@@ -348,6 +343,8 @@ let walletModalDeEnergize;
             profileContainer.profile = state.user.metadata;
             profileContainer.navfilter = navfilter;
         }
+
+        profileContainer.$forceUpdate();
     }
 
     /**

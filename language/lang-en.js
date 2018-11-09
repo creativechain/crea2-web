@@ -229,7 +229,10 @@ let lang = {
         "QUESTION": "Does this project contain adult content?",
         "INFO_TITLE": "Cover",
         "SECONDARY_MENU_INFO": "Information",
-        "IMAGE": "(image, audio, video)",
+        "FILE_TYPE_INFO": "(image, audio, video)",
+        "IMAGE_MAX_FILE_SIZE": "Image Max: %s",
+        "AUDIO_MAX_FILE_SIZE": "Audio Max: %s",
+        "VIDEO_MAX_FILE_SIZE": "Video Max: %s",
         "INFO_POST": "Post Information",
         "SECONDARY_MENU_LICENSE": "License",
         "INFO_DESCRIPTION": "SHORT DESCRIPTION",
@@ -251,6 +254,9 @@ let lang = {
         "LICENSE_NO_LICENSE": "No license. (no one is allowed to use your work without your permission).",
         "LICENSE_TEXT_PUBLISH": "You are about to publish your project. Let\u2019s go!",
         "LICENSE_TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
+        "NO_ELEMENTS_ERROR": "You must add at least one element (image, audio, video or text)",
+        "FILE_TO_LARGE": "The file is to large",
+        "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one label"
 
     },
     "WITNESS": {

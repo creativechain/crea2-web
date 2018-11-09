@@ -16,7 +16,7 @@ let publishContainer;
         }
     }
 
-    if (!publishContainer) {
+    function setUp() {
         publishContainer = new Vue({
             el: '#publish-container',
             data: {
@@ -29,14 +29,54 @@ let publishContainer;
                 uploadedFiles: [],
                 updatingIndex: -1,
                 featuredImage: {},
-                title: '',
+                title: null,
                 description: '',
                 price: 0,
                 adult: false,
                 downloadFile: {},
                 publicDomain: LICENSE.NO_LICENSE.flag,
                 share: LICENSE.NO_LICENSE.flag,
-                commercial: LICENSE.NO_LICENSE.flag
+                commercial: LICENSE.NO_LICENSE.flag,
+                showEditor: false,
+                tagsConfig: {
+                    init: false,
+                    addedEvents: false,
+                },
+                error: null
+            },
+            updated: function () {
+                console.log('updating');
+                if (this.step == 2) {
+                    let inputTags = $('#publish-tags');
+                    let that = this;
+                    if (!this.tagsConfig.init) {
+                        inputTags.tagsinput({
+                            maxTags: CONSTANTS.MAX_TAGS,
+                            maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
+                            delimiter: ' '
+                        });
+
+                        this.tagsConfig.init = true;
+                    }
+
+                    if (!this.tagsConfig.addedEvents) {
+                        inputTags.on('beforeItemAdd', function (event) {
+                            console.log('added item', event.item);
+                            that.tags.push(event.item);
+                        });
+
+                        inputTags.on('itemRemoved', function (event) {
+                            console.log('removed item', event.item);
+                            let i = that.tags.indexOf(event.item);
+                            if (i > -1) {
+                                that.tags.splice(i, 1);
+                            }
+                        });
+
+                        this.tagsConfig.addedEvents = true;
+                    }
+                }
+
             },
             methods: {
                 getLicense: function () {
@@ -51,7 +91,23 @@ let publishContainer;
                     return license;
                 },
                 nextStep: function () {
-                    this.step += 1;
+                    //Check errors before continue
+                    switch (this.step) {
+                        case 1:
+                            this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
+                            break;
+                        case 2:
+                            if (!this.featuredImage || !this.title || this.tags.length == 0) {
+                                this.error = this.lang.PUBLISH.NO_TITLE_TAG_OR_IMAGE;
+                            } else {
+                                this.error = null;
+                            }
+                    }
+
+                    if (!this.error) {
+
+                        this.step += 1;
+                    }
                 },
                 loadFile: function (event) {
                     const elem = this.$refs.publishInputFile;
@@ -64,7 +120,9 @@ let publishContainer;
                 onLoadFile: function (event) {
                     let files = event.target.files;
                     if (files.length > 0) {
+                        globalLoading.show = true;
                         uploadToIpfs(files[0], function (err, file) {
+                            globalLoading.show = false;
                             if (err) {
                                 console.error(err);
                             } else {
@@ -76,7 +134,9 @@ let publishContainer;
                 onLoadFeaturedImage: function (event) {
                     let files = event.target.files;
                     if (files.length > 0) {
+                        globalLoading.show = true;
                         uploadToIpfs(files[0], function (err, file) {
+                            globalLoading.show = false;
                             if (err) {
                                 console.error(err);
                             } else {
@@ -85,15 +145,17 @@ let publishContainer;
                         });
                     }
                 },
+                toggleEditor: function (event) {
+                    event.preventDefault();
+                    this.showEditor = !this.showEditor;
+                },
                 updateText: updateText,
                 editText: editText,
                 removeElement: removeElement,
                 makePublication: makePublication,
-                onTagsChange: function (event) {
-                    this.tags = event.target.value.split(' ');
-                }
+                humanFileSize: humanFileSize
             }
-        })
+        });
     }
 
     function updateText(index = -1) {
@@ -202,12 +264,19 @@ let publishContainer;
                 };
                 fr.readAsArrayBuffer(file);
             } else {
+                globalLoading.show = false;
                 console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maximumSize);
+                publishContainer.error = lang.PUBLISH.FILE_TO_LARGE;
             }
         } else {
             console.error('File API unsupported');
+            globalLoading.show = false;
         }
 
     }
+
+    creaEvents.on('crea.content.loaded', function () {
+        setUp();
+    })
 
 })();

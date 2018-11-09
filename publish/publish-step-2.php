@@ -9,7 +9,7 @@
                 <div v-if="!featuredImage.url" class="col-md-4 offset-4 text-center">
                     <img src="/img/crea-web/publish/b-img-portada.png" alt="">
                     <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
-                    <p class="disabled">Imagen máximo 0,5MB</p>
+                    <p class="disabled">{{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.IMAGE)) }}</p>
                 </div>
                 <div v-else>
                     <img v-bind:src="featuredImage.url" alt="">
@@ -43,7 +43,8 @@
         <form action="" class="row">
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_POST_TITLE }}</label>
-                    <input v-model="title" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
+                    <input v-model="title" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE"
+                           class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_DESCRIPTION }}</label>
@@ -51,9 +52,9 @@
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_TAGS }}</label>
-                    <input class="validate-required" v-on:keypress="onTagsChange" v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + '}'"
-                           type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS"
-                           tags-view >
+                    <input id="publish-tags" class="validate-required"
+                           v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + '}'"
+                           type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS">
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.QUESTION }}</label>
@@ -71,7 +72,9 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-
+                    <p class="error-color-form">
+                        {{ error || '' }}
+                    </p>
                 </div>
             </form>
     </div>
