@@ -145,11 +145,10 @@ Vue.component('like', {
 Vue.component('btn-follow',  {
     template: `<a v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !innerFollowing, 'btn-following': innerFollowing, 'btn-unfollow': over && innerFollowing }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: innerFollowing && !over }">{{ followText() }}</span></a>`,
     props: {
-        following: {
-            type: Boolean,
-            default: 0
+        session: {
+            type: [Object, Boolean]
         },
-        self: {
+        account: {
             type: [Object, Boolean]
         },
         user: {
@@ -158,31 +157,32 @@ Vue.component('btn-follow',  {
 
     },
     data: function () {
+        console.log('btn-follow', this.$props)
         return {
             lang: lang,
             over: false,
-            innerFollowing: this.$props.following
+            innerFollowing: this.$props.session && this.account.followings.indexOf(this.$props.user) > -1
         }
     },
     methods: {
         performFollow: function () {
-            let operation = this.innerFollowing ? 'unfollow' : 'follow';
+            let operation = 'follow';
             let that = this;
-            let s = this.$props.self;
-            if (s) {
+            let session = this.$props.session;
+            if (session) {
                 let followJson = {
-                    follower: s.account.username,
+                    follower: session.account.username,
                     following: this.$props.user,
-                    what: ['blog']
+                    what: this.innerFollowing ? [] : ['blog']
                 };
 
                 followJson = [operation, followJson];
-                crea.broadcast.customJson(s.account.keys.posting.prv, [], [s.account.username], operation, jsonstring(followJson), function (err, result) {
+                crea.broadcast.customJson(session.account.keys.posting.prv, [], [session.account.username], operation, jsonstring(followJson), function (err, result) {
                     if (err) {
                         console.error(err);
                         that.$emit('follow', err)
                     } else {
-                        that.innerFollowing = !that.innerFollowing;
+                        //that.innerFollowing = !that.innerFollowing;
                         that.$emit('follow', null, result);
                     }
                 })

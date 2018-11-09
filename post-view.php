@@ -222,7 +222,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <btn-follow v-if="session" class="" v-on:follow="onFollow" v-bind:self="session" v-bind:user="state.post.author" v-bind:following="false" ></btn-follow>
+                                    <btn-follow v-if="session"
+                                                v-on:follow="onFollow" v-bind:session="session"
+                                                v-bind:account="user"
+                                                v-bind:user="state.post.author" >
+
+                                    </btn-follow>
                                 </div>
                             </div>
                             <div class="row">

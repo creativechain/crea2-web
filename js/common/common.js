@@ -176,6 +176,8 @@ function updateUserSession() {
                 });
             }
         })
+    } else {
+        creaEvents.emit('crea.session.update', false);
     }
 }
 

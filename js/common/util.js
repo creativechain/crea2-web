@@ -173,6 +173,10 @@ function toLocaleDate(date) {
     return new Date(0);
 }
 
+function clone(src) {
+    return Object.assign({}, src);
+}
+
 function humanFileSize(size) {
     const UNIT = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     let i = Math.floor( Math.log(size) / Math.log(1024) );

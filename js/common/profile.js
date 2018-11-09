@@ -56,6 +56,7 @@ let walletModalDeEnergize;
                     toError: false,
                 },
                 methods: {
+
                     cancelSend: function (event) {
                         if (event) {
                             event.preventDefault();
@@ -143,6 +144,7 @@ let walletModalDeEnergize;
      * @returns {License}
      */
     function updateProfileView(state, session, account, usernameFilter, navfilter = 'projects') {
+        console.log('Updating profile', account);
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -168,7 +170,6 @@ let walletModalDeEnergize;
                     }
                 },
                 updated: function () {
-                    console.log('Updating profile', this.profile.tags);
                     let t = $('#wallet-tabs').prev();
                     if (t.is(':empty')) {
                         t.remove();
@@ -187,6 +188,8 @@ let walletModalDeEnergize;
                             inputTags.tagsinput('add', t);
                         })
                     }
+
+                    //$('#wallet-tabs').prev().remove();
                 },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
@@ -292,10 +295,10 @@ let walletModalDeEnergize;
                         return moment(toLocaleDate(date)).fromNow();
                     },
                     onFollow: function (err, result) {
-                        console.log('onFollow', err, result);
+                        updateUserSession();
                     },
                     onVote: function (err, result) {
-                        updateData(Session.getAlive());
+                        updateUserSession();
                     },
                     getLicense(flag) {
                         if (flag) {
@@ -330,21 +333,17 @@ let walletModalDeEnergize;
                 }
             });
         } else {
-            if (session) {
-                profileContainer.session = session;
-            }
-
-            if (account) {
-                profileContainer.account = account;
-            }
-
+            console.log('Updating data');
             profileContainer.state = state;
+            profileContainer.session = session;
+            profileContainer.account = account;
             profileContainer.filter = usernameFilter;
             profileContainer.profile = state.user.metadata;
             profileContainer.navfilter = navfilter;
         }
 
         profileContainer.$forceUpdate();
+        console.log('forcing show data');
     }
 
     /**
@@ -377,24 +376,11 @@ let walletModalDeEnergize;
                 if (err) {
                     console.error(err);
                 } else {
-                    updateData(session);
+                    updateUserSession();
                 }
             })
     }
 
-    /**
-     *
-     * @param {Session} session
-     */
-    function updateData(session) {
-        fetchUserState(session.account.username, function (err, result) {
-            if (err) {
-                console.error(err);
-            } else {
-                handleProfile(session, result, session.account.username);
-            }
-        });
-    }
     /**
      *
      * @param {string} username
@@ -496,7 +482,6 @@ let walletModalDeEnergize;
             if (err) {
                 console.error(err);
             } else  {
-                console.log(state);
                 let accounts = Object.keys(state.accounts);
 
                 accounts.forEach(function (k) {
@@ -532,38 +517,29 @@ let walletModalDeEnergize;
         });
     }
 
-    function handleProfile(session, userAccount, user = null) {
-        if (!user) {
-            let path = window.location.pathname;
-            user = path.split('/')[1];
-        }
+    function handleProfile(session, account, profileName = null) {
+        if (!profileName) {
+            profileName = getParameterByName('profile');
 
-        if (user.startsWith('@')) {
-            user = user.replace('@', '');
-        } else if (session) {
-            //Handle use by parameter profile
-            user = getParameterByName('profile', window.location.href);
-            if (!user) {
-                //No user found
-                user = session.account.username;
+            if (!profileName && session) {
+                profileName = session.account.username;
             }
         }
 
-        if (user) {
-            fetchHistory(user);
-            fetchUserState(user, function (err, state) {
+        if (profileName) {
+            fetchHistory(profileName);
+            fetchUserState(profileName, function (err, state) {
                 if (err) {
                     console.error(err);
                 } else {
-                    fetchFollowCount(user, function (err, followCount) {
+                    fetchFollowCount(profileName, function (err, followCount) {
                         if (err) {
                             console.error(err);
                         } else {
-                            console.log(state, followCount);
                             state.user.followers_count = followCount.follower_count;
                             state.user.following_count = followCount.following_count;
 
-                            detectNav(state, session, userAccount, user);
+                            detectNav(state, session, account, profileName);
                             updateModalSendView(state, session);
                             updateModalDeEnergize(state, session);
                         }
@@ -589,7 +565,7 @@ let walletModalDeEnergize;
                 if (err) {
                     console.error(err);
                 } else {
-                    updateData(profileContainer.session);
+                    updateUserSession();
                 }
                 globalLoading.show = false;
             })
@@ -631,20 +607,17 @@ let walletModalDeEnergize;
         }
     }
 
-    creaEvents.on('crea.session.login', function (session, account) {
+    function handleSession(session, account) {
+        console.log('hndling session')
         if (session) {
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
         }
 
         handleProfile(session, account);
-    });
+    }
 
-    creaEvents.on('crea.session.update', function (session, userAccount) {
-        if (session) {
-            userAccount.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
-        }
+    creaEvents.on('crea.session.login', handleSession);
 
-        handleProfile(session, userAccount);
-    });
+    creaEvents.on('crea.session.update', handleSession);
 
 })();
