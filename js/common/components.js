@@ -73,8 +73,8 @@ Vue.component('post-like', {
 });
 
 Vue.component('like', {
-    template: `<a href="#" v-on:click="makeVote"><img v-bind:src="getIcon()" alt=""> 
-<span>{{ hasPaid() ? post.net_votes : post.active_votes.length }}</span></a>`,
+    template: `<div><div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote"><div></div>
+</div><span>{{ hasPaid() ? post.net_votes : post.active_votes.length }}</span></div>`,
     props: {
         session: {
             type: Object
@@ -85,7 +85,8 @@ Vue.component('like', {
     },
     data: function () {
         return {
-            R: R
+            R: R,
+            state: 0
         }
     },
     methods: {
@@ -123,22 +124,29 @@ Vue.component('like', {
                 event.preventDefault();
             }
 
-            if (!this.hasVote()) {
+            if (!this.hasVote() && this.$data.state != 0) {
                 let that = this;
                 let session = this.$props.session;
                 let post = this.$props.post;
 
+                that.state = 0;
                 crea.broadcast.vote(session.account.keys.posting.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
                     if (err) {
+                        that.state = -1;
                         console.error(err);
                         that.$emit('vote', err);
                     } else {
+                        that.state = 1;
                         console.log(result);
                         that.$emit('vote', null, result);
                     }
                 })
             }
         }
+    },
+    mounted: function () {
+        console.log('updated like')
+        this.state = this.hasVote() ? 1 : -1
     }
 });
 
