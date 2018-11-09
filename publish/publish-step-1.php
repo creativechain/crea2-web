@@ -38,6 +38,13 @@
         <div class="section-editor">
             <ckeditor ></ckeditor>
         </div>
+        <div class="row mt-3">
+            <div class="col-md-12 text-right">
+                <a href="" class="btn btn--sm">
+                    <span class="btn__text text__dark">Continuar</span>
+                </a>
+            </div>
+        </div>
 
         <div class="pos-vertical-center text-center">
             <div class="row">
