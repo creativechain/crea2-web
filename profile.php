@@ -44,6 +44,12 @@
                                 <div v-else-if="navfilter === 'settings'" class="row view-edit-profile">
                                     <?php include ('modules/profile-edit.php') ?>
                                 </div>
+                                <div v-else-if="navfilter === 'followers'" class="row view-notifications">
+                                    <?php include ('modules/list-followers.php') ?>
+                                </div>
+                                <div v-else-if="navfilter === 'following'" class="row view-notifications">
+                                    <?php include ('modules/list-following.php') ?>
+                                </div>
                             </div>
                         </section>
                     </div>
