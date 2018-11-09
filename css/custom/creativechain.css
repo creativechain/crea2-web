@@ -143,6 +143,8 @@
   color: #999999; }
 .view-profile .menu-profile-user hr {
   margin: 1.85714286em -20px; }
+.view-profile .menu-profile-user .nameUser {
+  color: #999999; }
 .view-profile .menu-profile-user .user-avatar {
   height: 70px;
   width: 70px;
@@ -415,8 +417,8 @@
   background-color: white; }
 .view-publish .step-2 .input-radio label {
   position: relative;
-  background: #999999;
-  border: 1px solid #999999; }
+  background: #e6e6e6;
+  border: 1px solid #e6e6e6; }
 .view-publish .step-2 .input-radio-step-2 {
   display: flex;
   margin-top: 10px; }
@@ -442,8 +444,8 @@
   background-color: white; }
 .view-publish .step-4 .input-radio label {
   position: relative;
-  background: #999999;
-  border: 1px solid #999999; }
+  background: #e6e6e6;
+  border: 1px solid #e6e6e6; }
 .view-publish .step-4 .input-radio-step-2 {
   display: flex;
   margin-top: 10px; }
@@ -501,6 +503,8 @@
       font-size: 14px; }
     .post-view .border-post-view .full-post .img-post-view img {
       margin-bottom: 20px; }
+    .post-view .border-post-view .full-post .img-post-view video {
+      width: 100%; }
     .post-view .border-post-view .full-post .row-promote {
       margin: 20px 0; }
     .post-view .border-post-view .full-post .subtitle-content-publish {
@@ -1146,6 +1150,10 @@ img {
     border: 1px solid #505050;
     border-radius: 25px;
     padding: 0 10px; }
+  .card-home .dropdown-price:hover {
+    border: 1px solid #0073FF; }
+    .card-home .dropdown-price:hover span {
+      color: #0073FF; }
   .card-home .li-like {
     width: auto; }
     .card-home .li-like a {

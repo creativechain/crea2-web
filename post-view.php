@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="row row-promote justify-content-center">
-                                <div class=" col-md-4">
+                                <div class=" col-md-4 text-center">
                                     <a href="#" class="btn btn--transparent ">
                                         <span class="btn__text color--dark">
                                             {{ lang.BUTTON.PROMOTE }}
@@ -239,7 +239,7 @@
                                 <div class="col-md-12">
                                     <p class="title">{{ state.post.title }}</p>
                                     <span class="description">{{ state.post.metadata.description }}</span>
-                                    <p class="date-publish description">{{ formatDate(state.post.created) }}</p>
+                                    <p class="date-publish description mt-4">{{ formatDate(state.post.created) }}</p>
                                 </div>
                             </div>
                             <div class="row">
