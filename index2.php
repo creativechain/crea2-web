@@ -17,4 +17,4 @@ $router->addRoute('^\/(@[\w\.\d-]+)\/?$', 'profile.php');
 $router->addRoute('^\/(@[\w\.\d-]+)\/(projects|notifications|curation-rewards|author-rewards|blocked|wallet|settings)\/?$', 'profile.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/(\@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php');
 
-echo include $router->match($_SERVER['REQUEST_URI']);
+include $router->match($_SERVER['REQUEST_URI']);

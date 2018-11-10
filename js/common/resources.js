@@ -16,6 +16,16 @@ const R = {
                 BORDER: '/img/crea-web/like/like_RED.svg',
                 FILLED: '/img/crea-web/like/like_ACT_RED.svg'
             }
+        },
+        BUZZ: {
+            GENIUS: '/img/crea-web/roll/genius.svg',
+            GURU: '/img/crea-web/roll/guru.svg',
+            MASTER: '/img/crea-web/roll/master.svg',
+            INFLUENCER: '/img/crea-web/roll/influencer.svg',
+            EXPERT: '/img/crea-web/roll/expert.svg',
+            ADVANCED: '/img/crea-web/roll/advanced.svg',
+            TRAINEE: '/img/crea-web/roll/trainee.svg',
+            NOVICE: '/img/crea-web/roll/novice.svg',
         }
     }
 };
