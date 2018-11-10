@@ -148,6 +148,9 @@ let navbarContainer;
     });
 
     creaEvents.on('crea.content.filter', function (filter) {
+        if (!filter.startsWith('/')) {
+            filter = '/' + filter;
+        }
         console.log('Retrieve', filter, 'content');
         retrieveContent(filter);
     })

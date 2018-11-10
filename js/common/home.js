@@ -7,6 +7,12 @@ let homePosts;
 (function () {
     let session, account;
 
+    /**
+     *
+     * @param {string} filter
+     * @param state
+     * @returns {License}
+     */
     function showPosts(filter, state) {
         let content = state.content;
         let accounts = state.accounts;
@@ -24,8 +30,12 @@ let homePosts;
         });
         state.accounts = accounts;
 
+        //Normalize filter
+        if (filter.startsWith('/')) {
+            filter = filter.substring(1);
+        }
         //Set discussion feed
-        if (!state.discussion_idx['']) {
+        if (isUserFeed(getPathPart()) && !state.discussion_idx['']) {
 
             cKeys.sort(function (k1, k2) {
                 return new Date(state.content[k2].created).getTime() - new Date(state.content[k1].created).getTime();
