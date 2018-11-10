@@ -10,7 +10,7 @@
             <div class="col-md-6 col-lg-5 offset-1">
                 <h1>{{ lang.BANNER.TITLE }}</h1>
                 <h3>{{ lang.BANNER.SUBTITLE }}</h3>
-                <a href="/welcome.php" class="btn btn--primary btn--sm btn--transparent type--uppercase">
+                <a href="/welcome" class="btn btn--primary btn--sm btn--transparent type--uppercase">
                     <span class="btn__text">
                             {{ lang.BUTTON.SIGN_UP }}
                     </span>
