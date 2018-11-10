@@ -381,7 +381,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_POSTING }}</p>
-                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('posting') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('posting') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -393,7 +393,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
-                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('active') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('active') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -405,7 +405,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_OWNER }}</p>
-                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('owner') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('owner') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_OWNER }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -415,7 +415,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_MEMO }}</p>
-                                    <p><img src="img/qr-demo-permisos.png" alt="">{{ getKey('memo') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('memo') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                 </td>
                                 <td style="text-align: right">
