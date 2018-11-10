@@ -33,7 +33,7 @@
                 </li>
                 <li class="float-right li-comment">
                     <a href="">
-                        <img src="img/crea-web/comments.svg" alt="">
+                        <img src="/img/crea-web/comments.svg" alt="">
                         <span>{{ state.content[p].children }}</span>
                     </a>
                 </li>
