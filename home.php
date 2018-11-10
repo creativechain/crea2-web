@@ -13,21 +13,7 @@
         </div>
     </section>
 
-
     <section v-cloak id="home-posts" class="space--sm">
-
-        <!-- INICIO ELIMINAR DIV -->
-        <div class="row">
-            <div class="col-md-3 text-center">
-                <div class="lds-heart like-normal size-20"><div></div></div>
-
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="lds-heart active-like size-20"><div></div></div>
-            </div>
-        </div>
-        <!-- FIN ELIMINAR DIV -->
-
         <div class="container post-container-home">
             <div class="masonry">
                 <div class="masonry__container row">
@@ -38,6 +24,7 @@
             </div>
         </div>
     </section>
+
     <script src="/js/common/home.js"></script>
 
 <?php include ('element/footer.php'); ?>

@@ -875,6 +875,14 @@
 .active-like div:before {
   background: #ff5766; }
 
+.like-normal-activate div {
+  background: #ff5766;
+  cursor: pointer; }
+
+.like-normal-activate div:after,
+.like-normal-activate div:before {
+  background: #ff5766; }
+
 .lds-heart {
   display: inline-block;
   position: relative;
@@ -899,8 +907,8 @@
   height: 26px; }
 
 .size-20 {
-  width: 34px;
-  height: 34px; }
+  width: 40px;
+  height: 10px; }
 
 .size-20 div {
   width: 10px;
@@ -1154,12 +1162,13 @@ img {
     border: 1px solid #0073FF; }
     .card-home .dropdown-price:hover span {
       color: #0073FF; }
-  .card-home .li-like {
-    width: auto; }
-    .card-home .li-like a {
-      color: #222222; }
-      .card-home .li-like a img {
-        width: 16px; }
+  .card-home .li-like a {
+    color: #222222; }
+    .card-home .li-like a img {
+      width: 16px; }
+  .card-home .li-like div:nth-child(1) {
+    position: relative;
+    right: 11px; }
   .card-home .li-comment {
     width: auto; }
     .card-home .li-comment a {

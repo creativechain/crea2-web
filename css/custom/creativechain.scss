@@ -258,12 +258,15 @@ img {
     }
   }
   .li-like {
-    width: auto;
     a {
       color: $color-dark-primary;
       img {
         width: 16px;
       }
+    }
+    div:nth-child(1) {
+      position: relative;
+      right: 11px;
     }
   }
   .li-comment {
