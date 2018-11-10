@@ -11,6 +11,7 @@ $router->addRoute('/validate', 'welcome.php');
 $router->addRoute('/publish', 'publish.php');
 $router->addRoute('/explorer', 'explorer.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php');
+$router->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php');
 $router->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php');
 $router->addRoute('^\/(@[\w\.\d-]+)\/?$', 'profile.php');
 $router->addRoute('^\/(@[\w\.\d-]+)\/(projects|notifications|curation-rewards|author-rewards|blocked|wallet|settings)\/?$', 'profile.php');

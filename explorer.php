@@ -1,45 +1,35 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container">
-    <section id="view-explorer" class="space--sm">
-        <div class="container post-container-home">
+    <section id="tags-explorer" class="space--sm">
+        <div v-cloak class="container post-container-home">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="title-explorer">Trending Topics</h3>
+                    <h3 class="title-explorer">{{ lang.TRENDING.TITLE }}</h3>
                 </div>
             </div>
             <table class="border--round table--alternate-row text-right">
                 <thead>
                 <tr>
-                    <th>Tag</th>
-                    <th>Posts</th>
-                    <th>Comments</th>
-                    <th>Payouts</th>
+                    <th>{{ lang.TRENDING.TAGS }}</th>
+                    <th>{{ lang.TRENDING.POSTS }}</th>
+                    <th>{{ lang.TRENDING.COMMENTS }}</th>
+                    <th>{{ lang.TRENDING.PAYOUTS }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Loremipsumdolor</td>
-                    <td>654321</td>
-                    <td>654321</td>
-                    <td>1 300 755,2850 CBD</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
+                <template v-for="t in Object.keys(state.tags)">
+                        <tr>
+                            <td>{{ state.tags[t].name }}</td>
+                            <td>{{ state.tags[t].top_posts }}</td>
+                            <td>{{ state.tags[t].comments }}</td>
+                            <td>{{ state.tags[t].total_payouts }}</td>
+                        </tr>
+                </template>
                 </tbody>
             </table>
         </div>
     </section>
-
+    <script src="/js/common/tags.js"></script>
 
 
 <?php include ('element/footer.php'); ?>

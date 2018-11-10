@@ -24,12 +24,12 @@ let lang = {
         TITLE: "Welcome to the blockchain of creative communities",
         SUBTITLE: "A world without intermediaries"
     },
-    "TRENDING_TOPICS": {
-        "TRENDING_PAYOUTS": "PAYOUTS",
-        "TRENDING_TITLE": "Trendins Topics",
-        "TRENDING_POSTS": "POSTS",
-        "TRENDING_COMMENTS": "COMMENTS",
-        "TRENDING_TAGS": "TAGS"
+    "TRENDING": {
+        "PAYOUTS": "PAYOUTS",
+        "TITLE": "Trending Topics",
+        "POSTS": "POSTS",
+        "COMMENTS": "COMMENTS",
+        "TAGS": "TAGS"
     },
     "LANGUAGE": {
         "ENGLISH": "English",
