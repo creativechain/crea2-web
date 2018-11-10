@@ -10,14 +10,7 @@ const ipfs = IpfsApi({
     protocol: 'https'
 });
 
-let bannerVue =  new Vue({
-    el: '#home-banner',
-    data: {
-        showBanner: false,
-        lang: lang
-    }
-});
-
+let bannerVue;
 let globalLoading;
 
 const CONSTANTS = {
@@ -222,6 +215,14 @@ creaEvents.on('crea.content.prepare', function () {
         el: '#global-loading',
         data: {
             show: false
+        }
+    });
+
+    bannerVue = new Vue({
+        el: '#home-banner',
+        data: {
+            showBanner: false,
+            lang: lang
         }
     });
 });
