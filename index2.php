@@ -8,6 +8,7 @@ $router->addRoute('/', 'home.php');
 $router->addRoute('/~witness', 'vote-for-witnesses.php');
 $router->addRoute('/welcome', 'welcome.php');
 $router->addRoute('/validate', 'welcome.php');
+$router->addRoute('/publish', 'publish.php');
 $router->addRoute('/explorer', 'explorer.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php');
 $router->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php');

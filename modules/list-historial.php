@@ -80,7 +80,7 @@
                     <div class="col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
-                                <a v-bind:href="'/profile.php?profile=' + op.op.value.from">
+                                <a v-bind:href="'/@' + op.op.value.from">
                                     <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
                                 </a>
                             </div>
@@ -118,7 +118,7 @@
                     <div class="col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
-                                <a v-bind:href="'/profile.php?profile=' + op.op.value.author">
+                                <a v-bind:href="'/@' + op.op.value.author">
                                     <avatar v-bind:username="op.op.value.author" v-bind:url="history.accounts[op.op.value.author].metadata.avatar.url"></avatar>
                                 </a>
                             </div>
@@ -152,7 +152,7 @@
                     <div class="col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
-                                <a v-bind:href="'/profile.php?profile=' + op.op.value.voter">
+                                <a v-bind:href="'/@' + op.op.value.voter">
                                     <avatar v-bind:username="op.op.value.voter" v-bind:url="history.accounts[op.op.value.voter].metadata.avatar.url"></avatar>
                                 </a>
                             </div>
@@ -177,7 +177,7 @@
         </div>
         <div v-else-if="op.op.type == 'producer_reward_operation'" class="row-list-user">
             <div class="user-avatar">
-                <a v-bind:href="'/profile.php?profile=' + op.op.value.producer">
+                <a v-bind:href="'/@' + op.op.value.producer">
                     <avatar v-bind:username="op.op.value.producer" v-bind:url="history.accounts[op.op.value.producer].metadata.avatar.url"></avatar>
                 </a>
             </div>
@@ -197,13 +197,38 @@
             </div>
             <hr>
         </div>
+        <div v-else-if="op.op.type == 'curator_reward_operation'" class="row-list-user">
+            <div class="user-avatar">
+                <a v-bind:href="'/@' + op.op.value.curator">
+                    <avatar v-bind:username="op.op.value.curator"
+                            v-bind:url="history.accounts[op.op.value.curator].metadata.avatar.url"></avatar>
+                </a>
+            </div>
+            <div class="list-data-user">
+                <p>
+                    <username v-bind:user="op.op.value.curator"
+                              v-bind:name="history.accounts[op.op.value.curator].metadata.publicName"></username>
+                    <span>{{ dateFromNow(op.timestamp) }}</span>
+                </p>
+                <p>
+                    <linkname v-bind:user="op.op.value.curator"
+                              v-bind:name="history.accounts[op.op.value.curator].metadata.publicName"></linkname>
+                    {{ String.format(lang.HISTORY.CURATE, parseAsset(op.op.value.reward), '/@' + op.op.value.comment_author + '/'+ op.op.value.comment_permlink) }}
+                </p>
+                <p></p>
+            </div>
+            <div class="list-amount">
+                <p>+{{ parseAsset(op.op.value.reward) }}</p>
+            </div>
+            <hr>
+        </div>
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
-                                <a v-bind:href="'/profile.php?profile=' + op.op.value.creator">
+                                <a v-bind:href="'/@' + op.op.value.creator">
                                     <avatar v-bind:username="op.op.value.creator" v-bind:url="history.accounts[op.op.value.creator].metadata.avatar.url"></avatar>
                                 </a>
                             </div>

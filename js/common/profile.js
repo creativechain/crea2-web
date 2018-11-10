@@ -425,6 +425,9 @@ let walletModalDeEnergize;
                         } else if (h.op.type == 'transfer_to_vesting_operation') {
                             addIfNotExists(h.op.value.from);
                             addIfNotExists(h.op.value.to);
+                        } else if (h.op.type == 'transfer_to_savings_operation') {
+                            addIfNotExists(h.op.value.from);
+                            addIfNotExists(h.op.value.to);
                         } else if (h.op.type == 'vote_operation') {
                             addIfNotExists(h.op.value.voter);
                             addIfNotExists(h.op.value.author);
@@ -435,6 +438,9 @@ let walletModalDeEnergize;
                             addIfNotExists(h.op.value.producer);
                         } else if (h.op.type == 'account_create_operation') {
                             addIfNotExists(h.op.value.creator);
+                        } else if (h.op.type == 'curation_reward_operation') {
+                            addIfNotExists(h.op.value.curator);
+                            addIfNotExists(h.op.value.comment_author);
                         }
 
                         history.push(h);

@@ -411,7 +411,7 @@ let lang = {
         TRANSFER_VESTING_TO: 'Transfer to vesting to ',
         TRANSFER_SAVINGS_FROM: 'Transfer to savings from ',
         TRANSFER_SAVINGS_TO: 'Transfer to savings to ',
-        PRODUCED: 'produced by',
+        PRODUCED: 'received %s by %s curation',
         POSTED: 'Posted ',
         COMMENTED: 'Commented in ',
         VOTED_FOR: 'Voted for ',

@@ -104,8 +104,23 @@ let navbarContainer;
         }
     }
 
+    /**
+     *
+     * @returns {boolean}
+     */
+    function isInHome() {
+        let filters = ['/hot', '/trending', '/trending30', '/created', '/promoted', '/votes', '/actives', '/cashout',
+            '/responses', '/payout', '/payout_comments'];
 
-    function retrieveContent(filter) {
+        //TODO: CHECK USER FEED
+
+        return filters.includes(window.location.pathname);
+    }
+
+    function retrieveContent(event, filter) {
+        if (event && isInHome()) {
+            event.preventDefault();
+        }
         updateUrl(filter);
         crea.api.getState(filter, function (err, result) {
             if (err) {
@@ -116,23 +131,20 @@ let navbarContainer;
         })
     }
 
-    function retrieveNewContent() {
-        retrieveContent("/created");
+    function retrieveNewContent(event) {
+        retrieveContent(event, "/created");
     }
 
-    function retrieveTrendingContent() {
-
-        retrieveContent("/trending");
+    function retrieveTrendingContent(event) {
+        retrieveContent(event, "/trending");
     }
 
-    function retrieveHotContent() {
-
-        retrieveContent("/hot");
+    function retrieveHotContent(event) {
+        retrieveContent(event, "/hot");
     }
 
-    function retrievePromotedContent() {
-
-        retrieveContent("/promoted");
+    function retrievePromotedContent(event) {
+        retrieveContent(event, "/promoted");
     }
 
     creaEvents.on('crea.session.update', function (session, account) {
@@ -152,7 +164,7 @@ let navbarContainer;
             filter = '/' + filter;
         }
         console.log('Retrieve', filter, 'content');
-        retrieveContent(filter);
+        retrieveContent(null, filter);
     })
 })();
 

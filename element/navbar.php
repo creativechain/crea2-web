@@ -210,11 +210,13 @@
                 <div class="col-lg-10 col-md-10 text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li v-if="session"><a href="#">{{ lang.HOME.MENU_FOLLOWING }}</a></li>
-                            <li><a href="#" v-on:click="retrieveTrendingContent()">{{ lang.HOME.MENU_POPULAR }}</a></li>
-                            <li><a href="#" v-on:click="retrieveHotContent()">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
-                            <li><a href="#" v-on:click="retrieveNowContent()">{{ lang.HOME.MENU_NOW }}</a></li>
-                            <li><a href="#" v-on:click="retrievePromotedContent()">{{ lang.HOME.MENU_PROMOTED }}</a></li>
+                            <li v-if="session">
+                                <a v-bind:href="'/@' + session.account.username + '/feed'">{{ lang.HOME.MENU_FOLLOWING }}</a>
+                            </li>
+                            <li><a href="/trending" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
+                            <li><a href="/hot" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
+                            <li><a href="/created" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
+                            <li><a href="/prmoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
                     <div class="bar__module float-right">
@@ -232,14 +234,14 @@
                             </li>
 
                             <li v-if="session">
-                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish.php">
+                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish">
                                     <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
                                 </a>
                             </li>
                             <li v-if="!session">
-                                <a class="btn btn--sm type--uppercase " href="/welcome.php">
+                                <a class="btn btn--sm type--uppercase " href="/welcome">
                                     <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.SIGN_UP }}
                                     </span>
@@ -259,13 +261,13 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-lg-2 dropdown__content">
                                                     <ul class="menu-vertical">
-                                                        <li><a href="/profile.php?nav=projects">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
-                                                        <li class="separate"><a href="/profile.php?nav=projects">{{ lang.PROFILE_MENU.FOLLOWING }}</a></li>
-                                                        <li class="separate"><a href="/profile.php?nav=notifications">{{ lang.PROFILE_MENU.NOTIFICATIONS }}</a></li>
-                                                        <li class="separate"><a href="/profile.php?nav=author-rewards">{{ lang.PROFILE_MENU.REWARDS }}</a></li>
-                                                        <li class="separate"><a href="/profile.php?nav=wallet">{{ lang.PROFILE_MENU.WALLET }}</a></li>
-                                                        <li class="separate"><a href="/profile.php?nav=wallet">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
-                                                        <li class="separate"><a href="/profile.php?nav=settings">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>
+                                                        <li><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.FOLLOWING }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/notifications'">{{ lang.PROFILE_MENU.NOTIFICATIONS }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/author-rewards'">{{ lang.PROFILE_MENU.REWARDS }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/settings'">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>
                                                         <li class="separate"><a href="#0" v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                                                     </ul>
                                                 </div>
