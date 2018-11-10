@@ -5,7 +5,7 @@
     <section v-bind:class="{ hidden: slide !== 1, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome">
@@ -14,7 +14,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
 
                                 <h1>{{ lang.WELCOME.SLIDE1_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT1 }}</p>
@@ -55,7 +55,7 @@
     <section v-bind:class="{ hidden: slide !== 2, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome">
@@ -64,7 +64,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
                                 <h1>{{ lang.WELCOME.SLIDE2_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE2_TEXT1 }}</p>
                             </div>
@@ -111,7 +111,7 @@
     <section v-bind:class="{ hidden: slide !== 3, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -120,7 +120,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
                                 <h1>{{ lang.WELCOME.SLIDE3_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE3_TEXT1 }}</p>
                             </div>
@@ -174,7 +174,7 @@
     <section v-bind:class="{ hidden: slide !== 4, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -183,7 +183,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
                                 <h1>{{ lang.WELCOME.SLIDE4_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE4_TEXT1 }}</p>
                             </div>
@@ -209,7 +209,7 @@
     <section v-bind:class="{ hidden: slide !== 5, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -218,7 +218,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
                                 <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ username }}!</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
                             </div>
@@ -256,7 +256,7 @@
     <section v-bind:class="{ hidden: slide !== 6, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -265,7 +265,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
 
                                 <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
                                 <p class="lead">{{ lang.SLIDE6_TEXT1 }}</p>
@@ -326,7 +326,7 @@
     <section v-bind:class="{ hidden: slide !== 7, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -335,7 +335,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
                                 <h1>{{ lang.WELCOME.SLIDE7_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT1 }}</p>
                                 <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT2 }}</p>
@@ -402,7 +402,7 @@
     <section v-bind:class="{ hidden: slide !== 8, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -411,7 +411,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="">
                                 <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
                             </div>
