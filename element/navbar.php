@@ -213,10 +213,10 @@
                             <li v-if="session">
                                 <a v-bind:href="'/@' + session.account.username + '/feed'">{{ lang.HOME.MENU_FOLLOWING }}</a>
                             </li>
-                            <li><a href="/trending" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
-                            <li><a href="/hot" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
+                            <li><a href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
+                            <li><a href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
                             <li><a href="/created" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
-                            <li><a href="/prmoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
+                            <li><a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
                     <div class="bar__module float-right">
