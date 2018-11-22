@@ -84,6 +84,16 @@ class License {
 
     /**
      *
+     * @param flag
+     * @returns {boolean}
+     */
+    has(flag) {
+        let  flags = this.getFlag();
+        return flag === (flags & flag);
+    }
+
+    /**
+     *
      * @returns {string}
      */
     toString() {
@@ -155,6 +165,6 @@ let LICENSE = {
     SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike'),
     NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial'),
     NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates'),
-    NON_PERMISSION: new LicensePermission(0x20, 'NonPermission'),
+    NON_PERMISSION: new LicensePermission(0x20, lang.LICENSE.NON_PERMISSION),
     FREE_CONTENT: new LicensePermission(0x80, 'FreeContent'),
 };

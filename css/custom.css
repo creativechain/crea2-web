@@ -10,3 +10,7 @@
 .cursor:hover {
     text-decoration: underline;
 }
+
+.view-publish .step-4 .input-radio input:disabled + label::after {
+    background-color: #b3b3b3;
+}

@@ -37,6 +37,7 @@ let publishContainer;
                 publicDomain: LICENSE.NO_LICENSE.flag,
                 share: LICENSE.NO_LICENSE.flag,
                 commercial: LICENSE.NO_LICENSE.flag,
+                noLicense: LICENSE.NO_LICENSE.flag,
                 showEditor: false,
                 tagsConfig: {
                     init: false,
@@ -81,7 +82,9 @@ let publishContainer;
             methods: {
                 getLicense: function () {
                     let license;
-                    if (this.publicDomain === LICENSE.FREE_CONTENT.flag) {
+                    if (this.noLicense === LICENSE.NON_PERMISSION.flag) {
+                        license = License.fromFlag(this.noLicense);
+                    } else if (this.publicDomain === LICENSE.FREE_CONTENT.flag) {
                         license = License.fromFlag(this.publicDomain);
                     } else {
                         license = LICENSE.CREATIVE_COMMONS.flag | LICENSE.ATTRIBUTION.flag | this.share | this.commercial;

@@ -402,7 +402,8 @@ let lang = {
         "NONCOMMERCIAL": "NonCommercial",
         "SHAREALIKE": "ShareAlike",
         "NONDERIVATES": "NonDerivates",
-        "INTERNATIONAL": "International"
+        "INTERNATIONAL": "International",
+        "NON_PERMISSION": "Without license"
     },
     "HISTORY": {
         TRANSFER_FROM: 'Transfer from ',
