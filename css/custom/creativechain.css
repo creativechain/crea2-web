@@ -960,6 +960,8 @@
 .view-recorver-account .title-explorer {
   font-size: 25px;
   font-weight: 600; }
+.view-recorver-account .lead {
+  font-size: 14px; }
 
 body {
   color: #222222;
