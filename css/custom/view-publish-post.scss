@@ -20,7 +20,7 @@
     .border-box {
       border-right: 1px solid $borde-dropdown-price;
       overflow: hidden;
-      padding: 0 10px 0 15px
+      padding: 0 10px 0 10px
     }
     .full-post {
       .content-post {
@@ -46,7 +46,7 @@
       }
       .subtitle-content-publish {
         font-size: 14px;
-        margin: 20px 0 20px;
+        margin: 20px 0 10px;
       }
       .img-more-projects {
         background-image: url("/img/crea-web/publish/demo-vertical.jpg");
@@ -58,7 +58,7 @@
         border-radius: 6px 6px 6px 6px;
       }
       .box-comment {
-        margin-top: 10px;
+        margin-top: 0;
         background: $color-white;
         .row-comment {
           display: flex;
@@ -240,8 +240,13 @@
           .col-likes {
             display: flex;
             width: 60%;
-            p {
+            .dropdown-price {
               color: $color-blue-primary;
+              padding-top: 2px;
+              padding-left: 11px;
+              p {
+                margin: 0;
+              }
             }
           }
           .col-amount {
@@ -270,8 +275,9 @@
             margin-top: 5px;
           }
           img {
-            width: 27px;
-            height: 27px;
+            width: 16px;
+            height: 16px;
+            margin-top: 5px;
           }
         }
       }
@@ -306,5 +312,12 @@
     height: 50px;
     background-position: 50% 50%;
   }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 100%;
+    }
+  }
 
 }
+
+

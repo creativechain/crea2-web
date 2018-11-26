@@ -494,7 +494,7 @@
     .post-view .border-post-view .border-box {
       border-right: 1px solid #DFDFDF;
       overflow: hidden;
-      padding: 0 10px 0 15px; }
+      padding: 0 10px 0 10px; }
     .post-view .border-post-view .full-post .content-post h2.title-view-post {
       margin: 20px 0;
       font-size: 40px;
@@ -509,7 +509,7 @@
       margin: 20px 0; }
     .post-view .border-post-view .full-post .subtitle-content-publish {
       font-size: 14px;
-      margin: 20px 0 20px; }
+      margin: 20px 0 10px; }
     .post-view .border-post-view .full-post .img-more-projects {
       background-image: url("/img/crea-web/publish/demo-vertical.jpg");
       height: 164px;
@@ -519,7 +519,7 @@
       cursor: pointer;
       border-radius: 6px 6px 6px 6px; }
     .post-view .border-post-view .full-post .box-comment {
-      margin-top: 10px;
+      margin-top: 0;
       background: white; }
       .post-view .border-post-view .full-post .box-comment .row-comment {
         display: flex; }
@@ -648,8 +648,12 @@
         .post-view .menu-right .row-social .ul-social .row-likes .col-likes {
           display: flex;
           width: 60%; }
-          .post-view .menu-right .row-social .ul-social .row-likes .col-likes p {
-            color: #0569EF; }
+          .post-view .menu-right .row-social .ul-social .row-likes .col-likes .dropdown-price {
+            color: #0569EF;
+            padding-top: 2px;
+            padding-left: 11px; }
+            .post-view .menu-right .row-social .ul-social .row-likes .col-likes .dropdown-price p {
+              margin: 0; }
         .post-view .menu-right .row-social .ul-social .row-likes .col-amount {
           text-align: center;
           width: 40%;
@@ -670,8 +674,9 @@
           margin-left: 10px;
           margin-top: 5px; }
         .post-view .menu-right .row-social .ul-social li img {
-          width: 27px;
-          height: 27px; }
+          width: 16px;
+          height: 16px;
+          margin-top: 5px; }
     .post-view .menu-right .row-download {
       margin-top: 20px; }
       .post-view .menu-right .row-download .title {
@@ -694,6 +699,9 @@
     width: 50px;
     height: 50px;
     background-position: 50% 50%; }
+  @media (min-width: 768px) {
+    .post-view .container {
+      max-width: 100%; } }
 
 .view-notifications .row-img-notification {
   height: 53px;
@@ -949,6 +957,10 @@
     transform: scale(0.95); }
   100% {
     transform: scale(0.9); } }
+.view-recorver-account .title-explorer {
+  font-size: 25px;
+  font-weight: 600; }
+
 body {
   color: #222222;
   font-size: 12px;
