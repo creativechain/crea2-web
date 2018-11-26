@@ -89,10 +89,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <!--<div class="col">
-                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_LIKES }}</p>
-                                                <span>{{ state.accounts[state.content[p].author].reputation }}</span>
-                                            </div>-->
+                                            <div class="col">
+                                                <p class="title-stats">Posts</p>
+                                                <span>267</span>
+                                            </div>
                                             <div class="col">
                                                 <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWERS }}</p>
                                                 <span>0</span>
