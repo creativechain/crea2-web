@@ -73,7 +73,7 @@
                 </a>
             </li>
             <li>
-                <a href="/vote-for-witnesses.php">
+                <a href="/witnesses.php">
                     <span class="h5">{{ lang.DOTS_MENU.VOTE }}</span>
                 </a>
             </li>
@@ -159,10 +159,6 @@
                         </div>
                     </div>
                 </div>
-
-                <a href="#">
-                    <span class="h5">{{ lang.DOTS_MENU.CREA_UPDATE }}</span>
-                </a>
             </li>
             <li>
                 <a href="#">

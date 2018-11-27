@@ -449,6 +449,7 @@
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>{{ lang.CHANGE_PASSWORD.CURRENT_PASSWORD }}</label>
+                                <label class="float-right"><a href="" class="type--uppercase color--primary button-recover-account">Recuperar contraseña</a></label>
                                 <input class="validate-required" type="password" placeholder="Contraseña"/>
                             </div>
                             <div class="col-md-4 mt-3">

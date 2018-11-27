@@ -1,4 +1,4 @@
-<section v-cloak v-if="showBanner" class="imagebg image--light cover cover-blocks bg--secondary" id="slide-home">
+<section v-cloak v-if="showBanner" class="imagebg image--dark cover cover-blocks bg--secondary" id="slide-home">
     <div class="row-close" v-on:click="showBanner = false">
         <a href="#"><i class="fas fa-times"></i></a>
     </div>
@@ -10,7 +10,7 @@
             <div class="col-md-6 col-lg-5 offset-1">
                 <h1>{{ lang.BANNER.TITLE }}</h1>
                 <h3>{{ lang.BANNER.SUBTITLE }}</h3>
-                <a href="/welcome" class="btn btn--primary btn--sm btn--transparent type--uppercase">
+                <a href="/welcome" class="btn btn--sm type--uppercase">
                     <span class="btn__text">
                             {{ lang.BUTTON.SIGN_UP }}
                     </span>
