@@ -337,6 +337,13 @@ let walletModalDeEnergize;
                         updateUrl('/@' + this.state.user.name + '/' + tab);
                         this.navbar.section = tab;
                     },
+                    isUserProfile: function () {
+                        if (this.session) {
+                            return this.session.account.username === state.user.name;
+                        }
+
+                        return false;
+                    },
                     claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate
                 }

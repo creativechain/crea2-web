@@ -24,13 +24,13 @@
                     </div>
 
                 </li>
-                <li v-if="session" v-bind:class="{ active: walletTab === 'permissions' }" v-on:click="walletTab = 'permissions'">
+                <li v-if="session && isUserProfile()" v-bind:class="{ active: walletTab === 'permissions' }" v-on:click="walletTab = 'permissions'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.PERMISSIONS }}</span>
                     </div>
 
                 </li>
-                <li v-if="session" v-bind:class="{ active: walletTab === 'passwords' }" v-on:click="walletTab = 'passwords'">
+                <li v-if="session && isUserProfile()" v-bind:class="{ active: walletTab === 'passwords' }" v-on:click="walletTab = 'passwords'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.PASSWORDS }}</span>
                     </div>
