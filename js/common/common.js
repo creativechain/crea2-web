@@ -73,6 +73,7 @@ function updateUrl(url) {
     window.history.pushState('', '', url);
 }
 
+
 /**
  *
  * @param {string} location

@@ -3,7 +3,8 @@ let lang = {
         "OR_CAP": "OR",
         "YES": "Yes",
         "NO": "No",
-        "AND": 'and'
+        "AND": 'and',
+        "FOR": "for"
     },
     ERROR: {
         1: "Username not exist",

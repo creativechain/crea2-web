@@ -97,11 +97,11 @@
                                             </div>
                                             <div class="col">
                                                 <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWERS }}</p>
-                                                <span>0</span>
+                                                <span>{{ state.accounts[state.content[p].author].follower_count }}</span>
                                             </div>
                                             <div class="col">
                                                 <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWING }}</p>
-                                                <span>0</span>
+                                                <span>{{ state.accounts[state.content[p].author].following_count }}</span>
                                             </div>
                                         </div>
                                     </div>

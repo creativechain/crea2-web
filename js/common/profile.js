@@ -3,6 +3,8 @@
  */
 
 let profileContainer;
+let authorRewardsContainer;
+let curationRewardsContainer;
 let walletModalSend;
 let walletModalDeEnergize;
 
@@ -97,8 +99,7 @@ let walletModalDeEnergize;
                                 console.log(err, result);
                                 globalLoading.show  = false;
                                 if (result) {
-                                    fetchUserState(profileContainer.session.account.username);
-                                    fetchHistory(profileContainer.session.account.username);
+                                    updateUserSession();
                                     that.hideModalSend();
                                 }
                             });
@@ -140,10 +141,9 @@ let walletModalDeEnergize;
      * @param {Session} session
      * @param account
      * @param usernameFilter
-     * @param navfilter
-     * @returns {License}
+     * @param navSection
      */
-    function updateProfileView(state, session, account, usernameFilter, navfilter = 'projects') {
+    function updateProfileView(state, session, account, usernameFilter, navSection = 'projects') {
         console.log('Updating profile', account);
         if (!profileContainer) {
             profileContainer = new Vue({
@@ -155,8 +155,10 @@ let walletModalDeEnergize;
                     account: account,
                     state: state,
                     filter: usernameFilter,
+                    navbar: {
+                        section: navSection
+                    },
                     profile: state.user.metadata,
-                    navfilter: navfilter,
                     walletTab: 'balances',
                     history: {
                         data: [],
@@ -328,6 +330,14 @@ let walletModalDeEnergize;
                         let cgy = Asset.parseString(this.state.user.reward_vesting_balance);
                         return crea.amount > 0 || cbd.amount > 0 || cgy.amount > 0;
                     },
+                    navigateTo: function (event, tab) {
+                        if (event) {
+                            event.preventDefault();
+                        }
+
+                        updateUrl('/@' + this.state.user.name + '/' + tab);
+                        this.navbar.section = tab;
+                    },
                     claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate
                 }
@@ -339,11 +349,113 @@ let walletModalDeEnergize;
             profileContainer.account = account;
             profileContainer.filter = usernameFilter;
             profileContainer.profile = state.user.metadata;
-            profileContainer.navfilter = navfilter;
+            profileContainer.navbar.section = navSection;
         }
 
         profileContainer.$forceUpdate();
-        console.log('forcing show data');
+    }
+
+    function setUpRewards(rewardType, session, state) {
+
+        let rewards = {
+            rewards24Vests: 0,
+            rewardsWeekVests: 0,
+            totalRewardsVests: 0,
+            rewards24Crea: 0,
+            rewardsWeekCrea: 0,
+            totalRewardsCrea: 0,
+            rewards24CBD: 0,
+            rewardsWeekCBD: 0,
+            totalRewardsCBD: 0
+        };
+
+        const today = new Date();
+        const oneDay = 86400 * 1000;
+        const yesterday = new Date(today.getTime() - oneDay).getTime();
+        const lastWeek = new Date(today.getTime() - 7 * oneDay).getTime();
+
+        let firstDate, finalDate;
+        let rewardsOp = [];
+        state.user.transfer_history.forEach(function (item) {
+
+            if (item[1].op[0] === rewardType) {
+                if (!finalDate) {
+                    finalDate = new Date(item[1].timestamp).getTime();
+                }
+
+                firstDate = new Date(item[1].timestamp).getTime();
+
+                const vest = Asset.parseString(item[1].op[1].vesting_payout);
+                const crea = Asset.parseString(item[1].op[1].crea_payout);
+                const cbd = Asset.parseString(item[1].op[1].cbd_payout);
+
+                if (firstDate > lastWeek) {
+                    if (firstDate > yesterday) {
+                        rewards.rewards24Vests += vest.amount;
+                        rewards.rewards24Crea += crea.amount;
+                        rewards.rewards24CBD += cbd.amount;
+                    }
+
+                    rewards.rewardsWeekVests += vest.amount;
+                    rewards.rewardsWeekCrea += crea.amount;
+                    rewards.rewardsWeekCBD += cbd.amount;
+                }
+
+                rewards.totalRewardsVests += vest.amount;
+                rewards.totalRewardsCrea += crea.amount;
+                rewards.totalRewardsCBD += cbd.amount;
+
+                rewardsOp.push(item);
+            }
+        });
+
+
+        if (!authorRewardsContainer) {
+            authorRewardsContainer = new Vue({
+                el: '#profile-author-rewards',
+                data: {
+                    lang: lang,
+                    session: session,
+                    state: state,
+                    rewards: rewards,
+                    rewardsOp: rewardsOp
+                },
+                methods: {
+                    vestsToCgy: function (vests) {
+                        return vestsToCgy(this.state, vests);
+                    },
+                    parseAsset: Asset.parse,
+                    formatTime: function (date) {
+                        return moment(date).format('DD MMM HH:MM')
+                    }
+                }
+            })
+        } else {
+            authorRewardsContainer.session = session;
+            authorRewardsContainer.state = state;
+            authorRewardsContainer.rewards = rewards;
+            authorRewardsContainer.rewardsOp = rewardsOp;
+        }
+    }
+
+    /**
+     *
+     * @param {string} rewards
+     * @param {Session} session
+     */
+    function fetchRewards(rewards, session) {
+
+        rewards = rewards.replace('-', '_').replace('s', '').toLowerCase();
+        let username = getPathPart().replace('@', '');
+        console.log('Fetching Rewards', rewards, username);
+        fetchUserState(username, 'transfers', function (err, state) {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log('Rewards fetched!', state);
+                setUpRewards(rewards, session, state);
+            }
+        })
     }
 
     /**
@@ -357,6 +469,16 @@ let walletModalDeEnergize;
         let nav = getPathPart(1);
         if (!nav) {
             nav = 'projects';
+        }
+
+        nav = nav.toLowerCase();
+
+        switch (nav) {
+            case 'author-rewards':
+            case 'curation-rewards':
+                fetchRewards(nav, session);
+                break;
+
         }
 
         updateProfileView(state, session, account, usernameFilter, nav);
@@ -377,24 +499,6 @@ let walletModalDeEnergize;
                     updateUserSession();
                 }
             })
-    }
-
-    /**
-     *
-     * @param {string} username
-     * @param callback
-     */
-    function fetchFollowCount(username, callback) {
-
-        crea.api.getFollowCount(username, function(err, result) {
-            if (err) {
-                console.error(err);
-            } else {
-                if (callback) {
-                    callback(err, result);
-                }
-            }
-        });
     }
 
     /**
@@ -474,15 +578,26 @@ let walletModalDeEnergize;
     /**
      *
      * @param {string} username
-     * @param callback
+     * @param {string|Function} view
+     * @param {Function} callback
      */
-    function fetchUserState(username, callback) {
-        let usernameFilter;
+    function fetchUserState(username, view = null, callback = null) {
+        let stateUrl;
         if (!username.startsWith('/@')) {
-            usernameFilter = '/@' + username;
+            stateUrl = '/@' + username;
+        } else {
+            stateUrl = username;
         }
 
-        crea.api.getState(usernameFilter, function (err, state) {
+        if (view) {
+            if (typeof view === 'string') {
+                stateUrl = stateUrl + '/' + view;
+            } else if (typeof view === 'function') {
+                callback = view;
+            }
+        }
+
+        crea.api.getState(stateUrl, function (err, state) {
             if (err) {
                 console.error(err);
             } else  {
@@ -493,11 +608,14 @@ let walletModalDeEnergize;
                     state.accounts[k].metadata.avatar = state.accounts[k].metadata.avatar || {};
                 });
 
-                state.user = state.accounts[username];
-                crea.formatter.estimateAccountValue(state.user)
-                    .then(function (value) {
-                        state.user.estimate_account_value = value;
-                    });
+                if (state.accounts[username]) {
+                    state.user = state.accounts[username];
+                    crea.formatter.estimateAccountValue(state.user)
+                        .then(function (value) {
+                            state.user.estimate_account_value = value;
+                        });
+                }
+
                 let posts = Object.keys(state.content);
 
                 posts.forEach(function (k) {
@@ -521,28 +639,18 @@ let walletModalDeEnergize;
         });
     }
 
-    function handleProfile(session, account) {
+    function handleView(session, account) {
         let profileName = getPathPart();
         profileName = profileName.replace('@', '');
-        console.log(profileName);
         if (profileName) {
             fetchHistory(profileName);
             fetchUserState(profileName, function (err, state) {
                 if (err) {
                     console.error(err);
                 } else {
-                    fetchFollowCount(profileName, function (err, followCount) {
-                        if (err) {
-                            console.error(err);
-                        } else {
-                            state.user.followers_count = followCount.follower_count;
-                            state.user.following_count = followCount.following_count;
-
-                            detectNav(state, session, account, profileName);
-                            updateModalSendView(state, session);
-                            updateModalDeEnergize(state, session);
-                        }
-                    })
+                    detectNav(state, session, account, profileName);
+                    updateModalSendView(state, session);
+                    updateModalDeEnergize(state, session);
                 }
             });
         }
@@ -611,7 +719,7 @@ let walletModalDeEnergize;
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
         }
 
-        handleProfile(session, account);
+        handleView(session, account);
     }
 
     creaEvents.on('crea.session.login', handleSession);
