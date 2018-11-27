@@ -34,7 +34,7 @@
                     <tbody class="tbody-rewards">
                     <tr v-for="t in rewardsOp">
                         <td>{{ formatTime(t[1].timestamp) }}</td>
-                        <td>{{ t[1].op[1].cbd_payout }}, {{ t[1].op[1].crea_payout }} {{ lang.COMMON.AND }} {{ vestsToCgy(t[1].op[1].vesting_payout).toFriendlyString() }}</td>
+                        <td>{{ t[1].op[1].cbd_payout }}, {{ t[1].op[1].crea_payout }} {{ lang.COMMON.AND }} {{ vestsToCgy(t[1].op[1].vesting_payout).toFriendlyString() }} {{ lang.COMMON.FOR }} {{ '@' + t[1].op[1].author + '/' + t[1].op[1].permlink }}</td>
                     </tr>
                     </tbody>
                 </table>
