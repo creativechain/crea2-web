@@ -1,21 +1,21 @@
 <div class="col-md-12">
-    <h3 class="title-section-profile">RECOMPENSAS DE CURACIÓN</h3>
+    <h3 class="title-section-profile">{{ lang.PROFILE.CURATION_TITLE }}</h3>
 </div>
 <div class="col-md-12">
     <div class="boxed boxed--border box-rewards-autor">
         <div class="row">
             <div class="col">
-                <p>Recompensas de curación aproximadas de la semana pasada:</p>
+                <p>{{ lang.PROFILE.TEXT_CURATION }}:</p>
             </div>
             <div class="col text-right box-summary">
-                <p class="blue-summary">+39 534,2580 CREA</p>
+                <p class="blue-summary">+{{ vestsToCgy(rewards.totalRewardsVests).toFriendlyString() }}</p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="col-md-12">
-    <h3 class="title-section-profile">Historial de recompensas de curación</h3>
+    <h3 class="title-section-profile">{{ lang.PROFILE.TEXT_CURATION_HISTORY }}</h3>
 </div>
 
 <div class="col-md-12">
@@ -30,17 +30,9 @@
                     </tr>
                     </thead>
                     <tbody class="tbody-rewards">
-                    <tr>
-                        <td>23 Ene 18:34</td>
-                        <td>Lorem ipsum dolor sit amet for, consectetur alsgliuasybalg kahsfgljasg</td>
-                    </tr>
-                    <tr>
-                        <td>23 Ene 18:34</td>
-                        <td>Lorem ipsum dolor sit amet for, consectetur alsgliuasybalg kahsfgljasg</td>
-                    </tr>
-                    <tr>
-                        <td>23 Ene 18:34</td>
-                        <td>Lorem ipsum dolor sit amet for, consectetur alsgliuasybalg kahsfgljasg</td>
+                    <tr v-for="t in rewardsOp">
+                        <td>{{ formatTime(t[1].timestamp) }}</td>
+                        <td>{{ vestsToCgy(t[1].op[1].reward).toFriendlyString() }} {{ lang.COMMON.FOR }} {{ '@' + t[1].op[1].comment_author + '/' + t[1].op[1].comment_permlink }}</td>
                     </tr>
                     </tbody>
                 </table>

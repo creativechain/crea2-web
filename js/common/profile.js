@@ -3,8 +3,7 @@
  */
 
 let profileContainer;
-let authorRewardsContainer;
-let curationRewardsContainer;
+let rewardsContainer = {};
 let walletModalSend;
 let walletModalDeEnergize;
 
@@ -355,7 +354,10 @@ let walletModalDeEnergize;
         profileContainer.$forceUpdate();
     }
 
-    function setUpRewards(rewardType, session, state) {
+    function setUpRewards(rewardView, session, state) {
+
+        let rewardType = rewardView.replace('s', '').replace('-', '_');
+        console.log('rewarding', rewardView, rewardType)
 
         let rewards = {
             rewards24Vests: 0,
@@ -378,7 +380,8 @@ let walletModalDeEnergize;
         let rewardsOp = [];
         state.user.transfer_history.forEach(function (item) {
 
-            if (item[1].op[0] === rewardType) {
+            if (item[1].op[0] === 'author_reward' && rewardType === 'author_reward') {
+                console.log(jsonify(jsonstring(item)));
                 if (!finalDate) {
                     finalDate = new Date(item[1].timestamp).getTime();
                 }
@@ -406,13 +409,34 @@ let walletModalDeEnergize;
                 rewards.totalRewardsCBD += cbd.amount;
 
                 rewardsOp.push(item);
+            } else if (item[1].op[0] === 'curation_reward' && rewardType === 'curation_reward') {
+                console.log(jsonify(jsonstring(item)));
+                if (!finalDate) {
+                    finalDate = new Date(item[1].timestamp).getTime();
+                }
+
+                firstDate = new Date(item[1].timestamp).getTime();
+
+                const vest = Asset.parseString(item[1].op[1].reward);
+
+                if (firstDate > lastWeek) {
+                    if (firstDate > yesterday) {
+                        rewards.rewards24Vests += vest.amount;
+                    }
+
+                    rewards.rewardsWeekVests += vest.amount;
+                }
+
+                rewards.totalRewardsVests += vest.amount;
+
+                rewardsOp.push(item);
             }
         });
 
 
-        if (!authorRewardsContainer) {
-            authorRewardsContainer = new Vue({
-                el: '#profile-author-rewards',
+        if (!rewardsContainer[rewardView]) {
+            rewardsContainer[rewardView] = new Vue({
+                el: '#profile-' + rewardView,
                 data: {
                     lang: lang,
                     session: session,
@@ -431,29 +455,30 @@ let walletModalDeEnergize;
                 }
             })
         } else {
-            authorRewardsContainer.session = session;
-            authorRewardsContainer.state = state;
-            authorRewardsContainer.rewards = rewards;
-            authorRewardsContainer.rewardsOp = rewardsOp;
+            rewardsContainer[rewardView].session = session;
+            rewardsContainer[rewardView].state = state;
+            rewardsContainer[rewardView].rewards = rewards;
+            rewardsContainer[rewardView].rewardsOp = rewardsOp;
         }
+
+        console.log(rewardView, 'mounted!');
     }
 
     /**
      *
-     * @param {string} rewards
      * @param {Session} session
      */
-    function fetchRewards(rewards, session) {
+    function fetchRewards(session) {
 
-        rewards = rewards.replace('-', '_').replace('s', '').toLowerCase();
         let username = getPathPart().replace('@', '');
-        console.log('Fetching Rewards', rewards, username);
+
         fetchUserState(username, 'transfers', function (err, state) {
             if (err) {
                 console.error(err);
             } else {
                 console.log('Rewards fetched!', state);
-                setUpRewards(rewards, session, state);
+                setUpRewards('author-rewards', session, state);
+                setUpRewards('curation-rewards', session, state);
             }
         })
     }
@@ -473,15 +498,8 @@ let walletModalDeEnergize;
 
         nav = nav.toLowerCase();
 
-        switch (nav) {
-            case 'author-rewards':
-            case 'curation-rewards':
-                fetchRewards(nav, session);
-                break;
-
-        }
-
         updateProfileView(state, session, account, usernameFilter, nav);
+        fetchRewards(nav, session);
     }
 
     function sendAccountUpdate() {
