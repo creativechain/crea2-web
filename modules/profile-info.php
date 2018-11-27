@@ -31,7 +31,7 @@
                     <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
                 </a>-->
 
-                <a v-else class="btn btn--sm" href="#0" v-on:click="navfilter = 'settings'">
+                <a v-else class="btn btn--sm" v-bind:href="'/@' + session.account.username + '/settings'" v-on:click="navigateTo($event, 'settings')">
                     <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                 </a>
             </div>
@@ -109,8 +109,8 @@
             <span> {{ profile.tags ? profile.tags.join(', ') : '' }}</span>
         </div>
     </div>
-    <hr>
-    <div class="row block-all">
+    <hr v-if="!isUserProfile()">
+    <div v-if="!isUserProfile()" class="row block-all">
         <div class="col-md-12">
             <ul class="list-inline list-unstyled">
                 <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
