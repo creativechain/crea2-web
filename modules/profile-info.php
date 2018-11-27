@@ -78,7 +78,7 @@
             </p>
         </div>
         <div class="col-md-5 text-right">
-            <p>{{ state.user.followers_count }}</p>
+            <p>{{ state.user.follower_count }}</p>
         </div>
 
         <div class="col-md-7">
