@@ -977,6 +977,11 @@ label {
 .slide-energize .tooltip {
   background: transparent; }
 
+.type-file {
+  padding-left: 0 !important;
+  border: transparent !important;
+  background: transparent !important; }
+
 .li-avatar-navbar .dropdown__content {
   padding: 0 !important;
   max-width: 200px; }
