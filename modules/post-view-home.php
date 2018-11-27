@@ -84,15 +84,17 @@
                                                 <p class="user">
                                                     <linkname v-bind:user="state.content[p].author"></linkname>
                                                 </p>
-                                                <p class="description-user">{{ state.accounts[state.content[p].author].metadata.description || '-' }}</p>
-                                                <p class="email-user">{{ state.accounts[state.content[p].author].metadata.email || '-' }}</p>
+                                                <p class="description-user">{{ state.accounts[state.content[p].author].metadata.about || '-' }}</p>
+                                                <p class="email-user">
+                                                    {{ state.accounts[state.content[p].author].metadata.contact || state.accounts[state.content[p].author].metadata.web || '-' }}
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <!--<div class="col">
-                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_LIKES }}</p>
-                                                <span>{{ state.accounts[state.content[p].author].reputation }}</span>
-                                            </div>-->
+                                            <div class="col">
+                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_POSTS }}</p>
+                                                <span>{{ state.accounts[state.content[p].author].post_count }}</span>
+                                            </div>
                                             <div class="col">
                                                 <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWERS }}</p>
                                                 <span>0</span>

@@ -383,6 +383,7 @@ let lang = {
     },
     "FAQS": {"FAQ_TITLE": "Frequently Asked Questions"},
     "HOME": {
+        "DROPDOWN_USER_PROFILE_POSTS": "Posts",
         "DROPDOWN_USER_PROFILE_LIKES": "Likes",
         "DROPDOWN_USER_PROFILE_FOLLOWERS": "Followers",
         "MENU_POPULAR": "Popular",
