@@ -116,6 +116,10 @@
     }
   }
   .wallet-password-tab {
+    .button-recover-account {
+      text-decoration: none;
+      font-weight: bold;
+    }
     .alert-wallet-tab {
       font-size: 14px;
       color: $color-blue-primary;
