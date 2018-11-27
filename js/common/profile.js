@@ -357,7 +357,6 @@ let walletModalDeEnergize;
     function setUpRewards(rewardView, session, state) {
 
         let rewardType = rewardView.replace('s', '').replace('-', '_');
-        console.log('rewarding', rewardView, rewardType)
 
         let rewards = {
             rewards24Vests: 0,
@@ -381,7 +380,7 @@ let walletModalDeEnergize;
         state.user.transfer_history.forEach(function (item) {
 
             if (item[1].op[0] === 'author_reward' && rewardType === 'author_reward') {
-                console.log(jsonify(jsonstring(item)));
+
                 if (!finalDate) {
                     finalDate = new Date(item[1].timestamp).getTime();
                 }
@@ -410,7 +409,7 @@ let walletModalDeEnergize;
 
                 rewardsOp.push(item);
             } else if (item[1].op[0] === 'curation_reward' && rewardType === 'curation_reward') {
-                console.log(jsonify(jsonstring(item)));
+
                 if (!finalDate) {
                     finalDate = new Date(item[1].timestamp).getTime();
                 }
@@ -460,8 +459,6 @@ let walletModalDeEnergize;
             rewardsContainer[rewardView].rewards = rewards;
             rewardsContainer[rewardView].rewardsOp = rewardsOp;
         }
-
-        console.log(rewardView, 'mounted!');
     }
 
     /**
@@ -476,7 +473,6 @@ let walletModalDeEnergize;
             if (err) {
                 console.error(err);
             } else {
-                console.log('Rewards fetched!', state);
                 setUpRewards('author-rewards', session, state);
                 setUpRewards('curation-rewards', session, state);
             }
