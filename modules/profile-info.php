@@ -41,11 +41,11 @@
     <hr>
     <div class="row ranking-user-info">
         <div class="col">
-            <img src="img/icons/trainer.svg" alt="">
+            <img src="/img/icons/trainer.svg" alt="">
             <span>Traineer</span>
         </div>
         <div class="col">
-            <img src="img/icons/buzz.svg" alt="">
+            <img src="/img/icons/buzz.svg" alt="">
             <span>{{ state.user.reputation }} Buzz</span>
         </div>
     </div>
@@ -53,7 +53,7 @@
     <div class="row profile-summary">
         <div class="col-md-7">
             <p>
-                <img src="img/icons/like.svg" alt="">
+                <img src="/img/icons/like.svg" alt="">
                 <span>{{ lang.PROFILE.LIKES }}</span>
             </p>
         </div>
@@ -63,7 +63,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="img/icons/comments.svg" alt="">
+                <img src="/img/icons/comments.svg" alt="">
                 <span>{{ lang.PROFILE.COMMENTS }}</span>
             </p>
         </div>
@@ -73,7 +73,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="img/icons/followers.svg" alt="">
+                <img src="/img/icons/followers.svg" alt="">
                 <span>{{ lang.PROFILE.FOLLOWERS }}</span>
             </p>
         </div>
@@ -83,7 +83,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="img/icons/following.svg" alt="">
+                <img src="/img/icons/following.svg" alt="">
                 <span>{{ lang.PROFILE.FOLLOWING }}</span>
             </p>
         </div>
@@ -93,7 +93,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="img/icons/projects.svg" alt="">
+                <img src="/img/icons/projects.svg" alt="">
                 <span>{{ lang.PROFILE.POSTS }}</span>
             </p>
         </div>
