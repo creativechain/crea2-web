@@ -4,24 +4,13 @@
 
 Vue.component('post-like', {
     template: `<div class="col-likes">
-                <img style="cursor: pointer" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
+                <img class="cursor" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
                     <div class="dropdown dropdown-price">
-                        <span class="dropdown__trigger"> {{ hasPaid() ? post.net_votes : _post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</span>
+                        <span class="dropdown__trigger"> {{ hasPaid() ? post.net_votes : post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</span>
                         <div class="dropdown__container">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
-                                        <p class="title">1</p>
-                                        <p>2</p>
-                                        <p>3</p>
-                                        <p>4</p>
-                                        <p>5</p>
-                                        <p>6</p>
-                                        <p>7</p>
-                                        <p>8</p>
-                                        <p>9</p>
-                                        <p>10</p>
-                                        <p>...</p>
                                     </div>
                                 </div>
                             </div>
