@@ -110,23 +110,49 @@ let navbarContainer;
      */
     function isInHome() {
         let filters = ['/hot', '/trending', '/trending30', '/created', '/promoted', '/votes', '/actives', '/cashout',
-            '/responses', '/payout', '/payout_comments'];
+            '/responses', '/payout', '/payout_comments', '/skyrockets', '/popular'];
 
-        //TODO: CHECK USER FEED
+        //Check if path is user feed
+        let s = Session.getAlive();
+        if (s && isUserFeed(s.account.username)) {
+            return true;
+        }
 
         return filters.includes(window.location.pathname);
     }
 
-    function retrieveContent(event, filter) {
+    /**
+     *
+     * @param {string} filter
+     */
+    function resolveFilter(filter) {
+        filter = filter.toLowerCase();
+        switch (filter) {
+            case '/popular':
+                return '/trending';
+            case '/skyrockets':
+                return '/hot';
+        }
+
+        return null;
+    }
+
+    function retrieveContent(event, urlFilter) {
         if (event && isInHome()) {
             event.preventDefault();
         }
-        updateUrl(filter);
+
+        let filter = resolveFilter(urlFilter);
+        if (!filter) {
+            filter = urlFilter;
+        }
+
+        updateUrl(urlFilter);
         crea.api.getState(filter, function (err, result) {
             if (err) {
                 console.error(err);
             } else  {
-                creaEvents.emit('crea.posts', filter, result);
+                creaEvents.emit('crea.posts', urlFilter, result);
             }
         })
     }
@@ -136,11 +162,11 @@ let navbarContainer;
     }
 
     function retrieveTrendingContent(event) {
-        retrieveContent(event, "/trending");
+        retrieveContent(event, "/popular");
     }
 
     function retrieveHotContent(event) {
-        retrieveContent(event, "/hot");
+        retrieveContent(event, "/skyrockets");
     }
 
     function retrievePromotedContent(event) {
