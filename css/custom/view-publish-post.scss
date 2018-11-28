@@ -119,9 +119,10 @@
       }
       .box-report {
         img {
-          width: 25px;
-          height: 25px;
+          width: 16px;
+          height: 16px;
           margin-right: 10px;
+          margin-top: -2px;
         }
         p {
           color: $grey-light;
@@ -137,7 +138,7 @@
           margin-bottom: 10px;
         }
         .feature-2 .feature__body {
-          width: 90%;
+          width: 87%;
           float: right;
           p {
             margin-bottom: 0;
@@ -215,8 +216,9 @@
         }
       }
       img {
-        width: 27px;
-        height: 27px;
+        width: 16px;
+        height: 16px;
+        margin-top: 5px;
       }
     }
     .row-publish-description {
@@ -312,9 +314,16 @@
     height: 50px;
     background-position: 50% 50%;
   }
+
+
   @media (min-width: 768px) {
     .container {
       max-width: 100%;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
     }
   }
 

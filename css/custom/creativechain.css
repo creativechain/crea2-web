@@ -137,7 +137,7 @@
   font-weight: bold;
   margin-bottom: 5px; }
 .view-profile .block-all img {
-  width: 20px;
+  width: 16px;
   margin-right: 5px; }
 .view-profile .block-all p {
   color: #999999; }
@@ -249,6 +249,9 @@
   margin-bottom: 0; }
 .view-wallet .table-permission tbody tr td:nth-child(2) {
   vertical-align: middle; }
+.view-wallet .wallet-password-tab .button-recover-account {
+  text-decoration: none;
+  font-weight: bold; }
 .view-wallet .wallet-password-tab .alert-wallet-tab {
   font-size: 14px;
   color: #0569EF; }
@@ -563,9 +566,10 @@
         color: #999999;
         font-weight: 600; }
     .post-view .border-post-view .full-post .box-report img {
-      width: 25px;
-      height: 25px;
-      margin-right: 10px; }
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      margin-top: -2px; }
     .post-view .border-post-view .full-post .box-report p {
       color: #999999; }
     .post-view .border-post-view .full-post .box-blockchain-certificate .certificat-flag {
@@ -575,7 +579,7 @@
     .post-view .border-post-view .full-post .box-blockchain-certificate .feature:not(.boxed) {
       margin-bottom: 10px; }
     .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body {
-      width: 90%;
+      width: 87%;
       float: right; }
       .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body p {
         margin-bottom: 0; }
@@ -632,8 +636,9 @@
           margin-left: 10px;
           margin-top: 3px; }
       .post-view .menu-right .row-master img {
-        width: 27px;
-        height: 27px; }
+        width: 16px;
+        height: 16px;
+        margin-top: 5px; }
     .post-view .menu-right .row-publish-description p {
       font-size: 14px;
       font-weight: bold; }
@@ -702,6 +707,9 @@
   @media (min-width: 768px) {
     .post-view .container {
       max-width: 100%; } }
+  @media (min-width: 992px) {
+    .post-view .container {
+      max-width: 960px; } }
 
 .view-notifications .row-img-notification {
   height: 53px;
@@ -737,7 +745,7 @@
   margin: 0 5px;
   padding: 10px 0; }
 .view-notifications .icon-notification-list {
-  width: 20px;
+  width: 16px;
   margin-right: 10px; }
 
 #view-explorer .title-explorer {
@@ -977,6 +985,11 @@ label {
 .slide-energize .tooltip {
   background: transparent; }
 
+.type-file {
+  padding-left: 0 !important;
+  border: transparent !important;
+  background: transparent !important; }
+
 .li-avatar-navbar .dropdown__content {
   padding: 0 !important;
   max-width: 200px; }
@@ -1188,7 +1201,7 @@ img {
     .card-home .li-comment a {
       color: #222222; }
       .card-home .li-comment a img {
-        width: 14px; }
+        width: 16px; }
   .card-home .li-certificate {
     margin-top: 5px; }
     .card-home .li-certificate img {
