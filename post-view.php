@@ -102,15 +102,13 @@
                                                 <div class="col-md-12">
                                                     <div class="row-post-comments">
                                                         <div class="user-avatar">
-                                                            <a v-bind:href="'/profile.php?profile=' + state.content[c].author">
-                                                                <div class="img-user-avatar" v-bind:style=" { 'background-image': 'url(' + (state.accounts[state.content[c].author].metadata.avatar.url || getDefaultAvatar(state.accounts[state.content[c].author].name)) +')' }"></div>
+                                                            <a v-bind:href="'/@' + state.content[c].author">
+                                                                <avatar v-bind:account="state.accounts[state.content[c].author]"></avatar>
                                                             </a>
                                                         </div>
                                                         <div class="user-comments">
                                                             <p>
-                                                                <a v-bind:href="'/profile.php?profile=' + state.content[c].author">
-                                                                    {{ state.accounts[state.content[c].author].metadata.publicName || state.content[c].author }}
-                                                                </a>
+                                                                <username v-bind:inline="1" v-bind:user="state.content[c].author" v-bind:name="state.accounts[state.content[c].author].metadata.publicName"></username>
                                                                 <img src="/img/icons/trainer.svg" alt="">
                                                                 <span>{{ dateFromNow(state.content[c].created) }}</span>
                                                             </p>
@@ -197,14 +195,12 @@
                                 <div class="col-md-12">
                                     <div class="row-user-name">
                                         <div class="user-avatar">
-                                            <a v-bind:href="'/profile.php?profile=' + state.author.name">
-                                                <div class="img-user-avatar" v-bind:style=" { 'background-image': 'url(' + (state.author.metadata.avatar.url || getDefaultAvatar(state.author.name)) +')' }"></div>
+                                            <a v-bind:href="'/@' + state.author.name">
+                                                <avatar v-bind:account="state.author"></avatar>
                                             </a>
                                         </div>
                                         <div class="user-data">
-                                            <a v-bind:href="'/profile.php?profile=' + state.author.name">
-                                                <p class="name">{{ state.author.metadata.publicName || state.author.name }}</p>
-                                            </a>
+                                            <username class="name color--link" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
                                             <p class="website">{{ state.author.metadata.web || '-' }}</p>
                                         </div>
                                     </div>

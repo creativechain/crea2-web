@@ -253,7 +253,7 @@
                                     <span class="dropdown__trigger">
 
                                         <div class="user-avatar" >
-                                            <avatar v-bind:username="user.name" v-bind:url="user.metadata.avatar.url"></avatar>
+                                            <avatar v-bind:account="user"></avatar>
                                         </div>
                                     </span>
                                     <div class="dropdown__container">

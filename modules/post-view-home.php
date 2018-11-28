@@ -47,7 +47,7 @@
                     <div class="dropdown dropdown-autor">
                         <div class="row-flex">
                             <div class="user-avatar size-25-avatar">
-                                <avatar class="size-25-avatar" v-bind:username="state.content[p].author" v-bind:url="state.accounts[state.content[p].author].metadata.avatar.url"></avatar>
+                                <avatar class="size-25-avatar" v-bind:account="state.accounts[state.content[p].author]"></avatar>
                             </div>
                             <span class="dropdown-autor-span-name">{{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}</span>
                         </div>
@@ -70,8 +70,8 @@
                                         <div class="row">
                                             <div class="col text-center">
                                                 <div class="user-avatar">
-                                                    <a v-bind:href="'/profile.php?profile=' + state.content[p].author">
-                                                        <avatar v-bind:username="state.content[p].author" v-bind:url="state.accounts[state.content[p].author].metadata.avatar.url"></avatar>
+                                                    <a v-bind:href="'/@' + state.content[p].author">
+                                                        <avatar v-bind:account="state.accounts[state.content[p].author]"></avatar>
                                                     </a>
                                                 </div>
                                             </div>

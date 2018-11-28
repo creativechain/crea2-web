@@ -12,7 +12,7 @@
                     <div class="col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
-                                <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
+                                <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
                             </div>
                             <div class="list-data-user">
                                 <p>
@@ -46,7 +46,7 @@
                     <div class="col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
-                                <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
+                                <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
                             </div>
                             <div class="list-data-user">
                                 <p>
@@ -81,7 +81,7 @@
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.from">
-                                    <avatar v-bind:username="op.op.value.from" v-bind:url="history.accounts[op.op.value.from].metadata.avatar.url"></avatar>
+                                    <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
                                 </a>
                             </div>
                             <div class="list-data-user">
@@ -119,7 +119,7 @@
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.author">
-                                    <avatar v-bind:username="op.op.value.author" v-bind:url="history.accounts[op.op.value.author].metadata.avatar.url"></avatar>
+                                    <avatar v-bind:account="history.accounts[op.op.value.author]"></avatar>
                                 </a>
                             </div>
                             <div class="list-data-user">
@@ -153,7 +153,7 @@
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.voter">
-                                    <avatar v-bind:username="op.op.value.voter" v-bind:url="history.accounts[op.op.value.voter].metadata.avatar.url"></avatar>
+                                    <avatar v-bind:account="history.accounts[op.op.value.voter]"></avatar>
                                 </a>
                             </div>
                             <div class="list-data-user">
@@ -178,7 +178,7 @@
         <div v-else-if="op.op.type == 'producer_reward_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/@' + op.op.value.producer">
-                    <avatar v-bind:username="op.op.value.producer" v-bind:url="history.accounts[op.op.value.producer].metadata.avatar.url"></avatar>
+                    <avatar v-bind:account="history.accounts[op.op.value.producer]"></avatar>
                 </a>
             </div>
             <div class="list-data-user">
@@ -200,8 +200,7 @@
         <div v-else-if="op.op.type == 'curator_reward_operation'" class="row-list-user">
             <div class="user-avatar">
                 <a v-bind:href="'/@' + op.op.value.curator">
-                    <avatar v-bind:username="op.op.value.curator"
-                            v-bind:url="history.accounts[op.op.value.curator].metadata.avatar.url"></avatar>
+                    <avatar v-bind:account="history.accounts[op.op.value.curator]"></avatar>
                 </a>
             </div>
             <div class="list-data-user">
@@ -229,7 +228,7 @@
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.creator">
-                                    <avatar v-bind:username="op.op.value.creator" v-bind:url="history.accounts[op.op.value.creator].metadata.avatar.url"></avatar>
+                                    <avatar v-bind:account="history.accounts[op.op.value.creator]"></avatar>
                                 </a>
                             </div>
                             <div class="list-data-user">

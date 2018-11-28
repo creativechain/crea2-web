@@ -14,3 +14,11 @@
 .view-publish .step-4 .input-radio input:disabled + label::after {
     background-color: #b3b3b3;
 }
+
+.color--link {
+    color: #4A90E2;
+}
+
+.color--link:hover {
+    color: #2275d7;
+}

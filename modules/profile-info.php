@@ -1,7 +1,7 @@
 <div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
         <div class="user-avatar">
-            <avatar v-bind:username="state.user.name " v-bind:url="state.user.metadata.avatar.url "></avatar>
+            <avatar v-bind:account="state.user"></avatar>
         </div>
         <span class="h5">{{ profile.publicName || ''}}</span>
         <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>

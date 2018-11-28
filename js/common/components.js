@@ -278,11 +278,15 @@ Vue.component('linkname', {
 });
 
 Vue.component('avatar', {
-    template: `<div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + ( url || getDefaultAvatar(username)) + ')' }"></div>`,
-    props: ['url', 'username'],
+    template: `<div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + ( account.metadata.avatar.url || getDefaultAvatar(account.name)) + ')' }"></div>`,
+    props: {
+        account: {
+            type: Object
+        }
+    },
     methods: {
         getDefaultAvatar: R.getDefaultAvatar
-    }
+    },
 });
 
 Vue.component('taginput', {
