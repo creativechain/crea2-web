@@ -2,6 +2,17 @@
  * Created by ander on 16/10/18.
  */
 
+/*Vue.component('slider',  {
+    template: `<div class="slider slider-horizontal">
+                <div class="slider-track">
+                    <div class="slider-track-low" style="left: 0px; width: 0px;"></div>
+                    <div class="slider-selection" v-bind:style="{ left: '0%', width: value + '%' }"></div>
+                    <div class="slider-selection" v-bind:style="{ left: '0%', width: (total - value) + '%' }"></div>
+                </div>
+                <div class="slider-handle min-slider-handle round" v-bind:style="{left: "></div>
+</div>`
+});*/
+
 Vue.component('post-like', {
     template: `<div class="col-likes">
                 <img class="cursor" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
