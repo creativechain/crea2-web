@@ -112,8 +112,9 @@
 .view-profile .profile-summary .col-md-7 {
   margin-bottom: 10px; }
 .view-profile .profile-summary img {
-  width: 20px;
-  margin-right: 5px; }
+  width: 16px;
+  margin-right: 5px;
+  margin-top: -4px; }
 .view-profile .profile-summary span {
   font-weight: 600; }
 .view-profile .p-top-15 {
@@ -163,7 +164,7 @@
   font-size: 14px;
   font-weight: 600; }
 .view-profile .menu-profile-user .ranking-user-info img {
-  width: 20px;
+  width: 16px;
   margin-right: 5px; }
 
 .view-rewards .box-rewards-autor {
@@ -1082,6 +1083,9 @@ input[type], textarea, select {
   margin-top: 20px;
   font-weight: 600; }
 
+.hamburger-toggle i {
+  color: white; }
+
 .loading {
   position: fixed;
   left: 0;
@@ -1137,7 +1141,7 @@ input[type], textarea, select {
   transform-style: flat; }
 
 #slide-home {
-  padding: 7em 0; }
+  padding: 6em 0; }
   #slide-home h1, #slide-home h3, #slide-home span {
     color: white; }
   #slide-home .background-image-holder {

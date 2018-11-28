@@ -134,7 +134,9 @@ input[type], textarea, select {
     margin-top: 20px;
     font-weight: 600;
 }
-
+.hamburger-toggle i {
+  color: $color-white;
+}
 
 .loading {
   position: fixed;
@@ -197,7 +199,7 @@ input[type], textarea, select {
   transform-style: flat;
 }
 #slide-home {
-  padding: 7em 0;
+  padding: 6em 0;
   h1, h3, span {
     color: $color-white;
   }

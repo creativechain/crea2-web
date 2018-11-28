@@ -22,8 +22,8 @@ let lang = {
 
     },
     "BANNER": {
-        TITLE: "Welcome to the blockchain of creative communities",
-        SUBTITLE: "A world without intermediaries"
+        TITLE: "Create, inspire, influence",
+        SUBTITLE: "Welcome to the decentralized community of creative portfolios, that rewards artists and curators. Be creative!"
     },
     "TRENDING": {
         "PAYOUTS": "PAYOUTS",
