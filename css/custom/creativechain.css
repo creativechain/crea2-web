@@ -1341,6 +1341,9 @@ img {
   .project-profile .col-lg-4-cust {
     flex: 0 0 33.3333333333%;
     max-width: 33.3333333333%; } }
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container-fluid {
+    max-width: 100%; } }
 @media (min-width: 1200px) {
   #menu1 .container {
     max-width: 100%; }
