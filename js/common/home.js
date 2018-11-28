@@ -9,11 +9,12 @@ let homePosts;
 
     /**
      *
+     * @param {string} urlFilter
      * @param {string} filter
      * @param state
      * @returns {License}
      */
-    function showPosts(filter, state) {
+    function showPosts(urlFilter, filter, state) {
         let content = state.content;
         let accounts = state.accounts;
 
@@ -45,7 +46,7 @@ let homePosts;
             state.discussion_idx[''][filter] = cKeys;
         }
 
-        console.log(state.discussion_idx[''][filter]);
+        console.log('Filter', filter, 'discussion', state.discussion_idx[''][filter]);
 
         if (!homePosts) {
             homePosts = new Vue({
@@ -132,7 +133,7 @@ let homePosts;
         }
     }
 
-    creaEvents.on('crea.posts', function (filter, state) {
+    creaEvents.on('crea.posts', function (urlFilter, filter, state) {
         if (isUserFeed(getPathPart())) {
             let authors = [];
             for (let c in state.content) {
@@ -154,12 +155,12 @@ let homePosts;
                     });
 
                     state.accounts = accounts;
-                    showPosts(filter, state);
+                    showPosts(urlFilter, filter, state);
                 }
             })
 
         } else {
-            showPosts(filter, state);
+            showPosts(urlFilter, filter, state);
         }
     });
 

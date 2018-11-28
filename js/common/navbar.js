@@ -152,7 +152,7 @@ let navbarContainer;
             if (err) {
                 console.error(err);
             } else  {
-                creaEvents.emit('crea.posts', urlFilter, result);
+                creaEvents.emit('crea.posts', urlFilter, filter, result);
             }
         })
     }
