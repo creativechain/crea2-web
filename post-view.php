@@ -58,69 +58,26 @@
                                                                     <div class="feature__body boxed boxed--lg boxed--border">
                                                                         <div class="modal-close modal-close-cross"></div>
                                                                         <div class="text-block">
-                                                                            <h3>PROMOTE</h3>
-                                                                            <p>Promote this post</p>
+                                                                            <h3>Promocionar el Post</h3>
+                                                                            <p>Gasta tu CREA DOLLAR para promocionar tu contenido en la sección de promoción.</p>
                                                                         </div>
                                                                         <form>
                                                                             <div class="row">
-                                                                                <div class="col-md-1">
-                                                                                    <p class="text-p-form">FROM</p>
-                                                                                </div>
-                                                                                <div class="col-md-11">
-                                                                                    <div class="input-icon input-icon--left">
-                                                                                        <i class="fas fa-at"></i>
-                                                                                        <input disabled type="text" placeholder="@miusuario">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-1">
-                                                                                    <p class="text-p-form">TO</p>
-                                                                                </div>
-                                                                                <div class="col-md-11">
-                                                                                    <div class="input-icon input-icon--left">
-                                                                                        <i class="fas fa-at"></i>
-                                                                                        <input disabled type="text" name="input" placeholder="@null">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-2">
+                                                                                <div class="col-md-12">
                                                                                     <p class="text-p-form">AMOUNT</p>
                                                                                 </div>
-                                                                                <div class="col-md-10">
+                                                                                <div class="col-md-6">
                                                                                     <div class="input-icon input-icon--right">
-                                                                                        <i class="">CREA</i>
+                                                                                        <i class="">CBD ($)</i>
                                                                                         <input type="number" step="0.001" name="input" >
-                                                                                        <p class="amount-save" >BALANCE: 0.000 CBD</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-2"></div>
-                                                                                <div class="col-md-10">
-                                                                                    <p>MEMO</p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-2">
-                                                                                    <p class="text-p-form">MEMO</p>
-                                                                                </div>
-                                                                                <div class="col-md-10">
-                                                                                    <div class="input-icon input-icon--right">
-                                                                                        <input disabled type="text" placeholder="@author/permlink">
+                                                                                        <p class="amount-save mt-4" >Saldo: 0.000 CBD</p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row mt-3">
                                                                                 <div class="col text-right">
-                                                                                    <a href="#0"
-                                                                                       class="btn btn--sm btn--primary type--uppercase"
-                                                                                       >
-                                                                                        <span class="btn__text">Cancel</span>
-                                                                                    </a>
                                                                                     <a href="#0" class="btn btn--sm btn--primary type--uppercase" >
-                                                                                        <span class="btn__text">Confirm</span>
+                                                                                        <span class="btn__text">Promocionar</span>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
