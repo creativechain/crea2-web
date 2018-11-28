@@ -5,7 +5,7 @@ require 'Router.php';
 $router = new Router();
 
 $router->addRoute('/', 'home.php');
-$router->addRoute('/~witness', 'vote-for-witnesses.php');
+$router->addRoute('/~witness', 'witnesses.php');
 $router->addRoute('/welcome', 'welcome.php');
 $router->addRoute('/validate', 'welcome.php');
 $router->addRoute('/publish', 'publish.php');
