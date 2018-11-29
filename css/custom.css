@@ -22,3 +22,7 @@
 .color--link:hover {
     color: #2275d7;
 }
+
+.modal-active.showing {
+    opacity: 1;
+}

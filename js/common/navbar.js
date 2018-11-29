@@ -4,7 +4,6 @@
 let navbarContainer;
 (function () {
 
-
     let navbarSearch = new Vue({
         el: '#navbar-search',
         data: {
@@ -25,6 +24,7 @@ let navbarContainer;
      * @param userData
      */
     function updateNavbarSession(session, userData) {
+
         if (!navbarContainer) {
             navbarContainer = new Vue({
                 el: '#navbar-container',
@@ -43,7 +43,11 @@ let navbarContainer;
                         }
                     }
                 },
+                mounted: function () {
+                    this.applyRightMenuEvents($);
+                },
                 methods: {
+                    applyRightMenuEvents: mr.notifications.documentReady,
                     closeLogin: function () {
                         $('#modal-login').removeClass('modal-active');
                     },

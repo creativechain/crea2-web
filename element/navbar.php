@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li>
-                <a href="/witnesses.php">
+                <a href="/~witness">
                     <span class="h5">{{ lang.DOTS_MENU.VOTE }}</span>
                 </a>
             </li>
@@ -324,14 +324,8 @@
                                 </div>
                             </li>
 
-
-
-
                             <li>
                                 <div class="modal-instance">
-
-
-
                                     <a href="#" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
                                     <div id="modal-login" v-if="!session" class="modal-container">
@@ -406,8 +400,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <a href="#" data-notification-link="side-menu">
+                            <li v-pre >
+                                <a href="#0" data-notification-link="side-menu">
                                     <i class="stack-menu"></i>
                                 </a>
                             </li>
