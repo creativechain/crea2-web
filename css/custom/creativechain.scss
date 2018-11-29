@@ -13,6 +13,7 @@
 @import "buttons";
 @import "recover-account";
 
+
 body {
   color: $color-dark-primary;
   font-size: 12px;
@@ -33,6 +34,9 @@ label {
   padding-left: 0 !important;
   border: transparent !important;
   background: transparent !important;
+}
+.notification.side-menu {
+  width: 20.857143em;
 }
 .li-avatar-navbar {
   .dropdown__content {
@@ -384,6 +388,7 @@ img {
     height: 30px;
     background-position: 50% 50%;
   }
+
   .size-25-avatar {
     width: 25px !important;
     height: 25px !important;
@@ -405,8 +410,6 @@ img {
   -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
   padding: 1.23809524em 1.85714286em;
 }
-
-
 
 .card-2 .card__body {
   padding: 10px;
@@ -452,9 +455,6 @@ img {
 }
 @media (min-width: 768px) {
   #menu1 {
-    .container {
-      max-width: 100%;
-    }
     .bar__module {
       display: inline-block;
     }
@@ -478,59 +478,9 @@ img {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .container-fluid {
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 1200px) {
-  #menu1 {
-    .container {
-      max-width: 100%;
-    }
-    .container-fluid {
-      max-width: 1200px;
-    }
-  }
-  .container {
-    max-width: 1200px;
-  }
-  .post-container-home {
-    .col-xl-3-cust {
-      flex: 0 0 25%;
-      max-width: 25%;
-    }
-  }
-  .project-profile {
-    .col-xl-3-cust {
-      flex: 0 0 25%;
-      max-width: 25%;
-    }
-  }
-}
 
 
 
-@media (min-width: 1500px) {
-  .post-container-home {
-    max-width: 1500px;
-  }
-  #menu1 {
-    .container-fluid {
-      max-width: 1500px;
-    }
-  }
-  .post-container-home {
-    .col-xl-2-cust {
-      flex: 0 0 16.6666666667%;
-      max-width: 16.6666666667%;
-    }
-  }
-  .project-profile {
-    .col-xl-3-cust {
-      flex: 0 0 25%;
-      max-width: 25%;
-    }
-  }
-}
+
+
+@import "responsive";
