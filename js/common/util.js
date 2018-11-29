@@ -183,6 +183,11 @@ function toLocaleDate(date) {
     return new Date(0);
 }
 
+/**
+ *
+ * @param src
+ * @returns {*}
+ */
 function clone(src) {
     return Object.assign({}, src);
 }

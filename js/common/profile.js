@@ -106,8 +106,14 @@ let walletModalDeEnergize;
                     from: state.user.name,
                     amount: 0,
                     memo: '',
-                    config: defaultModalConfig,
+                    config: clone(defaultModalConfig),
                     toError: false,
+                },
+                mounted: function () {
+                    let that = this;
+                    $('#wallet-send').on('modalClosed.modals.mr', function () {
+                        that.clearFields();
+                    })
                 },
                 methods: {
                     shouldShowMemo() {
@@ -133,7 +139,7 @@ let walletModalDeEnergize;
                         //Clear fields
                         this.amount = 0;
                         this.memo = '';
-                        this.config = defaultModalConfig;
+                        this.config = clone(defaultModalConfig);
                     },
                     useTotalAmount: function (event) {
                         if (event) {
@@ -229,7 +235,6 @@ let walletModalDeEnergize;
                     let t = $('#wallet-tabs').prev();
                     if (t.is(':empty')) {
                         t.remove();
-                        console.log('Removed generated tabs');
                     }
 
                     let inputTags = $('#profile-edit-tags');
@@ -244,8 +249,6 @@ let walletModalDeEnergize;
                             inputTags.tagsinput('add', t);
                         })
                     }
-
-                    //$('#wallet-tabs').prev().remove();
                 },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
@@ -299,7 +302,7 @@ let walletModalDeEnergize;
 
                         }
                         config.op = op;
-                        walletModalSend.config = Object.assign(defaultModalConfig, config);
+                        walletModalSend.config = Object.assign(clone(defaultModalConfig), config);
                     },
                     canWithdraw: function () {
                         return this.session && this.session.account.username == state.user.name;
