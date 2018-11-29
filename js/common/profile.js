@@ -19,18 +19,70 @@ let walletModalDeEnergize;
     };
 
     function updateModalDeEnergize(state, session) {
+        console.log('Modal De-Energize', jsonify(jsonstring(state)));
+
+        let vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString());
+        let delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString());
+        let maxPowerDown = vestsCrea - delegatedVesting;
+
+        let withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(), apiOptions.nai.CREA);
+        let toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(), apiOptions.nai.CREA);
+
+        let withdrawNote = '';
+        if (toWithdraw.amount - withdrawn.amount > 0) {
+            withdrawNote = String.format(lang.WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(), withdrawn.toFriendlyString());
+        }
+
         if (!walletModalDeEnergize) {
             walletModalDeEnergize = new Vue({
-                el: '#crea-de-energize',
+                el: '#wallet-de-energize',
                 data: {
                     lang: lang,
                     session: session,
                     state: state,
-                    amount: 0
+                    maxPowerDown: maxPowerDown,
+                    finalAmount: 0,
+                    sliderValue: 0,
+                    amountByWeek: '',
+                    withdrawNote: withdrawNote
+
                 },
                 methods: {
+                    formatString: String.format,
                     onAmount: function (amount) {
-                        console.log(amount);
+                        amount += 0.0001;
+                        let asset = Asset.parse({amount: amount, nai: apiOptions.nai.CREA});
+                        this.finalAmount = parseFloat(asset.toPlainString());
+                        this.amountByWeek = amount < 0.001 ? '' : String.format(this.lang.WALLET.DE_ENERGIZE_AMOUNT_BY_WEEK, asset.divide(8).toFriendlyString());
+                    },
+                    onManualChange: function (event) {
+                        if (event) {
+                            let amount = event.target.valueAsNumber;
+                            if (isNaN(amount)) {
+                                amount = 0;
+                            }
+                            this.sliderValue = amount;
+                        }
+                    },
+                    hideModalDeEnergize: function (event) {
+                        cancelEventPropagation(event);
+
+                        $('#wallet-de-energize').removeClass('modal-active');
+                    },
+                    makePowerDown: function (event, amount) {
+                        cancelEventPropagation(event);
+
+                        globalLoading.show = true;
+                        let vests = cgyToVests(this.state, this.finalAmount);
+                        crea.broadcast.withdrawVesting(this.session.account.keys.active.prv, this.session.account.username, vests.toFriendlyString(), function (err, result) {
+                            globalLoading.show = false;
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                this.hideModalDeEnergize();
+                                updateUserSession();
+                            }
+                        });
                     }
                 }
             })
@@ -313,21 +365,27 @@ let walletModalDeEnergize;
                         return reward + ' CGY';
                     },
                     getCGYBalance() {
-                        let vest = parseFloat(this.state.user.vesting_shares.split(' ')[0]);
-                        let totalVests = parseFloat(state.props.total_vesting_shares.split(' ')[0]);
-                        let totalVestCrea = parseFloat(state.props.total_vesting_fund_crea.split(' ')[0]);
-
-                        let energy = crea.formatter.vestToCrea(vest, totalVests, totalVestCrea);
-                        return Asset.parse({
-                            amount: energy,
-                            nai: apiOptions.nai.CREA
-                        }).toFriendlyString();
+                        return vestingCrea(this.state.user, this.state.props);
                     },
                     hasRewardBalance: function () {
                         let crea = Asset.parseString(this.state.user.reward_crea_balance);
                         let cbd = Asset.parseString(this.state.user.reward_cbd_balance);
-                        let cgy = Asset.parseString(this.state.user.reward_vesting_balance);
-                        return crea.amount > 0 || cbd.amount > 0 || cgy.amount > 0;
+                        let vests = Asset.parseString(this.state.user.reward_vesting_balance);
+                        return crea.amount > 0 || cbd.amount > 0 || vests.amount > 0;
+                    },
+                    cancelPowerDown: function (event) {
+                        cancelEventPropagation(event);
+
+                        globalLoading.show = true;
+                        let vests = new Vests(0);
+                        crea.broadcast.withdrawVesting(this.session.account.keys.active.prv, this.session.account.username, vests.toFriendlyString(), function (err, result) {
+                            globalLoading.show = false;
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                updateUserSession();
+                            }
+                        });
                     },
                     navigateTo: function (event, tab) {
                         if (event) {

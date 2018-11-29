@@ -51,6 +51,7 @@
     <script src="/js/common/components.js"></script>
     <script src="/js/common/ls.js"></script>
     <script src="/js/common/util.js"></script>
+    <script src="/js/common/creautil.js"></script>
     <script src="/js/common/http.js"></script>
     <script src="/js/lib/amount.js"></script>
     <script src="/js/lib/license.js"></script>

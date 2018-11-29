@@ -38,6 +38,16 @@ String.prototype.capitalize = function() {
 
 /**
  *
+ * @param {Event} event
+ */
+function cancelEventPropagation(event) {
+    if (event && event.preventDefault) {
+        event.preventDefault();
+    }
+}
+
+/**
+ *
  * @param obj
  * @returns {*}
  */
@@ -212,26 +222,4 @@ function getPathPart(index = 0) {
     parts.splice(0, 1);
 
     return parts[index];
-}
-
-/**
- *
- * @param state
- * @param vestingShares
- * @returns {Asset}
- */
-function vestsToCgy(state, vestingShares) {
-
-    let vests = vestingShares;
-    if (typeof vestingShares === 'string') {
-        vests = Asset.parseString(vestingShares).amount
-    }
-
-    const total_vests = Asset.parseString(state.props.total_vesting_shares).amount;
-    const total_vest_crea = Asset.parseString(state.props.total_vesting_fund_crea).amount;
-
-    return Asset.parse({
-        amount: total_vest_crea * (vests / total_vests),
-        nai: 'cgy'
-    })
 }

@@ -17,13 +17,18 @@ const ASSET_CGY = {
     symbol: apiOptions.symbol.CGY
 };
 
+const ASSET_VESTS = {
+    precision: 6,
+    symbol: apiOptions.symbol.VESTS
+};
+
 const NAI = {
     "@@000000013": ASSET_CBD,
     "cbd": ASSET_CBD,
     "@@000000021": ASSET_CREA,
     "crea": ASSET_CREA,
-    "@@000000037": ASSET_CGY,
-    "vests": ASSET_CGY,
+    "@@000000037": ASSET_VESTS,
+    "vests": ASSET_VESTS,
     "cgy": ASSET_CGY,
 };
 
@@ -100,6 +105,26 @@ class Asset {
 
     /**
      *
+     * @param val
+     * @returns {Asset}
+     */
+    divide(val) {
+        this.amount /= val;
+        return this;
+    }
+
+    /**
+     *
+     * @param val
+     * @returns {Asset}
+     */
+    multiply(val) {
+        this.amount *= val;
+        return this;
+    }
+
+    /**
+     *
      * @param maxDecimals
      * @returns {string}
      */
@@ -157,6 +182,8 @@ class Asset {
                 return new Crea(assetData.amount);
             case ASSET_CGY:
                 return new CreaEnergy(assetData.amount);
+            case ASSET_VESTS:
+                return new Vests(assetData.amount);
 
         }
 
@@ -176,6 +203,7 @@ class Asset {
         if (amount % 1 == 0) {
             amount = Math.round(amount * Math.pow(10, NAI[nai].precision))
         }
+
         return Asset.parse({
             amount: amount,
             nai: nai,
@@ -192,6 +220,12 @@ class Crea extends Asset {
 class CreaDollar extends Asset {
     constructor(amount) {
         super(amount, ASSET_CBD);
+    }
+}
+
+class Vests extends Asset {
+    constructor(amount) {
+        super(amount, ASSET_VESTS);
     }
 }
 

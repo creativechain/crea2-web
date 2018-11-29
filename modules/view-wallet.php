@@ -200,7 +200,7 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ getCGYBalance() }}</span>
+                                        <span class="dropdown__trigger">{{ getCGYBalance().toFriendlyString() }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -208,13 +208,13 @@
                                                         <ul class="menu-vertical">
                                                             <li>
                                                                 <div class="modal-instance block">
-                                                                    <a class="modal-trigger" href="#crea-de-energize">
+                                                                    <a class="modal-trigger" href="#wallet-de-energize">
                                                                         <span class="btn__text">
                                                                             {{ lang.WALLET.DROPDOWN_MENU_DE_ENERGIZE }}
                                                                         </span>
                                                                     </a>
-                                                                    <div id="crea-de-energize" class="modal-container" data-modal-id="crea-de-energize">
-                                                                        <div class="modal-content section-modal">
+                                                                    <div id="wallet-de-energize" class="modal-container" data-modal-id="wallet-de-energize">
+                                                                        <div v-cloak class="modal-content section-modal">
                                                                             <section class="unpad ">
                                                                                 <div class="container">
                                                                                     <div class="row justify-content-center">
@@ -225,34 +225,36 @@
                                                                                                     <div class="text-block">
                                                                                                         <h3>De-Energize</h3>
                                                                                                         <div class="slide-energize">
-                                                                                                            <input id="ex6" type="text" v-bind:data-slider-formatter="onAmount"
+                                                                                                            <!--<input id="ex6" type="text" v-bind:data-slider-formatter="onAmount"
                                                                                                                    data-slider-min="0" v-bind:data-slider-max="100" data-slider-step="1"
                                                                                                                    data-slider-value="1"/>
-                                                                                                            <span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">3</span></span>
+                                                                                                            <span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">3</span></span>-->
+                                                                                                            <slider :initvalue="sliderValue" v-bind:max="maxPowerDown" v-on:change="onAmount"></slider>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <form>
                                                                                                         <div class="row">
                                                                                                             <div class="col-md-2">
-                                                                                                                <p class="text-p-form">Cantidad</p>
+                                                                                                                <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
                                                                                                             </div>
                                                                                                             <div class="col-md-10">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
-                                                                                                                    <input v-model="amount" type="number" name="input">
+                                                                                                                    <input v-model="finalAmount" step="0.001" v-on:input="onManualChange" type="number" name="input">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
                                                                                                             <div class="col-md-12">
-                                                                                                                <p class="mt--1">Eso es 0,0000 por semana</p>
-                                                                                                                <p class="error-color-form">No se recomienda dejar menos de 5 CREA ENERGY en su cuenta, ya que puede dejar su cuenta en un estado inutilizable.</p>
+                                                                                                                <p class="mt--1">{{ amountByWeek }}</p>
+                                                                                                                <p >{{ withdrawNote }}</p>
+                                                                                                                <p v-if="(maxPowerDown - finalAmount) < 5" class="error-color-form">{{ lang.WALLET.DE_ENERGIZE_UNUSABLE_ACCOUNT }}</p>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row mt-1">
                                                                                                             <div class="col text-right">
-                                                                                                                <a href="#0" class="btn btn--sm btn--primary type--uppercase">
-                                                                                                                    <span class="btn__text">De-Energize</span>
+                                                                                                                <a href="#0" v-on:click="makePowerDown" class="btn btn--sm btn--primary type--uppercase">
+                                                                                                                    <span class="btn__text">{{ lang.BUTTON.DE_ENERGIZE }}</span>
                                                                                                                 </a>
                                                                                                             </div>
                                                                                                         </div>
@@ -268,11 +270,11 @@
                                                                 </div>
                                                             </li>
 
-
-
-
-
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</li>
+                                                            <li>
+                                                                <a href="#0" v-on:click="cancelPowerDown">
+                                                                    <span class="btn__text">{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div><!--end row-->

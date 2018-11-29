@@ -2,16 +2,111 @@
  * Created by ander on 16/10/18.
  */
 
-/*Vue.component('slider',  {
-    template: `<div class="slider slider-horizontal">
-                <div class="slider-track">
-                    <div class="slider-track-low" style="left: 0px; width: 0px;"></div>
-                    <div class="slider-selection" v-bind:style="{ left: '0%', width: value + '%' }"></div>
-                    <div class="slider-selection" v-bind:style="{ left: '0%', width: (total - value) + '%' }"></div>
-                </div>
-                <div class="slider-handle min-slider-handle round" v-bind:style="{left: "></div>
-</div>`
-});*/
+Vue.component('slider',  {
+    template: `
+                <div class="slider slider-horizontal" v-on:mousedown="onMouseDown" v-on:mouseup="onMouseUp" v-on:mousemove="onMouse">
+                    <div class="slider-track">
+                        <div class="slider-track-low" style="left: 0px; width: 0px;"></div>
+                        <div class="slider-selection" v-bind:style="{ left: '0%', width: percentage + '%' }"></div>
+                        <div class="slider-selection hidden" v-bind:style="{ right: '0px', width: (100 - percentage) + '%' }"></div>
+                    </div>
+                    <div class="slider-handle min-slider-handle round" v-bind:style="{left: percentage + '%'}" tabindex="0"></div>
+                </div>`,
+    props: {
+        initvalue: {
+            type: Number,
+            default: 0
+        },
+        min: {
+            type: Number,
+            default: 0
+        },
+        max: {
+            type: Number,
+            default: 100
+        }
+    },
+    watch: {
+        initvalue: function (newVal, oldVal) {
+            console.log(newVal, oldVal);
+            this.$forceUpdate();
+        }
+    },
+    data: function () {
+        return {
+            value: 0,
+            lastInitValue: 0,
+            percentage: 0,
+            draggable: false
+        }
+    },
+    mounted: function () {
+        this.calcInitValue();
+    },
+    updated: function () {
+        this.calcInitValue();
+    },
+    methods: {
+        onMouse: function (ev) {
+            if (ev) {
+                ev.preventDefault();
+            }
+
+            if (!this.draggable) {
+                return true;
+            }
+
+            let offsets = $(this.$el).offset();
+            let mouseOffset = ev.pageX - offsets.left;
+
+            this.calcValues(mouseOffset);
+
+            return true;
+        },
+        onMouseDown: function (ev) {
+            this.draggable = true;
+            this.onMouse(ev);
+        },
+        onMouseUp: function (ev) {
+            this.draggable = false;
+        },
+        calcInitValue: function () {
+            if (this.initvalue !== this.lastInitValue) {
+                let width = this.$el.offsetWidth;
+                let mouseOffset = this.initvalue * width / this.max;
+
+
+                this.lastInitValue = this.initvalue;
+                this.calcValues(mouseOffset);
+            }
+
+        },
+        calcValues: function (mouseOffset) {
+
+            let width = this.$el.offsetWidth;
+            let val = mouseOffset * this.max / width;
+            let percentage = val / this.max * 100;
+
+            if (val < 0) {
+                val = 0;
+                percentage = 0;
+            }
+
+            if (val > this.max) {
+                val = this.max;
+                percentage = 100;
+            }
+
+            this.updateValues(val, percentage);
+        },
+        updateValues: function (value, percentage) {
+            this.value = value;
+            this.percentage = percentage;
+
+            this.$emit('change', value, percentage);
+        }
+    }
+});
 
 Vue.component('post-like', {
     template: `<div class="col-likes">
