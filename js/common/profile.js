@@ -16,7 +16,8 @@ let walletModalDeEnergize;
         button: lang.BUTTON.SEND,
         total_amount: Asset.parseString('0.000 CREA'),
         confirmed: false,
-        to: null
+        to: null,
+        disableTo: false
     };
 
     function updateModalDeEnergize(state, session) {
@@ -273,30 +274,45 @@ let walletModalDeEnergize;
                                 };
                                 break;
                             case 'transfer_to_savings_crea':
-                                config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
                                     total_amount: Asset.parseString(this.state.user.balance),
-                                    to: this.session.account.username
+                                    to: this.session.account.username,
+                                    disableTo: true,
+                                };
+                                break;
+                            case 'transfer_to_savings_cbd':
+                                config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    total_amount: Asset.parseString(this.state.user.cbd_balance),
+                                    to: this.session.account.username,
+                                    disableTo: true,
+                                };
+                                break;
+                            case 'transfer_from_savings_cbd':
+                                config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
+                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
+                                };
+                                break;
+                            case 'transfer_from_savings_crea':
+                                config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
+                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    total_amount: Asset.parseString(this.state.user.savings_balance),
                                 };
                                 break;
                             case 'transfer_to_vests':
                                 config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
                                     text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER,
                                     total_amount: Asset.parseString(this.state.user.balance),
-                                    to: this.session.account.username
+                                    to: this.session.account.username,
+                                    disableTo: true,
                                 };
                                 break;
                             case 'transfer_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE,
                                     text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: lang.BUTTON.SEND,
                                     total_amount: Asset.parseString(this.state.user.cbd_balance)
-                                };
-                                break;
-                            case 'transfer_to_savings_cbd':
-                                config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.cbd_balance),
-                                    to: this.session.account.username
                                 };
                                 break;
 
@@ -792,6 +808,10 @@ let walletModalDeEnergize;
                 case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CREA:
                 case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CBD:
                     crea.broadcast.transferToSavings(wif, from, to, amount, memo, callback);
+                    break;
+                case CONSTANTS.TRANSFER.TRANSFER_FROM_SAVINGS_CREA:
+                case CONSTANTS.TRANSFER.TRANSFER_FROM_SAVINGS_CBD:
+                    crea.broadcast.transferFromSavings(wif, from, parseInt(new Date().getTime() / 1000), to, amount, memo, callback);
                     break;
                 case CONSTANTS.TRANSFER.TRANSFER_TO_VESTS:
                     crea.broadcast.transferToVesting(wif, from, to, amount, callback);

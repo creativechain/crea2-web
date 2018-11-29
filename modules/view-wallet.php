@@ -107,7 +107,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input v-bind:disabled="config.confirmed || config.to" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input v-bind:disabled="config.confirmed || config.disabledTo" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -332,8 +332,13 @@
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}</li>
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}</li>
+                                                            <li>
+                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                    <span class="btn__text" v-on:click="prepareModal('transfer_from_savings_crea')">
+                                                                        {{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}
+                                                                    </span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div><!--end row-->
@@ -347,8 +352,13 @@
                                                 <div class="row">
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}</li>
-                                                            <li>{{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}</li>
+                                                            <li>
+                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                    <span class="btn__text" v-on:click="prepareModal('transfer_from_savings_cbd')">
+                                                                        {{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}
+                                                                    </span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div><!--end row-->
