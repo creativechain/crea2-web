@@ -47,7 +47,11 @@ let navbarContainer;
                     this.applyRightMenuEvents($);
                 },
                 methods: {
-                    applyRightMenuEvents: mr.notifications.documentReady,
+                    applyRightMenuEvents: function ($) {
+                        mr.notifications.documentReady($);
+                        mr.tabs.documentReady($);
+                        mr.toggleClass.documentReady($);
+                    },
                     closeLogin: function () {
                         $('#modal-login').removeClass('modal-active');
                     },

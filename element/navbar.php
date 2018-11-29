@@ -113,8 +113,6 @@
             <li>
                 <div class="modal-instance">
 
-
-
                     <a href="#" class="modal-trigger">
                         <span class="h5">{{ lang.DOTS_MENU.CREA_UPDATE }}</span>
                     </a>
@@ -222,8 +220,6 @@
         </div>
     </form>
 </div>
-
-
 
 <!--end of notification-->
 <div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
