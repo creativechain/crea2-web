@@ -107,7 +107,7 @@
                                                                                                             <div class="col-md-11">
                                                                                                                 <div class="input-icon input-icon--left">
                                                                                                                     <i class="fas fa-at"></i>
-                                                                                                                    <input v-bind:disabled="config.confirmed" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    <input v-bind:disabled="config.confirmed || config.to" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -123,13 +123,13 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div v-if="config.op != 'transfer_to_vests'" class="row">
+                                                                                                        <div v-if="shouldShowMemo()" class="row">
                                                                                                             <div class="col-md-2"></div>
                                                                                                             <div class="col-md-10">
                                                                                                                 <p>{{ lang.MODAL.WALLET_MEMO_TEXT }}</p>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <div v-if="config.op != 'transfer_to_vests'" class="row">
+                                                                                                        <div v-if="shouldShowMemo()" class="row">
                                                                                                             <div class="col-2">
                                                                                                                 <p class="text-p-form">{{ lang.MODAL.WALLET_MEMO }}</p>
                                                                                                             </div>

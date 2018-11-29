@@ -15,7 +15,8 @@ let walletModalDeEnergize;
         text: lang.WALLET.TRANSFER_CREA_TEXT,
         button: lang.BUTTON.SEND,
         total_amount: Asset.parseString('0.000 CREA'),
-        confirmed: false
+        confirmed: false,
+        to: null
     };
 
     function updateModalDeEnergize(state, session) {
@@ -103,14 +104,16 @@ let walletModalDeEnergize;
                     state: state,
                     lang: lang,
                     from: state.user.name,
-                    to: '',
                     amount: 0,
                     memo: '',
                     config: defaultModalConfig,
                     toError: false,
                 },
                 methods: {
-
+                    shouldShowMemo() {
+                        const avoidMemoOps = ['transfer_to_vests', 'transfer_to_savings_crea', 'transfer_to_savings_cbd'];
+                        return !avoidMemoOps.includes(this.config.op);
+                    },
                     cancelSend: function (event) {
                         if (event) {
                             event.preventDefault();
@@ -128,7 +131,6 @@ let walletModalDeEnergize;
                     },
                     clearFields: function () {
                         //Clear fields
-                        this.to = '';
                         this.amount = 0;
                         this.memo = '';
                         this.config = defaultModalConfig;
@@ -147,7 +149,7 @@ let walletModalDeEnergize;
                             let that = this;
                             let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
                             globalLoading.show = true;
-                            transfer(this.config.op, this.session, this.to, amount, this.memo, function (err, result) {
+                            transfer(this.config.op, this.session, this.config.to, amount, this.memo, function (err, result) {
                                 console.log(err, result);
                                 globalLoading.show  = false;
                                 if (result) {
@@ -270,13 +272,15 @@ let walletModalDeEnergize;
                             case 'transfer_to_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE,
                                     text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.balance)
+                                    total_amount: Asset.parseString(this.state.user.balance),
+                                    to: this.session.account.username
                                 };
                                 break;
                             case 'transfer_to_vests':
                                 config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
                                     text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.balance)
+                                    total_amount: Asset.parseString(this.state.user.balance),
+                                    to: this.session.account.username
                                 };
                                 break;
                             case 'transfer_cbd':
@@ -288,7 +292,8 @@ let walletModalDeEnergize;
                             case 'transfer_to_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_SAVINGS_TITLE,
                                     text: this.lang.WALLET.TRANSFER_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                    total_amount: Asset.parseString(this.state.user.cbd_balance),
+                                    to: this.session.account.username
                                 };
                                 break;
 
