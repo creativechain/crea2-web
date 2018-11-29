@@ -38,7 +38,7 @@
                                     </template>
                                 </div>
                             </div>
-                            <div class="row row-promote justify-content-center">
+                            <div v-if="session" class="row row-promote justify-content-center">
                                 <div class=" col-md-4 text-center">
                                     <div class="modal-instance">
 
@@ -48,7 +48,7 @@
                                             </span>
                                         </a>
 
-                                        <div id="modal-promote" data-modal-id="modal-promote" class="modal-container">
+                                        <div v-cloak id="modal-promote" data-modal-id="modal-promote" class="modal-container">
                                             <div class="modal-content section-modal">
                                                 <section class="unpad ">
                                                     <div class="container">
@@ -58,26 +58,26 @@
                                                                     <div class="feature__body boxed boxed--lg boxed--border">
                                                                         <div class="modal-close modal-close-cross"></div>
                                                                         <div class="text-block">
-                                                                            <h3>Promocionar el Post</h3>
-                                                                            <p>Gasta tu CREA DOLLAR para promocionar tu contenido en la sección de promoción.</p>
+                                                                            <h3>{{ lang.PUBLICATION.PROMOTE_TITLE }}</h3>
+                                                                            <p>{{ lang.PUBLICATION.PROMOTE_TEXT }}</p>
                                                                         </div>
                                                                         <form>
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
-                                                                                    <p class="text-p-form">AMOUNT</p>
+                                                                                    <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <div class="input-icon input-icon--right">
                                                                                         <i class="">CBD ($)</i>
-                                                                                        <input type="number" step="0.001" name="input" >
-                                                                                        <p class="amount-save mt-4" >Saldo: 0.000 CBD</p>
+                                                                                        <input v-model="amount" type="number" step="0.001" name="input" >
+                                                                                        <p class="amount-save mt-4" >{{ lang.WALLET.BALANCE }}: {{ user.cbd_balance }}</p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row mt-3">
                                                                                 <div class="col text-right">
-                                                                                    <a href="#0" class="btn btn--sm btn--primary type--uppercase" >
-                                                                                        <span class="btn__text">Promocionar</span>
+                                                                                    <a href="#0" v-on:click="makePromotion" class="btn btn--sm btn--primary type--uppercase" >
+                                                                                        <span class="btn__text">{{ lang.BUTTON.PROMOTE }}</span>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>

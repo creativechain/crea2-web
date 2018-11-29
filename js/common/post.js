@@ -3,6 +3,7 @@
  */
 
 let postContainer;
+let promoteModal;
 
 (function () {
 
@@ -12,7 +13,56 @@ let postContainer;
     let session, userAccount;
 
     function setUp(state) {
-        console.log('state', !postContainer);
+        console.log('state', jsonify(jsonstring(state)));
+
+        if (!promoteModal) {
+            promoteModal = new Vue({
+                el: "#modal-promote",
+                data: {
+                    lang: lang,
+                    session: session,
+                    user: userAccount ? userAccount.user : null,
+                    state: state,
+                    amount: 0
+                },
+                methods: {
+                    hideModalPromote: function (event) {
+                        cancelEventPropagation(event);
+
+                        $('#modal-promote').removeClass('modal-active');
+                    },
+                    makePromotion: function (event) {
+                        cancelEventPropagation(event);
+
+                        let from = this.session.account.username;
+                        let to = 'null';
+                        let memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
+
+                        let amount = parseFloat(this.amount) + 0.0001;
+                        console.log(amount);
+                        amount = Asset.parse({amount: amount, nai: apiOptions.nai.CBD}).toFriendlyString();
+
+                        globalLoading.show = true;
+                        let that = this;
+                        crea.broadcast.transfer(this.session.account.keys.active.prv, from, to, amount, memo, function (err, result) {
+                            globalLoading.show = false;
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                that.hideModalPromote();
+                                updateUserSession();
+                            }
+                        });
+
+                    }
+                }
+            })
+        } else {
+            promoteModal.session = session;
+            promoteModal.user = userAccount ? userAccount.user : null;
+            promoteModal.state = state;
+        }
+
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',

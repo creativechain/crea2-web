@@ -74,12 +74,13 @@ let walletModalDeEnergize;
 
                         globalLoading.show = true;
                         let vests = cgyToVests(this.state, this.finalAmount);
+                        let that = this;
                         crea.broadcast.withdrawVesting(this.session.account.keys.active.prv, this.session.account.username, vests.toFriendlyString(), function (err, result) {
                             globalLoading.show = false;
                             if (err) {
                                 console.error(err);
                             } else {
-                                this.hideModalDeEnergize();
+                                that.hideModalDeEnergize();
                                 updateUserSession();
                             }
                         });

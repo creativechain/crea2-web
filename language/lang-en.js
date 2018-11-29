@@ -94,7 +94,9 @@ let lang = {
         "YOUR_COMMENTS": "Your comments",
         "LICENSE": "License",
         "TAGS": "TAGS",
-        "FREE_DOWNLOAD": "Free Download"
+        "FREE_DOWNLOAD": "Free Download",
+        "PROMOTE_TITLE": "Promote the Post",
+        "PROMOTE_TEXT": "Spend your CREA DOLLAR to promote your content in the promotion section."
     },
     "PROFILE_MENU": {
         "LOGOUT": "Logout",
