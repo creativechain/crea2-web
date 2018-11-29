@@ -350,7 +350,8 @@ let lang = {
         "PERMISSIONS": "Permissions",
         "PASSWORDS": "Passwords",
         "PENDING_REWARDS": "Pending rewards",
-        "BALANCE": "Balance"
+        "BALANCE": "Balance",
+        "NEXT_DE_ENERGIZE": "The next De-Energize will happen %s"
     },
     "DROPDOWN": {
         "ADULT_WARN": "Warn",

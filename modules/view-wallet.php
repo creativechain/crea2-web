@@ -376,6 +376,12 @@
                                     <p class="total-active">{{ state.user.estimate_account_value }}$</p>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    {{ nextDeEnergize }}
+                                </td>
+                                <td><!--NO DELETE--></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

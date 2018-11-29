@@ -206,6 +206,11 @@ let walletModalDeEnergize;
      */
     function updateProfileView(state, session, account, usernameFilter, navSection = 'projects') {
         console.log('Updating profile', account);
+
+        let nextDeEnergize = '';
+        if (state.user.to_withdraw > 0 && state.user.name === session.account.username) {
+            nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+        }
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -230,7 +235,8 @@ let walletModalDeEnergize;
                         active: false,
                         owner: false,
                         memo: false
-                    }
+                    },
+                    nextDeEnergize: nextDeEnergize,
                 },
                 updated: function () {
                     let t = $('#wallet-tabs').prev();
