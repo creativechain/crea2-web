@@ -210,6 +210,7 @@
         </ul>
     </div>
 </div>
+
 <div v-cloak id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
      data-notification-link="search-box">
     <form>
@@ -218,9 +219,11 @@
                 <input type="search" name="query" v-bind:placeholder="lang.HOME.SEARCH_ACTIVE"/>
             </div>
         </div>
-        <!--end of row-->
     </form>
 </div>
+
+
+
 <!--end of notification-->
 <div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
@@ -245,7 +248,7 @@
     <nav id="menu1" class="bar bar--sm bar-1 hidden-xs ">
         <div class="container-fluid ">
             <div class="row">
-                <div class="col-lg-2 col-md-2 hidden-xs">
+                <div class="col-2 col-md-2 col-lg-2 hidden-xs">
                     <div class="bar__module">
                         <a href="/">
                             <img class="logo" alt="logo" src="/img/logo-light.png"/>
@@ -253,7 +256,7 @@
                     </div>
                     <!--end module-->
                 </div>
-                <div class="col-lg-10 col-md-10 text-center text-left-xs text-left-sm">
+                <div class="col-10 col-md-10 col-lg-10  text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
                             <li v-if="session">
@@ -265,7 +268,7 @@
                             <li><a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
-                    <div class="bar__module float-right">
+                    <div class="bar__module float-lg-right float-md-right float-sm-left">
                         <ul class="menu-horizontal text-left">
                             <li>
                                 <a href="#" data-notification-link="search-box" class="icons-navbar">
@@ -305,7 +308,7 @@
                                     <div class="dropdown__container">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-md-2 col-lg-2 dropdown__content">
+                                                <div class="col-md-12 dropdown__content">
                                                     <ul class="menu-vertical">
                                                         <li><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.FOLLOWING }}</a></li>
@@ -356,14 +359,14 @@
                                                                                        type="password" v-bind:placeholder="lang.LOGIN.PASSWORD"/>
                                                                                 <span class="error-color-form">{{ loginForm.password.error || ' ' }}</span>
                                                                             </div>
-                                                                            <div class="col">
+                                                                            <div class="col m-2">
                                                                                 <a class="btn btn--transparent w-100" href="#">
                                                                                     <span class="btn__text color--dark" v-on:click="closeLogin">
                                                                                         {{ lang.BUTTON.CANCEL }}
                                                                                     </span>
                                                                                 </a>
                                                                             </div>
-                                                                            <div class="col">
+                                                                            <div class="col m-2">
                                                                                 <a id="login-button" class="btn btn--primary w-100" href="#" v-on:click="login">
                                                                                     <span class="btn__text">
                                                                                         {{ lang.BUTTON.LOGIN }}

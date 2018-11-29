@@ -1,11 +1,18 @@
 <div class="col-xl-2-cust col-xl-3-cust col-lg-4-cust col-sm-6 col-md-6 col-lg-3 col-xl-2 masonry__item">
     <div class="card card-2 card-home">
+
+
+
+
         <div class="card__top">
             <div class="img-post-list" v-on:click="openPost(state.content[p])"
                  v-bind:style="{ 'background-image': 'url(' + (state.content[p].metadata.featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA') + ')' }">
 
             </div>
         </div>
+
+
+
         <div class="card__body">
             <h4 v-on:click="openPost(state.content[p])">{{ state.content[p].title }}</h4>
             <p class="description-post-box">{{ getTags(state.content[p]) }}</p>
@@ -18,10 +25,10 @@
                         <span class="dropdown__trigger"> {{ getPayout(state.content[p]) }}
                             <i class="stack-down-open"></i>
                         </span>
-                        <div class="dropdown__container">
+                        <div class="dropdown__container price">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
+                                    <div class="col-md-12 dropdown__content amount-post-view-home">
                                         <p class="title">{{ lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.content[p]) }} </p>
                                         <p>{{ getPayout(state.content[p]) }}</p>
                                         <p>{{ getPayoutPostDate(state.content[p]) }}</p>
@@ -54,10 +61,10 @@
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-4 col-lg-4 dropdown__content">
+                                    <div class="col-md-12 dropdown__content">
                                         <div v-if="session && state.content[p].author !== session.account.username" class="row">
                                             <div class="col text-right">
-                                                <btn-follow class="button-follow" v-on:follow="onFollow" 
+                                                <btn-follow class="button-follow" v-on:follow="onFollow"
                                                             v-bind:session="session" v-bind:account="account.user"
                                                             v-bind:user="state.content[p].author">
 
@@ -115,5 +122,11 @@
                 </li>
             </ul>
         </div>
+
+
+
+
+
+
     </div>
 </div>
