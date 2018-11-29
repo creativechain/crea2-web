@@ -2,7 +2,7 @@
     <div class="card card-2 card-home">
         <div class="card__top">
             <div class="img-post-list" v-on:click="openPost(state.content[p])"
-                 v-bind:style="{ 'background-image': 'url(' + (state.content[p].metadata.featuredImage || 'https://ipfs.io/ipfs/QmbV3jBeZ2irQgWSBp4SC7H1L4KN3rLruMrA4ZYwiTMSeA') + ')' }">
+                 v-bind:style="{ 'background-image': 'url(' + (state.content[p].metadata.featuredImage || '/img/post-default-preview.jpg') + ')' }">
 
             </div>
         </div>
