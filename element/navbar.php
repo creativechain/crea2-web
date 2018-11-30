@@ -93,12 +93,6 @@
                     <span>Recuperar cuenta robada</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <span>Cambiar Contraseña</span>
-                </a>
-            </li>
-
         </ul>
 
     </div>
