@@ -1,9 +1,9 @@
 <div class="col-md-12">
-    <p>Welcome to your new profile page.</p>
-    <p>Publish works and start spreading your best ideas.</p>
+    <p>{{ lang.PROFILE.NO_POSTS_TITLE }}</p>
+    <p>{{ lang.PROFILE.NO_POSTS_TEXT }}</p>
 </div>
 <div class="col-md-12 row-options-empty mt-4">
-    <a href="/publish.php">Post your work.</a>
-    <a href="">Explore the trending works.</a>
-    <a href="">Frequently Asked Questions.</a>
+    <a href="/publish">{{ lang.PROFILE.NO_POSTS_PUBLISH }}</a>
+    <a href="/explorer">{{ lang.PROFILE.NO_POSTS_EXPLORE }}</a>
+    <a href="/faq">{{ lang.PROFILE.NO_POSTS_FAQ }}</a>
 </div>

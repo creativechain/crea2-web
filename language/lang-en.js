@@ -289,7 +289,12 @@ let lang = {
         "TAGS": "TAGS",
         "TITLE_AUTHOR": "AUTHOR REWARDS",
         "POSTS": "POSTS",
-        "JOINED": "Joined in "
+        "JOINED": "Joined in ",
+        "NO_POSTS_TITLE": "Welcome to your new profile page.",
+        "NO_POSTS_TEXT": "Publish works and start spreading your best ideas.",
+        "NO_POSTS_PUBLISH": "Post your work.",
+        "NO_POSTS_EXPLORE": "Explore the trending works.",
+        "NO_POSTS_FAQ": "Frequently Asked Questions.",
     },
     "COIN_MARKETS": {"TITLE": "Coin markets"},
     "WALLET": {
