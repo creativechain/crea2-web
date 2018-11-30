@@ -10,7 +10,7 @@
             <table class="border--round table--alternate-row table-vote">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th style="width: 10%;"></th>
                     <th>{{ lang.WITNESS.VOTE_WITNESSES }}</th>
                     <th>{{ lang.WITNESS.VOTE_INFORMATION }}</th>
                 </tr>

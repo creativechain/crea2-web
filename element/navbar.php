@@ -70,12 +70,12 @@
         <ul class="list--loose list--hover">
             <li>
                 <a href="#">
-                    <span class="h5">{{ lang.DOTS_MENU.FAQ }}</span>
+                    <span>{{ lang.DOTS_MENU.FAQ }}</span>
                 </a>
             </li>
             <li>
                 <a href="/~witness">
-                    <span class="h5">{{ lang.DOTS_MENU.VOTE }}</span>
+                    <span>{{ lang.DOTS_MENU.VOTE }}</span>
                 </a>
             </li>
             <li>
@@ -85,17 +85,17 @@
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">{{ lang.DOTS_MENU.MARKET }}</span>
+                    <span>{{ lang.DOTS_MENU.MARKET }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="/recover-account.php">
+                    <span>Recuperar cuenta robada</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Contraseña robada</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="h5">Cambiar Contraseña</span>
+                    <span>Cambiar Contraseña</span>
                 </a>
             </li>
 
@@ -107,7 +107,7 @@
         <ul class="list--loose list--hover">
             <li>
                 <a href="#">
-                    <span class="h5">{{ lang.DOTS_MENU.ABOUT }}</span>
+                    <span >{{ lang.DOTS_MENU.ABOUT }}</span>
                 </a>
             </li>
             <li>
@@ -161,17 +161,17 @@
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">{{ lang.DOTS_MENU.PRIVACY }}</span>
+                    <span>{{ lang.DOTS_MENU.PRIVACY }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">{{ lang.DOTS_MENU.WHITEPAPER }}</span>
+                    <span>{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="h5">Términos y condiciones</span>
+                    <span>Términos y condiciones</span>
                 </a>
             </li>
         </ul>

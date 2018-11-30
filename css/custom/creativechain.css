@@ -758,31 +758,31 @@
   width: 16px;
   margin-right: 10px; }
 
-#view-explorer .title-explorer {
+#tags-explorer .title-explorer, #view-explorer .title-explorer {
   font-size: 25px;
   font-weight: 600; }
-#view-explorer table thead tr th:first-child {
+#tags-explorer table thead tr th:first-child, #view-explorer table thead tr th:first-child {
   text-align: left;
   color: #222222; }
-#view-explorer table thead tr th {
+#tags-explorer table thead tr th, #view-explorer table thead tr th {
   color: #0569EF;
   font-size: 10px;
   text-transform: uppercase;
   background: white; }
-#view-explorer table tbody td:first-child {
+#tags-explorer table tbody td:first-child, #view-explorer table tbody td:first-child {
   color: #0569EF;
   text-align: left; }
-#view-explorer table tbody td:last-child {
+#tags-explorer table tbody td:last-child, #view-explorer table tbody td:last-child {
   font-weight: 600; }
-#view-explorer .table--alternate-row tbody tr:nth-child(even) {
+#tags-explorer .table--alternate-row tbody tr:nth-child(even), #view-explorer .table--alternate-row tbody tr:nth-child(even) {
   background: white; }
-#view-explorer .table-vote img {
+#tags-explorer .table-vote img, #view-explorer .table-vote img {
   width: 16px;
   margin-left: 10px; }
-#view-explorer .table-vote tbody td:first-child {
+#tags-explorer .table-vote tbody td:first-child, #view-explorer .table-vote tbody td:first-child {
   color: #222222;
   text-align: left; }
-#view-explorer .table-vote tbody td:last-child {
+#tags-explorer .table-vote tbody td:last-child, #view-explorer .table-vote tbody td:last-child {
   font-weight: normal; }
 
 .btn .btn__text, .btn i {
@@ -1013,7 +1013,7 @@ label {
 .li-avatar-navbar ul li a {
   margin-left: 20px;
   font-size: 14px;
-  font-weight: 600; }
+  font-weight: normal; }
 
 .error-color-form {
   color: #FF5666 !important; }
