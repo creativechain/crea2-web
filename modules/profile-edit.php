@@ -4,6 +4,19 @@
 <div class="col-md-12">
     <div id="profile-edit" class="boxed boxed--sm boxed--border">
         <div class="row">
+            <div class="col-md-12 row-flex">
+                <div class="user-avatar size-25-avatar">
+                    <avatar class="size-25-avatar" v-bind:account="state.user"></avatar>
+                </div>
+                <div class="col-info-user">
+                    <span class="h5">{{ profile.publicName || ''}}</span>
+                    <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>
+                    <a href="">Change profile image</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-12">
                 <label>{{ lang.EDIT_PROFILE.PUBLIC_NAME }}</label>
                 <input class="validate-required" type="text" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.PROFILE.PUBLIC_NAME"

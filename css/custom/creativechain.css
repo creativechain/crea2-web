@@ -185,11 +185,40 @@
 .view-rewards .tbody-rewards tr:first-child td {
   border-top: 1px solid transparent !important; }
 
+.view-edit-profile #profile-edit .h5 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 0; }
+.view-edit-profile #profile-edit .nameUser {
+  font-size: 14px;
+  color: #999999; }
 .view-edit-profile #profile-edit .row {
   margin-bottom: 15px; }
 .view-edit-profile #profile-edit label {
   margin-bottom: 5px;
   font-weight: 600; }
+.view-edit-profile #profile-edit .user-avatar {
+  height: 62px;
+  width: 62px;
+  overflow: hidden;
+  min-height: 62px;
+  min-width: 62px;
+  border-radius: 50px; }
+.view-edit-profile #profile-edit .img-user-avatar {
+  background-size: cover;
+  width: 62px;
+  height: 62px;
+  background-position: 50% 50%; }
+.view-edit-profile #profile-edit .row-flex {
+  display: -webkit-inline-box;
+  display: flex; }
+.view-edit-profile #profile-edit .col-info-user {
+  margin-left: 10px; }
+  .view-edit-profile #profile-edit .col-info-user .nameUser {
+    margin-bottom: 0 !important; }
+  .view-edit-profile #profile-edit .col-info-user a {
+    font-size: 12px;
+    font-weight: normal; }
 
 .view-wallet .ul-submenu-wallet li:nth-child(1) {
   padding: 0.92857143em 4px; }
@@ -1369,7 +1398,8 @@ img {
     padding: 0 10px; } }
 @media (min-width: 768px) {
   #menu1 .bar__module {
-    display: inline-block; } }
+    display: inline-block;
+    margin-bottom: 0; } }
 @media (min-width: 992px) {
   .container {
     max-width: 100%; }
@@ -1391,6 +1421,13 @@ img {
     min-width: 249px;
     max-width: 250px; } }
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .bar-1 .menu-horizontal > li:not(:first-child) {
+    margin-left: 7px; }
+
+  .bar .menu-horizontal {
+    position: relative;
+    top: 0px; }
+
   .btn {
     min-width: 100px; }
 

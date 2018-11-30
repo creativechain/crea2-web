@@ -146,12 +146,49 @@
 }
 .view-edit-profile {
  #profile-edit {
+   .h5 {
+     font-size: 14px;
+     font-weight: bold;
+     margin-bottom: 0;
+   }
+   .nameUser {
+     font-size: 14px;
+     color: $grey-light;
+   }
    .row {
      margin-bottom: 15px;
    }
    label {
      margin-bottom: 5px;
      font-weight: 600;
+   }
+   .user-avatar {
+     height: 62px;
+     width: 62px;
+     overflow: hidden;
+     min-height: 62px;
+     min-width: 62px;
+     border-radius: 50px;
+   }
+   .img-user-avatar {
+     background-size: cover;
+     width: 62px;
+     height: 62px;
+     background-position: 50% 50%;
+   }
+   .row-flex {
+     display: -webkit-inline-box;
+     display: flex;
+   }
+   .col-info-user {
+     margin-left: 10px;
+     .nameUser {
+       margin-bottom: 0 !important;
+     }
+     a {
+       font-size: 12px;
+       font-weight: normal;
+     }
    }
  }
 }
