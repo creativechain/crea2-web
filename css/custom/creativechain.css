@@ -102,6 +102,15 @@
     width: 100% !important;
     max-width: 100%; }
 
+.view-profile .welcome-profile-empty .col-md-12 p:nth-child(1) {
+  font-weight: bold;
+  margin-bottom: 0; }
+.view-profile .welcome-profile-empty .col-md-12 p {
+  font-size: 18px; }
+.view-profile .welcome-profile-empty .row-options-empty {
+  display: grid; }
+.view-profile .welcome-profile-empty a {
+  font-weight: normal; }
 .view-profile .title-section-profile {
   font-size: 12px;
   font-weight: bold;
@@ -1016,6 +1025,9 @@ input[type], textarea, select {
   width: 20px;
   height: 20px;
   background: #000; }
+
+a {
+  color: #0569EF; }
 
 .color--dark {
   color: #222222 !important; }

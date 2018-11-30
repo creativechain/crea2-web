@@ -70,6 +70,9 @@ input[type], textarea, select {
   height: 20px;
   background: #000;
 }
+a {
+  color: $color-blue-primary;
+}
 .color--dark {
   color: $color-dark-primary !important;
 }

@@ -22,6 +22,9 @@
                     <div class="col-lg-8 col-xl-9">
                         <section class="space--sm unpad--top">
                             <div class="container">
+                                <div class="row welcome-profile-empty">
+                                    <?php include ('modules/welcome-profile-empty.php') ?>
+                                </div>
                                 <div v-show="navbar.section === 'projects'" class="row project-profile">
                                     <template v-for="p in state.discussion_idx['']">
                                         <?php include ('modules/post-view-home.php') ?>
