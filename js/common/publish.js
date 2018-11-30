@@ -193,6 +193,19 @@ let publishContainer;
         }
     }
 
+    function prepareDownload() {
+        let download =  {
+            file: {
+                url: '',
+                name: '',
+                type: '',
+                size: '',
+            },
+            password: '',
+            price: 0
+        }
+    }
+
     function makePublication() {
         //All tags must be lowercase;
         globalLoading.show = true;
