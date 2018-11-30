@@ -76,6 +76,9 @@ input[type], textarea, select {
 .input-checkbox label:before {
   border: 1px solid $color-blue-primary;
 }
+.color--primary {
+  color: $color-blue-primary !important;
+}
 .input-checkbox + span {
   bottom: 7px;
 }
