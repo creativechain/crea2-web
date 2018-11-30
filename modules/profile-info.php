@@ -46,7 +46,7 @@
         </div>
         <div class="col">
             <img src="/img/icons/buzz.svg" alt="">
-            <span>{{ state.user.reputation }} Buzz</span>
+            <span>{{ getBuzz(state.user.reputation) }} Buzz</span>
         </div>
     </div>
     <hr>
