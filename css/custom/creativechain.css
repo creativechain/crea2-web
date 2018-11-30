@@ -1326,6 +1326,20 @@ img {
 .all-licenses {
   font-size: 14px; }
 
+.view-error-404 h1 {
+  font-size: 65px;
+  font-weight: bold; }
+.view-error-404 img {
+  width: 80%; }
+.view-error-404 .col-left .sub-text {
+  font-size: 22px;
+  color: #0569EF; }
+  .view-error-404 .col-left .sub-text span {
+    font-weight: bold; }
+.view-error-404 .col-left p:nth-child(3), .view-error-404 .col-left p:nth-child(4) {
+  font-size: 14px;
+  margin-bottom: 0; }
+
 @media (max-width: 767px) {
   .boxed div[class*='col-']:not(.boxed) {
     padding: 0 10px; } }
