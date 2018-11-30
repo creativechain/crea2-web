@@ -377,7 +377,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="colo-primary">
                                     {{ nextDeEnergize }}
                                 </td>
                                 <td><!--NO DELETE--></td>
