@@ -6,16 +6,6 @@ let publishContainer;
 
 (function () {
 
-    class IpfsFile {
-        constructor(hash, name, type, size) {
-            this.hash = hash;
-            this.name = name;
-            this.type = type;
-            this.size = size;
-            this.url = 'https://ipfs.io/ipfs/' + hash;
-        }
-    }
-
     function setUp() {
         publishContainer = new Vue({
             el: '#publish-container',
@@ -195,12 +185,10 @@ let publishContainer;
 
     function prepareDownload() {
         let download =  {
-            file: {
-                url: '',
-                name: '',
-                type: '',
-                size: '',
-            },
+            url: '',
+            name: '',
+            type: '',
+            size: '',
             password: '',
             price: 0
         }
@@ -245,51 +233,7 @@ let publishContainer;
         })
     }
 
-    function uploadToIpfs(file, callback) {
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
-            if (file.size <= maximumSize) {
-                console.log('Upload', file);
-                let fileName = file.name;
-                let mimeType = file.type;
-                let fr = new FileReader();
 
-                fr.onload = function (loadedFile) {
-                    console.log('File loaded', loadedFile);
-
-                    let progress = function (uploaded) {
-                        console.log('Progress', uploaded);
-                    };
-
-                    let fileData = toBuffer(fr.result);
-                    ipfs.files.add(fileData, {progress: progress}, function (err, files) {
-                        console.log('Pushed to ipfs', err, files);
-                        if (err) {
-                            if (callback) {
-                                callback(err);
-                            }
-                        } else if (files) {
-                            let file = files[0];
-                            file = new IpfsFile(file.hash, fileName, mimeType, file.size);
-                            if (callback) {
-                                callback(null, file);
-                            }
-                        }
-
-                    });
-                };
-                fr.readAsArrayBuffer(file);
-            } else {
-                globalLoading.show = false;
-                console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maximumSize);
-                publishContainer.error = lang.PUBLISH.FILE_TO_LARGE;
-            }
-        } else {
-            console.error('File API unsupported');
-            globalLoading.show = false;
-        }
-
-    }
 
     creaEvents.on('crea.content.loaded', function () {
         setUp();

@@ -2,6 +2,16 @@
  * Created by ander on 25/09/18.
  */
 
+class IpfsFile {
+    constructor(hash, name, type, size) {
+        this.hash = hash;
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.url = 'https://ipfs.io/ipfs/' + hash;
+    }
+}
+
 let creaEvents = new EventEmitter();
 
 const ipfs = IpfsApi({
@@ -209,6 +219,51 @@ function refreshAccessToken(callback) {
     } else if (callback) {
         let accessToken = localStorage.getItem(CREARY.ACCESS_TOKEN);
         callback(accessToken);
+    }
+
+}
+
+function uploadToIpfs(file, callback) {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
+        if (file.size <= maximumSize) {
+            let fileName = file.name;
+            let mimeType = file.type;
+            let fr = new FileReader();
+
+            fr.onload = function (loadedFile) {
+
+                let progress = function (uploaded) {
+                    console.log('Progress', uploaded);
+                };
+
+                let fileData = toBuffer(fr.result);
+                ipfs.files.add(fileData, {progress: progress}, function (err, files) {
+
+                    if (err) {
+                        if (callback) {
+                            callback(err);
+                        }
+                    } else if (files) {
+                        let file = files[0];
+                        file = new IpfsFile(file.hash, fileName, mimeType, file.size);
+                        console.log('Pushed to ipfs', err, file);
+                        if (callback) {
+                            callback(null, file);
+                        }
+                    }
+
+                });
+            };
+            fr.readAsArrayBuffer(file);
+        } else {
+            globalLoading.show = false;
+            console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maximumSize);
+            publishContainer.error = lang.PUBLISH.FILE_TO_LARGE;
+        }
+    } else {
+        console.error('File API unsupported');
+        globalLoading.show = false;
     }
 
 }

@@ -433,6 +433,26 @@ let walletModalDeEnergize;
 
                         return false;
                     },
+                    onLoadAvatar: function (event) {
+                        let files = event.target.files;
+                        if (files.length > 0) {
+                            globalLoading.show = true;
+                            let that = this;
+                            uploadToIpfs(files[0], function (err, file) {
+                                globalLoading.show = false;
+                                if (err) {
+                                    console.error(err);
+                                } else {
+                                    Vue.set(that.profile, 'avatar', file);
+                                }
+                            });
+                        }
+                    },
+                    loadAvatar: function (event) {
+                        cancelEventPropagation(event);
+
+                        $('#profile-edit-input-avatar').click();
+                    },
                     claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate
                 }

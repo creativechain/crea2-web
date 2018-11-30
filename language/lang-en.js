@@ -114,7 +114,7 @@ let lang = {
         "COMMENT_REWARDS": "COMMENT POST REWARDS",
         "INPUT_ABOUT": "Add a short description",
         "PUBLIC_NAME": "PUBLIC NAME",
-        "IMAGE": "Change profile image",
+        "CHANGE_IMAGE": "Change profile image",
         "POST_REWARDS": "POST REWARDS",
         "INPUT_WEBSITE": "Include a website link",
         "INPUT_PUBLIC_NAME": "Write a visible public name for your user account",

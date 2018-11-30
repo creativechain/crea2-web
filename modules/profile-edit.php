@@ -5,13 +5,12 @@
     <div id="profile-edit" class="boxed boxed--sm boxed--border">
         <div class="row">
             <div class="col-md-12 row-flex">
-                <div class="user-avatar size-25-avatar">
-                    <avatar class="size-25-avatar" v-bind:account="state.user"></avatar>
-                </div>
+                <avatar class="user-avatar size-25-avatar" v-bind:account="state.user"></avatar>
                 <div class="col-info-user">
                     <span class="h5">{{ profile.publicName || ''}}</span>
                     <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>
-                    <a href="">Change profile image</a>
+                    <a href="" v-on:click="loadAvatar">{{ lang.EDIT_PROFILE.CHANGE_IMAGE }}</a>
+                    <input id="profile-edit-input-avatar" class="hidden" type="file" accept="image/*" v-on:change="onLoadAvatar" >
                 </div>
             </div>
         </div>
