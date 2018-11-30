@@ -1419,7 +1419,11 @@ img {
     max-width: 250px; }
   .card-home .dropdown__container.dropdown-info-user > .container {
     min-width: 249px;
-    max-width: 250px; } }
+    max-width: 250px; }
+
+  .view-profile .dropdown__container > .container {
+    width: 130px;
+    max-width: 1140px; } }
 @media (min-width: 768px) and (max-width: 991.98px) {
   .bar-1 .menu-horizontal > li:not(:first-child) {
     margin-left: 7px; }
