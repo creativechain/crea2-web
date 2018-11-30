@@ -1,9 +1,9 @@
 <div class="col-md-12">
-    <p>Bienvenido a tu nueva pestaña de perfil.</p>
-    <p>Publica trabajos y empieza a difundir tus mejores ideas.</p>
+    <p>Welcome to your new profile tab.</p>
+    <p>Publish works and start spreading your best ideas.</p>
 </div>
 <div class="col-md-12 row-options-empty mt-4">
-    <a href="">Publica tu trabajo.</a>
-    <a href="">Explora los trabajos más populares.</a>
-    <a href="">Preguntas Frecuentes.</a>
+    <a href="/publish.php">Post your work.</a>
+    <a href="">Explore the trending works.</a>
+    <a href="">Frequently Asked Questions.</a>
 </div>
