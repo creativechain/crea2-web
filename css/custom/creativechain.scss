@@ -76,6 +76,9 @@ input[type], textarea, select {
 .input-checkbox label:before {
   border: 1px solid $color-blue-primary;
 }
+.color--primary {
+  color: $color-blue-primary !important;
+}
 .input-checkbox + span {
   bottom: 7px;
 }
@@ -447,6 +450,41 @@ img {
 
 .all-licenses {
   font-size: 14px;
+}
+.view-error-404 {
+  h1 {
+    font-size: 65px;
+    font-weight: bold;
+  }
+  img {
+    width: 80%;
+  }
+  .col-left {
+    .sub-text {
+      font-size: 22px;
+      color: $color-blue-primary;
+      span {
+        font-weight: bold;
+      }
+    }
+    p:nth-child(3), p:nth-child(4) {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
+}
+.view-empty {
+  img {
+    width: 300px;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
 }
 @media (max-width: 767px) {
   .boxed div[class*='col-']:not(.boxed) {

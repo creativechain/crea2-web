@@ -1023,6 +1023,9 @@ input[type], textarea, select {
 .input-checkbox label:before {
   border: 1px solid #0569EF; }
 
+.color--primary {
+  color: #0569EF !important; }
+
 .input-checkbox + span {
   bottom: 7px; }
 
@@ -1324,6 +1327,29 @@ img {
   color: #3B3B3C !important; }
 
 .all-licenses {
+  font-size: 14px; }
+
+.view-error-404 h1 {
+  font-size: 65px;
+  font-weight: bold; }
+.view-error-404 img {
+  width: 80%; }
+.view-error-404 .col-left .sub-text {
+  font-size: 22px;
+  color: #0569EF; }
+  .view-error-404 .col-left .sub-text span {
+    font-weight: bold; }
+.view-error-404 .col-left p:nth-child(3), .view-error-404 .col-left p:nth-child(4) {
+  font-size: 14px;
+  margin-bottom: 0; }
+
+.view-empty img {
+  width: 300px; }
+.view-empty .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0; }
+.view-empty .subtitle {
   font-size: 14px; }
 
 @media (max-width: 767px) {
