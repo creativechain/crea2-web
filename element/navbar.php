@@ -247,7 +247,7 @@
                     </div>
                     <!--end module-->
                 </div>
-                <div class="col-10 col-md-10 col-lg-10  text-center text-left-xs text-left-sm">
+                <div class="col-12 col-md-10 col-lg-10  text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
                             <li v-if="session">
@@ -259,27 +259,47 @@
                             <li><a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
-                    <div class="bar__module float-lg-right float-md-right float-sm-left">
+                    <div class="bar__module float-lg-right float-md-right">
                         <ul class="menu-horizontal text-left">
                             <li>
-                                <a href="#" data-notification-link="search-box" class="icons-navbar">
+                                <!-- mobile-->
+                                <a href="#" data-notification-link="search-box" class="hidden-sm hidden-md hidden-lg">
+                                    <i class="stack-search"></i> Search
+                                </a>
+                                <!-- desktop-->
+                                <a href="#" data-notification-link="search-box" class="icons-navbar hidden-xs ">
                                     <i class="stack-search"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="/profile.php?nav=notifications" class="navbar-notification icons-navbar" style="display: inline-grid;">
+                                <!-- mobile-->
+                                <a href="/profile.php?nav=notifications" class="navbar-notification hidden-sm hidden-md hidden-lg" style="display: inline-block;">
+                                    <i class="far fa-bell"></i>
+                                    <i class="fas fa-circle hidden"></i>
+                                    Notification
+                                </a>
+                                <!-- desktop-->
+                                <a href="/profile.php?nav=notifications" class="navbar-notification icons-navbar hidden-xs " style="display: inline-grid;">
                                     <i class="far fa-bell"></i>
                                     <i class="fas fa-circle hidden"></i>
                                 </a>
                             </li>
 
                             <li v-if="session">
-                                <a class="btn btn--sm btn--primary type--uppercase" href="/publish">
+                                <!-- mobile-->
+                                <a class="btn btn--sm btn--primary type--uppercase hidden-sm hidden-md hidden-lg li-publish-navbar mb-2" href="/publish" style="margin: 10px auto 20px !important;">
+                                    <span class="btn__text btn-publish-navbar">
+                                        {{ lang.BUTTON.PUBLISH }}
+                                    </span>
+                                </a>
+                                <!-- desktop-->
+                                <a class="btn btn--sm btn--primary type--uppercase  hidden-xs" href="/publish">
                                     <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
                                 </a>
                             </li>
+
                             <li v-if="!session">
                                 <a class="btn btn--sm type--uppercase " href="/welcome">
                                     <span class="btn__text btn-publish-navbar">
@@ -291,9 +311,16 @@
                             <li v-if="session" class="li-avatar-navbar">
                                 <div class="dropdown">
                                     <span class="dropdown__trigger">
-
                                         <div class="user-avatar" >
                                             <avatar v-bind:account="user"></avatar>
+                                        </div>
+                                        <div class="row-user-name-navbar-mobile hidden-sm hidden-md hidden-lg">
+                                            <span style="color: white;">{{ '@' + user.name }}</span>
+                                        </div>
+                                        <div class="hidden-sm hidden-md hidden-lg navbar-submenu-mobile">
+                                            <a href="#0" data-notification-link="side-menu">
+                                                <i class="stack-menu"></i>
+                                            </a>
                                         </div>
                                     </span>
                                     <div class="dropdown__container">
@@ -393,7 +420,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li v-pre >
+                            <li v-pre class="hidden-xs">
                                 <a href="#0" data-notification-link="side-menu">
                                     <i class="stack-menu"></i>
                                 </a>

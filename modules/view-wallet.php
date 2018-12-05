@@ -512,5 +512,5 @@
 </div>
 
 <div class="col-md-12">
-    <?php include ('modules/list-historial.php') ?>
+    <?php include ('list-historial.php') ?>
 </div>
