@@ -1,5 +1,19 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .bar + nav.bar {
+    padding-bottom: 0;
+  }
+  .bar.bar--sm {
+    border-bottom: solid 1px $grey-text;
+  }
+  .bar__module {
+    border-bottom: solid 1px $grey-text;
+    margin: 0px -10px 0 -10px;
+    padding: 0 15px 10px;
+  }
+  .bar__module + .bar__module {
+    margin-top: 0;
+  }
   #slide-home .background-image-holder {
     height: 330px;
   }
@@ -19,11 +33,86 @@
       max-width: 1140px;
     }
   }
+  .li-publish-navbar {
+    width: 80%;
+  }
+  .li-avatar-navbar {
+    border-top: 1px solid $grey-text;
+    margin: 0px -15px 0 -15px;
+    padding: 10px 15px 0;
+  }
+  .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .row-user-name-navbar-mobile {
+    color: white;
+    position: relative;
+    left: 40px;
+    top: -17px;
+    font-size: 14px;
+    width: 260px;
+  }
+  .navbar-submenu-mobile {
+    position: absolute;
+    right: 0;
+    top: 0;
+    a {
+      font-size: 14px;
+      font-weight: normal;
+      color: $color-white;
+      text-transform: none;
+    }
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+  .bar + nav.bar {
+    padding-bottom: 0;
+  }
+  .bar.bar--sm {
+    border-bottom: solid 1px $grey-text;
+  }
+  .bar__module {
+    border-bottom: solid 1px $grey-text;
+    margin: 0px -10px 0 -10px;
+    padding: 0 15px 10px;
+  }
+  .bar__module + .bar__module {
+    margin-top: 0;
+  }
+  .li-publish-navbar {
+    width: 40%;
+  }
+  .li-avatar-navbar {
+    border-top: 1px solid $grey-text;
+    margin: 0px -15px 0 -15px;
+    padding: 10px 15px 0;
+  }
+  .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .row-user-name-navbar-mobile {
+    color: white;
+    position: relative;
+    left: 40px;
+    top: -17px;
+    font-size: 14px;
+    width: 260px;
+  }
+  .navbar-submenu-mobile {
+    position: absolute;
+    right: 0;
+    top: 0;
+    a {
+      font-size: 14px;
+      font-weight: normal;
+      color: $color-white;
+      text-transform: none;
+    }
+  }
 }
 
 // Medium devices (tablets, 768px and up)
