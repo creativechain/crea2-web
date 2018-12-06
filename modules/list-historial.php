@@ -9,7 +9,7 @@
         <div v-if="op.op.type == 'transfer_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
                                 <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p v-if="account && op.op.value.from == account.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
                             <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
@@ -43,7 +43,7 @@
         <div v-if="op.op.type == 'transfer_to_savings_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
                                 <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p v-if="account && op.op.value.from == account.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
                             <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
@@ -77,7 +77,7 @@
         <div v-else-if="op.op.type == 'transfer_to_vesting_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.from">
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p v-if="account && op.op.value.from == account.user.name">+{{ parseAsset(op.op.value.amount) }}</p>
                             <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
@@ -115,7 +115,7 @@
         <div v-else-if="op.op.type == 'comment_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.author">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p v-if="account && op.op.value.from == account.user.name">-</p>
                         </div>
@@ -149,7 +149,7 @@
         <div v-else-if="op.op.type == 'vote_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.voter">
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p>{{ (op.op.value.weight * 100 / 10000).toFixed(0) }}%</p>
                         </div>
@@ -224,7 +224,7 @@
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + op.op.value.creator">
@@ -243,7 +243,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p>{{ parseAsset(op.op.value.fee) }}</p>
                         </div>
