@@ -17,7 +17,7 @@
         <div class="container post-container-home">
             <div class="masonry">
                 <div class="masonry__container row">
-                    <template v-for="p in state.discussion_idx[''][filter]">
+                    <template v-for="p in state.discussion_idx[discuss][category]">
                         <?php include ('modules/post-view-home.php') ?>
                     </template>
                 </div>

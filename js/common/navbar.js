@@ -129,31 +129,12 @@ let navbarContainer;
         return filters.includes(window.location.pathname);
     }
 
-    /**
-     *
-     * @param {string} filter
-     */
-    function resolveFilter(filter) {
-        filter = filter.toLowerCase();
-        switch (filter) {
-            case '/popular':
-                return '/trending';
-            case '/skyrockets':
-                return '/hot';
-        }
-
-        return null;
-    }
-
     function retrieveContent(event, urlFilter) {
         if (event && isInHome()) {
             event.preventDefault();
         }
 
         let filter = resolveFilter(urlFilter);
-        if (!filter) {
-            filter = urlFilter;
-        }
 
         updateUrl(urlFilter);
         crea.api.getState(filter, function (err, result) {

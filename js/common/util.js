@@ -212,7 +212,6 @@ function isUserFeed(username) {
     }
 
     let feed = username + '/feed';
-    console.log('Checking feed', path, feed);
     return path === feed;
 }
 
@@ -226,5 +225,5 @@ function getPathPart(index = 0) {
     let parts = path.split('/');
     parts.splice(0, 1);
 
-    return parts[index];
+    return parts[index] || '';
 }

@@ -36,17 +36,19 @@ let homePosts;
             filter = filter.substring(1);
         }
         //Set discussion feed
-        if (isUserFeed(getPathPart()) && !state.discussion_idx['']) {
+        let category = resolveFilter('/' + getPathPart()).replace('/', '');
+        let discuss = getPathPart(1);
+        if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
 
             cKeys.sort(function (k1, k2) {
                 return new Date(state.content[k2].created).getTime() - new Date(state.content[k1].created).getTime();
             });
 
-            state.discussion_idx[''] = {};
-            state.discussion_idx[''][filter] = cKeys;
+            state.discussion_idx[discuss] = {};
+            state.discussion_idx[discuss][category] = cKeys;
         }
 
-        console.log('Filter', filter, 'discussion', state.discussion_idx[''][filter]);
+        console.log('Filter', filter, 'discussion', discuss, 'category', category, state.discussion_idx[discuss][category]);
 
         if (!homePosts) {
             homePosts = new Vue({
@@ -55,6 +57,8 @@ let homePosts;
                     session: session,
                     account: account,
                     filter: filter,
+                    category: category,
+                    discuss: discuss,
                     state: state,
                     lang: lang,
                 },

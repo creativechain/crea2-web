@@ -604,7 +604,7 @@ let walletModalDeEnergize;
      */
     function detectNav(state, session, account, usernameFilter) {
         let nav = getPathPart(1);
-        if (!nav) {
+        if (!nav || nav.isEmpty()) {
             nav = 'projects';
         }
 

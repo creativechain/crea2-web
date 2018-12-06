@@ -19,7 +19,7 @@
                 <tbody>
                 <template v-for="t in Object.keys(state.tags)">
                         <tr>
-                            <td>{{ state.tags[t].name }}</td>
+                            <td><a v-bind:href="'/popular/' + state.tags[t].name">{{ state.tags[t].name }}</a></td>
                             <td>{{ state.tags[t].top_posts }}</td>
                             <td>{{ state.tags[t].comments }}</td>
                             <td>{{ state.tags[t].total_payouts }}</td>

@@ -85,7 +85,6 @@ function updateUrl(url) {
     window.history.pushState('', '', url);
 }
 
-
 /**
  *
  * @param {string} location
@@ -99,6 +98,22 @@ function toHome(location) {
     } else {
         goTo('/');
     }
+}
+
+/**
+ *
+ * @param {string} filter
+ * @returns {string}
+ */
+function resolveFilter(filter) {
+    filter = filter.toLowerCase();
+    if (filter.startsWith('/popular')) {
+        return filter.replace('/popular', '/trending');
+    } else if (filter.startsWith('/skyrockets')) {
+        return filter.replace('/skyrockets', '/hot');
+    }
+
+    return filter;
 }
 
 function createBlockchainAccount(username, password, callback) {
