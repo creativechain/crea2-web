@@ -122,9 +122,10 @@
                                             <div class="col-md-12 row-comment">
 
                                                 <div class="user-avatar">
-                                                    <a href="/profile.php">
-                                                        <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + (user.metadata.avatar.url || getDefaultAvatar(user.name)) + ')' }"></div>
+                                                    <a v-bind:href="'/@' + user.name">
+                                                        <avatar v-bind:account="user"></avatar>
                                                     </a>
+
                                                 </div>
                                                 <div class="textarea">
                                                     <textarea name="text" placeholder="Message" rows="4" v-model="comment"></textarea>
@@ -321,7 +322,7 @@
                                         <hr>
                                         <li>
                                             <img src="/img/icons/downloads.svg" alt="">
-                                            <p>0 {{ lang.PUBLICATION.DOWNLOADS }}</p>
+                                            <p>{{ state.post.download.times_downloaded }} {{ lang.PUBLICATION.DOWNLOADS }}</p>
                                         </li>
                                         <hr>
                                         <li>
@@ -343,16 +344,16 @@
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
-                                    <span class="description">{{ state.post.metadata.download.type || '-' }}</span>
+                                    <span class="description">{{ state.post.download.type || '-' }}</span>
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.SIZE }}</p>
-                                    <span class="description">{{ state.post.metadata.download.size || '-' }}</span>
+                                    <span class="description">{{ state.post.download.size || '-' }}</span>
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.PRICE }}</p>
-                                    <span v-if="state.post.metadata.price === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
-                                    <span v-else class="description">{{ state.post.metadata.price }}</span>
+                                    <span v-if="state.post.download.price.amount === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
+                                    <span v-else class="description">{{ assetToString(state.post.download.price) }}</span>
                                 </div>
                             </div>
                         </div>

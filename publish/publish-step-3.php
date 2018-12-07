@@ -8,11 +8,11 @@
         <form action="" class="row">
             <div class="col-md-12">
                 <label for="exampleFormControlFile1">{{ lang.PUBLISH.INPUT_SELECT_FILE }}</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" v-on:input="onInputDownloadFile" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="col-md-12">
                 <label>{{ lang.PUBLISH.PRICE }}</label>
-                <input class="validate-required" type="number" min="0" step="0.001" v-bind:placeholder="lang.PUBLISH.INPUT_PRICE" />
+                <input class="validate-required" v-model="downloadFile.price" type="number" min="0" step="0.001" v-bind:placeholder="lang.PUBLISH.INPUT_PRICE" />
             </div>
         </form>
     </div>

@@ -153,7 +153,7 @@ class Asset {
      * @returns {Asset}
      */
     static parse(assetData) {
-        let nai = NAI[assetData.nai];
+        let nai = NAI[assetData.nai] || NAI[assetData.asset.symbol.toLowerCase()];
 
         if (typeof assetData.amount === 'number') {
             if (assetData.amount % 1 != 0) {

@@ -173,12 +173,13 @@ let welcomeVue;
             let username = welcomeVue.username;
             let password = welcomeVue.password;
             createBlockchainAccount(username, password, function (err, result) {
+                globalLoading.show = false;
                 if (err) {
                     console.error(err);
                 } else {
                     console.log(result);
                     welcomeVue.slide = 8;
-                    globalLoading.show = false;
+
                 }
             })
         } else {

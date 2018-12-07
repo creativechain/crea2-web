@@ -7,14 +7,24 @@ let promoteModal;
 
 (function () {
 
+    let defaultDownload = {
+        type: '',
+        size: 0,
+        times_downloaded: 0,
+        resource: '',
+        comment_author: '',
+        comment_permlink: '',
+        price: Asset.parseString("50.000 CREA")
+    };
+
     let url = window.location.pathname;
 
-    console.log('URL:', url);
     let session, userAccount;
 
     function setUp(state) {
-        console.log('state', jsonify(jsonstring(state)));
+        state.post.download = defaultDownload;
 
+        console.log('state', jsonify(jsonstring(state)));
         if (!promoteModal) {
             promoteModal = new Vue({
                 el: "#modal-promote",
@@ -76,6 +86,9 @@ let promoteModal;
                 },
                 methods: {
                     showPost: showPost,
+                    assetToString: function (asset) {
+                        return Asset.parse(asset).toFriendlyString();
+                    },
                     getDefaultAvatar: R.getDefaultAvatar,
                     getLicense: function () {
                         return License.fromFlag(this.state.post.metadata.license);
@@ -139,6 +152,10 @@ let promoteModal;
                     globalLoading.show = false;
                 })
         }
+
+    }
+
+    function makeDownload() {
 
     }
 

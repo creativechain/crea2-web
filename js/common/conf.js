@@ -18,8 +18,8 @@ let apiOptions = {
         VESTS: '@@000000037'
     },
     chainId: '0000000000000000000000000000000000000000000000000000000000000000',
-    accountCreator: 'initminer',
-    privCreator: '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+    accountCreator: 'crea',
+    privCreator: '5KRFvzfzsbxPEMymDMMeNCGfVYAvu5y29M11Bky6ZdPShrbyphU'
 };
 
 localStorage.debug = 'crea:*';

@@ -21,9 +21,10 @@ let publishContainer;
                 featuredImage: {},
                 title: null,
                 description: '',
-                price: 0,
                 adult: false,
-                downloadFile: {},
+                downloadFile: {
+                    price: 0
+                },
                 publicDomain: LICENSE.NO_LICENSE.flag,
                 share: LICENSE.NO_LICENSE.flag,
                 commercial: LICENSE.NO_LICENSE.flag,
@@ -109,6 +110,22 @@ let publishContainer;
                 loadFeaturedImage: function (event) {
                     const elem = this.$refs.publishInputCover;
                     elem.click();
+                },
+                onInputDownloadFile: function (event) {
+                    let files = event.target.files;
+                    let that = this;
+                    if (files.length > 0) {
+                        globalLoading.show = true;
+                        uploadToIpfs(files[0], function (err, file) {
+                            globalLoading.show = false;
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                file.resource = file.url;
+                                that.downloadFile = Object.assign(that.downloadFile, jsonify(jsonstring(file)));
+                            }
+                        });
+                    }
                 },
                 onLoadFile: function (event) {
                     let files = event.target.files;
@@ -206,20 +223,22 @@ let publishContainer;
             description: publishContainer.description,
             tags: tags,
             adult: publishContainer.adult,
-            price: publishContainer.price,
             featuredImage: publishContainer.featuredImage.url,
-            download: publishContainer.downloadFile.url || '',
             license: publishContainer.getLicense().getFlag()
         };
 
+        let download = publishContainer.downloadFile;
+        download.price = Asset.parseString(download.price + ' CREA').toFriendlyString();
+
         //Build body
         let body = jsonstring(publishContainer.bodyElements);
-
         let title = publishContainer.title;
         let permlink = toPermalink(title);
-        console.log(title, body, metadata);
+
+        console.log(title, body, metadata, download);
         let session = Session.getAlive();
-        crea.broadcast.comment(session.account.keys.posting.prv, '', toPermalink(metadata.tags[0]), session.account.username, permlink, title, body, JSON.stringify(metadata), function (err, result) {
+        crea.broadcast.comment(session.account.keys.posting.prv, '', toPermalink(metadata.tags[0]),
+            session.account.username, permlink, title, body, jsonstring(download), jsonstring(metadata), function (err, result) {
             if (err) {
                 console.error(err);
                 globalLoading.show = false;

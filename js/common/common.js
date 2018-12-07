@@ -124,6 +124,7 @@ function createBlockchainAccount(username, password, callback) {
     crea.api.getWitnessSchedule(function (err, result) {
         if (err) {
             console.error(err);
+            callback(err);
         } else {
             let creationFee = Asset.parse(result.median_props.account_creation_fee);
             crea.broadcast.accountCreate(apiOptions.privCreator, creationFee.toFriendlyString(), apiOptions.accountCreator, username,
