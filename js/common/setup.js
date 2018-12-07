@@ -14,6 +14,12 @@
             session.login(function (err, account) {
                 if (err) {
                     console.error(err);
+
+                    if (err == Errors.USER_LOGIN_ERROR) {
+                        session.logout();
+                    }
+
+                    creaEvents.emit('crea.session.login', false);
                 } else {
                     let followings = [];
                     crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {

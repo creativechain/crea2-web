@@ -1,17 +1,12 @@
 <div class="col-xl-2-cust col-xl-3-cust col-lg-4-cust col-sm-6 col-md-6 col-lg-3 col-xl-2 masonry__item">
     <div class="card card-2 card-home">
 
-
-
-
         <div class="card__top">
             <div class="img-post-list" v-on:click="openPost(state.content[p])"
                  v-bind:style="{ 'background-image': 'url(' + (state.content[p].metadata.featuredImage || '/img/post-default-preview.jpg') + ')' }">
 
             </div>
         </div>
-
-
 
         <div class="card__body">
             <h4 v-on:click="openPost(state.content[p])">{{ state.content[p].title }}</h4>
@@ -46,7 +41,6 @@
                 </li>
             </ul>
         </div>
-
 
         <div class="card__bottom card-show">
             <ul class="list-inline list-unstyled w-100">
@@ -122,11 +116,5 @@
                 </li>
             </ul>
         </div>
-
-
-
-
-
-
     </div>
 </div>

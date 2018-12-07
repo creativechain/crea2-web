@@ -191,7 +191,6 @@
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="boxed boxed--border box-blockchain-certificate">
@@ -336,7 +335,7 @@
                             </div>
                             <div class="row row-download">
                                 <div class="col-md-12 text-center">
-                                    <a class="btn btn--primary" href="#">
+                                    <a class="btn btn--primary" href="#" v-on:click="makeDownload">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.DOWNLOAD }}
                                         </span>
@@ -344,11 +343,11 @@
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
-                                    <span class="description">{{ state.post.download.type || '-' }}</span>
+                                    <span class="description">{{ state.post.download.type }}</span>
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.SIZE }}</p>
-                                    <span class="description">{{ state.post.download.size || '-' }}</span>
+                                    <span class="description">{{ humanFileSize(state.post.download.size) }}</span>
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.PRICE }}</p>

@@ -45,7 +45,7 @@ class Session {
                 if (logged) {
                     callback(null, accountData);
                 } else {
-                    callback(Errors.USER_LOGIN_ERROR);
+                    callback(Errors.USER_LOGIN_ERROR, accountData);
                 }
             }
         })

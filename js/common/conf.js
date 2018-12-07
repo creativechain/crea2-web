@@ -2,8 +2,10 @@
  * Created by ander on 30/09/18.
  */
 
+
+let localNode = 'http://cn.localhost';
 let apiOptions = {
-    url: 'https://crea.owldevelopers.site',
+    url: true ? localNode : 'https://crea.owldevelopers.site',
     ipfs: 'https://ipfs.creary.net',
     addressPrefix: 'CREA',
     symbol: {

@@ -7,22 +7,11 @@ let promoteModal;
 
 (function () {
 
-    let defaultDownload = {
-        type: '',
-        size: 0,
-        times_downloaded: 0,
-        resource: '',
-        comment_author: '',
-        comment_permlink: '',
-        price: Asset.parseString("50.000 CREA")
-    };
-
     let url = window.location.pathname;
 
     let session, userAccount;
 
     function setUp(state) {
-        state.post.download = defaultDownload;
 
         console.log('state', jsonify(jsonstring(state)));
         if (!promoteModal) {
@@ -86,6 +75,7 @@ let promoteModal;
                 },
                 methods: {
                     showPost: showPost,
+                    humanFileSize: humanFileSize,
                     assetToString: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
@@ -114,6 +104,7 @@ let promoteModal;
                         return amount.toPlainString(2) + '$'
                     },
                     makeComment: makeComment,
+                    makeDownload: makeDownload,
                     onVote: function () {
                         fetchContent();
                     },
@@ -155,7 +146,56 @@ let promoteModal;
 
     }
 
-    function makeDownload() {
+    function makeDownload(event) {
+        cancelEventPropagation(event);
+
+        let session = postContainer.session;
+        let user = postContainer.state.user;
+        let post = postContainer.state.post;
+        if (session) {
+
+            globalLoading.show = true;
+            let downloadResource = function () {
+                let authorBuff = Buffer.from(post.author);
+                let permlinkBuff = Buffer.from(post.permlink);
+                let buff = Buffer.concat([authorBuff, permlinkBuff]);
+                let signature = crea.utils.Signature.signBuffer(buff, session.account.keys.posting.prv);
+                let s64 = signature.toBuffer().toString('base64');
+
+                crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
+                    globalLoading.show = false;
+
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        let win = window.open(result.resource, '_blank');
+                        win.focus();
+                    }
+                })
+            };
+
+            let payDownload = function () {
+                crea.broadcast.commentDownload(session.account.keys.posting.prv, session.account.username,
+                    post.author, post.permlink, function (err, result) {
+                        if (err) {
+                            console.error(err);
+                            globalLoading.show = false;
+                        } else {
+                            downloadResource();
+                            fetchContent();
+                        }
+                    })
+            };
+
+            let contentRoute = post.author + '/' + post.permlink;
+
+            if (user.downloads.includes(contentRoute)) {
+                //Download paid
+                downloadResource();
+            } else {
+                payDownload();
+            }
+        }
 
     }
 
