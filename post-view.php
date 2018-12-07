@@ -334,7 +334,7 @@
                                 </div>
                             </div>
                             <div class="row row-download">
-                                <div class="col-md-12 text-center">
+                                <div v-if="session" class="col-md-12 text-center">
                                     <a class="btn btn--primary" href="#" v-on:click="makeDownload">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.DOWNLOAD }}
