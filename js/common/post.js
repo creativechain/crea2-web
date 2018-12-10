@@ -152,7 +152,7 @@ let promoteModal;
         cancelEventPropagation(event);
 
         let session = postContainer.session;
-        let user = postContainer.state.user;
+        let user = postContainer.user;
         let post = postContainer.state.post;
         if (session) {
 

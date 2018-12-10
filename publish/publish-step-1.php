@@ -52,9 +52,9 @@
         </div>
         <div v-if="showEditor" class="row mt-3">
             <div class="col-md-12 text-right">
-                <a href="#0" class="btn btn--sm" v-on:click="updateText(updatingIndex)">
+                <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
                     <span class="btn__text text__dark">{{ lang.BUTTON.CONTINUE }}</span>
-                </a>
+                </div>
             </div>
         </div>
 
