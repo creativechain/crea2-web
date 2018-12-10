@@ -202,17 +202,6 @@ let publishContainer;
         }
     }
 
-    function prepareDownload() {
-        let download =  {
-            url: '',
-            name: '',
-            type: '',
-            size: '',
-            password: '',
-            price: 0
-        }
-    }
-
     function makePublication(event) {
         cancelEventPropagation(event);
 
