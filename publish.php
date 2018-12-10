@@ -36,16 +36,16 @@
                         </template>
                         <div class="row">
                             <div class="col-md-4 offset-4">
-                                <a v-if="step !== 4" class="btn btn--primary type--uppercase w-100" v-on:click="nextStep">
+                                <div v-if="step !== 4" class="btn btn--primary type--uppercase w-100" v-on:click="nextStep">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.CONTINUE }}
                                     </span>
-                                </a>
-                                <a v-else class="btn btn--primary type--uppercase w-100" v-on:click="makePublication">
+                                </div>
+                                <div v-else class="btn btn--primary type--uppercase w-100" v-on:click="makePublication">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>

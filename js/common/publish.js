@@ -213,7 +213,9 @@ let publishContainer;
         }
     }
 
-    function makePublication() {
+    function makePublication(event) {
+        cancelEventPropagation(event);
+
         //All tags must be lowercase;
         globalLoading.show = true;
         let tags = publishContainer.tags;
