@@ -135,6 +135,8 @@ let homePosts;
             homePosts.session = session;
             homePosts.account = account;
         }
+
+        creaEvents.emit('crea.dom.ready');
     }
 
     creaEvents.on('crea.posts', function (urlFilter, filter, state) {

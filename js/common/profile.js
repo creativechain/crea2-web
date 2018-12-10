@@ -468,6 +468,7 @@ let walletModalDeEnergize;
         }
 
         profileContainer.$forceUpdate();
+        creaEvents.emit('crea.dom.ready');
     }
 
     function setUpRewards(rewardView, session, state) {

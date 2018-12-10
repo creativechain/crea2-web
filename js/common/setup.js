@@ -40,5 +40,9 @@
             creaEvents.emit('crea.session.login', false);
         }
     });
+    
+    creaEvents.on('crea.dom.ready', function () {
+        $.holdReady(false);
+    })
 
 })();

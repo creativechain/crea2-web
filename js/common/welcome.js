@@ -50,6 +50,8 @@ let welcomeVue;
                 createAccount: createAccount,
             }
         });
+
+        creaEvents.emit('crea.dom.ready');
     }
 
     function checkUsername(event) {

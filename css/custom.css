@@ -26,3 +26,8 @@
 .modal-active.showing {
     opacity: 1;
 }
+
+li > .search {
+    color: white;
+    cursor: pointer;
+}

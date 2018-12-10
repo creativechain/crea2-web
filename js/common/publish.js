@@ -166,6 +166,8 @@ let publishContainer;
                 humanFileSize: humanFileSize
             }
         });
+
+        creaEvents.emit('crea.dom.ready');
     }
 
     function updateText(index = -1) {

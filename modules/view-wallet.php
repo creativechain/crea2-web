@@ -75,8 +75,8 @@
                                                                             {{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}
                                                                         </span>
                                                                     </a>
-                                                                    <div id="wallet-send" class="modal-container modal-send" data-modal-id="wallet-send">
-                                                                        <div class="modal-content section-modal">
+                                                                    <div v-pre class="modal-container modal-send" data-modal-id="wallet-send">
+                                                                        <div id="wallet-send" class="modal-content section-modal">
                                                                             <section class="unpad ">
                                                                                 <div class="container">
                                                                                     <div class="row justify-content-center">
@@ -213,8 +213,8 @@
                                                                             {{ lang.WALLET.DROPDOWN_MENU_DE_ENERGIZE }}
                                                                         </span>
                                                                     </a>
-                                                                    <div id="wallet-de-energize" class="modal-container" data-modal-id="wallet-de-energize">
-                                                                        <div v-cloak class="modal-content section-modal">
+                                                                    <div v-pre class="modal-container" data-modal-id="wallet-de-energize">
+                                                                        <div id="wallet-de-energize" class="modal-content section-modal">
                                                                             <section class="unpad ">
                                                                                 <div class="container">
                                                                                     <div class="row justify-content-center">

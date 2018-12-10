@@ -118,6 +118,8 @@ let promoteModal;
             postContainer.session = session;
             postContainer.user = userAccount ? userAccount.user : null;
         }
+
+        creaEvents.emit('crea.dom.ready');
     }
 
     function makeComment() {

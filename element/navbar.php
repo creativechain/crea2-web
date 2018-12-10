@@ -31,9 +31,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
 
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/common/start.js"></script>
     <script src="/js/vue.js"></script>
     <script src="/ckeditor/ckeditor.js"></script>
-    <script src="/js/jquery-3.1.1.min.js"></script>
 
     <script src="/js/tagsinput.js"></script>
     <script src="/js/moment.min.js"></script>
@@ -79,7 +80,7 @@
                 </a>
             </li>
             <li>
-                <a href="../explorer.php">
+                <a href="/explore">
                     <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
                 </a>
             </li>
@@ -89,7 +90,7 @@
                 </a>
             </li>
             <li>
-                <a href="/recover-account.php">
+                <a href="/recover-account">
                     <span>Recuperar cuenta robada</span>
                 </a>
             </li>
@@ -226,9 +227,9 @@
                     </a>
                 </div>
                 <div class="col-9 col-md-10 text-right">
-                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
+                    <div class="hamburger-toggle cursor" data-toggle-class="#menu1;hidden-xs">
                         <i class="icon icon--sm stack-interface stack-menu"></i>
-                    </a>
+                    </div>
                 </div>
             </div>
             <!--end of row-->
@@ -263,23 +264,23 @@
                         <ul class="menu-horizontal text-left">
                             <li>
                                 <!-- mobile-->
-                                <a href="#" data-notification-link="search-box" class="hidden-sm hidden-md hidden-lg">
+                                <div data-notification-link="search-box" class="search hidden-sm hidden-md hidden-lg">
                                     <i class="stack-search"></i> Search
-                                </a>
+                                </div>
                                 <!-- desktop-->
-                                <a href="#" data-notification-link="search-box" class="icons-navbar hidden-xs ">
+                                <div data-notification-link="search-box" class="search icons-navbar hidden-xs ">
                                     <i class="stack-search"></i>
-                                </a>
+                                </div>
                             </li>
-                            <li>
+                            <li v-if="session">
                                 <!-- mobile-->
-                                <a href="/profile.php?nav=notifications" class="navbar-notification hidden-sm hidden-md hidden-lg" style="display: inline-block;">
+                                <a v-bind:href="'/@' + session.account.username + '/notifications'" class="navbar-notification hidden-sm hidden-md hidden-lg" style="display: inline-block;">
                                     <i class="far fa-bell"></i>
                                     <i class="fas fa-circle hidden"></i>
                                     Notification
                                 </a>
                                 <!-- desktop-->
-                                <a href="/profile.php?nav=notifications" class="navbar-notification icons-navbar hidden-xs " style="display: inline-grid;">
+                                <a v-bind:href="'/@' + session.account.username + '/notifications'" class="navbar-notification icons-navbar hidden-xs " style="display: inline-grid;">
                                     <i class="far fa-bell"></i>
                                     <i class="fas fa-circle hidden"></i>
                                 </a>
