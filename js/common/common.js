@@ -242,6 +242,10 @@ function refreshAccessToken(callback) {
 function uploadToIpfs(file, callback) {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
         let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
+        if (!maximumSize) {
+            maximumSize = CONSTANTS.FILE_MAX_SIZE.DOWNLOAD;
+        }
+
         if (file.size <= maximumSize) {
             let fileName = file.name;
             let mimeType = file.type;
