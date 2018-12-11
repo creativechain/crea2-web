@@ -122,16 +122,12 @@ let walletModalDeEnergize;
                         return !avoidMemoOps.includes(this.config.op);
                     },
                     cancelSend: function (event) {
-                        if (event) {
-                            event.preventDefault();
-                        }
+                        cancelEventPropagation(event);
 
                         this.config.confirmed = false;
                     },
                     hideModalSend: function (event) {
-                        if (event) {
-                            event.preventDefault();
-                        }
+                        cancelEventPropagation(event);
 
                         $('#wallet-send').removeClass('modal-active');
                         this.clearFields();
@@ -143,9 +139,7 @@ let walletModalDeEnergize;
                         this.config = clone(defaultModalConfig);
                     },
                     useTotalAmount: function (event) {
-                        if (event) {
-                            event.preventDefault();
-                        }
+                        cancelEventPropagation(event);
 
                         this.amount = this.config.total_amount.toPlainString();
                     },
@@ -419,9 +413,7 @@ let walletModalDeEnergize;
                         });
                     },
                     navigateTo: function (event, tab) {
-                        if (event) {
-                            event.preventDefault();
-                        }
+                        cancelEventPropagation(event);
 
                         updateUrl('/@' + this.state.user.name + '/' + tab);
                         this.navbar.section = tab;
@@ -612,7 +604,7 @@ let walletModalDeEnergize;
         nav = nav.toLowerCase();
 
         updateProfileView(state, session, account, usernameFilter, nav);
-        fetchRewards(nav, session);
+        fetchRewards(session);
     }
 
     function sendAccountUpdate() {

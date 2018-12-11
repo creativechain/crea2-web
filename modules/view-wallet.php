@@ -75,100 +75,102 @@
                                                                             {{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}
                                                                         </span>
                                                                     </a>
-                                                                    <div v-pre class="modal-container modal-send" data-modal-id="wallet-send">
-                                                                        <div id="wallet-send" class="modal-content section-modal">
-                                                                            <section class="unpad ">
-                                                                                <div class="container">
-                                                                                    <div class="row justify-content-center">
-                                                                                        <div class="col-lg-6 col-md-8 col-sm-12">
-                                                                                            <div class="feature feature-1">
-                                                                                                <div class="feature__body boxed boxed--lg boxed--border">
-                                                                                                    <div class="modal-close modal-close-cross"></div>
-                                                                                                    <div class="text-block">
-                                                                                                        <h3>{{ config.title }}</h3>
-                                                                                                        <p>{{ config.text }}</p>
+                                                                    <div v-pre>
+                                                                        <div id="wallet-send" class="modal-container modal-send" data-modal-id="wallet-send">
+                                                                            <div class="modal-content section-modal">
+                                                                                <section class="unpad ">
+                                                                                    <div class="container">
+                                                                                        <div class="row justify-content-center">
+                                                                                            <div class="col-lg-6 col-md-8 col-sm-12">
+                                                                                                <div class="feature feature-1">
+                                                                                                    <div class="feature__body boxed boxed--lg boxed--border">
+                                                                                                        <div class="modal-close modal-close-cross"></div>
+                                                                                                        <div class="text-block">
+                                                                                                            <h3>{{ config.title }}</h3>
+                                                                                                            <p>{{ config.text }}</p>
+                                                                                                        </div>
+                                                                                                        <form>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-1">
+                                                                                                                    <p class="text-p-form">{{ lang.MODAL.WALLET_FROM }}</p>
+                                                                                                                </div>
+                                                                                                                <div class="col-md-11">
+                                                                                                                    <div class="input-icon input-icon--left">
+                                                                                                                        <i class="fas fa-at"></i>
+                                                                                                                        <input disabled type="text" v-model="from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-1">
+                                                                                                                    <p class="text-p-form">{{ lang.MODAL.WALLET_TO}}</p>
+                                                                                                                </div>
+                                                                                                                <div class="col-md-11">
+                                                                                                                    <div class="input-icon input-icon--left">
+                                                                                                                        <i class="fas fa-at"></i>
+                                                                                                                        <input v-bind:disabled="config.confirmed || config.disabledTo" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-2">
+                                                                                                                    <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
+                                                                                                                </div>
+                                                                                                                <div class="col-md-10">
+                                                                                                                    <div class="input-icon input-icon--right">
+                                                                                                                        <i class="">CREA</i>
+                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                        <p class="amount-save" v-on:click="useTotalAmount">{{ lang.WALLET.BALANCE }}: {{ config.total_amount.toFriendlyString() }}</p>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div v-if="shouldShowMemo()" class="row">
+                                                                                                                <div class="col-md-2"></div>
+                                                                                                                <div class="col-md-10">
+                                                                                                                    <p>{{ lang.MODAL.WALLET_MEMO_TEXT }}</p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div v-if="shouldShowMemo()" class="row">
+                                                                                                                <div class="col-2">
+                                                                                                                    <p class="text-p-form">{{ lang.MODAL.WALLET_MEMO }}</p>
+                                                                                                                </div>
+                                                                                                                <div class="col-md-10">
+                                                                                                                    <div class="input-icon input-icon--right">
+                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name">
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="row mt-3">
+                                                                                                                <div class="col text-right">
+                                                                                                                    <a v-if="config.confirmed" href="#0"
+                                                                                                                       class="btn btn--sm btn--primary type--uppercase"
+                                                                                                                       v-on:click="cancelSend">
+                                                                                                                        <span class="btn__text">{{ lang.BUTTON.CANCEL}}</span>
+                                                                                                                    </a>
+                                                                                                                    <a href="#0" class="btn btn--sm btn--primary type--uppercase" v-on:click="sendCrea">
+                                                                                                                        <span class="btn__text">{{ config.confirmed ? config.button : lang.BUTTON.CONFIRM }}</span>
+                                                                                                                    </a>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <!--end of row-->
+                                                                                                        </form>
                                                                                                     </div>
-                                                                                                    <form>
-                                                                                                        <div class="row">
-                                                                                                            <div class="col-md-1">
-                                                                                                                <p class="text-p-form">{{ lang.MODAL.WALLET_FROM }}</p>
-                                                                                                            </div>
-                                                                                                            <div class="col-md-11">
-                                                                                                                <div class="input-icon input-icon--left">
-                                                                                                                    <i class="fas fa-at"></i>
-                                                                                                                    <input disabled type="text" v-model="from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="row">
-                                                                                                            <div class="col-md-1">
-                                                                                                                <p class="text-p-form">{{ lang.MODAL.WALLET_TO}}</p>
-                                                                                                            </div>
-                                                                                                            <div class="col-md-11">
-                                                                                                                <div class="input-icon input-icon--left">
-                                                                                                                    <i class="fas fa-at"></i>
-                                                                                                                    <input v-bind:disabled="config.confirmed || config.disabledTo" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="row">
-                                                                                                            <div class="col-md-2">
-                                                                                                                <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
-                                                                                                            </div>
-                                                                                                            <div class="col-md-10">
-                                                                                                                <div class="input-icon input-icon--right">
-                                                                                                                    <i class="">CREA</i>
-                                                                                                                    <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
-                                                                                                                    <p class="amount-save" v-on:click="useTotalAmount">{{ lang.WALLET.BALANCE }}: {{ config.total_amount.toFriendlyString() }}</p>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div v-if="shouldShowMemo()" class="row">
-                                                                                                            <div class="col-md-2"></div>
-                                                                                                            <div class="col-md-10">
-                                                                                                                <p>{{ lang.MODAL.WALLET_MEMO_TEXT }}</p>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div v-if="shouldShowMemo()" class="row">
-                                                                                                            <div class="col-2">
-                                                                                                                <p class="text-p-form">{{ lang.MODAL.WALLET_MEMO }}</p>
-                                                                                                            </div>
-                                                                                                            <div class="col-md-10">
-                                                                                                                <div class="input-icon input-icon--right">
-                                                                                                                    <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name">
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="row mt-3">
-                                                                                                            <div class="col text-right">
-                                                                                                                <a v-if="config.confirmed" href="#0"
-                                                                                                                   class="btn btn--sm btn--primary type--uppercase"
-                                                                                                                   v-on:click="cancelSend">
-                                                                                                                    <span class="btn__text">{{ lang.BUTTON.CANCEL}}</span>
-                                                                                                                </a>
-                                                                                                                <a href="#0" class="btn btn--sm btn--primary type--uppercase" v-on:click="sendCrea">
-                                                                                                                    <span class="btn__text">{{ config.confirmed ? config.button : lang.BUTTON.CONFIRM }}</span>
-                                                                                                                </a>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <!--end of row-->
-                                                                                                    </form>
                                                                                                 </div>
+                                                                                                <!--end feature-->
                                                                                             </div>
-                                                                                            <!--end feature-->
                                                                                         </div>
+                                                                                        <!--end of row-->
                                                                                     </div>
-                                                                                    <!--end of row-->
-                                                                                </div>
-                                                                                <!--end of container-->
-                                                                            </section>
+                                                                                    <!--end of container-->
+                                                                                </section>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="modal-instance block">
-                                                                    <a class="modal-trigger" href="#wallet-send">
+                                                                    <a class="modal-trigger" href="#wallet-send" data-modal-id="wallet-send">
                                                                         <span class="btn__text" v-on:click="prepareModal('transfer_to_savings_crea')">
                                                                             {{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}
                                                                         </span>
@@ -177,7 +179,7 @@
                                                             </li>
                                                             <li>
                                                                 <div class="modal-instance block">
-                                                                    <a class="modal-trigger" href="#wallet-send">
+                                                                    <a class="modal-trigger" href="#wallet-send" data-modal-id="wallet-send">
                                                                         <span class="btn__text" v-on:click="prepareModal('transfer_to_vests')">
                                                                             {{ lang.WALLET.DROPDOWN_MENU_ENERGIZE }}
                                                                         </span>
@@ -297,14 +299,14 @@
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
                                                             <li>
-                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                <a class="modal-trigger" href="#wallet-send" data-modal-id="wallet-send">
                                                                     <span class="btn__text" v-on:click="prepareModal('transfer_cbd')">
                                                                         {{ lang.WALLET.DROPDOWN_MENU_TRANSFER }}
                                                                     </span>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                <a class="modal-trigger" href="#wallet-send" data-modal-id="wallet-send">
                                                                     <span class="btn__text" v-on:click="prepareModal('transfer_to_savings_cbd')">
                                                                         {{ lang.WALLET.DROPDOWN_MENU_TRANS_SAVINGS }}
                                                                     </span>
@@ -333,7 +335,7 @@
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
                                                             <li>
-                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                <a class="modal-trigger" href="#wallet-send" data-modal-id="wallet-send">
                                                                     <span class="btn__text" v-on:click="prepareModal('transfer_from_savings_crea')">
                                                                         {{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CREA }}
                                                                     </span>
@@ -353,7 +355,7 @@
                                                     <div class="col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
                                                             <li>
-                                                                <a class="modal-trigger" href="#wallet-send">
+                                                                <a class="modal-trigger" href="#wallet-send" data-modal-id="wallet-send">
                                                                     <span class="btn__text" v-on:click="prepareModal('transfer_from_savings_cbd')">
                                                                         {{ lang.WALLET.DROPDOWN_MENU_WITHDRAW_CBD }}
                                                                     </span>
