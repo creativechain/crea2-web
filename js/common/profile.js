@@ -463,6 +463,17 @@ let walletModalDeEnergize;
         creaEvents.emit('crea.dom.ready');
     }
 
+    /**
+     *
+     * @param state
+     * @param {Session} session
+     */
+    function setUpModals(state, session) {
+        if (session && session.account.username === state.user.name) {
+            updateModalSendView(state, session);
+            updateModalDeEnergize(state, session);
+        }
+    }
     function setUpRewards(rewardView, session, state) {
 
         let rewardType = rewardView.replace('s', '').replace('-', '_');
@@ -772,8 +783,7 @@ let walletModalDeEnergize;
                     console.error(err);
                 } else {
                     detectNav(state, session, account, profileName);
-                    updateModalSendView(state, session);
-                    updateModalDeEnergize(state, session);
+                    setUpModals(state, session);
                 }
             });
         }
