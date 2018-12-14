@@ -22,7 +22,7 @@
                     <div class="col-lg-8 col-xl-9">
                         <section class="space--sm unpad--top">
                             <div class="container">
-                                <div v-show="navbar.section === 'projects' && Object.keys(state.discussion_idx['']).length > 0" class="row welcome-profile-empty">
+                                <div v-show="navbar.section === 'projects' && Object.keys(state.content).length == 0" class="row welcome-profile-empty">
                                     <?php include ('modules/welcome-profile-empty.php') ?>
                                 </div>
                                 <div v-show="navbar.section === 'projects'" class="row project-profile">
