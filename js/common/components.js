@@ -291,13 +291,6 @@ Vue.component('witness-like', {
         }
     },
     methods: {
-        getIcon: function () {
-            if (this.hasVote()) {
-                return this.R.IMG.LIKE.BLUE.FILLED;
-            }
-
-            return this.R.IMG.LIKE.BORDER;
-        },
         hasVote: function () {
             let session = this.$props.session;
             let account = this.$props.account;
