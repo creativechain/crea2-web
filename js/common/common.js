@@ -62,7 +62,6 @@ function showBanner(show = true) {
     bannerVue.showBanner = show;
 }
 
-
 function goTo(location) {
     window.location.href = location;
 }

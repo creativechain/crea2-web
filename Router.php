@@ -66,6 +66,6 @@ class Router
 
         }
 
-        return null;
+        return '404.php';
     }
 }

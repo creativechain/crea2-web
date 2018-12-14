@@ -254,30 +254,36 @@ let promoteModal;
                 } else {
                     //Resolve metadata
                     let aKeys = Object.keys(result.accounts);
-                    aKeys.forEach(function (k) {
-                        result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
-                        result.accounts[k].metadata.avatar = result.accounts[k].metadata.avatar || {};
-                    });
 
-                    result.postKey = getPostKey();
-                    result.post = result.content[result.postKey];
-                    result.post.metadata = jsonify(result.post.json_metadata);
-                    result.post.body = jsonify(result.post.body);
-                    result.author = result.accounts[result.post.author];
-                    fetchOtherProjects(result.author.name, result.post.permlink);
+                    if (aKeys.length === 0) {
+                        goTo('/404');
+                    } else {
+                        aKeys.forEach(function (k) {
+                            result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
+                            result.accounts[k].metadata.avatar = result.accounts[k].metadata.avatar || {};
+                        });
 
-                    //Order comments by date, latest first
-                    let cKeys = Object.keys(result.content);
-                    cKeys.sort(function (k1, k2) {
-                        let d1 = new Date(result.content[k1].created);
-                        let d2 = new Date(result.content[k2].created);
+                        result.postKey = getPostKey();
+                        result.post = result.content[result.postKey];
+                        result.post.metadata = jsonify(result.post.json_metadata);
+                        result.post.body = jsonify(result.post.body);
+                        result.author = result.accounts[result.post.author];
+                        fetchOtherProjects(result.author.name, result.post.permlink);
 
-                        return d2.getTime() - d1.getTime();
-                    });
+                        //Order comments by date, latest first
+                        let cKeys = Object.keys(result.content);
+                        cKeys.sort(function (k1, k2) {
+                            let d1 = new Date(result.content[k1].created);
+                            let d2 = new Date(result.content[k2].created);
 
-                    result.comments = cKeys;
-                    console.log(result.comments);
-                    setUp(result);
+                            return d2.getTime() - d1.getTime();
+                        });
+
+                        result.comments = cKeys;
+                        console.log(result.comments);
+                        setUp(result);
+                    }
+
                 }
             })
         }

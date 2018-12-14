@@ -11,6 +11,7 @@ $router->addRoute('/validate', 'welcome.php');
 $router->addRoute('/publish', 'publish.php');
 $router->addRoute('/explorer', 'explorer.php');
 $router->addRoute('/recover-account', 'recover-account.php');
+$router->addRoute('/404', '404.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php'); //
 $router->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php'); // TAG PROJECTS
 $router->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php');
