@@ -22,7 +22,8 @@
                             <witness-like v-bind:index="state.ordered_witnesses.indexOf(x) + 1"
                                           v-bind:account="account ? account.user : false"
                                           v-bind:session="session"
-                                          v-bind:witness="state.witnesses[x]"></witness-like>
+                                          v-bind:witness="state.witnesses[x]"
+                                          v-on:vote="onVote"></witness-like>
                         </td>
                         <td>{{ x }}</td>
                         <td><a v-bind:href="state.witnesses[x].url"></a> </td>

@@ -17,6 +17,11 @@ let witnessContainer;
                     account: account,
                     state: state
                 },
+                methods: {
+                    onVote: function () {
+                        updateUserSession();
+                    }
+                }
             })
         } else {
             witnessContainer.session = session;
@@ -60,6 +65,10 @@ let witnessContainer;
     }
 
     creaEvents.on('crea.session.login', function (session, account) {
+        fetchUserAccount(session, account)
+    });
+
+    creaEvents.on('crea.session.update', function (session, account) {
         fetchUserAccount(session, account)
     });
 })();
