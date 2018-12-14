@@ -197,8 +197,9 @@ let walletModalDeEnergize;
      * @param account
      * @param usernameFilter
      * @param navSection
+     * @param walletSection
      */
-    function updateProfileView(state, session, account, usernameFilter, navSection = 'projects') {
+    function updateProfileView(state, session, account, usernameFilter, navSection = 'projects', walletSection = 'balance') {
         console.log('Updating profile', account);
 
         let nextDeEnergize = '';
@@ -219,7 +220,7 @@ let walletModalDeEnergize;
                         section: navSection
                     },
                     profile: state.user.metadata,
-                    walletTab: 'balances',
+                    walletTab: walletSection,
                     history: {
                         data: [],
                         accounts: {}
@@ -608,13 +609,23 @@ let walletModalDeEnergize;
      */
     function detectNav(state, session, account, usernameFilter) {
         let nav = getPathPart(1);
+        let walletNav = 'balances';
+
         if (!nav || nav.isEmpty()) {
             nav = 'projects';
         }
 
+        switch (nav) {
+            case 'balances':
+            case 'passwords':
+            case 'permissions':
+                walletNav = nav;
+                nav = 'wallet';
+        }
+
         nav = nav.toLowerCase();
 
-        updateProfileView(state, session, account, usernameFilter, nav);
+        updateProfileView(state, session, account, usernameFilter, nav, walletNav);
         fetchRewards(session);
     }
 

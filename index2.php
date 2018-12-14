@@ -15,7 +15,7 @@ $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php'); //
 $router->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php'); // TAG PROJECTS
 $router->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php');
 $router->addRoute('^\/(@[\w\.\d-]+)\/?$', 'profile.php');
-$router->addRoute('^\/(@[\w\.\d-]+)\/(projects|notifications|curation-rewards|author-rewards|blocked|wallet|settings)\/?$', 'profile.php');
+$router->addRoute('^\/(@[\w\.\d-]+)\/(projects|notifications|curation-rewards|author-rewards|blocked|wallet|settings|passwords|balances|permissions)\/?$', 'profile.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/(\@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php');
 
 include $router->match($_SERVER['REQUEST_URI']);

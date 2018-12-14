@@ -334,7 +334,7 @@
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/notifications'">{{ lang.PROFILE_MENU.NOTIFICATIONS }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/author-rewards'">{{ lang.PROFILE_MENU.REWARDS }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>
-                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
+                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/passwords'">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/settings'">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>
                                                         <li class="separate"><a href="#0" v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                                                     </ul>
