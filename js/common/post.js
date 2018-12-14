@@ -158,22 +158,25 @@ let promoteModal;
 
             globalLoading.show = true;
             let downloadResource = function () {
-                let authorBuff = Buffer.from(post.author);
-                let permlinkBuff = Buffer.from(post.permlink);
-                let buff = Buffer.concat([authorBuff, permlinkBuff]);
-                let signature = crea.utils.Signature.signBuffer(buff, session.account.keys.posting.prv);
-                let s64 = signature.toBuffer().toString('base64');
+                setTimeout(function () {
+                    let authorBuff = Buffer.from(post.author);
+                    let permlinkBuff = Buffer.from(post.permlink);
+                    let buff = Buffer.concat([authorBuff, permlinkBuff]);
+                    let signature = crea.utils.Signature.signBuffer(buff, session.account.keys.posting.prv);
+                    let s64 = signature.toBuffer().toString('base64');
 
-                crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
-                    globalLoading.show = false;
+                    crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
+                        globalLoading.show = false;
 
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        let win = window.open(result.resource, '_blank');
-                        win.focus();
-                    }
-                })
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            let win = window.open(result.resource, '_blank');
+                            win.focus();
+                            //downloadFile(result.resource, post.download.name);
+                        }
+                    })
+                }, 3000);
             };
 
             let payDownload = function () {
@@ -189,9 +192,7 @@ let promoteModal;
                     })
             };
 
-            let contentRoute = post.author + '/' + post.permlink;
-
-            if (user.downloads.includes(contentRoute)) {
+            if (post.download.downloaders.includes(user.name)) {
                 //Download paid
                 downloadResource();
             } else {

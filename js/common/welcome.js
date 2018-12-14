@@ -96,11 +96,10 @@ let welcomeVue;
                         let response = jsonify(data.responseText);
                         if (response.error === 'REGISTERED_EMAIL') {
                             welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
-                            return;
                         }
+                    } else {
+                        welcomeVue.error.email = lang.ERROR.UNKNOWN_ERROR;
                     }
-
-                    welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
                 });
 
                 http.on('done', function (data) {

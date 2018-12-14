@@ -288,6 +288,19 @@ function uploadToIpfs(file, callback) {
 
 }
 
+function downloadFile(fileUrl, filename) {
+    let element = document.createElement('a');
+    element.setAttribute('href', fileUrl);
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
 creaEvents.on('crea.content.prepare', function () {
     globalLoading = new Vue({
         el: '#global-loading',
