@@ -192,7 +192,9 @@ Vue.component('post-like', {
 });
 
 Vue.component('like', {
-    template: `<div><div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote"><div></div>
+    template: `<div>
+<div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
+<div></div>
 </div><span>{{ hasPaid() ? post.net_votes : post.active_votes.length }}</span></div>`,
     props: {
         session: {
@@ -265,6 +267,75 @@ Vue.component('like', {
     },
     mounted: function () {
         console.log('updated like')
+        this.state = this.hasVote() ? 1 : -1
+    }
+});
+
+Vue.component('witness-like', {
+    template: `<div><span>
+                    {{ index }}
+                    <div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state > 0}" v-on:click="makeVote">
+                        <div></div>
+                    </div>
+                </span></div>`,
+    props: {
+        session: [Object, Boolean],
+        account: [Object, Boolean],
+        witness: Object,
+        index: Number
+    },
+    data: function () {
+        return {
+            R: R,
+            state: 0
+        }
+    },
+    methods: {
+        getIcon: function () {
+            if (this.hasVote()) {
+                return this.R.IMG.LIKE.BLUE.FILLED;
+            }
+
+            return this.R.IMG.LIKE.BORDER;
+        },
+        hasVote: function () {
+            let session = this.$props.session;
+            let account = this.$props.account;
+
+            if (session && account) {
+
+                return account.witness_votes.indexOf(this.$props.witness.owner) >= 0;
+            }
+
+            return false;
+        },
+        makeVote: function (event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            if (this.$data.state != 0) {
+                let that = this;
+                let session = this.$props.session;
+                let witness = this.$props.witness;
+
+                that.state = 0;
+                crea.broadcast.accountWitnessVote(session.account.keys.active.prv, session.account.username, witness.owner, true, function (err, result) {
+                    if (err) {
+                        that.state = that.hasVote() ? 1 : -1;
+                        console.error(err);
+                        that.$emit('vote', err);
+                    } else {
+                        that.state = 1;
+                        console.log(result);
+                        that.$emit('vote', null, result);
+                    }
+                })
+            }
+        }
+    },
+    mounted: function () {
+        console.log('updated witness-like');
         this.state = this.hasVote() ? 1 : -1
     }
 });

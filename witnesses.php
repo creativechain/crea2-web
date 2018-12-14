@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container">
-    <section v-cloak id="view-explorer" class="space--sm">
+    <section v-cloak id="witnesses" class="space--sm">
         <div class="container post-container-home">
             <div class="row">
                 <div class="col-md-12">
@@ -19,9 +19,10 @@
                 <template v-for="x in state.ordered_witnesses">
                     <tr>
                         <td>
-                            <p>{{ state.ordered_witnesses.indexOf(x) + 1 }}
-                                <img src="img/icons/like_BLUE.svg" alt="">
-                            </p>
+                            <witness-like v-bind:index="state.ordered_witnesses.indexOf(x) + 1"
+                                          v-bind:account="account ? account.user : false"
+                                          v-bind:session="session"
+                                          v-bind:witness="state.witnesses[x]"></witness-like>
                         </td>
                         <td>{{ x }}</td>
                         <td><a v-bind:href="state.witnesses[x].url"></a> </td>

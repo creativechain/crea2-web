@@ -10,16 +10,13 @@ let witnessContainer;
 
         if (!witnessContainer) {
             witnessContainer = new Vue({
-                el: '#view-explorer',
+                el: '#witnesses',
                 data: {
                     lang: lang,
                     session: session,
                     account: account,
                     state: state
                 },
-                methods: {
-
-                }
             })
         } else {
             witnessContainer.session = session;
@@ -44,7 +41,25 @@ let witnessContainer;
         })
     }
 
+    function fetchUserAccount(session, account) {
+        if (session) {
+            crea.api.getAccounts([session.account.username], function (err, result) {
+                if (err) {
+                    console.error(err);
+                    fetchWitness(session, account);
+                } else {
+                    let accnt = result[0];
+                    account.user.witness_votes = accnt.witness_votes;
+                    fetchWitness(session, account);
+                }
+            })
+        } else {
+            fetchWitness(session, account);
+        }
+
+    }
+
     creaEvents.on('crea.session.login', function (session, account) {
-        fetchWitness(session, account)
+        fetchUserAccount(session, account)
     });
 })();
