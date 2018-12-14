@@ -42,7 +42,7 @@ let welcomeVue;
                     }
                 },
                 suggestPassword: function() {
-                    this.suggestedPassword = crea.formatter.createSuggestedPassword();
+                    this.suggestedPassword = 'P' + crea.formatter.createSuggestedPassword();
                     this.password = this.suggestedPassword;
                 },
                 checkUsername: checkUsername,
@@ -209,9 +209,11 @@ let welcomeVue;
                     data = JSON.parse(data);
                     console.log('SignUp', data);
                     welcomeVue.username = data.data.username;
-                    welcomeVue.password = crea.formatter.createSuggestedPassword();
-                    welcomeVue.suggestedPassword = welcomeVue.password;
+                    welcomeVue.suggestPassword();
                     welcomeVue.slide = 5;
+                }).on('fail', function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                    goTo('/' + jqXHR.status);
                 });
             });
         } else {
