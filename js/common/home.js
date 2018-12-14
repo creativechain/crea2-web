@@ -36,8 +36,10 @@ let homePosts;
             filter = filter.substring(1);
         }
         //Set discussion feed
+        const DEFAULT_DISCUSSIONS = ['created', 'popular', 'trending', 'hot', 'promoted'];
+
         let category = resolveFilter('/' + getPathPart()).replace('/', '');
-        let discuss = getPathPart(1);
+        let discuss = getPathPart(1) || '';
         if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
 
             cKeys.sort(function (k1, k2) {
@@ -48,7 +50,7 @@ let homePosts;
             state.discussion_idx[discuss][category] = cKeys;
         }
 
-        console.log('Filter', filter, 'discussion', discuss, 'category', category, state.discussion_idx[discuss][category]);
+        console.log('Filter:', filter, 'discussion:', discuss, 'category:', category, state.discussion_idx[discuss][category]);
 
         if (!homePosts) {
             homePosts = new Vue({
@@ -130,10 +132,12 @@ let homePosts;
                 }
             })
         } else {
-            homePosts.filter = filter;
-            homePosts.state = state;
             homePosts.session = session;
             homePosts.account = account;
+            homePosts.filter = filter;
+            homePosts.category = category;
+            homePosts.discuss = discuss;
+            homePosts.state = state;
         }
 
         creaEvents.emit('crea.dom.ready');
