@@ -9,7 +9,7 @@ $router->addRoute('/~witness', 'witnesses.php');
 $router->addRoute('/welcome', 'welcome.php');
 $router->addRoute('/validate', 'welcome.php');
 $router->addRoute('/publish', 'publish.php');
-$router->addRoute('/explorer', 'explorer.php');
+$router->addRoute('/explore', 'explorer.php');
 $router->addRoute('/recover-account', 'recover-account.php');
 $router->addRoute('/404', '404.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php'); //
