@@ -210,7 +210,9 @@
                                                             </ul>
                                                         </ul>
                                                         <hr>
-                                                        <p>License: Creative Commons BY-SA</p>
+                                                        <p>
+                                                            License: <a v-bind:href="getLicense().getLink()">{{ getLicense().getTags() }}</a>
+                                                        </p>
                                                         <p>Timestamp: {{ new Date(state.post.created).toLocaleString() }}</p>
                                                         <p>{{ state.post.metadata.hash || '-' }}</p>
                                                     </div>
