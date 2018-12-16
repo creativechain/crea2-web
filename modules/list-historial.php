@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
-                            <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
+                            <div class="user-avatar cursor-link" v-on:click="showProfile(op.op.value.from)">
                                 <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
                             </div>
                             <div class="list-data-user">
@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-8 col-md-8">
                         <div class="row-list-user-display">
-                            <div class="user-avatar cursor" v-on:click="showProfile(op.op.value.from)">
+                            <div class="user-avatar cursor-link" v-on:click="showProfile(op.op.value.from)">
                                 <avatar v-bind:account="history.accounts[op.op.value.from]"></avatar>
                             </div>
                             <div class="list-data-user">

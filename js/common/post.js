@@ -134,7 +134,7 @@ let promoteModal;
                 tags: [postContainer.state.post.metadata.tags[0]]
             };
             crea.broadcast.comment(session.account.keys.posting.prv, parentAuthor, parentPermlink, session.account.username,
-                permlink, '', comment, jsonstring(metadata), function (err, result) {
+                permlink, '', comment, '', jsonstring(metadata), function (err, result) {
                     if (err) {
                         console.error(err);
                     } else {

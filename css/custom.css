@@ -7,7 +7,11 @@
     cursor: pointer;
 }
 
-.cursor:hover {
+.cursor-link {
+    cursor: pointer;
+}
+
+.cursor-link:hover {
     text-decoration: underline;
 }
 
@@ -25,6 +29,10 @@
 
 .modal-active.showing {
     opacity: 1;
+}
+
+.comment-like {
+    transform-origin: unset;
 }
 
 li > .search {

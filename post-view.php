@@ -132,11 +132,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt--1 text-right">
-                                                <a class="btn btn--primary" href="#/" v-on:click="makeComment">
+                                                <div class="btn btn--primary" v-on:click="makeComment">
                                                     <span class="btn__text">
                                                         {{ lang.BUTTON.POST_COMMENT }}
                                                     </span>
-                                                </a>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -167,9 +167,11 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <ul class="list-inline list-unstyled ul-row-share-comment">
-                                                                        <li><a href="#/" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</a></li>
+                                                                        <li>
+                                                                            <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[c]"></comment-like>
+<!--                                                                            <div class="cursor" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</div></li>-->
                                                                         <li><p>{{ state.content[c].pending_payout_value }}</p></li>
-                                                                        <li v-if="session"><p>Comentar</p></li>
+                                                                        <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>

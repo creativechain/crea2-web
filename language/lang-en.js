@@ -84,6 +84,7 @@ let lang = {
         "SIZE": "SIZE",
         "DOWNLOADS": "Downloads",
         "COMMENTS": "Comments",
+        "COMMENT": "Comment",
         "TIME_STAMP": "Time Stamp",
         "SHARE": "Share",
         "LIKES": "Likes",

@@ -227,7 +227,7 @@
                     </a>
                 </div>
                 <div class="col-9 col-md-10 text-right">
-                    <div class="hamburger-toggle cursor" data-toggle-class="#menu1;hidden-xs">
+                    <div class="hamburger-toggle cursor-link" data-toggle-class="#menu1;hidden-xs">
                         <i class="icon icon--sm stack-interface stack-menu"></i>
                     </div>
                 </div>
