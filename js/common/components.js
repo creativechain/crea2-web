@@ -108,15 +108,16 @@ Vue.component('slider',  {
     }
 });
 
-Vue.component('post-like', {
+Vue.component('post-like2', {
     template: `<div class="col-likes">
-                <img class="cursor-link" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
+                <img class="cursor" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
                     <div class="dropdown dropdown-price">
                         <span class="dropdown__trigger"> {{ hasPaid() ? post.net_votes : post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</span>
                         <div class="dropdown__container">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
+                                    testing voters
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +189,101 @@ Vue.component('post-like', {
                 })
             }
         }
+    }
+});
+
+Vue.component('post-like', {
+    template: `
+    <div class="position-relative">
+        <div class="lds-heart size-20 post-like" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
+            <div></div>
+        </div>
+
+        <div class="dropdown dropdown-price inline post-like-count">
+            <span class="dropdown__trigger"> {{ hasPaid() ? post.net_votes : post.active_votes.length }}</span>
+            <div class="dropdown__container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
+                            testing voters
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`,
+    props: {
+        session: {
+            type: Object
+        },
+        post: {
+            type: Object
+        }
+    },
+    data: function () {
+        return {
+            R: R,
+            state: 0
+        }
+    },
+    methods: {
+        getIcon: function () {
+            if (this.hasVote()) {
+                return this.R.IMG.LIKE.RED.FILLED;
+            }
+
+            return this.R.IMG.LIKE.BORDER;
+        },
+        hasPaid: function () {
+            let now = new Date();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
+            return now.getTime() > payout.getTime();
+        },
+        hasVote: function () {
+            let session = this.$props.session;
+            let post = this.$props.post;
+
+            if (session && post) {
+                let activeVotes = post.active_votes;
+
+                for (let x = 0; x < activeVotes.length; x++) {
+                    let vote = activeVotes[x];
+                    if (session.account.username === vote.voter) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        },
+        makeVote: function (event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            if (!this.hasVote() && this.$data.state != 0) {
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+
+                that.state = 0;
+                crea.broadcast.vote(session.account.keys.posting.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
+                    if (err) {
+                        that.state = -1;
+                        console.error(err);
+                        that.$emit('vote', err);
+                    } else {
+                        that.state = 1;
+                        console.log(result);
+                        that.$emit('vote', null, result);
+                    }
+                })
+            }
+        }
+    },
+    mounted: function () {
+        console.log('updated like')
+        this.state = this.hasVote() ? 1 : -1
     }
 });
 

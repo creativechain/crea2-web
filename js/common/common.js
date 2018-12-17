@@ -287,9 +287,14 @@ function uploadToIpfs(file, callback) {
 
 }
 
-function downloadFile(fileUrl, filename) {
+/**
+ *
+ * @param {string} resource
+ * @param {string} filename
+ */
+function downloadFile(resource, filename) {
     let element = document.createElement('a');
-    element.setAttribute('href', fileUrl);
+    element.setAttribute('href', resource);
     element.setAttribute('download', filename);
 
     element.style.display = 'none';
