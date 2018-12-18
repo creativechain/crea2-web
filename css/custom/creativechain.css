@@ -354,6 +354,12 @@
 .modal-send .text-p-form {
   margin-top: 5px; }
 
+.modal-report h3 {
+  font-size: 18px;
+  font-weight: 600; }
+.modal-report p {
+  color: #222222; }
+
 .coming-soon .logo-coming {
   width: 500px; }
 .coming-soon .h2-title {
@@ -743,6 +749,8 @@
     width: 50px;
     height: 50px;
     background-position: 50% 50%; }
+  .post-view .link-report {
+    color: #999999; }
   @media (min-width: 768px) {
     .post-view .container {
       max-width: 100%; } }

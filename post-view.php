@@ -231,7 +231,53 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <ul class="list-inline list-unstyled">
-                                                    <li><p><img src="/img/icons/report_content.svg" alt="">(0) Report Content</p></li>
+                                                    <li>
+                                                        <div class="modal-instance ">
+                                                            <p>
+                                                                <img src="/img/icons/report_content.svg" alt="">(0)
+                                                                <a href="" class="modal-trigger link-report" href="#">Report Content</a>
+                                                            </p>
+
+                                                            <div class="modal-container modal-report">
+                                                                <div class="modal-content">
+                                                                    <section class="unpad ">
+                                                                        <div class="container">
+                                                                            <div class="row justify-content-center">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="boxed boxed--lg bg--white feature">
+                                                                                        <div class="modal-close modal-close-cross"></div>
+                                                                                        <h3>Denunciar contenido</h3>
+                                                                                        <div class="feature__body">
+                                                                                            <p class="mb-0">Denunciar contenido ayuda a mejorar la calidad y la convivencia del plataforma.</p>
+                                                                                            <p>Los motivos más comunes para reportar un contenido son:</p>
+                                                                                            <ul>
+                                                                                                <li><p>- Fraude o plagio</p></li>
+                                                                                                <li><p>- Infracción de derechos de autor.</p></li>
+                                                                                                <li><p>- Contiene material ofensivo o fomenta el odio.</p></li>
+                                                                                                <li><p>- Proyecto mal etiquetado intencionalmente o contiene Spam.</p></li>
+                                                                                            </ul>
+                                                                                            <p>Recuerda que reportar contenido puede influir en la visibilidad y las recompensa alcanzadas por la publicación.</p>
+                                                                                        </div>
+                                                                                        <div class="row mt-3">
+                                                                                            <div class="col-md-12 text-right">
+                                                                                                <div class="btn btn--primary">
+                                                                                                    <span class="btn__text">
+                                                                                                        Report
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end of row-->
+                                                                        </div>
+                                                                        <!--end of container-->
+                                                                    </section>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
                                                     <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
                                                 </ul>
                                             </div>
