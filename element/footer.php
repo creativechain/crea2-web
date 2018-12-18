@@ -1,3 +1,43 @@
+<div class="modal-instance ">
+    <a href="" class="modal-trigger link-report" href="#">Alert</a>
+
+    <div class="modal-container modal-report">
+        <div class="modal-content">
+            <section class="unpad ">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="boxed boxed--lg bg--white feature">
+                                <div class="modal-close modal-close-cross"></div>
+                                <h3>Denunciar contenido</h3>
+                                <div class="feature__body">
+                                    <p class="mb-0">Denunciar contenido ayuda a mejorar la calidad y la convivencia del plataforma.</p>
+                                    <p>Los motivos más comunes para reportar un contenido son:</p>
+                                    <p>Recuerda que reportar contenido puede influir en la visibilidad y las recompensa alcanzadas por la publicación.</p>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12 text-right">
+                                        <div class="btn btn--primary">
+                                            <span class="btn__text">
+                                                Close
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 </div>
 <!--<div class="loader"></div>-->
