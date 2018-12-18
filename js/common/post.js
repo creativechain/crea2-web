@@ -103,6 +103,20 @@ let promoteModal;
 
                         return amount.toPlainString(2) + '$'
                     },
+                    getLinkedTags: function(asString) {
+                        //<a v-bind:href="'/popular/' + x">{{ x }}</a>
+                        let tags = this.state.post.metadata.tags;
+                        let linkedTags = [];
+                        tags.forEach(function (t) {
+                            linkedTags.push(`<a href="/popular/${t}">${t}</a>`)
+                        });
+
+                        if (asString) {
+                            return linkedTags.join(', ');
+                        }
+
+                        return linkedTags;
+                    },
                     makeComment: makeComment,
                     makeDownload: makeDownload,
                     onVote: function () {

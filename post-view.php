@@ -300,7 +300,8 @@
                             <div class="row row-publish-tags">
                                 <div class="col-md-12">
                                     <p class="title">TAGS</p>
-                                    <span class="description">{{ state.post.metadata.tags.join(', ') || '' }}</span>
+                                    <div v-html="getLinkedTags(true)"></div>
+
                                 </div>
                             </div>
 
@@ -310,10 +311,6 @@
                                         <hr>
                                         <li>
                                             <div class="row-likes">
-                                                <!--<div class="col-likes">
-                                                    <img src="/img/icons/like_BLUE.svg" alt="">
-                                                    <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
-                                                </div>-->
                                                 <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
                                                 <div class="col-amount">
                                                     <span>{{ getPayout() }}</span>
