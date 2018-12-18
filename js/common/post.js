@@ -117,8 +117,57 @@ let promoteModal;
 
                         return linkedTags;
                     },
+                    isReportedByUser: function () {
+                        let reported = false;
+
+                        if (this.session) {
+                            let username = this.session.account.username;
+
+                            this.state.post.down_votes.forEach(function (v) {
+                                if (v.voter === username) {
+                                    reported = true;
+                                    return;
+                                }
+                            });
+                        }
+
+
+                        return reported;
+                    },
+                    isSameUser: function () {
+                        if (this.session) {
+                            return this.state.post.author === this.session.account.username;
+                        }
+
+                        return false;
+                    },
                     makeComment: makeComment,
                     makeDownload: makeDownload,
+                    ignoreUser: function () {
+
+                        ignoreUser(this.post.author, true, function (err, result) {
+                            fetchContent();
+                        });
+                    },
+                    vote: function (weight) {
+                        //TODO: SHOW ALERT CONFIRMATION
+                        if (this.session) {
+                            let wif = this.session.account.keys.posting.prv;
+                            let username = this.session.account.username;
+
+                            globalLoading.show = true;
+                            crea.broadcast.vote(wif, username, this.state.post.author, this.state.post.permlink, weight, function (err, result) {
+                                globalLoading.show = false;
+                                if (err) {
+                                    console.error(err);
+                                }
+
+                                fetchContent();
+
+                            })
+                        }
+
+                    },
                     onVote: function () {
                         fetchContent();
                     },
@@ -139,7 +188,7 @@ let promoteModal;
     function makeComment() {
         let session = Session.getAlive();
         let comment = postContainer.comment;
-        if (comment.length > 0) {
+        if (session && comment.length > 0) {
             globalLoading.show = true;
             let parentAuthor = postContainer.state.post.author;
             let parentPermlink = postContainer.state.post.permlink;
@@ -283,6 +332,14 @@ let promoteModal;
                         result.post.body = jsonify(result.post.body);
                         result.author = result.accounts[result.post.author];
                         fetchOtherProjects(result.author.name, result.post.permlink);
+
+                        //Count downVotes
+                        result.post.down_votes = [];
+                        result.post.active_votes.forEach(function (v) {
+                            if (v.percent <= -10000) {
+                                result.post.down_votes.push(v);
+                            }
+                        });
 
                         //Order comments by date, latest first
                         let cKeys = Object.keys(result.content);

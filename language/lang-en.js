@@ -91,6 +91,7 @@ let lang = {
         "MORE_PROJECTS": "More Projects",
         "UNBLOCK_USER": "UnBlock all posts by this user",
         "REPORT_CONTENT": "Report content",
+        "REMOVE_REPORT": "Remove report",
         "MORE_COMMENTS": "See more comments",
         "YOUR_COMMENTS": "Your comments",
         "LICENSE": "License",

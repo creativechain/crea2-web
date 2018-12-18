@@ -156,13 +156,13 @@ function makeVote(post, callback) {
     return false;
 }
 
-function followUser(following, callback) {
+function ignoreUser(following, ignore, callback) {
     let s = Session.getAlive();
     if (s) {
         let followJson = {
             follower: s.account.username,
             following: following,
-            what: ['blog']
+            what: ignore ? ['ignore'] : [],
         };
 
         followJson = ['follow', followJson];

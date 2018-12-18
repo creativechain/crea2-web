@@ -114,7 +114,7 @@
                             </div>-->
                             <div class="row mt--1">
                                 <div class="col-md-12">
-                                    <p class="subtitle-content-publish">Your comments</p>
+                                    <p class="subtitle-content-publish">{{ lang.PUBLICATION.COMMENTS }}</p>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="boxed boxed--border box-comment">
@@ -227,12 +227,13 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="boxed boxed--border box-report">
+                                    <div v-if="!isSameUser()" class="boxed boxed--border box-report">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <ul class="list-inline list-unstyled">
-                                                    <li><p><img src="/img/icons/report_content.svg" alt="">(0) Report Content</p></li>
-                                                    <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+                                                    <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
+                                                    <li v-else class="cursor" v-on:click="vote(-10000)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REPORT_CONTENT }}</p></li>
+                                                    <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="">() Block all posts by this user</p></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -270,7 +271,7 @@
                                     <p>385 Buzz</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div v-if="!isSameUser()" class="row">
                                 <div class="col-md-12 text-center">
                                     <btn-follow v-if="session"
                                                 v-on:follow="onFollow" v-bind:session="session"
