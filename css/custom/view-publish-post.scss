@@ -315,7 +315,9 @@
     background-position: 50% 50%;
   }
 
-
+  .link-report {
+    color: $grey-light;
+  }
   @media (min-width: 768px) {
     .container {
       max-width: 100%;

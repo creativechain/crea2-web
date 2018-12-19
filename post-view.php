@@ -231,6 +231,57 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <ul class="list-inline list-unstyled">
+                                                    <li>
+                                                        <div class="modal-instance ">
+                                                            <p>
+                                                                <img src="/img/icons/report_content.svg" alt="">(0)
+                                                                <a href="" class="modal-trigger link-report" href="#">Report Content</a>
+                                                            </p>
+
+                                                            <div class="modal-container modal-report">
+                                                                <div class="modal-content">
+                                                                    <section class="unpad ">
+                                                                        <div class="container">
+                                                                            <div class="row justify-content-center">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="boxed boxed--lg bg--white feature">
+                                                                                        <div class="modal-close modal-close-cross"></div>
+                                                                                        <h3>Denunciar contenido</h3>
+                                                                                        <div class="feature__body">
+                                                                                            <p class="mb-0">Denunciar contenido ayuda a mejorar la calidad y la convivencia del plataforma.</p>
+                                                                                            <p>Los motivos más comunes para reportar un contenido son:</p>
+                                                                                            <ul>
+                                                                                                <li><p>- Fraude o plagio</p></li>
+                                                                                                <li><p>- Infracción de derechos de autor.</p></li>
+                                                                                                <li><p>- Contiene material ofensivo o fomenta el odio.</p></li>
+                                                                                                <li><p>- Proyecto mal etiquetado intencionalmente o contiene Spam.</p></li>
+                                                                                            </ul>
+                                                                                            <p>Recuerda que reportar contenido puede influir en la visibilidad y las recompensa alcanzadas por la publicación.</p>
+                                                                                        </div>
+                                                                                        <div class="row mt-3">
+                                                                                            <div class="col-md-12 text-right">
+                                                                                                <div class="btn btn--primary">
+                                                                                                    <span class="btn__text">
+                                                                                                        Report
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end of row-->
+                                                                        </div>
+                                                                        <!--end of container-->
+                                                                    </section>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+
+
+
                                                     <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                     <li v-else class="cursor" v-on:click="vote(-10000)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REPORT_CONTENT }}</p></li>
                                                     <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="">() Block all posts by this user</p></li>
@@ -271,7 +322,7 @@
                                     <p>385 Buzz</p>
                                 </div>
                             </div>
-                            <div v-if="!isSameUser()" class="row">
+                            <div class="row">
                                 <div class="col-md-12 text-center">
                                     <btn-follow v-if="session"
                                                 v-on:follow="onFollow" v-bind:session="session"
@@ -301,8 +352,7 @@
                             <div class="row row-publish-tags">
                                 <div class="col-md-12">
                                     <p class="title">TAGS</p>
-                                    <div v-html="getLinkedTags(true)"></div>
-
+                                    <span class="description">{{ state.post.metadata.tags.join(', ') || '' }}</span>
                                 </div>
                             </div>
 
@@ -312,6 +362,10 @@
                                         <hr>
                                         <li>
                                             <div class="row-likes">
+                                                <!--<div class="col-likes">
+                                                    <img src="/img/icons/like_BLUE.svg" alt="">
+                                                    <p>{{ state.post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</p>
+                                                </div>-->
                                                 <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
                                                 <div class="col-amount">
                                                     <span>{{ getPayout() }}</span>
