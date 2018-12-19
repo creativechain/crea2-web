@@ -222,6 +222,9 @@ let publishContainer;
 
         let download = publishContainer.downloadFile;
         download.price = Asset.parseString(download.price + ' CREA').toFriendlyString();
+        if (!download.resource) {
+            download = '';
+        }
 
         //Build body
         let body = jsonstring(publishContainer.bodyElements);
