@@ -275,7 +275,7 @@ function uploadToIpfs(file, maxSize, callback) {
             fr.readAsArrayBuffer(file);
         } else {
             globalLoading.show = false;
-            console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maximumSize);
+            console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maxSize);
             publishContainer.error = lang.PUBLISH.FILE_TO_LARGE;
         }
     } else {

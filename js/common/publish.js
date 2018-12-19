@@ -28,7 +28,7 @@ let publishContainer;
                 LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,
-                editableLPost: editablePost,
+                editablePost: editablePost,
                 bodyElements: editablePost ? editablePost.body : [],
                 tags: [],
                 uploadedFiles: [],
@@ -183,6 +183,7 @@ let publishContainer;
                                 console.error(err);
                             } else {
                                 publishContainer.featuredImage = file;
+                                publishContainer.error = null;
                             }
                         });
                     }
