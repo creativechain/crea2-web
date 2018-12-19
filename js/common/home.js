@@ -202,7 +202,7 @@ let homePosts;
             if (s) {
                 creaEvents.emit('crea.content.filter', '/@' + s.account.username + '/feed');
             } else {
-                creaEvents.emit('crea.content.filter', '/promoted');
+                creaEvents.emit('crea.content.filter', '/popular');
             }
         } else {
             creaEvents.emit('crea.content.filter', path);
