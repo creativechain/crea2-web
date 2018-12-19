@@ -371,8 +371,8 @@
 
 
                                         </li>
-                                        <hr>
-                                        <li>
+                                        <hr v-if="state.post.download.resource">
+                                        <li v-if="state.post.download.resource">
                                             <img src="/img/icons/downloads.svg" alt="">
                                             <p>{{ state.post.download.times_downloaded }} {{ lang.PUBLICATION.DOWNLOADS }}</p>
                                         </li>
@@ -386,7 +386,7 @@
 
                                 </div>
                             </div>
-                            <div class="row row-download">
+                            <div v-if="state.post.download.resource" class="row row-download">
                                 <div v-if="session" class="col-md-12 text-center">
                                     <a class="btn btn--primary" href="#" v-on:click="makeDownload">
                                         <span class="btn__text">
