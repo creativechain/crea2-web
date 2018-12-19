@@ -98,7 +98,15 @@ let lang = {
         "TAGS": "TAGS",
         "FREE_DOWNLOAD": "Free Download",
         "PROMOTE_TITLE": "Promote the Post",
-        "PROMOTE_TEXT": "Spend your CREA DOLLAR to promote your content in the promotion section."
+        "PROMOTE_TEXT": "Spend your CREA DOLLAR to promote your content in the promotion section.",
+        MODAL_REPORT_TITLE: "Report content",
+        MODAL_REPORT_HEAD1: "Reporting content helps improve the quality and coexistence of the platform.",
+        MODAL_REPORT_HEAD2: "The most common reasons to report content are:",
+        MODAL_REPORT_REASON1: "Fraud or plagiarism.",
+        MODAL_REPORT_REASON2: "Infringement of copyright.",
+        MODAL_REPORT_REASON3: "Contains offensive material or encourages hatred.",
+        MODAL_REPORT_REASON4: "Project mislabeled intentionally or contains Spam.",
+        MODAL_REPORT_FOOTER: "Remember that reporting content can influence the visibility and rewards achieved by the publication.",
     },
     "PROFILE_MENU": {
         "LOGOUT": "Logout",
@@ -162,7 +170,8 @@ let lang = {
         "POST_COMMENT": "Post comment",
         "SEND": "Send",
         "CLAIM_REWARDS": "Settle accounts (transfer to balance)",
-        "CONFIRM": "Confirm"
+        "CONFIRM": "Confirm",
+        "REPORT": "Confirm",
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",

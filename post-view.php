@@ -231,14 +231,16 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <ul class="list-inline list-unstyled">
-                                                    <li>
+
+                                                    <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
+                                                    <li v-else >
                                                         <div class="modal-instance ">
                                                             <p>
-                                                                <img src="/img/icons/report_content.svg" alt="">(0)
-                                                                <a href="" class="modal-trigger link-report" href="#">Report Content</a>
+                                                                <img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }})
+                                                                <a href="#modal-report" class="modal-trigger link-report">{{ lang.PUBLICATION.REPORT_CONTENT }}</a>
                                                             </p>
 
-                                                            <div class="modal-container modal-report">
+                                                            <div id="modal-report" data-modal-id="modal-report" class="modal-container modal-report">
                                                                 <div class="modal-content">
                                                                     <section class="unpad ">
                                                                         <div class="container">
@@ -246,23 +248,23 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="boxed boxed--lg bg--white feature">
                                                                                         <div class="modal-close modal-close-cross"></div>
-                                                                                        <h3>Denunciar contenido</h3>
+                                                                                        <h3>{{ lang.PUBLICATION.MODAL_REPORT_TITLE }}</h3>
                                                                                         <div class="feature__body">
-                                                                                            <p class="mb-0">Denunciar contenido ayuda a mejorar la calidad y la convivencia del plataforma.</p>
-                                                                                            <p>Los motivos más comunes para reportar un contenido son:</p>
+                                                                                            <p class="mb-0">{{ lang.PUBLICATION.MODAL_REPORT_HEAD1 }}</p>
+                                                                                            <p>{{ lang.PUBLICATION.MODAL_REPORT_HEAD2 }}</p>
                                                                                             <ul>
-                                                                                                <li><p>- Fraude o plagio</p></li>
-                                                                                                <li><p>- Infracción de derechos de autor.</p></li>
-                                                                                                <li><p>- Contiene material ofensivo o fomenta el odio.</p></li>
-                                                                                                <li><p>- Proyecto mal etiquetado intencionalmente o contiene Spam.</p></li>
+                                                                                                <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON1 }}</p></li>
+                                                                                                <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON2 }}</p></li>
+                                                                                                <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON3 }}</p></li>
+                                                                                                <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON4 }}</p></li>
                                                                                             </ul>
-                                                                                            <p>Recuerda que reportar contenido puede influir en la visibilidad y las recompensa alcanzadas por la publicación.</p>
+                                                                                            <p>{{ lang.PUBLICATION.MODAL_REPORT_FOOTER }}</p>
                                                                                         </div>
                                                                                         <div class="row mt-3">
                                                                                             <div class="col-md-12 text-right">
-                                                                                                <div class="btn btn--primary">
+                                                                                                <div class="btn btn--primary" v-on:click="vote(-10000)">
                                                                                                     <span class="btn__text">
-                                                                                                        Report
+                                                                                                        {{ lang.BUTTON.REPORT }}
                                                                                                     </span>
                                                                                                 </div>
                                                                                             </div>
@@ -278,13 +280,8 @@
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
 
-
-
-                                                    <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
-                                                    <li v-else class="cursor" v-on:click="vote(-10000)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REPORT_CONTENT }}</p></li>
-                                                    <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="">() Block all posts by this user</p></li>
+                                                    <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="">{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -352,7 +349,7 @@
                             <div class="row row-publish-tags">
                                 <div class="col-md-12">
                                     <p class="title">TAGS</p>
-                                    <span class="description">{{ state.post.metadata.tags.join(', ') || '' }}</span>
+                                    <div v-html="getLinkedTags(true)"></div>
                                 </div>
                             </div>
 
