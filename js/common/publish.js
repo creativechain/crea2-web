@@ -16,7 +16,9 @@ let publishContainer;
 
         if (editablePost) {
             downloadFile = editablePost.download;
-            featuredImage = editablePost.metadata.featuredImage.url ? {url: editablePost.metadata.featuredImage.url} : featuredImage;
+
+            let mFi = editablePost.metadata.featuredImage;
+            featuredImage = mFi.url ? mFi : mfi ? {url: mFi} : featuredImage;
         }
 
         publishContainer = new Vue({
