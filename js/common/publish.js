@@ -11,7 +11,7 @@ let publishContainer;
             price: 0
         };
 
-        let featuredImage = {url: editablePost.metadata.featuredImage};
+        let featuredImage = {};
         let license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
 
         if (editablePost) {
@@ -26,6 +26,7 @@ let publishContainer;
                 LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,
+                editableLPost: editablePost,
                 bodyElements: editablePost ? editablePost.body : [],
                 tags: [],
                 uploadedFiles: [],
@@ -246,7 +247,7 @@ let publishContainer;
         //Build body
         let body = jsonstring(publishContainer.bodyElements);
         let title = publishContainer.title;
-        let permlink = toPermalink(title);
+        let permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title);
 
         console.log(title, body, metadata, download);
         let session = Session.getAlive();
