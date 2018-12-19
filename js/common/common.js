@@ -261,7 +261,7 @@ function uploadToIpfs(file, maxSize, callback) {
                         if (callback) {
                             callback(err);
                         }
-                    } else if (files) {
+                    } else if (files.length > 0) {
                         let file = files[0];
                         file = new IpfsFile(file.hash, fileName, mimeType, file.size);
                         console.log('Pushed to ipfs', err, file);
