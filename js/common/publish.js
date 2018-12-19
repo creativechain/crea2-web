@@ -6,7 +6,19 @@ let publishContainer;
 
 (function () {
 
-    function setUp() {
+    function setUp(editablePost) {
+        let downloadFile = {
+            price: 0
+        };
+
+        let featuredImage = {url: editablePost.metadata.featuredImage};
+        let license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
+
+        if (editablePost) {
+            downloadFile = editablePost.download;
+            featuredImage = editablePost.metadata.featuredImage.url ? {url: editablePost.metadata.featuredImage.url} : featuredImage;
+        }
+
         publishContainer = new Vue({
             el: '#publish-container',
             data: {
@@ -14,21 +26,19 @@ let publishContainer;
                 LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,
-                bodyElements: [],
+                bodyElements: editablePost ? editablePost.body : [],
                 tags: [],
                 uploadedFiles: [],
                 updatingIndex: -1,
-                featuredImage: {},
-                title: null,
-                description: '',
-                adult: false,
-                downloadFile: {
-                    price: 0
-                },
-                publicDomain: LICENSE.NO_LICENSE.flag,
-                share: LICENSE.NO_LICENSE.flag,
-                commercial: LICENSE.NO_LICENSE.flag,
-                noLicense: LICENSE.NO_LICENSE.flag,
+                featuredImage: featuredImage,
+                title: editablePost ? editablePost.title : null,
+                description: editablePost ? editablePost.metadata.description : '',
+                adult: editablePost ? editablePost.metadata.adult : false,
+                downloadFile: downloadFile,
+                publicDomain: license.has(LICENSE.FREE_CONTENT.flag) ? LICENSE.FREE_CONTENT.flag : LICENSE.NO_LICENSE.flag,
+                share: license.has(LICENSE.SHARE_ALIKE.flag) ? LICENSE.SHARE_ALIKE.flag : license.has(LICENSE.NON_DERIVATES.flag) ?  LICENSE.NON_DERIVATES.flag : LICENSE.NO_LICENSE.flag,
+                commercial: license.has(LICENSE.NON_COMMERCIAL.flag) ? LICENSE.NON_COMMERCIAL.flag : LICENSE.NO_LICENSE.flag,
+                noLicense: license.has(LICENSE.NON_PERMISSION.flag) ? LICENSE.NON_PERMISSION.flag : LICENSE.NO_LICENSE.flag,
                 showEditor: false,
                 tagsConfig: {
                     init: false,
@@ -66,6 +76,13 @@ let publishContainer;
                         });
 
                         this.tagsConfig.addedEvents = true;
+                        if (editablePost) {
+                            let tags = editablePost.metadata.tags;
+                            tags.forEach(function (t) {
+                                inputTags.tagsinput('add', t);
+                            })
+                        }
+
                     }
                 }
 
@@ -216,7 +233,7 @@ let publishContainer;
             description: publishContainer.description,
             tags: tags,
             adult: publishContainer.adult,
-            featuredImage: publishContainer.featuredImage.url,
+            featuredImage: publishContainer.featuredImage,
             license: publishContainer.getLicense().getFlag()
         };
 
@@ -248,10 +265,37 @@ let publishContainer;
         })
     }
 
-
-
     creaEvents.on('crea.content.loaded', function () {
-        setUp();
+        let edit = getParameterByName('edit');
+        if (edit) {
+            let author = edit.split('/')[0];
+            let permlink = edit.split('/')[1];
+            console.log(author, permlink);
+
+            //Check if author is the user
+            let s = Session.getAlive();
+            if (s && s.account.username === author) {
+                crea.api.getDiscussion(author, permlink, function (err, post) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log(post);
+                        post.body = jsonify(post.body) || {};
+                        post.metadata = jsonify(post.json_metadata) || {};
+                        post.download.price = parseFloat(Asset.parse(post.download.price).toPlainString());
+                        setUp(post);
+                    }
+                })
+            } else {
+                //TODO: SHOW EDIT ERROR
+            }
+
+
+        } else {
+            setUp();
+        }
+
+
     })
 
 })();

@@ -156,6 +156,7 @@ let lang = {
         "SAVE": "Save",
         "GO_BACK": "Go back ",
         "EDIT_PROFILE": "Edit profile",
+        "EDIT_POST": "Edit post",
         "PUBLISH": "Publish",
         "CONTINUE": "Continue",
         "LOGIN_SHOW": "Login to show",

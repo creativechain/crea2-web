@@ -141,6 +141,10 @@ let promoteModal;
 
                         return false;
                     },
+                    editPost: function () {
+                        let route = this.state.post.author + '/' + this.state.post.permlink;
+                        goTo('/publish?edit=' + encodeURIComponent(route));
+                    },
                     makeComment: makeComment,
                     makeDownload: makeDownload,
                     ignoreUser: function () {

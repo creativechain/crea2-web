@@ -3,7 +3,7 @@
 
         <div class="card__top">
             <div class="img-post-list" v-on:click="openPost(state.content[p])"
-                 v-bind:style="{ 'background-image': 'url(' + (state.content[p].metadata.featuredImage || '/img/post-default-preview.jpg') + ')' }">
+                 v-bind:style="{ 'background-image': 'url(' + (state.content[p].metadata.featuredImage.url || state.content[p].metadata.featuredImage) + ')' }">
 
             </div>
         </div>

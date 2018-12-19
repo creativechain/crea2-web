@@ -321,12 +321,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <btn-follow v-if="session"
+                                    <btn-follow v-if="session && !isSameUser()"
                                                 v-on:follow="onFollow" v-bind:session="session"
                                                 v-bind:account="user"
                                                 v-bind:user="state.post.author" >
 
                                     </btn-follow>
+                                    <div v-else-if="session" class="btn btn--primary" v-on:click="editPost()">
+                                        <span class="btn__text">
+                                            {{ lang.BUTTON.EDIT_POST }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -388,11 +393,11 @@
                             </div>
                             <div v-if="state.post.download.resource" class="row row-download">
                                 <div v-if="session" class="col-md-12 text-center">
-                                    <a class="btn btn--primary" href="#" v-on:click="makeDownload">
+                                    <div class="btn btn--primary" v-on:click="makeDownload">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.DOWNLOAD }}
                                         </span>
-                                    </a>
+                                    </div>
                                 </div>
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
