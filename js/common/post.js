@@ -103,6 +103,20 @@ let promoteModal;
 
                         return amount.toPlainString(2) + '$'
                     },
+                    getFeaturedImage: function (post) {
+                        let featuredImage = post.metadata.featuredImage;
+                        if (featuredImage) {
+                            if (featuredImage.url) {
+                                return featuredImage;
+                            } else {
+                                return {
+                                    url: featuredImage
+                                }
+                            }
+                        }
+
+                        return {};
+                    },
                     getLinkedTags: function(asString) {
                         //<a v-bind:href="'/popular/' + x">{{ x }}</a>
                         let tags = this.state.post.metadata.tags;

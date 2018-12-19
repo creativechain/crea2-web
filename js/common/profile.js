@@ -345,6 +345,20 @@ let walletModalDeEnergize;
                     getBuzz: function (reputation) {
                         return crea.formatter.reputation(reputation);
                     },
+                    getFeaturedImage: function (post) {
+                        let featuredImage = post.metadata.featuredImage;
+                        if (featuredImage) {
+                            if (featuredImage.url) {
+                                return featuredImage;
+                            } else {
+                                return {
+                                    url: featuredImage
+                                }
+                            }
+                        }
+
+                        return {};
+                    },
                     getTags: function (post) {
                         let tags = post.metadata.tags;
                         if (tags) {

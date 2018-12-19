@@ -105,7 +105,7 @@
                                     <div class="col-md-4">
                                         <div class="img-more-projects"
                                              v-on:click="showPost(o)"
-                                             v-bind:style="{ 'background-image': 'url(' + o.metadata.featuredImage + ')' }"></div>
+                                             v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
                                     </div>
                                 </template>
                             </div>
