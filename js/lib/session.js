@@ -74,7 +74,7 @@ class Session {
      * @param role
      * @returns {Session}
      */
-    static create(username, password, role='owner') {
+    static create(username, password, role) {
         let account = Account.generate(username, password, role);
         return new Session(account);
     }

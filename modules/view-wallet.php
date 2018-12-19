@@ -465,45 +465,50 @@
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>{{ lang.CHANGE_PASSWORD.ACCOUNT_NAME }}</label>
-                                <input class="validate-required" disabled type="text" v-bind:value="session.account.username"/>
+                                <input class="validate-required" disabled type="text" v-model="changePass.username"/>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>{{ lang.CHANGE_PASSWORD.CURRENT_PASSWORD }}</label>
-                                <label class="float-right"><a href="" class="type--uppercase color--primary button-recover-account">Recuperar contraseña</a></label>
-                                <input class="validate-required" type="password" placeholder="Contraseña"/>
+                                <label class="float-right"><a href="" class="type--uppercase color--primary button-recover-account">{{ lang.CHANGE_PASSWORD.ACCOUNT_RECOVERY }}</a></label>
+                                <input v-model="changePass.oldPass" class="validate-required" type="password" v-bind:placeholder="lang.CHANGE_PASSWORD.PASSWORD"/>
                             </div>
-                            <div class="col-md-4 mt-3">
-                                <label>CONTRASEÑA GENERADA</label>
-                                <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <label>{{ lang.CHANGE_PASSWORD.PASSWORD_CREATED }}</label>
+                                <input v-if="changePass.newPass" v-model="changePass.newPass" class="validate-required" type="text" v-bind:placeholder="lang.CHANGE_PASSWORD.PASSWORD" readonly/>
+
+                                <div v-else class="row">
                                     <div class="col-md-12">
-                                        <a class="btn btn--sm btn--black mt-3" href="">
-                                            <span class="btn__text">Confirmar contraseña</span>
-                                        </a>
+                                        <div v-on:click="suggestPassword" class="btn btn--sm btn--black mt-3 cursor">
+                                            <span class="btn__text">{{ lang.CHANGE_PASSWORD.CONFIRM_PASSWORD }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 mt-3">
-                                <label>REINTRODUCE LA CONTRASEÑA GENERADA</label>
-                                <input class="validate-required" type="password" placeholder="Contraseña"/>
+                                <label>{{ lang.CHANGE_PASSWORD.INSERT_PASSWORD_CREATED }}</label>
+                                <input v-model="changePass.matchedPass" class="validate-required" type="password" v-bind:placeholder="lang.CHANGE_PASSWORD.PASSWORD"/>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="input-checkbox">
-                                    <input id="" type="checkbox" name="" />
-                                    <label for=""></label>
+                                    <input id="change-pass-understand" v-model="changePass.checkedLostPass" type="checkbox" />
+                                    <label for="change-pass-understand"></label>
                                 </div>
                                 <span>{{ lang.CHANGE_PASSWORD.RADIO_INPUT_UNDERSTAND }}</span>
                             </div>
                             <div class="col-md-12">
                                 <div class="input-checkbox">
-                                    <input id="" type="checkbox" name="" />
-                                    <label for=""></label>
+                                    <input id="change-pass-safely" v-model="changePass.checkedStoredPass" type="checkbox" />
+                                    <label for="change-pass-safely"></label>
                                 </div>
                                 <span>{{ lang.CHANGE_PASSWORD.RADIO_INPUT_SAFELY }}</span>
                             </div>
+                            <div v-if="changePass.error" class="col-md-4 mt-3 error-color-form">
+                                {{ changePass.error }}
+                            </div>
                             <div class="col-md-4 mt-3">
-                                <a class="btn btn--sm btn--primary" href="">
-                                    <span class="btn__text">Actualizar contraseña</span>
-                                </a>
+                                <div class="btn btn--sm btn--primary cursor" v-on:click="changePassword">
+                                    <span class="btn__text">{{ lang.CHANGE_PASSWORD.UPDATE_PASSWORD }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

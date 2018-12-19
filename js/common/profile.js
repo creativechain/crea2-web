@@ -231,6 +231,15 @@ let walletModalDeEnergize;
                         owner: false,
                         memo: false
                     },
+                    changePass: {
+                        username: session ? session.account.username : null,
+                        oldPass: null,
+                        newPass: null,
+                        matchedPass: null,
+                        checkedLostPass: false,
+                        checkedStoredPass: false,
+                        error: null
+                    },
                     nextDeEnergize: nextDeEnergize,
                 },
                 updated: function () {
@@ -446,8 +455,64 @@ let walletModalDeEnergize;
 
                         $('#profile-edit-input-avatar').click();
                     },
+                    suggestPassword: function() {
+                        this.changePass.newPass = 'P' + crea.formatter.createSuggestedPassword();
+                    },
                     claimRewards: claimRewards,
-                    sendAccountUpdate: sendAccountUpdate
+                    sendAccountUpdate: sendAccountUpdate,
+                    changePassword: function () {
+                        let that = this;
+
+                        let setError = function (error) {
+                            that.changePass.error = error;
+                            globalLoading.show = false;
+                        };
+
+                        globalLoading.show = true;
+                        //Check current password
+                        if (this.changePass.oldPass) {
+
+                            //Check if passwords match
+                            if (this.changePass.newPass && this.changePass.newPass === this.changePass.matchedPass) {
+
+                                //Check radio inputs
+                                if (this.changePass.checkedLostPass && this.changePass.checkedStoredPass) {
+                                    let session = Session.create(this.changePass.username, this.changePass.oldPass);
+
+                                    //Check if current is valid
+                                    session.login(function (err, result) {
+                                        if (err) {
+                                            if (err === Errors.USER_LOGIN_ERROR) {
+                                                setError(that.lang.CHANGE_PASSWORD.ERROR_CURRENT_PASSWORD);
+                                            }
+                                        } else {
+                                            //Current pass is valid
+
+                                            let keys = Account.generate(that.changePass.username, that.changePass.newPass).keys;
+
+                                            sendAccountUpdate(keys, function (err, result) {
+                                                let s = Session.getAlive();
+                                                if (s) {
+                                                    s.logout();
+                                                    goTo('/');
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                } else {
+                                    setError(that.lang.CHANGE_PASSWORD.ERROR_CONDITIONS);
+                                }
+
+                            } else {
+                                setError(that.lang.CHANGE_PASSWORD.ERROR_MATCHED_PASSWORDS);
+                            }
+
+                        } else {
+                            setError(that.lang.CHANGE_PASSWORD.ERROR_CURRENT_PASSWORD);
+                        }
+
+                    }
                 }
             });
         } else {
@@ -458,6 +523,7 @@ let walletModalDeEnergize;
             profileContainer.filter = usernameFilter;
             profileContainer.profile = state.user.metadata;
             profileContainer.navbar.section = navSection;
+            profileContainer.changePass.username = session ? session.account.username : null;
         }
 
         profileContainer.$forceUpdate();
@@ -629,21 +695,43 @@ let walletModalDeEnergize;
         fetchRewards(session);
     }
 
-    function sendAccountUpdate() {
+    function sendAccountUpdate(keys, callback) {
         let session = Session.getAlive();
-        let metadata = profileContainer.profile;
-        metadata.tags = $('#profile-edit-tags').val().split(' ');
-        metadata = jsonstring(metadata);
-        crea.broadcast.accountUpdate(session.account.keys.owner.prv, session.account.username,
-            createAuth(session.account.keys.owner.pub), createAuth(session.account.keys.active.pub),
-            createAuth(session.account.keys.posting.pub), session.account.keys.memo.pub,
-            metadata, function (err, data) {
-                if (err) {
-                    console.error(err);
-                } else {
-                    updateUserSession();
+
+        if (session) {
+            let metadata = profileContainer.profile;
+            metadata.tags = $('#profile-edit-tags').val().split(' ');
+            metadata = jsonstring(metadata);
+
+            if (!keys) {
+                keys = session.account.keys;
+            }
+
+            crea.broadcast.accountUpdate(session.account.keys.owner.prv, session.account.username,
+                createAuth(keys.owner.pub), createAuth(keys.active.pub),
+                createAuth(keys.posting.pub), keys.memo.pub, metadata,
+                function (err, data) {
+                    globalLoading.show = false;
+                    if (err) {
+                        console.error(err);
+                        if (callback) {
+                            callback(err);
+                        }
+                    } else {
+                        updateUserSession();
+                        if (callback) {
+                            callback(null, data);
+                        }
+                    }
                 }
-            })
+            )
+        } else {
+            globalLoading.show = false;
+            if (callback) {
+                callback(Errors.USER_NOT_LOGGED);
+            }
+        }
+
     }
 
     /**

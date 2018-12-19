@@ -6,9 +6,10 @@ const DEFAULT_ROLES = ['posting', 'active', 'owner', 'memo'];
 
 class Account {
 
-    constructor(username, keys) {
+    constructor(username, keys, role) {
         this.username = username;
         this.keys = keys;
+        this.role = role;
     }
 
     /**
@@ -18,7 +19,7 @@ class Account {
      * @param role
      * @returns {Account}
      */
-    static generate(username, password, role='owner') {
+    static generate(username, password, role) {
         if (crea.auth.isWif(password)) {
             let keys = {};
             if (DEFAULT_ROLES.indexOf(role)) {
@@ -26,7 +27,7 @@ class Account {
                     prv: password,
                     pub: crea.auth.wifToPublic(password)
                 };
-                return new Account(username, keys);
+                return new Account(username, keys, role);
             }
 
             throw 'Role not valid: ' + roles;

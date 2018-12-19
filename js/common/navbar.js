@@ -58,7 +58,8 @@ let navbarContainer;
                     },
                     logout: logout,
                     login: function (event) {
-                        event.preventDefault();
+                        cancelEventPropagation(event);
+
                         let that = this;
                         if (!this.loginForm.username.error) {
                             login(this.loginForm.username.value, this.loginForm.password.value, function (err) {
