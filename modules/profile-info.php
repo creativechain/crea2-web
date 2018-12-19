@@ -51,17 +51,8 @@
     </div>
     <hr>
     <div class="row profile-summary">
-        <div class="col-md-7">
-            <p>
-                <img src="/img/icons/like.svg" alt="">
-                <span>{{ lang.PROFILE.LIKES }}</span>
-            </p>
-        </div>
-        <div class="col-md-5 text-right">
-            <p>0</p>
-        </div>
 
-        <div class="col-md-7">
+<!--        <div class="col-md-7">
             <p>
                 <img src="/img/icons/comments.svg" alt="">
                 <span>{{ lang.PROFILE.COMMENTS }}</span>
@@ -69,7 +60,7 @@
         </div>
         <div class="col-md-5 text-right">
             <p>{{ state.user.comment_count }}</p>
-        </div>
+        </div>-->
 
         <div class="col-md-7">
             <p>
@@ -106,7 +97,7 @@
     <div class="row profile-tags">
         <div class="col">
             <p class="title-tags">Tags</p>
-            <span> {{ profile.tags ? profile.tags.join(', ') : '' }}</span>
+            <span v-html="getLinkedTags(profile.tags, true)"></span>
         </div>
     </div>
     <hr v-if="!isUserProfile()">

@@ -368,6 +368,21 @@ let walletModalDeEnergize;
 
                         return '';
                     },
+                    getLinkedTags: function(tags, asString) {
+                        //<a v-bind:href="'/popular/' + x">{{ x }}</a>
+                        let linkedTags = [];
+                        if (tags) {
+                            tags.forEach(function (t) {
+                                linkedTags.push(`<a href="/popular/${t}">${t}</a>`)
+                            });
+
+                            if (asString) {
+                                return linkedTags.join(', ');
+                            }
+                        }
+
+                        return linkedTags;
+                    },
                     hasPaid: function (post) {
                         let now = new Date();
                         let payout = toLocaleDate(post.cashout_time);
