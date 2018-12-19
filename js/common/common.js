@@ -110,6 +110,8 @@ function resolveFilter(filter) {
         return filter.replace('/popular', '/trending');
     } else if (filter.startsWith('/skyrockets')) {
         return filter.replace('/skyrockets', '/hot');
+    } else if (filter.startsWith('/now')) {
+        return filter.replace('/now', '/created');
     }
 
     return filter;

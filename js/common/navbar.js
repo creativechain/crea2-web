@@ -149,7 +149,7 @@ let navbarContainer;
     }
 
     function retrieveNewContent(event) {
-        retrieveContent(event, "/created");
+        retrieveContent(event, "/now");
     }
 
     function retrieveTrendingContent(event) {

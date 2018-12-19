@@ -256,7 +256,7 @@
                             </li>
                             <li><a href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
                             <li><a href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
-                            <li><a href="/created" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
+                            <li><a href="/now" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
                             <li><a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
                         </ul>
                     </div>
