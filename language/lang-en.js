@@ -172,7 +172,7 @@ let lang = {
         "SEND": "Send",
         "CLAIM_REWARDS": "Settle accounts (transfer to balance)",
         "CONFIRM": "Confirm",
-        "REPORT": "Confirm",
+        "REPORT": "Report content",
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",
