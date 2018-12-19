@@ -120,7 +120,7 @@ let navbarContainer;
      */
     function isInHome() {
         let filters = ['/hot', '/trending', '/trending30', '/created', '/promoted', '/votes', '/actives', '/cashout',
-            '/responses', '/payout', '/payout_comments', '/skyrockets', '/popular'];
+            '/responses', '/payout', '/payout_comments', '/skyrockets', '/popular', '/now'];
 
         //Check if path is user feed
         let s = Session.getAlive();
@@ -132,8 +132,8 @@ let navbarContainer;
     }
 
     function retrieveContent(event, urlFilter) {
-        if (event && isInHome()) {
-            event.preventDefault();
+        if (isInHome()) {
+            cancelEventPropagation(event);
         }
 
         let filter = resolveFilter(urlFilter);

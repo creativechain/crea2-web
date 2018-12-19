@@ -524,7 +524,7 @@ Vue.component('btn-follow',  {
 
     },
     data: function () {
-        console.log('btn-follow', this.$props)
+        //console.log('btn-follow', this.$props)
         return {
             lang: lang,
             over: false,
