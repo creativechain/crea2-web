@@ -440,7 +440,11 @@ let walletModalDeEnergize;
                         if (files.length > 0) {
                             globalLoading.show = true;
                             let that = this;
-                            uploadToIpfs(files[0], function (err, file) {
+                            let file = files[0];
+
+                            let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
+
+                            uploadToIpfs(files[0], maximumSize, function (err, file) {
                                 globalLoading.show = false;
                                 if (err) {
                                     console.error(err);
