@@ -137,10 +137,10 @@ let publishContainer;
                     if (files.length > 0) {
                         globalLoading.show = true;
 
-                        let file = files[0];
+                        let loadedFile = files[0];
                         let maximumSize = CONSTANTS.FILE_MAX_SIZE.DOWNLOAD;
 
-                        uploadToIpfs(file, maximumSize, function (err, file) {
+                        uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
                             if (err) {
                                 console.error(err);
@@ -156,10 +156,10 @@ let publishContainer;
                     if (files.length > 0) {
                         globalLoading.show = true;
 
-                        let file = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
+                        let loadedFile = files[0];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
 
-                        uploadToIpfs(file, maximumSize, function (err, file) {
+                        uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
                             if (err) {
                                 console.error(err);
@@ -174,10 +174,10 @@ let publishContainer;
                     if (files.length > 0) {
                         globalLoading.show = true;
 
-                        let file = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
+                        let loadedFile = files[0];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
 
-                        uploadToIpfs(file, maximumSize, function (err, file) {
+                        uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
                             if (err) {
                                 console.error(err);
