@@ -524,7 +524,7 @@ let walletModalDeEnergize;
 
                                             let keys = Account.generate(that.changePass.username, that.changePass.newPass).keys;
 
-                                            sendAccountUpdate(keys, function (err, result) {
+                                            sendAccountUpdate(null, keys, function (err, result) {
                                                 let s = Session.getAlive();
                                                 if (s) {
                                                     s.logout();
@@ -729,7 +729,7 @@ let walletModalDeEnergize;
         fetchRewards(session);
     }
 
-    function sendAccountUpdate(keys, callback) {
+    function sendAccountUpdate(event, keys, callback) {
         let session = Session.getAlive();
 
         if (session) {
@@ -741,6 +741,7 @@ let walletModalDeEnergize;
                 keys = session.account.keys;
             }
 
+            console.log(keys);
             crea.broadcast.accountUpdate(session.account.keys.owner.prv, session.account.username,
                 createAuth(keys.owner.pub), createAuth(keys.active.pub),
                 createAuth(keys.posting.pub), keys.memo.pub, metadata,
