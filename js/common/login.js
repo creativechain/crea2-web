@@ -40,7 +40,23 @@ function login(username, password, callback) {
             }
         } else {
             session.save();
+
+            let count = 2;
+            let onTaskEnded = function (session, account) {
+
+                --count;
+
+                if (count === 0) {
+                    creaEvents.emit('crea.session.login', session, account);
+                    if (callback) {
+                        callback(null, session, account);
+                    }
+                }
+            };
+
             let followings = [];
+            let blockeds = [];
+
             crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
                 if (err) {
                     console.error(err);
@@ -49,10 +65,19 @@ function login(username, password, callback) {
                         followings.push(f.following);
                     });
                     account.user.followings = followings;
-                    creaEvents.emit('crea.session.login', session, account);
-                    if (callback) {
-                        callback(null, session, account);
-                    }
+                    onTaskEnded(session, account);
+                }
+            });
+
+            crea.api.getFollowing(session.account.username, '', 'silent', 1000, function (err, result) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    result.following.forEach(function (f) {
+                        blockeds.push(f.following);
+                    });
+                    account.user.blockeds = blockeds;
+                    onTaskEnded(session, account)
                 }
             });
 

@@ -159,6 +159,7 @@ let publishContainer;
                         let loadedFile = files[0];
                         let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
 
+                        console.log('file:', loadedFile, 'MaxSize:', maximumSize);
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
                             if (err) {

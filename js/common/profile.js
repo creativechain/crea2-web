@@ -75,7 +75,8 @@ let walletModalDeEnergize;
                         cancelEventPropagation(event);
 
                         globalLoading.show = true;
-                        let vests = cgyToVests(this.state, this.finalAmount);
+                        let finalAmount = this.finalAmount + ' CREA';
+                        let vests = cgyToVests(this.state, finalAmount);
                         let that = this;
                         crea.broadcast.withdrawVesting(this.session.account.keys.active.prv, this.session.account.username, vests.toFriendlyString(), function (err, result) {
                             globalLoading.show = false;

@@ -255,6 +255,7 @@ function uploadToIpfs(file, maxSize, callback) {
                 };
 
                 let fileData = toBuffer(fr.result);
+                console.log(fr.result.byteLength, fileData.length);
                 ipfs.files.add(fileData, {progress: progress}, function (err, files) {
 
                     if (err) {
