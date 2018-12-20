@@ -244,11 +244,32 @@ function uploadToIpfs(file, maxSize, callback) {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         if (file.size <= maxSize) {
-            let fileName = file.name;
-            let mimeType = file.type;
-            let fr = new FileReader();
+            //let fr = new FileReader();
 
-            fr.onload = function (loadedFile) {
+            refreshAccessToken(function (accessToken) {
+                let http = new HttpClient('https://platform.creativechain.net/ipfs');
+                http.setHeaders({
+                    Authorization: 'Bearer ' + accessToken
+                }).post({
+                    file: file
+                }).on('done', function (data) {
+                    data = jsonify(data);
+                    console.log(data);
+                    if (callback) {
+                        let f = new IpfsFile(data.data.hash, file.name, file.type, file.size);
+                        callback(null, f);
+                    }
+                });
+
+                http.on('fail', function (jqXHR, textStatus, errorThrown) {
+                    if (callback) {
+                        callback(errorThrown)
+                    }
+                })
+
+            });
+
+/*            fr.onload = function (loadedFile) {
 
                 let progress = function (uploaded) {
                     console.log('Progress', uploaded);
@@ -273,7 +294,7 @@ function uploadToIpfs(file, maxSize, callback) {
 
                 });
             };
-            fr.readAsArrayBuffer(file);
+            fr.readAsArrayBuffer(file);*/
         } else {
             globalLoading.show = false;
             console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maxSize);
