@@ -27,7 +27,7 @@
                     id: null,
                     title: '',
                     inputs: clone(defaultData),
-                    show: true
+                    show: false
                 },
                 methods: {
                     cleanModal: function () {
