@@ -69,7 +69,7 @@ function login(username, password, callback) {
                 }
             });
 
-            crea.api.getFollowing(session.account.username, '', 'silent', 1000, function (err, result) {
+            crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, result) {
                 if (err) {
                     console.error(err);
                 } else {
