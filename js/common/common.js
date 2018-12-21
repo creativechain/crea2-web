@@ -309,13 +309,14 @@ function uploadToIpfs(file, maxSize, callback) {
 
 /**
  *
- * @param {string} resource
+ * @param {string} url
  * @param {string} filename
  */
-function downloadFile(resource, filename) {
+function downloadFile(url, filename) {
     let element = document.createElement('a');
-    element.setAttribute('href', resource);
+    element.setAttribute('href', url);
     element.setAttribute('download', filename);
+    element.setAttribute('target', '_blank');
 
     element.style.display = 'none';
     document.body.appendChild(element);

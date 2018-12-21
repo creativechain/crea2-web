@@ -252,9 +252,13 @@ let promoteModal;
                         if (err) {
                             console.error(err);
                         } else {
-                            let win = window.open(result.resource, '_blank');
-                            win.focus();
-                            //downloadFile(result.resource, post.download.name);
+                            let re = /Qm[a-zA-Z0-9]+/;
+                            let hash = re.exec(result.resource)[0];
+                            console.log(hash);
+
+                            let url = apiOptions.ipfsd + post.download.type + '/' + hash + '/' + post.download.name;
+                            url += '?stream=false';
+                            downloadFile(url, post.download.name);
                         }
                     })
                 }, 3000);

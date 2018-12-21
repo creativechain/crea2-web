@@ -7,6 +7,7 @@ let localNode = 'http://cn.localhost';
 let apiOptions = {
     url: false ? localNode : 'https://crea.owldevelopers.site',
     ipfs: 'https://ipfs.creary.net',
+    ipfsd: 'https://platform.creativechain.net/ipfs/',
     addressPrefix: 'CREA',
     symbol: {
         CREA: 'CREA',
