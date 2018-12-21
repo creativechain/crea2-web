@@ -53,7 +53,7 @@
         <div v-if="showEditor" class="row mt-3" style="z-index: 1;position: relative;">
             <div class="col-md-12 text-right">
                 <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
-                    <span class="btn__text text__dark">{{ lang.BUTTON.CONTINUE }}</span>
+                    <span class="btn__text text__dark">{{ lang.BUTTON.SAVE }}</span>
                 </div>
             </div>
         </div>
