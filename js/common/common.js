@@ -316,7 +316,7 @@ function downloadFile(url, filename) {
     let element = document.createElement('a');
     element.setAttribute('href', url);
     element.setAttribute('download', filename);
-    element.setAttribute('target', '_blank');
+    //element.setAttribute('target', '_blank');
 
     element.style.display = 'none';
     document.body.appendChild(element);

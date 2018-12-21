@@ -47,16 +47,16 @@
                                 <div class="modal-close modal-close-cross"></div>
                                 <h3>{{ lang.LOGIN.TITLE }}</h3>
                                 <div class="feature__body">
-                                    <form id="login-form" action="#0" v-on:submit="fetchKey" class="content-login">
+                                    <form action="#0" v-on:submit="fetchKey" class="content-login">
                                         <div class="row">
                                             <div class="col-md-12 text-left">
-                                                <input id="login-username" v-model="inputs.username.value"
+                                                <input v-model="inputs.username.value"
                                                        v-on:input="checkUsername"
                                                        type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
                                                 <span class="error-color-form">{{ inputs.username.error || ' ' }}</span>
                                             </div>
                                             <div class="col-md-12 text-left">
-                                                <input id="login-password" v-model="inputs.password.value"
+                                                <input v-model="inputs.password.value"
                                                        type="password" v-bind:placeholder="lang.LOGIN.PASSWORD"/>
                                                 <span class="error-color-form">{{ inputs.password.error || ' ' }}</span>
                                             </div>
