@@ -35,6 +35,57 @@
     </div>
 </div>
 
+<div class="modal-instance">
+
+    <div id="modal-role" class="modal-container" v-bind:class="{'modal-active': show}">
+        <div class="modal-content section-modal">
+            <section class="unpad ">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="boxed boxed--lg bg--white text-center feature">
+                                <div class="modal-close modal-close-cross"></div>
+                                <h3>{{ lang.LOGIN.TITLE }}</h3>
+                                <div class="feature__body">
+                                    <form id="login-form" action="#0" v-on:submit="fetchKey" class="content-login">
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input id="login-username" v-model="inputs.username.value"
+                                                       v-on:input="checkUsername"
+                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                <span class="error-color-form">{{ inputs.username.error || ' ' }}</span>
+                                            </div>
+                                            <div class="col-md-12 text-left">
+                                                <input id="login-password" v-model="inputs.password.value"
+                                                       type="password" v-bind:placeholder="lang.LOGIN.PASSWORD"/>
+                                                <span class="error-color-form">{{ inputs.password.error || ' ' }}</span>
+                                            </div>
+                                            <div class="col m-2">
+                                                <a class="btn btn--transparent w-100" href="#" v-on:click="closeModal">
+                                                    <span class="btn__text color--dark">{{ lang.BUTTON.CANCEL }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="col m-2">
+                                                <a class="btn btn--primary w-100" href="#" v-on:click="fetchKey">
+                                                    <span class="btn__text">{{ lang.BUTTON.LOGIN }}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--end of row-->
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -73,6 +124,7 @@
 
 <script src="/js/custom.js"></script>
 
+<script src="/js/common/modals.js"></script>
 <script src="/js/common/setup.js"></script>
 
 </body>
