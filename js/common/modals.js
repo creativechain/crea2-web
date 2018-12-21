@@ -59,6 +59,19 @@
                     },
                     fetchKey: function (event) {
                         cancelEventPropagation(event);
+
+                        let username = this.inputs.username.value.split('/')[0];
+                        let role = this.inputs.username.value.split('/')[0];
+                        let password = this.inputs.password.value;
+
+                        let s = Session.create(username, password, role);
+                        s.login(function (err, result) {
+                            if (err) {
+                                console.error(err);
+                            } else {
+
+                            }
+                        })
                     }
                 }
             })

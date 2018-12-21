@@ -20,7 +20,7 @@ class Account {
      * @returns {Account}
      */
     static generate(username, password, role) {
-        if (crea.auth.isWif(password)) {
+        if (role) {
             let keys = {};
             if (DEFAULT_ROLES.indexOf(role)) {
                 keys[role] = {
