@@ -15,6 +15,7 @@ let homePosts;
      * @returns {License}
      */
     function showPosts(urlFilter, filter, state) {
+        console.log('Showing posts', state);
         let content = state.content;
         let accounts = state.accounts;
 
@@ -205,8 +206,63 @@ let homePosts;
                 creaEvents.emit('crea.content.filter', '/popular');
             }
         } else {
-            creaEvents.emit('crea.content.filter', path);
+            if (path.startsWith('/search')) {
+                let search = getParameterByName('query');
+                let page = getParameterByName('page');
+                performSearch(search, page, true);
+            } else {
+                creaEvents.emit('crea.content.filter', path);
+            }
         }
     });
+
+    creaEvents.on('crea.search.content', function (data) {
+
+        let searchState = {
+            content: {},
+            accounts: {},
+            discussion: []
+        };
+
+        let count = 0;
+        let onFinish = function (state) {
+            count++;
+
+            console.log('Finished:', count, data.length);
+            if (count >= data.length) {
+                console.log(state);
+                state.content = searchState.content;
+                state.accounts = searchState.accounts;
+                state.discussion_idx[""] = {};
+                state.discussion_idx[""].search = searchState.discussion;
+                creaEvents.emit('crea.posts', '/search', 'search', state);
+                console.log('Sended posts');
+            }
+        };
+
+        for (let x  = 0; x < data.length; x++) {
+
+            let getState = function (r) {
+                let permalink = r.author + '/' + r.permlink;
+                let url = '/' + r.tags[0] + '/@' + permalink;
+
+                crea.api.getState(url, function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        getState(r);
+                    } else  {
+                        searchState.discussion.push(permalink);
+                        searchState.accounts[r.author] = result.accounts[r.author];
+                        searchState.content[permalink] = result.content[permalink];
+                        onFinish(result);
+                    }
+                })
+            };
+
+            getState(data[x]);
+
+        }
+    });
+
 })();
 

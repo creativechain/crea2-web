@@ -207,10 +207,10 @@
 
 <div v-cloak id="navbar-search" class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
      data-notification-link="search-box">
-    <form>
+    <form v-on:submit="performSearch">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <input type="search" name="query" v-bind:placeholder="lang.HOME.SEARCH_ACTIVE"/>
+                <input v-model="search" type="text" v-bind:placeholder="lang.HOME.SEARCH_ACTIVE"/>
             </div>
         </div>
     </form>

@@ -27,14 +27,18 @@ class HttpClient extends EventEmitter {
         };
 
         if (this.params) {
-            let form = new FormData();
-            let keys = Object.keys(this.params);
+            if (this.method === 'GET') {
+                settings.processData = true;
+                settings.data = this.params;
+            } else {
+                let form = new FormData();
+                let keys = Object.keys(this.params);
 
-            keys.forEach(function (k) {
-                form.append(k, that.params[k]);
-            });
-
-            settings.data = form;
+                keys.forEach(function (k) {
+                    form.append(k, that.params[k]);
+                });
+                settings.data = form;
+            }
         }
 
         $.ajax(settings)

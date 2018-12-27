@@ -326,6 +326,39 @@ function downloadFile(url, filename) {
     document.body.removeChild(element);
 }
 
+function performSearch(search, page = 1, inHome = false) {
+    if (inHome) {
+        refreshAccessToken(function (accessToken) {
+            let http = new HttpClient('https://platform.creativechain.net/searchCreaContent');
+            http.setHeaders({
+                Authorization: 'Bearer ' + accessToken
+            });
+
+            http.on('done', function (response) {
+                let data = jsonify(response).data;
+
+                for (let x = 0; x < data.length; x++) {
+                    data[x].tags = jsonify(data[x].tags);
+                }
+
+                console.log(data);
+                creaEvents.emit('crea.search.content', data);
+            });
+
+            http.on('fail', function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+            });
+
+            http.get({
+                search: search,
+                page: page
+            });
+        })
+    } else {
+        goTo('/search?query=' + encodeURIComponent(search) + '&page=' + page);
+    }
+}
+
 creaEvents.on('crea.content.prepare', function () {
     globalLoading = new Vue({
         el: '#global-loading',

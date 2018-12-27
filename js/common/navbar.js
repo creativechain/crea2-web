@@ -7,7 +7,24 @@ let navbarContainer;
     let navbarSearch = new Vue({
         el: '#navbar-search',
         data: {
-            lang: lang
+            lang: lang,
+            search: null,
+            page: 1
+        },
+        methods: {
+            reset: function () {
+                this.search = null;
+                this.page = 1;
+            },
+            performSearch: function (event) {
+                cancelEventPropagation(event);
+
+                let that = this;
+                if (this.search) {
+                    performSearch(this.search, this.page, isInHome());
+                }
+
+            }
         }
     });
 
