@@ -20,6 +20,8 @@ let tagsContainer;
             tagsContainer.account = account;
             tagsContainer.state = state;
         }
+
+        creaEvents.emit('crea.dom.ready');
     }
 
     function fetchTags(session, account) {
