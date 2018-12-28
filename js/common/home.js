@@ -233,6 +233,13 @@ let homePosts;
                 console.log(state);
                 state.content = searchState.content;
                 state.accounts = searchState.accounts;
+
+                //Sort by active_votes
+
+                searchState.discussion.sort(function (c1, c2) {
+                    return state.content[c2].active_votes.length - state.content[c1].active_votes.length
+                });
+
                 state.discussion_idx[""] = {};
                 state.discussion_idx[""].search = searchState.discussion;
                 creaEvents.emit('crea.posts', '/search', 'search', state);
