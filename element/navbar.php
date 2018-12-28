@@ -70,7 +70,7 @@
     <div class="side-menu__module">
         <ul class="list--loose list--hover">
             <li>
-                <a href="#">
+                <a href="/faq">
                     <span>{{ lang.DOTS_MENU.FAQ }}</span>
                 </a>
             </li>

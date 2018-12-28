@@ -11,6 +11,7 @@ $router->addRoute('/welcome', 'welcome.php');
 $router->addRoute('/validate', 'welcome.php');
 $router->addRoute('/publish', 'publish.php');
 $router->addRoute('/explore', 'explore.php');
+$router->addRoute('/faq', 'faq.php');
 $router->addRoute('/recover-account', 'recover-account.php');
 $router->addRoute('/404', '404.php');
 $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php'); //
