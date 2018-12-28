@@ -243,7 +243,6 @@ let homePosts;
                 state.discussion_idx[""] = {};
                 state.discussion_idx[""].search = searchState.discussion;
                 creaEvents.emit('crea.posts', '/search', 'search', state);
-                console.log('Sended posts');
             }
         };
 

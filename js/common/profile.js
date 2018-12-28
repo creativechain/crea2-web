@@ -374,7 +374,7 @@ let walletModalDeEnergize;
                         let linkedTags = [];
                         if (tags) {
                             tags.forEach(function (t) {
-                                linkedTags.push(`<a href="/popular/${t}">${t}</a>`)
+                                linkedTags.push('<a href="/search?page=1&query=' + encodeURIComponent(t) + '">' + t + '</a>')
                             });
 
                             if (asString) {
