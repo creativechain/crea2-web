@@ -45,7 +45,7 @@
                         <div class="col-md-6">
                             <div class="boxed boxed--lg bg--white text-center feature">
                                 <div class="modal-close modal-close-cross"></div>
-                                <h3>{{ lang.LOGIN.TITLE }}</h3>
+                                <h3>{{ lang.AUTH_MODAL.TITLE.replace('%s', role) }}</h3>
                                 <div class="feature__body">
                                     <form action="#0" v-on:submit="fetchKey" class="content-login">
                                         <div class="row">

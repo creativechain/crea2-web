@@ -74,19 +74,25 @@ let walletModalDeEnergize;
                     makePowerDown: function (event, amount) {
                         cancelEventPropagation(event);
 
-                        globalLoading.show = true;
-                        let finalAmount = this.finalAmount + ' CREA';
-                        let vests = cgyToVests(this.state, finalAmount);
                         let that = this;
-                        crea.broadcast.withdrawVesting(this.session.account.keys.active.prv, this.session.account.username, vests.toFriendlyString(), function (err, result) {
-                            globalLoading.show = false;
-                            if (err) {
-                                console.error(err);
-                            } else {
-                                that.hideModalDeEnergize();
-                                updateUserSession();
-                            }
+                        let username = this.session.account.username;
+
+                        requireRoleKey(username, 'active', function (activeKey) {
+                            globalLoading.show = true;
+                            let finalAmount = that.finalAmount + ' CREA';
+                            let vests = cgyToVests(that.state, finalAmount);
+
+                            crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(), function (err, result) {
+                                globalLoading.show = false;
+                                if (err) {
+                                    console.error(err);
+                                } else {
+                                    that.hideModalDeEnergize();
+                                    updateUserSession();
+                                }
+                            });
                         });
+
                     }
                 }
             })
@@ -149,16 +155,22 @@ let walletModalDeEnergize;
                             //TODO: SHOW ERRORS
                         } else if (this.config.confirmed) {
                             let that = this;
+
                             let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
-                            globalLoading.show = true;
-                            transfer(this.config.op, this.session, this.config.to, amount, this.memo, function (err, result) {
-                                console.log(err, result);
-                                globalLoading.show  = false;
-                                if (result) {
-                                    updateUserSession();
-                                    that.hideModalSend();
-                                }
+
+                            requireRoleKey(this.session.account.username, 'active', function (activeKey) {
+                                globalLoading.show = true;
+                                transfer(activeKey, that.config.op, that.session, that.config.to, amount, that.memo, function (err, result) {
+                                    console.log(err, result);
+                                    globalLoading.show  = false;
+                                    if (result) {
+                                        updateUserSession();
+                                        that.hideModalSend();
+                                    }
+                                });
                             });
+
+
                         } else {
                             this.config.confirmed = true;
                             this.config.button = this.lang.BUTTON.SEND;
@@ -264,6 +276,13 @@ let walletModalDeEnergize;
                 },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
+                    getPrivKey: function (auth) {
+                        let that = this;
+                        let username = this.session ? this.session.account.username : '';
+                        requireRoleKey(username, auth, function (authKey) {
+                            that.showPriv[auth] = authKey;
+                        });
+                    },
                     getKey: function (auth) {
                         if (this.showPriv[auth] && session) {
                             if (this.session.account.keys[auth]) {
@@ -441,16 +460,23 @@ let walletModalDeEnergize;
                     cancelPowerDown: function (event) {
                         cancelEventPropagation(event);
 
-                        globalLoading.show = true;
-                        let vests = new Vests(0);
-                        crea.broadcast.withdrawVesting(this.session.account.keys.active.prv, this.session.account.username, vests.toFriendlyString(), function (err, result) {
-                            globalLoading.show = false;
-                            if (err) {
-                                console.error(err);
-                            } else {
-                                updateUserSession();
-                            }
-                        });
+                        let username = this.session.account.username;
+
+                        requireRoleKey(username, 'active', function (activeKey) {
+                            globalLoading.show = true;
+                            let vests = new Vests(0);
+
+                            crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(), function (err, result) {
+                                globalLoading.show = false;
+                                if (err) {
+                                    console.error(err);
+                                } else {
+                                    updateUserSession();
+                                }
+                            });
+
+                        })
+
                     },
                     navigateTo: function (event, tab) {
                         cancelEventPropagation(event);
@@ -741,25 +767,29 @@ let walletModalDeEnergize;
                 keys = session.account.keys;
             }
 
-            console.log(keys);
-            crea.broadcast.accountUpdate(session.account.keys.owner.prv, session.account.username,
-                createAuth(keys.owner.pub), createAuth(keys.active.pub),
-                createAuth(keys.posting.pub), keys.memo.pub, metadata,
-                function (err, data) {
-                    globalLoading.show = false;
-                    if (err) {
-                        console.error(err);
-                        if (callback) {
-                            callback(err);
-                        }
-                    } else {
-                        updateUserSession();
-                        if (callback) {
-                            callback(null, data);
+            requireRoleKey(session.account.username, 'owner', function (ownerKey) {
+
+                crea.broadcast.accountUpdate(ownerKey, session.account.username,
+                    createAuth(keys.owner.pub), createAuth(keys.active.pub),
+                    createAuth(keys.posting.pub), keys.memo.pub, metadata,
+                    function (err, data) {
+                        globalLoading.show = false;
+                        if (err) {
+                            console.error(err);
+                            if (callback) {
+                                callback(err);
+                            }
+                        } else {
+                            updateUserSession();
+                            if (callback) {
+                                callback(null, data);
+                            }
                         }
                     }
-                }
-            )
+                )
+
+            });
+
         } else {
             globalLoading.show = false;
             if (callback) {
@@ -947,6 +977,7 @@ let walletModalDeEnergize;
 
     /**
      *
+     * @param {string} wif
      * @param {string} op
      * @param {Session} session
      * @param {string} to
@@ -954,7 +985,7 @@ let walletModalDeEnergize;
      * @param {string} [memo]
      * @param {Function} [callback]
      */
-    function transfer(op, session, to, amount, memo, callback) {
+    function transfer(wif, op, session, to, amount, memo, callback) {
         if (typeof memo === 'function') {
             callback = memo;
             memo = '';
@@ -962,7 +993,6 @@ let walletModalDeEnergize;
 
         if (session) {
             let from = session.account.username;
-            let wif = session.account.keys.active.prv;
 
             switch (op) {
                 case CONSTANTS.TRANSFER.TRANSFER_CREA:

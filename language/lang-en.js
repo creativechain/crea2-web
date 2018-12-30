@@ -455,5 +455,8 @@ let lang = {
         VOTED_FOR: 'Voted for ',
         CREATE_ACCOUNT: ' create account '
     },
+    "AUTH_MODAL": {
+        TITLE: "This action require the %s key"
+    }
 
 };

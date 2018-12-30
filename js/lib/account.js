@@ -6,10 +6,9 @@ const DEFAULT_ROLES = ['posting', 'active', 'owner', 'memo'];
 
 class Account {
 
-    constructor(username, keys, role) {
+    constructor(username, keys) {
         this.username = username;
         this.keys = keys;
-        this.role = role;
     }
 
     /**
@@ -19,41 +18,30 @@ class Account {
      * @param role
      * @returns {Account}
      */
-    static generate(username, password, role) {
+    static generate(username, password, role = 'posting') {
+        let neededRoles = [];
+        let keys = {};
+
         if (role) {
-            let keys = {};
-            if (DEFAULT_ROLES.indexOf(role)) {
-                keys[role] = {
-                    prv: password,
-                    pub: crea.auth.wifToPublic(password)
-                };
-                return new Account(username, keys, role);
+            if (DEFAULT_ROLES.indexOf(role) > -1) {
+                neededRoles.push(role);
+            } else {
+                throw 'Role not valid: ' + role;
             }
 
-            throw 'Role not valid: ' + roles;
         } else {
-            let privKeys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
-
-            let keys = {
-                owner: {
-                    prv: privKeys.owner,
-                    pub: privKeys.ownerPubkey
-                },
-                posting: {
-                    prv: privKeys.posting,
-                    pub: privKeys.postingPubkey
-                },
-                memo: {
-                    prv: privKeys.memo,
-                    pub: privKeys.memoPubkey
-                },
-                active: {
-                    prv: privKeys.active,
-                    pub: privKeys.activePubkey
-                }
-            };
-
-            return new Account(username, keys);
+            neededRoles = DEFAULT_ROLES;
         }
+
+        let privKeys = crea.auth.getPrivateKeys(username, password, neededRoles);
+
+        neededRoles.forEach(function (r) {
+            keys[r] = {
+                prv: privKeys[r],
+                pub: privKeys[r + 'Pubkey']
+            }
+        });
+
+        return new Account(username, keys);
     }
 }

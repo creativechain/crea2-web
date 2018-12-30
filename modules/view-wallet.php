@@ -405,9 +405,9 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <a v-if="session" class="btn btn--sm" href="#0" v-on:click="showPriv.posting = true">
+                                    <div v-if="session" class="btn btn--sm" v-on:click="getPrivKey('posting')">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
-                                    </a>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -417,9 +417,9 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <a v-if="session" class="btn btn--sm" href="#0" v-on:click="showPriv.active = true">
-                                        <span class="btn__text text__dark">Acceder para mostrar</span>
-                                    </a>
+                                    <div v-if="session" class="btn btn--sm" v-on:click="getPrivKey('active')">
+                                        <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -439,9 +439,9 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <a v-if="session" class="btn btn--sm" href="#0" v-on:click="showPriv.memo = true">
+                                    <div v-if="session" class="btn btn--sm" v-on:click="getPrivKey('memo')">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
-                                    </a>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>

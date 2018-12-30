@@ -240,47 +240,55 @@ let publishContainer;
     function makePublication(event) {
         cancelEventPropagation(event);
 
-        //All tags must be lowercase;
-        globalLoading.show = true;
-        let tags = publishContainer.tags;
-        for (let x = 0; x < tags.length; x++)  {
-            tags[x] = tags[x].toLowerCase();
-        }
-
-        let metadata = {
-            description: publishContainer.description,
-            tags: tags,
-            adult: publishContainer.adult,
-            featuredImage: publishContainer.featuredImage,
-            license: publishContainer.getLicense().getFlag()
-        };
-
-        let download = publishContainer.downloadFile;
-        download.price = Asset.parseString(download.price + ' CREA').toFriendlyString();
-        if (!download.resource) {
-            download = '';
-        }
-
-        //Build body
-        let body = jsonstring(publishContainer.bodyElements);
-        let title = publishContainer.title;
-        let permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title);
-
-        console.log(title, body, metadata, download);
         let session = Session.getAlive();
-        crea.broadcast.comment(session.account.keys.posting.prv, '', toPermalink(metadata.tags[0]),
-            session.account.username, permlink, title, body, jsonstring(download), jsonstring(metadata), function (err, result) {
-            if (err) {
-                console.error(err);
-                globalLoading.show = false;
-            } else {
-                console.log(result);
-                let post = {
-                    url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
-                };
-                showPost(post);
+        let username = session.account.username;
+
+        requireRoleKey(username, 'posting', function (postingKey) {
+
+            //All tags must be lowercase;
+            globalLoading.show = true;
+            let tags = publishContainer.tags;
+            for (let x = 0; x < tags.length; x++)  {
+                tags[x] = tags[x].toLowerCase();
             }
-        })
+
+            let metadata = {
+                description: publishContainer.description,
+                tags: tags,
+                adult: publishContainer.adult,
+                featuredImage: publishContainer.featuredImage,
+                license: publishContainer.getLicense().getFlag()
+            };
+
+            let download = publishContainer.downloadFile;
+            download.price = Asset.parseString(download.price + ' CREA').toFriendlyString();
+            if (!download.resource) {
+                download = '';
+            }
+
+            //Build body
+            let body = jsonstring(publishContainer.bodyElements);
+            let title = publishContainer.title;
+            let permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title);
+
+            console.log(title, body, metadata, download);
+
+            crea.broadcast.comment(postingKey, '', toPermalink(metadata.tags[0]), username, permlink, title, body,
+                jsonstring(download), jsonstring(metadata), function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        globalLoading.show = false;
+                    } else {
+                        console.log(result);
+                        let post = {
+                            url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
+                        };
+                        showPost(post);
+                    }
+                })
+
+        });
+
     }
 
     creaEvents.on('crea.content.loaded', function () {

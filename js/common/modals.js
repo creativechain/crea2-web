@@ -10,6 +10,7 @@
 
         let defaultData = {
             username: {
+                disabled: false,
                 value: '',
                 error: null
             },
@@ -26,12 +27,16 @@
                     lang: lang,
                     id: null,
                     title: '',
+                    role: null,
                     inputs: clone(defaultData),
                     show: false
                 },
                 methods: {
                     cleanModal: function () {
                         this.inputs = clone(defaultData);
+                        this.title = '';
+                        this.role = '';
+                        this.id = null;
                     },
                     closeModal: function (event) {
                         cancelEventPropagation(event);
@@ -60,8 +65,9 @@
                     fetchKey: function (event) {
                         cancelEventPropagation(event);
 
+                        let that = this;
                         let username = this.inputs.username.value.split('/')[0];
-                        let role = this.inputs.username.value.split('/')[0];
+                        let role = this.role;
                         let password = this.inputs.password.value;
 
                         let s = Session.create(username, password, role);
@@ -69,7 +75,8 @@
                             if (err) {
                                 console.error(err);
                             } else {
-
+                                creaEvents.emit('crea.auth.role.' + that.id, s.account.keys[role].prv);
+                                that.closeModal();
                             }
                         })
                     }
@@ -81,6 +88,7 @@
     creaEvents.on('crea.auth.role', function (username, role, id) {
         roleModal.id = id;
         roleModal.inputs.username.value = username + '/' + role;
+        roleModal.role = role;
         roleModal.show = true
     });
 

@@ -168,14 +168,18 @@ function ignoreUser(following, ignore, callback) {
         };
 
         followJson = ['follow', followJson];
-        crea.broadcast.customJson(s.account.keys.posting.prv, [], [s.account.username], 'follow', jsonstring(followJson), function (err, result) {
-            if (err) {
-                console.error(err);
-                callback(err);
-            } else {
-                callback(null, result);
-            }
-        })
+
+        requireRoleKey(s.account.username, 'posting', function (postingKey) {
+            crea.broadcast.customJson(postingKey, [], [s.account.username], 'follow', jsonstring(followJson), function (err, result) {
+                if (err) {
+                    console.error(err);
+                    callback(err);
+                } else {
+                    callback(null, result);
+                }
+            })
+        });
+
     } else if (callback) {
         callback(Errors.USER_NOT_LOGGED)
     }
@@ -357,6 +361,36 @@ function performSearch(search, page = 1, inHome = false) {
     } else {
         goTo('/search?query=' + encodeURIComponent(search) + '&page=' + page);
     }
+}
+
+/**
+ *
+ * @param {string} username
+ * @param {string} role
+ * @param {function} callback
+ */
+function requireRoleKey(username, role, callback) {
+
+    if (callback) {
+        let id = randomNumber(0, Number.MAX_SAFE_INTEGER);
+
+        let session = Session.getAlive();
+        if (session && session.account.keys[role]) {
+            callback(session.account.keys[role].prv);
+        } else {
+            creaEvents.on('crea.auth.role.' + id, function (roleKey) {
+                if (callback) {
+                    callback(roleKey);
+                }
+
+                creaEvents.off('crea.auth.role.' + id);
+            });
+
+            creaEvents.emit('crea.auth.role', username, role, id);
+        }
+
+    }
+
 }
 
 creaEvents.on('crea.content.prepare', function () {

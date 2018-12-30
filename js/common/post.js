@@ -43,16 +43,18 @@ let promoteModal;
 
                         globalLoading.show = true;
                         let that = this;
-                        crea.broadcast.transfer(this.session.account.keys.active.prv, from, to, amount, memo, function (err, result) {
-                            globalLoading.show = false;
-                            if (err) {
-                                console.error(err);
-                            } else {
-                                that.hideModalPromote();
-                                updateUserSession();
-                            }
-                        });
 
+                        requireRoleKey(from, 'active', function (activeKey) {
+                            crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
+                                globalLoading.show = false;
+                                if (err) {
+                                    console.error(err);
+                                } else {
+                                    that.hideModalPromote();
+                                    updateUserSession();
+                                }
+                            });
+                        });
                     }
                 }
             })
@@ -170,19 +172,22 @@ let promoteModal;
                     vote: function (weight) {
                         //TODO: SHOW ALERT CONFIRMATION
                         if (this.session) {
-                            let wif = this.session.account.keys.posting.prv;
+                            let that = this;
                             let username = this.session.account.username;
 
-                            globalLoading.show = true;
-                            crea.broadcast.vote(wif, username, this.state.post.author, this.state.post.permlink, weight, function (err, result) {
-                                globalLoading.show = false;
-                                if (err) {
-                                    console.error(err);
-                                }
+                            requireRoleKey(username, 'posting', function (postingKey) {
+                                globalLoading.show = true;
+                                crea.broadcast.vote(postingKey, username, that.state.post.author, that.state.post.permlink, weight, function (err, result) {
+                                    globalLoading.show = false;
+                                    if (err) {
+                                        console.error(err);
+                                    }
 
-                                fetchContent();
+                                    fetchContent();
 
-                            })
+                                })
+                            });
+
                         }
 
                     },
@@ -207,24 +212,29 @@ let promoteModal;
         let session = Session.getAlive();
         let comment = postContainer.comment;
         if (session && comment.length > 0) {
-            globalLoading.show = true;
-            let parentAuthor = postContainer.state.post.author;
-            let parentPermlink = postContainer.state.post.permlink;
-            let permlink = crea.formatter.commentPermlink(parentAuthor, parentPermlink);
-            let metadata = {
-                tags: [postContainer.state.post.metadata.tags[0]]
-            };
-            crea.broadcast.comment(session.account.keys.posting.prv, parentAuthor, parentPermlink, session.account.username,
-                permlink, '', comment, '', jsonstring(metadata), function (err, result) {
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        postContainer.comment = '';
-                        fetchContent();
-                    }
 
-                    globalLoading.show = false;
-                })
+            requireRoleKey(session.account.username, 'posting', function (postingKey) {
+                globalLoading.show = true;
+                let parentAuthor = postContainer.state.post.author;
+                let parentPermlink = postContainer.state.post.permlink;
+                let permlink = crea.formatter.commentPermlink(parentAuthor, parentPermlink);
+                let metadata = {
+                    tags: [postContainer.state.post.metadata.tags[0]]
+                };
+
+                crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username,
+                    permlink, '', comment, '', jsonstring(metadata), function (err, result) {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            postContainer.comment = '';
+                            fetchContent();
+                        }
+
+                        globalLoading.show = false;
+                    })
+            });
+
         }
 
     }
@@ -237,52 +247,56 @@ let promoteModal;
         let post = postContainer.state.post;
         if (session) {
 
-            globalLoading.show = true;
-            let downloadResource = function () {
-                setTimeout(function () {
-                    let authorBuff = Buffer.from(post.author);
-                    let permlinkBuff = Buffer.from(post.permlink);
-                    let buff = Buffer.concat([authorBuff, permlinkBuff]);
-                    let signature = crea.utils.Signature.signBuffer(buff, session.account.keys.posting.prv);
-                    let s64 = signature.toBuffer().toString('base64');
+            requireRoleKey(session.account.username, 'posting', function (postingKey) {
+                globalLoading.show = true;
+                let downloadResource = function () {
+                    setTimeout(function () {
+                        let authorBuff = Buffer.from(post.author);
+                        let permlinkBuff = Buffer.from(post.permlink);
+                        let buff = Buffer.concat([authorBuff, permlinkBuff]);
+                        let signature = crea.utils.Signature.signBuffer(buff, postingKey);
+                        let s64 = signature.toBuffer().toString('base64');
 
-                    crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
-                        globalLoading.show = false;
-
-                        if (err) {
-                            console.error(err);
-                        } else {
-                            let re = /Qm[a-zA-Z0-9]+/;
-                            let hash = re.exec(result.resource)[0];
-                            console.log(hash);
-
-                            let url = apiOptions.ipfsd + post.download.type + '/' + hash + '/' + post.download.name;
-                            url += '?stream=false';
-                            downloadFile(url, post.download.name);
-                        }
-                    })
-                }, 3000);
-            };
-
-            let payDownload = function () {
-                crea.broadcast.commentDownload(session.account.keys.posting.prv, session.account.username,
-                    post.author, post.permlink, function (err, result) {
-                        if (err) {
-                            console.error(err);
+                        crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
                             globalLoading.show = false;
-                        } else {
-                            downloadResource();
-                            fetchContent();
-                        }
-                    })
-            };
 
-            if (post.download.downloaders.includes(user.name)) {
-                //Download paid
-                downloadResource();
-            } else {
-                payDownload();
-            }
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                let re = /Qm[a-zA-Z0-9]+/;
+                                let hash = re.exec(result.resource)[0];
+                                console.log(hash);
+
+                                let url = apiOptions.ipfsd + post.download.type + '/' + hash + '/' + post.download.name;
+                                url += '?stream=false';
+                                downloadFile(url, post.download.name);
+                            }
+                        })
+                    }, 3000);
+                };
+
+                let payDownload = function () {
+                    crea.broadcast.commentDownload(postingKey, session.account.username,
+                        post.author, post.permlink, function (err, result) {
+                            if (err) {
+                                console.error(err);
+                                globalLoading.show = false;
+                            } else {
+                                downloadResource();
+                                fetchContent();
+                            }
+                        })
+                };
+
+                if (post.download.downloaders.includes(user.name)) {
+                    //Download paid
+                    downloadResource();
+                } else {
+                    payDownload();
+                }
+            });
+
+
         }
 
     }

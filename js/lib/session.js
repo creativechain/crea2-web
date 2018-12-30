@@ -30,16 +30,14 @@ class Session {
                 let logged = true;
 
                 auths.forEach(function (auth) {
-                    if (that.account.keys[auth]) {
-                        let pubKey;
-                        if (auth == 'memo') {
-                            pubKey = accountData.user[auth + '_key'];
-                        } else {
-                            pubKey = accountData.user[auth].key_auths[0][0];
-                        }
-                        logged = logged && that.account.keys[auth].pub == pubKey;
-                        console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
+                    let pubKey;
+                    if (auth == 'memo') {
+                        pubKey = accountData.user[auth + '_key'];
+                    } else {
+                        pubKey = accountData.user[auth].key_auths[0][0];
                     }
+                    logged = logged && that.account.keys[auth].pub == pubKey;
+                    console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
                 });
 
                 if (logged) {
