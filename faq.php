@@ -6,8 +6,8 @@
     <section v-cloak id="faq-container">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-lg-7">
-                    <ul class="results-list">
+                <div class="col-md-8 col-lg-8">
+                    <ul class="results-list text-justify">
                         <template v-for="cat in faq.CATEGORIES">
 
                             <li v-for="q in faq.QUESTIONS[cat]">

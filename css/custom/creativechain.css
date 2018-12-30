@@ -1021,6 +1021,10 @@
 .view-faq section {
   padding: 50px 0; }
 
+#witnesses .title-explorer {
+  font-size: 25px;
+  font-weight: 600; }
+
 body {
   color: #222222;
   font-size: 12px;
@@ -1214,7 +1218,11 @@ img {
 .card-home {
   background-color: white; }
   .card-home .card__top {
-    height: 175px; }
+    height: 175px;
+    border-top: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+    border-left: 1px solid #ececec;
+    border-radius: 6px 6px 0 0; }
     .card-home .card__top .img-post-list {
       background-image: url("/img/post-default-preview.jpg");
       height: 175px;
