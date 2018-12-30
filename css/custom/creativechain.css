@@ -1021,6 +1021,10 @@
 .view-faq section {
   padding: 50px 0; }
 
+#witnesses .title-explorer {
+  font-size: 25px;
+  font-weight: 600; }
+
 body {
   color: #222222;
   font-size: 12px;
