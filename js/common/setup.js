@@ -41,7 +41,7 @@
         }
     });
     
-    creaEvents.on('crea.dom.ready', function () {
+    creaEvents.on('crea.dom.ready', function (script) {
         $.holdReady(false);
     })
 

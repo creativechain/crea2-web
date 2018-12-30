@@ -400,7 +400,11 @@ let lang = {
     "ACCOUNT_RECOVERY": {
         "INPUT_USERNAME": "Enter your username",
         "TITLE": "Account Recovery",
-        "INPUT_PASSWORD": "Password"
+        "INPUT_EMAIL": "Enter your email",
+        "DESCRIPTION_1": "If someone manages to hack your account by accessing the place where you saved your password, he could change it and prevent access to the original owner of the account.",
+        "DESCRIPTION_2": "The blockchain of Crea incorporates a system for recovering stolen accounts. If your password has been changed without your consent, then the account designated as your recovery account can generate a new owner key for the account.",
+        "DESCRIPTION_3": "This recovery process must be completed within 30 days after the password is modified, and the user must provide a recent owner key that has been valid in the last 30 days.",
+        "DESCRIPTION_4": "This functionality can only be used in creary.net as long as the owner of the account has included Creary as his trusted account and has also accepted the terms and conditions of service of Creary.net.",
     },
     "LOGIN": {
         "PASSWORD": "Password",

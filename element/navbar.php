@@ -422,9 +422,9 @@
                                 </div>
                             </li>
                             <li v-pre class="hidden-xs">
-                                <a href="#0" data-notification-link="side-menu">
+                                <div class="icons-navbar navbar-menu-icon" data-notification-link="side-menu">
                                     <i class="stack-menu"></i>
-                                </a>
+                                </div>
                             </li>
                         </ul>
                     </div>

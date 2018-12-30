@@ -49,6 +49,9 @@ let publishContainer;
                 },
                 error: null
             },
+            mounted: function () {
+                //creaEvents.emit('crea.dom.ready', 'publish');
+            },
             updated: function () {
                 console.log('updating');
                 if (this.step == 2) {
@@ -200,8 +203,6 @@ let publishContainer;
                 humanFileSize: humanFileSize
             }
         });
-
-        creaEvents.emit('crea.dom.ready');
     }
 
     function updateText(index = -1) {
@@ -313,6 +314,10 @@ let publishContainer;
         }
 
 
+    });
+
+    creaEvents.on('crea.session.login', function (s, a) {
+        creaEvents.emit('crea.dom.ready', 'publish');
     })
 
 })();

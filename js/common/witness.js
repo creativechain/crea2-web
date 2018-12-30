@@ -28,6 +28,9 @@ let witnessContainer;
             witnessContainer.account = account;
             witnessContainer.state = state;
         }
+
+        creaEvents.emit('crea.dom.ready', 'publish');
+
     }
     
     function fetchWitness(session, account) {
