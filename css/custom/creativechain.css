@@ -1218,7 +1218,11 @@ img {
 .card-home {
   background-color: white; }
   .card-home .card__top {
-    height: 175px; }
+    height: 175px;
+    border-top: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+    border-left: 1px solid #ececec;
+    border-radius: 6px 6px 0 0; }
     .card-home .card__top .img-post-list {
       background-image: url("/img/post-default-preview.jpg");
       height: 175px;
