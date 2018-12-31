@@ -29,8 +29,6 @@ class Session {
                 let auths = Object.keys(that.account.keys);
                 let logged = true;
 
-                console.log(auths);
-
                 auths.some(function (r) {
                     let pubKey;
                     let auth = r;

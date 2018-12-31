@@ -94,7 +94,7 @@
 
     creaEvents.on('crea.auth.role', function (username, role, id) {
         roleModal.id = id;
-        roleModal.inputs.username.value = username + '/' + role;
+        roleModal.inputs.username.value = username;
         roleModal.role = role;
         roleModal.show = true
     });
