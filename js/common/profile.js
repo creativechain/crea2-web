@@ -765,7 +765,13 @@ let walletModalDeEnergize;
             metadata = jsonstring(metadata);
 
             if (!keys) {
-                keys = session.account.keys;
+                let user = profileContainer.state.user;
+                keys = {
+                    memo: { pub: user.memo_key },
+                    active: { pub: user.active.key_auths[0][0] },
+                    posting: { pub: user.posting.key_auths[0][0] },
+                    owner: { pub: user.owner.key_auths[0][0] },
+                }
             }
 
             requireRoleKey(session.account.username, 'owner', function (ownerKey) {
