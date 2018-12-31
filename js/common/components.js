@@ -112,7 +112,7 @@ Vue.component('post-like2', {
     template: `<div class="col-likes">
                 <img class="cursor" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
                     <div class="dropdown dropdown-price">
-                        <span class="dropdown__trigger"> {{ hasPaid() ? post.net_votes : post.active_votes.length }} {{ lang.PUBLICATION.LIKES }}</span>
+                        <span class="dropdown__trigger"> {{ post.up_votes.length }} {{ lang.PUBLICATION.LIKES }}</span>
                         <div class="dropdown__container">
                             <div class="container">
                                 <div class="row">
@@ -203,7 +203,7 @@ Vue.component('post-like', {
         </div>
 
         <div class="dropdown dropdown-price inline post-like-count">
-            <span class="dropdown__trigger"> {{ hasPaid() ? post.net_votes : post.active_votes.length }}</span>
+            <span class="dropdown__trigger"> {{ post.up_votes.length }}</span>
             <div class="dropdown__container">
                 <div class="container">
                     <div class="row">
@@ -298,7 +298,7 @@ Vue.component('like', {
     template: `<div>
 <div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
 <div></div>
-</div><span>{{ hasPaid() ? post.net_votes : post.active_votes.length }}</span></div>`,
+</div><span>{{ post.up_votes.length }}</span></div>`,
     props: {
         session: [Object, Boolean],
         post: {
@@ -380,7 +380,7 @@ Vue.component('comment-like', {
     template: `<div>
 <div class="lds-heart size-20 comment-like" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
 <div></div>
-</div><span>{{ hasPaid() ? post.net_votes : post.active_votes.length }}</span></div>`,
+</div><span>{{ post.up_votes.length }}</span></div>`,
     props: {
         session: {
             type: Object

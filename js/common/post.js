@@ -369,11 +369,14 @@ let promoteModal;
                         result.author = result.accounts[result.post.author];
                         fetchOtherProjects(result.author.name, result.post.permlink);
 
-                        //Count downVotes
+                        //separate votes
                         result.post.down_votes = [];
+                        result.post.up_votes = [];
                         result.post.active_votes.forEach(function (v) {
                             if (v.percent <= -10000) {
                                 result.post.down_votes.push(v);
+                            } else {
+                                result.post.up_votes.push(v);
                             }
                         });
 

@@ -925,6 +925,16 @@ let walletModalDeEnergize;
 
                 posts.forEach(function (k) {
                     state.content[k].metadata = jsonify(state.content[k].json_metadata);
+
+                    state.content[k].down_votes = [];
+                    state.content[k].up_votes = [];
+                    state.content[k].active_votes.forEach(function (v) {
+                        if (v.percent <= -10000) {
+                            state.content[k].down_votes.push(v);
+                        } else {
+                            state.content[k].up_votes.push(v);
+                        }
+                    });
                 });
 
                 state.discussion_idx = {};

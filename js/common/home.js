@@ -166,7 +166,20 @@ let homePosts;
                 if (!authors.includes(author)) {
                     authors.push(author);
                 }
+
+                //separate votes
+                state.content[c].down_votes = [];
+                state.content[c].up_votes = [];
+                state.content[c].active_votes.forEach(function (v) {
+                    if (v.percent <= -10000) {
+                        state.content[c].down_votes.push(v);
+                    } else {
+                        state.content[c].up_votes.push(v);
+                    }
+                });
             }
+
+
 
             crea.api.getAccounts(authors, function (err, result) {
                 if (err) {
