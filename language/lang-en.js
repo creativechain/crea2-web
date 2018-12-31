@@ -457,7 +457,8 @@ let lang = {
         CREATE_ACCOUNT: ' create account '
     },
     "AUTH_MODAL": {
-        TITLE: "This action require the %s key"
+        TITLE: "This action require the %s key",
+        INPUT_PASSWORD: "Enter the Masterkey or Wif"
     }
 
 };

@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="col-md-12 text-left">
                                                 <input v-model="inputs.password.value"
-                                                       type="password" v-bind:placeholder="lang.LOGIN.PASSWORD"/>
+                                                       type="password" v-bind:placeholder="lang.AUTH_MODAL  .INPUT_PASSWORD"/>
                                                 <span class="error-color-form">{{ inputs.password.error || ' ' }}</span>
                                             </div>
                                             <div class="col m-2">
