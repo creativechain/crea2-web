@@ -22,26 +22,41 @@ class Account {
         let neededRoles = [];
         let keys = {};
 
-        if (role) {
+        if (crea.auth.isWif(password)) {
+
+            if (role == null) {
+                role = 'unknown';
+            }
+
+            keys[role] = {
+                prv: password,
+                pub: crea.auth.wifToPublic(password)
+            };
+
+            return new Account(username, keys);
+        } else {
+
             if (DEFAULT_ROLES.indexOf(role) > -1) {
                 neededRoles.push(role);
             } else {
                 throw 'Role not valid: ' + role;
             }
 
-        } else {
-            neededRoles = DEFAULT_ROLES;
+            let privKeys = crea.auth.getPrivateKeys(username, password, neededRoles);
+
+            neededRoles.forEach(function (r) {
+                keys[r] = {
+                    prv: privKeys[r],
+                    pub: privKeys[r + 'Pubkey']
+                }
+            });
+
+            return new Account(username, keys);
+
         }
 
-        let privKeys = crea.auth.getPrivateKeys(username, password, neededRoles);
+        //TODO: LOGIN ERROR
 
-        neededRoles.forEach(function (r) {
-            keys[r] = {
-                prv: privKeys[r],
-                pub: privKeys[r + 'Pubkey']
-            }
-        });
 
-        return new Account(username, keys);
     }
 }

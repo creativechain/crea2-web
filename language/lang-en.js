@@ -165,6 +165,7 @@ let lang = {
         "SELECT_FILE": "Select file",
         "CREATE_ACCOUNT": "Create account",
         "SHOW_PRIV_KEY": "Show private key",
+        "HIDE_PRIV_KEY": "Hide private key",
         "BUY_CREA": "Buy CREA or CREA Energy",
         "PROMOTE": "PROMOTE",
         "WITHDRAW_SAVINGS": "Withdraw savings",

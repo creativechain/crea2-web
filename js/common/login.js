@@ -19,17 +19,16 @@ function startLogin() {
  */
 function login(username, password, callback) {
     //Check roles;
-    let roles = username.split('/');
 
     let session;
-    if (roles.length > 1) {
-        username = roles[0]; //First must be a username
-        let role = roles[1];
-
-        session = Session.create(username, password, role);
+    if (crea.auth.isWif(password)) {
+        //Unknown role
+        session = Session.create(username, password, null);
     } else {
+        //Default role (posting)
         session = Session.create(username, password);
     }
+
 
     session.login(function (err, account) {
         console.log(err, account);

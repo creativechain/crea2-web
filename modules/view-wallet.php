@@ -405,8 +405,11 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <div v-if="session" class="btn btn--sm" v-on:click="getPrivKey('posting')">
+                                    <div v-if="session && !showPriv.posting" class="btn btn--sm" v-on:click="getPrivKey('posting')">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                    </div>
+                                    <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('posting')">
+                                        <span class="btn__text text__dark">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -417,8 +420,11 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <div v-if="session" class="btn btn--sm" v-on:click="getPrivKey('active')">
+                                    <div v-if="session && !showPriv.active" class="btn btn--sm" v-on:click="getPrivKey('active')">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                    </div>
+                                    <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('active')">
+                                        <span class="btn__text text__dark">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -439,8 +445,11 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <div v-if="session" class="btn btn--sm" v-on:click="getPrivKey('memo')">
+                                    <div v-if="session && !showPriv.memo" class="btn btn--sm" v-on:click="getPrivKey('memo')">
                                         <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                    </div>
+                                    <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('memo')">
+                                        <span class="btn__text text__dark">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
                                     </div>
                                 </td>
                             </tr>

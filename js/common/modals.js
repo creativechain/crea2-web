@@ -31,6 +31,13 @@
                     inputs: clone(defaultData),
                     show: false
                 },
+                mounted: function () {
+                    let that = this;
+                    $('#modal-role').on('modalClosed.modals.mr', function () {
+                        console.log('closing modal');
+                        that.closeModal();
+                    })
+                },
                 methods: {
                     cleanModal: function () {
                         this.inputs = clone(defaultData);

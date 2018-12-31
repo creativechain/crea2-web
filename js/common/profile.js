@@ -276,6 +276,9 @@ let walletModalDeEnergize;
                 },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
+                    hidePrivKey: function (auth) {
+                        this.showPriv[auth] = false;
+                    },
                     getPrivKey: function (auth) {
                         let that = this;
                         let username = this.session ? this.session.account.username : '';
@@ -284,10 +287,8 @@ let walletModalDeEnergize;
                         });
                     },
                     getKey: function (auth) {
-                        if (this.showPriv[auth] && session) {
-                            if (this.session.account.keys[auth]) {
-                                return this.session.account.keys[auth].prv;
-                            }
+                        if (this.showPriv[auth]) {
+                            return this.showPriv[auth];
                         } else if (auth === 'memo') {
                             return state.user['memo_key'];
                         } else {
