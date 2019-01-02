@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from == account.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
+                            <p v-if="account && op.op.value.from === state.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
                             <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from == account.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
+                            <p v-if="account && op.op.value.from === state.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
                             <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                     <span>{{ dateFromNow(op.timestamp) }}</span>
                                 </p>
 
-                                <p v-if="account && op.op.value.from == account.user.name">
+                                <p v-if="account && op.op.value.from === state.user.name">
                                     {{ lang.HISTORY.TRANSFER_VESTING_TO }}
                                     <linkname v-bind:user="op.op.value.to" v-bind:name="history.accounts[op.op.value.to].metadata.publicName"></linkname>
                                 </p>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from == account.user.name">+{{ parseAsset(op.op.value.amount) }}</p>
+                            <p v-if="account && op.op.value.from === state.user.name">+{{ parseAsset(op.op.value.amount) }}</p>
                             <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from == account.user.name">-</p>
+                            <p v-if="account && op.op.value.from === state.user.name">-</p>
                         </div>
                     </div>
                 </div>
