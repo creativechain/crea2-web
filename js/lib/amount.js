@@ -169,7 +169,6 @@ class Asset {
                     assetData.amount = parseInt(assetData.amount);
                 }
 
-                assetData.round = true;
                 return Asset.parse(assetData);
             }
         } else {
