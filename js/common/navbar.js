@@ -157,9 +157,7 @@ let navbarContainer;
 
         updateUrl(urlFilter);
         crea.api.getState(filter, function (err, result) {
-            if (err) {
-                console.error(err);
-            } else  {
+            if (!catchError(err)) {
                 creaEvents.emit('crea.posts', urlFilter, filter, result);
             }
         })

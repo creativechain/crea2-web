@@ -141,24 +141,6 @@ function createBlockchainAccount(username, password, callback) {
 
 }
 
-function makeVote(post, callback) {
-    let session = Session.getAlive();
-    if (session) {
-        crea.broadcast.vote(session.account.keys.posting.prv, session.account.username, post.author, post.permlink, 10000, function (err, result) {
-            if (err) {
-                console.error(err);
-            } else {
-                console.log(result);
-                if (callback) {
-                    callback();
-                }
-            }
-        })
-    }
-
-    return false;
-}
-
 function ignoreUser(following, ignore, callback) {
     let s = Session.getAlive();
     if (s) {
@@ -173,7 +155,6 @@ function ignoreUser(following, ignore, callback) {
         requireRoleKey(s.account.username, 'posting', function (postingKey) {
             crea.broadcast.customJson(postingKey, [], [s.account.username], 'follow', jsonstring(followJson), function (err, result) {
                 if (err) {
-                    console.error(err);
                     callback(err);
                 } else {
                     callback(null, result);
@@ -190,19 +171,16 @@ function updateUserSession() {
     let session = Session.getAlive();
     if (session) {
         session.login(function (err, account) {
-            if (err) {
-                console.error(err);
-            } else {
+            if (!catchError(err)) {
                 let followings = [];
                 crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
-                    if (err) {
-                        console.error(err);
-                    } else {
+                    if (!catchError(err)) {
                         result.following.forEach(function (f) {
                             followings.push(f.following);
                         });
                         account.user.followings = followings;
                         creaEvents.emit('crea.session.update', session, account);
+
                     }
                 });
             }
@@ -306,7 +284,9 @@ function uploadToIpfs(file, maxSize, callback) {
             publishContainer.error = lang.PUBLISH.FILE_TO_LARGE;
         }
     } else {
-        console.error('File API unsupported');
+        if (!catchError(err)) {
+
+        }
         globalLoading.show = false;
     }
 
@@ -352,6 +332,7 @@ function performSearch(search, page = 1, inHome = false) {
 
             http.on('fail', function (jqXHR, textStatus, errorThrown) {
                 console.error(jqXHR, textStatus, errorThrown);
+                catchError(errorThrown);
             });
 
             http.get({
@@ -362,6 +343,49 @@ function performSearch(search, page = 1, inHome = false) {
     } else {
         goTo('/search?query=' + encodeURIComponent(search) + '&page=' + page);
     }
+}
+
+/**
+ *
+ * @param err
+ */
+function catchError(err) {
+
+    if (err) {
+
+        let title;
+        let body = [];
+
+        if (typeof err === 'string') {
+            title = err;
+        } else {
+            if (err.name) {
+                title = name;
+            }
+
+            if (err.message) {
+                body.push(err.message);
+            }
+
+        }
+
+        body.unshift(title);
+        showAlert.apply(null, body);
+
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ *
+ * @param {string} title
+ * @param {...string} body
+ */
+function showAlert(title, ...body) {
+    let config = { title, body};
+    creaEvents.emit('crea.alert', config);
 }
 
 /**

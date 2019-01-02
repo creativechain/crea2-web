@@ -128,7 +128,7 @@ let homePosts;
                             try {
                                 return JSON.parse(strJson);
                             } catch (e) {
-                                console.error('JSON Error parsing', strJson);
+                                catchError(e);
                             }
                         }
 
@@ -182,9 +182,7 @@ let homePosts;
         if (isUserFeed(getPathPart())) {
 
             crea.api.getAccounts(authors, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+                if (!catchError(err)) {
                     let accounts = {};
                     result.forEach(function (a) {
                         a.metadata = jsonify(a.json_metadata);

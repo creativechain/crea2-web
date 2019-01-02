@@ -47,9 +47,7 @@ let promoteModal;
                         requireRoleKey(from, 'active', function (activeKey) {
                             crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
                                 globalLoading.show = false;
-                                if (err) {
-                                    console.error(err);
-                                } else {
+                                if (!catchError(err)) {
                                     that.hideModalPromote();
                                     updateUserSession();
                                 }
@@ -179,9 +177,7 @@ let promoteModal;
                                 globalLoading.show = true;
                                 crea.broadcast.vote(postingKey, username, that.state.post.author, that.state.post.permlink, weight, function (err, result) {
                                     globalLoading.show = false;
-                                    if (err) {
-                                        console.error(err);
-                                    }
+                                    catchError(err);
 
                                     fetchContent();
 
@@ -224,14 +220,11 @@ let promoteModal;
 
                 crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username,
                     permlink, '', comment, '', jsonstring(metadata), function (err, result) {
-                        if (err) {
-                            console.error(err);
-                        } else {
+                        globalLoading.show = false;
+                        if (!catchError(err)) {
                             postContainer.comment = '';
                             fetchContent();
                         }
-
-                        globalLoading.show = false;
                     })
             });
 
@@ -260,9 +253,7 @@ let promoteModal;
                         crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
                             globalLoading.show = false;
 
-                            if (err) {
-                                console.error(err);
-                            } else {
+                            if (!catchError(err)) {
                                 let re = /Qm[a-zA-Z0-9]+/;
                                 let hash = re.exec(result.resource)[0];
                                 console.log(hash);
@@ -278,12 +269,12 @@ let promoteModal;
                 let payDownload = function () {
                     crea.broadcast.commentDownload(postingKey, session.account.username,
                         post.author, post.permlink, function (err, result) {
-                            if (err) {
-                                console.error(err);
-                                globalLoading.show = false;
-                            } else {
+
+                            if (!catchError(err)) {
                                 downloadResource();
                                 fetchContent();
+                            } else {
+                                globalLoading.show = false;
                             }
                         })
                 };
@@ -317,10 +308,8 @@ let promoteModal;
     function fetchOtherProjects(author, permlink) {
         let date = new Date().toISOString().replace('Z', '');
         crea.api.getDiscussionsByAuthorBeforeDateWith({start_permlink: '', limit: 100, before_date: date, author}, function (err, result) {
-            if (err) {
-                console.error(err);
-            } else {
 
+            if (!catchError(err)) {
                 let discussions = [];
                 result.discussions.forEach(function (d) {
                     d.metadata = jsonify(d.json_metadata);
@@ -348,9 +337,7 @@ let promoteModal;
 
         if (url) {
             crea.api.getState(url, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+                if (!catchError(err)) {
                     //Resolve metadata
                     let aKeys = Object.keys(result.accounts);
 
@@ -393,7 +380,6 @@ let promoteModal;
                         console.log(result.comments);
                         setUp(result);
                     }
-
                 }
             })
         }

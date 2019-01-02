@@ -5,8 +5,43 @@
 (function () {
 
     let roleModal;
+    let alertModal;
 
-    function setUp() {
+    function setUpAlertModal() {
+        let defaultData = {
+            title: '',
+            body: [],
+        };
+
+        if (!alertModal) {
+            alertModal = new Vue({
+                el: '#modal-alert',
+                data: {
+                    lang: lang,
+                    config: clone(defaultData),
+                    show: false
+                },
+                mounted: function () {
+                    let that = this;
+                    $('#modal-alert').on('modalClosed.modals.mr', function () {
+                        that.closeModal();
+                    })
+                },
+                methods: {
+                    cleanModal: function () {
+                        this.config = clone(defaultData);
+                    },
+                    closeModal: function (event) {
+                        cancelEventPropagation(event);
+                        this.cleanModal();
+                        this.show = false;
+                    }
+                }
+            })
+        }
+    }
+
+    function setUpRoleModal() {
 
         let defaultData = {
             username: {
@@ -34,7 +69,6 @@
                 mounted: function () {
                     let that = this;
                     $('#modal-role').on('modalClosed.modals.mr', function () {
-                        console.log('closing modal');
                         that.closeModal();
                     })
                 },
@@ -79,9 +113,7 @@
 
                         let s = Session.create(username, password, role);
                         s.login(function (err, result) {
-                            if (err) {
-                                console.error(err);
-                            } else {
+                            if (!catchError(err)) {
                                 creaEvents.emit('crea.auth.role.' + that.id, s.account.keys[role].prv);
                                 that.closeModal();
                             }
@@ -91,6 +123,16 @@
             })
         }
     }
+
+    function setUp() {
+        setUpAlertModal();
+        setUpRoleModal();
+    }
+
+    creaEvents.on('crea.alert', function (data) {
+       alertModal.config = data;
+       alertModal.show = true;
+    });
 
     creaEvents.on('crea.auth.role', function (username, role, id) {
         roleModal.id = id;
