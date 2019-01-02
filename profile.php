@@ -48,7 +48,10 @@
                                     </div>
                                 </div>
                                 <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
-                                    <?php include ('modules/list-blocked.php') ?>
+                                    <div v-pre>
+                                        <?php include ('modules/list-blocked.php') ?>
+                                    </div>
+
                                 </div>
                                 <div v-show="navbar.section === 'wallet'" class="row view-wallet">
                                     <?php include ('modules/view-wallet.php') ?>
