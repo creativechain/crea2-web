@@ -1,7 +1,5 @@
 <div class="modal-instance ">
-    <a href="" class="modal-trigger link-report" href="#">Alert</a>
-
-    <div class="modal-container modal-report">
+    <div id="modal-alert" class="modal-container modal-report" v-bind:class="{'modal-active': show}">
         <div class="modal-content">
             <section class="unpad ">
                 <div class="container">
@@ -9,17 +7,17 @@
                         <div class="col-md-6">
                             <div class="boxed boxed--lg bg--white feature">
                                 <div class="modal-close modal-close-cross"></div>
-                                <h3>Denunciar contenido</h3>
+                                <h3>{{ config.title }}</h3>
                                 <div class="feature__body">
-                                    <p class="mb-0">Denunciar contenido ayuda a mejorar la calidad y la convivencia del plataforma.</p>
-                                    <p>Los motivos más comunes para reportar un contenido son:</p>
-                                    <p>Recuerda que reportar contenido puede influir en la visibilidad y las recompensa alcanzadas por la publicación.</p>
+                                    <p v-for="b in config.body">
+                                        {{ b }}
+                                    </p>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12 text-right">
-                                        <div class="btn btn--primary">
+                                        <div class="btn btn--primary" v-on:click="closeModal">
                                             <span class="btn__text">
-                                                Close
+                                                {{ lang.BUTTON.CLOSE }}
                                             </span>
                                         </div>
                                     </div>

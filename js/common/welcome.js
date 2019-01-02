@@ -175,12 +175,9 @@ let welcomeVue;
             let password = welcomeVue.password;
             createBlockchainAccount(username, password, function (err, result) {
                 globalLoading.show = false;
-                if (err) {
-                    console.error(err);
-                } else {
+                if (!catchError(err)) {
                     console.log(result);
                     welcomeVue.slide = 8;
-
                 }
             })
         } else {

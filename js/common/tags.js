@@ -26,9 +26,7 @@ let tagsContainer;
 
     function fetchTags(session, account) {
         crea.api.getState('/tags', function (err, result) {
-            if (err) {
-                console.error(err);
-            } else {
+            if (!catchError(err)) {
                 setUp(result, session, account);
             }
         })

@@ -35,9 +35,7 @@ let witnessContainer;
     
     function fetchWitness(session, account) {
         crea.api.getState('/~witnesses', function (err, result) {
-            if (err) {
-                console.error(err);
-            } else {
+            if (!catchError(err)) {
                 let wKeys = Object.keys(result.witnesses);
                 wKeys.sort(function (w1, w2) {
                     return result.witnesses[w2].votes - result.witnesses[w1].votes;

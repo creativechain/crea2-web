@@ -31,9 +31,7 @@ function login(username, password, callback) {
 
 
     session.login(function (err, account) {
-        console.log(err, account);
         if (err) {
-            console.error(err);
             if (callback) {
                 callback(err);
             }
@@ -57,9 +55,8 @@ function login(username, password, callback) {
             let blockeds = [];
 
             crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+
+                if (!catchError(err)) {
                     result.following.forEach(function (f) {
                         followings.push(f.following);
                     });
@@ -69,14 +66,13 @@ function login(username, password, callback) {
             });
 
             crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+                if (!catchError(err)) {
                     result.following.forEach(function (f) {
                         blockeds.push(f.following);
                     });
                     account.user.blockeds = blockeds;
                     onTaskEnded(session, account)
+
                 }
             });
 

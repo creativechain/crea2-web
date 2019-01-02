@@ -23,9 +23,7 @@
                 } else {
                     let followings = [];
                     crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
-                        if (err) {
-                            console.error(err);
-                        } else {
+                        if (!catchError(err)) {
                             result.following.forEach(function (f) {
                                 followings.push(f.following);
                             });

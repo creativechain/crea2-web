@@ -181,10 +181,8 @@ Vue.component('post-like2', {
                 requireRoleKey(session.account.username, 'posting', function (postingKey) {
                     crea.broadcast.vote(postingKey, session.account.username, post.author, post.permlink, 10000, function (err, result) {
                         if (err) {
-                            console.error(err);
                             that.$emit('vote', err);
                         } else {
-                            console.log(result);
                             that.$emit('vote', null, result);
                         }
                     })
@@ -275,11 +273,9 @@ Vue.component('post-like', {
                     crea.broadcast.vote(postingKey, session.account.username, post.author, post.permlink, 10000, function (err, result) {
                         if (err) {
                             that.state = -1;
-                            console.error(err);
                             that.$emit('vote', err);
                         } else {
                             that.state = 1;
-                            console.log(result);
                             that.$emit('vote', null, result);
                         }
                     })
@@ -357,11 +353,9 @@ Vue.component('like', {
                     crea.broadcast.vote(postingKey, session.account.username, post.author, post.permlink, 10000, function (err, result) {
                         if (err) {
                             that.state = -1;
-                            console.error(err);
                             that.$emit('vote', err);
                         } else {
                             that.state = 1;
-                            console.log(result);
                             that.$emit('vote', null, result);
                         }
                     })
@@ -440,11 +434,9 @@ Vue.component('comment-like', {
                     crea.broadcast.vote(postingKey, session.account.username, post.author, post.permlink, 10000, function (err, result) {
                         if (err) {
                             that.state = -1;
-                            console.error(err);
                             that.$emit('vote', err);
                         } else {
                             that.state = 1;
-                            console.log(result);
                             that.$emit('vote', null, result);
                         }
                     })
@@ -505,11 +497,9 @@ Vue.component('witness-like', {
                     crea.broadcast.accountWitnessVote(activeKey, session.account.username, witness.owner, true, function (err, result) {
                         if (err) {
                             that.state = that.hasVote() ? 1 : -1;
-                            console.error(err);
                             that.$emit('vote', err);
                         } else {
                             that.state = 1;
-                            console.log(result);
                             that.$emit('vote', null, result);
                         }
                     })
@@ -562,10 +552,8 @@ Vue.component('btn-follow',  {
                 requireRoleKey(session.account.username, 'posting', function (postingKey) {
                     crea.broadcast.customJson(postingKey, [], [session.account.username], operation, jsonstring(followJson), function (err, result) {
                         if (err) {
-                            console.error(err);
                             that.$emit('follow', err)
                         } else {
-                            //that.innerFollowing = !that.innerFollowing;
                             that.$emit('follow', null, result);
                         }
                     })

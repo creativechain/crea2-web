@@ -85,9 +85,8 @@ let walletModalDeEnergize;
 
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(), function (err, result) {
                                 globalLoading.show = false;
-                                if (err) {
-                                    console.error(err);
-                                } else {
+
+                                if (!catchError(err)) {
                                     that.hideModalDeEnergize();
                                     updateUserSession();
                                 }
@@ -164,12 +163,14 @@ let walletModalDeEnergize;
                                 globalLoading.show = true;
                                 console.log('Key:', activeKey, that.config.op);
                                 transfer(activeKey, that.config.op, that.session, that.config.to, amount, that.memo, function (err, result) {
-                                    console.log(err, result);
                                     globalLoading.show  = false;
-                                    if (result) {
-                                        updateUserSession();
-                                        that.hideModalSend();
+                                    if (!catchError(err)) {
+                                        if (result) {
+                                            updateUserSession();
+                                            that.hideModalSend();
+                                        }
                                     }
+
                                 });
                             });
 
@@ -472,9 +473,7 @@ let walletModalDeEnergize;
 
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(), function (err, result) {
                                 globalLoading.show = false;
-                                if (err) {
-                                    console.error(err);
-                                } else {
+                                if (!catchError(err)) {
                                     updateUserSession();
                                 }
                             });
@@ -506,9 +505,7 @@ let walletModalDeEnergize;
 
                             uploadToIpfs(files[0], maximumSize, function (err, file) {
                                 globalLoading.show = false;
-                                if (err) {
-                                    console.error(err);
-                                } else {
+                                if (!catchError(err)) {
                                     Vue.set(that.profile, 'avatar', file);
                                 }
                             });
@@ -721,9 +718,7 @@ let walletModalDeEnergize;
         let username = getPathPart().replace('@', '');
 
         fetchUserState(username, 'transfers', function (err, state) {
-            if (err) {
-                console.error(err);
-            } else {
+            if (!catchError(err)) {
                 setUpRewards('author-rewards', session, state);
                 setUpRewards('curation-rewards', session, state);
             }
@@ -784,8 +779,8 @@ let walletModalDeEnergize;
                     createAuth(keys.posting.pub), keys.memo.pub, metadata,
                     function (err, data) {
                         globalLoading.show = false;
+
                         if (err) {
-                            console.error(err);
                             if (callback) {
                                 callback(err);
                             }
@@ -817,9 +812,7 @@ let walletModalDeEnergize;
 
         setTimeout(function () {
             crea.api.getAccountHistory(username, -1, 50, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+                if (!catchError(err)) {
                     result.history = result.history.reverse();
                     let accounts = [];
                     let history = [];
@@ -878,6 +871,7 @@ let walletModalDeEnergize;
                             profileContainer.history.accounts = opsAccounts;
                         }
                     })
+
                 }
             })
         });
@@ -906,8 +900,11 @@ let walletModalDeEnergize;
         }
 
         crea.api.getState(stateUrl, function (err, state) {
+
             if (err) {
-                console.error(err);
+                if (callback) {
+                    callback(err);
+                }
             } else  {
                 let accounts = Object.keys(state.accounts);
 
@@ -963,9 +960,7 @@ let walletModalDeEnergize;
         if (profileName) {
             fetchHistory(profileName);
             fetchUserState(profileName, function (err, state) {
-                if (err) {
-                    console.error(err);
-                } else {
+                if (!catchError(err)) {
                     detectNav(state, session, account, profileName);
                     setUpModals(state, session);
                 }
@@ -986,12 +981,11 @@ let walletModalDeEnergize;
         globalLoading.show = true;
         crea.broadcast.claimRewardBalance(profileContainer.session.account.keys.active.prv,
             profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+                globalLoading.show = false;
+
+                if (!catchError(err)) {
                     updateUserSession();
                 }
-                globalLoading.show = false;
             })
     }
 

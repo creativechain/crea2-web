@@ -173,6 +173,7 @@ let lang = {
         "SEND": "Send",
         "CLAIM_REWARDS": "Settle accounts (transfer to balance)",
         "CONFIRM": "Confirm",
+        "CLOSE": "Close",
         "REPORT": "Report content",
     },
     "WELCOME": {

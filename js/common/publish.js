@@ -145,9 +145,7 @@ let publishContainer;
 
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
-                            if (err) {
-                                console.error(err);
-                            } else {
+                            if (!catchError(err)) {
                                 file.resource = file.url;
                                 that.downloadFile = Object.assign(that.downloadFile, jsonify(jsonstring(file)));
                             }
@@ -165,9 +163,7 @@ let publishContainer;
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize);
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
-                            if (err) {
-                                console.error(err);
-                            } else {
+                            if (!catchError(err)) {
                                 publishContainer.bodyElements.push(file);
                             }
                         });
@@ -183,9 +179,7 @@ let publishContainer;
 
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
-                            if (err) {
-                                console.error(err);
-                            } else {
+                            if (!catchError(err)) {
                                 publishContainer.featuredImage = file;
                                 publishContainer.error = null;
                             }
@@ -275,15 +269,14 @@ let publishContainer;
 
             crea.broadcast.comment(postingKey, '', toPermalink(metadata.tags[0]), username, permlink, title, body,
                 jsonstring(download), jsonstring(metadata), function (err, result) {
-                    if (err) {
-                        console.error(err);
-                        globalLoading.show = false;
-                    } else {
+                    if (!catchError(err)) {
                         console.log(result);
                         let post = {
                             url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
                         };
                         showPost(post);
+                    } else {
+                        globalLoading.show = false;
                     }
                 })
 
@@ -302,9 +295,7 @@ let publishContainer;
             let s = Session.getAlive();
             if (s && s.account.username === author) {
                 crea.api.getDiscussion(author, permlink, function (err, post) {
-                    if (err) {
-                        console.error(err);
-                    } else {
+                    if (!catchError(err)) {
                         console.log(post);
                         post.body = jsonify(post.body) || {};
                         post.metadata = jsonify(post.json_metadata) || {};
