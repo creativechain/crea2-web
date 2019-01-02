@@ -371,7 +371,6 @@ Vue.component('like', {
         }
     },
     mounted: function () {
-        console.log('updated like')
         this.state = this.hasVote() ? 1 : -1
     }
 });
@@ -455,7 +454,6 @@ Vue.component('comment-like', {
         }
     },
     mounted: function () {
-        console.log('updated like')
         this.state = this.hasVote() ? 1 : -1
     }
 });
@@ -521,7 +519,6 @@ Vue.component('witness-like', {
         }
     },
     mounted: function () {
-        console.log('updated witness-like');
         this.state = this.hasVote() ? 1 : -1
     }
 });

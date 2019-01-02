@@ -15,6 +15,7 @@ let walletModalDeEnergize;
         text: lang.WALLET.TRANSFER_CREA_TEXT,
         button: lang.BUTTON.SEND,
         total_amount: Asset.parseString('0.000 CREA'),
+        nai: apiOptions.nai.CREA,
         confirmed: false,
         to: null,
         disableTo: false
@@ -156,10 +157,12 @@ let walletModalDeEnergize;
                         } else if (this.config.confirmed) {
                             let that = this;
 
-                            let amount = Asset.parseString(this.amount + ' CREA').toFriendlyString();
+                            let amountData = { amount: that.amount, nai: that.config.nai, round: true};
+                            let amount = Asset.parse(amountData).toFriendlyString();
 
                             requireRoleKey(this.session.account.username, 'active', function (activeKey) {
                                 globalLoading.show = true;
+                                console.log('Key:', activeKey, that.config.op);
                                 transfer(activeKey, that.config.op, that.session, that.config.to, amount, that.memo, function (err, result) {
                                     console.log(err, result);
                                     globalLoading.show  = false;
@@ -301,13 +304,13 @@ let walletModalDeEnergize;
                             case 'transfer_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE,
                                     text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.CONFIRM,
-                                    total_amount: Asset.parseString(this.state.user.balance)
+                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance)
                                 };
                                 break;
                             case 'transfer_to_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
                                     text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.balance),
+                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance),
                                     to: this.session.account.username,
                                     disableTo: true,
                                 };
@@ -315,7 +318,7 @@ let walletModalDeEnergize;
                             case 'transfer_to_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
                                     text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.cbd_balance),
+                                    nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance),
                                     to: this.session.account.username,
                                     disableTo: true,
                                 };
@@ -323,19 +326,19 @@ let walletModalDeEnergize;
                             case 'transfer_from_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
                                     text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
+                                    nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
                                 };
                                 break;
                             case 'transfer_from_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
                                     text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.savings_balance),
+                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.savings_balance),
                                 };
                                 break;
                             case 'transfer_to_vests':
                                 config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
                                     text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER,
-                                    total_amount: Asset.parseString(this.state.user.balance),
+                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance),
                                     to: this.session.account.username,
                                     disableTo: true,
                                 };
@@ -343,7 +346,7 @@ let walletModalDeEnergize;
                             case 'transfer_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE,
                                     text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: lang.BUTTON.SEND,
-                                    total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                    nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance)
                                 };
                                 break;
 
@@ -1013,6 +1016,7 @@ let walletModalDeEnergize;
 
             switch (op) {
                 case CONSTANTS.TRANSFER.TRANSFER_CREA:
+                case CONSTANTS.TRANSFER.TRANSFER_CBD:
                     crea.broadcast.transfer(wif, from, to, amount, memo, callback);
                     break;
                 case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CREA:

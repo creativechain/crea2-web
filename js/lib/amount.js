@@ -156,7 +156,7 @@ class Asset {
         let nai = NAI[assetData.nai] || NAI[assetData.asset.symbol.toLowerCase()];
 
         if (typeof assetData.amount === 'number') {
-            if (assetData.amount % 1 != 0) {
+            if (assetData.amount % 1 != 0 || assetData.round) {
                 assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
             }
         } else if (typeof assetData.amount === 'string') {
@@ -169,6 +169,7 @@ class Asset {
                     assetData.amount = parseInt(assetData.amount);
                 }
 
+                assetData.round = true;
                 return Asset.parse(assetData);
             }
         } else {

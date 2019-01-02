@@ -26,6 +26,7 @@ let globalLoading;
 const CONSTANTS = {
     TRANSFER: {
         TRANSFER_CREA: 'transfer_crea',
+        TRANSFER_CBD: 'transfer_cbd',
         TRANSFER_TO_SAVINGS_CREA: 'transfer_to_savings_crea',
         TRANSFER_TO_SAVINGS_CBD: 'transfer_to_savings_cbd',
         TRANSFER_FROM_SAVINGS_CREA: 'transfer_from_savings_crea',
