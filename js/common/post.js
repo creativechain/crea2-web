@@ -163,7 +163,7 @@ let promoteModal;
                     makeDownload: makeDownload,
                     ignoreUser: function () {
 
-                        ignoreUser(this.post.author, true, function (err, result) {
+                        ignoreUser(this.state.post.author, true, function (err, result) {
                             fetchContent();
                         });
                     },
