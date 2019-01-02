@@ -311,12 +311,10 @@
                             </div>
                             <div class="row row-master">
                                 <div class="col-md-6">
-                                    <img src="/img/icons/master.svg" alt="">
-                                    <p>Master</p>
+
                                 </div>
                                 <div class="col-md-6">
-                                    <img src="/img/icons/buzz.svg" alt="">
-                                    <p>385 Buzz</p>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -382,11 +380,7 @@
                                             <p>{{ state.post.download.times_downloaded }} {{ lang.PUBLICATION.DOWNLOADS }}</p>
                                         </li>
                                         <hr>
-                                        <li>
-                                            <img src="/img/icons/ic_share_black_24px.svg" alt="">
-                                            <p>{{ lang.PUBLICATION.SHARE }}</p>
-                                        </li>
-                                        <hr>
+
                                     </ul>
 
                                 </div>

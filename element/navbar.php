@@ -84,16 +84,7 @@
                     <span class="h5">{{ lang.DOTS_MENU.EXPLORE }}</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <span>{{ lang.DOTS_MENU.MARKET }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="/recover-account">
-                    <span>Recuperar cuenta robada</span>
-                </a>
-            </li>
+
         </ul>
 
     </div>
@@ -272,19 +263,7 @@
                                     <i class="stack-search"></i>
                                 </div>
                             </li>
-                            <li v-if="session">
-                                <!-- mobile-->
-                                <a v-bind:href="'/@' + session.account.username + '/notifications'" class="navbar-notification hidden-sm hidden-md hidden-lg" style="display: inline-block;">
-                                    <i class="far fa-bell"></i>
-                                    <i class="fas fa-circle hidden"></i>
-                                    Notification
-                                </a>
-                                <!-- desktop-->
-                                <a v-bind:href="'/@' + session.account.username + '/notifications'" class="navbar-notification icons-navbar hidden-xs " style="display: inline-grid;">
-                                    <i class="far fa-bell"></i>
-                                    <i class="fas fa-circle hidden"></i>
-                                </a>
-                            </li>
+
 
                             <li v-if="session">
                                 <!-- mobile-->
@@ -330,7 +309,6 @@
                                                 <div class="col-md-12 dropdown__content">
                                                     <ul class="menu-vertical">
                                                         <li><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
-                                                        <li class="separate"><a v-bind:href="'/@' + session.account.username + '/notifications'">{{ lang.PROFILE_MENU.NOTIFICATIONS }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/passwords'">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/settings'">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>

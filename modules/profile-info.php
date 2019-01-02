@@ -38,17 +38,7 @@
 
         </div>
     </div>
-    <hr>
-    <div class="row ranking-user-info">
-        <div class="col">
-            <img src="/img/icons/trainer.svg" alt="">
-            <span>Traineer</span>
-        </div>
-        <div class="col">
-            <img src="/img/icons/buzz.svg" alt="">
-            <span>{{ getBuzz(state.user.reputation) }} Buzz</span>
-        </div>
-    </div>
+
     <hr>
     <div class="row profile-summary">
 

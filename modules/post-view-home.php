@@ -111,9 +111,7 @@
                         </div><!--end dropdown container-->
                     </div>
                 </li>
-                <li class="float-right li-certificate">
-                    {{ getBuzz(state.accounts[state.content[p].author].reputation) }} Buzz
-                </li>
+
             </ul>
         </div>
     </div>

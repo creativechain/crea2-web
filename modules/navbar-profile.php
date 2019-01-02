@@ -3,9 +3,7 @@
         <li>
             <a v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">{{ lang.PROFILE.SECONDARY_MENU_PROJECTS }}</a>
         </li>
-        <li v-if="session && account.user.name === state.user.name">
-            <a v-bind:href="'/@' + state.user.name + '/notifications'" v-on:click="navigateTo($event, 'notifications')" v-bind:class="{ active: navbar.section == 'notifications' }">{{ lang.PROFILE.SECONDARY_MENU_NOTIFICATIONS }}</a>
-        </li>
+
 
         <li class="dropdown">
             <span class="dropdown__trigger">{{ lang.PROFILE.SECONDARY_MENU_REWARDS }}</span>
