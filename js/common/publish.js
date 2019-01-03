@@ -114,7 +114,7 @@ let publishContainer;
                             this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
                             break;
                         case 2:
-                            if (!this.featuredImage || !this.title || this.tags.length == 0) {
+                            if (!this.featuredImage.hash || !this.title || this.tags.length == 0) {
                                 this.error = this.lang.PUBLISH.NO_TITLE_TAG_OR_IMAGE;
                             } else {
                                 this.error = null;
