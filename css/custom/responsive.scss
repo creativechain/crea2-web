@@ -65,6 +65,47 @@
     }
   }
 }
+@media (max-width: 767px) {
+  .dropdown.dropdown--active > .dropdown__container > .container > .row > .dropdown__content {
+    border: 1px solid #e9e9e9;
+  }
+  .card-home .dropdown-price {
+    border: 0 !important;
+  }
+  input, select {
+    height: auto;
+  }
+  .list-inline:not(.social-list):not(.list-inline--images) li {
+    display: inline-block;
+  }
+  .list-inline-item:not(:last-child) {
+    margin-right: 0.5rem !important;
+  }
+  .view-wallet  {
+    .tabs-container-primary {
+      .tabs-primary {
+        display: flex;
+      }
+      .buy-crea-mobile {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .row-list-user {
+    padding-bottom: 10px;
+  }
+  .view-publish {
+    .li-title-steps li:not(:last-child) {
+      margin-right: 0.85714286em !important;
+    }
+    .step-1 {
+      .row-options-steps-1 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
