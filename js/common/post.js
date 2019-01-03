@@ -376,6 +376,21 @@ let promoteModal;
                             return d2.getTime() - d1.getTime();
                         });
 
+                        cKeys.forEach(function (c) {
+                            let comment = result.content[c];
+                            comment.down_votes = [];
+                            comment.up_votes = [];
+                            comment.active_votes.forEach(function (v) {
+                                if (v.percent <= -10000) {
+                                    comment.down_votes.push(v);
+                                } else {
+                                    comment.up_votes.push(v);
+                                }
+                            });
+
+                            result[c] = comment;
+                        });
+
                         result.comments = cKeys;
                         console.log(result.comments);
                         setUp(result);
