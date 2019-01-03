@@ -20,10 +20,19 @@ let homePosts;
         let accounts = state.accounts;
 
         let cKeys = Object.keys(content);
+        let newKeys = [];
         cKeys.forEach(function (k) {
-            content[k].metadata = jsonify(content[k].json_metadata);
+            if (content[k].parent_author) {
+                delete content[k];
+            } else {
+                content[k].metadata = jsonify(content[k].json_metadata);
+                newKeys.push(k);
+            }
         });
+
+        cKeys = newKeys;
         state.content = content;
+        console.log(cKeys, jsonify(jsonstring(content)));
 
         let aKeys = Object.keys(accounts);
         aKeys.forEach(function (k) {
@@ -48,8 +57,9 @@ let homePosts;
             });
 
             state.discussion_idx[discuss] = {};
-            state.discussion_idx[discuss][category] = cKeys;
         }
+
+        state.discussion_idx[discuss][category] = cKeys;
 
         console.log('Filter:', filter, 'discussion:', discuss, 'category:', category, state.discussion_idx[discuss][category]);
 
