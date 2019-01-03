@@ -4,6 +4,7 @@
 
 let profileContainer;
 let rewardsContainer = {};
+let blockedContainer;
 let walletModalSend;
 let walletModalDeEnergize;
 
@@ -217,7 +218,7 @@ let walletModalDeEnergize;
      * @param walletSection
      */
     function updateProfileView(state, session, account, usernameFilter, navSection = 'projects', walletSection = 'balance') {
-        console.log('Updating profile', account);
+        //console.log('Updating profile', jsonify(jsonstring(account)), jsonify(jsonstring(state)));
 
         let nextDeEnergize = '';
         if (state.user.to_withdraw > 0 && state.user.name === session.account.username) {
@@ -602,6 +603,7 @@ let walletModalDeEnergize;
             updateModalDeEnergize(state, session);
         }
     }
+
     function setUpRewards(rewardView, session, state) {
 
         let rewardType = rewardView.replace('s', '').replace('-', '_');
@@ -709,6 +711,26 @@ let walletModalDeEnergize;
         }
     }
 
+    function setUpBlocked(session, account, accounts, blocked) {
+
+        if (!blockedContainer) {
+            blockedContainer = new Vue({
+                el: '#blocked-container',
+                data: {
+                    lang: lang,
+                    session: session,
+                    account: account,
+                    accounts: accounts,
+                    blocked: blocked
+                }
+            })
+        } else {
+            blockedContainer.session = session;
+            blockedContainer.account = account;
+            blockedContainer.blocked = blocked;
+        }
+    }
+
     /**
      *
      * @param {Session} session
@@ -721,6 +743,48 @@ let walletModalDeEnergize;
             if (!catchError(err)) {
                 setUpRewards('author-rewards', session, state);
                 setUpRewards('curation-rewards', session, state);
+            }
+        })
+    }
+
+    function fetchBlockeds(session, account) {
+
+        crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, followings) {
+            if (!catchError(err)) {
+                let accounts = [];
+
+                followings = followings.following;
+
+                followings.forEach(function (r) {
+                    if (r.follower === session.account.username) {
+                        if (!accounts.includes(r.following)) {
+                            accounts.push(r.following);
+                        }
+                    }
+                });
+
+                //Get blocked accounts;
+                if (accounts.length) {
+                    crea.api.getAccounts(accounts, function (err, blockeds) {
+                        if (!catchError(err)) {
+
+                            let data = {};
+                            for (let x = 0; x < blockeds.length; x++) {
+                                let c = blockeds[x];
+
+                                c.metadata = jsonify(c.json_metadata);
+                                data[c.name] = c;
+                            }
+
+
+                            setUpBlocked(session, account, accounts, data);
+                        }
+                    })
+                } else {
+                    //Not blockeds
+                    setUpBlocked(session, account, accounts);
+                }
+
             }
         })
     }
@@ -752,6 +816,7 @@ let walletModalDeEnergize;
 
         updateProfileView(state, session, account, usernameFilter, nav, walletNav);
         fetchRewards(session);
+        fetchBlockeds(session, account);
     }
 
     function sendAccountUpdate(event, keys, callback) {

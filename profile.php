@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
-                                    <div v-pre>
+                                    <div v-pre >
                                         <?php include ('modules/list-blocked.php') ?>
                                     </div>
 
