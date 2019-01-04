@@ -44,13 +44,13 @@
 
         <div class="card__bottom card-show">
             <ul class="list-inline list-unstyled w-100">
-                <li>
+                <li class="w-100">
                     <div class="dropdown dropdown-autor">
                         <div class="row-flex">
                             <div class="user-avatar size-25-avatar">
                                 <avatar class="size-25-avatar" v-bind:account="state.accounts[state.content[p].author]"></avatar>
                             </div>
-                            <span class="dropdown-autor-span-name">{{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}</span>
+                            <span class="dropdown-autor-span-name text-truncate">{{ state.accounts[state.content[p].author].metadata.publicName || state.content[p].author }}</span>
                         </div>
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
@@ -79,14 +79,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="col text-center">
-                                                <p class="name">
+                                                <p class="name text-truncate">
                                                     <linkname v-bind:user="state.content[p].author" v-bind:name="state.accounts[state.content[p].author].metadata.publicName"></linkname>
                                                 </p>
-                                                <p class="user">
+                                                <p class="user  text-truncate">
                                                     <linkname v-bind:user="state.content[p].author"></linkname>
                                                 </p>
-                                                <p class="description-user">{{ state.accounts[state.content[p].author].metadata.about || '-' }}</p>
-                                                <p class="email-user">
+                                                <p class="description-user text-truncate">{{ state.accounts[state.content[p].author].metadata.about || '-' }}</p>
+                                                <p class="email-user text-truncate">
                                                     {{ state.accounts[state.content[p].author].metadata.contact || state.accounts[state.content[p].author].metadata.web || '-' }}
                                                 </p>
                                             </div>

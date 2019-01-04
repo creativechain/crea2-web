@@ -412,6 +412,8 @@
     top: 5px; }
     .view-publish .step-1 .upload-img .delete-img-step-1 a {
       color: #F9F9F9; }
+  .view-publish .step-1 .upload-img video {
+    width: 100%; }
 .view-publish .step-1 .row-options-steps-1 {
   margin-top: 160px;
   margin-bottom: -50px; }
@@ -1318,11 +1320,6 @@ img {
   .card-home .dropdown-info-user p.name {
     font-size: 14px;
     font-weight: bold; }
-  .card-home .dropdown-info-user p.description-user {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden; }
   .card-home .dropdown-info-user p.email-user {
     margin: 10px 0; }
   .card-home .dropdown-info-user p.title-stats {

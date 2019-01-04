@@ -92,7 +92,7 @@
     <div class="side-menu__module">
         <ul class="list--loose list--hover">
             <li>
-                <a href="#">
+                <a href="https://creaproject.io/creary/" target="_blank">
                     <span >{{ lang.DOTS_MENU.ABOUT }}</span>
                 </a>
             </li>
