@@ -48,7 +48,11 @@ class MonetaryFormat {
 
     abbr(value) {
         value = parseFloat(value);
-        console.log(value);
+
+        if (value < 10000) {
+            return value;
+        }
+
         let newValue = value;
         const suffixes = ["", "K", "M", "B","T"];
         let suffixNum = 0;
