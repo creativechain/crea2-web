@@ -18,7 +18,7 @@
                                         </div>
                                         <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
                                             <p>
-                                                <img v-bind:src="el.url" v-bind:type="el.type" alt="">
+                                                <img v-bind:src="el.url" v-bind:type="el.type" alt="" />
                                             </p>
                                         </div>
                                         <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
@@ -69,7 +69,7 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="input-icon input-icon--right">
                                                                                         <i class="">CBD ($)</i>
-                                                                                        <input v-model="amount" type="number" step="0.001" name="input" >
+                                                                                        <input v-model="amount" type="number" step="0.001" name="input" />
                                                                                         <p class="amount-save mt-4" >{{ lang.WALLET.BALANCE }}: {{ user.cbd_balance }}</p>
                                                                                     </div>
                                                                                 </div>
@@ -140,7 +140,7 @@
                                             </div>
                                         </div>
 
-                                        <hr>
+                                        <hr />
 
                                         <div class="row">
                                             <div class="col-md-12">
@@ -160,7 +160,7 @@
                                                         <div class="user-comments">
                                                             <p>
                                                                 <username v-bind:inline="1" v-bind:user="state.content[c].author" v-bind:name="state.accounts[state.content[c].author].metadata.publicName"></username>
-                                                                <img src="/img/icons/trainer.svg" alt="">
+                                                                <img src="/img/icons/trainer.svg" alt="" />
                                                                 <span>{{ dateFromNow(state.content[c].created) }}</span>
                                                             </p>
                                                             <span class="comment-user">{{ state.content[c].body }}</span>
@@ -182,7 +182,7 @@
                                         </template>
 
 
-                                        <hr>
+                                        <hr />
 
                                         <div class="row">
                                             <div class="col-md-12 text-center">
@@ -196,7 +196,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="boxed boxed--border box-blockchain-certificate">
-                                        <img class="certificat-flag" src="/img/crea-web/publish/flag.png" alt="">
+                                        <img class="certificat-flag" src="/img/crea-web/publish/flag.png" alt="" />
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="feature feature-2">
@@ -206,12 +206,12 @@
                                                             <ul class="float-right">
                                                                 <li class="li-blockchain-certificate">
                                                                     <template v-for="i in getLicense().getIcons('white')">
-                                                                        <img v-bind:src="i" alt="">
+                                                                        <img v-bind:src="i" alt="" />
                                                                     </template>
                                                                 </li>
                                                             </ul>
                                                         </ul>
-                                                        <hr>
+                                                        <hr />
                                                         <p>
                                                             License: <a v-bind:href="getLicense().getLink()">{{ getLicense().getTags() }}</a>
                                                         </p>
@@ -232,11 +232,11 @@
                                             <div class="col-md-12">
                                                 <ul class="list-inline list-unstyled">
 
-                                                    <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
+                                                    <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                     <li v-else >
                                                         <div class="modal-instance ">
                                                             <p>
-                                                                <img src="/img/icons/report_content.svg" alt="">({{ state.post.down_votes.length }})
+                                                                <img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }})
                                                                 <a href="#modal-report" class="modal-trigger link-report">{{ lang.PUBLICATION.REPORT_CONTENT }}</a>
                                                             </p>
 
@@ -281,7 +281,7 @@
                                                         </div>
                                                     </li>
 
-                                                    <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="">{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
+                                                    <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -334,7 +334,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <hr>
+                                    <hr />
                                 </div>
                             </div>
                             <div class="row row-publish-description">
@@ -346,7 +346,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <hr>
+                                    <hr />
                                 </div>
                             </div>
                             <div class="row row-publish-tags">
@@ -359,7 +359,7 @@
                             <div class="row row-social">
                                 <div class="col-md-12">
                                     <ul class="ul-social">
-                                        <hr>
+                                        <hr />
                                         <li>
                                             <div class="row-likes">
                                                 <!--<div class="col-likes">
@@ -376,10 +376,10 @@
                                         </li>
                                         <hr v-if="state.post.download.resource">
                                         <li v-if="state.post.download.resource">
-                                            <img src="/img/icons/downloads.svg" alt="">
+                                            <img src="/img/icons/downloads.svg" alt="" />
                                             <p>{{ state.post.download.times_downloaded }} {{ lang.PUBLICATION.DOWNLOADS }}</p>
                                         </li>
-                                        <hr>
+                                        <hr />
 
                                     </ul>
 

@@ -1,29 +1,25 @@
-<div id="blocked-container">
-    <div class="col-md-12">
-        <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_BLOCKED }}</h3>
-    </div>
+<div v-for="b in blocked" class="col-md-12">
+    <div class="boxed boxed--border row-list">
+        <div class="row row-list-user">
+            <div class="col-md-9">
+                <div class="row-list-user-display">
+                    <div class="user-avatar">
+                        <div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + ( b.metadata.avatar.url || getDefaultAvatar(blocked[b].name)) + ')' }"></div>
+                        <avatar v-bind:account="b"></avatar>
+                   </div>
 
-    <div v-cloak="" class="col-md-12">
-        <div class="boxed boxed--border row-list">
-
-            <div v-for="b in accounts" class="row row-list-user">
-                <div class="col-md-9">
-                    <div class="row-list-user-display">
-                        <!--<avatar v-bind:account="blocked[b]" v-bind:blocked="1"></avatar>-->
-                        <div class="list-data-user">
-                            <p>{{ blocked[b].metadata.publicName }} </p>
-                            <username v-bind:user="blocked[b].name" v-bind:name="blocked[b].metadata.publicName"></username>
-                            <p><span>{{ blocked[b].metadata.description || '' }}</span></p>
-                        </div>
+                    <div class="list-data-user">
+                        <username v-bind:user="b.name" v-bind:name="b.metadata.publicName"></username>
+                        <p><span>{{ b.metadata.description || 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod' }}</span></p>
                     </div>
                 </div>
-                <div class="col-md-3 align-self-center text-right">
-                    <a href="/publish.php" class="btn btn--sm btn--primary">
-                        <span class="btn__text">Unlock</span>
-                    </a>
+            </div>
+            <div class="col-md-3 align-self-center text-right">
+                <div class="btn btn--sm btn--primary" v-on:click="unlock(b.name)">
+                    <span class="btn__text">{{ lang.BUTTON.UNLOCK }}</span>
                 </div>
             </div>
-
         </div>
+
     </div>
 </div>

@@ -19,7 +19,7 @@
                 <div class="delete-img-step-1" v-on:click="removeElement(k)">
                     <a href="#">X</a>
                 </div>
-                <img v-bind:src="bodyElements[k].url" alt="">
+                <img v-bind:src="bodyElements[k].url" alt="" />
             </div>
             <div v-else-if="bodyElements[k].type.indexOf('video/') > -1" class="upload-img">
                 <div class="delete-img-step-1" v-on:click="removeElement(k)">
@@ -66,7 +66,7 @@
                             <div class="button-add-file" v-on:click="loadFile"></div>
                             <p class="title">{{ lang.PUBLISH.FILE }}</p>
                             <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
-                            <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile">
+                            <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
                         </div>
                         <div class="col-6">
                             <div class="button-add-text" v-on:click="toggleEditor"></div>

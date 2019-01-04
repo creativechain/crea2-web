@@ -88,7 +88,7 @@
         </ul>
 
     </div>
-    <hr>
+    <hr />
     <div class="side-menu__module">
         <ul class="list--loose list--hover">
             <li>
@@ -163,7 +163,7 @@
         </ul>
     </div>
     <!--end module-->
-    <hr>
+    <hr />
     <div class="side-menu__module">
         <ul class="social-list list-inline list--hover">
             <li>

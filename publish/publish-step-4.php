@@ -97,7 +97,7 @@
                     <div v-if="!getLicense().has(LICENSE.NON_PERMISSION.flag)" class="col-md-12 text-center">
                         <ul class="list-unstyled list-inline ul-icon-license">
                             <template v-for="i in getLicense().getIcons()">
-                                <li><img v-bind:src="i" alt=""></li>
+                                <li><img v-bind:src="i" alt="" /></li>
                             </template>
                         </ul>
                     </div>

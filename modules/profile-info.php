@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <hr>
+    <hr />
     <div class="row profile-summary">
 
 <!--        <div class="col-md-7">
@@ -54,7 +54,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="/img/icons/followers.svg" alt="">
+                <img src="/img/icons/followers.svg" alt="" />
                 <span>{{ lang.PROFILE.FOLLOWERS }}</span>
             </p>
         </div>
@@ -64,7 +64,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="/img/icons/following.svg" alt="">
+                <img src="/img/icons/following.svg" alt="" />
                 <span>{{ lang.PROFILE.FOLLOWING }}</span>
             </p>
         </div>
@@ -74,7 +74,7 @@
 
         <div class="col-md-7">
             <p>
-                <img src="/img/icons/projects.svg" alt="">
+                <img src="/img/icons/projects.svg" alt="" />
                 <span>{{ lang.PROFILE.POSTS }}</span>
             </p>
         </div>
@@ -83,7 +83,7 @@
         </div>
 
     </div>
-    <hr>
+    <hr />
     <div class="row profile-tags">
         <div class="col">
             <p class="title-tags">Tags</p>
@@ -94,7 +94,7 @@
     <div v-if="!isUserProfile()" class="row block-all">
         <div class="col-md-12">
             <ul class="list-inline list-unstyled">
-                <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+                <li><p><img src="/img/icons/NO_see.svg" alt="" />(0) Block all posts by this user</p></li>
             </ul>
         </div>
     </div>

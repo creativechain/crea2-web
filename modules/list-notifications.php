@@ -11,7 +11,10 @@
                     </div>
                     <div class="list-data-user">
                         <p>Comando C <span>4 days ago</span></p>
-                        <p><img src="../img/icons/comments.svg" alt="" class="icon-notification-list"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
+                        <p>
+                            <img src="../img/icons/comments.svg" alt="" class="icon-notification-list" />
+                            <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -30,7 +33,7 @@
                     </div>
                     <div class="list-data-user">
                         <p>Comando C <span>4 days ago</span></p>
-                        <p><img src="../img/icons/like_ACT_RED.svg" alt="" class="icon-notification-list"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
+                        <p><img src="../img/icons/like_ACT_RED.svg" alt="" class="icon-notification-list" /><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
                     </div>
                 </div>
             </div>
@@ -48,7 +51,7 @@
                     </div>
                     <div class="list-data-user">
                         <p>Comando C <span>4 days ago</span></p>
-                        <p><img src="../img/icons/like_ACT_RED.svg" alt="" class="icon-notification-list"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
+                        <p><img src="../img/icons/like_ACT_RED.svg" alt="" class="icon-notification-list" /><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
                     </div>
                 </div>
             </div>

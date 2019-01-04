@@ -175,6 +175,7 @@ let lang = {
         "CONFIRM": "Confirm",
         "CLOSE": "Close",
         "REPORT": "Report content",
+        "UNLOCK": "Unlock"
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea comunity!",

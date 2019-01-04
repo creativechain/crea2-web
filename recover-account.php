@@ -17,11 +17,11 @@
                     </div>
                     <div class="col-md-12 mt-4">
                         <label class="lead mb-0">{{ lang.ACCOUNT_RECOVERY.INPUT_USERNAME }}:</label>
-                        <input type="text" name="name" v-bind:placeholder="lang.ACCOUNT_RECOVERY.INPUT_USERNAME" class="validate-required">
+                        <input type="text" name="name" v-bind:placeholder="lang.ACCOUNT_RECOVERY.INPUT_USERNAME" class="validate-required" />
                     </div>
                     <div class="col-md-12">
                         <label class="lead mb-0">Email Address:</label>
-                        <input type="email" name="email" v-bind:placeholder="lang.ACCOUNT_RECOVERY.INPUT_EMAIL" class="validate-required">
+                        <input type="email" name="email" v-bind:placeholder="lang.ACCOUNT_RECOVERY.INPUT_EMAIL" class="validate-required" />
                     </div>
                     <div class="col-md-12 mt-3">
                         <a id="welcome-slide1-button-signup" href="#" class="btn btn--primary">

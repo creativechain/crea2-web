@@ -10,7 +10,7 @@
                     <p>That’s all we know.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="/img/error/error.svg" alt="">
+                    <img src="/img/error/error.svg" alt="" />
                 </div>
             </div>
             <!--end of row-->

@@ -243,6 +243,7 @@ let walletModalDeEnergize;
                         data: [],
                         accounts: {}
                     },
+                    blocked: {},
                     showPriv: {
                         posting: false,
                         active: false,
@@ -711,7 +712,7 @@ let walletModalDeEnergize;
         }
     }
 
-    function setUpBlocked(session, account, accounts, blocked) {
+    function setUpBlocked(session, account, blocked) {
 
         if (!blockedContainer) {
             blockedContainer = new Vue({
@@ -720,8 +721,17 @@ let walletModalDeEnergize;
                     lang: lang,
                     session: session,
                     account: account,
-                    accounts: accounts,
                     blocked: blocked
+                },
+                methods: {
+                    unlock: function (user) {
+
+                        ignoreUser(user, false, function (err, result) {
+                            if (!catchError(err)) {
+                                updateUserSession();
+                            }
+                        })
+                    }
                 }
             })
         } else {
@@ -729,6 +739,7 @@ let walletModalDeEnergize;
             blockedContainer.account = account;
             blockedContainer.blocked = blocked;
         }
+
     }
 
     /**
@@ -776,13 +787,13 @@ let walletModalDeEnergize;
                                 data[c.name] = c;
                             }
 
-
-                            setUpBlocked(session, account, accounts, data);
+                            setUpBlocked(session, account, data);
                         }
                     })
                 } else {
                     //Not blockeds
-                    setUpBlocked(session, account, accounts);
+                    console.log('Not blockeds');
+                    setUpBlocked(session, account, {});
                 }
 
             }

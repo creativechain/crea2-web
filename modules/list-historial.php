@@ -195,7 +195,7 @@
             <div class="list-amount">
                 <p>+{{ parseAsset(op.op.value.vesting_shares) }}</p>
             </div>
-            <hr>
+            <hr />
         </div>
         <div v-else-if="op.op.type == 'curator_reward_operation'" class="row-list-user">
             <div class="user-avatar">
@@ -219,7 +219,7 @@
             <div class="list-amount">
                 <p>+{{ parseAsset(op.op.value.reward) }}</p>
             </div>
-            <hr>
+            <hr />
         </div>
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
             <div class="col-md-12">

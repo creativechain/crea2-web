@@ -7,12 +7,12 @@
         <div class="boxed boxed--border box-image-step-2" v-on:click="loadFeaturedImage">
             <div class="row row-image">
                 <div v-if="!featuredImage.url" class="col-md-4 offset-md-4 col-sm-12 text-center" style="position: relative;top: 60px;">
-                    <img src="/img/crea-web/publish/b-img-portada.png" alt="">
+                    <img src="/img/crea-web/publish/b-img-portada.png" alt="" />
                     <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
                     <p class="disabled">{{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.IMAGE)) }}</p>
                 </div>
                 <div v-else>
-                    <img v-bind:src="featuredImage.url" alt="">
+                    <img v-bind:src="featuredImage.url" alt="" />
                 </div>
             </div>
             <div class="pos-vertical-center text-center hidden">
@@ -20,17 +20,17 @@
                     <div v-if="!featuredImage.url" class="col-md-4 offset-4">
                         <div class="row row-options-steps-1">
                             <div class="col">
-                                <img src="/img/crea-web/publish/b-img-portada.png" alt="" class="img-protada">
+                                <img src="/img/crea-web/publish/b-img-portada.png" alt="" class="img-protada" />
                                 <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
                             </div>
                         </div>
                     </div>
                     <div v-else>
-                        <img v-bind:src="featuredImage.url" alt="">
+                        <img v-bind:src="featuredImage.url" alt="" />
                     </div>
                 </div>
             </div>
-            <input ref="publishInputCover" class="hidden" type="file" accept="image/*" v-on:change="onLoadFeaturedImage" >
+            <input ref="publishInputCover" class="hidden" type="file" accept="image/*" v-on:change="onLoadFeaturedImage" />
 
         </div>
 
@@ -54,7 +54,7 @@
                     <label>{{ lang.PUBLISH.INFO_TAGS }}</label>
                     <input id="publish-tags" class="validate-required"
                            v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + '}'"
-                           type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS">
+                           type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.QUESTION }}</label>

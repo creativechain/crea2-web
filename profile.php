@@ -47,8 +47,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
-                                    <div v-pre >
+                                <div v-pre v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
+
+                                    <div v-cloak id="blocked-container" class="row view-notifications">
+                                        <div class="col-md-12">
+                                            <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_BLOCKED }}</h3>
+                                        </div>
+
                                         <?php include ('modules/list-blocked.php') ?>
                                     </div>
 
@@ -72,8 +77,8 @@
             </div>
         </section>
     </div>
+
     <script src="/js/common/profile.js"></script>
-    <!--<script src="/js/common/author_rewards.js"></script>-->
 
 
 

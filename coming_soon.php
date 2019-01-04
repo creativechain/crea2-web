@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                     <ul>
                         <li>
-                            <img class="logo-coming" src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="">
+                            <img class="logo-coming" src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="" />
                         </li>
                         <li>
                             <h2 class="h2-title">COMING SOON</h2>

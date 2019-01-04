@@ -4,7 +4,7 @@
         <div class="container pos-vertical-center">
             <div class="row align-items-center">
                 <div class="col-md-12 text-center">
-                    <img src="img/empty.svg" alt="">
+                    <img src="img/empty.svg" alt="" />
                     <div class="row mt-2">
                         <div class="col-md-4 col-sm-6">
                             <p class="title"> Welcome to your new tab of users that you follow.</p>

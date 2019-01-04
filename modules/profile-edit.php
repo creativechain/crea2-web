@@ -10,7 +10,7 @@
                     <span class="h5">{{ profile.publicName || ''}}</span>
                     <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>
                     <a href="" v-on:click="loadAvatar">{{ lang.EDIT_PROFILE.CHANGE_IMAGE }}</a>
-                    <input id="profile-edit-input-avatar" class="hidden" type="file" accept="image/*" v-on:change="onLoadAvatar" >
+                    <input id="profile-edit-input-avatar" class="hidden" type="file" accept="image/*" v-on:change="onLoadAvatar" />
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
             <div class="col-md-12">
                 <label>{{ lang.EDIT_PROFILE.TAGS }}</label>
                 <input id="profile-edit-tags" class="validate-required" data-role="tagsinput"
-                       v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS">
+                       v-bind:placeholder="lang.EDIT_PROFILE.INPUT_TAGS" />
             </div>
         </div>
         <div class="row">

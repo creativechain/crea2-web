@@ -12,8 +12,8 @@
                                     <div class="col-md-9">
                                         <div class="row">
                                             <div class="col-md-12 img-post-view">
-                                                <img src="/img/crea-web/publish/demo-upload.png" class="img--fullwidth" alt="">
-                                                <img src="/img/crea-web/publish/demo-upload.png" class="img--fullwidth" alt="">
+                                                <img src="/img/crea-web/publish/demo-upload.png" class="img--fullwidth" alt="" />
+                                                <img src="/img/crea-web/publish/demo-upload.png" class="img--fullwidth" alt="" />
                                             </div>
                                             <div class="col-md-12 content-post">
                                                 <h2 class="title-view-post">Lorem ipsum dolor sit amet.</h2>

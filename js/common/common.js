@@ -165,7 +165,9 @@ function ignoreUser(following, ignore, callback) {
         followJson = ['follow', followJson];
 
         requireRoleKey(s.account.username, 'posting', function (postingKey) {
+            globalLoading.show = true;
             crea.broadcast.customJson(postingKey, [], [s.account.username], 'follow', jsonstring(followJson), function (err, result) {
+                globalLoading.show = false;
                 if (err) {
                     callback(err);
                 } else {

@@ -110,7 +110,7 @@ Vue.component('slider',  {
 
 Vue.component('post-like2', {
     template: `<div class="col-likes">
-                <img class="cursor" v-on:click="makeVote" v-bind:src="getIcon()" alt="">
+                <img class="cursor" v-on:click="makeVote" v-bind:src="getIcon()" alt="" />
                     <div class="dropdown dropdown-price">
                         <span class="dropdown__trigger"> {{ post.up_votes.length }} {{ lang.PUBLICATION.LIKES }}</span>
                         <div class="dropdown__container">
@@ -631,7 +631,7 @@ Vue.component('avatar', {
 });
 
 Vue.component('taginput', {
-    template: `<input :id="id" class="validate-required" type="text" :value="value" :data-role="data-role" :data-options="data-options" :placeholder="placeholder">`,
+    template: `<input :id="id" class="validate-required" type="text" :value="value" :data-role="data-role" :data-options="data-options" :placeholder="placeholder" />`,
     props: {
         id: {
             type: String

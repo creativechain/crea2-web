@@ -103,7 +103,7 @@
                                                                                                                 <div class="col-md-11">
                                                                                                                     <div class="input-icon input-icon--left">
                                                                                                                         <i class="fas fa-at"></i>
-                                                                                                                        <input disabled type="text" v-model="from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                        <input disabled type="text" v-model="from" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER" />
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -114,7 +114,7 @@
                                                                                                                 <div class="col-md-11">
                                                                                                                     <div class="input-icon input-icon--left">
                                                                                                                         <i class="fas fa-at"></i>
-                                                                                                                        <input v-bind:disabled="config.confirmed || config.disabledTo" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER">
+                                                                                                                        <input v-bind:disabled="config.confirmed || config.disabledTo" v-on:input="validateDestiny" v-bind:class="{ 'field-error': toError }" v-model="config.to" type="text" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_SEND_PLACEHOLDER" />
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -125,7 +125,7 @@
                                                                                                                 <div class="col-md-10">
                                                                                                                     <div class="input-icon input-icon--right">
                                                                                                                         <i class="">CREA</i>
-                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT">
+                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT" />
                                                                                                                         <p class="amount-save" v-on:click="useTotalAmount">{{ lang.WALLET.BALANCE }}: {{ config.total_amount.toFriendlyString() }}</p>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -142,7 +142,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-10">
                                                                                                                     <div class="input-icon input-icon--right">
-                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name">
+                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name" />
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -248,7 +248,7 @@
                                                                                                             <div class="col-md-10">
                                                                                                                 <div class="input-icon input-icon--right">
                                                                                                                     <i class="">CREA</i>
-                                                                                                                    <input v-model="finalAmount" step="0.001" v-on:input="onManualChange" type="number" name="input">
+                                                                                                                    <input v-model="finalAmount" step="0.001" v-on:input="onManualChange" type="number" name="input" />
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -407,7 +407,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_POSTING }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('posting') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('posting') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -422,7 +422,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('active') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('active') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -437,7 +437,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_OWNER }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('owner') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('owner') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_OWNER }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -447,7 +447,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_MEMO }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="">{{ getKey('memo') }}</p>
+                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('memo') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                 </td>
                                 <td style="text-align: right">
