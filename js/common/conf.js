@@ -24,10 +24,7 @@ let apiOptions = {
         CBD: '@@000000013',
         VESTS: '@@000000037'
     },
-    chainId: '0000000000000000000000000000000000000000000000000000000000000000',
-    accountCreator: 'initminer',
-    privCreator: '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n',
-    privCreator2: '5KRFvzfzsbxPEMymDMMeNCGfVYAvu5y29M11Bky6ZdPShrbyphU'
+    chainId: '0000000000000000000000000000000000000000000000000000000000000000'
 };
 
 localStorage.debug = 'crea:*';
