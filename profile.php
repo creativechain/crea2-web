@@ -47,13 +47,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div v-pre v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
-
-                                    <div v-cloak id="blocked-container" class="row view-notifications">
-                                        <div class="col-md-12">
-                                            <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_BLOCKED }}</h3>
-                                        </div>
-
+                                <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
+                                    <div v-pre>
                                         <?php include ('modules/list-blocked.php') ?>
                                     </div>
 
@@ -68,7 +63,10 @@
                                     <?php include ('modules/list-followers.php') ?>
                                 </div>
                                 <div v-show="navbar.section === 'following'" class="row view-notifications">
-                                    <?php include ('modules/list-following.php') ?>
+                                    <div v-pre >
+                                        <?php include ('modules/list-following.php') ?>
+                                    </div>
+
                                 </div>
                             </div>
                         </section>

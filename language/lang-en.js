@@ -305,6 +305,7 @@ let lang = {
         "SECONDARY_MENU_WALLET": "Wallet",
         "TITLE_NOTIFICATIONS": "Notifications",
         "SECONDARY_MENU_BLOCKED": "Blocked",
+        "SECONDARY_MENU_FOLLOWING": "Following",
         "TITLE_FOLLOWING": "Following",
         "SECONDARY_MENU_PROJECTS": "Projects",
         "TAGS": "TAGS",

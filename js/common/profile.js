@@ -5,6 +5,7 @@
 let profileContainer;
 let rewardsContainer = {};
 let blockedContainer;
+let followingContainer;
 let walletModalSend;
 let walletModalDeEnergize;
 
@@ -742,6 +743,31 @@ let walletModalDeEnergize;
 
     }
 
+    function setUpFollowing(session, account, following) {
+
+        if (!followingContainer) {
+            followingContainer = new Vue({
+                el: '#following-container',
+                data: {
+                    lang: lang,
+                    session: session,
+                    account: account,
+                    following: following
+                },
+                methods: {
+                    onFollow: function () {
+                        updateUserSession();
+                    }
+                }
+            })
+        } else {
+            followingContainer.session = session;
+            followingContainer.account = account;
+            followingContainer.following = following;
+        }
+
+    }
+
     /**
      *
      * @param {Session} session
@@ -800,6 +826,25 @@ let walletModalDeEnergize;
         })
     }
 
+    function fetchFollowing(session, account) {
+
+        console.log('Fetching following:', session.account.username, account.user.followings)
+        crea.api.getAccounts(account.user.followings, function (err, result) {
+            if (!catchError(err)) {
+
+                let followings = {};
+
+                result.forEach(function (a) {
+
+                    a.metadata = jsonify(a.json_metadata);
+                    followings[a.name] = a;
+                });
+
+                setUpFollowing(session, account, followings);
+            }
+        });
+    }
+
     /**
      *
      * @param state
@@ -828,6 +873,7 @@ let walletModalDeEnergize;
         updateProfileView(state, session, account, usernameFilter, nav, walletNav);
         fetchRewards(session);
         fetchBlockeds(session, account);
+        fetchFollowing(session, account);
     }
 
     function sendAccountUpdate(event, keys, callback) {

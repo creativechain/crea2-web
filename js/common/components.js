@@ -514,7 +514,9 @@ Vue.component('witness-like', {
 });
 
 Vue.component('btn-follow',  {
-    template: `<a v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !innerFollowing, 'btn-following': innerFollowing, 'btn-unfollow': over && innerFollowing }" href="#0"><span v-bind:class="{ btn__text: true, text__dark: innerFollowing && !over }">{{ followText() }}</span></a>`,
+    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !innerFollowing, 'btn-following': innerFollowing, 'btn-unfollow': over && innerFollowing }">
+<span v-bind:class="{ btn__text: true, text__dark: innerFollowing && !over }">{{ followText() }}</span>
+</div>`,
     props: {
         session: {
             type: [Object, Boolean]
