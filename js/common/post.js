@@ -76,6 +76,9 @@ let promoteModal;
                 methods: {
                     showPost: showPost,
                     humanFileSize: humanFileSize,
+                    cbdToDollar: function (cbd) {
+                        return Asset.parseString(cbd).toPlainString() + ' $';
+                    },
                     assetToString: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
