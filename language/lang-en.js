@@ -435,7 +435,9 @@ let lang = {
         "MENU_PROMOTED": "Promoted",
         "DROPDOWN_PENDING_PAYOUT": "Pending Payout",
         "MENU_SKYROCKETS": "Skyrockets",
-        "MENU_LOGIN": "Login"
+        "MENU_LOGIN": "Login",
+        "EMPTY_TITLE": "Welcome to your new tab of users that you follow.",
+        "EMPTY_SUBTITLE": "Follow people with tastes like yours to see what new and original ideas they discover."
     },
     "LICENSE": {
         "FREECONTENT": "FreeContent",
