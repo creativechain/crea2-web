@@ -119,25 +119,37 @@ function resolveFilter(filter) {
 }
 
 function createBlockchainAccount(username, password, callback) {
-    console.log(password);
-    let keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
-    console.log(keys);
 
-    crea.api.getWitnessSchedule(function (err, result) {
-        if (err) {
-            console.error(err);
-            callback(err);
-        } else {
-            let creationFee = Asset.parse(result.median_props.account_creation_fee);
-            crea.broadcast.accountCreate(apiOptions.privCreator, creationFee.toFriendlyString(), apiOptions.accountCreator, username,
-                createAuth(keys.ownerPubkey), createAuth(keys.activePubkey), createAuth(keys.postingPubkey), keys.memoPubkey, {}, function (err, result) {
-                    console.log(err, result);
-                    if (callback) {
-                        callback(err, result);
-                    }
-                });
-        }
-    })
+    let keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
+
+    refreshAccessToken(function (accessToken) {
+        let http = new HttpClient('https://platform.creativechain.net/createCrearyAccount');
+
+        http.on('done', function (data) {
+            data = jsonify(data);
+            if (callback) {
+                callback(null, data);
+            }
+        });
+
+        http.on('fail', function (jqXHR, textStatus, errorThrown) {
+            if (callback) {
+                callback(errorThrown);
+            }
+        });
+
+        http.headers = {
+            Authorization: 'Bearer ' + accessToken
+        };
+
+        http.post({
+            username: username,
+            active: keys.activePubkey,
+            owner: keys.ownerPubkey,
+            posting: keys.postingPubkey,
+            memo: keys.memoPubkey,
+        })
+    });
 
 }
 
@@ -195,13 +207,13 @@ function refreshAccessToken(callback) {
     let expiration = localStorage.getItem(CREARY.ACCESS_TOKEN_EXPIRATION);
 
     if (!expiration || expiration <= now) {
-        let url = 'https://platform.creativechain.net/oauth/v2/token';
+        let url = apiOptions.apiUrl + '/oauth/v2/token';
         let http = new HttpClient(url);
 
         let params = {
             grant_type: 'client_credentials',
-            client_id: '1_4juuakri1zqckgo444ows4gckw08so0w848sowkckk40wo8w80',
-            client_secret: '5co2o9zprcgskcw0ok4ko0csocwkc44swsko4k0kwks04o0koo'
+            client_id: local ? '1_11gxxww27idwo0skoo8s4k0g044skswwkcg08c88swgsowkwgk' : '1_4juuakri1zqckgo444ows4gckw08so0w848sowkckk40wo8w80',
+            client_secret: local ? 'jf8ltr7u5fk0gwssos4g8w8kwc4owosk4gcs0g4wk4k8ks0wk' : '5co2o9zprcgskcw0ok4ko0csocwkc44swsko4k0kwks04o0koo'
         };
 
         http.on('done', function (data) {

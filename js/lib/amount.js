@@ -46,6 +46,23 @@ class MonetaryFormat {
         this.maxDigits = maxDigits;
     };
 
+    abbr(value) {
+        value = parseFloat(value);
+        console.log(value);
+        let newValue = value;
+        const suffixes = ["", "K", "M", "B","T"];
+        let suffixNum = 0;
+        while (newValue >= 10000) {
+            newValue /= 1000;
+            suffixNum++;
+        }
+
+        newValue = Math.round(newValue * 100) / 100; //2 decimals places
+
+        newValue += suffixes[suffixNum];
+        return newValue;
+    }
+
     /**
      *
      * @param {Number} value
@@ -62,7 +79,7 @@ class MonetaryFormat {
         }
 
         let toFloat = (value / Math.pow(10, exponent)).toFixed(this.maxDigits);
-        return String(toFloat);
+        return this.abbr(toFloat);
     };
 }
 

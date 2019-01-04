@@ -3,9 +3,13 @@
  */
 
 
+let local = false;
 let localNode = 'http://cn.localhost';
+
+let apiUrl = local ? 'http://127.0.0.1:8000' : 'https://platform.creativechain.net';
 let apiOptions = {
-    url: false ? localNode : 'https://crea.owldevelopers.site',
+    url: local ? localNode : 'https://crea.owldevelopers.site',
+    apiUrl : apiUrl,
     ipfs: 'https://ipfs.creary.net',
     ipfsd: 'https://platform.creativechain.net/ipfs/',
     addressPrefix: 'CREA',

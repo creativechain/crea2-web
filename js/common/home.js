@@ -75,6 +75,12 @@ let homePosts;
                     state: state,
                     lang: lang,
                 },
+                updated: function () {
+                    if (mr.masonry) {
+                        console.log ('Updating layout');
+                        mr.masonry.updateLayout();
+                    }
+                },
                 methods: {
                     getDefaultAvatar: R.getDefaultAvatar,
                     onFollow: function (err, result) {
