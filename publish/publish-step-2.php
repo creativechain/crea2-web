@@ -6,7 +6,7 @@
         </div>
         <div class="boxed boxed--border box-image-step-2" v-on:click="loadFeaturedImage">
             <div class="row row-image">
-                <div v-if="!featuredImage.url" class="col-md-4 offset-4 text-center" style="position: relative;top: 60px;">
+                <div v-if="!featuredImage.url" class="col-md-4 offset-md-4 col-sm-12 text-center" style="position: relative;top: 60px;">
                     <img src="/img/crea-web/publish/b-img-portada.png" alt="">
                     <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
                     <p class="disabled">{{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.IMAGE)) }}</p>

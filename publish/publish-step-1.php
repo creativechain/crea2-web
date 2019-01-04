@@ -60,15 +60,15 @@
 
         <div class="pos-vertical-center text-center">
             <div class="row">
-                <div class="col-md-6 offset-3">
+                <div class="col-md-6 offset-md-3 col-sm-12">
                     <div class="row row-options-steps-1">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="button-add-file" v-on:click="loadFile"></div>
                             <p class="title">{{ lang.PUBLISH.FILE }}</p>
                             <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
                             <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="button-add-text" v-on:click="toggleEditor"></div>
                             <p class="title">{{ lang.PUBLISH.TEXT }}</p>
                         </div>
