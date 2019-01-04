@@ -9,7 +9,9 @@
                 <div class="col-md-9">
                     <div class="row-list-user-display">
                         <div class="user-avatar">
-                            <avatar v-bind:account="f"></avatar>
+                            <a v-bind:href="'/@' + f.name ">
+                                <avatar v-bind:account="f"></avatar>
+                            </a>
                         </div>
                         <div class="list-data-user">
                             <username v-bind:user="f.name" v-bind:name="f.metadata.publicName"></username>
