@@ -60,7 +60,7 @@ function vestingCrea(account, props) {
     const totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString());
 
     const vestingCrea = totalVestCrea * (vests / totalVests);
-    return Asset.parse({amount: vestingCrea, nai: apiOptions.nai.CREA});
+    return Asset.parse({amount: vestingCrea, nai: apiOptions.nai.CGY});
 }
 
 /**

@@ -30,6 +30,7 @@ const NAI = {
     "@@000000037": ASSET_VESTS,
     "vests": ASSET_VESTS,
     "cgy": ASSET_CGY,
+    "@@000000005": ASSET_CGY,
 };
 
 class MonetaryFormat {
