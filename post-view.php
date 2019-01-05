@@ -48,51 +48,54 @@
                                             </span>
                                         </a>
 
-                                        <div v-cloak id="modal-promote" data-modal-id="modal-promote" class="modal-container">
-                                            <div class="modal-content section-modal">
-                                                <section class="unpad ">
-                                                    <div class="container">
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-lg-6 col-md-8 col-sm-12">
-                                                                <div class="feature feature-1">
-                                                                    <div class="feature__body boxed boxed--lg boxed--border">
-                                                                        <div class="modal-close modal-close-cross"></div>
-                                                                        <div class="text-block">
-                                                                            <h3>{{ lang.PUBLICATION.PROMOTE_TITLE }}</h3>
-                                                                            <p>{{ lang.PUBLICATION.PROMOTE_TEXT }}</p>
-                                                                        </div>
-                                                                        <form>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="input-icon input-icon--right">
-                                                                                        <i class="">CBD ($)</i>
-                                                                                        <input v-model="amount" type="number" step="0.001" name="input" />
-                                                                                        <p class="amount-save mt-4" >{{ lang.WALLET.BALANCE }}: {{ user.cbd_balance }}</p>
+                                        <div v-pre>
+                                            <div v-cloak id="modal-promote" data-modal-id="modal-promote" class="modal-container">
+                                                <div class="modal-content section-modal">
+                                                    <section class="unpad ">
+                                                        <div class="container">
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-lg-6 col-md-8 col-sm-12">
+                                                                    <div class="feature feature-1">
+                                                                        <div class="feature__body boxed boxed--lg boxed--border">
+                                                                            <div class="modal-close modal-close-cross"></div>
+                                                                            <div class="text-block">
+                                                                                <h3>{{ lang.PUBLICATION.PROMOTE_TITLE }}</h3>
+                                                                                <p>{{ lang.PUBLICATION.PROMOTE_TEXT }}</p>
+                                                                            </div>
+                                                                            <form>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="input-icon input-icon--right">
+                                                                                            <i class="">CBD ($)</i>
+                                                                                            <input v-model="amount" type="number" step="0.001" name="input" />
+                                                                                            <p class="amount-save mt-4" >{{ lang.WALLET.BALANCE }}: {{ user.cbd_balance }}</p>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="row mt-3">
-                                                                                <div class="col text-right">
-                                                                                    <a href="#0" v-on:click="makePromotion" class="btn btn--sm btn--primary type--uppercase" >
-                                                                                        <span class="btn__text">{{ lang.BUTTON.PROMOTE }}</span>
-                                                                                    </a>
+                                                                                <div class="row mt-3">
+                                                                                    <div class="col text-right">
+                                                                                        <div v-on:click="makePromotion" class="btn btn--sm btn--primary type--uppercase" >
+                                                                                            <span class="btn__text">{{ lang.BUTTON.PROMOTE }}</span>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <!--end of row-->
-                                                                        </form>
+                                                                                <!--end of row-->
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
+                                                                    <!--end feature-->
                                                                 </div>
-                                                                <!--end feature-->
                                                             </div>
+                                                            <!--end of row-->
                                                         </div>
-                                                        <!--end of row-->
-                                                    </div>
-                                                    <!--end of container-->
-                                                </section>
+                                                        <!--end of container-->
+                                                    </section>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

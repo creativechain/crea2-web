@@ -72,9 +72,10 @@ class MonetaryFormat {
      *
      * @param {Number} value
      * @param {Number} exponent
+     * @param {Boolean} abbr
      * @returns {string}
      */
-    format(value, exponent) {
+    format(value, exponent, abbr = true) {
         if (typeof value !== "number") {
             value = 0;
         }
@@ -84,7 +85,12 @@ class MonetaryFormat {
         }
 
         let toFloat = (value / Math.pow(10, exponent)).toFixed(this.maxDigits);
-        return this.abbr(toFloat);
+        if (abbr) {
+            return this.abbr(toFloat);
+        } else {
+            return toFloat;
+        }
+
     };
 }
 
@@ -148,21 +154,28 @@ class Asset {
     /**
      *
      * @param maxDecimals
+     * @param {Boolean} abbr
      * @returns {string}
      */
-    toPlainString(maxDecimals) {
+    toPlainString(maxDecimals, abbr = true) {
 
-        if (isNaN(maxDecimals)) {
+        if (isNaN(maxDecimals) || maxDecimals === null) {
             maxDecimals = this.asset.precision;
         }
 
         let mf = new MonetaryFormat();
         mf.digits(maxDecimals);
-        return mf.format(Math.abs(this.amount), this.asset.precision);
+        return mf.format(Math.abs(this.amount), this.asset.precision, abbr);
     };
 
-    toFriendlyString(maxDecimals) {
-        return this.toPlainString(maxDecimals) + " " + this.asset.symbol;
+    /**
+     *
+     * @param {Number} maxDecimals
+     * @param {Boolean} abbr
+     * @returns {string}
+     */
+    toFriendlyString(maxDecimals, abbr = true) {
+        return this.toPlainString(maxDecimals, abbr) + " " + this.asset.symbol;
     };
 
     toString() {

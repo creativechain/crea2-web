@@ -159,7 +159,7 @@ let walletModalDeEnergize;
                             let that = this;
 
                             let amountData = { amount: that.amount, nai: that.config.nai, round: true};
-                            let amount = Asset.parse(amountData).toFriendlyString();
+                            let amount = Asset.parse(amountData).toFriendlyString(null, false);
 
                             requireRoleKey(this.session.account.username, 'active', function (activeKey) {
                                 globalLoading.show = true;

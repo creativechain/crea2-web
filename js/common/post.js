@@ -11,56 +11,17 @@ let promoteModal;
 
     let session, userAccount;
 
-    function setUp(state) {
+    let vueInstances = 2;
 
-        console.log('state', jsonify(jsonstring(state)));
-        if (!promoteModal) {
-            promoteModal = new Vue({
-                el: "#modal-promote",
-                data: {
-                    lang: lang,
-                    session: session,
-                    user: userAccount ? userAccount.user : null,
-                    state: state,
-                    amount: 0
-                },
-                methods: {
-                    hideModalPromote: function (event) {
-                        cancelEventPropagation(event);
+    function onVueReady() {
+        --vueInstances;
 
-                        $('#modal-promote').removeClass('modal-active');
-                    },
-                    makePromotion: function (event) {
-                        cancelEventPropagation(event);
-
-                        let from = this.session.account.username;
-                        let to = 'null';
-                        let memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
-
-                        let amount = parseFloat(this.amount) + 0.0001;
-                        console.log(amount);
-                        amount = Asset.parse({amount: amount, nai: apiOptions.nai.CBD}).toFriendlyString();
-
-                        globalLoading.show = true;
-                        let that = this;
-
-                        requireRoleKey(from, 'active', function (activeKey) {
-                            crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
-                                globalLoading.show = false;
-                                if (!catchError(err)) {
-                                    that.hideModalPromote();
-                                    updateUserSession();
-                                }
-                            });
-                        });
-                    }
-                }
-            })
-        } else {
-            promoteModal.session = session;
-            promoteModal.user = userAccount ? userAccount.user : null;
-            promoteModal.state = state;
+        if (vueInstances <= 0) {
+            creaEvents.emit('crea.dom.ready');
         }
+    }
+
+    function setUp(state) {
 
         if (!postContainer) {
             postContainer = new Vue({
@@ -72,6 +33,9 @@ let promoteModal;
                     state: state,
                     comment: '',
                     otherProjects: []
+                },
+                mounted: function () {
+                    onVueReady();
                 },
                 methods: {
                     showPost: showPost,
@@ -204,7 +168,57 @@ let promoteModal;
             postContainer.user = userAccount ? userAccount.user : null;
         }
 
-        creaEvents.emit('crea.dom.ready');
+        if (!promoteModal) {
+            promoteModal = new Vue({
+                el: "#modal-promote",
+                data: {
+                    lang: lang,
+                    session: session,
+                    user: userAccount ? userAccount.user : null,
+                    state: state,
+                    amount: 0
+                },
+                mounted: function () {
+                    onVueReady();
+                },
+                methods: {
+                    hideModalPromote: function (event) {
+                        cancelEventPropagation(event);
+
+                        $('#modal-promote').removeClass('modal-active');
+                    },
+                    makePromotion: function (event) {
+                        cancelEventPropagation(event);
+
+                        let from = this.session.account.username;
+                        let to = 'null';
+                        let memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
+
+                        let amount = parseFloat(this.amount) + 0.0001;
+                        console.log(amount);
+                        amount = Asset.parse({amount: amount, nai: apiOptions.nai.CBD}).toFriendlyString(null, false);
+                        console.log(amount);
+
+                        let that = this;
+
+                        requireRoleKey(from, 'active', function (activeKey) {
+                            globalLoading.show = true;
+                            crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
+                                globalLoading.show = false;
+                                if (!catchError(err)) {
+                                    that.hideModalPromote();
+                                    updateUserSession();
+                                }
+                            });
+                        });
+                    }
+                }
+            })
+        } else {
+            promoteModal.session = session;
+            promoteModal.user = userAccount ? userAccount.user : null;
+            promoteModal.state = state;
+        }
     }
 
     function makeComment() {
