@@ -126,6 +126,20 @@
   margin-top: -4px; }
 .view-profile .profile-summary span {
   font-weight: 600; }
+.view-profile .profile-summary .a-following {
+  background-image: url("/img/icons/following.svg");
+  background-repeat: no-repeat;
+  padding: 0 24px; }
+.view-profile .profile-summary .a-following.active {
+  background-image: url("/img/icons/following_ACT.svg");
+  background-repeat: no-repeat;
+  padding: 0 24px; }
+.view-profile .profile-summary a {
+  color: #222222;
+  font-weight: 600; }
+.view-profile .profile-summary a.active {
+  color: #0569EF;
+  font-weight: bold; }
 .view-profile .p-top-15 {
   padding-top: 15px; }
 .view-profile .card.card-2.card-home {

@@ -29,7 +29,6 @@
             </div>
         </li>
 
-        <li v-if="isUserProfile()" class="list-inline-item"><a v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">{{ lang.PROFILE.SECONDARY_MENU_FOLLOWING }}</a></li>
         <li v-if="isUserProfile()" class="list-inline-item"><a v-bind:href="'/@' + state.user.name + '/blocked'" v-on:click="navigateTo($event, 'blocked')" v-bind:class="{ active: navbar.section == 'blocked' }">{{ lang.PROFILE.SECONDARY_MENU_BLOCKED }}</a></li>
         <li class="list-inline-item"><a v-bind:href="'/@' + state.user.name + '/wallet'" v-on:click="navigateTo($event, 'wallet')" v-bind:class="{ active: navbar.section == 'wallet' }">{{ lang.PROFILE.SECONDARY_MENU_WALLET }}</a></li>
     </ul>
