@@ -41,17 +41,6 @@
 
     <hr />
     <div class="row profile-summary">
-
-<!--        <div class="col-md-7">
-            <p>
-                <img src="/img/icons/comments.svg" alt="">
-                <span>{{ lang.PROFILE.COMMENTS }}</span>
-            </p>
-        </div>
-        <div class="col-md-5 text-right">
-            <p>{{ state.user.comment_count }}</p>
-        </div>-->
-
         <div class="col-md-7">
             <p>
                 <img src="/img/icons/followers.svg" alt="" />
@@ -63,10 +52,13 @@
         </div>
 
         <div class="col-md-7">
-            <p>
-                <img src="/img/icons/following.svg" alt="" />
-                <span>{{ lang.PROFILE.FOLLOWING }}</span>
-            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item" v-if="isUserProfile()" class="list-inline-item">
+                    <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
+                        {{ lang.PROFILE.SECONDARY_MENU_FOLLOWING }}
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="col-md-5 text-right">
             <p>{{ state.user.following_count }}</p>

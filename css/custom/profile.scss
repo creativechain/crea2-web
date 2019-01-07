@@ -39,6 +39,26 @@
     span {
       font-weight: 600;
     }
+    .a-following {
+      background-image: url('/img/icons/following.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+    .a-following.active {
+      background-image: url('/img/icons/following_ACT.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+
+
+    a {
+      color: $color-dark-primary;
+      font-weight: 600;
+    }
+    a.active {
+      color: $color-blue-primary;
+      font-weight: bold;
+    }
   }
   .p-top-15 {
     padding-top: 15px;
