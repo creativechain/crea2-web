@@ -96,13 +96,9 @@ let homePosts;
                     },
                     getFeaturedImage: function (post) {
                         let featuredImage = post.metadata.featuredImage;
-                        if (featuredImage) {
-                            if (featuredImage.url) {
-                                return featuredImage;
-                            } else {
-                                return {
-                                    url: featuredImage
-                                }
+                        if (featuredImage.hash) {
+                            return {
+                                url: 'http://144.217.106.119:8080/ipfs/' + featuredImage.hash
                             }
                         }
 

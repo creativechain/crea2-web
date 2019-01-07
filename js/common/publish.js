@@ -255,7 +255,7 @@ let publishContainer;
             };
 
             let download = publishContainer.downloadFile;
-            download.price = Asset.parseString(download.price + ' CREA').toFriendlyString();
+            download.price = Asset.parseString(download.price + ' CREA').toFriendlyString(null, false);
             if (!download.resource) {
                 download = '';
             }
