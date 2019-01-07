@@ -12,6 +12,16 @@ $(document).ready(function(){
         navbarS.addClass('hidden');
         footer.addClass('hidden');
     }
+
+    $(".view-all").click(function(){
+        $(this).addClass('active-view-all');
+        $('.main-container').addClass('simple-view-home');
+    });
+
+    $(".active-view-all").click(function(){
+        $(this).removeClass('active-view-all');
+        $('.main-container').removeClass('simple-view-home')
+    });
 });
 
 
