@@ -464,6 +464,13 @@ let lang = {
     "AUTH_MODAL": {
         TITLE: "This action require the %s key",
         INPUT_PASSWORD: "Enter the Masterkey or Wif"
+    },
+    "ERROR_PAGES": {
+        "REQUESTED_URL": "The requested URL",
+        "MESSAGE_404": " was not found on this server.",
+        "THATS_ERROR": "That’s an error.",
+        "WE_KNOW": "That’s all we know."
+
     }
 
 };

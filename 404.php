@@ -1,13 +1,13 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container view-error-404">
-    <section class="height-100 bg--light text-center">
+    <section v-cloak id="error-container" class="height-100 bg--light text-center">
         <div class="container pos-vertical-center">
             <div class="row align-items-center">
                 <div class="col-md-6 text-left col-left">
                     <h1 class="h1--large">Oops!</h1>
-                    <p class="sub-text"><span>404.</span>That’s an error.</p>
-                    <p>The requested URL ...creary.net/404... was not found on this server.</p>
-                    <p>That’s all we know.</p>
+                    <p class="sub-text"><span>404.</span>{{ lang.ERROR_PAGES.THATS_ERROR }}</p>
+                    <p>{{ lang.ERROR_PAGES.REQUESTED_URL }} ...{{ url }} {{ lang.ERROR_PAGES.MESSAGE_404 }}</p>
+                    <p>{{ lang.ERROR_PAGES.WE_KNOW }}</p>
                 </div>
                 <div class="col-md-6">
                     <img src="/img/error/error.svg" alt="" />
@@ -17,4 +17,5 @@
         </div>
         <!--end of container-->
     </section>
+    <script src="/js/common/error-page.js"></script>
 <?php include ('element/footer.php'); ?>
