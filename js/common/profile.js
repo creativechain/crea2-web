@@ -837,6 +837,7 @@ let walletModalDeEnergize;
                 result.forEach(function (a) {
 
                     a.metadata = jsonify(a.json_metadata);
+                    a.metadata.avatar = {};
                     followings[a.name] = a;
                 });
 
