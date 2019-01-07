@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="row view-notifications" >
+                                <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="view-notifications" >
                                     <div v-pre>
                                         <?php include ('modules/list-blocked.php') ?>
                                     </div>
@@ -62,7 +62,7 @@
                                 <div v-show="navbar.section === 'followers'" class="row view-notifications">
                                     <?php include ('modules/list-followers.php') ?>
                                 </div>
-                                <div v-show="navbar.section === 'following'" class="row view-notifications">
+                                <div v-show="navbar.section === 'following'" class="view-notifications">
                                     <div v-pre >
                                         <?php include ('modules/list-following.php') ?>
                                     </div>

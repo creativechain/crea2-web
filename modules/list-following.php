@@ -1,26 +1,21 @@
-<div v-cloak id="following-container" class="row view-notifications">
+<div v-cloak id="following-container" class="row">
     <div class="col-md-12">
         <h3 class="title-section-profile">Following</h3>
     </div>
 
-    <section v-if="Object.keys(following).length === 0" class="height-100 bg--light text-center">
-        <div class="container pos-vertical-center">
-            <div class="row align-items-center">
-                <div class="col-md-12 text-center">
-                    <img src="/img/empty.svg" alt="" />
-                    <div class="row mt-2">
-                        <div class="col-md-4 col-sm-6">
-                            <p class="title">{{ lang.HOME.EMPTY_TITLE }}</p>
-                            <p class="subtitle">{{ lang.HOME.EMPTY_SUBTITLE }}</p>
-                        </div>
-                    </div>
-                </div>
+
+    <div v-if="Object.keys(following).length === 0" class="col-md-12 bg--light text-center row-empty-notifications">
+        <img src="/img/empty.svg" alt="" class="img-empty"/>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <p class="title mb-0">{{ lang.HOME.EMPTY_TITLE }}</p>
+                <p class="subtitle">{{ lang.HOME.EMPTY_SUBTITLE }}</p>
             </div>
         </div>
-    </section>
-    <div v-for="f in following" class="col-md-12">
-        <div class="boxed boxed--border row-list">
-            <div class="row row-list-user">
+    </div>
+    <div  class="col-md-12">
+        <div class="boxed boxed--border row-list pt-0 pb-0">
+            <div v-for="f in following" class="row row-list-user">
                 <div class="col-md-9">
                     <div class="row-list-user-display">
                         <div class="user-avatar">

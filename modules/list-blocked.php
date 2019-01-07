@@ -1,11 +1,11 @@
-<div v-cloak id="blocked-container" class="row view-notifications">
+<div v-cloak id="blocked-container" class="row">
     <div class="col-md-12">
         <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_BLOCKED }}</h3>
     </div>
 
-    <div v-for="b in blocked" class="col-md-12">
-        <div class="boxed boxed--border row-list">
-            <div class="row row-list-user">
+    <div class="col-md-12">
+        <div class="boxed boxed--border row-list pt-0 pb-0">
+            <div v-for="b in blocked" class="row row-list-user">
                 <div class="col-md-9">
                     <div class="row-list-user-display">
                         <div class="user-avatar">
