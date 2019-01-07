@@ -90,7 +90,7 @@ let welcomeVue;
                 }).post({
                     username: welcomeVue.username,
                     email: email
-                }).on('fail', function (data, status, error) {
+                }).when('fail', function (data, status, error) {
                     console.error('Request failed', data, status, error);
                     if (data.responseText) {
                         let response = jsonify(data.responseText);
@@ -102,7 +102,7 @@ let welcomeVue;
                     }
                 });
 
-                http.on('done', function (data) {
+                http.when('done', function (data) {
                     console.log('Validate', data);
                     welcomeVue.error.email = null;
                     welcomeVue.email = email;
@@ -155,7 +155,7 @@ let welcomeVue;
                 }).post({
                     username: welcomeVue.username,
                     email: welcomeVue.email
-                }).on('done', function (data) {
+                }).when('done', function (data) {
                     console.log('SignUp', data);
                     welcomeVue.slide = 4;
                     globalLoading.show = false;
@@ -200,7 +200,7 @@ let welcomeVue;
                 let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
-                }).get().on('done', function (data) {
+                }).get().when('done', function (data) {
 
                     globalLoading.show = false;
                     data = JSON.parse(data);
@@ -208,7 +208,7 @@ let welcomeVue;
                     welcomeVue.username = data.data.username;
                     welcomeVue.suggestPassword();
                     welcomeVue.slide = 5;
-                }).on('fail', function (jqXHR, textStatus, errorThrown) {
+                }).when('fail', function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                     goTo('/' + jqXHR.status);
                 });

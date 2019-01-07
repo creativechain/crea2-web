@@ -203,16 +203,18 @@ function humanFileSize(size) {
  * @param {string} username
  * @returns {boolean}
  */
-function isUserFeed(username) {
+function isUserFeed(username = null) {
     let path = window.location.pathname;
-    if (username.startsWith('@')) {
-        username = '/' + username;
-    } else if (!username.startsWith('/@')) {
-        username = '/@' + username;
+
+    let regexp = '(\/@[a-zA-Z0-9]+\/feed)';
+    if (username) {
+        username = username.replace('@', '');
+
+        regexp = '(\/@' + username + '\/feed)'
     }
 
-    let feed = username + '/feed';
-    return path === feed;
+    return new RegExp(regexp).exec(path) !== null;
+
 }
 
 /**

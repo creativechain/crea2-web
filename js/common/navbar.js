@@ -156,9 +156,84 @@ let navbarContainer;
         let filter = resolveFilter(urlFilter);
 
         updateUrl(urlFilter);
-        crea.api.getState(filter, function (err, result) {
+
+        crea.api.getState(filter, function (err, urlState) {
             if (!catchError(err)) {
-                creaEvents.emit('crea.posts', urlFilter, filter, result);
+
+                if (isUserFeed()) {
+                    let http = new HttpClient('https://platform.creativechain.net/creary/feed');
+
+                    let noFeedContent = function () {
+                        //User not follows anything, load empty content
+                        urlState.content = {};
+                        creaEvents.emit('crea.posts', urlFilter, filter, urlState);
+                    };
+
+                    http.when('done', function (response) {
+                        let data = jsonify(response).data;
+
+                        let accountsToQuery = [];
+                        if (data.length) {
+
+                            urlState.content = {};
+                            data.forEach(function (d) {
+                                let permlink = d.author + '/' + d.permlink;
+                                if (!urlState.content[permlink]) {
+                                    crea.api.getContent(d.author, d.permlink, function (err, result) {
+                                        if (err) {
+
+                                        } else {
+
+                                            urlState.content[permlink] = result;
+
+                                            if (!accountsToQuery.includes(d.author)) {
+                                                accountsToQuery.push(d.author)
+                                            }
+                                        }
+
+                                        creaEvents.emit('crea.posts', urlFilter, filter, urlState);
+                                    })
+                                }
+
+                            })
+                        } else {
+                            noFeedContent();
+                        }
+                    });
+
+                    http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                        catchError(textStatus)
+                    });
+
+                    let username = getPathPart().replace('/', '').replace('@', '');
+                    crea.api.getFollowing(username, '', 'blog', 1000, function (err, result) {
+                        if (!catchError(err)) {
+
+                            let followings = [];
+                            result.following.forEach(function (f) {
+                                followings.push(f.following);
+                            });
+
+                            if (followings.length) {
+                                followings = followings.join(',');
+                                refreshAccessToken('navbar', function (accessToken) {
+                                    http.headers = {
+                                        Authorization: 'Bearer ' + accessToken
+                                    };
+
+                                    http.post({
+                                        following: followings
+                                    })
+                                })
+
+                            } else {
+                                noFeedContent()
+                            }
+                        }
+                    });
+                } else {
+                    creaEvents.emit('crea.posts', urlFilter, filter, urlState);
+                }
             }
         })
     }

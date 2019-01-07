@@ -125,14 +125,14 @@ function createBlockchainAccount(username, password, callback) {
     refreshAccessToken(function (accessToken) {
         let http = new HttpClient('https://platform.creativechain.net/createCrearyAccount');
 
-        http.on('done', function (data) {
+        http.when('done', function (data) {
             data = jsonify(data);
             if (callback) {
                 callback(null, data);
             }
         });
 
-        http.on('fail', function (jqXHR, textStatus, errorThrown) {
+        http.when('fail', function (jqXHR, textStatus, errorThrown) {
             if (callback) {
                 callback(errorThrown);
             }
@@ -204,11 +204,13 @@ function updateUserSession() {
     }
 }
 
-function refreshAccessToken(callback) {
+function refreshAccessToken(from, callback) {
     let now = new Date().getTime();
     let expiration = localStorage.getItem(CREARY.ACCESS_TOKEN_EXPIRATION);
 
-    if (!expiration || expiration <= now) {
+    expiration = isNaN(expiration) ? 0 : expiration;
+
+    if (expiration <= now) {
         let url = apiOptions.apiUrl + '/oauth/v2/token';
         let http = new HttpClient(url);
 
@@ -218,9 +220,9 @@ function refreshAccessToken(callback) {
             client_secret: local ? 'jf8ltr7u5fk0gwssos4g8w8kwc4owosk4gcs0g4wk4k8ks0wk' : '5co2o9zprcgskcw0ok4ko0csocwkc44swsko4k0kwks04o0koo'
         };
 
-        http.on('done', function (data) {
+        http.when('done', function (data) {
             data = JSON.parse(data);
-            console.log(data);
+
             localStorage.setItem(CREARY.ACCESS_TOKEN, data.access_token);
             localStorage.setItem(CREARY.ACCESS_TOKEN_EXPIRATION, new Date().getTime() + (data.expires_in * 1000));
 
@@ -249,7 +251,7 @@ function uploadToIpfs(file, maxSize, callback) {
                     Authorization: 'Bearer ' + accessToken
                 }).post({
                     file: file
-                }).on('done', function (data) {
+                }).when('done', function (data) {
                     data = jsonify(data);
                     console.log(data);
                     if (callback) {
@@ -258,7 +260,7 @@ function uploadToIpfs(file, maxSize, callback) {
                     }
                 });
 
-                http.on('fail', function (jqXHR, textStatus, errorThrown) {
+                http.when('fail', function (jqXHR, textStatus, errorThrown) {
                     if (callback) {
                         callback(errorThrown)
                     }
@@ -333,7 +335,7 @@ function performSearch(search, page = 1, inHome = false) {
                 Authorization: 'Bearer ' + accessToken
             });
 
-            http.on('done', function (response) {
+            http.when('done', function (response) {
                 let data = jsonify(response).data;
 
                 for (let x = 0; x < data.length; x++) {
@@ -344,7 +346,7 @@ function performSearch(search, page = 1, inHome = false) {
                 creaEvents.emit('crea.search.content', data);
             });
 
-            http.on('fail', function (jqXHR, textStatus, errorThrown) {
+            http.when('fail', function (jqXHR, textStatus, errorThrown) {
                 console.error(jqXHR, textStatus, errorThrown);
                 catchError(errorThrown);
             });

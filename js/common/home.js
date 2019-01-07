@@ -192,7 +192,7 @@ let homePosts;
         }
 
         if (isUserFeed(getPathPart())) {
-
+            //Retrieve another accounts
             crea.api.getAccounts(authors, function (err, result) {
                 if (!catchError(err)) {
                     let accounts = {};
