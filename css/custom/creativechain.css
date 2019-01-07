@@ -561,7 +561,7 @@
       font-size: 14px;
       margin: 20px 0 10px; }
     .post-view .border-post-view .full-post .img-more-projects {
-      background-image: url("/img/crea-web/publish/demo-vertical.jpg");
+      background-image: url("/img/post-default-preview.jpg");
       height: 164px;
       background-size: cover;
       background-position: 50% 50%;
@@ -796,6 +796,8 @@
 .view-notifications .icon-notification-list {
   width: 16px;
   margin-right: 10px; }
+.view-notifications .row-empty-notifications .img-empty {
+  width: 300px; }
 
 #tags-explorer .title-explorer, #view-explorer .title-explorer {
   font-size: 25px;
