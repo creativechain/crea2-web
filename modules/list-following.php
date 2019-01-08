@@ -29,13 +29,10 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="session && account.user.name === state.user.name" class="col-md-3 align-self-center text-right">
+                <div v-if="session" class="col-md-3 align-self-center text-right">
                     <btn-follow v-on:follow="onFollow" v-bind:session="session"
                                 v-bind:account="account.user"
                                 v-bind:user="f.name" >
-                    <!--<a href="/publish.php" class="btn btn--sm btn--primary">
-                        <span class="btn__text">Unlock</span>
-                    </a>-->
                 </div>
             </div>
         </div>
