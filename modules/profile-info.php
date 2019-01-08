@@ -53,7 +53,7 @@
 
         <div class="col-md-7">
             <ul class="list-inline">
-                <li class="list-inline-item" v-if="isUserProfile()" class="list-inline-item">
+                <li class="list-inline-item" class="list-inline-item">
                     <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
                         {{ lang.PROFILE.SECONDARY_MENU_FOLLOWING }}
                     </a>
