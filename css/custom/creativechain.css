@@ -134,6 +134,13 @@
   background-image: url("/img/icons/following_ACT.svg");
   background-repeat: no-repeat;
   padding: 0 24px; }
+.view-profile .profile-summary .a-following:hover {
+  background-image: url("/img/icons/following_ACT.svg");
+  background-repeat: no-repeat;
+  padding: 0 24px; }
+.view-profile .profile-summary a:hover {
+  color: #0569EF !important;
+  font-weight: 600; }
 .view-profile .profile-summary a {
   color: #222222;
   font-weight: 600; }
