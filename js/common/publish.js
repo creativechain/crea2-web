@@ -289,7 +289,7 @@ let publishContainer;
                     let post = {
                         url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
                     };
-                    //showPost(post);
+                    showPost(post);
                 } else {
                     globalLoading.show = false;
                 }
