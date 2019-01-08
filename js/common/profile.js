@@ -745,13 +745,14 @@ let walletModalDeEnergize;
 
     }
 
-    function setUpFollowing(session, account, following) {
+    function setUpFollowing(state, session, account, following) {
 
         if (!followingContainer) {
             followingContainer = new Vue({
                 el: '#following-container',
                 data: {
                     lang: lang,
+                    state: state,
                     session: session,
                     account: account,
                     following: following
@@ -763,6 +764,7 @@ let walletModalDeEnergize;
                 }
             })
         } else {
+            followingContainer.state = state;
             followingContainer.session = session;
             followingContainer.account = account;
             followingContainer.following = following;
@@ -828,24 +830,41 @@ let walletModalDeEnergize;
         })
     }
 
-    function fetchFollowing(session, account) {
+    function fetchFollowing(state, session, account) {
+        let onFetchFollowing = function (accountState) {
+            crea.api.getAccounts(accountState.user.followings, function (err, result) {
+                if (!catchError(err)) {
 
-        console.log('Fetching following:', session.account.username, account.user.followings)
-        crea.api.getAccounts(account.user.followings, function (err, result) {
-            if (!catchError(err)) {
+                    let followings = {};
 
-                let followings = {};
+                    result.forEach(function (a) {
 
-                result.forEach(function (a) {
+                        a.metadata = jsonify(a.json_metadata);
+                        a.metadata.avatar = {};
+                        followings[a.name] = a;
+                    });
 
-                    a.metadata = jsonify(a.json_metadata);
-                    a.metadata.avatar = {};
-                    followings[a.name] = a;
-                });
+                    setUpFollowing(state, session, account, followings);
+                }
+            });
+        };
 
-                setUpFollowing(session, account, followings);
-            }
-        });
+        if (state.user.name === account.user.name) {
+            onFetchFollowing(account);
+        } else {
+            crea.api.getFollowing(state.user.name, '', 'blog', 1000, function (err, result) {
+                if (!catchError(err)) {
+                    let followings = [];
+                    result.following.forEach(function (f) {
+                        followings.push(f.following);
+                    });
+                    state.user.followings = followings;
+                    onFetchFollowing(state);
+
+                }
+            });
+        }
+
     }
 
     /**
@@ -876,7 +895,7 @@ let walletModalDeEnergize;
         updateProfileView(state, session, account, usernameFilter, nav, walletNav);
         fetchRewards(session);
         fetchBlockeds(session, account);
-        fetchFollowing(session, account);
+        fetchFollowing(state, session, account);
     }
 
     function sendAccountUpdate(event, keys, callback) {
