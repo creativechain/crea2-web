@@ -59,8 +59,10 @@
                                 <div v-show="navbar.section === 'settings'" class="row view-edit-profile">
                                     <?php include ('modules/profile-edit.php') ?>
                                 </div>
-                                <div v-show="navbar.section === 'followers'" class="row view-notifications">
-                                    <?php include ('modules/list-followers.php') ?>
+                                <div v-show="navbar.section === 'followers'" class="view-notifications">
+                                    <div v-pre >
+                                        <?php include ('modules/list-followers.php') ?>
+                                    </div>
                                 </div>
                                 <div v-show="navbar.section === 'following'" class="view-notifications">
                                     <div v-pre >

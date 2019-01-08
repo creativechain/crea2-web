@@ -6,6 +6,7 @@ let profileContainer;
 let rewardsContainer = {};
 let blockedContainer;
 let followingContainer;
+let followerContainer;
 let walletModalSend;
 let walletModalDeEnergize;
 
@@ -772,6 +773,33 @@ let walletModalDeEnergize;
 
     }
 
+    function setUpFollowers(state, session, account, follower) {
+
+        if (!followerContainer) {
+            followerContainer = new Vue({
+                el: '#follower-container',
+                data: {
+                    lang: lang,
+                    state: state,
+                    session: session,
+                    account: account,
+                    follower: follower
+                },
+                methods: {
+                    onFollow: function () {
+                        updateUserSession();
+                    }
+                }
+            })
+        } else {
+            followerContainer.state = state;
+            followerContainer.session = session;
+            followerContainer.account = account;
+            followerContainer.follower = follower;
+        }
+
+    }
+
     /**
      *
      * @param {Session} session
@@ -866,6 +894,39 @@ let walletModalDeEnergize;
         }
 
     }
+    
+    function fetchFollowers(state, session, account) {
+        let onFetchFollowers = function (accountState) {
+            crea.api.getAccounts(accountState.user.followers, function (err, result) {
+                if (!catchError(err)) {
+
+                    let followers = {};
+
+                    result.forEach(function (a) {
+
+                        a.metadata = jsonify(a.json_metadata);
+                        a.metadata.avatar = a.metadata.avatar || {};
+                        followers[a.name] = a;
+                    });
+
+                    setUpFollowers(state, session, account, followers);
+                }
+            });
+        };
+
+        crea.api.getFollowers(state.user.name, '', 'blog', 1000, function (err, result) {
+            if (!catchError(err)) {
+                let followers = [];
+                result.followers.forEach(function (f) {
+                    followers.push(f.follower);
+                });
+                state.user.followers = followers;
+                onFetchFollowers(state);
+
+            }
+        });
+
+    }
 
     /**
      *
@@ -896,6 +957,7 @@ let walletModalDeEnergize;
         fetchRewards(session);
         fetchBlockeds(session, account);
         fetchFollowing(state, session, account);
+        fetchFollowers(state, session, account);
     }
 
     function sendAccountUpdate(event, keys, callback) {
