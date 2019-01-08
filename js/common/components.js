@@ -545,7 +545,7 @@ Vue.component('btn-follow',  {
                 let followJson = {
                     follower: session.account.username,
                     following: this.$props.user,
-                    what: this.$data.state ? [] : ['blog']
+                    what: this.$data.state == 1 ? [] : ['blog']
                 };
 
                 followJson = [operation, followJson];
@@ -556,9 +556,8 @@ Vue.component('btn-follow',  {
                             that.$emit('follow', err)
                         } else {
                             that.$emit('follow', null, result);
-                            that.$data.state ? -1 : 1;
+                            that.$data.state = that.$data.state == 1 ? -1 : 1;
                         }
-                        console.error('State', that.$data.state);
                     })
                 });
 
