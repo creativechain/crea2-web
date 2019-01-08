@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="session" class="col-md-3 align-self-center text-right">
+                <div v-if="session && account.user.name !== f.name" class="col-md-3 align-self-center text-right">
                     <btn-follow v-on:follow="onFollow" v-bind:session="session"
                                 v-bind:account="account.user"
                                 v-bind:user="f.name" >
