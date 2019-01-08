@@ -71,11 +71,11 @@
             <div class="col-md-6">
                 <label>{{ lang.EDIT_PROFILE.ADULT_CONTENT }}</label>
                 <div class="input-select">
-                    <select>
-                        <option selected="" value="Default">Selecciona contenido</option>
-                        <option value="Small">Ocultar</option>
-                        <option value="Medium">Advertir</option>
-                        <option value="Larger">Mostrar</option>
+                    <select v-model="profile.adult_content">
+                        <option disabled value="">{{ lang.EDIT_PROFILE.SELECT_OPTION }}</option>
+                        <option value="hide">{{ lang.PROFILE_SETTINGS.ADULT_HIDE }}</option>
+                        <option value="warn">{{ lang.PROFILE_SETTINGS.ADULT_WARN }}</option>
+                        <option value="show">{{ lang.PROFILE_SETTINGS.ADULT_SHOW }}</option>
                     </select>
                 </div>
             </div>
@@ -84,11 +84,11 @@
             <div class="col-md-6">
                 <label>{{ lang.EDIT_PROFILE.POST_REWARDS }}</label>
                 <div class="input-select">
-                    <select>
-                        <option selected="" value="Default">Selecciona recompensa publicación</option>
-                        <option value="Small">Rechazar pago</option>
-                        <option value="Medium">50% - 50%</option>
-                        <option value="Larger">Energize 100%</option>
+                    <select v-model="profile.post_rewards">
+                        <option disabled value="">{{ lang.EDIT_PROFILE.SELECT_OPTION }}</option>
+                        <option value="0">{{ lang.PROFILE_SETTINGS.REWARDS_DECLINE }}</option>
+                        <option value="50">{{ lang.PROFILE_SETTINGS.REWARDS_50_50 }}</option>
+                        <option value="100">{{ lang.PROFILE_SETTINGS.REWARDS_100 }}</option>
                     </select>
                 </div>
             </div>
@@ -97,11 +97,11 @@
             <div class="col-md-6">
                 <label>{{ lang.EDIT_PROFILE.COMMENT_REWARDS }}</label>
                 <div class="input-select">
-                    <select>
-                        <option selected="" value="Default">Selecciona recompensa comentario</option>
-                        <option value="Small">Rechazar pago</option>
-                        <option value="Medium">50% - 50%</option>
-                        <option value="Larger">Energize 100%</option>
+                    <select v-model="profile.comment_rewards">
+                        <option disabled value="">{{ lang.EDIT_PROFILE.SELECT_OPTION }}</option>
+                        <option value="0">{{ lang.PROFILE_SETTINGS.REWARDS_DECLINE }}</option>
+                        <option value="50">{{ lang.PROFILE_SETTINGS.REWARDS_50_50 }}</option>
+                        <option value="100">{{ lang.PROFILE_SETTINGS.REWARDS_100 }}</option>
                     </select>
                 </div>
             </div>

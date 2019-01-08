@@ -27,6 +27,14 @@ class Session {
                     accountData.user = accountData.accounts[that.account.username];
                     accountData.user.metadata = jsonify(accountData.user.json_metadata);
                     accountData.user.metadata.avatar = accountData.user.metadata.avatar || {};
+                    accountData.user.metadata.adult_content = accountData.user.metadata.adult_content || 'hide';
+                    accountData.user.metadata.post_rewards = accountData.user.metadata.post_rewards || '50';
+                    accountData.user.metadata.comment_rewards = accountData.user.metadata.comment_rewards || '50';
+
+                    crea.formatter.estimateAccountValue(accountData.user)
+                        .then(function (value) {
+                            accountData.user.estimate_account_value = value;
+                        });
 
                     let auths = Object.keys(that.account.keys);
                     let logged = true;

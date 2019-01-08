@@ -6,6 +6,8 @@ let publishContainer;
 
 (function () {
 
+    let session, account;
+
     function setUp(editablePost) {
         let downloadFile = {
             price: 0,
@@ -235,7 +237,6 @@ let publishContainer;
     function makePublication(event) {
         cancelEventPropagation(event);
 
-        let session = Session.getAlive();
         let username = session.account.username;
 
         requireRoleKey(username, 'posting', function (postingKey) {
@@ -267,8 +268,34 @@ let publishContainer;
             let permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title);
 
             console.log(title, body, metadata, download);
+            let operations = [];
+            operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body,
+                jsonstring(download), jsonstring(metadata)));
 
-            crea.broadcast.comment(postingKey, '', toPermalink(metadata.tags[0]), username, permlink, title, body,
+            switch (account.user.metadata.post_rewards) {
+                case '0':
+                    operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
+                    break;
+                case '100':
+                    operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
+            }
+
+            let keys = [postingKey];
+
+
+            crea.broadcast.sendOperations(keys, ...operations, function (err, result) {
+                if (!catchError(err)) {
+                    console.log(result);
+                    let post = {
+                        url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
+                    };
+                    //showPost(post);
+                } else {
+                    globalLoading.show = false;
+                }
+            });
+
+/*            crea.broadcast.comment(postingKey, '', toPermalink(metadata.tags[0]), username, permlink, title, body,
                 jsonstring(download), jsonstring(metadata), function (err, result) {
                     if (!catchError(err)) {
                         console.log(result);
@@ -279,7 +306,7 @@ let publishContainer;
                     } else {
                         globalLoading.show = false;
                     }
-                })
+                })*/
 
         });
 
@@ -320,7 +347,9 @@ let publishContainer;
     });
 
     creaEvents.on('crea.session.login', function (s, a) {
-        creaEvents.emit('crea.dom.ready', 'publish');
+        session = s;
+        account = a;
+        creaEvents.emit('crea.dom.ready');
     })
 
 })();

@@ -1165,14 +1165,25 @@ let walletModalDeEnergize;
         profileName = profileName.replace('@', '');
         if (profileName) {
             fetchHistory(profileName);
-            fetchUserState(profileName, function (err, state) {
+
+            let onState = function (err, state) {
                 if (!catchError(err)) {
                     detectNav(state, session, account, profileName);
                     setUpModals(state, session);
                 }
-            });
-        }
+            };
 
+            if (session && account) {
+                if (session.account.username === profileName) {
+                    let state = clone(account);
+                    onState(null, state);
+                } else {
+                    fetchUserState(profileName, onState);
+                }
+            } else {
+                fetchUserState(profileName, onState);
+            }
+        }
     }
 
     function claimRewards (event) {

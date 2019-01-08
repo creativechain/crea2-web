@@ -134,7 +134,8 @@ let lang = {
         "WEBSITE": "WEBSITE",
         "TAGS": "TAGS",
         "CONTACT_INFO": "CONTACT INFO",
-        "INPUT_CONTACT_INFO": "Add information so other users can contact you"
+        "INPUT_CONTACT_INFO": "Add information so other users can contact you",
+        "SELECT_OPTION": "Select an option"
     },
     "BUTTON": {
         "FOLLOW": "Follow",
@@ -380,7 +381,7 @@ let lang = {
         "BALANCE": "Balance",
         "NEXT_DE_ENERGIZE": "The next De-Energize will happen %s"
     },
-    "DROPDOWN": {
+    "PROFILE_SETTINGS": {
         "ADULT_WARN": "Warn",
         "ADULT_HIDE": "Hide",
         "REWARDS_50_50": "50% -  50%",
