@@ -13,14 +13,9 @@ $(document).ready(function(){
         footer.addClass('hidden');
     }
 
-    $(".view-all").click(function(){
-        $(this).addClass('active-view-all');
-        $('.main-container').addClass('simple-view-home');
-    });
-
-    $(".active-view-all").click(function(){
-        $(this).removeClass('active-view-all');
-        $('.main-container').removeClass('simple-view-home')
+    $("#view-changer").click(function(){
+        $(this).toggleClass('active-view-all');
+        $('.main-container').toggleClass('simple-view-home');
     });
 });
 
