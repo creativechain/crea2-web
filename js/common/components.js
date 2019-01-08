@@ -514,8 +514,8 @@ Vue.component('witness-like', {
 });
 
 Vue.component('btn-follow',  {
-    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" v-bind:class="{ btn: true, 'btn--sm': true, 'btn--primary': !innerFollowing, 'btn-following': innerFollowing, 'btn-unfollow': over && innerFollowing }">
-<span v-bind:class="{ btn__text: true, text__dark: innerFollowing && !over }">{{ followText() }}</span>
+    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm" v-bind:class="{ 'btn--primary': $data.state == -1, 'btn-following': $data.state == 1, 'btn-unfollow': over && $data.state == 1 }">
+<span class="btn__text" v-bind:class="{ text__dark: $data.state == 1 && !over }">{{ followText() }}</span>
 </div>`,
     props: {
         session: {
@@ -530,11 +530,10 @@ Vue.component('btn-follow',  {
 
     },
     data: function () {
-        //console.log('btn-follow', this.$props)
         return {
             lang: lang,
             over: false,
-            innerFollowing: this.$props.session && this.account.followings.indexOf(this.$props.user) > -1
+            state: -1
         }
     },
     methods: {
@@ -546,7 +545,7 @@ Vue.component('btn-follow',  {
                 let followJson = {
                     follower: session.account.username,
                     following: this.$props.user,
-                    what: this.innerFollowing ? [] : ['blog']
+                    what: this.$data.state ? [] : ['blog']
                 };
 
                 followJson = [operation, followJson];
@@ -557,7 +556,9 @@ Vue.component('btn-follow',  {
                             that.$emit('follow', err)
                         } else {
                             that.$emit('follow', null, result);
+                            that.$data.state ? -1 : 1;
                         }
+                        console.error('State', that.$data.state);
                     })
                 });
 
@@ -567,7 +568,7 @@ Vue.component('btn-follow',  {
 
         },
         followText: function () {
-            if (this.innerFollowing) {
+            if (this.$data.state > 0) {
                 return this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
             }
 
@@ -578,7 +579,13 @@ Vue.component('btn-follow',  {
         },
         onleave: function () {
             this.over = false;
+        },
+        isFollowing: function () {
+            return this.session && this.account.followings.includes(this.user);
         }
+    },
+    mounted: function () {
+        this.$data.state = this.isFollowing() ? 1 : -1;
     }
 });
 

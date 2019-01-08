@@ -204,7 +204,7 @@ function updateUserSession() {
     }
 }
 
-function refreshAccessToken(from, callback) {
+function refreshAccessToken(callback) {
     let now = new Date().getTime();
     let expiration = localStorage.getItem(CREARY.ACCESS_TOKEN_EXPIRATION);
 
@@ -243,7 +243,6 @@ function uploadToIpfs(file, maxSize, callback) {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         if (file.size <= maxSize) {
-            //let fr = new FileReader();
 
             refreshAccessToken(function (accessToken) {
                 let http = new HttpClient('https://platform.creativechain.net/ipfs');
@@ -267,42 +266,12 @@ function uploadToIpfs(file, maxSize, callback) {
                 })
 
             });
-
-/*            fr.onload = function (loadedFile) {
-
-                let progress = function (uploaded) {
-                    console.log('Progress', uploaded);
-                };
-
-                let fileData = toBuffer(fr.result);
-                console.log(fr.result.byteLength, fileData.length);
-                ipfs.files.add(fileData, {progress: progress}, function (err, files) {
-
-                    if (err) {
-                        if (callback) {
-                            callback(err);
-                        }
-                    } else if (files.length > 0) {
-                        let file = files[0];
-                        file = new IpfsFile(file.hash, fileName, mimeType, file.size);
-                        console.log('Pushed to ipfs', err, file);
-                        if (callback) {
-                            callback(null, file);
-                        }
-                    }
-
-                });
-            };
-            fr.readAsArrayBuffer(file);*/
         } else {
             globalLoading.show = false;
             console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maxSize);
             publishContainer.error = lang.PUBLISH.FILE_TO_LARGE;
         }
     } else {
-        if (!catchError(err)) {
-
-        }
         globalLoading.show = false;
     }
 
