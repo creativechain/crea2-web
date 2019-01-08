@@ -219,7 +219,7 @@ let navbarContainer;
 
                             if (followings.length) {
                                 followings = followings.join(',');
-                                refreshAccessToken('navbar', function (accessToken) {
+                                refreshAccessToken(function (accessToken) {
                                     http.headers = {
                                         Authorization: 'Bearer ' + accessToken
                                     };
