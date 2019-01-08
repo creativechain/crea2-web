@@ -18,10 +18,9 @@
                 <label></label>
 
                 <div class="input-select">
-                    <select>
-                        <option selected="" value="Default">CREA</option>
-                        <option value="Small">CREA</option>
-                        <option value="Medium">CREA DOLLAR (CBD)</option>
+                    <select v-model="downloadFile.currency">
+                        <option selected="" value="CREA">CREA</option>
+                        <option value="CBD">CREA DOLLAR (CBD)</option>
                     </select>
                 </div>
             </div>

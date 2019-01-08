@@ -8,7 +8,8 @@ let publishContainer;
 
     function setUp(editablePost) {
         let downloadFile = {
-            price: 0
+            price: 0,
+            currency: 'CREA'
         };
 
         let featuredImage = {};
@@ -255,7 +256,7 @@ let publishContainer;
             };
 
             let download = publishContainer.downloadFile;
-            download.price = Asset.parseString(download.price + ' CREA').toFriendlyString(null, false);
+            download.price = Asset.parseString(download.price + ' ' + download.currency).toFriendlyString(null, false);
             if (!download.resource) {
                 download = '';
             }
@@ -299,7 +300,10 @@ let publishContainer;
                         console.log(post);
                         post.body = jsonify(post.body) || {};
                         post.metadata = jsonify(post.json_metadata) || {};
-                        post.download.price = parseFloat(Asset.parse(post.download.price).toPlainString());
+
+                        let price = Asset.parse(post.download.price);
+                        post.download.price = parseFloat(price.toPlainString());
+                        post.download.currency = price.asset.symbol;
                         setUp(post);
                     }
                 })
