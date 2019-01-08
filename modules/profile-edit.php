@@ -109,11 +109,11 @@
 
         <div class="row">
             <div class="col">
-                <a class="btn btn--sm btn--primary" href="#0" v-on:click="sendAccountUpdate">
-                <span class="btn__text">
-                    {{ lang.BUTTON.SAVE }}
-                </span>
-                </a>
+                <div class="btn btn--sm btn--primary" v-on:click="sendAccountUpdate">
+                    <span class="btn__text">
+                        {{ lang.BUTTON.SAVE }}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
