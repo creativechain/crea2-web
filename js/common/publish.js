@@ -295,19 +295,6 @@ let publishContainer;
                 }
             });
 
-/*            crea.broadcast.comment(postingKey, '', toPermalink(metadata.tags[0]), username, permlink, title, body,
-                jsonstring(download), jsonstring(metadata), function (err, result) {
-                    if (!catchError(err)) {
-                        console.log(result);
-                        let post = {
-                            url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
-                        };
-                        showPost(post);
-                    } else {
-                        globalLoading.show = false;
-                    }
-                })*/
-
         });
 
     }
