@@ -78,6 +78,7 @@ let homePosts;
                 updated: function () {
                     if (mr.masonry) {
                         console.log ('Updating layout');
+                        mr.masonry.windowLoad();
                         mr.masonry.updateLayout();
                     }
                 },
