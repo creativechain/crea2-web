@@ -49,7 +49,15 @@
       background-repeat: no-repeat;
       padding: 0 24px;
     }
-
+    .a-following:hover {
+      background-image: url('/img/icons/following_ACT.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+    a:hover {
+      color: $color-blue-primary !important;
+      font-weight: 600;
+    }
 
     a {
       color: $color-dark-primary;
