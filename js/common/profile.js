@@ -72,7 +72,7 @@ let walletModalDeEnergize;
                     hideModalDeEnergize: function (event) {
                         cancelEventPropagation(event);
 
-                        $('#wallet-de-energize').removeClass('modal-active');
+                        $('#wallet-de-energize').parent().removeClass('modal-active');
                     },
                     makePowerDown: function (event, amount) {
                         cancelEventPropagation(event);
@@ -85,7 +85,7 @@ let walletModalDeEnergize;
                             let finalAmount = that.finalAmount + ' CREA';
                             let vests = cgyToVests(that.state, finalAmount);
 
-                            crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(), function (err, result) {
+                            crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;
 
                                 if (!catchError(err)) {
@@ -470,7 +470,7 @@ let walletModalDeEnergize;
                             globalLoading.show = true;
                             let vests = new Vests(0);
 
-                            crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(), function (err, result) {
+                            crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;
                                 if (!catchError(err)) {
                                     updateUserSession();

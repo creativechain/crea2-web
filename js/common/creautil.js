@@ -12,11 +12,11 @@ function cgyToVests(state, creaEnergy) {
 
     let energy = creaEnergy;
     if (typeof creaEnergy === 'string') {
-        energy = parseFloat(Asset.parseString(creaEnergy).toPlainString());
+        energy = parseFloat(Asset.parseString(creaEnergy).toPlainString(null, false));
     }
 
-    const total_vests = parseFloat(Asset.parseString(state.props.total_vesting_shares).toPlainString());
-    const total_vest_crea = parseFloat(Asset.parseString(state.props.total_vesting_fund_crea).toPlainString());
+    const total_vests = parseFloat(Asset.parseString(state.props.total_vesting_shares).toPlainString(null, false));
+    const total_vest_crea = parseFloat(Asset.parseString(state.props.total_vesting_fund_crea).toPlainString(null, false));
 
     return Asset.parse({
         amount: energy / total_vest_crea * total_vests,
