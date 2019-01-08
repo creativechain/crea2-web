@@ -172,8 +172,16 @@ let navbarContainer;
                     http.when('done', function (response) {
                         let data = jsonify(response).data;
 
-                        let accountsToQuery = [];
                         if (data.length) {
+
+                            let count = data.length;
+
+                            let onContentFetched = function () {
+                                count--;
+                                if (count <= 0) {
+                                    creaEvents.emit('crea.posts', urlFilter, filter, urlState);
+                                }
+                            };
 
                             urlState.content = {};
                             data.forEach(function (d) {
@@ -181,17 +189,12 @@ let navbarContainer;
                                 if (!urlState.content[permlink]) {
                                     crea.api.getContent(d.author, d.permlink, function (err, result) {
                                         if (err) {
-
+                                            console.error('Error getting', permlink, err);
                                         } else {
-
                                             urlState.content[permlink] = result;
-
-                                            if (!accountsToQuery.includes(d.author)) {
-                                                accountsToQuery.push(d.author)
-                                            }
                                         }
 
-                                        creaEvents.emit('crea.posts', urlFilter, filter, urlState);
+                                        onContentFetched()
                                     })
                                 }
 
