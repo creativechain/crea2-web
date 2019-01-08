@@ -520,6 +520,12 @@ let walletModalDeEnergize;
                     },
                     claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate,
+                    ignoreUser: function () {
+
+                        ignoreUser(this.state.user.name, true, function (err, result) {
+                            updateUserSession();
+                        });
+                    },
                     changePassword: function () {
                         let that = this;
 

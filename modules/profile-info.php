@@ -86,7 +86,7 @@
     <div v-if="!isUserProfile()" class="row block-all">
         <div class="col-md-12">
             <ul class="list-inline list-unstyled">
-                <li><p><img src="/img/icons/NO_see.svg" alt="" />(0) Block all posts by this user</p></li>
+                <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
             </ul>
         </div>
     </div>
