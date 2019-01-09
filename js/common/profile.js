@@ -419,7 +419,7 @@ let walletModalDeEnergize;
                             date = toLocaleDate(post.last_payout);
                         }
 
-                        return moment(toLocaleDate(date)).fromNow();
+                        return moment(date).fromNow();
                     },
                     getPayout: function (post) {
                         let amount = Asset.parseString(post.pending_payout_value);

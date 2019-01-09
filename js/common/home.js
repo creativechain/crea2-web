@@ -97,7 +97,7 @@ let homePosts;
                     },
                     getFeaturedImage: function (post) {
                         let featuredImage = post.metadata.featuredImage;
-                        if (featuredImage.hash) {
+                        if (featuredImage && featuredImage.hash) {
                             return {
                                 url: 'http://144.217.106.119:8080/ipfs/' + featuredImage.hash
                             }
@@ -107,8 +107,13 @@ let homePosts;
                     },
                     getTags: function (post) {
                         let tags = post.metadata.tags;
-                        tags = tags.slice(0, 7);
-                        return tags.join(', ');
+                        if (tags) {
+                            tags = tags.slice(0, 7);
+                            return tags.join(', ');
+                        }
+
+                        return '';
+
                     },
                     getFutureDate: function (date) {
                         return moment(toLocaleDate(date)).fromNow();
@@ -124,7 +129,7 @@ let homePosts;
                             date = toLocaleDate(post.last_payout);
                         }
 
-                        return moment(toLocaleDate(date)).fromNow();
+                        return moment(date).fromNow();
                     },
                     getPayout: function (post) {
                         let amount = Asset.parseString(post.pending_payout_value);
