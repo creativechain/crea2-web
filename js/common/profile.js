@@ -1127,8 +1127,6 @@ let walletModalDeEnergize;
                         });
                 }
 
-
-
                 if (callback) {
                     callback(err, state);
                 }

@@ -207,7 +207,7 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ getCGYBalance().toFriendlyString() }}</span>
+                                        <span class="dropdown__trigger">{{ getCGYBalance().toFriendlyString(null, true) }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
