@@ -26,11 +26,6 @@
                             v-bind:account="account.user" v-bind:user="state.user.name" >
                 </btn-follow>
 
-                <!--<a  class="btn btn--sm btn--primary" href="#0"
-                   v-on:click="makeFollow(state.user.name)">
-                    <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                </a>-->
-
                 <a v-else class="btn btn--sm" v-bind:href="'/@' + session.account.username + '/settings'" v-on:click="navigateTo($event, 'settings')">
                     <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                 </a>

@@ -16,6 +16,7 @@ $(document).ready(function(){
     $("#view-changer").click(function(){
         $(this).toggleClass('active-view-all');
         $('.main-container').toggleClass('simple-view-home');
+        $('.masonry__item').toggleClass('row-simple-view');
     });
 });
 

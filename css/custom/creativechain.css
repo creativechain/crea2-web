@@ -1264,6 +1264,13 @@ img {
 .no-padding {
   padding: 0 !important; }
 
+.row-simple-view {
+  position: unset !important;
+  left: 0 !important;
+  top: 0 !important;
+  flex: 0 0 100% !important;
+  max-width: 100% !important; }
+
 .card-home {
   background-color: white; }
   .card-home .card__top {
@@ -1338,6 +1345,8 @@ img {
       margin-right: 5px; }
   .card-home .card-show {
     overflow: visible; }
+  .card-home .dropdown-info-user .m-btn-follow {
+    margin: 0 0 10px; }
   .card-home .dropdown-info-user .container {
     width: 960px; }
   .card-home .dropdown-info-user .user-avatar {
