@@ -20,14 +20,16 @@ let homePosts;
 
         let cKeys = Object.keys(content);
         let newKeys = [];
-        cKeys.forEach(function (k) {
+
+        for (let x = 0; x < cKeys.length; x++) {
+            let k = cKeys[x];
             if (!content[k].parent_author) {
                 content[k].metadata = jsonify(content[k].json_metadata);
                 newKeys.push(k);
             }
-        });
+        }
 
-        cKeys = newKeys;
+
         state.content = content;
 
         let aKeys = Object.keys(accounts);
@@ -45,8 +47,8 @@ let homePosts;
 
         let category = resolveFilter('/' + getPathPart()).replace('/', '');
         let discuss = getPathPart(1) || '';
-        if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss] || category === 'created') {
-
+        if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
+            cKeys = newKeys;
             cKeys.sort(function (k1, k2) {
                 let d1 = toLocaleDate(content[k1].created);
                 let d2 = toLocaleDate(content[k2].created);
@@ -55,9 +57,8 @@ let homePosts;
             });
 
             state.discussion_idx[discuss] = {};
+            state.discussion_idx[discuss][category] = cKeys;
         }
-
-        state.discussion_idx[discuss][category] = cKeys;
 
         console.log('Filter:', filter, 'discussion:', discuss, 'category:', category, state.discussion_idx[discuss][category]);
 
