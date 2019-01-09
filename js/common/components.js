@@ -207,7 +207,10 @@ Vue.component('post-like', {
                     <div class="row">
                         <div class="col-md-3 col-lg-2 dropdown__content amount-post-view-home">
                             <ul>
-                                <li v-for="v in post.up_votes"><a class="text-truncate" v-bind:href="'/@' + v.voter">+{{ v.voter }}</a></li>
+                                <li v-for="v in (post.up_votes.length > 10 ? 10 : post.up_votes.length)">
+                                    <a v-if="(v-1) < 10" class="text-truncate" v-bind:href="'/@' + post.up_votes[v-1].voter">+{{ post.up_votes[v-1].voter }}</a>
+                                    <span v-else class="text-truncate" >+{{ '..and ' + post.up_votes.length - 10  + ' users'}}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
