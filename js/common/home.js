@@ -15,16 +15,13 @@ let homePosts;
      * @returns {License}
      */
     function showPosts(urlFilter, filter, state) {
-        console.log('Showing posts', state);
         let content = state.content;
         let accounts = state.accounts;
 
         let cKeys = Object.keys(content);
         let newKeys = [];
         cKeys.forEach(function (k) {
-            if (content[k].parent_author) {
-                delete content[k];
-            } else {
+            if (!content[k].parent_author) {
                 content[k].metadata = jsonify(content[k].json_metadata);
                 newKeys.push(k);
             }
@@ -32,28 +29,29 @@ let homePosts;
 
         cKeys = newKeys;
         state.content = content;
-        console.log(cKeys, jsonify(jsonstring(content)));
 
         let aKeys = Object.keys(accounts);
         aKeys.forEach(function (k) {
             accounts[k].metadata = jsonify(accounts[k].json_metadata);
             accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
         });
+
         state.accounts = accounts;
 
         //Normalize filter
         if (filter.startsWith('/')) {
             filter = filter.substring(1);
         }
-        //Set discussion feed
-        const DEFAULT_DISCUSSIONS = ['created', 'popular', 'trending', 'hot', 'promoted'];
 
         let category = resolveFilter('/' + getPathPart()).replace('/', '');
         let discuss = getPathPart(1) || '';
         if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
 
             cKeys.sort(function (k1, k2) {
-                return new Date(state.content[k2].created).getTime() - new Date(state.content[k1].created).getTime();
+                let d1 = toLocaleDate(content[k1].created);
+                let d2 = toLocaleDate(content[k2].created);
+
+                return d2.getTime() - d1.getTime();
             });
 
             state.discussion_idx[discuss] = {};
