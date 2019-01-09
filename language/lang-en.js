@@ -434,11 +434,13 @@ let lang = {
         "SEARCH_ACTIVE": "Search",
         "MENU_NOW": "Now",
         "MENU_PROMOTED": "Promoted",
-        "DROPDOWN_PENDING_PAYOUT": "Pending Payout",
+        "DROPDOWN_PENDING_PAYOUT": "Pending Payouts",
+        "DROPDOWN_PAST_PAYOUT": "Past Payouts",
         "MENU_SKYROCKETS": "Skyrockets",
         "MENU_LOGIN": "Login",
         "EMPTY_TITLE": "Welcome to your new tab of users that you follow.",
-        "EMPTY_SUBTITLE": "Follow people with tastes like yours to see what new and original ideas they discover."
+        "EMPTY_SUBTITLE": "Follow people with tastes like yours to see what new and original ideas they discover.",
+        "PROMOTION_COST": "Promotion Cost"
     },
     "LICENSE": {
         "FREECONTENT": "FreeContent",

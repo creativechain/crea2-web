@@ -184,6 +184,14 @@ class Asset {
 
     /**
      *
+     * @returns {Number}
+     */
+    toFloat() {
+        return parseFloat(this.toPlainString(null, false));
+    }
+
+    /**
+     *
      * @param assetData
      * @returns {Asset}
      */
