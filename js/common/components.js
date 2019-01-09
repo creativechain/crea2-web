@@ -204,9 +204,9 @@ Vue.component('post-like', {
             <span class="dropdown__trigger"> {{ post.up_votes.length }}</span>
             <div class="dropdown__container">
                 <div class="container">
-                    <div class="row">
+                    <div v-for="v in post.up_votes" class="row">
                         <div class="col-md-3 col-lg-3 dropdown__content amount-post-view-home">
-                            testing voters
+                            <a v-bind:href="'/@' + v.voter">+{{ v.voter }}</a>
                         </div>
                     </div>
                 </div>
