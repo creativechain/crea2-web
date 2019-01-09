@@ -108,12 +108,15 @@ let homePosts;
                     },
                     getTags: function (post) {
                         let tags = post.metadata.tags;
-                        if (tags) {
-                            tags = tags.slice(0, 7);
-                            return tags.join(', ');
-                        }
+                        let linkedTags = [];
 
-                        return '';
+                        //Select only 8 first tags
+                        tags = tags.slice(0, 7);
+                        tags.forEach(function (t) {
+                            linkedTags.push('<a href="/search?page=1&query=' + encodeURIComponent(t) + '">' + t + '</a>');
+                        });
+
+                        return linkedTags.join(', ');
 
                     },
                     getFutureDate: function (date) {

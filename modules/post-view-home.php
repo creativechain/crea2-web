@@ -10,7 +10,7 @@
 
         <div class="card__body">
             <h4 v-on:click="openPost(state.content[p])">{{ state.content[p].title }}</h4>
-            <p class="description-post-box">{{ getTags(state.content[p]) }}</p>
+            <p class="description-post-box" v-html="getTags(state.content[p])"></p>
             <ul class="list-inline list-unstyled w-100">
                 <li class="li-like">
                     <like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[p]"></like>
