@@ -39,6 +39,9 @@
     span {
       font-weight: 600;
     }
+
+
+
     .a-following {
       background-image: url('/img/icons/following.svg');
       background-repeat: no-repeat;
@@ -54,6 +57,23 @@
       background-repeat: no-repeat;
       padding: 0 24px;
     }
+
+    .a-follower {
+      background-image: url('/img/icons/followers.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+    .a-follower.active {
+      background-image: url('/img/icons/followers_ACT.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+    .a-follower:hover {
+      background-image: url('/img/icons/followers_ACT.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+
     a:hover {
       color: $color-blue-primary !important;
       font-weight: 600;
