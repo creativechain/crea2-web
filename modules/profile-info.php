@@ -42,10 +42,13 @@
     <hr />
     <div class="row profile-summary">
         <div class="col-md-7">
-            <p>
-                <img src="/img/icons/followers.svg" alt="" />
-                <span>{{ lang.PROFILE.FOLLOWERS }}</span>
-            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-uppercase a-follower" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
+                        {{ lang.PROFILE.FOLLOWERS }}
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="col-md-5 text-right">
             <p>{{ state.user.follower_count }}</p>
@@ -53,7 +56,7 @@
 
         <div class="col-md-7">
             <ul class="list-inline">
-                <li class="list-inline-item" class="list-inline-item">
+                <li class="list-inline-item">
                     <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
                         {{ lang.PROFILE.FOLLOWING }}
                     </a>

@@ -138,6 +138,18 @@
   background-image: url("/img/icons/following_ACT.svg");
   background-repeat: no-repeat;
   padding: 0 24px; }
+.view-profile .profile-summary .a-follower {
+  background-image: url("/img/icons/followers.svg");
+  background-repeat: no-repeat;
+  padding: 0 24px; }
+.view-profile .profile-summary .a-follower.active {
+  background-image: url("/img/icons/followers_ACT.svg");
+  background-repeat: no-repeat;
+  padding: 0 24px; }
+.view-profile .profile-summary .a-follower:hover {
+  background-image: url("/img/icons/followers_ACT.svg");
+  background-repeat: no-repeat;
+  padding: 0 24px; }
 .view-profile .profile-summary a:hover {
   color: #0569EF !important;
   font-weight: 600; }
