@@ -74,6 +74,22 @@
       padding: 0 24px;
     }
 
+    .a-projects {
+      background-image: url('/img/icons/projects.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+    .a-projects.active {
+      background-image: url('/img/icons/projects_ACT.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+    .a-projects:hover {
+      background-image: url('/img/icons/projects_ACT.svg');
+      background-repeat: no-repeat;
+      padding: 0 24px;
+    }
+
     a:hover {
       color: $color-blue-primary !important;
       font-weight: 600;

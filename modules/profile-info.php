@@ -68,10 +68,13 @@
         </div>
 
         <div class="col-md-7">
-            <p>
-                <img src="/img/icons/projects.svg" alt="" />
-                <span>{{ lang.PROFILE.POSTS }}</span>
-            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-uppercase a-projects" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
+                        {{ lang.PROFILE.SECONDARY_MENU_PROJECTS }}
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="col-md-5 text-right">
             <p>{{ state.user.post_count }}</p>
