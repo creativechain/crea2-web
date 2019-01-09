@@ -32,6 +32,23 @@ const R = {
 
 /**
  *
+ * @param account
+ * @returns {string}
+ */
+R.getAvatar = function (account) {
+    if (account.metadata && account.metadata.avatar) {
+        if (account.metadata.avatar.hash) {
+            return 'https://ipfs.creary.net/ipfs/' + account.metadata.avatar.hash;
+        } else if (account.metadata.avatar.url) {
+            return account.metadata.avatar.url;
+        }
+    }
+
+    return R.getDefaultAvatar(account.name);
+};
+
+/**
+ *
  * @param username
  * @returns {string}
  */

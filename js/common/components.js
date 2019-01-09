@@ -627,14 +627,14 @@ Vue.component('linkname', {
 });
 
 Vue.component('avatar', {
-    template: `<div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + ( account.metadata.avatar.url || getDefaultAvatar(account.name)) + ')' }"></div>`,
+    template: `<div class="img-user-avatar" v-bind:style="{ 'background-image': 'url(' + ( getDefaultAvatar(account)) + ')' }"></div>`,
     props: {
         account: {
             type: Object
         }
     },
     methods: {
-        getDefaultAvatar: R.getDefaultAvatar
+        getDefaultAvatar: R.getAvatar
     },
 });
 

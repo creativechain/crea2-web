@@ -83,7 +83,7 @@ let homePosts;
                     }
                 },
                 methods: {
-                    getDefaultAvatar: R.getDefaultAvatar,
+                    getDefaultAvatar: R.getAvatar,
                     onFollow: function (err, result) {
                         console.log('onFollow', err, result);
                         creaEvents.emit('crea.content.filter', this.filter);
@@ -99,8 +99,10 @@ let homePosts;
                         let featuredImage = post.metadata.featuredImage;
                         if (featuredImage && featuredImage.hash) {
                             return {
-                                url: 'http://144.217.106.119:8080/ipfs/' + featuredImage.hash
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
                             }
+                        } else if (featuredImage && featuredImage.url) {
+                            return featuredImage;
                         }
 
                         return {};

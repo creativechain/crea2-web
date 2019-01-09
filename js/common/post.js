@@ -46,7 +46,7 @@ let promoteModal;
                     assetToString: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
-                    getDefaultAvatar: R.getDefaultAvatar,
+                    getDefaultAvatar: R.getAvatar,
                     getLicense: function () {
                         return License.fromFlag(this.state.post.metadata.license);
                     },

@@ -97,7 +97,7 @@ let navbarContainer;
                     },
                     checkUsername: checkUsername,
                     goTo: goTo,
-                    getDefaultAvatar: R.getDefaultAvatar,
+                    getDefaultAvatar: R.getAvatar,
                     retrieveNowContent: retrieveNewContent,
                     retrieveTrendingContent: retrieveTrendingContent,
                     retrieveHotContent: retrieveHotContent,

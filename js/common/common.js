@@ -8,7 +8,7 @@ class IpfsFile {
         this.name = name;
         this.type = type;
         this.size = size;
-        this.url = 'https://ipfs.io/ipfs/' + hash;
+        this.url = 'https://ipfs.creary.net/ipfs/' + hash;
     }
 }
 

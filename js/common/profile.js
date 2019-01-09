@@ -283,7 +283,7 @@ let walletModalDeEnergize;
                     }
                 },
                 methods: {
-                    getDefaultAvatar: R.getDefaultAvatar,
+                    getDefaultAvatar: R.getAvatar,
                     hidePrivKey: function (auth) {
                         this.showPriv[auth] = false;
                     },
@@ -376,10 +376,12 @@ let walletModalDeEnergize;
                     },
                     getFeaturedImage: function (post) {
                         let featuredImage = post.metadata.featuredImage;
-                        if (featuredImage.hash) {
+                        if (featuredImage && featuredImage.hash) {
                             return {
-                                url: 'http://144.217.106.119:8080/ipfs/' + featuredImage.hash
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
                             }
+                        } else if (featuredImage && featuredImage.url) {
+                            return featuredImage;
                         }
 
                         return {};
