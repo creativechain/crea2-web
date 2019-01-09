@@ -56,18 +56,6 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12 dropdown__content">
-                                        <div v-if="session && state.content[p].author !== session.account.username" class="row">
-                                            <div class="col text-right">
-                                                <btn-follow class="button-follow" v-on:follow="onFollow"
-                                                            v-bind:session="session" v-bind:account="account.user"
-                                                            v-bind:user="state.content[p].author">
-
-                                                </btn-follow>
-                                                <!--<a class="btn btn--primary" href="#/" v-on:click="followUser(state.content[p].author)">
-                                                    <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                                                </a>-->
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col text-center">
                                                 <div class="user-avatar">
@@ -91,9 +79,18 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        <div v-if="session && state.content[p].author !== session.account.username" class="row">
+                                            <div class="col text-center m-btn-follow">
+                                                <btn-follow class="button-follow" v-on:follow="onFollow"
+                                                            v-bind:session="session" v-bind:account="account.user"
+                                                            v-bind:user="state.content[p].author">
+
+                                                </btn-follow>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_POSTS }}</p>
+                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_PROJECTS }}</p>
                                                 <span>{{ state.accounts[state.content[p].author].post_count }}</span>
                                             </div>
                                             <div class="col">
