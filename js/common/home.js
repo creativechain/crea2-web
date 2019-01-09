@@ -45,7 +45,7 @@ let homePosts;
 
         let category = resolveFilter('/' + getPathPart()).replace('/', '');
         let discuss = getPathPart(1) || '';
-        if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
+        if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss] || category === 'created') {
 
             cKeys.sort(function (k1, k2) {
                 let d1 = toLocaleDate(content[k1].created);
