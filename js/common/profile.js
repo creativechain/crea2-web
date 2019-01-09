@@ -1197,15 +1197,18 @@ let walletModalDeEnergize;
         let cbd = profileContainer.state.user.reward_cbd_balance;
         let cgy = profileContainer.state.user.reward_vesting_balance;
 
-        globalLoading.show = true;
-        crea.broadcast.claimRewardBalance(profileContainer.session.account.keys.active.prv,
-            profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
-                globalLoading.show = false;
+        requireRoleKey(profileContainer.session.account.username, 'active', function (activeKey) {
+            globalLoading.show = true;
+            crea.broadcast.claimRewardBalance(activeKey,
+                profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
+                    globalLoading.show = false;
 
-                if (!catchError(err)) {
-                    updateUserSession();
-                }
-            })
+                    if (!catchError(err)) {
+                        updateUserSession();
+                    }
+                })
+        });
+
     }
 
     /**
