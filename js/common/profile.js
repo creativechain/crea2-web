@@ -1127,31 +1127,7 @@ let walletModalDeEnergize;
                         });
                 }
 
-                let posts = Object.keys(state.content);
 
-                posts.forEach(function (k) {
-                    state.content[k].metadata = jsonify(state.content[k].json_metadata);
-
-                    state.content[k].down_votes = [];
-                    state.content[k].up_votes = [];
-                    state.content[k].active_votes.forEach(function (v) {
-                        if (v.percent <= -10000) {
-                            state.content[k].down_votes.push(v);
-                        } else {
-                            state.content[k].up_votes.push(v);
-                        }
-                    });
-                });
-
-                state.discussion_idx = {};
-                posts.sort(function (k1, k2) {
-                    let d1 = new Date(state.content[k1].created);
-                    let d2 = new Date(state.content[k2].created);
-
-                    return d2.getTime() - d1.getTime();
-                });
-
-                state.discussion_idx[''] = posts;
 
                 if (callback) {
                     callback(err, state);
@@ -1168,6 +1144,32 @@ let walletModalDeEnergize;
 
             let onState = function (err, state) {
                 if (!catchError(err)) {
+                    let posts = Object.keys(state.content);
+
+                    posts.forEach(function (k) {
+                        state.content[k].metadata = jsonify(state.content[k].json_metadata);
+
+                        state.content[k].down_votes = [];
+                        state.content[k].up_votes = [];
+                        state.content[k].active_votes.forEach(function (v) {
+                            if (v.percent <= -10000) {
+                                state.content[k].down_votes.push(v);
+                            } else {
+                                state.content[k].up_votes.push(v);
+                            }
+                        });
+                    });
+
+                    state.discussion_idx = {};
+                    posts.sort(function (k1, k2) {
+                        let d1 = new Date(state.content[k1].created);
+                        let d2 = new Date(state.content[k2].created);
+
+                        return d2.getTime() - d1.getTime();
+                    });
+
+                    state.discussion_idx[''] = posts;
+
                     detectNav(state, session, account, profileName);
                     setUpModals(state, session);
                 }
