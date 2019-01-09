@@ -163,7 +163,6 @@
                                                         <div class="user-comments">
                                                             <p>
                                                                 <username v-bind:inline="1" v-bind:user="state.content[c].author" v-bind:name="state.accounts[state.content[c].author].metadata.publicName"></username>
-                                                                <img src="/img/icons/trainer.svg" alt="" />
                                                                 <span>{{ dateFromNow(state.content[c].created) }}</span>
                                                             </p>
                                                             <span class="comment-user">{{ state.content[c].body }}</span>
