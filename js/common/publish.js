@@ -27,7 +27,7 @@ let publishContainer;
         publishContainer = new Vue({
             el: '#publish-container',
             data: {
-                lang: lang,
+                lang: getLanguage(),
                 LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,

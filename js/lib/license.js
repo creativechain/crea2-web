@@ -150,7 +150,7 @@ class License {
                     str += '-';
                 }
 
-                str += lang.LICENSE[perm.name.toUpperCase()];
+                str += getLanguage().LICENSE[perm.name.toUpperCase()];
             }
         });
 
@@ -196,7 +196,7 @@ let LICENSE = {
     SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike', 'SA'),
     NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial', 'NC'),
     NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates', 'ND'),
-    NON_PERMISSION: new LicensePermission(0x20, lang.LICENSE.NON_PERMISSION, 'NP'),
+    NON_PERMISSION: new LicensePermission(0x20, getLanguage().LICENSE.NON_PERMISSION, 'NP'),
     FREE_CONTENT: new LicensePermission(0x80, 'FreeContent', 'CC0'),
 };
 

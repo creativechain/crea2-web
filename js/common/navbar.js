@@ -7,7 +7,7 @@ let navbarContainer;
     let navbarSearch = new Vue({
         el: '#navbar-search',
         data: {
-            lang: lang,
+            lang: getLanguage(),
             search: null,
             page: 1
         },
@@ -31,7 +31,7 @@ let navbarContainer;
     let navbarRightMenu = new Vue({
         el: '#navbar-right-menu',
         data: {
-            lang: lang
+            lang: getLanguage()
         }
     });
 
@@ -46,7 +46,7 @@ let navbarContainer;
             navbarContainer = new Vue({
                 el: '#navbar-container',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     user: userData ? userData.user : {},
                     loginForm: {

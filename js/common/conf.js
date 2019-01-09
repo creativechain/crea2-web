@@ -32,4 +32,20 @@ localStorage.debug = 'crea:*';
 crea.api.setOptions(apiOptions);
 crea.config.set('address_prefix', apiOptions.addressPrefix);
 crea.config.set('chain_id', apiOptions.chainId);
+
+const lang = {};
+const faq = {};
+
+/**
+ *
+ * @returns {*}
+ */
+function getLanguage() {
+    let language = localStorage.getItem(CREARY.LANG) || getNavigatorLanguage();
+    if (lang[language]) {
+        return lang[language];
+    }
+
+    return lang.en;
+}
 //Vue.config.silent = false;

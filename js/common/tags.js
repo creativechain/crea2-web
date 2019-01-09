@@ -9,7 +9,7 @@ let tagsContainer;
             tagsContainer = new Vue({
                 el: '#tags-explorer',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     account: account,
                     state: state

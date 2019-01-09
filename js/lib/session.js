@@ -36,8 +36,7 @@ class Session {
                     accountData.user.metadata.adult_content = accountData.user.metadata.adult_content || 'hide';
                     accountData.user.metadata.post_rewards = accountData.user.metadata.post_rewards || '50';
                     accountData.user.metadata.comment_rewards = accountData.user.metadata.comment_rewards || '50';
-
-
+                    accountData.user.metadata.lang = accountData.user.metadata.lang || getNavigatorLanguage();
 
                     let auths = Object.keys(that.account.keys);
                     let logged = true;
@@ -74,12 +73,19 @@ class Session {
                     });
 
                     if (logged) {
+                        //Set Account lang
+                        localStorage.setItem(CREARY.LANG, accountData.user.metadata.lang);
                         callback(null, accountData);
                     } else {
                         callback(Errors.USER_LOGIN_ERROR, accountData);
                     }
                 } else {
                     //User not exists
+                    //Set default lang if it is not set
+                    if (localStorage.getItem(CREARY.LANG) === null) {
+                        localStorage.setItem(CREARY.LANG, getNavigatorLanguage());
+                    }
+
                     callback(Errors.USER_NOT_FOUND);
                 }
 

@@ -46,11 +46,12 @@
             integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
             crossorigin="anonymous"></script>
 
+    <script src="/js/common/ls.js"></script>
     <script src="/js/common/conf.js"></script>
     <script src="/js/common/resources.js"></script>
+    <script src="/language/isolangs.js"></script>
     <script src="/language/lang-en.js"></script>
     <script src="/js/common/components.js"></script>
-    <script src="/js/common/ls.js"></script>
     <script src="/js/common/util.js"></script>
     <script src="/js/common/creautil.js"></script>
     <script src="/js/common/http.js"></script>

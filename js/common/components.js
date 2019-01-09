@@ -135,7 +135,7 @@ Vue.component('post-like2', {
     data: function () {
         return {
             R: R,
-            lang: lang
+            lang: getLanguage()
         }
     },
     methods: {
@@ -536,7 +536,7 @@ Vue.component('btn-follow',  {
     },
     data: function () {
         return {
-            lang: lang,
+            lang: getLanguage(),
             over: false,
             state: -1
         }

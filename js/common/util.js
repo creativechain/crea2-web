@@ -229,3 +229,7 @@ function getPathPart(index = 0) {
 
     return parts[index] || '';
 }
+
+function getNavigatorLanguage() {
+    return navigator.language.split('-')[0];
+}

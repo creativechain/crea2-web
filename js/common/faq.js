@@ -9,8 +9,8 @@ let faqContainer;
         faqContainer = new Vue({
             el: '#faq-container',
             data: {
-                lang: lang,
-                faq: faq,
+                lang: getLanguage(),
+                faq: faq[getLanguage().CODE],
             },
             methods: {
                 linkfy: function (str) {

@@ -12,7 +12,7 @@ let witnessContainer;
             witnessContainer = new Vue({
                 el: '#witnesses',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     account: account,
                     state: state

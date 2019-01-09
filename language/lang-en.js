@@ -1,4 +1,5 @@
-let lang = {
+lang.en = {
+    "CODE": "en",
     "COMMON": {
         "OR_CAP": "OR",
         "YES": "Yes",
@@ -31,10 +32,6 @@ let lang = {
         "POSTS": "POSTS",
         "COMMENTS": "COMMENTS",
         "TAGS": "TAGS"
-    },
-    "LANGUAGE": {
-        "ENGLISH": "English",
-        "SPANISH": "Spanish"
     },
     "DOTS_MENU": {
         "EXPLORE": "Explore",

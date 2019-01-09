@@ -27,7 +27,7 @@ let promoteModal;
             postContainer = new Vue({
                 el: '#post-view',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     user: userAccount ? userAccount.user : null,
                     state: state,
@@ -172,7 +172,7 @@ let promoteModal;
             promoteModal = new Vue({
                 el: "#modal-promote",
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     user: userAccount ? userAccount.user : null,
                     state: state,

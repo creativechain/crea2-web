@@ -29,7 +29,7 @@ let welcomeVue;
                 checkedPolicy: false,
                 suggestedPassword: '',
                 password: '',
-                lang: lang
+                lang: getLanguage()
             },
             methods: {
                 inputPassword: inputPassword,

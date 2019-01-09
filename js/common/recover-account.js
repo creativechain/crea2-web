@@ -9,7 +9,7 @@ let recoverContainer;
         recoverContainer = new Vue({
             el: '#recover-container',
             data: {
-                lang: lang
+                lang: getLanguage()
             }
         });
     }

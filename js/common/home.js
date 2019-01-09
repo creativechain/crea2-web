@@ -72,7 +72,7 @@ let homePosts;
                     category: category,
                     discuss: discuss,
                     state: state,
-                    lang: lang,
+                    lang: getLanguage(),
                 },
                 updated: function () {
                     if (mr.masonry) {

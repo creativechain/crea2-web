@@ -58,11 +58,8 @@
             <div class="col-md-6">
                 <label>{{ lang.EDIT_PROFILE.LANGUAGE }}</label>
                 <div class="input-select">
-                    <select>
-                        <option selected="" value="Default">Selecciona idioma</option>
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Larger">Large</option>
+                    <select v-model="profile.lang">
+                        <option v-for="l in isoLangs" v-bind:value="l.code">{{ l.nativeName }}</option>
                     </select>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php include ('element/navbar.php'); ?>
 
 
-<script src="/language/faq-es.js"></script>
+<script src="/language/faq-en.js"></script>
 <div class="main-container view-faq">
     <section v-cloak id="faq-container">
         <div class="container">

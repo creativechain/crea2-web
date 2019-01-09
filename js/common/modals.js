@@ -17,7 +17,7 @@
             alertModal = new Vue({
                 el: '#modal-alert',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     config: clone(defaultData),
                     show: false
                 },
@@ -59,7 +59,7 @@
             roleModal = new Vue({
                 el: '#modal-role',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     id: null,
                     title: '',
                     role: null,

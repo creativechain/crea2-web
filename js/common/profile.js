@@ -12,17 +12,8 @@ let walletModalDeEnergize;
 
 (function () {
 
-    let defaultModalConfig = {
-        op: 'transfer_crea',
-        title: lang.WALLET.TRANSFER_CREA_TITLE,
-        text: lang.WALLET.TRANSFER_CREA_TEXT,
-        button: lang.BUTTON.SEND,
-        total_amount: Asset.parseString('0.000 CREA'),
-        nai: apiOptions.nai.CREA,
-        confirmed: false,
-        to: null,
-        disableTo: false
-    };
+    let lang;
+    let defaultModalConfig;
 
     function updateModalDeEnergize(state, session) {
         console.log('Modal De-Energize', jsonify(jsonstring(state)));
@@ -31,12 +22,12 @@ let walletModalDeEnergize;
         let delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString());
         let maxPowerDown = vestsCrea - delegatedVesting;
 
-        let withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(), apiOptions.nai.CREA);
-        let toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(), apiOptions.nai.CREA);
+        let withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(null, false), apiOptions.nai.CREA);
+        let toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(null, false), apiOptions.nai.CREA);
 
         let withdrawNote = '';
         if (toWithdraw.amount - withdrawn.amount > 0) {
-            withdrawNote = String.format(lang.WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(), withdrawn.toFriendlyString());
+            withdrawNote = String.format(lang.WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
         }
 
         if (!walletModalDeEnergize) {
@@ -232,6 +223,7 @@ let walletModalDeEnergize;
                 data: {
                     CONSTANTS: CONSTANTS,
                     lang: lang,
+                    isoLangs: isoLangs,
                     session: session,
                     account: account,
                     state: state,
@@ -1292,6 +1284,21 @@ let walletModalDeEnergize;
     function handleSession(session, account) {
         if (session) {
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
+
+            if (session.account.username === account.user.name) {
+                lang = getLanguage();
+                defaultModalConfig = {
+                    op: 'transfer_crea',
+                    title: lang.WALLET.TRANSFER_CREA_TITLE,
+                    text: lang.WALLET.TRANSFER_CREA_TEXT,
+                    button: lang.BUTTON.SEND,
+                    total_amount: Asset.parseString('0.000 CREA'),
+                    nai: apiOptions.nai.CREA,
+                    confirmed: false,
+                    to: null,
+                    disableTo: false
+                };
+            }
         }
 
         handleView(session, account);
