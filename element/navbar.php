@@ -158,7 +158,7 @@
             </li>
             <li>
                 <a href="#">
-                    <span>Términos y condiciones</span>
+                    <span>{{ lang.DOTS_MENU.TERMS }}</span>
                 </a>
             </li>
         </ul>
