@@ -257,6 +257,9 @@ let publishContainer;
             };
 
             let download = publishContainer.downloadFile;
+            if (!download.price) {
+                download.price = 0;
+            }
             download.price = Asset.parseString(download.price + ' ' + download.currency).toFriendlyString(null, false);
             if (!download.resource) {
                 download = '';
