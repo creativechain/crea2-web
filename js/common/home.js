@@ -71,6 +71,7 @@ let homePosts;
                     filter: filter,
                     category: category,
                     discuss: discuss,
+                    urlFilter: urlFilter,
                     state: state,
                     lang: getLanguage(),
                 },
@@ -182,7 +183,7 @@ let homePosts;
                         return {};
                     },
                     onVote: function (err, result) {
-                        creaEvents.emit('crea.content.filter', filter);
+                        creaEvents.emit('crea.content.filter', this.urlFilter);
                     },
                     getLicense(flag) {
                         if (flag) {
@@ -200,6 +201,7 @@ let homePosts;
             homePosts.category = category;
             homePosts.discuss = discuss;
             homePosts.state = state;
+            homePosts.urlFilter = urlFilter;
         }
 
         creaEvents.emit('crea.dom.ready');

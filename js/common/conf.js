@@ -4,7 +4,6 @@
 
 
 let local = false;
-let localNode = 'http://cn.localhost';
 
 let apiUrl = local ? 'http://127.0.0.1:8000' : 'https://platform.creativechain.net';
 let apiOptions = {
