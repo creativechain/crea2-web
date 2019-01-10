@@ -63,16 +63,16 @@ let welcomeVue;
             crea.api.lookupAccountNames(accounts, function (err, result) {
                 if (err) {
                     console.error(err);
-                    welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
+                    welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
                 } else if (result[0] != null) {
-                    welcomeVue.error.username = lang.ERROR.USERNAME_EXISTS;
+                    welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
                 } else {
                     welcomeVue.error.username = null;
                     welcomeVue.username = username;
                 }
             })
         } else {
-            welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
+            welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
         }
     }
 
@@ -95,10 +95,10 @@ let welcomeVue;
                     if (data.responseText) {
                         let response = jsonify(data.responseText);
                         if (response.error === 'REGISTERED_EMAIL') {
-                            welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
+                            welcomeVue.error.email = getLanguage().ERROR.EMAIL_EXISTS;
                         }
                     } else {
-                        welcomeVue.error.email = lang.ERROR.UNKNOWN_ERROR;
+                        welcomeVue.error.email = getLanguage().ERROR.UNKNOWN_ERROR;
                     }
                 });
 
@@ -111,7 +111,7 @@ let welcomeVue;
 
 
         } else {
-            welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
+            welcomeVue.error.email = getLanguage().ERROR.INVALID_EMAIL;
             welcomeVue.email = '';
         }
     }
@@ -125,7 +125,7 @@ let welcomeVue;
             welcomeVue.error.matchPassword = null;
             welcomeVue.passwordMatch = true;
         } else {
-            welcomeVue.error.matchPassword = lang.ERROR.PASSWORDS_NOT_MATCH;
+            welcomeVue.error.matchPassword = getLanguage().ERROR.PASSWORDS_NOT_MATCH;
         }
 
         welcomeVue.passwordMatch = match;
@@ -138,7 +138,7 @@ let welcomeVue;
             welcomeVue.password = event.target.value;
             welcomeVue.error.password = null;
         } else {
-            welcomeVue.error.password = lang.ERROR.INVALID_PASSWORD;
+            welcomeVue.error.password = getLanguage().ERROR.INVALID_PASSWORD;
         }
 
 
