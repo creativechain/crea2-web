@@ -415,7 +415,7 @@ creaEvents.on('crea.content.prepare', function () {
         el: '#home-banner',
         data: {
             showBanner: false,
-            lang: lang
+            lang: getLanguage()
         }
     });
 });
