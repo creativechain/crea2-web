@@ -1,6 +1,6 @@
 <?php
 
-if (false) {
+if (true) {
     require 'Router.php';
     $router = new Router();
 
