@@ -1,6 +1,72 @@
 <?php
 
-if (true) {
+$URI = $_SERVER['REQUEST_URI'];
+$CONFIG_FILE = 'webconfig.json';
+$REQUEST = null;
+$CONFIG = null;
+
+function loadConfig() {
+    global $CONFIG_FILE;
+    if (file_exists($CONFIG_FILE)) {
+        global $CONFIG;
+        $CONFIG = file_get_contents($CONFIG_FILE);
+        $CONFIG = json_decode($CONFIG, true);
+        return $CONFIG;
+    }
+
+    return false;
+}
+
+function checkAuth() {
+    $pathInfo = ltrim($_SERVER['REQUEST_URI'] ?? '', '/');
+    global $CONFIG;
+    global $REQUEST;
+    if (explode('/', $pathInfo)[1]  === $CONFIG['token']) {
+        $username = $REQUEST['message']['from']['username'];
+
+        return array_search($username, $CONFIG['users']) >= 0;
+
+    }
+
+    return false;
+}
+
+function handleCommand($command) {
+    global $CONFIG;
+    global $CONFIG_FILE;
+    if ($command === '/info') {
+        sendMessage(json_encode($CONFIG, JSON_PRETTY_PRINT));
+    } else if ($command === '/maintenance') {
+        $maintenance = boolval($CONFIG['maintenance']);
+        $CONFIG['maintenance'] = !$maintenance;
+        $CONFIG_json = json_encode($CONFIG, JSON_PRETTY_PRINT);
+        file_put_contents($CONFIG_FILE, $CONFIG_json);
+
+        sendMessage('maintenance = ' . $CONFIG['maintenance']);
+    }
+}
+
+function sendMessage($message) {
+    global $CONFIG;
+    global $REQUEST;
+    $uri = $CONFIG['bot_url'] . $CONFIG['token'];
+    $chatId = $REQUEST['message']['chat']['id'];
+    $query = http_build_query([
+        'chat_id' => $chatId,
+        'text' => $message,
+    ]);
+
+    $response = file_get_contents("$uri/sendMessage?$query");
+    return $response;
+}
+
+function receiveRequest()
+{
+    $json = file_get_contents("php://input");
+    return json_decode($json, true);
+}
+
+function handleRoute() {
     require 'Router.php';
     $router = new Router();
 
@@ -23,9 +89,32 @@ if (true) {
     $router->addRoute('^\/([\w\d\-\/]+)\/(\@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php');
 
     include $router->match($_SERVER['REQUEST_URI']);
+}
+
+if (loadConfig()) {
+    error_log($URI);
+    //die(print_r($CONFIG['maintenance'], true));
+    if (strpos($URI, '/admin') === 0) {
+        http_response_code(200);
+        if (loadConfig()) {
+            if ($CONFIG) {
+                $REQUEST = receiveRequest();
+                if (checkAuth()) {
+                    handleCommand($REQUEST['message']['text']);
+                }
+            }
+        }
+
+        echo 'Well';
+
+    } else if (boolval($CONFIG['maintenance'])) {
+        http_response_code(503);
+        include '503.php';
+    } else {
+        handleRoute();
+    }
 } else {
-    http_response_code(503);
-    include '503.php';
+    handleRoute();
 }
 
 
