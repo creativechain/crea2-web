@@ -469,6 +469,7 @@ lang.en = {
     "ERROR_PAGES": {
         "REQUESTED_URL": "The requested URL",
         "MESSAGE_404": " was not found on this server.",
+        "MESSAGE_505": "Creary is in maintenance. Try again later.",
         "THATS_ERROR": "That’s an error.",
         "WE_KNOW": "That’s all we know."
 
