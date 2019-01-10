@@ -534,11 +534,13 @@ img {
   .boxed div[class*='col-']:not(.boxed) {
     padding: 0 10px;
   }
+  #menu1 {
+    z-index: 0;
+  }
 }
 @media (min-width: 768px) {
   #menu1 {
     position: relative;
-    z-index: 0;
     .bar__module {
       display: inline-block;
       margin-bottom: 0;
