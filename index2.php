@@ -21,11 +21,14 @@ function checkAuth() {
     $pathInfo = ltrim($_SERVER['REQUEST_URI'] ?? '', '/');
     global $CONFIG;
     global $REQUEST;
-    if (explode('/', $pathInfo)[1]  === $CONFIG['token']) {
+    if (explode('/', $pathInfo)[1] === $CONFIG['token']) {
         $username = $REQUEST['message']['from']['username'];
 
+        error_log('User found' . array_search($username, $CONFIG['users']));
         return array_search($username, $CONFIG['users']) >= 0;
 
+    } else {
+        error_log('Token not match: ' .explode('/', $pathInfo)[1] . ' != ' . $CONFIG['token']);
     }
 
     return false;
@@ -34,6 +37,7 @@ function checkAuth() {
 function handleCommand($command) {
     global $CONFIG;
     global $CONFIG_FILE;
+    error_log('Handling command: '. $command);
     if ($command === '/info') {
         sendMessage(json_encode($CONFIG, JSON_PRETTY_PRINT));
     } else if ($command === '/maintenance') {
@@ -63,6 +67,7 @@ function sendMessage($message) {
 function receiveRequest()
 {
     $json = file_get_contents("php://input");
+    error_log($json);
     return json_decode($json, true);
 }
 
@@ -101,6 +106,8 @@ if (loadConfig()) {
                 $REQUEST = receiveRequest();
                 if (checkAuth()) {
                     handleCommand($REQUEST['message']['text']);
+                } else {
+                    error_log('No authorized!');
                 }
             }
         }
