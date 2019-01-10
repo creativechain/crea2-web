@@ -148,12 +148,12 @@
             </li>
             <li>
                 <a href="#">
-                    <span>{{ lang.DOTS_MENU.PRIVACY }}</span>
+                    <span>{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span>{{ lang.DOTS_MENU.WHITEPAPER }}</span>
+                    <span>{{ lang.DOTS_MENU.PRIVACY }}</span>
                 </a>
             </li>
             <li>
@@ -182,12 +182,6 @@
                     <i class="socicon socicon-instagram icon icon--xs"></i>
                 </a>
             </li>
-            <!--<li>
-                <a href="https://steemit.com/@creary" target="_blank">
-                    <i class="socicon socicon-steemit icon icon--xs"></i>
-                </a>
-            </li>-->
-
             <li>
                 <a href="https://medium.com/creary/" target="_blank">
                     <i class="socicon socicon-medium icon icon--xs"></i>

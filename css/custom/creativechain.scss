@@ -37,6 +37,32 @@ label {
   border: transparent !important;
   background: transparent !important;
 }
+#navbar-right-menu {
+  background-color: $background-navbar-dark;
+  z-index: 1;
+  width: 19em;
+  padding-top: 40px;
+  a {
+    color: $color-white;
+    span {
+      color: $color-white !important;
+    }
+  }
+  hr {
+    border-color: #505050;
+  }
+  .notification-close {
+    color: $color-white;
+    margin-top: 40px;
+  }
+  .social-list {
+    a {
+      i {
+        color: $color-white;
+      }
+    }
+  }
+}
 .notification.side-menu {
   width: 20.857143em;
 }
@@ -167,6 +193,8 @@ a {
   max-width: 1500px;
 }
 #menu1 {
+  position: relative;
+  z-index: 2;
   .user-avatar {
     height: 30px;
     width: 30px;
@@ -267,8 +295,10 @@ img {
       overflow: hidden;
       word-wrap: break-word;
       text-overflow: ellipsis;
-      max-height: 16px;
       line-height: 16px;
+      a {
+        color: $color-dark-primary;
+      }
     }
     .amount-post-view-home {
       max-width: 230px;
@@ -507,6 +537,8 @@ img {
 }
 @media (min-width: 768px) {
   #menu1 {
+    position: relative;
+    z-index: 0;
     .bar__module {
       display: inline-block;
       margin-bottom: 0;
