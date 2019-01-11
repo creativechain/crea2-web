@@ -106,9 +106,11 @@
                             <div class="row">
                                 <template v-for="o in otherProjects">
                                     <div class="col-md-4">
-                                        <div class="img-more-projects"
-                                             v-on:click="showPost(o)"
-                                             v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
+                                        <a v-bind:href="o.url">
+                                            <div class="img-more-projects"
+                                                 v-on:click="showPost(o)"
+                                                 v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
+                                        </a>
                                     </div>
                                 </template>
                             </div>
