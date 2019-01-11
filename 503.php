@@ -10,7 +10,7 @@
                     <p>{{ lang.ERROR_PAGES.WE_KNOW }}</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="/img/error/error.svg" alt="" />
+                    <img src="/img/creary_manteniment.svg" alt="" />
                 </div>
             </div>
             <!--end of row-->
