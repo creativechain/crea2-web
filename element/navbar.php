@@ -370,7 +370,7 @@
                                                                         </div>
                                                                         <div class="row mt-3">
                                                                             <div class="col-md-8 offset-md-2 text-center">
-                                                                                <a class="btn btn--black" href="#">
+                                                                                <a class="btn btn--black" href="/welcome">
                                                                                     <span class="btn__text color--white">
                                                                                         Inscribirse
                                                                                     </span>
