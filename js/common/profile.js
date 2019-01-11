@@ -27,7 +27,7 @@ let walletModalDeEnergize;
 
         let withdrawNote = '';
         if (toWithdraw.amount - withdrawn.amount > 0) {
-            withdrawNote = String.format(lang.WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
+            withdrawNote = String.format(getLanguage().WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
         }
 
         if (!walletModalDeEnergize) {
@@ -215,14 +215,14 @@ let walletModalDeEnergize;
 
         let nextDeEnergize = '';
         if (state.user.to_withdraw > 0 && state.user.name === session.account.username) {
-            nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+            nextDeEnergize = String.format(getLanguage().WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
         }
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
                 data: {
                     CONSTANTS: CONSTANTS,
-                    lang: lang,
+                    lang: getLanguage(),
                     isoLangs: isoLangs,
                     session: session,
                     account: account,
@@ -300,13 +300,13 @@ let walletModalDeEnergize;
                         switch (op) {
                             case 'transfer_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: lang.BUTTON.CONFIRM,
+                                    text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: this.lang.BUTTON.CONFIRM,
                                     nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance)
                                 };
                                 break;
                             case 'transfer_to_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance),
                                     to: this.session.account.username,
                                     disableTo: true,
@@ -314,7 +314,7 @@ let walletModalDeEnergize;
                                 break;
                             case 'transfer_to_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance),
                                     to: this.session.account.username,
                                     disableTo: true,
@@ -322,19 +322,19 @@ let walletModalDeEnergize;
                                 break;
                             case 'transfer_from_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
-                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
                                 };
                                 break;
                             case 'transfer_from_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
-                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: lang.BUTTON.TRANSFER,
+                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.savings_balance),
                                 };
                                 break;
                             case 'transfer_to_vests':
                                 config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
-                                    text: this.lang.WALLET.CONVERT_CGY_TEXT, button: lang.BUTTON.TRANSFER,
+                                    text: this.lang.WALLET.CONVERT_CGY_TEXT, button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance),
                                     to: this.session.account.username,
                                     disableTo: true,
@@ -342,7 +342,7 @@ let walletModalDeEnergize;
                                 break;
                             case 'transfer_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: lang.BUTTON.SEND,
+                                    text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: this.lang.BUTTON.SEND,
                                     nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance)
                                 };
                                 break;
@@ -724,10 +724,10 @@ let walletModalDeEnergize;
 
 
         if (!rewardsContainer[rewardView]) {
-            rewardsContainer[rewardView] = new Vue({
+            rewardsContainer[rewardlangView] = new Vue({
                 el: '#profile-' + rewardView,
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     state: state,
                     rewards: rewards,
@@ -757,7 +757,7 @@ let walletModalDeEnergize;
             blockedContainer = new Vue({
                 el: '#blocked-container',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     account: account,
                     blocked: blocked
@@ -787,7 +787,7 @@ let walletModalDeEnergize;
             followingContainer = new Vue({
                 el: '#following-container',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     state: state,
                     session: session,
                     account: account,
@@ -814,7 +814,7 @@ let walletModalDeEnergize;
             followerContainer = new Vue({
                 el: '#follower-container',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     state: state,
                     session: session,
                     account: account,
@@ -1293,9 +1293,9 @@ let walletModalDeEnergize;
                 lang = getLanguage();
                 defaultModalConfig = {
                     op: 'transfer_crea',
-                    title: lang.WALLET.TRANSFER_CREA_TITLE,
-                    text: lang.WALLET.TRANSFER_CREA_TEXT,
-                    button: lang.BUTTON.SEND,
+                    title: getLanguage().WALLET.TRANSFER_CREA_TITLE,
+                    text: getLanguage().WALLET.TRANSFER_CREA_TEXT,
+                    button: getLanguage().BUTTON.SEND,
                     total_amount: Asset.parseString('0.000 CREA'),
                     nai: apiOptions.nai.CREA,
                     confirmed: false,
