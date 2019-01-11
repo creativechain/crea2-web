@@ -470,6 +470,8 @@ lang.en = {
         "REQUESTED_URL": "The requested URL",
         "MESSAGE_404": " was not found on this server.",
         "MESSAGE_505": "Creary is in maintenance. Try again later.",
+        "MESSAGE_503_1": "We’re down for maintenance.",
+        "MESSAGE_503_2": "We’ll be back shortly.",
         "THATS_ERROR": "That’s an error.",
         "WE_KNOW": "That’s all we know."
 
