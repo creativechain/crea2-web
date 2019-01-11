@@ -450,7 +450,6 @@ let lastPage;
         let onFinish = function (state) {
             count++;
 
-            console.log('Finished:', count, data.length);
             if (count >= data.length) {
                 console.log(state);
                 state.content = searchState.content;
