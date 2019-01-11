@@ -223,25 +223,15 @@ let lastPage;
             }
 
             //separate votes
-            state.content[c].down_votes = [];
-            state.content[c].up_votes = [];
-            state.content[c].active_votes.forEach(function (v) {
-                if (v.percent <= -10000) {
-                    state.content[c].down_votes.push(v);
-                } else {
-                    state.content[c].up_votes.push(v);
-                }
-            });
+            state.content[c] = parsePost(state.content[c]);
         }
 
         if (isUserFeed(getPathPart())) {
             //Retrieve another accounts
-            crea.api.getAccounts(authors, function (err, result) {
+            getAccounts(authors, function (err, result) {
                 if (!catchError(err)) {
                     let accounts = {};
                     result.forEach(function (a) {
-                        a.metadata = jsonify(a.json_metadata);
-                        a.metadata.avatar = a.metadata.avatar || {};
                         accounts[a.name] = a;
                     });
 
@@ -257,7 +247,7 @@ let lastPage;
 
     creaEvents.on('crea.session.update', function (s, a) {
         homePosts.session = session = s;
-        homePosts.aaccount = account = a;
+        homePosts.account = account = a;
     });
 
     creaEvents.on('crea.session.login', function (s, a) {
@@ -286,6 +276,68 @@ let lastPage;
         if (isUserFeed()) {
 
         } else {
+            let apiCall;
+            let category = homePosts.category;
+
+            switch (category) {
+                case 'created':
+                    apiCall = crea.api.getDiscussionsByCreated;
+                    break;
+                case 'hot':
+                    apiCall = crea.api.getDiscussionsByHot;
+                    break;
+                case 'promoted':
+                    apiCall = crea.api.getDiscussionsByPromoted;
+                    break;
+                case 'trending':
+                    apiCall = crea.api.getDiscussionsByTrending;
+                    break;
+            }
+
+            apiCall(lastPage.author, lastPage.permlink, 21, function (err, result) {
+                 if (err) {
+
+                 } else {
+                     //Get new accounts
+                     let discussions = result.discussions;
+
+                     //Remove first duplicate post
+                     discussions.shift();
+
+                     let accounts = [];
+
+                     for (let x = 0; x < discussions.length; x++) {
+                         let  d = discussions[x];
+                         discussions[x] = parsePost(d);
+                         if (!homePosts.state.accounts[d.author]) {
+                             accounts.push(d.author)
+                         }
+                     }
+
+                     //Get new accounts
+                     getAccounts(accounts, function (err, newAccounts) {
+                         if (!catchError(err)) {
+
+                             //Update accounts
+                             newAccounts.forEach(function (a) {
+                                 homePosts.state.accounts[a.name] = a;
+                             });
+
+                             //Update Posts
+                             discussions.forEach(function (d) {
+                                 let permlink = d.author + '/' + d.permlink;
+                                 homePosts.state.content[permlink] = d;
+
+                                 let discuss = homePosts.discuss;
+                                 homePosts.state.discussion_idx[discuss][category].push(permlink);
+                             });
+
+                             lastPage = discussions[discussions.length-1];
+                             homePosts.$forceUpdate();
+                         }
+                     })
+                 }
+            })
 
         }
     });

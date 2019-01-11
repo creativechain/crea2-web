@@ -153,6 +153,64 @@ function createBlockchainAccount(username, password, callback) {
 
 }
 
+function parseAccount(account) {
+    if (account) {
+        account.metadata = jsonify(account.json_metadata);
+        account.metadata.avatar = account.metadata.avatar || {};
+        return account;
+    }
+
+    return account;
+
+}
+
+function parsePost(post) {
+    if (post) {
+        post.metadata = jsonify(post.json_metadata);
+        post.down_votes = [];
+        post.up_votes = [];
+        post.active_votes.forEach(function (v) {
+            if (v.percent <= -10000) {
+                post.down_votes.push(v);
+            } else {
+                post.up_votes.push(v);
+            }
+        });
+
+        let toStringAsset = function (data) {
+            if (typeof data === 'object') {
+                return Asset.parse(data).toFriendlyString(null, false);
+            }
+
+            return data;
+        };
+
+        post.curator_payout_value = toStringAsset(post.curator_payout_value);
+        post.max_accepted_payout = toStringAsset(post.max_accepted_payout);
+        post.pending_payout_value = toStringAsset(post.pending_payout_value);
+        post.promoted = toStringAsset(post.promoted);
+        post.total_payout_value = toStringAsset(post.total_payout_value);
+        post.total_pending_value = toStringAsset(post.total_pending_value);
+    }
+
+    return post;
+}
+function getAccounts(accounts, callback) {
+    crea.api.getAccounts(accounts, function (err, result) {
+        if (callback) {
+            if (err) {
+                callback(err);
+            } else {
+                for (let x = 0; x < result.length; x++) {
+                    result[x] = parseAccount(result[x]);
+                }
+
+                callback(null, result);
+            }
+        }
+    })
+}
+
 function ignoreUser(following, ignore, callback) {
     let s = Session.getAlive();
     if (s) {
