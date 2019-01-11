@@ -33,8 +33,8 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from === state.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
-                            <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
+                            <p v-if="account && op.op.value.from === state.user.name">-{{ parseAsset(op.op.value.amount, null, false) }}</p>
+                            <p v-else >+{{ parseAsset(op.op.value.amount, null, false) }}</p>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from === state.user.name">-{{ parseAsset(op.op.value.amount) }}</p>
-                            <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
+                            <p v-if="account && op.op.value.from === state.user.name">-{{ parseAsset(op.op.value.amount, null, false) }}</p>
+                            <p v-else >+{{ parseAsset(op.op.value.amount, null, false) }}</p>
                         </div>
                     </div>
                 </div>
@@ -105,8 +105,8 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p v-if="account && op.op.value.from === state.user.name">+{{ parseAsset(op.op.value.amount) }}</p>
-                            <p v-else >+{{ parseAsset(op.op.value.amount) }}</p>
+                            <p v-if="account && op.op.value.from === state.user.name">+{{ parseAsset(op.op.value.amount, null, false) }}</p>
+                            <p v-else >+{{ parseAsset(op.op.value.amount, null, false) }}</p>
                         </div>
                     </div>
                 </div>
@@ -187,13 +187,13 @@
                     <span>{{ dateFromNow(op.timestamp) }}</span>
                 </p>
                 <p>
-                    {{ parseAsset(op.op.value.vesting_shares) }} {{ lang.HISTORY.PRODUCED }}
+                    {{ parseAsset(op.op.value.vesting_shares, null, false) }} {{ lang.HISTORY.PRODUCED }}
                     <linkname v-bind:user="op.op.value.producer" v-bind:name="history.accounts[op.op.value.producer].metadata.publicName"></linkname>
                 </p>
                 <p></p>
             </div>
             <div class="list-amount">
-                <p>+{{ parseAsset(op.op.value.vesting_shares) }}</p>
+                <p>+{{ parseAsset(op.op.value.vesting_shares, null, false) }}</p>
             </div>
             <hr />
         </div>
@@ -217,7 +217,7 @@
                 <p></p>
             </div>
             <div class="list-amount">
-                <p>+{{ parseAsset(op.op.value.reward) }}</p>
+                <p>+{{ parseAsset(op.op.value.reward, null, false) }}</p>
             </div>
             <hr />
         </div>
@@ -245,7 +245,7 @@
                     </div>
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
-                            <p>{{ parseAsset(op.op.value.fee) }}</p>
+                            <p>{{ parseAsset(op.op.value.fee, null, false) }}</p>
                         </div>
                     </div>
                 </div>

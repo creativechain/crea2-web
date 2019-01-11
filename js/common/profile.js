@@ -354,8 +354,8 @@ let walletModalDeEnergize;
                     canWithdraw: function () {
                         return this.session && this.session.account.username == state.user.name;
                     },
-                    parseAsset: function (asset) {
-                        return Asset.parse(asset).toFriendlyString();
+                    parseAsset: function (asset, maxDecimals = null, abbr = true) {
+                        return Asset.parse(asset).toFriendlyString(maxDecimals, abbr);
                     },
                     openPost: showPost,
                     showProfile: showProfile,
