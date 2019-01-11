@@ -724,7 +724,6 @@ let walletModalDeEnergize;
 
 
         if (!rewardsContainer[rewardView]) {
-            console.log('Loading rewards', rewardView, Asset.parse({amount: rewards.rewardsWeekCrea, nai:'crea'}).toFriendlyString());
             rewardsContainer[rewardView] = new Vue({
                 el: '#profile-' + rewardView,
                 data: {
@@ -736,9 +735,7 @@ let walletModalDeEnergize;
                 },
                 methods: {
                     vestsToCgy: function (vests) {
-                        let cgy = vestsToCgy(this.state, vests);
-                        console.error(cgy.toFriendlyString(null, false));
-                        return cgy;
+                        return vestsToCgy(this.state, vests);
                     },
                     parseAsset: Asset.parse,
                     formatTime: function (date) {
@@ -746,16 +743,12 @@ let walletModalDeEnergize;
                     }
                 }
             });
-
-            console.log(rewardView, 'vue loaded!');
         } else {
             rewardsContainer[rewardView].session = session;
             rewardsContainer[rewardView].state = state;
             rewardsContainer[rewardView].rewards = rewards;
             rewardsContainer[rewardView].rewardsOp = rewardsOp;
         }
-
-        console.log(rewardView, ' loaded!')
     }
 
     function setUpBlocked(session, account, blocked) {
