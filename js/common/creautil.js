@@ -36,11 +36,11 @@ function vestsToCgy(state, vestingShares, nai='cgy') {
 
     let vests = vestingShares;
     if (typeof vestingShares === 'string') {
-        vests = parseFloat(Asset.parseString(vestingShares).toPlainString());
+        vests = parseFloat(Asset.parseString(vestingShares).toPlainString(null, false));
     }
 
-    const total_vests = parseFloat(Asset.parseString(state.props.total_vesting_shares).toPlainString());
-    const total_vest_crea = parseFloat(Asset.parseString(state.props.total_vesting_fund_crea).toPlainString());
+    const total_vests = parseFloat(Asset.parseString(state.props.total_vesting_shares).toPlainString(null, false));
+    const total_vest_crea = parseFloat(Asset.parseString(state.props.total_vesting_fund_crea).toPlainString(null, false));
 
     return Asset.parse({
         amount: total_vest_crea * (vests / total_vests),
@@ -55,9 +55,9 @@ function vestsToCgy(state, vestingShares, nai='cgy') {
  * @returns {Asset}
  */
 function vestingCrea(account, props) {
-    const vests = parseFloat(Asset.parseString(account.vesting_shares).toPlainString());
-    const totalVests = parseFloat(Asset.parseString(props.total_vesting_shares).toPlainString());
-    const totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString());
+    const vests = parseFloat(Asset.parseString(account.vesting_shares).toPlainString(null, false));
+    const totalVests = parseFloat(Asset.parseString(props.total_vesting_shares).toPlainString(null, false));
+    const totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString(null, false));
 
     const vestingCrea = totalVestCrea * (vests / totalVests);
     return Asset.parse({amount: vestingCrea, nai: apiOptions.nai.CGY});
@@ -70,12 +70,12 @@ function vestingCrea(account, props) {
  * @returns {Asset}
  */
 function delegatedCrea(account, props) {
-    const delegatedVests = parseFloat(Asset.parseString(account.delegated_vesting_shares).toPlainString());
-    const receivedVests = parseFloat(Asset.parseString(account.received_vesting_shares).toPlainString());
+    const delegatedVests = parseFloat(Asset.parseString(account.delegated_vesting_shares).toPlainString(null, false));
+    const receivedVests = parseFloat(Asset.parseString(account.received_vesting_shares).toPlainString(null, false));
 
     const vests = delegatedVests - receivedVests;
-    const totalVests = parseFloat(Asset.parseString(props.total_vesting_shares).toPlainString());
-    const totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString());
+    const totalVests = parseFloat(Asset.parseString(props.total_vesting_shares).toPlainString(null, false));
+    const totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString(null, false));
 
     const vestingCrea = totalVestCrea * (vests / totalVests);
     return Asset.parse({amount: vestingCrea, nai: 'crea'});
