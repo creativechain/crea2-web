@@ -72,14 +72,12 @@ let promoteModal;
                     },
                     getFeaturedImage: function (post) {
                         let featuredImage = post.metadata.featuredImage;
-                        if (featuredImage) {
-                            if (featuredImage.url) {
-                                return featuredImage;
-                            } else {
-                                return {
-                                    url: featuredImage
-                                }
+                        if (featuredImage && featuredImage.hash) {
+                            return {
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
                             }
+                        } else if (featuredImage && featuredImage.url) {
+                            return featuredImage;
                         }
 
                         return {};
