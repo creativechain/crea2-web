@@ -64,7 +64,7 @@
     <script src="/js/common/common.js"></script>
 
 </head>
-<body class=" ">
+<body id="body" class=" " >
 <a id="start"></a>
 
 <div v-cloak id="navbar-right-menu" class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu" data-animation="from-right">

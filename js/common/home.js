@@ -276,6 +276,14 @@ let homePosts;
         }
     });
 
+    creaEvents.on('crea.scroll.bottom', function () {
+        if (isUserFeed()) {
+
+        } else {
+
+        }
+    });
+
     creaEvents.on('crea.search.content', function (data) {
 
         let searchState = {

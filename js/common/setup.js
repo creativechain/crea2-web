@@ -38,9 +38,18 @@
             creaEvents.emit('crea.session.login', false);
         }
     });
-    
+
     creaEvents.on('crea.dom.ready', function (script) {
         $.holdReady(false);
+
+        $(window).scroll(function (event) {
+            let scrollHeight = $(document).height();
+            let scrollPosition = $(window).height() + $(window).scrollTop();
+            if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                // when scroll to bottom of the page
+                creaEvents.emit('crea.scroll.bottom');
+            }
+        })
     })
 
 })();

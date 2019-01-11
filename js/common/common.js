@@ -419,4 +419,3 @@ creaEvents.on('crea.content.prepare', function () {
         }
     });
 });
-
