@@ -270,7 +270,14 @@ let publishContainer;
             let title = publishContainer.title;
             let permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title);
 
-            console.log(title, body, metadata, download);
+            //Add category to tags if is editing
+            if (publishContainer.editablePost && publishContainer.editablePost.metadata.tags) {
+                let category = publishContainer.editablePost.metadata.tags[0];
+                if (category && !metadata.tags.includes(category)) {
+                    metadata.tags.unshift(category);
+                }
+            }
+
             let operations = [];
             operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body,
                 jsonstring(download), jsonstring(metadata)));
@@ -307,14 +314,12 @@ let publishContainer;
         if (edit) {
             let author = edit.split('/')[0];
             let permlink = edit.split('/')[1];
-            console.log(author, permlink);
 
             //Check if author is the user
             let s = Session.getAlive();
             if (s && s.account.username === author) {
                 crea.api.getDiscussion(author, permlink, function (err, post) {
                     if (!catchError(err)) {
-                        console.log(post);
                         post.body = jsonify(post.body) || {};
                         post.metadata = jsonify(post.json_metadata) || {};
 
