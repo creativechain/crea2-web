@@ -2,10 +2,12 @@
     <div class="card card-2 card-home">
 
         <div class="card__top">
-            <div class="img-post-list" v-on:click="openPost(state.content[p])"
-                 v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(state.content[p]).url + ')' }">
+            <a v-bind:href="state.content[p].url">
+                <div class="img-post-list"
+                     v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(state.content[p]).url + ')' }">
 
-            </div>
+                </div>
+            </a>
         </div>
 
         <div class="card__body">
