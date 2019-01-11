@@ -7,7 +7,7 @@ let local = false;
 
 let apiUrl = local ? 'http://127.0.0.1:8000' : 'https://platform.creativechain.net';
 let apiOptions = {
-    nodes: ["https://node1.creary.net", "https://crea.owldevelopers.site"],
+    nodes: ["https://node1.creary.net"],
     apiUrl : apiUrl,
     ipfs: 'https://ipfs.creary.net',
     ipfsd: 'https://platform.creativechain.net/ipfs/',

@@ -274,7 +274,103 @@ let lastPage;
 
     creaEvents.on('crea.scroll.bottom', function () {
         if (isUserFeed()) {
+            let http = new HttpClient('https://platform.creativechain.net/creary/feed');
 
+            http.when('done', function (response) {
+                let data = jsonify(response).data;
+
+                if (data.length) {
+                    let count = data.length;
+                    let discussions = [];
+                    let accounts = [];
+                    let onContentFetched = function () {
+                        count--;
+                        if (count <= 0) {
+                            getAccounts(accounts, function (err, newAccounts) {
+                                if (!catchError(err)) {
+                                    //Update accounts
+                                    newAccounts.forEach(function (a) {
+                                        homePosts.state.accounts[a.name] = parseAccount(a);
+                                    });
+
+                                    //Sort
+                                    discussions.sort(function (k1, k2) {
+                                        let d1 = toLocaleDate(k1.created);
+                                        let d2 = toLocaleDate(k2.created);
+
+                                        return d2.getTime() - d1.getTime();
+                                    });
+
+                                    let discuss = homePosts.discuss;
+                                    let category = homePosts.category;
+
+                                    //Update Posts
+                                    discussions.forEach(function (d) {
+                                        let permlink = d.author + '/' + d.permlink;
+                                        homePosts.state.content[permlink] = d;
+                                        homePosts.state.discussion_idx[discuss][category].push(permlink);
+                                    });
+
+                                    homePosts.$forceUpdate();
+                                }
+                            })
+                        }
+                    };
+
+                    data.forEach(function (d) {
+                        let permlink = d.author + '/' + d.permlink;
+                        if (!homePosts.state.content[permlink]) {
+                            crea.api.getContent(d.author, d.permlink, function (err, result) {
+                                if (err) {
+                                    console.error('Error getting', permlink, err);
+                                } else {
+                                    discussions.push(parsePost(result));
+
+                                    if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
+                                        accounts.push(d.author);
+                                    }
+                                }
+
+                                onContentFetched()
+                            })
+                        }
+
+                    })
+                } else {
+                    --lastPage;
+                }
+            });
+
+            http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                catchError(textStatus)
+            });
+
+            let username = getPathPart().replace('/', '').replace('@', '');
+            crea.api.getFollowing(username, '', 'blog', 1000, function (err, result) {
+                if (!catchError(err)) {
+
+                    let followings = [];
+                    result.following.forEach(function (f) {
+                        followings.push(f.following);
+                    });
+
+                    if (followings.length) {
+                        followings = followings.join(',');
+                        refreshAccessToken(function (accessToken) {
+                            http.headers = {
+                                Authorization: 'Bearer ' + accessToken
+                            };
+
+                            lastPage++;
+                            http.post({
+                                following: followings,
+                                page: lastPage
+                            })
+                        })
+
+                    }
+                }
+            });
         } else {
             let apiCall;
             let category = homePosts.category;
@@ -296,7 +392,7 @@ let lastPage;
 
             apiCall(lastPage.author, lastPage.permlink, 21, function (err, result) {
                  if (err) {
-
+                     console.error(err);
                  } else {
                      //Get new accounts
                      let discussions = result.discussions;
@@ -309,7 +405,7 @@ let lastPage;
                      for (let x = 0; x < discussions.length; x++) {
                          let  d = discussions[x];
                          discussions[x] = parsePost(d);
-                         if (!homePosts.state.accounts[d.author]) {
+                         if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
                              accounts.push(d.author)
                          }
                      }
