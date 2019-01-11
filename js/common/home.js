@@ -3,6 +3,7 @@
  */
 
 let homePosts;
+let lastPage;
 
 (function () {
     let session, account;
@@ -47,6 +48,7 @@ let homePosts;
 
         let category = resolveFilter('/' + getPathPart()).replace('/', '');
         let discuss = getPathPart(1) || '';
+
         if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
             cKeys = newKeys;
             cKeys.sort(function (k1, k2) {
@@ -58,6 +60,10 @@ let homePosts;
 
             state.discussion_idx[discuss] = {};
             state.discussion_idx[discuss][category] = cKeys;
+            lastPage = 1;
+        } else {
+            let contentArray = state.discussion_idx[discuss][category];
+            lastPage = state.content[contentArray[contentArray.length-1]];
         }
 
         console.log('Filter:', filter, 'discussion:', discuss, 'category:', category, state.discussion_idx[discuss][category]);

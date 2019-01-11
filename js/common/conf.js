@@ -45,6 +45,6 @@ function getLanguage() {
         return lang[language];
     }
 
-    return lang.en;
+    return jsonify(jsonstring(lang.en));
 }
 //Vue.config.silent = false;

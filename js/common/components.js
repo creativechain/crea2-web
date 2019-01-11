@@ -219,9 +219,7 @@ Vue.component('post-like', {
         </div>
     </div>`,
     props: {
-        session: {
-            type: Object
-        },
+        session: [Object, Boolean],
         post: {
             type: Object
         }

@@ -35,14 +35,14 @@
                                 </div>
                                 <div v-show="navbar.section === 'author-rewards'" >
                                     <div v-pre >
-                                        <div id="profile-author-rewards" class="row view-rewards">
+                                        <div v-cloak id="profile-author-rewards" class="row view-rewards">
                                             <?php include('modules/view-rewards-author.php') ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div v-show="navbar.section === 'curation-rewards'" class="view-rewards" >
                                     <div v-pre >
-                                        <div id="profile-curation-rewards" class="row view-rewards">
+                                        <div v-cloak id="profile-curation-rewards" class="row view-rewards">
                                             <?php include('modules/view-rewards-curation.php') ?>
                                         </div>
                                     </div>

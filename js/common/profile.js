@@ -34,7 +34,7 @@ let walletModalDeEnergize;
             walletModalDeEnergize = new Vue({
                 el: '#wallet-de-energize',
                 data: {
-                    lang: lang,
+                    lang: getLanguage(),
                     session: session,
                     state: state,
                     maxPowerDown: maxPowerDown,
@@ -104,7 +104,7 @@ let walletModalDeEnergize;
                     CONSTANTS: CONSTANTS,
                     session: session,
                     state: state,
-                    lang: lang,
+                    lang: getLanguage(),
                     from: state.user.name,
                     amount: 0,
                     memo: '',
@@ -724,7 +724,8 @@ let walletModalDeEnergize;
 
 
         if (!rewardsContainer[rewardView]) {
-            rewardsContainer[rewardlangView] = new Vue({
+            console.log('Loading rewards', rewardView, Asset.parse({amount: rewards.rewardsWeekCrea, nai:'crea'}).toFriendlyString());
+            rewardsContainer[rewardView] = new Vue({
                 el: '#profile-' + rewardView,
                 data: {
                     lang: getLanguage(),
@@ -735,20 +736,26 @@ let walletModalDeEnergize;
                 },
                 methods: {
                     vestsToCgy: function (vests) {
-                        return vestsToCgy(this.state, vests);
+                        let cgy = vestsToCgy(this.state, vests);
+                        console.error(cgy.toFriendlyString(null, false));
+                        return cgy;
                     },
                     parseAsset: Asset.parse,
                     formatTime: function (date) {
                         return moment(date).format('DD MMM HH:MM')
                     }
                 }
-            })
+            });
+
+            console.log(rewardView, 'vue loaded!');
         } else {
             rewardsContainer[rewardView].session = session;
             rewardsContainer[rewardView].state = state;
             rewardsContainer[rewardView].rewards = rewards;
             rewardsContainer[rewardView].rewardsOp = rewardsOp;
         }
+
+        console.log(rewardView, ' loaded!')
     }
 
     function setUpBlocked(session, account, blocked) {
