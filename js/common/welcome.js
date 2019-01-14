@@ -54,8 +54,11 @@ let welcomeVue;
         creaEvents.emit('crea.dom.ready');
     }
 
-    function checkUsername(event) {
-        let username = event.target.value;
+    function checkUsername() {
+        let target = welcomeVue.$refs.inputusername;
+        target.value = target.value.toLowerCase();
+        let username = target.value;
+
         console.log("Checking", username);
         if (!crea.utils.validateAccountName(username)) {
             let accounts = [ username ];
