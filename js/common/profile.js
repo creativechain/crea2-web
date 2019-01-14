@@ -301,13 +301,13 @@ let walletModalDeEnergize;
                             case 'transfer_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE,
                                     text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: this.lang.BUTTON.CONFIRM,
-                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance)
+                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.balance)
                                 };
                                 break;
                             case 'transfer_to_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
                                     text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance),
+                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.balance),
                                     to: this.session.account.username,
                                     disableTo: true,
                                 };
@@ -315,7 +315,7 @@ let walletModalDeEnergize;
                             case 'transfer_to_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
                                     text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance),
+                                    nai: apiOptions.symbol.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance),
                                     to: this.session.account.username,
                                     disableTo: true,
                                 };
@@ -323,19 +323,19 @@ let walletModalDeEnergize;
                             case 'transfer_from_savings_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
                                     text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
+                                    nai: apiOptions.symbol.CBD, total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
                                 };
                                 break;
                             case 'transfer_from_savings_crea':
                                 config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
                                     text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.savings_balance),
+                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.savings_balance),
                                 };
                                 break;
                             case 'transfer_to_vests':
                                 config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
                                     text: this.lang.WALLET.CONVERT_CGY_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.nai.CREA, total_amount: Asset.parseString(this.state.user.balance),
+                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.balance),
                                     to: this.session.account.username,
                                     disableTo: true,
                                 };
@@ -343,7 +343,7 @@ let walletModalDeEnergize;
                             case 'transfer_cbd':
                                 config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE,
                                     text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: this.lang.BUTTON.SEND,
-                                    nai: apiOptions.nai.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                    nai: apiOptions.symbol.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance)
                                 };
                                 break;
 
