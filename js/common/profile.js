@@ -49,8 +49,8 @@ let walletModalDeEnergize;
                     onAmount: function (amount) {
                         amount += 0.0001;
                         let asset = Asset.parse({amount: amount, nai: apiOptions.nai.CREA});
-                        this.finalAmount = parseFloat(asset.toPlainString());
-                        this.amountByWeek = amount < 0.001 ? '' : String.format(this.lang.WALLET.DE_ENERGIZE_AMOUNT_BY_WEEK, asset.divide(8).toFriendlyString());
+                        this.finalAmount = parseFloat(asset.toPlainString(null, false));
+                        this.amountByWeek = amount < 0.001 ? '' : String.format(this.lang.WALLET.DE_ENERGIZE_AMOUNT_BY_WEEK, asset.divide(8).toFriendlyString(null, false));
                     },
                     onManualChange: function (event) {
                         if (event) {
