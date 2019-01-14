@@ -92,6 +92,7 @@
             }
             .comment-user {
               color: $grey-text;
+              word-break: break-all;
             }
             .ul-row-share-comment {
               li:nth-child(2) {

@@ -56,18 +56,18 @@
                             <img class="logo-coming" src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="" />
                         </li>
                         <li>
-                            <h2 class="h2-title">COMING SOON</h2>
+                            <h2 class="h2-title">OUR BETA TEST IS NOW LIVE!</h2>
                         </li>
                         <li>
-                            <p class="p-subscribe">Subscribe to our mailing list and we will inform you of the progress</p>
+                            <p class="p-subscribe">We look forward to get your suggestions and opinions!</p>
                         </li>
                     </ul>
                     <div class="row">
                         <div class="col-md-4 offset-md-4 col-xs-12">
-                            <a class="btn bg--dark block btn-dark-primary" href="http://eepurl.com/dwE-ZP" target="_blank">
-                        <span class="btn__text">
-                            Subscribe to list
-                        </span>
+                            <a class="btn bg--dark block btn-dark-primary" href="https://creaproject.io/the-creary-beta-test/" target="_blank">
+                                <span class="btn__text">
+                                    START THE BETA TEST
+                                </span>
                             </a>
                         </div>
                     </div>

@@ -1,9 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 
 <div class="main-container view-profile">
-    <div id="home-banner">
-        <?php include ('modules/banner.php') ?>
-    </div>
     <div id="profile-container" v-cloak>
         <section v-cloak class="cta cta-4 space--xxs border--bottom ">
             <div class="container">
