@@ -410,6 +410,7 @@ lang.en = {
     },
     "LOGIN": {
         "PASSWORD": "Password",
+        "PASSWORD_OR_WIF": "Password or WIF",
         "TITLE": "Login to Creary",
         "TEXT": "Join our community of creatives and start showing us your works!",
         "EMAIL": "Enter your email",

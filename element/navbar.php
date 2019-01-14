@@ -318,7 +318,7 @@
 
                             <li>
                                 <div class="modal-instance">
-                                    <a href="#" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+                                    <a href="#modal-login" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
                                     <div id="modal-login" v-if="!session" class="modal-container">
                                         <div class="modal-content section-modal">
@@ -340,39 +340,39 @@
                                                                             </div>
                                                                             <div class="col-md-12 text-left">
                                                                                 <input id="login-password" v-model="loginForm.password.value"
-                                                                                       type="password" v-bind:placeholder="lang.LOGIN.PASSWORD"/>
+                                                                                       type="password" v-bind:placeholder="lang.LOGIN.PASSWORD_OR_WIF"/>
                                                                                 <span class="error-color-form">{{ loginForm.password.error || ' ' }}</span>
                                                                             </div>
                                                                             <div class="col m-2">
-                                                                                <a class="btn btn--transparent w-100" href="#">
+                                                                                <div class="btn btn--transparent w-100">
                                                                                     <span class="btn__text color--dark" v-on:click="closeLogin">
                                                                                         {{ lang.BUTTON.CANCEL }}
                                                                                     </span>
-                                                                                </a>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="col m-2">
-                                                                                <a id="login-button" class="btn btn--primary w-100" href="#" v-on:click="login">
+                                                                                <div class="btn btn--primary w-100" v-on:click="login">
                                                                                     <span class="btn__text">
                                                                                         {{ lang.BUTTON.LOGIN }}
                                                                                     </span>
-                                                                                </a>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-12 text-center">
-                                                                                <h3 class="login-description">Aún no eres usuario? Entra en el universo crea</h3>
+                                                                                <h3 class="login-description">{{ lang.LOGIN.NOT_USER }}</h3>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-8 offset-md-2 text-center">
-                                                                                <span>Únete a nuestra comunidad y muestra tus proyectos artísticos. </span>
+                                                                                <span>{{ lang.LOGIN.TEXT }}</span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row mt-3">
                                                                             <div class="col-md-8 offset-md-2 text-center">
                                                                                 <a class="btn btn--black" href="/welcome">
                                                                                     <span class="btn__text color--white">
-                                                                                        Inscribirse
+                                                                                        {{ lang.BUTTON.SIGN_UP }}
                                                                                     </span>
                                                                                 </a>
                                                                             </div>
