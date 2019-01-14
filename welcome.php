@@ -127,7 +127,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email && error.email.length > 0 }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
+                                <input id="reg-email" type="email" v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email && error.email.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
                                 <span v-if="error.email && error.email.length > 0" class="error-color-form">{{ error.email }}</span>
                             </div>
                         </div>

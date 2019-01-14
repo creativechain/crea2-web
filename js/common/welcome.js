@@ -91,7 +91,7 @@ let welcomeVue;
                     username: welcomeVue.username,
                     email: email
                 }).when('fail', function (data, status, error) {
-                    console.error('Request failed', data, status, error);
+                    console.error('Request failed', data, status, error, email);
                     if (data.responseText) {
                         let response = jsonify(data.responseText);
                         if (response.error === 'REGISTERED_EMAIL') {
@@ -103,7 +103,7 @@ let welcomeVue;
                 });
 
                 http.when('done', function (data) {
-                    console.log('Validate', data);
+                    console.log('Validate', data, email);
                     welcomeVue.error.email = null;
                     welcomeVue.email = email;
                 });
@@ -154,7 +154,7 @@ let welcomeVue;
                     Authorization: 'Bearer ' + accessToken
                 }).post({
                     username: welcomeVue.username,
-                    email: welcomeVue.email
+                    email: $('#reg-email').val()
                 }).when('done', function (data) {
                     console.log('SignUp', data);
                     welcomeVue.slide = 4;
