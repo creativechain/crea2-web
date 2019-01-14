@@ -693,7 +693,8 @@
     .post-view .menu-right .description {
       color: #222222;
       font-size: 12px !important;
-      font-weight: normal !important; }
+      font-weight: normal !important;
+      word-break: break-all; }
     .post-view .menu-right hr {
       margin: 10px -30px 10px -11px;
       border-color: #CACACA; }
