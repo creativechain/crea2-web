@@ -34,7 +34,10 @@ class Router
      * @return string|null
      */
     public function match($route) {
-        //$route = rtrim($route, '/'); //Delete last slash
+        if (strpos($route, '/') === 0 && strlen($route) !== 1) {
+            $route = rtrim($route, '/'); //Delete last slash
+        }
+
         $route = strtok($route, '?');
 
         foreach ($this->routes as $r) {
