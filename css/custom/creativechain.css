@@ -646,7 +646,7 @@
               color: #999999; }
           .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments .comment-user {
             color: #484848;
-            word-break: break-all; }
+            word-break: break-word; }
           .post-view .border-post-view .full-post .box-comment .row-post-comments .user-comments .ul-row-share-comment li:nth-child(2) {
             border: solid 1px #3B3B3C;
             border-radius: 20px;
@@ -699,7 +699,7 @@
       color: #222222;
       font-size: 12px !important;
       font-weight: normal !important;
-      word-break: break-all; }
+      word-break: break-word; }
     .post-view .menu-right hr {
       margin: 10px -30px 10px -11px;
       border-color: #CACACA; }
@@ -748,6 +748,8 @@
       .post-view .menu-right .row-social .ul-social .row-likes {
         display: flex;
         width: 100%; }
+        .post-view .menu-right .row-social .ul-social .row-likes .position-relative {
+          top: 2px; }
         .post-view .menu-right .row-social .ul-social .row-likes .col-likes {
           display: flex;
           width: 60%; }
@@ -758,6 +760,7 @@
             .post-view .menu-right .row-social .ul-social .row-likes .col-likes .dropdown-price p {
               margin: 0; }
         .post-view .menu-right .row-social .ul-social .row-likes .col-amount {
+          margin-left: 10px;
           text-align: center;
           width: auto;
           border: solid 1px #0569EF;
@@ -775,11 +778,11 @@
         padding: 0; }
         .post-view .menu-right .row-social .ul-social li p {
           margin-left: 10px;
-          margin-top: 5px; }
+          margin-top: 3px; }
         .post-view .menu-right .row-social .ul-social li img {
           width: 16px;
           height: 16px;
-          margin-top: 5px; }
+          margin-top: 6px; }
     .post-view .menu-right .row-download {
       margin-top: 20px; }
       .post-view .menu-right .row-download .title {
@@ -1522,6 +1525,10 @@ img {
     flex: 0 0 33.3333333333%;
     max-width: 33.3333333333%; } }
 @media (max-width: 575.98px) {
+  .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body {
+    width: 82%;
+    float: right; }
+
   #slide-home {
     padding: 65px 10px;
     min-height: 330px; }

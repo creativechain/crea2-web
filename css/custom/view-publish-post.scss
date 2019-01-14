@@ -92,7 +92,7 @@
             }
             .comment-user {
               color: $grey-text;
-              word-break: break-all;
+              word-break: break-word;
             }
             .ul-row-share-comment {
               li:nth-child(2) {
@@ -172,7 +172,7 @@
       color: $color-dark-primary;
       font-size: 12px !important;
       font-weight: normal !important;
-      word-break: break-all;
+      word-break: break-word;
     }
     hr {
       margin: 10px -30px 10px -11px;
@@ -241,6 +241,9 @@
         .row-likes {
           display: flex;
           width: 100%;
+          .position-relative {
+            top: 2px;
+          }
           .col-likes {
             display: flex;
             width: 60%;
@@ -254,6 +257,7 @@
             }
           }
           .col-amount {
+            margin-left: 10px;
             text-align: center;
             width: auto;
             border: solid 1px $color-blue-primary;
@@ -276,12 +280,12 @@
           padding: 0;
           p {
             margin-left: 10px;
-            margin-top: 5px;
+            margin-top: 3px;
           }
           img {
             width: 16px;
             height: 16px;
-            margin-top: 5px;
+            margin-top: 6px;
           }
         }
       }

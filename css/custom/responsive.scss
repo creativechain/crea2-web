@@ -1,5 +1,9 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body {
+    width: 82%;
+    float: right;
+  }
   #slide-home {
     padding: 65px 10px;
     min-height: 330px;
