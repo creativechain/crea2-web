@@ -133,7 +133,7 @@
 
                                                 </div>
                                                 <div class="textarea">
-                                                    <textarea name="text" placeholder="Message" rows="4" v-model="comment"></textarea>
+                                                    <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt--1 text-right">

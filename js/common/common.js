@@ -48,6 +48,7 @@ const CONSTANTS = {
         },
         TITLE: 55,
         DESCRIPTION: 233,
+        COMMENT: 233,
         TAG: 21,
 
     },

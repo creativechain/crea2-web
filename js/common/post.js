@@ -28,6 +28,7 @@ let promoteModal;
                 el: '#post-view',
                 data: {
                     lang: getLanguage(),
+                    CONSTANTS: CONSTANTS,
                     session: session,
                     user: userAccount ? userAccount.user : null,
                     state: state,
