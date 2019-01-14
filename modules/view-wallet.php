@@ -124,7 +124,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-10">
                                                                                                                     <div class="input-icon input-icon--right">
-                                                                                                                        <i class="">CREA</i>
+                                                                                                                        <i class="">{{ config.nai }}</i>
                                                                                                                         <input v-bind:disabled="config.confirmed" v-model="amount" type="number" step="0.001" name="input" v-bind:placeholder="lang.MODAL.WALLET_INPUT_AMOUNT" />
                                                                                                                         <p class="amount-save" >{{ lang.WALLET.BALANCE }}: {{ config.total_amount.toFriendlyString(null, false) }}</p>
                                                                                                                     </div>

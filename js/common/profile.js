@@ -150,7 +150,7 @@ let walletModalDeEnergize;
                         } else if (this.config.confirmed) {
                             let that = this;
 
-                            let amountData = { amount: that.amount, nai: that.config.nai, round: true};
+                            let amountData = { amount: that.amount, nai: that.config.nai.toLowerCase(), round: true};
                             let amount = Asset.parse(amountData).toFriendlyString(null, false);
 
                             requireRoleKey(this.session.account.username, 'active', function (activeKey) {
@@ -1297,7 +1297,7 @@ let walletModalDeEnergize;
                     text: getLanguage().WALLET.TRANSFER_CREA_TEXT,
                     button: getLanguage().BUTTON.SEND,
                     total_amount: Asset.parseString('0.000 CREA'),
-                    nai: apiOptions.nai.CREA,
+                    nai: apiOptions.symbol.CREA,
                     confirmed: false,
                     to: null,
                     disableTo: false
