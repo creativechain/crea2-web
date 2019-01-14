@@ -19,7 +19,8 @@ class LicensePermission {
     }
 
     getIcon(color) {
-        return '/img/icons/license/' + this.name.toLowerCase() + (color ? '_' + color.toUpperCase() : '') + '.svg';
+        let fileName = this.name.toLowerCase().replace(' ', '_');
+        return '/img/icons/license/' + fileName + (color ? '_' + color.toUpperCase() : '') + '.svg';
     }
 }
 
