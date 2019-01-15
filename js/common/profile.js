@@ -2,15 +2,16 @@
  * Created by ander on 25/09/18.
  */
 
-let profileContainer;
-let rewardsContainer = {};
-let blockedContainer;
-let followingContainer;
-let followerContainer;
-let walletModalSend;
-let walletModalDeEnergize;
+
 
 (function () {
+    let profileContainer;
+    let rewardsContainer = {};
+    let blockedContainer;
+    let followingContainer;
+    let followerContainer;
+    let walletModalSend;
+    let walletModalDeEnergize;
 
     let lang;
     let defaultModalConfig;

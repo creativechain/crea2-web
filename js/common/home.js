@@ -2,10 +2,9 @@
  * Created by ander on 9/10/18.
  */
 
-let homePosts;
-let lastPage;
-
 (function () {
+    let homePosts;
+    let lastPage;
     let session, account;
 
     /**

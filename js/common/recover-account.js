@@ -2,9 +2,8 @@
  * Created by ander on 30/12/18.
  */
 
-let recoverContainer;
 (function () {
-
+    let recoverContainer;
     function setUp() {
         recoverContainer = new Vue({
             el: '#recover-container',

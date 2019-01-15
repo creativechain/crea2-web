@@ -1,9 +1,8 @@
 
 
-let tagsContainer;
-
 (function () {
 
+    let tagsContainer;
     function setUp(state, session, account) {
         if (!tagsContainer) {
             tagsContainer = new Vue({

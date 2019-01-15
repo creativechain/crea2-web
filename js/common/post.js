@@ -2,10 +2,11 @@
  * Created by ander on 18/10/18.
  */
 
-let postContainer;
-let promoteModal;
+
 
 (function () {
+    let postContainer;
+    let promoteModal;
 
     let url = window.location.pathname;
 

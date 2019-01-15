@@ -2,10 +2,8 @@
  * Created by ander on 7/11/18.
  */
 
-let witnessContainer;
-
 (function () {
-
+    let witnessContainer;
     function updateWitnessView(session, account, state) {
 
         if (!witnessContainer) {

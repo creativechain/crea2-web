@@ -2,9 +2,9 @@
  * Created by ander on 11/10/18.
  */
 
-let welcomeVue;
 
 (function () {
+    let welcomeVue;
 
     function setUp() {
         console.log('Welcome setup');

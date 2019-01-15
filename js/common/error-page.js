@@ -2,10 +2,8 @@
  * Created by ander on 7/01/19.
  */
 
-
-let errorContainer;
-
 (function () {
+    let errorContainer;
 
     function setUp() {
         if (!errorContainer) {

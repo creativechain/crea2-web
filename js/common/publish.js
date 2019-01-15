@@ -2,10 +2,9 @@
  * Created by ander on 12/10/18.
  */
 
-let publishContainer;
-
 (function () {
 
+    let publishContainer;
     let session, account;
 
     function setUp(editablePost) {

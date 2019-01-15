@@ -2,8 +2,8 @@
  * Created by ander on 28/12/18.
  */
 
-let faqContainer;
 (function () {
+    let faqContainer;
 
     function setUp() {
         faqContainer = new Vue({
