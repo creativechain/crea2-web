@@ -190,6 +190,7 @@ Vue.component('post-like', {
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = 0;
                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
+                        console.log(err, result);
                         if (err) {
                             that.state = -1;
                             that.$emit('vote', err);

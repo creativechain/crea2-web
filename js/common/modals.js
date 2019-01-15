@@ -119,7 +119,7 @@
                                     if (that.login) {
                                         s.save();
                                     }
-                                    console.log(result, that.id);
+
                                     creaEvents.emit('crea.auth.role.' + that.id, s.account.keys[role].prv, username);
                                     that.closeModal();
                                 }

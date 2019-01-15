@@ -451,7 +451,7 @@ function requireRoleKey(username, role, login, callback) {
 
         let session = Session.getAlive();
         if (session && session.account.keys[role]) {
-            callback(session.account.keys[role].prv);
+            callback(session.account.keys[role].prv, session.account.username);
         } else {
             console.log(id);
             creaEvents.on('crea.auth.role.' + id, function (roleKey, username) {
