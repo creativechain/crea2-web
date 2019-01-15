@@ -1,5 +1,10 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  #slide-home {
+    padding: 65px 10px;
+    min-height: 330px;
+  }
+
   .bar + nav.bar {
     padding-bottom: 0;
   }

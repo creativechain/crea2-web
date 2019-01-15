@@ -1,9 +1,5 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container post-view">
-    <div id="home-banner">
-        <?php include ('modules/banner.php') ?>
-    </div>
-
     <section v-cloak id="post-view">
         <div class="container">
             <div class="row justify-content-center">
@@ -167,7 +163,7 @@
                                                                 <username v-bind:inline="1" v-bind:user="state.content[c].author" v-bind:name="state.accounts[state.content[c].author].metadata.publicName"></username>
                                                                 <span>{{ dateFromNow(state.content[c].created) }}</span>
                                                             </p>
-                                                            <span class="comment-user">{{ state.content[c].body }}</span>
+                                                            <p class="comment-user">{{ state.content[c].body }}</p>
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <ul class="list-inline list-unstyled ul-row-share-comment">

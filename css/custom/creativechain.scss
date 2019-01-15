@@ -27,6 +27,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 label {
   font-size: 12px;
 }
+.main-container {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+}
 .slide-energize {
   .tooltip {
     background: transparent;
@@ -239,7 +244,9 @@ a {
   transform-style: flat;
 }
 #slide-home {
-  padding: 6em 0;
+  padding: 73px;
+  min-height: 360px;
+
   h1, h3, span {
     color: $color-white;
   }
@@ -335,10 +342,12 @@ img {
     a {
       color: $color-dark-primary;
       img {
+        margin-right: 5px;
         width: 16px;
       }
     }
   }
+
   .li-certificate {
     margin-top: 5px;
     img {

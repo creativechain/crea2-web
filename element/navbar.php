@@ -98,55 +98,6 @@
                 </a>
             </li>
             <li>
-                <div class="modal-instance">
-
-                    <a href="#" class="modal-trigger">
-                        <span class="h5">{{ lang.DOTS_MENU.CREA_UPDATE }}</span>
-                    </a>
-
-                    <div class="modal-container">
-                        <div class="modal-content section-modal">
-                            <section class="unpad ">
-                                <div class="container">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-6">
-                                            <div class="boxed boxed--lg bg--white text-center feature">
-                                                <div class="modal-close modal-close-cross"></div>
-                                                <h3>Actualiza tu monedero</h3>
-                                                <div class="feature__body">
-                                                    <form id="login-form" action="#0"   class="content-login">
-                                                        <div class="row">
-                                                            <div class="col-md-12 text-left">
-                                                                <span>Actualiza tu monedero de la plataforma 1.0 a la version 2.0</span>
-                                                                <input id="" type="file" class="type-file"/>
-                                                            </div>
-                                                            <div class="col-md-12 text-left mt-2">
-                                                                <span>Escribe la contraseña de tu monedero</span>
-                                                                <input type="password" placeholder="Contraseña"/>
-                                                            </div>
-                                                            <div class="col mt-2 text-right">
-                                                                <a id="login-button" class="btn btn--primary" href="#">
-                                                                    <span class="btn__text">
-                                                                        Actualizar
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end of row-->
-                                </div>
-                                <!--end of container-->
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
                 <a href="#">
                     <span>{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                 </a>

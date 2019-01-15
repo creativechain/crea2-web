@@ -1,6 +1,5 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container simple-view-home">
-    <?php include ('modules/banner.php') ?>
     <section class="cta cta-4 space--xxs border--bottom ">
         <div class="container">
             <div class="row">
