@@ -26,7 +26,7 @@
                                           v-on:vote="onVote"></witness-like>
                         </td>
                         <td>{{ x }}</td>
-                        <td><a v-bind:href="state.witnesses[x].url"></a> </td>
+                        <td><a v-bind:href="state.witnesses[x].url">{{ state.witnesses[x].url }}</a> </td>
                     </tr>
                 </template>
 
