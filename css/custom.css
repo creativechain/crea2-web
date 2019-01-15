@@ -42,8 +42,8 @@
 .post-like-count {
     position: absolute;
     display: inline;
-    top: 0;
-    left: 60%;
+    top: 1px;
+    left: 68%;
 }
 
 li > .search {

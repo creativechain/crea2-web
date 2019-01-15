@@ -1,4 +1,8 @@
 .view-profile {
+  .masonry__item:not(:empty) {
+    margin-bottom: 5px;
+    transform-style: flat;
+  }
   .welcome-profile-empty {
     .col-md-12 {
       p:nth-child(1) {
@@ -139,6 +143,14 @@
     .title-tags {
       font-weight: bold;
       margin-bottom: 5px;
+    }
+    a {
+      color: $color-dark-primary;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $color-blue-primary;
+      text-decoration: none;
     }
   }
   .block-all {

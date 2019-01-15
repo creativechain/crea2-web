@@ -42,6 +42,19 @@ label {
   border: transparent !important;
   background: transparent !important;
 }
+.view-all {
+  background-image: url("/img/crea-web/icon-view-mode-all.png");
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+}
+.img-view-all {
+  background-image: url("/img/icons/grid.svg") !important;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+}
+
 #navbar-right-menu {
   background-color: $background-navbar-dark;
   z-index: 1;
@@ -106,6 +119,10 @@ input[type], textarea, select {
 a {
   color: $color-blue-primary;
 }
+a:hover {
+  text-decoration: none;
+}
+
 .color--dark {
   color: $color-dark-primary !important;
 }

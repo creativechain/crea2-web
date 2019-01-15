@@ -46,7 +46,9 @@
             </ul>
         </div>
         <div class="col-md-5 text-right">
-            <p>{{ state.user.follower_count }}</p>
+            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
+                {{ state.user.follower_count }}
+            </a>
         </div>
 
         <div class="col-md-7">
@@ -59,7 +61,9 @@
             </ul>
         </div>
         <div class="col-md-5 text-right">
-            <p>{{ state.user.following_count }}</p>
+            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
+                {{ state.user.following_count }}
+            </a>
         </div>
 
         <div class="col-md-7">
@@ -72,7 +76,9 @@
             </ul>
         </div>
         <div class="col-md-5 text-right">
-            <p>{{ state.user.post_count }}</p>
+            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
+                {{ state.user.post_count }}
+            </a>
         </div>
 
     </div>

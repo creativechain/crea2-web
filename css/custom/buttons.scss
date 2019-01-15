@@ -1,3 +1,9 @@
+
+#home-banner {
+  .imagebg:not(.image--light) .btn:not([class*='primary']):hover {
+    border-color: transparent;
+  }
+}
 .btn .btn__text, .btn i {
   font-size: 12px;
 }

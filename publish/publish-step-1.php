@@ -78,7 +78,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p class="disabled">
+                <p class="disabled mb-0">
                     {{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.IMAGE)) }},
                     {{ String.format(lang.PUBLISH.AUDIO_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.AUDIO)) }},
                     {{ String.format(lang.PUBLISH.VIDEO_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.VIDEO)) }}
