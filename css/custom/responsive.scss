@@ -78,7 +78,13 @@
   .dropdown.dropdown--active > .dropdown__container > .container > .row > .dropdown__content {
     border: 1px solid #e9e9e9;
   }
+  .post-view .menu-right .row-social .ul-social .dropdown-price.dropdown--active {
+    border: 0 solid #505050;
+  }
   .card-home .dropdown-price {
+    border: 0 !important;
+  }
+  .dropdown__container.price {
     border: 0 !important;
   }
   input, select {
@@ -167,6 +173,9 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .post-view .menu-right .row-social .ul-social .dropdown-price {
+    padding: 0;
+  }
   .bar-1 .menu-horizontal > li:not(:first-child) {
     margin-left: 7px;
   }

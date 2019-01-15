@@ -6,7 +6,7 @@
                 <div class="col-md-11 border-post-view ">
                     <div class="row">
                         <div class="col-md-9 border-box full-post">
-                            <div class="row">
+                            <div class="row background-content-post">
                                 <div class="col-md-12 img-post-view content-post" >
                                     <template v-for="el in state.post.body">
                                         <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value">
@@ -362,30 +362,32 @@
                                         <hr />
                                         <li>
                                             <div class="row-likes">
-                                                <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
-                                                <div class="col-amount">
-                                                    <span>{{ getPayout() }}</span>
+                                                <div class="d-flex w-100">
+                                                    <div class="">
+                                                        <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
+                                                    </div>
+                                                    <div class="col-sm-4 col-md-7 text-right">
+
+                                                        <div class="dropdown dropdown-price">
+                                                            <span class="dropdown__trigger"> {{ getPayout() }}
+                                                                <i class="stack-down-open"></i>
+                                                            </span>
+                                                            <div class="dropdown__container price">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6 col-md-4 col-lg-4 dropdown__content amount-post-view-home">
+                                                                            <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
+                                                                            <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
+                                                                            <p>{{ getPayoutPostDate() }}</p>
+                                                                            <p v-if="hasPromotion()">{{ lang.HOME.PROMOTION_COST }}: {{ getPromotion() }}</p>
+                                                                        </div>
+                                                                    </div><!--end row-->
+                                                                </div><!--end container-->
+                                                            </div><!--end dropdown container-->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="dropdown dropdown-price">
-                                                <span class="dropdown__trigger"> {{ getPayout() }}
-                                                    <i class="stack-down-open"></i>
-                                                </span>
-                                                <div class="dropdown__container price">
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-md-12 dropdown__content amount-post-view-home">
-                                                                <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
-                                                                <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
-                                                                <p>{{ getPayoutPostDate() }}</p>
-                                                                <p v-if="hasPromotion()">{{ lang.HOME.PROMOTION_COST }}: {{ getPromotion() }}</p>
-                                                            </div>
-                                                        </div><!--end row-->
-                                                    </div><!--end container-->
-                                                </div><!--end dropdown container-->
-                                            </div>
-
 
                                         </li>
                                         <hr v-if="state.post.download.resource">

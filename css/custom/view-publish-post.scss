@@ -16,11 +16,14 @@
   .border-post-view {
     border: 1px solid $borde-dropdown-price;
     border-radius: 10px;
-    overflow: hidden;
     .border-box {
       border-right: 1px solid $borde-dropdown-price;
       overflow: hidden;
-      padding: 0 10px 0 10px
+      padding: 0 10px 0 10px;
+      .background-content-post {
+        background-color: white;
+        padding: 0 0 20px;
+      }
     }
     .full-post {
       .content-post {
@@ -175,7 +178,7 @@
       word-break: break-word;
     }
     hr {
-      margin: 10px -30px 10px -11px;
+      margin: 10px -10px 10px -10px;
       border-color: $grey-circle;
 
     }
@@ -234,6 +237,12 @@
         font-size: 14px;
         font-weight: bold;
       }
+      a {
+        color: $color-dark-primary;
+      }
+      a:hover {
+        color: $color-blue-primary;
+      }
     }
     .row-social {
       margin-top: 10px;
@@ -241,8 +250,9 @@
         .row-likes {
           display: flex;
           width: 100%;
+
           .position-relative {
-            top: 2px;
+            top: 0;
           }
           .col-likes {
             display: flex;
@@ -268,8 +278,28 @@
             }
           }
         }
+        .dropdown-price {
+          border: 1px solid #505050;
+          border-radius: 25px;
+          padding: 0 10px;
+          .dropdown__content {
+            p {
+              margin: 0;
+            }
+            p.title {
+              color: $color-blue-primary;
+            }
+          }
+        }
+
+        .dropdown-price:hover {
+          border: 1px solid $active-circle;
+          span {
+            color: $active-circle;
+          }
+        }
         hr {
-          margin: 10px -30px 10px -11px;
+          margin: 10px -10px 10px -10px;
         }
         li:nth-child(1) {
           padding-top: 0;

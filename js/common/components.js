@@ -200,12 +200,12 @@ Vue.component('post-like', {
             <div></div>
         </div>
 
-        <div class="dropdown dropdown-price inline post-like-count">
+        <div class="dropdown inline post-like-count">
             <span class="dropdown__trigger"> {{ post.up_votes.length }}</span>
             <div class="dropdown__container">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 col-lg-2 dropdown__content amount-post-view-home">
+                        <div class="col-4 col-sm-6 col-md-3 col-lg-2 dropdown__content amount-post-view-home">
                             <ul>
                                 <li v-for="v in (post.up_votes.length > 10 ? 10 : post.up_votes.length)">
                                     <a v-if="(v-1) < 10" class="text-truncate" v-bind:href="'/@' + post.up_votes[v-1].voter">+{{ post.up_votes[v-1].voter }}</a>
