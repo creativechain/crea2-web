@@ -369,17 +369,17 @@
                                             </div>
 
                                             <div class="dropdown dropdown-price">
-                                                <span class="dropdown__trigger"> {{ getPayout(state.content[p]) }}
+                                                <span class="dropdown__trigger"> {{ getPayout() }}
                                                     <i class="stack-down-open"></i>
                                                 </span>
                                                 <div class="dropdown__container price">
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-md-12 dropdown__content amount-post-view-home">
-                                                                <p class="title">{{ hasPaid(state.content[p]) ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout(state.content[p]) }}</p>
-                                                                <p v-if="!hasPaid(state.content[p])">{{ getPendingPayouts(state.content[p]) }}</p>
-                                                                <p>{{ getPayoutPostDate(state.content[p]) }}</p>
-                                                                <p v-if="hasPromotion(state.content[p])">{{ lang.HOME.PROMOTION_COST }}: {{ getPromotion(state.content[p]) }}</p>
+                                                                <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
+                                                                <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
+                                                                <p>{{ getPayoutPostDate() }}</p>
+                                                                <p v-if="hasPromotion()">{{ lang.HOME.PROMOTION_COST }}: {{ getPromotion() }}</p>
                                                             </div>
                                                         </div><!--end row-->
                                                     </div><!--end container-->
