@@ -5,10 +5,9 @@
 
 let local = false;
 
-let apiUrl = local ? 'http://127.0.0.1:8000' : 'https://platform.creativechain.net';
 let apiOptions = {
-    nodes: ["https://node1.creary.net"],
-    apiUrl : apiUrl,
+    nodes: ['https://node1.creary.net', 'https://node3.creary.net'],
+    apiUrl : 'https://platform.creativechain.net',
     ipfs: 'https://ipfs.creary.net',
     ipfsd: 'https://platform.creativechain.net/ipfs/',
     addressPrefix: 'CREA',
