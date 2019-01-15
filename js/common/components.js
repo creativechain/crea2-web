@@ -509,7 +509,7 @@ Vue.component('btn-follow',  {
 });
 
 Vue.component('username', {
-    template: `<p class="cursor-link" v-bind:style="{ display: inline > 0 ? 'inline' : 'inherit' }" v-on:click="seeProfile(user)">{{ name || user }}</p>`,
+    template: `<a v-bind:href="'/@' + user"><p class="cursor-link color-name" v-bind:style="{ display: inline > 0 ? 'inline' : 'inherit' }">{{ name || user }}</p></a>`,
     props: {
         user: {
             type: String
@@ -522,11 +522,6 @@ Vue.component('username', {
             default: 1
         }
     },
-    methods: {
-        seeProfile: function (username) {
-            showProfile(username)
-        }
-    }
 });
 
 Vue.component('linkname', {
