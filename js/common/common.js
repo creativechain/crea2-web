@@ -436,9 +436,15 @@ function showAlert(title, ...body) {
  *
  * @param {string} username
  * @param {string} role
+ * @param {boolean} login
  * @param {function} callback
  */
-function requireRoleKey(username, role, callback) {
+function requireRoleKey(username, role, login, callback) {
+
+    if (typeof login === 'function') {
+        callback = login;
+        login = false;
+    }
 
     if (callback) {
         let id = randomNumber(0, Number.MAX_SAFE_INTEGER);
@@ -447,15 +453,17 @@ function requireRoleKey(username, role, callback) {
         if (session && session.account.keys[role]) {
             callback(session.account.keys[role].prv);
         } else {
-            creaEvents.on('crea.auth.role.' + id, function (roleKey) {
+            console.log(id);
+            creaEvents.on('crea.auth.role.' + id, function (roleKey, username) {
+                console.log(roleKey, typeof callback, typeof login);
                 if (callback) {
-                    callback(roleKey);
+                    callback(roleKey, username);
                 }
 
                 creaEvents.off('crea.auth.role.' + id);
             });
 
-            creaEvents.emit('crea.auth.role', username, role, id);
+            creaEvents.emit('crea.auth.role', username, role, login, id);
         }
 
     }

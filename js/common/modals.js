@@ -63,6 +63,7 @@
                     id: null,
                     title: '',
                     role: null,
+                    login: false,
                     inputs: clone(defaultData),
                     show: false
                 },
@@ -106,18 +107,25 @@
                     fetchKey: function (event) {
                         cancelEventPropagation(event);
 
-                        let that = this;
-                        let username = this.inputs.username.value.split('/')[0];
-                        let role = this.role;
-                        let password = this.inputs.password.value;
+                        if (!this.inputs.username.error && this.inputs.password.value) {
+                            let that = this;
+                            let username = this.inputs.username.value.split('/')[0];
+                            let role = this.role;
+                            let password = this.inputs.password.value;
 
-                        let s = Session.create(username, password, role);
-                        s.login(function (err, result) {
-                            if (!catchError(err)) {
-                                creaEvents.emit('crea.auth.role.' + that.id, s.account.keys[role].prv);
-                                that.closeModal();
-                            }
-                        })
+                            let s = Session.create(username, password, role);
+                            s.login(function (err, result) {
+                                if (!catchError(err)) {
+                                    if (that.login) {
+                                        s.save();
+                                    }
+                                    console.log(result, that.id);
+                                    creaEvents.emit('crea.auth.role.' + that.id, s.account.keys[role].prv, username);
+                                    that.closeModal();
+                                }
+                            })
+                        }
+
                     }
                 }
             })
@@ -134,10 +142,11 @@
        alertModal.show = true;
     });
 
-    creaEvents.on('crea.auth.role', function (username, role, id) {
+    creaEvents.on('crea.auth.role', function (username, role, login, id) {
         roleModal.id = id;
         roleModal.inputs.username.value = username;
         roleModal.role = role;
+        roleModal.login = login;
         roleModal.show = true
     });
 
