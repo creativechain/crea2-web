@@ -880,6 +880,9 @@
 #tags-explorer .table-vote tbody td:last-child, #view-explorer .table-vote tbody td:last-child {
   font-weight: normal; }
 
+#home-banner .imagebg:not(.image--light) .btn:not([class*='primary']):hover {
+  border-color: transparent; }
+
 .btn .btn__text, .btn i {
   font-size: 12px; }
 
@@ -1106,6 +1109,18 @@ label {
   padding-left: 0 !important;
   border: transparent !important;
   background: transparent !important; }
+
+.view-all {
+  background-image: url("/img/crea-web/icon-view-mode-all.png");
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat; }
+
+.img-view-all {
+  background-image: url("/img/icons/grid.svg") !important;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat; }
 
 #navbar-right-menu {
   background-color: #181818;
