@@ -201,7 +201,7 @@
                                             <div class="col-md-12">
                                                 <div class="feature feature-2">
                                                     <div class="feature__body">
-                                                        <ul class="list-unstyled list-inline w-100 mb-0">
+                                                        <ul class="list-unstyled list-inline w-100 mb-0 ul-blockchain-certificate">
                                                             <li><h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2></li>
                                                             <ul class="float-right">
                                                                 <li class="li-blockchain-certificate">
@@ -366,7 +366,7 @@
                                                     <div class="">
                                                         <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
                                                     </div>
-                                                    <div class="col-sm-4 col-md-7 text-right">
+                                                    <div class="col-4 col-sm-4 col-md-7 text-right">
 
                                                         <div class="dropdown dropdown-price">
                                                             <span class="dropdown__trigger"> {{ getPayout() }}
@@ -375,7 +375,7 @@
                                                             <div class="dropdown__container price">
                                                                 <div class="container">
                                                                     <div class="row">
-                                                                        <div class="col-sm-6 col-md-4 col-lg-4 dropdown__content amount-post-view-home">
+                                                                        <div class="col-9 col-sm-6 col-md-2 col-lg-4 dropdown__content amount-post-view-home">
                                                                             <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
                                                                             <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
                                                                             <p>{{ getPayoutPostDate() }}</p>

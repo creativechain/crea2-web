@@ -234,6 +234,14 @@
                                 </a>
                             </li>
 
+                            <li v-if="!session">
+                                <div class="hidden-sm hidden-md hidden-lg navbar-submenu-mobile">
+                                    <a href="#0" data-notification-link="side-menu">
+                                        <i class="stack-menu"></i>
+                                    </a>
+                                </div>
+                            </li>
+
                             <li v-if="session" class="li-avatar-navbar">
                                 <div class="dropdown">
                                     <span class="dropdown__trigger">

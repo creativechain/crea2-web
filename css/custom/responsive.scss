@@ -1,5 +1,11 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .box-blockchain-certificate {
+    .ul-blockchain-certificate {
+      display: grid !important;
+      margin-left: 30px;
+    }
+  }
   .post-view .border-post-view .full-post .box-blockchain-certificate .feature-2 .feature__body {
     width: 82%;
     float: right;
@@ -75,6 +81,13 @@
   }
 }
 @media (max-width: 767px) {
+
+  .box-blockchain-certificate {
+    .ul-blockchain-certificate {
+      display: grid !important;
+      margin-left: 30px;
+    }
+  }
   .dropdown.dropdown--active > .dropdown__container > .container > .row > .dropdown__content {
     border: 1px solid #e9e9e9;
   }
@@ -173,6 +186,17 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .post-view .border-post-view .full-post .img-more-projects {
+    height: 120px;
+  }
+  .box-blockchain-certificate {
+    .ul-blockchain-certificate {
+      padding-left: 20px;
+    }
+    .feature-2 .feature__body p {
+      padding-left: 22px;
+    }
+  }
   .post-view .menu-right .row-social .ul-social .dropdown-price {
     padding: 0;
   }
