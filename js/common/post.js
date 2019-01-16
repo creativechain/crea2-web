@@ -43,7 +43,7 @@
                     showPost: showPost,
                     humanFileSize: humanFileSize,
                     cbdToDollar: function (cbd) {
-                        return Asset.parseString(cbd).toPlainString() + ' $';
+                        return '$ ' + Asset.parseString(cbd).toPlainString();
                     },
                     assetToString: function (asset) {
                         return Asset.parse(asset).toFriendlyString();
@@ -81,7 +81,7 @@
                         let post = this.state.post;
                         let amount = Asset.parseString(post.promoted);
 
-                        return amount.toPlainString() + ' $';
+                        return '$ ' + amount.toPlainString();
                     },
                     getPayout: function () {
                         let amount = Asset.parseString(this.state.post.pending_payout_value);
@@ -90,7 +90,7 @@
                             amount = amount.add(Asset.parseString(this.state.post.curator_payout_value));
                         }
 
-                        return amount.toPlainString(2) + '$'
+                        return '$ ' + amount.toPlainString(2);
                     },
                     getPendingPayouts: function () {
                         let post = this.state.post;

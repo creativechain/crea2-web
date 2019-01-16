@@ -148,7 +148,7 @@
                     getPromotion: function (post) {
                         let amount = Asset.parseString(post.promoted);
 
-                        return amount.toPlainString() + ' $';
+                        return '$ ' + amount.toPlainString();
                     },
                     getPayout: function (post) {
                         let amount = Asset.parseString(post.pending_payout_value);
@@ -157,7 +157,7 @@
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
                         }
 
-                        return amount.toPlainString() + '$'
+                        return '$ ' + amount.toPlainString();
                     },
                     getPendingPayouts: function (post) {
                         const PRICE_PER_CREA = Asset.parse({ amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(), nai: 'cbd'});
