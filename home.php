@@ -16,12 +16,10 @@
     <div v-cloak id="home-posts">
         <section v-if="state.discussion_idx[discuss][category].length > 0" class="space--sm">
             <div class="container post-container-home">
-                <div class="masonry">
-                    <div class="masonry__container row">
-                        <template v-for="p in state.discussion_idx[discuss][category]">
-                            <?php include ('modules/post-view-home.php') ?>
-                        </template>
-                    </div>
+                <div class="row">
+                    <template v-for="p in state.discussion_idx[discuss][category]">
+                        <?php include ('modules/post-view-home.php') ?>
+                    </template>
                 </div>
             </div>
         </section>
