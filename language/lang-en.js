@@ -315,6 +315,7 @@ lang.en = {
         "NO_POSTS_PUBLISH": "Post your work.",
         "NO_POSTS_EXPLORE": "Explore the trending works.",
         "NO_POSTS_FAQ": "Frequently Asked Questions.",
+        "NO_POSTS_PROFILE": "There are no projects related to this user."
     },
     "COIN_MARKETS": {"TITLE": "Coin markets"},
     "WALLET": {
