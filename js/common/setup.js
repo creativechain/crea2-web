@@ -49,6 +49,17 @@
                 // when scroll to bottom of the page
                 creaEvents.emit('crea.scroll.bottom');
             }
+        });
+
+        //Inputs length validations;
+        $('input').each(function (index, element) {
+            let limit = parseInt($(element).attr('maxlength'));
+            $(element).keypress(function (e) {
+                let length = e.target.value.length;
+                if (e.charCode > 0 && length === limit) {
+                    cancelEventPropagation(e);
+                }
+            })
         })
     })
 
