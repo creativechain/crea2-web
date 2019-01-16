@@ -52,7 +52,7 @@
         });
 
         //Inputs length validations;
-        $('input').each(function (index, element) {
+        $('input, textarea').each(function (index, element) {
             let limit = parseInt($(element).attr('maxlength'));
             $(element).keypress(function (e) {
                 let length = e.target.value.length;
