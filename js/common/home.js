@@ -90,8 +90,7 @@
                 methods: {
                     getDefaultAvatar: R.getAvatar,
                     onFollow: function (err, result) {
-                        console.log('onFollow', err, result);
-                        creaEvents.emit('crea.content.filter', this.filter);
+                        creaEvents.emit('crea.content.filter', this.urlFilter);
                     },
                     openPost: showPost,
                     parseAsset: function (asset) {
