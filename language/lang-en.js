@@ -324,7 +324,7 @@ lang.en = {
         "WITHDRAW_CBD_TITLE": "Withdraw CREA dollar",
         "DROPDOWN_MENU_TRANSFER": "Transfer",
         "WITHDRAW_SAVING_TITLE": "Saving withdraw",
-        "CONVERT_CGY_TEXT": "These tokens give you influence in the community. The level of influence of your votes will depend on the accumulated CREA ENERGY. \n\nCREA POWER is non-transferable and requires 2 months (8 payments) to convert back to CREA.",
+        "CONVERT_CGY_TEXT": "These tokens give you influence in the community. The level of influence of your votes will depend on the accumulated CREA ENERGY. \n\nCREA ENERGY is non-transferable and requires 2 months (8 payments) to convert back to CREA.",
         "DE_ENERGIZE_TEXT": "You are De-Energizing %s (%s paid out so far). Remember that if you change the amount to \u201cDe-Energize\u201d the payout schedule will reset.",
         "BALANCES_CGY_TEXT": "They are the tokens that give you influence in the community. The level of influence of your votes will depend on the accumulated CREA ENERGY.",
         "UPDATE_TEXT": "Update your wallet from platform 1.0 to the web version 2.0",
