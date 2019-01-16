@@ -268,6 +268,12 @@
                 let parentAuthor = postContainer.state.post.author;
                 let parentPermlink = postContainer.state.post.permlink;
                 let permlink = crea.formatter.commentPermlink(parentAuthor, parentPermlink);
+
+                if (permlink.length > CONSTANTS.TEXT_MAX_SIZE.PERMLINK) {
+                    permlink = permlink.substring(0, CONSTANTS.TEXT_MAX_SIZE.PERMLINK);
+                }
+
+                console.log(permlink.length, parentPermlink.length);
                 let metadata = {
                     tags: [postContainer.state.post.metadata.tags[0]]
                 };

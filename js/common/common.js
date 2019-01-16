@@ -50,6 +50,7 @@ const CONSTANTS = {
         DESCRIPTION: 233,
         COMMENT: 233,
         TAG: 21,
+        PERMLINK: 255
 
     },
     MAX_TAGS: 8,
