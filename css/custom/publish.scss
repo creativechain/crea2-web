@@ -28,6 +28,9 @@
   }
 
   .step-1 {
+    .box-content-step-1 {
+      border: 1px solid #ececec;
+    }
     .upload-img {
       position: relative;
       margin-bottom: 10px;
@@ -35,8 +38,16 @@
         position: absolute;
         right: 10px;
         top: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: $color-white;
+        text-align: center;
+        border-radius: 10px;
+        border: solid 1px #ececec;
         a {
-          color: $background-modal;
+          color: $grey-light;
+          position: relative;
+          top: -1px;
         }
       }
       video {
@@ -68,7 +79,7 @@
         cursor: pointer;
       }
       .button-add-file:hover {
-        background-image: url("/img/crea-web/publish/b-img-hover.png");
+        background-image: url("/img/crea-web/publish/more-img-hover.png");
         width: 60px;
         height: 60px;
         margin: 0 auto;
