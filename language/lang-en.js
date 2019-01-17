@@ -315,7 +315,9 @@ lang.en = {
         "NO_POSTS_PUBLISH": "Post your work.",
         "NO_POSTS_EXPLORE": "Explore the trending works.",
         "NO_POSTS_FAQ": "Frequently Asked Questions.",
-        "NO_POSTS_PROFILE": "There are no projects related to this user."
+        "NO_POSTS_PROFILE": "There are no projects related to this user.",
+        "UPDATE_ACCOUNT_TITLE": "Account update",
+        "UPDATE_ACCOUNT_MESSAGE": "The account can not be updated more than once in less than 1 hour. Last time: %s.",
     },
     "COIN_MARKETS": {"TITLE": "Coin markets"},
     "WALLET": {

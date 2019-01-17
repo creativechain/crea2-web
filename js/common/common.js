@@ -24,6 +24,9 @@ let bannerVue;
 let globalLoading;
 
 const CONSTANTS = {
+    ACCOUNT: {
+        UPDATE_THRESHOLD: 1000 * 60 * 60,
+    },
     TRANSFER: {
         TRANSFER_CREA: 'transfer_crea',
         TRANSFER_CBD: 'transfer_cbd',

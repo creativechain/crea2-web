@@ -997,53 +997,63 @@
     }
 
     function sendAccountUpdate(event, keys, callback) {
-        let session = Session.getAlive();
+        let lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
+        let now = new Date();
+        let time = now.getTime() - lastUpdate.getTime();
 
-        if (session) {
-            let metadata = profileContainer.profile;
-            metadata.tags = $('#profile-edit-tags').val().split(' ');
-            metadata = jsonstring(metadata);
+        if (time >= CONSTANTS.ACCOUNT.UPDATE_THRESHOLD) {
+            let session = Session.getAlive();
 
-            if (!keys) {
-                let user = profileContainer.state.user;
-                keys = {
-                    memo: { pub: user.memo_key },
-                    active: { pub: user.active.key_auths[0][0] },
-                    posting: { pub: user.posting.key_auths[0][0] },
-                    owner: { pub: user.owner.key_auths[0][0] },
+            if (session) {
+                let metadata = profileContainer.profile;
+                metadata.tags = $('#profile-edit-tags').val().split(' ');
+                metadata = jsonstring(metadata);
+
+                if (!keys) {
+                    let user = profileContainer.state.user;
+                    keys = {
+                        memo: { pub: user.memo_key },
+                        active: { pub: user.active.key_auths[0][0] },
+                        posting: { pub: user.posting.key_auths[0][0] },
+                        owner: { pub: user.owner.key_auths[0][0] },
+                    }
                 }
-            }
 
-            requireRoleKey(session.account.username, 'owner', function (ownerKey) {
+                requireRoleKey(session.account.username, 'owner', function (ownerKey) {
 
-                crea.broadcast.accountUpdate(ownerKey, session.account.username,
-                    createAuth(keys.owner.pub), createAuth(keys.active.pub),
-                    createAuth(keys.posting.pub), keys.memo.pub, metadata,
-                    function (err, data) {
-                        globalLoading.show = false;
+                    crea.broadcast.accountUpdate(ownerKey, session.account.username,
+                        createAuth(keys.owner.pub), createAuth(keys.active.pub),
+                        createAuth(keys.posting.pub), keys.memo.pub, metadata,
+                        function (err, data) {
+                            globalLoading.show = false;
 
-                        if (err) {
-                            if (callback) {
-                                callback(err);
-                            }
-                        } else {
-                            updateUserSession();
-                            if (callback) {
-                                callback(null, data);
+                            if (err) {
+                                if (callback) {
+                                    callback(err);
+                                }
+                            } else {
+                                updateUserSession();
+                                if (callback) {
+                                    callback(null, data);
+                                }
                             }
                         }
-                    }
-                )
+                    )
 
-            });
+                });
 
-        } else {
-            globalLoading.show = false;
-            if (callback) {
-                callback(Errors.USER_NOT_LOGGED);
+            } else {
+                globalLoading.show = false;
+                if (callback) {
+                    callback(Errors.USER_NOT_LOGGED);
+                }
             }
+        } else {
+            //Show alert to avoid update
+            let title = getLanguage().PROFILE.UPDATE_ACCOUNT_TITLE;
+            let message = String.format(getLanguage().PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
+            showAlert(title, message);
         }
-
     }
 
     /**
