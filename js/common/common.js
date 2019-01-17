@@ -65,7 +65,9 @@ creaEvents.on('crea.session.login', function (session, account) {
 });
 
 function showBanner(show = true) {
-    bannerVue.showBanner = show;
+    if (bannerVue) {
+        bannerVue.showBanner = show;
+    }
 }
 
 function goTo(location) {
@@ -482,11 +484,14 @@ creaEvents.on('crea.content.prepare', function () {
         }
     });
 
-    bannerVue = new Vue({
-        el: '#home-banner',
-        data: {
-            showBanner: false,
-            lang: getLanguage()
-        }
-    });
+    if (document.getElementById('home-banner') !== null) {
+        bannerVue = new Vue({
+            el: '#home-banner',
+            data: {
+                showBanner: false,
+                lang: getLanguage()
+            }
+        });
+    }
+
 });
