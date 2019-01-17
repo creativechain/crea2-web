@@ -237,15 +237,21 @@
         publishContainer.updatingIndex = -1;
         editor.setData('');
         publishContainer.editor.editing = false;
+        publishContainer.editor.show = false;
+
     }
 
     function editText(index) {
+        console.log('Editing text', index);
         if (index > -1) {
-            let editor = CKEDITOR.instances['editor'];
-            let text = publishContainer.bodyElements[index].value;
-            editor.setData(text);
-            publishContainer.updatingIndex = index;
-            publishContainer.editor.editing = true;
+            publishContainer.editor.show = true;
+            setTimeout(function () {
+                let editor = CKEDITOR.instances['editor'];
+                let text = publishContainer.bodyElements[index].value;
+                editor.setData(text);
+                publishContainer.updatingIndex = index;
+                publishContainer.editor.editing = true;
+            }, 500);
         }
     }
 
