@@ -496,9 +496,11 @@
     height: 60px;
     margin: 0 auto; }
   .view-publish .step-1 .row-options-steps-1 .img-disabled-file {
-    background-image: url("/img/crea-web/publish/b-img-disabled.png") !important; }
+    background-image: url("/img/crea-web/publish/b-img-disabled.png") !important;
+    cursor: auto !important; }
   .view-publish .step-1 .row-options-steps-1 .img-disabled-text {
-    background-image: url("/img/crea-web/publish/b-text-disabled.png") !important; }
+    background-image: url("/img/crea-web/publish/b-text-disabled.png") !important;
+    cursor: auto !important; }
   .view-publish .step-1 .row-options-steps-1 .button-add-file {
     background-image: url("/img/crea-web/publish/b-img.png");
     width: 60px;
