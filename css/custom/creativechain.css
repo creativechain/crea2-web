@@ -278,8 +278,6 @@
     font-size: 12px;
     font-weight: normal; }
 
-.view-wallet .ul-submenu-wallet li:nth-child(1) {
-  padding: 0.92857143em 4px; }
 .view-wallet .tabs li.active .tab__title span {
   font-size: 12px;
   text-transform: uppercase; }
@@ -305,30 +303,34 @@
 .view-wallet .dropdown > .dropdown__trigger:after {
   font-family: "stack-interface";
   display: inline-block;
-  font-size: 8px;
+  font-size: 0;
   position: relative;
   bottom: 2px; }
 .view-wallet .dropdown > .active {
   font-weight: bold; }
 .view-wallet .li-buy-crea {
   position: absolute;
-  right: 0;
+  right: 15px;
   top: 10px;
-  opacity: 1 !important; }
+  opacity: 1 !important;
+  }
 .view-wallet .padding-b-10 {
   padding-bottom: 10px; }
 .view-wallet .tabs-container-primary .tabs-primary {
   border: 1px solid transparent;
-  padding: 10px; }
+  padding: 10px;
+  }
   .view-wallet .tabs-container-primary .tabs-primary li.active {
     border-top: 3px solid transparent; }
   .view-wallet .tabs-container-primary .tabs-primary li:not(:last-child) {
     border-right: 1px solid transparent; }
 .view-wallet .tabs--folder .tabs-content {
   border: 1px solid transparent;
-  padding-top: 0; }
+  padding-top: 0;
+  }
 .view-wallet .table-amount tbody tr td:nth-child(1) {
-  width: 70%; }
+  width: 70%;
+  }
   .view-wallet .table-amount tbody tr td:nth-child(1) p:nth-child(1) {
     font-weight: bold; }
 .view-wallet .table-amount tbody tr td p {
@@ -1190,7 +1192,11 @@ input[type], textarea, select {
 .input-checkbox label {
   width: 20px;
   height: 20px;
-  background: #000; }
+  background: #CACACA; }
+
+.input-checkbox input:checked + label {
+  border-color: #0073FF;
+  background: #0073FF; }
 
 a {
   color: #0569EF; }
@@ -1667,8 +1673,6 @@ img {
 
   .view-wallet .tabs-container-primary .tabs-primary {
     display: flex; }
-  .view-wallet .tabs-container-primary .buy-crea-mobile {
-    margin-bottom: 30px; }
 
   .row-list-user {
     padding-bottom: 10px; }

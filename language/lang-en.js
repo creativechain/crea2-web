@@ -164,7 +164,7 @@ lang.en = {
         "CREATE_ACCOUNT": "Create account",
         "SHOW_PRIV_KEY": "Show private key",
         "HIDE_PRIV_KEY": "Hide private key",
-        "BUY_CREA": "Buy CREA or CREA Energy",
+        "BUY_CREA": "BUY CREA",
         "PROMOTE": "PROMOTE",
         "WITHDRAW_SAVINGS": "Withdraw savings",
         "POST_COMMENT": "Post comment",
@@ -262,7 +262,7 @@ lang.en = {
         "CONTENT_SECONDARY_SENTENCE": "Enter a text that explains the development of your project.",
         "FILE": "File",
         "PRICE": "PRICE",
-        "DOWNLOAD_TITLE": "Download",
+        "DOWNLOAD_TITLE": "Download (Optional)",
         "DOWNLOAD_SUBTITLE": "Select a file and set the price you want for its download.",
         "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
         "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
@@ -277,7 +277,7 @@ lang.en = {
         "LICENSE_TEXT_PUBLISH": "You are about to publish your project. Let\u2019s go!",
         "LICENSE_TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
         "NO_ELEMENTS_ERROR": "You must add at least one element (image, audio, video or text)",
-        "FILE_TO_LARGE": "The file is to large",
+        "FILE_TO_LARGE": "The file is too large",
         "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag"
 
     },

@@ -114,7 +114,11 @@ input[type], textarea, select {
 .input-checkbox label {
   width: 20px;
   height: 20px;
-  background: #000;
+  background: $grey-circle;
+}
+.input-checkbox input:checked + label {
+  border-color: $active-circle;
+  background: $active-circle;
 }
 a {
   color: $color-blue-primary;

@@ -1,9 +1,4 @@
 .view-wallet {
-  .ul-submenu-wallet {
-    li:nth-child(1) {
-      padding: 0.92857143em 4px;
-    }
-  }
   .tabs li.active .tab__title span {
     font-size: 12px;
     text-transform: uppercase;
@@ -37,7 +32,7 @@
   .dropdown > .dropdown__trigger:after {
     font-family: "stack-interface";
     display: inline-block;
-    font-size: 8px;
+    font-size: 0;
     position: relative;
     bottom: 2px;
   }
@@ -46,7 +41,7 @@
   }
   .li-buy-crea {
     position: absolute;
-    right: 0;
+    right: 15px;
     top: 10px;
     opacity: 1 !important;
   }

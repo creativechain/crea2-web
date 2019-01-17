@@ -17,13 +17,6 @@
 <div class="col-md-12">
     <div class="boxed boxed--border no-padding">
         <div class="tabs-container tabs--folder tabs-container-primary">
-            <ul class="ul-submenu-wallet buy-crea-mobile d-sm-block">
-                <li class="text-right li-buy-crea">
-                    <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
-                        <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
-                    </a>
-                </li>
-            </ul>
             <ul class="tabs tabs-primary ul-submenu-wallet">
                 <li v-bind:class="{ active: walletTab === 'balances' }" v-on:click="walletTab = 'balances'">
                     <div class="tab__title">
@@ -44,6 +37,11 @@
 
                 </li>
                 <li class="text-right li-buy-crea d-sm-none d-none">
+                    <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
+                        <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
+                    </a>
+                </li>
+                <li class="text-right li-buy-crea">
                     <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
                         <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
                     </a>

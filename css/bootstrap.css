@@ -1199,12 +1199,14 @@ pre {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent; }
+  background-color: transparent;
+  }
   .table th,
   .table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6; }
+    border-top: 1px solid #dee2e6;
+    }
   .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6; }
