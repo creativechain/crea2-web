@@ -598,6 +598,12 @@ Vue.component('ckeditor', {
             CKEDITOR.instances[ckeditorId].setData(this.value);
         }
     },
+    methods: {
+        onInput: function (event) {
+            console.log(event);
+            this.$emit('input', true);
+        }
+    },
     mounted () {
         const ckeditorId = this.id;
         console.log(this.value);
@@ -635,10 +641,11 @@ Vue.component('ckeditor', {
         //CKEDITOR.inline(ckeditorId, config);
 
         CKEDITOR.instances[ckeditorId].setData(this.value);
+        let that = this;
         CKEDITOR.instances[ckeditorId].on('change', () => {
             let ckeditorData = CKEDITOR.instances[ckeditorId].getData();
             if (ckeditorData !== this.value) {
-                this.$emit('input', ckeditorData)
+                that.$emit('input', ckeditorData)
             }
         });
     },

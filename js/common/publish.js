@@ -35,6 +35,10 @@
                 tags: [],
                 uploadedFiles: [],
                 updatingIndex: -1,
+                editor: {
+                    editing: false,
+                    show: false
+                },
                 featuredImage: featuredImage,
                 title: editablePost ? editablePost.title : null,
                 description: editablePost ? editablePost.metadata.description : '',
@@ -110,27 +114,32 @@
                     return license;
                 },
                 nextStep: function () {
-                    //Check errors before continue
-                    switch (this.step) {
-                        case 1:
-                            this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
-                            break;
-                        case 2:
-                            if (!this.featuredImage.hash || !this.title || this.tags.length == 0) {
-                                this.error = this.lang.PUBLISH.NO_TITLE_TAG_OR_IMAGE;
-                            } else {
-                                this.error = null;
-                            }
-                    }
+                    if (!this.editor.editing) {
+                        //Check errors before continue
+                        switch (this.step) {
+                            case 1:
+                                this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
+                                break;
+                            case 2:
+                                if (!this.featuredImage.hash || !this.title || this.tags.length == 0) {
+                                    this.error = this.lang.PUBLISH.NO_TITLE_TAG_OR_IMAGE;
+                                } else {
+                                    this.error = null;
+                                }
+                        }
 
-                    if (!this.error) {
+                        if (!this.error) {
 
-                        this.step += 1;
+                            this.step += 1;
+                        }
                     }
                 },
                 loadFile: function (event) {
-                    const elem = this.$refs.publishInputFile;
-                    elem.click();
+                    if (!this.editor.show) {
+                        const elem = this.$refs.publishInputFile;
+                        elem.click();
+                    }
+
                 },
                 loadFeaturedImage: function (event) {
                     const elem = this.$refs.publishInputCover;
@@ -189,8 +198,14 @@
                     }
                 },
                 toggleEditor: function (event) {
-                    event.preventDefault();
-                    this.showEditor = !this.showEditor;
+                    cancelEventPropagation(event);
+                    if (!this.editor.show) {
+                        this.editor.show = !this.editor.show;
+                    }
+
+                },
+                editorInput: function (data) {
+                    this.editor.editing = data.length > 0;
                 },
                 updateText: updateText,
                 editText: editText,
@@ -216,6 +231,7 @@
 
         publishContainer.updatingIndex = -1;
         editor.setData('');
+        publishContainer.editor.editing = false;
     }
 
     function editText(index) {
@@ -224,6 +240,7 @@
             let text = publishContainer.bodyElements[index].value;
             editor.setData(text);
             publishContainer.updatingIndex = index;
+            publishContainer.editor.editing = true;
         }
     }
 

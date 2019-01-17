@@ -1,6 +1,6 @@
 <div class="step-1">
     <div class="boxed boxed--border">
-        <div v-if="bodyElements.length == 0 && !showEditor" class="section-title-step">
+        <div v-if="bodyElements.length == 0 && !editor.show" class="section-title-step">
             <h4 class="title-steps">{{ lang.PUBLISH.SECONDARY_MENU_CONTENT }}</h4>
             <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SUBTITLE }}</span>
         </div>
@@ -40,7 +40,7 @@
         </template>
 
         <div class="box-content-step-1">
-            <div v-if="showEditor" class="section-editor">
+            <div v-if="editor.show" class="section-editor">
                 <div class="section-title-step upload-img">
                     <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
                     <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
@@ -49,9 +49,9 @@
                         <a href="#" style="color: #222222">X</a>
                     </div>
                 </div>
-                <ckeditor ></ckeditor>
+                <ckeditor v-on:input="editorInput"></ckeditor>
             </div>
-            <div v-if="showEditor" class="row mt-3" style="z-index: 1;position: relative;">
+            <div v-if="editor.show" class="row mt-3" style="z-index: 1;position: relative;">
                 <div class="col-md-12 text-right">
                     <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
                         <span class="btn__text text__dark">{{ lang.BUTTON.SAVE }}</span>
@@ -64,13 +64,13 @@
                     <div class="col-md-6 offset-md-3 col-sm-12">
                         <div class="row row-options-steps-1">
                             <div class="col-6">
-                                <div class="button-add-file" v-on:click="loadFile"></div>
+                                <div v-bind:disabled="editor.editing" class="button-add-file" v-on:click="loadFile"></div>
                                 <p class="title">{{ lang.PUBLISH.FILE }}</p>
                                 <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
                                 <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
                             </div>
                             <div class="col-6">
-                                <div class="button-add-text" v-on:click="toggleEditor"></div>
+                                <div v-bind:disabled="editor.editing" class="button-add-text" v-on:click="toggleEditor"></div>
                                 <p class="title">{{ lang.PUBLISH.TEXT }}</p>
                             </div>
                         </div>
