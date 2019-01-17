@@ -39,53 +39,55 @@
             </div>
         </template>
 
-        <div v-if="showEditor" class="section-editor">
-            <div class="section-title-step upload-img">
-                <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
-                <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
+        <div class="box-content-step-1">
+            <div v-if="showEditor" class="section-editor">
+                <div class="section-title-step upload-img">
+                    <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
+                    <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
 
-                <div class="delete-img-step-1" v-on:click="toggleEditor">
-                    <a href="#" style="color: #222222">X</a>
+                    <div class="delete-img-step-1" v-on:click="toggleEditor">
+                        <a href="#" style="color: #222222">X</a>
+                    </div>
+                </div>
+                <ckeditor ></ckeditor>
+            </div>
+            <div v-if="showEditor" class="row mt-3" style="z-index: 1;position: relative;">
+                <div class="col-md-12 text-right">
+                    <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
+                        <span class="btn__text text__dark">{{ lang.BUTTON.SAVE }}</span>
+                    </div>
                 </div>
             </div>
-            <ckeditor ></ckeditor>
-        </div>
-        <div v-if="showEditor" class="row mt-3" style="z-index: 1;position: relative;">
-            <div class="col-md-12 text-right">
-                <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
-                    <span class="btn__text text__dark">{{ lang.BUTTON.SAVE }}</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="pos-vertical-center text-center">
-            <div class="row">
-                <div class="col-md-6 offset-md-3 col-sm-12">
-                    <div class="row row-options-steps-1">
-                        <div class="col-6">
-                            <div class="button-add-file" v-on:click="loadFile"></div>
-                            <p class="title">{{ lang.PUBLISH.FILE }}</p>
-                            <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
-                            <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
-                        </div>
-                        <div class="col-6">
-                            <div class="button-add-text" v-on:click="toggleEditor"></div>
-                            <p class="title">{{ lang.PUBLISH.TEXT }}</p>
+            <div class="pos-vertical-center text-center">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 col-sm-12">
+                        <div class="row row-options-steps-1">
+                            <div class="col-6">
+                                <div class="button-add-file" v-on:click="loadFile"></div>
+                                <p class="title">{{ lang.PUBLISH.FILE }}</p>
+                                <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
+                                <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
+                            </div>
+                            <div class="col-6">
+                                <div class="button-add-text" v-on:click="toggleEditor"></div>
+                                <p class="title">{{ lang.PUBLISH.TEXT }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="disabled mb-0">
-                    {{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.IMAGE)) }},
-                    {{ String.format(lang.PUBLISH.AUDIO_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.AUDIO)) }},
-                    {{ String.format(lang.PUBLISH.VIDEO_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.VIDEO)) }}
-                </p>
-                <p class="error-color-form">
-                    {{ error || '' }}
-                </p>
+            <div>
+                <div class="col-md-12">
+                    <p class="disabled mb-0">
+                        {{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.IMAGE)) }},
+                        {{ String.format(lang.PUBLISH.AUDIO_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.AUDIO)) }},
+                        {{ String.format(lang.PUBLISH.VIDEO_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.VIDEO)) }}
+                    </p>
+                    <p class="error-color-form">
+                        {{ error || '' }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
