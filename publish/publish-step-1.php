@@ -51,10 +51,16 @@
                 </div>
                 <ckeditor v-on:input="editorInput"></ckeditor>
             </div>
-            <div v-if="editor.show" class="row mt-3" style="z-index: 1;position: relative;">
-                <div class="col-md-12 text-right">
+            <div v-if="editor.show" class="row mt-3 justify-content-end" style="z-index: 1;position: relative;">
+                <div class="col-md-3">
                     <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
-                        <span class="btn__text text__dark">{{ lang.BUTTON.SAVE }}</span>
+                        <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="btn btn--sm btn--primary"  v-on:click="updateText(updatingIndex)">
+                        <span class="btn__text">{{ lang.BUTTON.SAVE }}</span>
                     </div>
                 </div>
             </div>
