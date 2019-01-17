@@ -30,6 +30,7 @@
   .step-1 {
     .box-content-step-1 {
       border: 1px solid #ececec;
+      padding: 20px;
     }
     .upload-img {
       position: relative;
@@ -66,7 +67,7 @@
         cursor: pointer;
       }
       .button-add-text:hover {
-        background-image: url("/img/crea-web/publish/b-text-hover.png");
+        background-image: url("/img/crea-web/publish/more-img-hover.png");
         width: 60px;
         height: 60px;
         margin: 0 auto;
