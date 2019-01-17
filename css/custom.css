@@ -3,6 +3,10 @@
     display: none;
 }
 
+.disabled-cursor {
+    cursor: not-allowed;
+}
+
 .cursor {
     cursor: pointer;
 }

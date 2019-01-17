@@ -113,8 +113,13 @@
 
                     return license;
                 },
+                toStep: function (toStep) {
+                    if (!this.editor.show && this.step > toStep) {
+                        this.step = toStep;
+                    }
+                },
                 nextStep: function () {
-                    if (!this.editor.editing) {
+                    if (!this.editor.show) {
                         //Check errors before continue
                         switch (this.step) {
                             case 1:

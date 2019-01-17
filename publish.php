@@ -6,10 +6,10 @@
                 <div class="row">
                     <div class="col-md-11">
                         <ul class="list-inline list-unstyled li-title-steps">
-                            <li v-on:click="step = 1"><p v-bind:class="{ active: step == 1}">1. {{ lang.PUBLISH.SECONDARY_MENU_CONTENT }}</p></li>
-                            <li v-on:click="step = 2"><p v-bind:class="{ active: step == 2}">2. {{ lang.PUBLISH.SECONDARY_MENU_INFO }}</p></li>
-                            <li v-on:click="step = 3"><p v-bind:class="{ active: step == 3}">3. {{ lang.PUBLISH.SECONDARY_MENU_DOWNLOAD }}</p></li>
-                            <li v-on:click="step = 4"><p v-bind:class="{ active: step == 4}">4. {{ lang.PUBLISH.SECONDARY_MENU_LICENSE }}</p></li>
+                            <li v-on:click="toStep(1)"><p v-bind:class="{ 'disabled-cursor': editor.show, cursor: !editor.show, active: step == 1}">1. {{ lang.PUBLISH.SECONDARY_MENU_CONTENT }}</p></li>
+                            <li v-on:click="toStep(2)"><p v-bind:class="{ 'disabled-cursor': editor.show || step < 2, cursor: !editor.show && step > 2, active: step == 2}">2. {{ lang.PUBLISH.SECONDARY_MENU_INFO }}</p></li>
+                            <li v-on:click="toStep(3)"><p v-bind:class="{ 'disabled-cursor': editor.show || step < 3, cursor: !editor.show && step > 3, active: step == 3}">3. {{ lang.PUBLISH.SECONDARY_MENU_DOWNLOAD }}</p></li>
+                            <li v-on:click="toStep(4)"><p v-bind:class="{ 'disabled-cursor': editor.show || step < 4, cursor: !editor.show && step > 4, active: step == 4}">4. {{ lang.PUBLISH.SECONDARY_MENU_LICENSE }}</p></li>
                         </ul>
                     </div>
                 </div>

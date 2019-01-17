@@ -44,16 +44,12 @@
                 <div class="section-title-step upload-img">
                     <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
                     <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
-
-                    <div class="delete-img-step-1" v-on:click="editor.show = false">
-                        <a href="#" style="color: #222222">X</a>
-                    </div>
                 </div>
                 <ckeditor v-on:input="editorInput"></ckeditor>
             </div>
             <div v-if="editor.show" class="row mt-3 justify-content-end" style="z-index: 1;position: relative;">
                 <div class="col-md-3">
-                    <div class="btn btn--sm" v-on:click="updateText(updatingIndex)">
+                    <div class="btn btn--sm" v-on:click="editor.show = false">
                         <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
                     </div>
                 </div>
