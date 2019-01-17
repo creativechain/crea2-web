@@ -465,6 +465,10 @@
 .view-publish .step-1 .upload-img {
   position: relative;
   margin-bottom: 10px; }
+  .view-publish .step-1 .upload-img p {
+    word-break: break-word;
+    word-break: all;
+    padding: 0 40px 0 0; }
   .view-publish .step-1 .upload-img .delete-img-step-1 {
     position: absolute;
     right: 10px;
@@ -481,41 +485,42 @@
       top: -1px; }
   .view-publish .step-1 .upload-img video {
     width: 100%; }
-.view-publish .step-1 .row-options-steps-1 {
-  margin-top: 160px;
-  margin-bottom: -50px; }
-  .view-publish .step-1 .row-options-steps-1 .button-add-text {
-    background-image: url("/img/crea-web/publish/b-text.png");
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    cursor: pointer; }
-  .view-publish .step-1 .row-options-steps-1 .button-add-text:hover {
-    background-image: url("/img/crea-web/publish/more-img-hover.png");
-    width: 60px;
-    height: 60px;
-    margin: 0 auto; }
-  .view-publish .step-1 .row-options-steps-1 .img-disabled-file {
-    background-image: url("/img/crea-web/publish/b-img-disabled.png") !important;
-    cursor: auto !important; }
-  .view-publish .step-1 .row-options-steps-1 .img-disabled-text {
-    background-image: url("/img/crea-web/publish/b-text-disabled.png") !important;
-    cursor: auto !important; }
-  .view-publish .step-1 .row-options-steps-1 .button-add-file {
-    background-image: url("/img/crea-web/publish/b-img.png");
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    cursor: pointer; }
-  .view-publish .step-1 .row-options-steps-1 .button-add-file:hover {
-    background-image: url("/img/crea-web/publish/more-img-hover.png");
-    width: 60px;
-    height: 60px;
-    margin: 0 auto; }
-  .view-publish .step-1 .row-options-steps-1 p {
-    margin-bottom: 0; }
-  .view-publish .step-1 .row-options-steps-1 p.title {
-    margin-top: 10px; }
+.view-publish .step-1 .row-options-steps-1 .col-6 {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+  min-height: 200px; }
+.view-publish .step-1 .row-options-steps-1 .button-add-text {
+  background-image: url("/img/crea-web/publish/b-text.png");
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  cursor: pointer; }
+.view-publish .step-1 .row-options-steps-1 .button-add-text:hover {
+  background-image: url("/img/crea-web/publish/more-img-hover.png");
+  width: 60px;
+  height: 60px;
+  margin: 0 auto; }
+.view-publish .step-1 .row-options-steps-1 .img-disabled-file {
+  background-image: url("/img/crea-web/publish/b-img-disabled.png") !important;
+  cursor: auto !important; }
+.view-publish .step-1 .row-options-steps-1 .img-disabled-text {
+  background-image: url("/img/crea-web/publish/b-text-disabled.png") !important;
+  cursor: auto !important; }
+.view-publish .step-1 .row-options-steps-1 .button-add-file {
+  background-image: url("/img/crea-web/publish/b-img.png");
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  cursor: pointer; }
+.view-publish .step-1 .row-options-steps-1 .button-add-file:hover {
+  background-image: url("/img/crea-web/publish/more-img-hover.png");
+  width: 60px;
+  height: 60px;
+  margin: 0 auto; }
+.view-publish .step-1 .row-options-steps-1 p {
+  margin-bottom: 0; }
+.view-publish .step-1 .row-options-steps-1 p.title {
+  margin-top: 10px; }
 .view-publish .step-1 p.disabled {
   color: #999999; }
 .view-publish .step-2 p.disabled {

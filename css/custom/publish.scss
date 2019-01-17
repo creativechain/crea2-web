@@ -35,6 +35,11 @@
     .upload-img {
       position: relative;
       margin-bottom: 10px;
+      p {
+        word-break: break-word;
+        word-break: all;
+        padding: 0 40px 0 0;
+      }
       .delete-img-step-1 {
         position: absolute;
         right: 10px;
@@ -57,8 +62,11 @@
     }
 
     .row-options-steps-1 {
-      margin-top: 160px;
-      margin-bottom: -50px;
+      .col-6 {
+        padding-top: 2.75rem;
+        padding-bottom: 2.75rem;
+        min-height: 200px;
+      }
       .button-add-text {
         background-image: url("/img/crea-web/publish/b-text.png");
         width: 60px;

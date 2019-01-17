@@ -10,7 +10,7 @@
                 <div class="upload-img">
                     <div v-html="bodyElements[k].value" v-on:click="editText(k)"></div>
                     <div class="delete-img-step-1" v-on:click="removeElement(k)">
-                        <a href="#" style="color: #222222">X</a>
+                        <a href="#">X</a>
                     </div>
                 </div>
 
@@ -61,17 +61,17 @@
                 </div>
             </div>
 
-            <div class="pos-vertical-center text-center">
+            <div>
                 <div class="row">
                     <div class="col-md-6 offset-md-3 col-sm-12">
                         <div class="row row-options-steps-1">
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <div v-bind:class="{ 'img-disabled-file': editor.show }" class="button-add-file" v-on:click="loadFile"></div>
                                 <p v-bind:class="{ disabled: editor.show }" class="title">{{ lang.PUBLISH.FILE }}</p>
                                 <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
                                 <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <div v-bind:class="{ 'img-disabled-text': editor.show }" class="button-add-text" v-on:click="toggleEditor"></div>
                                 <p v-bind:class="{ disabled: editor.show }" class="title">{{ lang.PUBLISH.TEXT }}</p>
                             </div>
