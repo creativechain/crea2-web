@@ -265,7 +265,6 @@ lang.en = {
         "DOWNLOAD_TITLE": "Download (Optional)",
         "DOWNLOAD_SUBTITLE": "Select a file and set the price you want for its download.",
         "INPUT_PRICE": "Set a price for its download or leave this section blank for free download ",
-        "INPUT_SELECT_FILE": "Select the downloadable file so your project can be shared",
         "SELECT_FILE": "SELECT FILE",
         "LICENSE_TITLE": "License",
         "LICENSE_SUBTITLE": "Choose the most suitable type of license for your publication.",

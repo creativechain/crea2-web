@@ -7,7 +7,6 @@
         </div>
         <form action="" class="row">
             <div class="col-md-12">
-                <label for="exampleFormControlFile1">{{ lang.PUBLISH.INPUT_SELECT_FILE }}</label>
                 <input type="file" v-on:input="onInputDownloadFile" class="form-control-file" id="exampleFormControlFile1" />
             </div>
             <div class="col-md-8">
