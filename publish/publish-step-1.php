@@ -6,9 +6,9 @@
         </div>
 
         <template v-for="k in Object.keys(bodyElements)">
-            <div v-if="bodyElements[k].type.indexOf('text/html') > -1" v-on:click="editText(k)" >
+            <div v-if="bodyElements[k].type.indexOf('text/html') > -1">
                 <div class="upload-img">
-                    <div v-html="bodyElements[k].value"></div>
+                    <div v-html="bodyElements[k].value" v-on:click="editText(k)"></div>
                     <div class="delete-img-step-1" v-on:click="removeElement(k)">
                         <a href="#" style="color: #222222">X</a>
                     </div>
