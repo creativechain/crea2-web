@@ -45,7 +45,7 @@
                     <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
                     <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
 
-                    <div class="delete-img-step-1" v-on:click="toggleEditor">
+                    <div class="delete-img-step-1" v-on:click="editor.show = false">
                         <a href="#" style="color: #222222">X</a>
                     </div>
                 </div>
@@ -64,13 +64,13 @@
                     <div class="col-md-6 offset-md-3 col-sm-12">
                         <div class="row row-options-steps-1">
                             <div class="col-6">
-                                <div v-bind:disabled="editor.editing" class="button-add-file" v-on:click="loadFile"></div>
+                                <div v-bind:class="{ 'img-disabled-file': editor.show }" class="button-add-file" v-on:click="loadFile"></div>
                                 <p class="title">{{ lang.PUBLISH.FILE }}</p>
                                 <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
                                 <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
                             </div>
                             <div class="col-6">
-                                <div v-bind:disabled="editor.editing" class="button-add-text" v-on:click="toggleEditor"></div>
+                                <div v-bind:class="{ 'img-disabled-text': editor.show }" class="button-add-text" v-on:click="toggleEditor"></div>
                                 <p class="title">{{ lang.PUBLISH.TEXT }}</p>
                             </div>
                         </div>
