@@ -71,13 +71,13 @@
                         <div class="row row-options-steps-1">
                             <div class="col-6">
                                 <div v-bind:class="{ 'img-disabled-file': editor.show }" class="button-add-file" v-on:click="loadFile"></div>
-                                <p class="title">{{ lang.PUBLISH.FILE }}</p>
+                                <p v-bind:class="{ disabled: editor.show }" class="title">{{ lang.PUBLISH.FILE }}</p>
                                 <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
                                 <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
                             </div>
                             <div class="col-6">
                                 <div v-bind:class="{ 'img-disabled-text': editor.show }" class="button-add-text" v-on:click="toggleEditor"></div>
-                                <p class="title">{{ lang.PUBLISH.TEXT }}</p>
+                                <p v-bind:class="{ disabled: editor.show }" class="title">{{ lang.PUBLISH.TEXT }}</p>
                             </div>
                         </div>
                     </div>
