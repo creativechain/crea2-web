@@ -106,6 +106,9 @@
       .simple-view-home .post-container-home .masonry__container .col-xl-2-cust .card__top .img-post-list {
         height: 315px; }
 
+.view-profile .tabs-container .tabs-content {
+  margin-left: -2px;
+  min-width: 101%; }
 .view-profile .masonry__item:not(:empty) {
   margin-bottom: 5px;
   transform-style: flat; }
