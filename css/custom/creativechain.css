@@ -771,6 +771,11 @@
     .post-view .menu-right .row-publish-description p {
       font-size: 14px;
       font-weight: bold; }
+    .post-view .menu-right .row-publish-description .title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden; }
     .post-view .menu-right .row-publish-tags p {
       font-size: 14px;
       font-weight: bold; }

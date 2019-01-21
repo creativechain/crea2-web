@@ -339,7 +339,7 @@
                             </div>
                             <div class="row row-publish-description">
                                 <div class="col-md-12">
-                                    <p class="title text-truncate">{{ state.post.title }}</p>
+                                    <p class="title">{{ state.post.title }}</p>
                                     <span class="description">{{ state.post.metadata.description }}</span>
                                     <p class="date-publish description mt-4">{{ formatDate(state.post.created) }}</p>
                                 </div>
