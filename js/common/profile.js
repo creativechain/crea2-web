@@ -277,6 +277,7 @@
                 },
                 methods: {
                     getDefaultAvatar: R.getAvatar,
+                    toUrl: toUrl,
                     hidePrivKey: function (auth) {
                         this.showPriv[auth] = false;
                     },

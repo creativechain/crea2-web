@@ -19,7 +19,7 @@
                                         </div>
                                         <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
                                             <p>
-                                                <video controls>
+                                                <video controls >
                                                     <source v-bind:src="el.url" v-bind:type="el.type">
                                                 </video>
                                             </p>

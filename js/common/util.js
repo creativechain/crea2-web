@@ -219,6 +219,23 @@ function isUserFeed(username = null) {
 
 /**
  *
+ * @param {string} string
+ * @returns {string}
+ */
+function toUrl(string) {
+    if (string) {
+        if (!string.startsWith('http://') && !string.startsWith('https://')) {
+            string = 'http://' + string;
+        }
+
+        return string;
+    }
+
+    return null;
+}
+
+/**
+ *
  * @param index
  * @returns {string}
  */
