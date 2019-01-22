@@ -15,6 +15,8 @@
      * @returns {License}
      */
     function showPosts(urlFilter, filter, state) {
+        console.log(urlFilter, filter, state);
+
         let content = state.content;
         let accounts = state.accounts;
 
@@ -28,7 +30,6 @@
                 newKeys.push(k);
             }
         }
-
 
         state.content = content;
 
@@ -60,6 +61,8 @@
             state.discussion_idx[discuss] = {};
             state.discussion_idx[discuss][category] = cKeys;
             lastPage = 1;
+        } else if (window.location.pathname === '/search') {
+            lastPage = 1;
         } else {
             let contentArray = state.discussion_idx[discuss][category];
             lastPage = state.content[contentArray[contentArray.length-1]];
@@ -78,6 +81,7 @@
                     discuss: discuss,
                     urlFilter: urlFilter,
                     state: state,
+                    search: getParameterByName('query'),
                     lang: getLanguage(),
                 },
                 updated: function () {
@@ -206,6 +210,7 @@
             homePosts.discuss = discuss;
             homePosts.state = state;
             homePosts.urlFilter = urlFilter;
+            homePosts.search = getParameterByName('query');
         }
 
         creaEvents.emit('crea.dom.ready');
@@ -238,9 +243,33 @@
                 }
             })
 
+        } else if (homePosts && homePosts.urlFilter === urlFilter && urlFilter === '/search') {
+            let query = getParameterByName('query');
+            if (query === homePosts.search && query !== null ) {
+                //Accounts
+                for (let a in state.accounts) {
+                    homePosts.state.accounts[a] = parseAccount(state.accounts[a]);
+                }
+
+                //Posts
+                for (let c in state.content) {
+                    homePosts.state.content[c] = parsePost(state.content[c]);
+                }
+
+                //Order
+                let newPosts = state.discussion_idx[""].search;
+                for (let x = 0; x < newPosts.length; x++) {
+                    homePosts.state.discussion_idx[''].search.push(newPosts[x]);
+                }
+
+            } else {
+                showPosts(urlFilter, filter, state);
+            }
         } else {
             showPosts(urlFilter, filter, state);
         }
+
+
     });
 
     creaEvents.on('crea.session.update', function (s, a) {
@@ -377,6 +406,20 @@
                         }
                     }
                 });
+
+            } else if (window.location.pathname === '/search') {
+                let query = getParameterByName('query');
+                let postCount = Object.keys(homePosts.state.content).length;
+
+                if ((postCount % 20) === 0) {
+                    globalLoading.show = true;
+                    performSearch(query, ++lastPage, true, function () {
+                        onScrollCalling = false;
+                        globalLoading.show = false;
+                    });
+
+                }
+
             } else {
                 let apiCall;
                 let category = homePosts.category;

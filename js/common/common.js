@@ -361,8 +361,11 @@ function downloadFile(url, filename) {
     document.body.removeChild(element);
 }
 
-function performSearch(search, page = 1, inHome = false) {
+function performSearch(search, page = 1, inHome = false, callback) {
+    let path = '/search?query=' + encodeURIComponent(search) + '&page=' + page;
+
     if (inHome) {
+        updateUrl(path);
         refreshAccessToken(function (accessToken) {
             let http = new HttpClient('https://platform.creativechain.net/searchCreaContent');
             http.setHeaders({
@@ -376,8 +379,10 @@ function performSearch(search, page = 1, inHome = false) {
                     data[x].tags = jsonify(data[x].tags);
                 }
 
-                console.log(data);
                 creaEvents.emit('crea.search.content', data);
+                if (callback) {
+                    callback();
+                }
             });
 
             http.when('fail', function (jqXHR, textStatus, errorThrown) {
@@ -391,7 +396,7 @@ function performSearch(search, page = 1, inHome = false) {
             });
         })
     } else {
-        goTo('/search?query=' + encodeURIComponent(search) + '&page=' + page);
+        goTo(path);
     }
 }
 
