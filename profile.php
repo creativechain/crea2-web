@@ -22,7 +22,7 @@
                                 <div v-show="navbar.section === 'projects' && session && session.account.username == state.user.name && Object.keys(state.content).length == 0" class="row welcome-profile-empty">
                                     <?php include ('modules/welcome-profile-empty.php') ?>
                                 </div>
-                                <div v-show="(!session || session.account.username != state.user.name) && Object.keys(state.content).length == 0">
+                                <div v-show="(!session || session.account.username != state.user.name) && Object.keys(state.content).length == 0 && navbar.section === 'projects'">
                                     <h3>{{ lang.PROFILE.NO_POSTS_PROFILE }}</h3>
                                 </div>
                                 <div v-show="navbar.section === 'projects'" class="row project-profile">
