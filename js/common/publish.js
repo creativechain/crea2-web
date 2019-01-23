@@ -60,7 +60,12 @@
             },
             updated: function () {
                 console.log('updating');
-                if (this.step == 2) {
+                if (this.step !== 2) {
+                    this.tagsConfig.init = false;
+                    this.tagsConfig.addedEvents = false;
+                }
+
+                if (this.step === 2) {
                     let inputTags = $('#publish-tags');
                     let that = this;
                     if (!this.tagsConfig.init) {
@@ -75,12 +80,12 @@
 
                     if (!this.tagsConfig.addedEvents) {
                         inputTags.on('beforeItemAdd', function (event) {
-                            console.log('added item', event.item);
-                            that.tags.push(event.item);
+                            if (!that.tags.includes(event.item)) {
+                                that.tags.push(event.item);
+                            }
                         });
 
                         inputTags.on('itemRemoved', function (event) {
-                            console.log('removed item', event.item);
                             let i = that.tags.indexOf(event.item);
                             if (i > -1) {
                                 that.tags.splice(i, 1);
@@ -94,7 +99,12 @@
                                 inputTags.tagsinput('add', t);
                             })
                         }
+                    }
 
+                    if (that.tags.length > 0) {
+                        that.tags.forEach(function (t) {
+                            inputTags.tagsinput('add', t);
+                        })
                     }
                 }
 
