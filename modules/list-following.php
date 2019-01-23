@@ -1,10 +1,10 @@
 <div v-cloak id="following-container" class="row">
-    <div class="col-md-12">
+    <div class="w-100">
         <h3 class="title-section-profile">Following</h3>
     </div>
 
 
-    <div v-if="Object.keys(following).length === 0" class="col-md-12 bg--light text-center row-empty-notifications">
+    <div v-if="Object.keys(following).length === 0" class="w-100 bg--light text-center row-empty-notifications">
         <img src="/img/empty.svg" alt="" class="img-empty"/>
         <div class="row mt-2">
             <div class="col-md-12">
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div  class="col-md-12">
+    <div class="w-100">
         <div class="boxed boxed--border row-list pt-0 pb-0">
             <div v-for="f in following" class="row row-list-user">
                 <div class="col-md-9">

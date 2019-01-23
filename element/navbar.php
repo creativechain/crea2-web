@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>CREARY</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url" content="https://creary.net/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"    <meta property="og:url" content="https://creary.net/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CREARY">
     <meta property="og:description" content="Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.">

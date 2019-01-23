@@ -41,8 +41,19 @@
       min-width: 249px;
       max-width: 250px;
     }
+    .card__top {
+      height: 250px;
+      .img-post-list {
+        height: 250px;
+      }
+    }
   }
   .view-profile {
+    .dropdown {
+      .dropdown__container {
+        position: absolute;
+      }
+    }
     .dropdown__container > .container {
       width: 130px;
       max-width: 1140px;
@@ -81,7 +92,36 @@
   }
 }
 @media (max-width: 767px) {
-
+  #post-view {
+    padding-top: 0;
+    .menu-right {
+      .row-publish-description {
+        .title {
+          margin-bottom: 0;
+        }
+        .description {
+          margin-top: 0 !important;
+        }
+      }
+      .row-publish-tags {
+        .title {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .border-post-view {
+      border: 0 solid #DFDFDF;
+      border-radius: 0;
+      .full-post {
+        .img-more-projects {
+          height: 70px;
+        }
+      }
+    }
+  }
+  .container {
+    max-width: 100%;
+  }
   .box-blockchain-certificate {
     .ul-blockchain-certificate {
       display: grid !important;
@@ -94,12 +134,7 @@
   .post-view .menu-right .row-social .ul-social .dropdown-price.dropdown--active {
     border: 0 solid #505050;
   }
-  .card-home .dropdown-price {
-    border: 0 !important;
-  }
-  .dropdown__container.price {
-    border: 0 !important;
-  }
+
   input, select {
     height: auto;
   }
@@ -108,13 +143,6 @@
   }
   .list-inline-item:not(:last-child) {
     margin-right: 0.5rem !important;
-  }
-  .view-wallet  {
-    .tabs-container-primary {
-      .tabs-primary {
-        display: flex;
-      }
-    }
   }
   .row-list-user {
     padding-bottom: 10px;
@@ -130,6 +158,68 @@
       }
     }
   }
+  .view-profile {
+    .dropdown {
+      .dropdown__container {
+        position: absolute;
+      }
+    }
+    .view-wallet {
+      .tabs-container-primary {
+        .tabs-primary {
+          display: flex;
+        }
+        ul:nth-child(2) {
+          display: none;
+        }
+
+      }
+      .row-list-user {
+        padding-bottom: 0;
+        .list-data-user {
+          padding: 3px;
+          line-height: 13px;
+          p:first-child {
+            display: grid;
+          }
+          p:nth-child(2) {
+            margin-top: 5px;
+          }
+        }
+        .list-amount {
+          top: 20px;
+        }
+      }
+      .table-amount {
+        tbody {
+          tr {
+            td:nth-child(2) {
+              vertical-align: top;
+            }
+          }
+        }
+      }
+      .alert__body {
+        padding: 0 0 15px;
+        .row-liquid {
+          position: relative;
+          right: 0;
+          top: 10px;
+        }
+      }
+      .mobile-button-buy-crea {
+        padding: 0 10px 20px;
+        text-align: center;
+      }
+    }
+  }
+  .project-profile {
+    .masonry__item {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
 }
 
 // Small devices (landscape phones, 576px and up)

@@ -42,7 +42,7 @@
   .li-buy-crea {
     position: absolute;
     right: 15px;
-    top: 10px;
+    top: 0;
     opacity: 1 !important;
   }
   .padding-b-10 {
@@ -52,12 +52,16 @@
     .tabs-primary {
       border: 1px solid transparent;
       padding: 10px;
+      padding-bottom: 0;
       li.active {
         border-top: 3px solid transparent;
       }
       li:not(:last-child) {
         border-right: 1px solid transparent;
       }
+    }
+    ul:nth-child(2) {
+      display: none;
     }
   }
   .tabs--folder .tabs-content {
