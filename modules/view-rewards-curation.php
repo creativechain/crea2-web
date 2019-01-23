@@ -1,7 +1,7 @@
-<div class="col-md-12">
+<div class="w-100">
     <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_CURATION }}</h3>
 </div>
-<div class="col-md-12">
+<div class="w-100">
     <div class="boxed boxed--border box-rewards-autor">
         <div class="row">
             <div class="col">
@@ -14,11 +14,11 @@
     </div>
 </div>
 
-<div class="col-md-12">
+<div class="w-100">
     <h3 class="title-section-profile">{{ lang.PROFILE.TEXT_CURATION_HISTORY }}</h3>
 </div>
 
-<div class="col-md-12">
+<div class="w-100">
     <div class="boxed boxed--border">
         <div class="row">
             <div class="col-md-12">

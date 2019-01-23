@@ -262,7 +262,7 @@ a:hover {
 }
 
 .masonry__item:not(:empty) {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   transform-style: flat;
 }
 #slide-home {
@@ -337,16 +337,19 @@ img {
     width: 100%;
   }
   .dropdown-price {
-    border: 1px solid #505050;
-    border-radius: 25px;
-    padding: 0 10px;
-  }
-  .dropdown-price:hover {
-    border: 1px solid $active-circle;
     span {
-      color: $active-circle;
+      border: 1px solid #505050;
+      border-radius: 25px;
+      padding: 0 10px;
+    }
+    span:hover {
+      border: 1px solid $active-circle;
+      span {
+        color: $active-circle;
+      }
     }
   }
+
   .li-like {
     a {
       color: $color-dark-primary;

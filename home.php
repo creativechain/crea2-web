@@ -5,7 +5,7 @@
         <?php include ('modules/banner.php') ?>
     </div>
 
-    <section class="cta cta-4 space--xxs border--bottom ">
+    <section class="cta cta-4 space--xxs border--bottom d-none d-sm-block">
         <div class="container post-container-home">
             <div class="row">
                 <?php include ('modules/navbar-filter-home.php') ?>
@@ -14,7 +14,7 @@
     </section>
 
     <div v-cloak id="home-posts">
-        <section v-if="state.discussion_idx[discuss][category].length > 0" class="space--sm">
+        <section v-if="state.discussion_idx[discuss][category].length > 0" class="pt-4">
             <div class="container post-container-home">
                 <div class="row">
                     <template v-for="p in state.discussion_idx[discuss][category]">

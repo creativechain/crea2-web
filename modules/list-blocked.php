@@ -1,9 +1,8 @@
 <div v-cloak id="blocked-container" class="row">
-    <div class="col-md-12">
+    <div class="w-100">
         <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_BLOCKED }}</h3>
     </div>
-
-    <div class="col-md-12">
+    <div class="w-100">
         <div class="boxed boxed--border row-list pt-0 pb-0">
             <div v-for="b in blocked" class="row row-list-user">
                 <div class="col-md-9">
@@ -13,7 +12,6 @@
                                 <avatar v-bind:account="b"></avatar>
                             </a>
                         </div>
-
                         <div class="list-data-user">
                             <username v-bind:user="b.name" v-bind:name="b.metadata.publicName"></username>
                             <p><span>{{ b.metadata.description || 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod' }}</span></p>
@@ -26,10 +24,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
 

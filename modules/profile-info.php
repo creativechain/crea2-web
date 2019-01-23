@@ -36,7 +36,7 @@
 
     <hr />
     <div class="row profile-summary">
-        <div class="col-md-7">
+        <div class="col-7 col-md-7">
             <ul class="list-inline">
                 <li class="list-inline-item">
                     <a class="text-uppercase a-follower" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
@@ -45,13 +45,13 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-5 text-right">
+        <div class="col-5 col-md-5 text-right">
             <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
                 {{ state.user.follower_count }}
             </a>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-7 col-md-7">
             <ul class="list-inline">
                 <li class="list-inline-item">
                     <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
@@ -60,13 +60,13 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-5 text-right">
+        <div class="col-5 col-md-5 text-right">
             <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
                 {{ state.user.following_count }}
             </a>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-7 col-md-7">
             <ul class="list-inline">
                 <li class="list-inline-item">
                     <a class="text-uppercase a-projects" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
@@ -75,7 +75,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-5 text-right">
+        <div class="col-5 col-md-5 text-right">
             <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
                 {{ state.user.post_count }}
             </a>

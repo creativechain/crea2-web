@@ -176,7 +176,7 @@ lang.en = {
         "UNLOCK": "Unlock"
     },
     "WELCOME": {
-        SLIDE1_TITLE: "Discover the Crea comunity!",
+        SLIDE1_TITLE: "Discover the Crea community!",
         SLIDE1_TEXT1: "Creary is the decentralized creative community connected to the blockchain of Crea. We are not a " +
         "conventional social network controlled by a centralized entity.",
         SLIDE1_TEXT2: "The blockchain of Crea is supported transversally by the members of the community around the world.",

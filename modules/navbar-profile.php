@@ -10,7 +10,7 @@
             <div class="dropdown__container">
                 <div class="container">
                     <div class="row">
-                        <div class="dropdown__content col-lg-2 col-md-4 text-left">
+                        <div class="dropdown__content col-lg-2 col-md-4 col-sm-4 text-left">
                             <ul class="menu-vertical">
                                 <li class="">
                                     <a v-bind:href="'/@' + state.user.name + '/author-rewards'" v-on:click="navigateTo($event, 'author-rewards')">

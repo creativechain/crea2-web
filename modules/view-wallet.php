@@ -1,4 +1,4 @@
-<div class="col-md-12 padding-b-10" v-bind:class="{ hidden: !(session && state.user.name === session.account.username && hasRewardBalance()) }">
+<div class="w-100 padding-b-10" v-bind:class="{ hidden: !(session && state.user.name === session.account.username && hasRewardBalance()) }">
     <div class="alert bg--primary">
         <div class="alert__body">
             <span>{{ lang.WALLET.PENDING_REWARDS }}: {{ state.user.reward_crea_balance}},
@@ -14,39 +14,49 @@
     </div>
 </div>
 
-<div class="col-md-12">
+<div class="w-100">
     <div class="boxed boxed--border no-padding">
         <div class="tabs-container tabs--folder tabs-container-primary">
-            <ul class="tabs tabs-primary ul-submenu-wallet">
-                <li v-bind:class="{ active: walletTab === 'balances' }" v-on:click="walletTab = 'balances'">
+            <ul class="tabs-content tabs tabs-primary ul-submenu-wallet">
+                <li class="col-4 col-sm-2" v-bind:class="{ active: walletTab === 'balances' }" v-on:click="walletTab = 'balances'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.BALANCES }}</span>
                     </div>
 
                 </li>
-                <li v-if="session && isUserProfile()" v-bind:class="{ active: walletTab === 'permissions' }" v-on:click="walletTab = 'permissions'">
+                <li  class="col-4 col-sm-2" v-if="session && isUserProfile()" v-bind:class="{ active: walletTab === 'permissions' }" v-on:click="walletTab = 'permissions'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.PERMISSIONS }}</span>
                     </div>
-
                 </li>
-                <li v-if="session && isUserProfile()" v-bind:class="{ active: walletTab === 'passwords' }" v-on:click="walletTab = 'passwords'">
+                <li  class="col-4 col-sm-2" v-if="session && isUserProfile()" v-bind:class="{ active: walletTab === 'passwords' }" v-on:click="walletTab = 'passwords'">
                     <div class="tab__title">
                         <span class="h5">{{ lang.WALLET.PASSWORDS }}</span>
                     </div>
-
                 </li>
-                <li class="text-right li-buy-crea d-sm-none d-none">
+                <li class="text-right li-buy-crea d-sm-none d-none col-sm-3">
                     <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
                         <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
                     </a>
                 </li>
-                <li class="text-right li-buy-crea">
+
+                <!-- responsive laptop -->
+                <li class="text-right li-buy-crea d-none d-sm-none d-md-block">
                     <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
                         <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
                     </a>
                 </li>
             </ul>
+
+            <!-- responsive mobile -->
+            <div class="d-block d-sm-block d-md-none mobile-button-buy-crea">
+                <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
+                    <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
+                </a>
+            </div>
+
+
+
 
             <ul id="wallet-tabs" class="tabs-content no-padding">
                 <li v-bind:class="{ active: walletTab === 'balances' }">
@@ -530,6 +540,6 @@
     </div>
 </div>
 
-<div class="col-md-12">
+<div class="w-100">
     <?php include ('list-historial.php') ?>
 </div>
