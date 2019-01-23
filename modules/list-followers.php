@@ -1,5 +1,5 @@
 <div v-cloak id="follower-container" class="row">
-    <div class="col-md-12">
+    <div class="w-100">
         <h3 class="title-section-profile">Followers</h3>
     </div>
 
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="w-100">
         <div class="boxed boxed--border row-list pt-0 pb-0">
             <div v-for="f in follower" class="row row-list-user">
                 <div class="col-md-9">

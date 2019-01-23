@@ -78,16 +78,12 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <!--end of row-->
                                                                             </form>
                                                                         </div>
                                                                     </div>
-                                                                    <!--end feature-->
                                                                 </div>
                                                             </div>
-                                                            <!--end of row-->
                                                         </div>
-                                                        <!--end of container-->
                                                     </section>
                                                 </div>
                                             </div>
@@ -101,7 +97,7 @@
                             </div>
                             <div class="row">
                                 <template v-for="o in otherProjects">
-                                    <div class="col-md-4">
+                                    <div class="col-4 col-sm-4 col-md-4 mb-2">
                                         <a v-bind:href="o.url">
                                             <div class="img-more-projects"
                                                  v-on:click="showPost(o)"
@@ -110,9 +106,7 @@
                                     </div>
                                 </template>
                             </div>
-                            <!--<div class="row">
-                                <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.YOUR_COMMENTS }}</p></div>
-                            </div>-->
+
                             <div class="row mt--1">
                                 <div class="col-md-12">
                                     <p class="subtitle-content-publish">{{ lang.PUBLICATION.COMMENTS }}</p>
@@ -272,9 +266,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <!--end of row-->
                                                                         </div>
-                                                                        <!--end of container-->
                                                                     </section>
                                                                 </div>
                                                             </div>
@@ -294,8 +286,8 @@
                         <!-- MENU RIGHT -->
 
                         <div class="col-md-3 menu-right order-first order-sm-first order-md-2">
-                            <div class="row">
-                                <div class="col-md-12">
+                            <div class="row align-items-center">
+                                <div class="col-6 col-md-12">
                                     <div class="row-user-name">
                                         <div class="user-avatar">
                                             <a v-bind:href="'/@' + state.author.name">
@@ -308,8 +300,25 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- ONlY MOBILE -->
+                                <div class="col-6 text-center d-block d-sm-none d-none d-sm-block d-sm-block d-md-none">
+                                    <btn-follow v-if="session && !isSameUser()"
+                                                v-on:follow="onFollow" v-bind:session="session"
+                                                v-bind:account="user"
+                                                v-bind:user="state.post.author" >
+
+                                    </btn-follow>
+                                    <div v-else-if="session" class="btn btn--primary" v-on:click="editPost()">
+                                        <span class="btn__text">
+                                            {{ lang.BUTTON.EDIT_POST }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- ONlY MOBILE -->
+
                             </div>
-                            <div class="row row-master">
+                            <div class="row row-master d-none d-sm-none d-md-block">
                                 <div class="col-md-6">
 
                                 </div>
@@ -317,7 +326,7 @@
 
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-none d-sm-none d-md-none d-md-block">
                                 <div class="col-md-12 text-center">
                                     <btn-follow v-if="session && !isSameUser()"
                                                 v-on:follow="onFollow" v-bind:session="session"

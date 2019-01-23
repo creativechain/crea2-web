@@ -1,7 +1,7 @@
-<div class="col-md-12">
+<div class="w-100">
     <h4>{{ lang.EDIT_PROFILE.SECTION_TITLE }}</h4>
 </div>
-<div class="col-md-12">
+<div class="w-100">
     <div id="profile-edit" class="boxed boxed--sm boxed--border">
         <div class="row">
             <div class="col-md-12 row-flex">
