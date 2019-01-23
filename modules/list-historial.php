@@ -176,50 +176,71 @@
             </div>
         </div>
         <div v-else-if="op.op.type == 'producer_reward_operation'" class="row-list-user">
-            <div class="user-avatar">
-                <a v-bind:href="'/@' + op.op.value.producer">
-                    <avatar v-bind:account="history.accounts[op.op.value.producer]"></avatar>
-                </a>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-8 col-md-8">
+                        <div class="row-list-user-display">
+                            <div class="user-avatar">
+                                <a v-bind:href="'/@' + op.op.value.producer">
+                                    <avatar v-bind:account="history.accounts[op.op.value.producer]"></avatar>
+                                </a>
+                            </div>
+
+                            <div class="list-data-user">
+                                <p>
+                                    <username v-bind:user="op.op.value.producer" v-bind:name="history.accounts[op.op.value.producer].metadata.publicName"></username>
+                                    <span>{{ dateFromNow(op.timestamp) }}</span>
+                                </p>
+                                <p>
+                                    {{ String.format(lang.HISTORY.PRODUCED, parseAsset(op.op.value.vesting_shares, null, false)) }}
+                                </p>
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-4 text-right">
+                        <div class="list-amount">
+                            <p>+{{ parseAsset(op.op.value.vesting_shares, null, false) }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="list-data-user">
-                <p>
-                    <username v-bind:user="op.op.value.producer" v-bind:name="history.accounts[op.op.value.producer].metadata.publicName"></username>
-                    <span>{{ dateFromNow(op.timestamp) }}</span>
-                </p>
-                <p>
-                    {{ parseAsset(op.op.value.vesting_shares, null, false) }} {{ lang.HISTORY.PRODUCED }}
-                    <linkname v-bind:user="op.op.value.producer" v-bind:name="history.accounts[op.op.value.producer].metadata.publicName"></linkname>
-                </p>
-                <p></p>
-            </div>
-            <div class="list-amount">
-                <p>+{{ parseAsset(op.op.value.vesting_shares, null, false) }}</p>
-            </div>
-            <hr />
         </div>
         <div v-else-if="op.op.type == 'curator_reward_operation'" class="row-list-user">
-            <div class="user-avatar">
-                <a v-bind:href="'/@' + op.op.value.curator">
-                    <avatar v-bind:account="history.accounts[op.op.value.curator]"></avatar>
-                </a>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-8 col-md-8">
+                        <div class="row-list-user-display">
+                            <div class="user-avatar">
+                                <a v-bind:href="'/@' + op.op.value.curator">
+                                    <avatar v-bind:account="history.accounts[op.op.value.curator]"></avatar>
+                                </a>
+                            </div>
+
+                            <div class="list-data-user">
+                                <p>
+                                    <username v-bind:user="op.op.value.curator"
+                                              v-bind:name="history.accounts[op.op.value.curator].metadata.publicName"></username>
+                                    <span>{{ dateFromNow(op.timestamp) }}</span>
+                                </p>
+                                <p>
+                                    <linkname v-bind:user="op.op.value.curator"
+                                              v-bind:name="history.accounts[op.op.value.curator].metadata.publicName"></linkname>
+                                    {{ String.format(lang.HISTORY.CURATE, parseAsset(op.op.value.reward), '/@' + op.op.value.comment_author + '/'+ op.op.value.comment_permlink) }}
+                                </p>
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-4 text-right">
+                        <div class="list-amount">
+                            <p>+{{ parseAsset(op.op.value.reward, null, false) }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="list-data-user">
-                <p>
-                    <username v-bind:user="op.op.value.curator"
-                              v-bind:name="history.accounts[op.op.value.curator].metadata.publicName"></username>
-                    <span>{{ dateFromNow(op.timestamp) }}</span>
-                </p>
-                <p>
-                    <linkname v-bind:user="op.op.value.curator"
-                              v-bind:name="history.accounts[op.op.value.curator].metadata.publicName"></linkname>
-                    {{ String.format(lang.HISTORY.CURATE, parseAsset(op.op.value.reward), '/@' + op.op.value.comment_author + '/'+ op.op.value.comment_permlink) }}
-                </p>
-                <p></p>
-            </div>
-            <div class="list-amount">
-                <p>+{{ parseAsset(op.op.value.reward, null, false) }}</p>
-            </div>
-            <hr />
         </div>
         <div v-else-if="op.op.type == 'account_create_operation'" class="row-list-user">
             <div class="col-md-12">
