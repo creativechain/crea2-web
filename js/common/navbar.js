@@ -112,8 +112,12 @@
     }
 
     function checkUsername(event) {
-        let username = event.target.value;
-        console.log("Checking", username);
+        let target = navbarContainer.$refs.loginusername;
+        target.value = target.value.toLowerCase();
+        navbarContainer.loginForm.username.value = target.value;
+        let username = target.value;
+
+        console.log(target.value);
         if (!crea.utils.validateAccountName(username)) {
             let accounts = [ username ];
             console.log("Checking", accounts);
@@ -128,7 +132,7 @@
                 }
             })
         } else {
-            navbarContainer.loginForm.username.error = lang.ERROR.INVALID_USERNAME;
+            navbarContainer.loginForm.username.error = getLanguage().ERROR.INVALID_USERNAME;
         }
     }
 

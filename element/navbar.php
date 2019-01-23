@@ -293,6 +293,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-12 text-left">
                                                                                 <input id="login-username" v-model="loginForm.username.value"
+                                                                                       ref="loginusername"
                                                                                        v-on:input="checkUsername"
                                                                                        type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
                                                                                 <span class="error-color-form">{{ loginForm.username.error || ' ' }}</span>
