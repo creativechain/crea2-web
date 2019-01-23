@@ -381,7 +381,7 @@
                                     <p class="total-active">{{ state.user.estimate_account_value }}$</p>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr v-if="nextDeEnergize">
                                 <td class="colo-primary">
                                     {{ nextDeEnergize }}
                                 </td>
