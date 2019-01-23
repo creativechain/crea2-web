@@ -285,8 +285,11 @@ Vue.component('like', {
             }
         }
     },
+    updated: function () {
+        this.state = this.hasVote() ? 1 : -1;
+    },
     mounted: function () {
-        this.state = this.hasVote() ? 1 : -1
+        this.state = this.hasVote() ? 1 : -1;
     }
 });
 
@@ -502,6 +505,9 @@ Vue.component('btn-follow',  {
         isFollowing: function () {
             return this.session && this.account.followings.includes(this.user);
         }
+    },
+    updated: function () {
+        this.$data.state = this.isFollowing() ? 1 : -1;
     },
     mounted: function () {
         this.$data.state = this.isFollowing() ? 1 : -1;
