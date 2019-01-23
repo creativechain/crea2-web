@@ -24,6 +24,26 @@
             </div>
         </section>
 
+        <div v-else-if="category === 'search'" class="view-empty">
+            <section class="height-60 bg--light text-center">
+                <div class="container pos-vertical-center">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 text-center">
+
+                            <div class="row mt-2">
+                                <div class="col-md-4 col-sm-6">
+                                    <p class="title">{{ lang.HOME.NO_SEARCH_RESULTS_1 }}</p>
+                                    <p class="subtitle">{{ lang.HOME.NO_SEARCH_RESULTS_2 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+
         <div v-else class="view-empty">
             <section class="height-60 bg--light text-center">
                 <div class="container pos-vertical-center">

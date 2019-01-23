@@ -441,7 +441,9 @@ lang.en = {
         "MENU_LOGIN": "Login",
         "EMPTY_TITLE": "Welcome to your new tab of users that you follow.",
         "EMPTY_SUBTITLE": "Follow people with tastes like yours to see what new and original ideas they discover.",
-        "PROMOTION_COST": "Promotion Cost"
+        "PROMOTION_COST": "Promotion Cost",
+        "NO_SEARCH_RESULTS_1": "Your search returned no results.",
+        "NO_SEARCH_RESULTS_2": "Make sure you spell all keywords correctly or try different search terms."
     },
     "LICENSE": {
         "FREECONTENT": "FreeContent",

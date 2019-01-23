@@ -62,7 +62,7 @@
             state.discussion_idx[discuss][category] = cKeys;
             lastPage = 1;
         } else if (window.location.pathname === '/search') {
-            lastPage = 1;
+            lastPage = getParameterByName('page') || 1;
         } else {
             let contentArray = state.discussion_idx[discuss][category];
             lastPage = state.content[contentArray[contentArray.length-1]];
@@ -291,7 +291,7 @@
         } else {
             if (path.startsWith('/search')) {
                 let search = getParameterByName('query');
-                let page = getParameterByName('page');
+                let page = getParameterByName('page') || 1;
                 performSearch(search, page, true);
             } else {
                 creaEvents.emit('crea.content.filter', path);
@@ -411,7 +411,7 @@
                 let query = getParameterByName('query');
                 let postCount = Object.keys(homePosts.state.content).length;
 
-                if ((postCount % 20) === 0) {
+                if (postCount > 0 && (postCount % 20) === 0) {
                     globalLoading.show = true;
                     performSearch(query, ++lastPage, true, function () {
                         onScrollCalling = false;
@@ -540,6 +540,15 @@
             };
 
             getState(data[x]);
+
+        }
+
+        if (data.length === 0) {
+            crea.api.getState('/no_results', function (err, result) {
+                if (!catchError(err)) {
+                    onFinish(result);
+                }
+            })
 
         }
     });
