@@ -437,8 +437,8 @@ Vue.component('witness-like', {
 });
 
 Vue.component('btn-follow',  {
-    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm" v-bind:class="{ 'btn--primary': $data.state == -1, 'btn-following': $data.state >= 1, 'btn-unfollow': over && $data.state >= 1 }">
-<span class="btn__text" v-bind:class="{ text__dark: $data.state >= 1 && !over }">{{ followText() }}</span>
+    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm running ld ld-ext-right" v-bind:class="btnClasses">
+<span class="btn__text" v-bind:class="textClasses"></span>{{ state === 0 ? lastText : text }}<div v-bind:class="loadingClasses"></div>
 </div>`,
     props: {
         session: {
@@ -468,12 +468,37 @@ Vue.component('btn-follow',  {
             }
         }
     },
+    computed: {
+        btnClasses: function () {
+            return {
+                'btn--primary': this.state <=-1 || !this.isFollowing() && this.state === 0,
+                'btn-following': this.state >= 1  || this.isFollowing() && this.state === 0,
+                'btn-unfollow': this.over && this.state >= 1,
+
+            }
+        },
+        loadingClasses: function () {
+            return {
+                'ld': this.state === 0,
+                'ld-ring': this.state === 0,
+                'ld-spin-fast': this.state === 0,
+            }
+        },
+        textClasses: function () {
+            return {
+                'text__dark': this.state >= 1 && !this.over
+            }
+        }
+
+    },
     data: function () {
         return {
             lang: getLanguage(),
             over: false,
-            state: -1,
-            userAccount: jsonify(jsonstring(this.account))
+            state: 0,
+            lastState: 0,
+            text: null,
+            lastText: null
         }
     },
     methods: {
@@ -481,11 +506,14 @@ Vue.component('btn-follow',  {
             let operation = 'follow';
             let that = this;
             let session = this.$props.session;
+            this.lastState = this.state;
+
             if (session) {
+                this.state = 0;
                 let followJson = {
                     follower: session.account.username,
                     following: this.$props.user,
-                    what: this.$data.state === 1 ? [] : ['blog']
+                    what: this.lastState === 1 ? [] : ['blog']
                 };
 
                 followJson = [operation, followJson];
@@ -495,15 +523,8 @@ Vue.component('btn-follow',  {
                         if (err) {
                             that.$emit('follow', err)
                         } else {
+                            that.state = that.lastState >= -1 ? 2 : -2;
                             that.$emit('follow', null, result);
-
-                            /*if (that.isFollowing()) {
-                                let i = that.account.followings.indexOf(that.user);
-                                that.userAccount.followings = that.userAccount.followings.splice(i, 1);
-                            } else {
-                                that.userAccount.followings = that.userAccount.followings.push(that.user);
-                            }*/
-                            that.$data.state = that.$data.state === -1 ? 2 : -1;
                         }
                     })
                 });
@@ -512,13 +533,6 @@ Vue.component('btn-follow',  {
                 this.$emit('follow', Errors.USER_NOT_LOGGED)
             }
 
-        },
-        followText: function () {
-            if (this.$data.state > 0) {
-                return this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
-            }
-
-            return this.lang.BUTTON.FOLLOW
         },
         onover: function () {
             this.over = true;
@@ -531,13 +545,23 @@ Vue.component('btn-follow',  {
         }
     },
     updated: function () {
-        if (this.state !== 2) {
-            this.$data.state = this.isFollowing() ? 1 : -1;
+        if (this.state === -1 || this.state === 1) {
+            this.state = this.isFollowing() ? 1 : -1;
         }
+
+        this.lastText = this.text;
+
+        if (this.state > 0) {
+            this.text = this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
+        } else if (this.state < 0) {
+            this.text = this.lang.BUTTON.FOLLOW
+        }
+
+        this.lastText = this.lastText === null ? this.text : this.lastText;
 
     },
     mounted: function () {
-        this.$data.state = this.isFollowing() ? 1 : -1;
+        this.state = this.isFollowing() ? 1 : -1;
     }
 });
 

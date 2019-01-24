@@ -23,6 +23,9 @@
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
+    <link rel="stylesheet" type="text/css" href="//loading.io/css/loading.css"/>
+    <link rel="stylesheet" type="text/css" href="//loading.io/css/loading-btn.css"/>
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
