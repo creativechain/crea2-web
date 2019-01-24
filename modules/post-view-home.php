@@ -58,7 +58,7 @@
                         <div class="dropdown__container dropdown-info-user">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-12 dropdown__content">
+                                    <div class="col-12 col-sm-3 col-md-12 dropdown__content">
                                         <div class="row">
                                             <div class="col text-center">
                                                 <div class="user-avatar">
