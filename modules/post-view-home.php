@@ -86,15 +86,6 @@
 
 
                                             <div class="col text-center m-btn-follow">
-                                                <div class="btn btn-sm button-follow btn-following running ld ld-ext-right">
-                                                    <div class="btn__text text__dark ld ld-ring ld-spin-fast"></div>
-                                                    Follow
-                                                    <div></div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col text-center m-btn-follow">
                                                 <btn-follow class="button-follow" v-on:follow="onFollow"
                                                             v-bind:session="session" v-bind:account="account.user"
                                                             v-bind:user="state.content[p].author">
