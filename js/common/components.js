@@ -437,8 +437,8 @@ Vue.component('witness-like', {
 });
 
 Vue.component('btn-follow',  {
-    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm" v-bind:class="{ 'btn--primary': $data.state == -1, 'btn-following': $data.state == 1, 'btn-unfollow': over && $data.state == 1 }">
-<span class="btn__text" v-bind:class="{ text__dark: $data.state == 1 && !over }">{{ followText() }}</span>
+    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm" v-bind:class="{ 'btn--primary': $data.state == -1, 'btn-following': $data.state >= 1, 'btn-unfollow': over && $data.state >= 1 }">
+<span class="btn__text" v-bind:class="{ text__dark: $data.state >= 1 && !over }">{{ followText() }}</span>
 </div>`,
     props: {
         session: {
@@ -452,11 +452,28 @@ Vue.component('btn-follow',  {
         }
 
     },
+    watch: {
+        user: {
+            immediate: true,
+            deep: true,
+            handler: function (newVal, oldVal) {
+                this.$forceUpdate();
+            }
+        },
+        account: {
+            immediate: true,
+            deep: true,
+            handler: function (newVal, oldVal) {
+                this.$forceUpdate();
+            }
+        }
+    },
     data: function () {
         return {
             lang: getLanguage(),
             over: false,
-            state: -1
+            state: -1,
+            userAccount: jsonify(jsonstring(this.account))
         }
     },
     methods: {
@@ -468,7 +485,7 @@ Vue.component('btn-follow',  {
                 let followJson = {
                     follower: session.account.username,
                     following: this.$props.user,
-                    what: this.$data.state == 1 ? [] : ['blog']
+                    what: this.$data.state === 1 ? [] : ['blog']
                 };
 
                 followJson = [operation, followJson];
@@ -479,7 +496,14 @@ Vue.component('btn-follow',  {
                             that.$emit('follow', err)
                         } else {
                             that.$emit('follow', null, result);
-                            that.$data.state = that.$data.state == 1 ? -1 : 1;
+
+                            /*if (that.isFollowing()) {
+                                let i = that.account.followings.indexOf(that.user);
+                                that.userAccount.followings = that.userAccount.followings.splice(i, 1);
+                            } else {
+                                that.userAccount.followings = that.userAccount.followings.push(that.user);
+                            }*/
+                            that.$data.state = that.$data.state === -1 ? 2 : -1;
                         }
                     })
                 });
@@ -507,7 +531,10 @@ Vue.component('btn-follow',  {
         }
     },
     updated: function () {
-        this.$data.state = this.isFollowing() ? 1 : -1;
+        if (this.state !== 2) {
+            this.$data.state = this.isFollowing() ? 1 : -1;
+        }
+
     },
     mounted: function () {
         this.$data.state = this.isFollowing() ? 1 : -1;

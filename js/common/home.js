@@ -213,6 +213,7 @@
             homePosts.search = getParameterByName('query');
         }
 
+        homePosts.$forceUpdate();
         creaEvents.emit('crea.dom.ready');
     }
 
