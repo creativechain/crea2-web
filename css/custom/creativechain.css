@@ -946,11 +946,18 @@
 .btn .btn__text, .btn i {
   font-size: 12px; }
 
+.btn:hover {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0); }
+
 .icons-navbar {
   font-size: 16px !important; }
 
 .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
   font-size: 14px; }
+
+.btn--primary {
+  color: white; }
 
 .btn--primary, .btn--primary:visited {
   background: #0569EF;
@@ -1008,11 +1015,16 @@
   border: solid 1px #3B3B3C !important;
   background-color: transparent !important; }
 
+.button-follow {
+  color: white; }
+
 .btn-following {
+  color: #222222 !important;
   border-color: #d3d3d3 !important;
   background-color: transparent !important; }
 
 .btn-following:hover {
+  color: #222222 !important;
   border-color: #d3d3d3 !important;
   background-color: transparent !important; }
   .btn-following:hover .text__dark {
