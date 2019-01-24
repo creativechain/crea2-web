@@ -341,12 +341,16 @@ img {
       border: 1px solid #505050;
       border-radius: 25px;
       padding: 0 10px;
+      display: flex;
     }
     span:hover {
       border: 1px solid $active-circle;
       span {
         color: $active-circle;
       }
+    }
+    .dropdown__container.price {
+      position: absolute;
     }
   }
 
@@ -405,6 +409,8 @@ img {
     overflow: visible;
   }
   .dropdown-info-user {
+    position: absolute;
+
     .m-btn-follow {
       margin: 0 0 10px;
     }

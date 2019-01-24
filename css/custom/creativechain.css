@@ -1428,11 +1428,14 @@ img {
   .card-home .dropdown-price span {
     border: 1px solid #505050;
     border-radius: 25px;
-    padding: 0 10px; }
+    padding: 0 10px;
+    display: flex; }
   .card-home .dropdown-price span:hover {
     border: 1px solid #0073FF; }
     .card-home .dropdown-price span:hover span {
       color: #0073FF; }
+  .card-home .dropdown-price .dropdown__container.price {
+    position: absolute; }
   .card-home .li-like a {
     color: #222222; }
     .card-home .li-like a img {
@@ -1464,42 +1467,44 @@ img {
       margin-right: 5px; }
   .card-home .card-show {
     overflow: visible; }
-  .card-home .dropdown-info-user .m-btn-follow {
-    margin: 0 0 10px; }
-  .card-home .dropdown-info-user .container {
-    width: 960px; }
-  .card-home .dropdown-info-user .user-avatar {
-    margin: 20px auto 10px; }
-  .card-home .dropdown-info-user .user-avatar {
-    height: 50px;
-    width: 50px; }
-  .card-home .dropdown-info-user .img-user-avatar {
-    width: 50px;
-    height: 50px; }
-  .card-home .dropdown-info-user .btn {
-    border-radius: 25px;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 2em;
-    padding-left: 2em;
-    border: 1px solid white;
-    border-width: 1px;
-    font-size: inherit;
-    line-height: 1.85714286em; }
-  .card-home .dropdown-info-user .btn .btn__text, .card-home .dropdown-info-user .btn i {
-    color: white;
-    border-color: white; }
-  .card-home .dropdown-info-user .avatare-info {
-    width: 55px;
-    margin: 10px 0; }
-  .card-home .dropdown-info-user p.name {
-    font-size: 14px;
-    font-weight: bold; }
-  .card-home .dropdown-info-user p.email-user {
-    margin: 10px 0; }
-  .card-home .dropdown-info-user p.title-stats {
-    font-size: 12px;
-    font-weight: bold; }
+  .card-home .dropdown-info-user {
+    position: absolute; }
+    .card-home .dropdown-info-user .m-btn-follow {
+      margin: 0 0 10px; }
+    .card-home .dropdown-info-user .container {
+      width: 960px; }
+    .card-home .dropdown-info-user .user-avatar {
+      margin: 20px auto 10px; }
+    .card-home .dropdown-info-user .user-avatar {
+      height: 50px;
+      width: 50px; }
+    .card-home .dropdown-info-user .img-user-avatar {
+      width: 50px;
+      height: 50px; }
+    .card-home .dropdown-info-user .btn {
+      border-radius: 25px;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-right: 2em;
+      padding-left: 2em;
+      border: 1px solid white;
+      border-width: 1px;
+      font-size: inherit;
+      line-height: 1.85714286em; }
+    .card-home .dropdown-info-user .btn .btn__text, .card-home .dropdown-info-user .btn i {
+      color: white;
+      border-color: white; }
+    .card-home .dropdown-info-user .avatare-info {
+      width: 55px;
+      margin: 10px 0; }
+    .card-home .dropdown-info-user p.name {
+      font-size: 14px;
+      font-weight: bold; }
+    .card-home .dropdown-info-user p.email-user {
+      margin: 10px 0; }
+    .card-home .dropdown-info-user p.title-stats {
+      font-size: 12px;
+      font-weight: bold; }
   .card-home .user-avatar {
     height: 30px;
     width: 30px;
