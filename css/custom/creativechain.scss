@@ -368,8 +368,9 @@ img {
   }
   .li-comment {
     width: auto;
-    a {
+    p {
       color: $color-dark-primary;
+      margin-top: 0;
       img {
         margin-right: 5px;
         width: 16px;

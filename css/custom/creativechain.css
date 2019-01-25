@@ -1039,10 +1039,10 @@
   background-color: #FF5666 !important; }
 
 .ld-ring {
-  color: #eaeaea  !important; }
+  color: #CACACA !important; }
 
 .ld-ring-blue {
-  color: #eaeaea  !important; }
+  color: #CACACA !important; }
 
 .like-normal div {
   background: #cacaca;
@@ -1463,9 +1463,10 @@ img {
     right: 11px; }
   .card-home .li-comment {
     width: auto; }
-    .card-home .li-comment a {
-      color: #222222; }
-      .card-home .li-comment a img {
+    .card-home .li-comment p {
+      color: #222222;
+      margin-top: 0; }
+      .card-home .li-comment p img {
         margin-right: 5px;
         width: 16px; }
   .card-home .li-certificate {
