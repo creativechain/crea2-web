@@ -3,9 +3,8 @@
  */
 
 
-let postContainer;
 (function () {
-
+    let postContainer;
     let promoteModal;
 
     let url = window.location.pathname;
