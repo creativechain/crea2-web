@@ -1038,6 +1038,12 @@
   border-color: #FF5666 !important;
   background-color: #FF5666 !important; }
 
+.ld-ring {
+  color: #eaeaea  !important; }
+
+.ld-ring-blue {
+  color: #eaeaea  !important; }
+
 .like-normal div {
   background: #cacaca;
   cursor: pointer; }
