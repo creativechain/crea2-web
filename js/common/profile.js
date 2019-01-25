@@ -3,12 +3,12 @@
  */
 
 
-
+let followingContainer;
 (function () {
     let profileContainer;
     let rewardsContainer = {};
     let blockedContainer;
-    let followingContainer;
+
     let followerContainer;
     let walletModalSend;
     let walletModalDeEnergize;
@@ -808,6 +808,7 @@
             followingContainer.following = following;
         }
 
+        followerContainer.$forceUpdate();
     }
 
     function setUpFollowers(state, session, account, follower) {

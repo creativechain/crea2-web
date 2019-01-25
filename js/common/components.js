@@ -436,9 +436,18 @@ Vue.component('witness-like', {
     }
 });
 
+let FOLLOW_STATE = {
+    NO_FOLLOWING: 0,
+    UNFOLLOWED: 1,
+    FOLLOWING: 2,
+    FOLLOWED: 3,
+    UNFOLLOWING_OP: 4,
+    FOLLOWING_OP: 5,
+};
+
 Vue.component('btn-follow',  {
     template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm running ld ld-ext-right" v-bind:class="btnClasses">
-<div class="btn__text ld-spin-fast ld" v-bind:class="textClasses"></div>{{ state === 0 ? lastText : text }}<div></div>
+<div class="btn__text ld-spin-fast ld" v-bind:class="textClasses"></div>{{ text }}<div></div>
 </div>`,
     props: {
         session: {
@@ -457,6 +466,7 @@ Vue.component('btn-follow',  {
             immediate: true,
             deep: true,
             handler: function (newVal, oldVal) {
+                console.log('FollowBtn user update', newVal, oldVal);
                 this.$forceUpdate();
             }
         },
@@ -464,6 +474,7 @@ Vue.component('btn-follow',  {
             immediate: true,
             deep: true,
             handler: function (newVal, oldVal) {
+                console.log('FollowBtn Account update');
                 this.$forceUpdate();
             }
         }
@@ -471,15 +482,15 @@ Vue.component('btn-follow',  {
     computed: {
         btnClasses: function () {
             return {
-                'btn--primary': this.state <=-1 || !this.isFollowing() && this.state === 0,
-                'btn-following': this.state >= 1  || this.isFollowing() && this.state === 0,
-                'btn-unfollow': this.over && this.state >= 1,
+                'btn--primary': this.state === this.states.NO_FOLLOWING || this.state === this.states.UNFOLLOWED || this.state === this.states.FOLLOWING_OP,
+                'btn-following': (!this.over && (this.state === this.states.FOLLOWING || this.state === this.states.FOLLOWED)) || this.state === this.states.UNFOLLOWING_OP,
+                'btn-unfollow': this.over && (this.state === this.states.FOLLOWING || this.state === this.states.FOLLOWED),
             }
         },
         textClasses: function () {
             return {
-                'text__dark': this.state >= 1 && !this.over,
-                'ld-ring': this.state === 0,
+                'text__dark': !this.over && (this.state === this.states.FOLLOWING || this.state === this.states.FOLLOWED),
+                'ld-ring': this.state === this.states.FOLLOWING_OP || this.state === this.states.UNFOLLOWING_OP,
             }
         }
 
@@ -488,43 +499,54 @@ Vue.component('btn-follow',  {
         return {
             lang: getLanguage(),
             over: false,
-            state: 0,
-            lastState: 0,
+            states: FOLLOW_STATE,
+            state: FOLLOW_STATE.NO_FOLLOWING,
+            lastState: FOLLOW_STATE.NO_FOLLOWING,
             text: null,
-            lastText: null
         }
     },
     methods: {
+        isStateOp: function() {
+            return this.state === this.states.FOLLOWING_OP || this.state === this.states.UNFOLLOWING_OP;
+        },
+        isStateFollowing: function(state) {
+            return state === this.states.FOLLOWING || state === this.states.FOLLOWED;
+        },
         performFollow: function () {
-            let operation = 'follow';
-            let that = this;
-            let session = this.$props.session;
-            this.lastState = this.state;
 
-            if (session) {
-                this.state = 0;
-                let followJson = {
-                    follower: session.account.username,
-                    following: this.$props.user,
-                    what: this.lastState === 1 ? [] : ['blog']
-                };
+            if (!this.isStateOp()) {
+                let operation = 'follow';
+                let that = this;
+                let session = this.$props.session;
+                let lastState = this.state;
 
-                followJson = [operation, followJson];
+                this.state = this.isStateFollowing(this.state) ? this.states.UNFOLLOWING_OP : this.states.FOLLOWING_OP;
+                if (session) {
+                    let followJson = {
+                        follower: session.account.username,
+                        following: this.$props.user,
+                        what: this.isStateFollowing(lastState) ? [] : ['blog']
+                    };
 
-                requireRoleKey(session.account.username, 'posting', function (postingKey) {
-                    crea.broadcast.customJson(postingKey, [], [session.account.username], operation, jsonstring(followJson), function (err, result) {
-                        if (err) {
-                            that.$emit('follow', err)
-                        } else {
-                            that.state = that.lastState >= -1 ? 2 : -2;
-                            that.$emit('follow', null, result);
-                        }
-                    })
-                });
+                    followJson = [operation, followJson];
 
-            } else {
-                this.$emit('follow', Errors.USER_NOT_LOGGED)
+                    requireRoleKey(session.account.username, 'posting', function (postingKey) {
+                        crea.broadcast.customJson(postingKey, [], [session.account.username], operation, jsonstring(followJson), function (err, result) {
+                            if (err) {
+                                that.$emit('follow', err)
+                            } else {
+                                that.state = that.isStateFollowing(lastState) ? that.states.UNFOLLOWED : that.states.FOLLOWED;
+                                that.$emit('follow', null, result);
+                            }
+                        })
+                    });
+
+                } else {
+                    this.state = lastState;
+                    this.$emit('follow', Errors.USER_NOT_LOGGED)
+                }
             }
+
 
         },
         onover: function () {
@@ -535,26 +557,37 @@ Vue.component('btn-follow',  {
         },
         isFollowing: function () {
             return this.session && this.account.followings.includes(this.user);
+        },
+        updateText: function () {
+            switch (this.state) {
+                case this.states.NO_FOLLOWING:
+                case this.states.UNFOLLOWED:
+                    this.text = this.lang.BUTTON.FOLLOW;
+                    break;
+                case this.states.FOLLOWING:
+                case this.states.FOLLOWED:
+                    this.text = this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
+                    break;
+                case this.states.FOLLOWING_OP:
+                    this.text = this.text = this.lang.BUTTON.FOLLOW;
+                    break;
+                case this.states.UNFOLLOWING_OP:
+                    this.text = this.lang.BUTTON.FOLLOWING;
+            }
+
         }
     },
     updated: function () {
-        if (this.state === -1 || this.state === 1) {
-            this.state = this.isFollowing() ? 1 : -1;
+        if (!this.isStateOp()) {
+            this.state = this.isFollowing() ? this.states.FOLLOWING : this.states.NO_FOLLOWING;
         }
 
-        this.lastText = this.text;
-
-        if (this.state > 0) {
-            this.text = this.over ? this.lang.BUTTON.UNFOLLOW : this.lang.BUTTON.FOLLOWING;
-        } else if (this.state < 0) {
-            this.text = this.lang.BUTTON.FOLLOW
-        }
-
-        this.lastText = this.lastText === null ? this.text : this.lastText;
+        this.updateText();
 
     },
     mounted: function () {
-        this.state = this.isFollowing() ? 1 : -1;
+        this.state = this.isFollowing() ? this.states.FOLLOWING : this.states.NO_FOLLOWING;
+        this.updateText();
     }
 });
 

@@ -3,9 +3,9 @@
  */
 
 
-
+let postContainer;
 (function () {
-    let postContainer;
+
     let promoteModal;
 
     let url = window.location.pathname;
@@ -192,10 +192,10 @@
 
                     },
                     onVote: function () {
-                        fetchContent();
+                        updateUserSession();
                     },
                     onFollow: function (err, result) {
-                        fetchContent();
+                        updateUserSession();
                     }
                 }
             });
