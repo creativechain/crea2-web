@@ -438,7 +438,7 @@ Vue.component('witness-like', {
 
 Vue.component('btn-follow',  {
     template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm running ld ld-ext-right" v-bind:class="btnClasses">
-<span class="btn__text" v-bind:class="textClasses"></span>{{ state === 0 ? lastText : text }}<div v-bind:class="loadingClasses"></div>
+<div class="btn__text ld-spin-fast ld" v-bind:class="textClasses"></div>{{ state === 0 ? lastText : text }}<div></div>
 </div>`,
     props: {
         session: {
@@ -474,19 +474,12 @@ Vue.component('btn-follow',  {
                 'btn--primary': this.state <=-1 || !this.isFollowing() && this.state === 0,
                 'btn-following': this.state >= 1  || this.isFollowing() && this.state === 0,
                 'btn-unfollow': this.over && this.state >= 1,
-
-            }
-        },
-        loadingClasses: function () {
-            return {
-                'ld': this.state === 0,
-                'ld-ring': this.state === 0,
-                'ld-spin-fast': this.state === 0,
             }
         },
         textClasses: function () {
             return {
-                'text__dark': this.state >= 1 && !this.over
+                'text__dark': this.state >= 1 && !this.over,
+                'ld-ring': this.state === 0,
             }
         }
 
