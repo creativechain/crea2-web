@@ -96,6 +96,9 @@ lang.en = {
         "FREE_DOWNLOAD": "Free Download",
         "PROMOTE_TITLE": "Promote the Post",
         "PROMOTE_TEXT": "Spend your CREA DOLLAR to promote your content in the promotion section.",
+        MODAL_DOWNLOAD_TITLE: "Payment content",
+        MODAL_DOWNLOAD_TEXT: "To make the download you must pay the following amount to the author.",
+        MODAL_DOWNLOAD_TEXT_PAYED: "You have already downloaded this content before, you can download it again at no cost.",
         MODAL_REPORT_TITLE: "Report content",
         MODAL_REPORT_HEAD1: "Report content helps improve the quality of the platform.",
         MODAL_REPORT_HEAD2: "The most common reasons to report content are:",
@@ -173,7 +176,8 @@ lang.en = {
         "CONFIRM": "Confirm",
         "CLOSE": "Close",
         "REPORT": "Report content",
-        "UNLOCK": "Unlock"
+        "UNLOCK": "Unlock",
+        PAY: "Pay"
     },
     "WELCOME": {
         SLIDE1_TITLE: "Discover the Crea community!",

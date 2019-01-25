@@ -6,12 +6,13 @@
 (function () {
     let postContainer;
     let promoteModal;
+    let downloadModal;
 
     let url = window.location.pathname;
 
     let session, userAccount;
 
-    let vueInstances = 2;
+    let vueInstances = 3;
 
     function onVueReady() {
         --vueInstances;
@@ -255,6 +256,54 @@
             promoteModal.user = userAccount ? userAccount.user : null;
             promoteModal.state = state;
         }
+
+        if (state.post.download.resource) {
+            if (!downloadModal) {
+                let price = Asset.parse(state.post.download.price);
+                let balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString(userAccount.user.balance) : Asset.parseString(userAccount.user.cbd_balance);
+                let alreadyPayed = state.post.download.downloaders.includes(userAccount.user.name);
+
+                downloadModal = new Vue({
+                    el: '#modal-download',
+                    data: {
+                        lang: getLanguage(),
+                        session: session,
+                        user: userAccount ? userAccount.user : null,
+                        state: state,
+                        modal: {
+                            amount: price.toPlainString(null, false),
+                            symbol: price.asset.symbol.toUpperCase(),
+                            balance: balance.toFriendlyString(null, false),
+                            alreadyPayed: alreadyPayed,
+                            confirmed: false
+                        }
+                    },
+                    mounted: function () {
+                        onVueReady();
+                    },
+                    methods: {
+                        cancelPay: function () {
+                            this.modal.confirmed = false;
+                        },
+                        confirmDownload: function () {
+                            if (this.modal.alreadyPayed || this.modal.confirmed) {
+                                makeDownload();
+                            } else {
+                                this.modal.confirmed = true;
+                            }
+                        }
+                    }
+                })
+            } else {
+                downloadModal.session = session;
+                downloadModal.user = userAccount ? userAccount.user : null;
+                downloadModal.state = state;
+            }
+        } else {
+            //This post not has a download, so downloadModal cannot be instanced;
+            onVueReady();
+        }
+
     }
 
     function makeComment() {
@@ -451,7 +500,6 @@
                         });
 
                         result.comments = cKeys;
-                        console.log(result.comments);
                         setUp(result);
                     }
                 }
