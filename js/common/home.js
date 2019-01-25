@@ -94,7 +94,9 @@
                 methods: {
                     getDefaultAvatar: R.getAvatar,
                     onFollow: function (err, result) {
-                        creaEvents.emit('crea.content.filter', this.urlFilter);
+                        //creaEvents.emit('crea.content.filter', this.urlFilter);
+                        console.log('Receive on follow');
+                        updateUserSession();
                     },
                     openPost: showPost,
                     parseAsset: function (asset) {
@@ -191,7 +193,9 @@
                         return {};
                     },
                     onVote: function (err, result) {
-                        creaEvents.emit('crea.content.filter', this.urlFilter);
+                        //creaEvents.emit('crea.content.filter', this.urlFilter);
+                        console.log('Receive on vote');
+                        updateUserSession();
                     },
                     getLicense(flag) {
                         if (flag) {
@@ -273,19 +277,12 @@
 
     });
 
-    creaEvents.on('crea.session.update', function (s, a) {
-        homePosts.session = session = s;
-        homePosts.account = account = a;
-    });
-
-    creaEvents.on('crea.session.login', function (s, a) {
-        session = s;
-        account = a;
-
+    function beforeInit(urlFilter) {
         let path = window.location.pathname;
         if (path === '/') {
-            if (s) {
-                creaEvents.emit('crea.content.filter', '/@' + s.account.username + '/feed');
+            if (session) {
+                urlFilter = urlFilter ? urlFilter : '/@' + session.account.username + '/feed';
+                creaEvents.emit('crea.content.filter', urlFilter);
             } else {
                 creaEvents.emit('crea.content.filter', '/popular');
             }
@@ -298,6 +295,20 @@
                 creaEvents.emit('crea.content.filter', path);
             }
         }
+    }
+
+    creaEvents.on('crea.session.update', function (s, a) {
+        homePosts.session = session = s;
+        homePosts.account = account = a;
+
+        beforeInit(homePosts.urlFilter);
+    });
+
+    creaEvents.on('crea.session.login', function (s, a) {
+        session = s;
+        account = a;
+
+        beforeInit();
     });
 
     let onScrollCalling;
