@@ -485,7 +485,7 @@ Vue.component('btn-follow',  {
         textClasses: function () {
             return {
                 'text__dark': !this.over && (this.state === this.states.FOLLOWING || this.state === this.states.FOLLOWED),
-                'ld-ring': this.state === this.states.FOLLOWING_OP || this.state === this.states.UNFOLLOWING_OP,
+                'ld-ring': this.state === this.states.UNFOLLOWING_OP,
                 'ld-ring-blue': this.state === this.states.FOLLOWING_OP,
             }
         }
