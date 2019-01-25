@@ -49,7 +49,7 @@
 
             let bottom = (scrollHeight - scrollPosition) / scrollHeight;
             console.log('scrolling', bottom);
-            if (bottom === 0) {
+            if (bottom <= 0.01) {
                 // when scroll to bottom of the page
                 creaEvents.emit('crea.scroll.bottom');
             }
