@@ -211,7 +211,7 @@ Vue.component('post-like', {
 
 Vue.component('like', {
     template: `<div>
-<div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
+<div class="lds-heart size-20" v-bind:class="{'like-normal': state == -1, 'active-like': state == 0, 'like-normal-activate': state == 1 }" v-on:click="makeVote">
 <div></div>
 </div><span>{{ post.up_votes.length }}</span></div>`,
     props: {
@@ -284,9 +284,6 @@ Vue.component('like', {
 
             }
         }
-    },
-    updated: function () {
-        this.state = this.hasVote() ? 1 : -1;
     },
     mounted: function () {
         this.state = this.hasVote() ? 1 : -1;
