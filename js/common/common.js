@@ -421,7 +421,8 @@ function catchError(err) {
             }
 
             if (err.message) {
-                body.push(err.message);
+                let m = err.message.split(':');
+                body.push(m[m.length-1]);
             }
 
         }
