@@ -95,7 +95,6 @@
                     getDefaultAvatar: R.getAvatar,
                     onFollow: function (err, result) {
                         //creaEvents.emit('crea.content.filter', this.urlFilter);
-                        console.log('Receive on follow');
                         updateUserSession();
                     },
                     openPost: showPost,
@@ -194,7 +193,6 @@
                     },
                     onVote: function (err, result) {
                         //creaEvents.emit('crea.content.filter', this.urlFilter);
-                        console.log('Receive on vote');
                         updateUserSession();
                     },
                     getLicense(flag) {
