@@ -35,8 +35,7 @@
 
         let aKeys = Object.keys(accounts);
         aKeys.forEach(function (k) {
-            accounts[k].metadata = jsonify(accounts[k].json_metadata);
-            accounts[k].metadata.avatar = accounts[k].metadata.avatar || {};
+            accounts[k] = parseAccount(accounts[k]);
         });
 
         state.accounts = accounts;
@@ -60,7 +59,8 @@
 
             state.discussion_idx[discuss] = {};
             state.discussion_idx[discuss][category] = cKeys;
-            lastPage = 1;
+            lastPage = lastPage ? lastPage : 1;
+            console.log(jsonify(jsonstring(state)));
         } else if (window.location.pathname === '/search') {
             lastPage = getParameterByName('page') || 1;
         } else {
@@ -241,7 +241,24 @@
                         accounts[a.name] = a;
                     });
 
-                    state.accounts = accounts;
+                    if (homePosts) {
+                        //On Session update
+
+                        //Accounts
+                        for (let a in accounts) {
+                            homePosts.state.accounts[a] = accounts[a];
+                        }
+
+                        //Posts
+                        for (let c in state.content) {
+                            homePosts.state.content[c] = parsePost(state.content[c]);
+                        }
+
+                        state = homePosts.state;
+                    } else {
+                        state.accounts = accounts;
+                    }
+
                     showPosts(urlFilter, filter, state);
                 }
             })
@@ -262,13 +279,32 @@
                 //Order
                 let newPosts = state.discussion_idx[""].search;
                 for (let x = 0; x < newPosts.length; x++) {
-                    homePosts.state.discussion_idx[''].search.push(newPosts[x]);
+                    if (!homePosts.state.discussion_idx[''].search.includes(newPosts[x])) {
+                        homePosts.state.discussion_idx[''].search.push(newPosts[x]);
+                    }
                 }
 
             } else {
                 showPosts(urlFilter, filter, state);
             }
         } else {
+
+            if (homePosts) {
+                //On Session update
+
+                //Accounts
+                for (let a in state.accounts) {
+                    homePosts.state.accounts[a] = parseAccount(state.accounts[a]);
+                }
+
+                //Posts
+                for (let c in state.content) {
+                    homePosts.state.content[c] = parsePost(state.content[c]);
+                }
+
+                state = homePosts.state;
+            }
+
             showPosts(urlFilter, filter, state);
         }
 
