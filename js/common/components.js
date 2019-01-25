@@ -529,6 +529,7 @@ Vue.component('btn-follow',  {
                     requireRoleKey(session.account.username, 'posting', function (postingKey) {
                         crea.broadcast.customJson(postingKey, [], [session.account.username], operation, jsonstring(followJson), function (err, result) {
                             if (err) {
+                                that.state = lastState;
                                 that.$emit('follow', err)
                             } else {
                                 that.state = that.isStateFollowing(lastState) ? that.states.UNFOLLOWED : that.states.FOLLOWED;
