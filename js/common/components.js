@@ -261,7 +261,7 @@ Vue.component('like', {
                 event.preventDefault();
             }
 
-            if (!this.hasVote() && this.$data.state != 0) {
+            if (!this.hasVote() && this.$data.state !== 0) {
                 let that = this;
                 let session = this.$props.session;
                 let post = this.$props.post;
@@ -466,7 +466,6 @@ Vue.component('btn-follow',  {
             immediate: true,
             deep: true,
             handler: function (newVal, oldVal) {
-                console.log('FollowBtn user update', newVal, oldVal);
                 this.$forceUpdate();
             }
         },
@@ -474,7 +473,6 @@ Vue.component('btn-follow',  {
             immediate: true,
             deep: true,
             handler: function (newVal, oldVal) {
-                console.log('FollowBtn Account update');
                 this.$forceUpdate();
             }
         }
