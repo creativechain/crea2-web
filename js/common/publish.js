@@ -189,8 +189,11 @@
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize);
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
-                            if (!catchError(err)) {
+                            if (err) {
+                                publishContainer.error = err;
+                            } else {
                                 publishContainer.bodyElements.push(file);
+                                publishContainer.error = null;
                             }
                         });
                     }
