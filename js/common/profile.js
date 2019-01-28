@@ -1240,7 +1240,7 @@
         let cbd = profileContainer.state.user.reward_cbd_balance;
         let cgy = profileContainer.state.user.reward_vesting_balance;
 
-        requireRoleKey(profileContainer.session.account.username, 'active', function (activeKey) {
+        requireRoleKey(profileContainer.session.account.username, 'posting', function (activeKey) {
             globalLoading.show = true;
             crea.broadcast.claimRewardBalance(activeKey,
                 profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
