@@ -289,7 +289,7 @@
             }
         } else {
 
-            if (homePosts) {
+            if (homePosts && homePosts.urlFilter === urlFilter) {
                 //On Session update
 
                 //Accounts
