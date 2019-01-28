@@ -295,7 +295,7 @@
                                             </a>
                                         </div>
                                         <div class="user-data">
-                                            <username class="name color--link" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
+                                            <username class="name" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
                                             <p class="website">{{ state.author.metadata.web || '-' }}</p>
                                         </div>
                                     </div>

@@ -7,24 +7,19 @@
     cursor: not-allowed;
 }
 
-.cursor {
-    cursor: pointer;
-}
-
-.cursor-link {
-    cursor: pointer;
-}
-
-.cursor-link:hover {
-    text-decoration: underline;
-}
-
 .view-publish .step-4 .input-radio input:disabled + label::after {
     background-color: #b3b3b3;
 }
 
 .color-name {
     color: #222222;
+    text-decoration: none;
+}
+
+.color-name:hover {
+    color: #222222;
+    text-decoration: underline !important;
+    text-decoration-color: #222222 !important;
 }
 
 .color--link {
@@ -62,4 +57,20 @@ li > .search {
 .navbar-menu-icon {
     color: white;
     cursor: pointer;
+}
+
+.link-username {
+    color: #222222;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.link-username:hover {
+    color: #222222;
+    text-decoration: underline;
+}
+
+.name > .link-username {
+    font-size: 14px;
+    font-weight: bold;
 }
