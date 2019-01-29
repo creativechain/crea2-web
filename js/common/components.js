@@ -271,11 +271,6 @@ Vue.component('like', {
             let post = this.$props.post;
 
             if (session && post) {
-
-                /*if (this.state === -2 || this.state === 2) {
-                    return this.state;
-                }*/
-
                 let activeVotes = post.active_votes;
 
                 for (let x = 0; x < activeVotes.length; x++) {
@@ -320,10 +315,6 @@ Vue.component('like', {
         }
     },
     updated: function () {
-/*        if (this.state !== 0 && this.state !== -2 && this.state !== 2) {
-            this.state = this.getVote();
-        }*/
-
         switch (this.state) {
             case this.states.NO_LIKE:
             case this.states.NO_LIKE_END:
@@ -334,8 +325,6 @@ Vue.component('like', {
                 this.state = this.states.LIKED;
 
         }
-
-        console.log(this.post.author + '/' + this.post.permlink, this.state);
     },
     mounted: function () {
         this.state = this.getVote();
