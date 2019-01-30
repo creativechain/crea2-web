@@ -108,6 +108,89 @@ Vue.component('slider',  {
     }
 });
 
+Vue.component('post-like-big', {
+    template: `
+    <div class="circle-like-post" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">
+        <div class="lds-heart size-20 size-30-like post-like" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
+            <div></div>
+        </div>
+    </div>`,
+    props: {
+        session: [Object, Boolean],
+        post: {
+            type: Object
+        }
+    },
+    data: function () {
+        return {
+            R: R,
+            state: 0
+        }
+    },
+    methods: {
+        getIcon: function () {
+            if (this.hasVote()) {
+                return this.R.IMG.LIKE.RED.FILLED;
+            }
+
+            return this.R.IMG.LIKE.BORDER;
+        },
+        hasPaid: function () {
+            let now = new Date();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
+            return now.getTime() > payout.getTime();
+        },
+        hasVote: function () {
+            let session = this.$props.session;
+            let post = this.$props.post;
+
+            if (session && post) {
+                let activeVotes = post.active_votes;
+
+                for (let x = 0; x < activeVotes.length; x++) {
+                    let vote = activeVotes[x];
+                    if (session.account.username === vote.voter) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        },
+        makeVote: function (event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            if (!this.hasVote() && this.$data.state != 0) {
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+
+                let username = session ? session.account.username : null;
+
+                requireRoleKey(username, 'posting', function (postingKey, username) {
+                    that.state = 0;
+                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
+                        console.log(err, result);
+                        if (err) {
+                            that.state = -1;
+                            that.$emit('vote', err);
+                        } else {
+                            that.state = 1;
+                            that.$emit('vote', null, result);
+                        }
+                    })
+                });
+
+            }
+        }
+    },
+    mounted: function () {
+        this.state = this.hasVote() ? 1 : -1
+    }
+});
+
 Vue.component('post-like', {
     template: `
     <div class="position-relative">
