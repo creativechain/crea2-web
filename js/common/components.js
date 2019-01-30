@@ -110,7 +110,7 @@ Vue.component('slider',  {
 
 Vue.component('post-like-big', {
     template: `
-    <div class="circle-like-post" v-bind:class="{'circle-like-post-active': state === 1}" role="button" data-toggle="popover" data-trigger="hover" data-html="true" v-bind:title="post.active_votes.length  + ' Likes'" v-bind:data-content="payouts">
+    <div class="circle-like-post bs-popover-left" v-bind:class="{'circle-like-post-active': state === 1}" role="button" data-toggle="popover" data-trigger="hover" data-placement="left" data-html="true" v-bind:title="post.active_votes.length  + ' Likes'" v-bind:data-content="payouts">
         <div class="lds-heart size-20 size-30-like post-like" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
             <div></div>
         </div>

@@ -1,8 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container post-view">
     <section v-cloak id="post-view">
-
-
         <div class="row justify-content-center position-circle-fixed">
             <div class="col-2 align-self-center text-center">
                 <post-like-big v-on:vote="onVote"
