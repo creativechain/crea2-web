@@ -110,7 +110,7 @@ Vue.component('slider',  {
 
 Vue.component('post-like-big', {
     template: `
-    <div class="circle-like-post" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">
+    <div class="circle-like-post" v-bind:class="{'circle-like-post-active': state === 1}" role="button" data-toggle="popover" data-trigger="hover" data-html="true" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">
         <div class="lds-heart size-20 size-30-like post-like" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
             <div></div>
         </div>
@@ -159,7 +159,7 @@ Vue.component('post-like-big', {
         },
         makeVote: function (event) {
             if (event) {
-                event.preventDefault();
+                //event.preventDefault();
             }
 
             if (!this.hasVote() && this.$data.state != 0) {

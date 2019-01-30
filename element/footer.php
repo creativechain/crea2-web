@@ -118,6 +118,10 @@
 <script src="/js/spectragram.min.js"></script>
 <script src="/js/smooth-scroll.min.js"></script>
 <script src="/js/bootstrap-slider.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/tooltip.js"></script>
+<script src="/js/popover.js"></script>
 <script src="/js/scripts.js"></script>
 
 <script src="/js/custom.js"></script>
