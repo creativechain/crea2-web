@@ -5,7 +5,12 @@
 
         <div class="row justify-content-center position-circle-fixed">
             <div class="col-2 align-self-center text-center">
-                <post-like-big v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like-big>
+                <post-like-big v-on:vote="onVote"
+                               v-bind:session="session"
+                               v-bind:post="state.post"
+                               v-bind:payouts="getPendingPayouts()">
+
+                </post-like-big>
             </div>
         </div>
 
@@ -181,7 +186,12 @@
             <div class="container row-likes">
                 <div class="row justify-content-center mt-5 mb-3">
                     <div class="col-2 align-self-center text-center">
-                        <post-like-big v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like-big>
+                        <post-like-big v-on:vote="onVote"
+                                       v-bind:session="session"
+                                       v-bind:post="state.post"
+                                       v-bind:payouts="getPendingPayouts()">
+
+                        </post-like-big>
                     </div>
                 </div>
                 <div class="row justify-content-center mb-5">
