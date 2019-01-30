@@ -47,6 +47,7 @@
     <script src="https://unpkg.com/ipfs-api@24.0.2/dist/index.js"
             integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
             crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 
     <script src="/js/common/ls.js"></script>
     <script src="/js/common/conf.js"></script>
