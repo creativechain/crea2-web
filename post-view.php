@@ -198,79 +198,75 @@
             <div class="container row-comment-options">
                 <div class="row">
                     <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="boxed boxed--border box-comment">
-                                    <div v-if="session" class="row">
-                                        <div class="col-md-12 row-comment">
+                        <div class="boxed boxed--border box-comment mb-0">
+                            <div v-if="session" class="row">
+                                <div class="col-md-12 row-comment">
 
+                                    <div class="user-avatar">
+                                        <a v-bind:href="'/@' + user.name">
+                                            <avatar v-bind:account="user"></avatar>
+                                        </a>
+
+                                    </div>
+                                    <div class="textarea">
+                                        <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt--1 text-right">
+                                    <div class="btn btn--primary" v-on:click="makeComment">
+                                        <span class="btn__text">
+                                            {{ lang.BUTTON.POST_COMMENT }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="title">{{ lang.PUBLICATION.COMMENTS + ' (' + state.post.children + ')' }}</h3>
+                                </div>
+                            </div>
+
+                            <template v-for="c in state.comments">
+                                <div v-if="c != state.postKey" class="row">
+                                    <div class="col-md-12">
+                                        <div class="row-post-comments">
                                             <div class="user-avatar">
-                                                <a v-bind:href="'/@' + user.name">
-                                                    <avatar v-bind:account="user"></avatar>
+                                                <a v-bind:href="'/@' + state.content[c].author">
+                                                    <avatar v-bind:account="state.accounts[state.content[c].author]"></avatar>
                                                 </a>
-
                                             </div>
-                                            <div class="textarea">
-                                                <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mt--1 text-right">
-                                            <div class="btn btn--primary" v-on:click="makeComment">
-                                                    <span class="btn__text">
-                                                        {{ lang.BUTTON.POST_COMMENT }}
-                                                    </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h3>{{ lang.PUBLICATION.COMMENTS + ' (' + state.post.children + ')' }}</h3>
-                                        </div>
-                                    </div>
-
-                                    <template v-for="c in state.comments">
-                                        <div v-if="c != state.postKey" class="row">
-                                            <div class="col-md-12">
-                                                <div class="row-post-comments">
-                                                    <div class="user-avatar">
-                                                        <a v-bind:href="'/@' + state.content[c].author">
-                                                            <avatar v-bind:account="state.accounts[state.content[c].author]"></avatar>
-                                                        </a>
-                                                    </div>
-                                                    <div class="user-comments">
-                                                        <p>
-                                                            <username v-bind:inline="1" v-bind:user="state.content[c].author" v-bind:name="state.accounts[state.content[c].author].metadata.publicName"></username>
-                                                            <span>{{ dateFromNow(state.content[c].created) }}</span>
-                                                        </p>
-                                                        <p class="comment-user">{{ state.content[c].body }}</p>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <ul class="list-inline list-unstyled ul-row-share-comment">
-                                                                    <li>
-                                                                        <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[c]"></comment-like>
-                                                                        <!--                                                                            <div class="cursor" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</div></li>-->
-                                                                    <li><p>{{ cbdToDollar(state.content[c].pending_payout_value) }}</p></li>
-                                                                    <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                            <div class="user-comments">
+                                                <p>
+                                                    <username v-bind:inline="1" v-bind:user="state.content[c].author" v-bind:name="state.accounts[state.content[c].author].metadata.publicName"></username>
+                                                    <span>{{ dateFromNow(state.content[c].created) }}</span>
+                                                </p>
+                                                <p class="comment-user">{{ state.content[c].body }}</p>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <ul class="list-inline list-unstyled ul-row-share-comment">
+                                                            <li>
+                                                                <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[c]"></comment-like>
+                                                                <!--                                                                            <div class="cursor" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</div></li>-->
+                                                            <li><p>{{ cbdToDollar(state.content[c].pending_payout_value) }}</p></li>
+                                                            <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </template>
-
-
-                                    <hr />
-
-                                    <div class="row">
-                                        <div class="col-md-12 text-center">
-                                            <a href="" class="more-comments">{{ lang.PUBLICATION.MORE_COMMENTS }}</a>
-                                        </div>
                                     </div>
+                                </div>
+                            </template>
+
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <a href="" class="more-comments">{{ lang.PUBLICATION.MORE_COMMENTS }}</a>
                                 </div>
                             </div>
                         </div>
@@ -438,7 +434,7 @@
                         <div class="boxed boxed--border box-comment  mt--2">
                             <div class="row row-publish-tags">
                                 <div class="col-md-12">
-                                    <p class="title">TAGS</p>
+                                    <p class="title mb-0">TAGS</p>
                                     <div v-html="getLinkedTags(true)"></div>
                                 </div>
                             </div>

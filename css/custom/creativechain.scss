@@ -47,6 +47,7 @@ label {
   width: 18px;
   height: 18px;
   background-repeat: no-repeat;
+  float: right;
 }
 .img-view-all {
   background-image: url("/img/icons/grid.svg") !important;
@@ -275,6 +276,9 @@ a:hover {
   .background-image-holder {
     height: 360px;
   }
+  h3 {
+    font-weight: 400;
+  }
 }
 img {
   margin-bottom: 0;
@@ -345,9 +349,7 @@ img {
     }
     span:hover {
       border: 1px solid $active-circle;
-      span {
-        color: $active-circle;
-      }
+      color: $active-circle;
     }
     .dropdown__container.price {
       position: absolute;
@@ -435,7 +437,7 @@ img {
       padding-bottom: 0;
       padding-right: 2em;
       padding-left: 2em;
-      border: 1px solid white;
+      border: 1px solid transparent;
       border-width: 1px;
       font-size: inherit;
       line-height: 1.85714286em;

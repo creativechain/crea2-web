@@ -1,3 +1,7 @@
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+}
 
 #home-banner {
   .imagebg:not(.image--light) .btn:not([class*='primary']):hover {
@@ -99,10 +103,12 @@
 .btn-unfollow {
   border-color: $notification-navbar !important;
   background-color: $notification-navbar !important;
+  color: white;
 }
 .btn-unfollow:hover {
   border-color: $notification-navbar !important;
   background-color: $notification-navbar !important;
+  color: white;
 }
 .ld-ring {
   color: $grey-circle  !important;
