@@ -1,23 +1,11 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container post-view">
     <section v-cloak id="post-view">
-        <div class="row justify-content-center position-circle-fixed">
-            <div class="col-2 align-self-center text-center">
-                <post-like-big v-on:vote="onVote"
-                               v-bind:session="session"
-                               v-bind:post="state.post"
-                               v-bind:payouts="getPendingPayouts()">
-
-                </post-like-big>
-            </div>
-        </div>
-
-
-
         <div class=" border-post-view">
-            <div class="container">
+
+            <div class="container" style="background-color: white;border-radius: 10px 10px;">
                 <div class="row row-title">
-                    <div class="col-12 col-sm-12 col-md-7">
+                    <div class="col-12 col-sm-12 col-md-6">
                         <div class="row-user-name">
                             <div class="user-avatar">
                                 <a v-bind:href="'/@' + state.author.name">
@@ -25,13 +13,13 @@
                                 </a>
                             </div>
                             <div class="user-data">
+                                <h3 class="mb-0 text-truncate title">{{ state.post.title }}</h3>
                                 <username class="name color--link" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
-                                <p class="website">{{ state.author.metadata.web || '-' }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-12 col-md-5 text-right mt-3 mb-3 mb-md-0 mt-md-0">
+                    <div class="col-12 col-sm-12 col-md-6 text-right mt-3 mb-3 mb-md-0 mt-md-0">
                         <div class="row align-items-center h-100">
                             <div class="col-6">
                                 <btn-follow v-if="session && !isSameUser()"
@@ -84,7 +72,8 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+
+            <div class="container"  style="background-color: white">
                 <div class="row background-content-post row-content-post">
                     <div class="col-md-12 img-post-view content-post" >
                         <template v-for="el in state.post.body">
@@ -115,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="container row-promoter pt-3 pb-3">
+            <div class="container row-promoter pt-3 pb-3" style="background-color: white">
                 <div class="row justify-content-between">
                     <div class="col">
                         <img src="/img/icons/ic_share_black_24px.svg" alt="">
@@ -180,9 +169,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
             <div class="container row-project">
                 <div class="row">
@@ -494,6 +480,16 @@
                     </div>
                 </div>
             </div>
+
+            <div id="button-like" class="position-circle-fixed">
+                <post-like-big v-on:vote="onVote"
+                               v-bind:session="session"
+                               v-bind:post="state.post"
+                               v-bind:payouts="getPendingPayouts()">
+
+                </post-like-big>
+            </div>
+
 
         </div>
     </section>

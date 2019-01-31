@@ -90,9 +90,13 @@
 
 </div>
 <!--<div class="loader"></div>-->
-<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
-    <i class="stack-interface stack-up-open-big"></i>
-</a>
+<div class="container">
+    <div class="col">
+        <a class="back-to-top inner-link" href="#start" data-scroll-class="25vh:active">
+            <i class="stack-interface stack-up-open-big"></i>
+        </a>
+    </div>
+</div>
 
 <div id="global-loading" v-bind:class="{ loading: true, hidden: !show }">
     <div class="center-loading">
@@ -128,6 +132,25 @@
 
 <script src="/js/common/modals.js"></script>
 <script src="/js/common/setup.js"></script>
+
+
+
+<script>
+    $(document).ready(function(){
+        var $logo = $('#button-like');
+        $logo.addClass('d-none');
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 300) {
+                    $logo.removeClass('d-none');
+                    $logo.fadeIn(100);
+                } else {
+                    $logo.fadeOut(100);
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

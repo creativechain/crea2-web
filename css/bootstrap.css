@@ -2322,7 +2322,8 @@ button.bg-dark:focus {
   content: ""; }
 
 .d-none {
-  display: none !important; }
+  display: none !important;
+  }
 
 .d-inline {
   display: inline !important; }
