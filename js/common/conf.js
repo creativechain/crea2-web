@@ -6,7 +6,7 @@
 let local = false;
 
 let apiOptions = {
-    nodes: ['https://node1.creary.net'],
+    nodes: ['https://node2.creary.net', 'https://node3.creary.net'],
     apiUrl : 'https://platform.creativechain.net',
     ipfs: 'https://ipfs.creary.net',
     ipfsd: 'https://platform.creativechain.net/ipfs/',
