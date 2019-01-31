@@ -3,7 +3,7 @@
     text-decoration: none;
   }
   #post-view {
-    padding: 50px 0;
+    padding: 25px 0;
   }
 
   .boxed {
@@ -12,16 +12,17 @@
   }
 
   .border-post-view {
+    padding: 0 0 10px 0;
     max-width: 960px;
     margin: 0 auto;
     border: 1px solid $borde-dropdown-price;
     border-radius: 10px;
-    background-color: white;
+    background-color: #f9f9f9;
   }
   .row-title {
     .row-user-name {
       display: flex;
-      margin-top: 5px;
+      margin: 12px 0 10px;
     }
     .user-avatar {
       height: 40px;
@@ -43,19 +44,19 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+
       .name {
         font-size: 14px;
-        font-weight: bold;
+        font-weight: 400;
         margin-bottom: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        text-decoration: none !important;
       }
-      .website {
-        font-size: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      .title {
+        font-size: 14px;
+        font-weight: bold;
       }
     }
     .dropdown-price {
@@ -346,7 +347,7 @@
   }
   .img-more-projects {
     background-image: url("/img/post-default-preview.jpg");
-    height: 164px;
+    height: 230px;
     background-size: cover;
     background-position: 50% 50%;
     width: 100%;
@@ -357,6 +358,7 @@
     margin-left: -15px;
     margin-right: -15px;
     text-align: center;
+    margin-bottom: 20px;
   }
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
     padding-right: 15px;
@@ -408,9 +410,9 @@
     background: #fff !important;
     border-radius: 50%;
     text-align: center;
-    right: 1.85714286em;
-    bottom: 8.714286em;
-    padding-top: 0px;
+    right: 5.857143em;
+    bottom: 3.71428571em;
+    padding-top: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.04);
     z-index: 99;
@@ -422,19 +424,14 @@
   }
   .position-circle-fixed {
     position: fixed;
-    right: 76px;
-    top: 50%;
-  }
-  .circle-like-post {
+    width: 3.71428571em;
+    height: 3.71428571em;
     background-color: $notification-navbar;
-    position: fixed;
-    width: 3.71428571em !important;
-    height: 3.71428571em !important;
     border-radius: 50%;
     text-align: center;
-    right: 1.2em;
-    bottom: 8.714286em;
-    padding-top: 0px;
+    right: 5.857143em;
+    bottom: 3.71428571em;
+    padding-top: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.04);
     z-index: 99;
@@ -442,6 +439,12 @@
     transition: 0.2s ease-out;
     -webkit-transition: 0.2s ease-out;
     -moz-transition: 0.2s ease-out;
+    .bs-popover-left {
+      margin-right: 0;
+    }
+  }
+  .circle-like-post {
+
     .like-normal-activate {
       width: 80px;
       height: 80px;
@@ -471,8 +474,8 @@
     .size-30-like div {
       width: 15px;
       height: 15px;
-      top: 7px;
-      left: 23px;
+      top: -2px;
+      left: 15px;
     }
     .size-30-like div:before {
       left: -7px !important;
@@ -498,11 +501,14 @@
     }
   }
 }
-
+.btn-like-init {
+  right: 1.3em;
+  bottom: 3.71428571em;
+}
 .popover {
   position: absolute;
   top: 0;
-  left: -20px !important;
+  left: 0px !important;
   z-index: 1060;
   display: block;
   max-width: 276px;
@@ -577,4 +583,16 @@
 .popover-body {
   padding: .5rem .75rem;
   color: #212529;
+}
+.back-to-top.active:hover {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-1 {
+  opacity: 1;
 }

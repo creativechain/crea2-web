@@ -178,7 +178,7 @@
     </div>
     <!--end bar-->
     <nav id="menu1" class="bar bar--sm bar-1 hidden-xs ">
-        <div class="container-fluid ">
+        <div class="container">
             <div class="row">
                 <div class="col-2 col-md-2 col-lg-2 hidden-xs">
                     <div class="bar__module">
