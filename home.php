@@ -7,7 +7,7 @@
 
     <section class="cta cta-4 space--xxs border--bottom d-none d-sm-block">
         <div class="container post-container-home">
-            <div class="row">
+            <div class="row align-items-end">
                 <?php include ('modules/navbar-filter-home.php') ?>
             </div>
         </div>

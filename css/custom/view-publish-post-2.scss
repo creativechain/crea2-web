@@ -15,7 +15,7 @@
     padding: 0 0 10px 0;
     max-width: 960px;
     margin: 0 auto;
-    border: 1px solid $borde-dropdown-price;
+    border: 1px solid $border-solid-grey;
     border-radius: 10px;
     background-color: #f9f9f9;
   }
@@ -136,7 +136,7 @@
     }
   }
   .row-promoter {
-    border-bottom: 1px #CACACA solid;
+    border-bottom: 1px solid $border-solid-grey;
     img {
       width: 19px;
     }
@@ -152,6 +152,9 @@
   }
   .row-comment-options {
     background: $background-modal;
+    hr {
+      margin: 1.85714286em -30px;
+    }
     .row-download {
       margin-left: -22px;
       margin-right: -22px;
@@ -187,11 +190,16 @@
       }
     }
     .row-publish-tags p {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: bold;
     }
     .row-publish-tags a {
-      color: $color-dark-primary;
+      color: $link-color-a-grey;
+      font-weight: 600;
+    }
+    .row-publish-tags a:hover {
+      color: $border-btn-transparent;
+      font-weight: 600;
     }
     .row-publish-description {
       .title {
@@ -259,11 +267,17 @@
       margin-top: -2px;
     }
     .link-report {
-      color: #999999;
+      color: $link-color-a-grey;
+    }
+    .link-report:hover {
+      color: $border-btn-transparent;
+    }
+    p {
+      color: $grey-light;
     }
   }
   .subtitle-content-publish {
-    font-size: 14px;
+    font-size: 12px;
     margin: 20px 0 10px;
     font-weight: 600;
   }
@@ -275,14 +289,28 @@
     }
   }
   .box-comment {
+    h3.title {
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .more-comments {
+      color: $link-color-a-grey;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .more-comments:hover {
+      color: $border-btn-transparent;
+      font-size: 12px;
+      font-weight: 600;
+    }
     .row-post-comments {
       display: flex;
       margin-bottom: 30px;
       .user-comments {
         margin-left: 10px;
         p {
-          font-size: 14px;
-          font-weight: 600;
+          font-size: 12px;
+          font-weight: 300;
           margin-bottom: 0;
           img {
             margin: 0 10px;
@@ -297,6 +325,7 @@
         .comment-user {
           color: $grey-text;
           word-break: break-word;
+          margin-bottom: 10px;
         }
         .ul-row-share-comment {
           li:nth-child(2) {
@@ -343,7 +372,7 @@
   .borderHr {
     margin: 10px 0;
     width: 100%;
-    border: 0.5px solid $grey-circle;
+    border: 0.5px solid $border-solid-grey;
   }
   .img-more-projects {
     background-image: url("/img/post-default-preview.jpg");

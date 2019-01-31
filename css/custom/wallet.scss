@@ -9,6 +9,15 @@
     top: 10px;
     a {
       text-decoration: none;
+      span {
+        color: $color-dark-primary;
+      }
+    }
+    a:hover {
+      text-decoration: none;
+      span {
+        color: white;
+      }
     }
   }
   hr {
@@ -32,7 +41,7 @@
   .dropdown > .dropdown__trigger:after {
     font-family: "stack-interface";
     display: inline-block;
-    font-size: 0;
+    font-size: 9px;
     position: relative;
     bottom: 2px;
   }

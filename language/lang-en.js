@@ -224,8 +224,8 @@ lang.en = {
         "CURRENT_PASSWORD": "CURRENT PASSWORD",
         "TITLE": "Change password",
         "SUBTITLE": "REMEMBER:",
-        "PASSWORD_CREATED": "PASSWORD CREATED",
-        "CONFIRM_PASSWORD": "Confirm password",
+        "PASSWORD_CREATED": "CHANGE PASSWORD",
+        "CONFIRM_PASSWORD": "Create new password",
         "UPDATE_PASSWORD": "Update password",
         "RADIO_INPUT_SAFELY": "I have safely stored my new password.",
         "RADIO_INPUT_UNDERSTAND": "I understand that Creary can\u2019t recover lost passwords.",
@@ -371,7 +371,7 @@ lang.en = {
         "BALANCES_ACCOUNT_TEXT": "It is an estimated value based on the value of CREA in US Dollars.",
         "DROPDOWN_MENU_MARKET": "Market",
         "UPDATE_INPUT": "Browse file.dat",
-        "DROPDOWN_MENU_TRANS_SAVINGS": "Tranfer to savings",
+        "DROPDOWN_MENU_TRANS_SAVINGS": "Transfer to savings",
         "DROPDOWN_MENU_DE_ENERGIZE": "De-energize",
         "DE_ENERGIZE_AMOUNT_BY_WEEK": "That's %s per week",
         "DE_ENERGIZE_UNUSABLE_ACCOUNT": "It is not recommended to leave less than 5 CREA ENERGY in your account, because you can leave your account in an unusable state.",
@@ -473,7 +473,7 @@ lang.en = {
         CREATE_ACCOUNT: ' create account '
     },
     "AUTH_MODAL": {
-        TITLE: "This action require the %s key",
+        TITLE: "This action requires the %s key",
         INPUT_PASSWORD: "Enter the Masterkey or Wif"
     },
     "ERROR_PAGES": {
