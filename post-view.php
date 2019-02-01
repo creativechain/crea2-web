@@ -190,7 +190,7 @@
             <div class="container row-title-comment">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="subtitle-content-publish">{{ lang.PUBLICATION.COMMENTS }}</p>
+                        <p class="subtitle-content-publish mb-0">{{ lang.PUBLICATION.COMMENTS }}</p>
                     </div>
                 </div>
             </div>
@@ -198,7 +198,7 @@
             <div class="container row-comment-options">
                 <div class="row">
                     <div class="col-md-7">
-                        <div class="boxed boxed--border box-comment mb-0">
+                        <div class="boxed boxed--border box-comment mb-0 mt-3">
                             <div v-if="session" class="row">
                                 <div class="col-md-12 row-comment">
 
@@ -281,7 +281,7 @@
                                                 <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                 <li v-else >
                                                     <div class="modal-instance ">
-                                                        <p>
+                                                        <p class="p-report">
                                                             <img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }})
                                                             <a href="#modal-report" class="modal-trigger link-report">{{ lang.PUBLICATION.REPORT_CONTENT }}</a>
                                                         </p>
@@ -325,7 +325,7 @@
                                                     </div>
                                                 </li>
 
-                                                <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
+                                                <li class="cursor" v-on:click="ignoreUser"><p class="p-report"><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -337,7 +337,7 @@
 
                     </div>
                     <div class="col-md-5">
-                        <div v-if="state.post.download.resource" class="boxed boxed--border box-comment  mt--2">
+                        <div v-if="state.post.download.resource" class="boxed boxed--border box-comment  mt--2 mt-3">
                             <div class="row row-download">
                                 <div class="col-md-12 row-format mt-0">
                                     <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>

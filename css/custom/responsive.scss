@@ -318,8 +318,8 @@
       left: -60px !important;
       top: 37px;
       .container {
-        min-width: 140px;
-        max-width: 140px;
+        min-width: 165px;
+        max-width: 165px;
       }
     }
   }
@@ -414,3 +414,15 @@
 
 
 
+@media (min-width: 1500px) and (max-width: 2000px){
+  .li-avatar-navbar {
+    .dropdown__container {
+      left: auto !important;
+      right: 0;
+      width: 260px;
+      .dropdown__content {
+        left: 110px !important;
+      }
+    }
+  }
+}

@@ -623,7 +623,7 @@
 .post-view p a, .post-view span a, .post-view label a {
   text-decoration: none; }
 .post-view #post-view {
-  padding: 25px 0; }
+  padding: 80px 0 25px; }
 .post-view .boxed {
   margin-bottom: 20px;
   margin-top: 20px; }
@@ -811,10 +811,10 @@
     color: #878787; }
   .post-view .row-comment-options .link-report:hover {
     color: #3B3B3C; }
-  .post-view .row-comment-options p {
+  .post-view .row-comment-options .p-report {
     color: #999999; }
 .post-view .subtitle-content-publish {
-  font-size: 12px;
+  font-size: 14px;
   margin: 20px 0 10px;
   font-weight: 600; }
 .post-view .row-likes .dropdown-price {
@@ -822,7 +822,7 @@
   border-radius: 25px;
   padding: 0 10px; }
 .post-view .box-comment h3.title {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold; }
 .post-view .box-comment .more-comments {
   color: #878787;
@@ -837,6 +837,9 @@
   margin-bottom: 30px; }
   .post-view .box-comment .row-post-comments .user-comments {
     margin-left: 10px; }
+    .post-view .box-comment .row-post-comments .user-comments a.color-name p {
+      font-size: 14px;
+      font-weight: 600; }
     .post-view .box-comment .row-post-comments .user-comments p {
       font-size: 12px;
       font-weight: 300;
@@ -926,13 +929,13 @@
   background: white; }
 .post-view .circle-like-post-active {
   position: fixed;
-  width: 3.71428571em !important;
-  height: 3.71428571em !important;
+  width: 4em !important;
+  height: 4em !important;
+  right: 1.757143em;
+  bottom: 3.61428571em;
   background: #fff !important;
   border-radius: 50%;
   text-align: center;
-  right: 5.857143em;
-  bottom: 3.71428571em;
   padding-top: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.04);
@@ -948,13 +951,12 @@
   background-color: #FF5666;
   border-radius: 50%;
   text-align: center;
-  right: 5.857143em;
+  right: 1.85714286em;
   bottom: 3.71428571em;
   padding-top: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.04);
   z-index: 99;
-  border: 1px solid #ececec;
   transition: 0.2s ease-out;
   -webkit-transition: 0.2s ease-out;
   -moz-transition: 0.2s ease-out; }
@@ -1383,7 +1385,7 @@
   font-size: 14px; }
 
 .view-faq section {
-  padding: 50px 0; }
+  padding: 80px 0 50px; }
 
 #witnesses .title-explorer {
   font-size: 25px;
@@ -1394,11 +1396,18 @@ body {
   font-size: 12px;
   background: #F9F9F9; }
 
+.bg-dark {
+  background-color: #181818 !important; }
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #222222; }
 
 label {
   font-size: 12px; }
+
+.navbar-filter {
+  padding-top: 65px !important;
+  padding-bottom: 12px !important; }
 
 .main-container {
   z-index: -1;
@@ -1571,7 +1580,6 @@ a:hover {
   max-width: 1500px; }
 
 #menu1 {
-  position: relative;
   z-index: 2; }
   #menu1 .user-avatar {
     height: 30px;
@@ -1842,11 +1850,9 @@ img {
   #menu1 {
     z-index: 0; } }
 @media (min-width: 768px) {
-  #menu1 {
-    position: relative; }
-    #menu1 .bar__module {
-      display: inline-block;
-      margin-bottom: 0; } }
+  #menu1 .bar__module {
+    display: inline-block;
+    margin-bottom: 0; } }
 @media (min-width: 992px) {
   .container {
     max-width: 100%; }
@@ -2094,8 +2100,8 @@ img {
     left: -60px !important;
     top: 37px; }
     .li-avatar-navbar .dropdown__container .container {
-      min-width: 140px;
-      max-width: 140px; } }
+      min-width: 165px;
+      max-width: 165px; } }
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .card-home .dropdown__container.price > .container {
     min-width: 249px;
@@ -2147,5 +2153,14 @@ img {
   .card-home .dropdown__container.dropdown-info-user > .container {
     min-width: 249px;
     max-width: 250px; } }
+@media (min-width: 1500px) and (max-width: 2000px) {
+  .li-avatar-navbar .dropdown__container {
+    /* left: auto !important; */
+    /* right: 0; */
+    width: 260px;
+    }
+    .li-avatar-navbar .dropdown__container .dropdown__content {
+      /* left: 110px !important; */
+      } }
 
 /*# sourceMappingURL=creativechain.css.map */

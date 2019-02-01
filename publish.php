@@ -1,7 +1,7 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container view-publish">
     <div v-cloak id="publish-container">
-        <section class="cta cta-4 space--xxs border--bottom ">
+        <section class="cta cta-4 space--xxs border--bottom navbar-filter">
             <div class="container">
                 <div class="row">
                     <div class="col-md-11">

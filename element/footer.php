@@ -89,14 +89,6 @@
 
 
 </div>
-<!--<div class="loader"></div>-->
-<div class="container">
-    <div class="col">
-        <a class="back-to-top inner-link" href="#start" data-scroll-class="25vh:active">
-            <i class="stack-interface stack-up-open-big"></i>
-        </a>
-    </div>
-</div>
 
 <div id="global-loading" v-bind:class="{ loading: true, hidden: !show }">
     <div class="center-loading">

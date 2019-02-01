@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container">
-    <section v-cloak id="witnesses" class="space--sm">
+    <section v-cloak id="witnesses" class="space--sm navbar-filter">
         <div class="container post-container-home">
             <div class="row">
                 <div class="col-md-12">
