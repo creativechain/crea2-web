@@ -662,7 +662,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-decoration: none !important; }
+    text-decoration: none !important;
+    color: #222222 !important; }
   .post-view .row-title .user-data .title {
     font-size: 14px;
     font-weight: bold; }
@@ -911,7 +912,7 @@
   .post-view .btn:not(:last-child) {
     margin-bottom: 0; }
   .post-view .img-more-projects {
-    height: 70px; }
+    height: 140px; }
   .post-view .row-format {
     padding: 10px 20px !important; }
   .post-view .ul-downloads {
