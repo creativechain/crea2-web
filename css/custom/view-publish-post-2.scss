@@ -53,6 +53,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         text-decoration: none !important;
+        color: $color-dark-primary !important;
       }
       .title {
         font-size: 14px;
@@ -412,7 +413,7 @@
       margin-bottom: 0;
     }
     .img-more-projects {
-      height: 70px;
+      height: 140px;
     }
     .row-format {
       padding: 10px 20px !important;
