@@ -2164,7 +2164,7 @@ img {
   .card-home .dropdown__container.dropdown-info-user > .container {
     min-width: 249px;
     max-width: 250px; } }
-@media (min-width: 768px) and (max-width: 2000px) {
+@media (min-width: 768px) and (max-width: 2500px) {
   .li-avatar-navbar .dropdown__container {
     left: auto !important;
     right: 0;
