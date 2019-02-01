@@ -21,11 +21,18 @@ body {
   font-size: 12px;
   background: $background-modal;
 }
+.bg-dark {
+  background-color: $background-navbar-dark !important;
+}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: $color-dark-primary;
 }
 label {
   font-size: 12px;
+}
+.navbar-filter {
+  padding-top: 65px !important;
+  padding-bottom: 12px !important;
 }
 .main-container {
   z-index: -1;
@@ -221,7 +228,6 @@ a:hover {
   max-width: 1500px;
 }
 #menu1 {
-  position: relative;
   z-index: 2;
   .user-avatar {
     height: 30px;
@@ -583,7 +589,6 @@ img {
 }
 @media (min-width: 768px) {
   #menu1 {
-    position: relative;
     .bar__module {
       display: inline-block;
       margin-bottom: 0;

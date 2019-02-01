@@ -21,8 +21,6 @@
     <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
-
     <link rel="stylesheet" type="text/css" href="//loading.io/css/loading.css"/>
     <link rel="stylesheet" type="text/css" href="//loading.io/css/loading-btn.css"/>
 
@@ -156,6 +154,7 @@
     </form>
 </div>
 
+
 <!--end of notification-->
 <div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
@@ -177,7 +176,7 @@
         <!--end of container-->
     </div>
     <!--end bar-->
-    <nav id="menu1" class="bar bar--sm bar-1 hidden-xs ">
+    <nav id="menu1" class="bar bar--sm bar-1 hidden-xs bar--absolute pos-fixed bg-dark" data-scroll-class="90vh:pos-fixed">
         <div class="container">
             <div class="row">
                 <div class="col-2 col-md-2 col-lg-2 hidden-xs">
@@ -246,6 +245,7 @@
                             </li>
 
                             <li v-if="session" class="li-avatar-navbar">
+
                                 <div class="dropdown">
                                     <span class="dropdown__trigger">
                                         <div class="user-avatar" >
@@ -263,7 +263,7 @@
                                     <div class="dropdown__container">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-md-12 dropdown__content">
+                                                <div class="col-md-3 col-lg-2 dropdown__content">
                                                     <ul class="menu-vertical">
                                                         <li><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>
