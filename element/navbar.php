@@ -263,7 +263,7 @@
                                     <div class="dropdown__container">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-md-3 col-lg-2 dropdown__content">
+                                                <div class="col-md-12 col-lg-2 dropdown__content">
                                                     <ul class="menu-vertical">
                                                         <li><a v-bind:href="'/@' + session.account.username + '/projects'">{{ lang.PROFILE_MENU.PROJECTS }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>

@@ -2153,14 +2153,12 @@ img {
   .card-home .dropdown__container.dropdown-info-user > .container {
     min-width: 249px;
     max-width: 250px; } }
-@media (min-width: 1500px) and (max-width: 2000px) {
+@media (min-width: 768px) and (max-width: 2000px) {
   .li-avatar-navbar .dropdown__container {
-    /* left: auto !important; */
-    /* right: 0; */
-    width: 260px;
-    }
+    left: auto !important;
+    right: 0;
+    width: 260px; }
     .li-avatar-navbar .dropdown__container .dropdown__content {
-      /* left: 110px !important; */
-      } }
+      left: 110px !important; } }
 
 /*# sourceMappingURL=creativechain.css.map */
