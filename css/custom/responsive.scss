@@ -92,6 +92,13 @@
   }
 }
 @media (max-width: 767px) {
+  .post-view #post-view {
+    padding: 40px 0 25px;
+  }
+  .post-view .row-content-post .img-post-view img {
+    margin-bottom: 0;
+    max-width: 100%;
+  }
   #post-view {
     padding-top: 0;
     .menu-right {
@@ -273,6 +280,9 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .post-view #post-view {
+    padding: 40px 0 25px;
+  }
   .post-view .border-post-view .full-post .img-more-projects {
     height: 120px;
   }
