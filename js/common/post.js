@@ -444,66 +444,56 @@
     function fetchContent() {
 
         if (url) {
-            crea.api.getState(url, function (err, result) {
-                if (!catchError(err)) {
-                    //Resolve metadata
-                    let aKeys = Object.keys(result.accounts);
+            let parts = url.slice(1, url.length).split('/').length;
 
-                    if (aKeys.length === 0) {
-                        goTo('/404');
-                    } else {
-                        aKeys.forEach(function (k) {
-                            result.accounts[k].metadata = jsonify(result.accounts[k].json_metadata);
-                            result.accounts[k].metadata.avatar = result.accounts[k].metadata.avatar || {};
-                        });
+            if (parts === 2) {
+                let author = getPathPart().replace('@', '');
+                let permlink = getPathPart(1);
 
-                        result.postKey = getPostKey();
-                        result.post = result.content[result.postKey];
-                        result.post.metadata = jsonify(result.post.json_metadata);
-                        result.post.body = jsonify(result.post.body);
-                        result.author = result.accounts[result.post.author];
-                        fetchOtherProjects(result.author.name, result.post.permlink);
+                crea.api.getContent(author, permlink, function (err, result) {
+                    if (!catchError(err)) {
+                        let post = parsePost(result);
+                        goTo('/' + post.metadata.tags[0] + '/@' + author + '/' + permlink);
+                    }
+                })
+            } else {
+                crea.api.getState(url, function (err, result) {
+                    if (!catchError(err)) {
+                        //Resolve metadata
+                        let aKeys = Object.keys(result.accounts);
 
-                        //separate votes
-                        result.post.down_votes = [];
-                        result.post.up_votes = [];
-                        result.post.active_votes.forEach(function (v) {
-                            if (v.percent <= -10000) {
-                                result.post.down_votes.push(v);
-                            } else {
-                                result.post.up_votes.push(v);
-                            }
-                        });
-
-                        //Order comments by date, latest first
-                        let cKeys = Object.keys(result.content);
-                        cKeys.sort(function (k1, k2) {
-                            let d1 = new Date(result.content[k1].created);
-                            let d2 = new Date(result.content[k2].created);
-
-                            return d2.getTime() - d1.getTime();
-                        });
-
-                        cKeys.forEach(function (c) {
-                            let comment = result.content[c];
-                            comment.down_votes = [];
-                            comment.up_votes = [];
-                            comment.active_votes.forEach(function (v) {
-                                if (v.percent <= -10000) {
-                                    comment.down_votes.push(v);
-                                } else {
-                                    comment.up_votes.push(v);
-                                }
+                        if (aKeys.length === 0) {
+                            goTo('/404');
+                        } else {
+                            aKeys.forEach(function (k) {
+                                result.accounts[k] = parseAccount(result.accounts[k]);
                             });
 
-                            result[c] = comment;
-                        });
+                            result.postKey = getPostKey();
+                            result.post = parsePost(result.content[result.postKey]);
+                            result.author = result.accounts[result.post.author];
+                            fetchOtherProjects(result.author.name, result.post.permlink);
 
-                        result.comments = cKeys;
-                        setUp(result);
+                            //Order comments by date, latest first
+                            let cKeys = Object.keys(result.content);
+                            cKeys.sort(function (k1, k2) {
+                                let d1 = new Date(result.content[k1].created);
+                                let d2 = new Date(result.content[k2].created);
+
+                                return d2.getTime() - d1.getTime();
+                            });
+
+                            cKeys.forEach(function (c) {
+                                result[c] = parsePost(result.content[c]);
+                            });
+
+                            result.comments = cKeys;
+                            setUp(result);
+                        }
                     }
-                }
-            })
+                })
+            }
+
         }
 
     }
