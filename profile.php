@@ -2,7 +2,7 @@
 
 <div class="main-container view-profile">
     <div id="profile-container" v-cloak>
-        <section v-cloak class="cta cta-4 space--xxs border--bottom ">
+        <section v-cloak class="cta cta-4 space--xxs border--bottom navbar-filter">
             <div class="container">
                 <div class="row">
                     <?php include ('modules/navbar-profile.php') ?>

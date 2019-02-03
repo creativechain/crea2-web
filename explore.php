@@ -1,6 +1,6 @@
 <?php include ('element/navbar.php'); ?>
 <div class="main-container">
-    <section id="tags-explorer" class="space--sm">
+    <section id="tags-explorer" class="space--sm navbar-filter">
         <div v-cloak class="container post-container-home">
             <div class="row">
                 <div class="col-md-12">

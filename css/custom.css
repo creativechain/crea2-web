@@ -18,7 +18,7 @@
 
 .color-name:hover {
     color: #222222;
-    text-decoration: underline !important;
+    text-decoration: none;
     text-decoration-color: #222222 !important;
 }
 

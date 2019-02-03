@@ -21,11 +21,18 @@ body {
   font-size: 12px;
   background: $background-modal;
 }
+.bg-dark {
+  background-color: $background-navbar-dark !important;
+}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: $color-dark-primary;
 }
 label {
   font-size: 12px;
+}
+.navbar-filter {
+  padding-top: 65px !important;
+  padding-bottom: 12px !important;
 }
 .main-container {
   z-index: -1;
@@ -47,6 +54,7 @@ label {
   width: 18px;
   height: 18px;
   background-repeat: no-repeat;
+  float: right;
 }
 .img-view-all {
   background-image: url("/img/icons/grid.svg") !important;
@@ -220,7 +228,6 @@ a:hover {
   max-width: 1500px;
 }
 #menu1 {
-  position: relative;
   z-index: 2;
   .user-avatar {
     height: 30px;
@@ -274,6 +281,9 @@ a:hover {
   }
   .background-image-holder {
     height: 360px;
+  }
+  h3 {
+    font-weight: 400;
   }
 }
 img {
@@ -345,9 +355,7 @@ img {
     }
     span:hover {
       border: 1px solid $active-circle;
-      span {
-        color: $active-circle;
-      }
+      color: $active-circle;
     }
     .dropdown__container.price {
       position: absolute;
@@ -435,7 +443,7 @@ img {
       padding-bottom: 0;
       padding-right: 2em;
       padding-left: 2em;
-      border: 1px solid white;
+      border: 1px solid transparent;
       border-width: 1px;
       font-size: inherit;
       line-height: 1.85714286em;
@@ -581,7 +589,6 @@ img {
 }
 @media (min-width: 768px) {
   #menu1 {
-    position: relative;
     .bar__module {
       display: inline-block;
       margin-bottom: 0;

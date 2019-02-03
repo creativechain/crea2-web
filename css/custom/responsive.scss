@@ -92,6 +92,13 @@
   }
 }
 @media (max-width: 767px) {
+  .post-view #post-view {
+    padding: 40px 0 25px;
+  }
+  .post-view .row-content-post .img-post-view img {
+    margin-bottom: 0;
+    max-width: 100%;
+  }
   #post-view {
     padding-top: 0;
     .menu-right {
@@ -273,6 +280,9 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .post-view #post-view {
+    padding: 40px 0 25px;
+  }
   .post-view .border-post-view .full-post .img-more-projects {
     height: 120px;
   }
@@ -318,8 +328,8 @@
       left: -60px !important;
       top: 37px;
       .container {
-        min-width: 140px;
-        max-width: 140px;
+        min-width: 165px;
+        max-width: 165px;
       }
     }
   }
@@ -414,3 +424,15 @@
 
 
 
+@media (min-width: 768px) and (max-width: 2500px){
+  .li-avatar-navbar {
+    .dropdown__container {
+      left: auto !important;
+      right: 0;
+      width: 260px;
+      .dropdown__content {
+        left: 110px !important;
+      }
+    }
+  }
+}
