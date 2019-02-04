@@ -60,11 +60,15 @@
         font-weight: bold;
       }
     }
+
     .dropdown-price {
       padding-top: 2px;
       padding-left: 11px;
       p {
         margin: 0;
+      }
+      .dropdown__container.price {
+        position: absolute;
       }
     }
     .dropdown-price {

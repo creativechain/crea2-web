@@ -483,7 +483,11 @@
   }
 }
 @media (max-width: 640px) {
-
+  .post-view {
+    .dropdown-price .dropdown__container {
+      left: -100px !important;
+    }
+  }
   .dropdown__container > .container {
     width: 100%;
   }
@@ -494,6 +498,14 @@
     }
     .dropdown__content {
       left: -18.344px !important;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .post-view {
+    .img-more-projects {
+      height: 70px;
     }
   }
 }

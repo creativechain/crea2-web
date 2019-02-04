@@ -672,6 +672,9 @@
   padding-left: 11px; }
   .post-view .row-title .dropdown-price p {
     margin: 0; }
+  .post-view .row-title .dropdown-price .dropdown__container.price {
+    position: absolute;
+    }
 .post-view .row-title .dropdown-price {
   border: 1px solid #505050;
   border-radius: 25px;
@@ -2204,6 +2207,9 @@ img {
     .li-avatar-navbar .dropdown__container .dropdown__content {
       left: 110px !important; } }
 @media (max-width: 640px) {
+  .post-view .dropdown-price .dropdown__container {
+    left: -100px !important; }
+
   .dropdown__container > .container {
     width: 100%; }
 
@@ -2212,5 +2218,8 @@ img {
     left: -40px !important; }
   .dropdown-price .dropdown__content {
     left: -18.344px !important; } }
+@media (max-width: 360px) {
+  .post-view .img-more-projects {
+    height: 70px; } }
 
 /*# sourceMappingURL=creativechain.css.map */
