@@ -1223,7 +1223,7 @@ ul:last-child {
   }
   .dropdown .dropdown__content {
     padding: 1.85714286em;
-    left: 0 !important;
+    left: 0px !important;
   }
   .dropdown.dropdown--active > .dropdown__container {
     display: block;
