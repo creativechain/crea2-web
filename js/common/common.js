@@ -173,7 +173,7 @@ function parseAccount(account) {
 
 function parsePost(post) {
     if (post) {
-        post.body = jsonify(post.body);
+        post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
         post.metadata = jsonify(post.json_metadata);
         post.down_votes = [];
         post.up_votes = [];
