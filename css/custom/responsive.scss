@@ -91,7 +91,24 @@
     }
   }
 }
+
 @media (max-width: 767px) {
+  .navbar-filter {
+    padding-top: 20px !important;
+  }
+  .dropdown-price {
+    .dropdown__container {
+      width: 200px;
+      left: -40px !important;
+    }
+
+  }
+  .post-like-count {
+    .dropdown__container {
+      left: -91.688px !important;
+      width: 400px;
+    }
+  }
   .post-view #post-view {
     padding: 40px 0 25px;
   }
@@ -280,6 +297,35 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .post-like-count {
+    .dropdown__container {
+      left: -471.688px !important;
+      width: 400px;
+    }
+  }
+  .post-view .position-circle-fixed {
+    right: 5.857143em;
+    bottom: 3.71428571em;
+  }
+  .dropdown-price {
+    .dropdown__container {
+      left: -611.984px !important;
+      width: 690px;
+    }
+  }
+  .li-avatar-navbar {
+    .dropdown__container {
+      .dropdown__content {
+        left: -52.688px !important;
+      }
+    }
+  }
+  .post-view .row-content-post .img-post-view img {
+    max-width: 100%;
+  }
+  .amount-post-view-home {
+    left: 409.266px !important;
+  }
   .post-view #post-view {
     padding: 40px 0 25px;
   }
@@ -338,7 +384,6 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
-
   .card-home {
     .dropdown__container.price > .container {
       min-width: 249px;
@@ -349,6 +394,7 @@
       max-width: 250px;
     }
   }
+
 }
 
 // Extra large devices (large desktops, 1200px and up)
@@ -424,7 +470,7 @@
 
 
 
-@media (min-width: 768px) and (max-width: 2500px){
+@media (min-width: 1200px) and (max-width: 2500px){
   .li-avatar-navbar {
     .dropdown__container {
       left: auto !important;
@@ -433,6 +479,21 @@
       .dropdown__content {
         left: 110px !important;
       }
+    }
+  }
+}
+@media (max-width: 640px) {
+
+  .dropdown__container > .container {
+    width: 100%;
+  }
+  .dropdown-price {
+    .dropdown__container {
+      width: 200px;
+      left: -40px !important;
+    }
+    .dropdown__content {
+      left: -18.344px !important;
     }
   }
 }
