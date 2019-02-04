@@ -46,6 +46,17 @@ function cancelEventPropagation(event) {
     }
 }
 
+function isJSON(string) {
+    try {
+        JSON.parse(string);
+        return true;
+    } catch (e) {
+
+    }
+
+    return false;
+}
+
 /**
  *
  * @param obj
