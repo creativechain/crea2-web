@@ -60,7 +60,6 @@
             state.discussion_idx[discuss] = {};
             state.discussion_idx[discuss][category] = cKeys;
             lastPage = lastPage ? lastPage : 1;
-            console.log(jsonify(jsonstring(state)));
         } else if (window.location.pathname === '/search') {
             lastPage = getParameterByName('page') || 1;
         } else {

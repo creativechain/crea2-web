@@ -24,6 +24,7 @@
 
     function setUp(state) {
 
+        updateUrl(state.current_route);
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',
@@ -404,12 +405,14 @@
      *
      * @returns {string}
      */
-    function getPostKey() {
-        if (url) {
-            let route = url.replace('@', '').split('/');
-            route.splice(0, 2);
-            return route.join('/');
+    function getPostKey(postUrl) {
+        if (!postUrl) {
+            postUrl = url;
         }
+
+        let route = postUrl.replace('@', '').split('/');
+        route.splice(0, 2);
+        return route.join('/');
 
     }
 
@@ -446,18 +449,8 @@
         if (url) {
             let parts = url.slice(1, url.length).split('/').length;
 
-            if (parts === 2) {
-                let author = getPathPart().replace('@', '');
-                let permlink = getPathPart(1);
-
-                crea.api.getContent(author, permlink, function (err, result) {
-                    if (!catchError(err)) {
-                        let post = parsePost(result);
-                        goTo('/' + post.metadata.tags[0] + '/@' + author + '/' + permlink);
-                    }
-                })
-            } else {
-                crea.api.getState(url, function (err, result) {
+            let fetchContentState = function (finalUrl) {
+                crea.api.getState(finalUrl, function (err, result) {
                     if (!catchError(err)) {
                         //Resolve metadata
                         let aKeys = Object.keys(result.accounts);
@@ -465,11 +458,12 @@
                         if (aKeys.length === 0) {
                             goTo('/404');
                         } else {
+                            console.log(result)
                             aKeys.forEach(function (k) {
                                 result.accounts[k] = parseAccount(result.accounts[k]);
                             });
 
-                            result.postKey = getPostKey();
+                            result.postKey = getPostKey(finalUrl);
                             result.post = parsePost(result.content[result.postKey]);
                             result.author = result.accounts[result.post.author];
                             fetchOtherProjects(result.author.name, result.post.permlink);
@@ -492,6 +486,20 @@
                         }
                     }
                 })
+            };
+
+            if (parts === 2) {
+                let author = getPathPart().replace('@', '');
+                let permlink = getPathPart(1);
+
+                crea.api.getContent(author, permlink, function (err, result) {
+                    if (!catchError(err)) {
+                        let post = parsePost(result);
+                        fetchContentState('/' + post.metadata.tags[0] + '/@' + author + '/' + permlink);
+                    }
+                })
+            } else {
+                fetchContentState(url);
             }
 
         }
