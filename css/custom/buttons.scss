@@ -37,7 +37,7 @@
 }
 .btn--black, .btn--black:visited {
   background: $color-dark-primary;
-  border-color: $color-dark-primary;
+  border-color: $color-dark-primary !important;
   color: $color-white;
 }
 .btn:hover {

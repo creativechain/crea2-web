@@ -5,10 +5,28 @@
         <?php include ('modules/banner.php') ?>
     </div>
 
-    <section class="cta cta-4 space--xxs border--bottom d-none d-sm-block navbar-filter">
+    <section class="cta cta-4 space--xxs border--bottom d-none d-md-block navbar-filter">
         <div class="container post-container-home">
             <div class="row align-items-end">
                 <?php include ('modules/navbar-filter-home.php') ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta cta-4 space--xxs border--bottom d-block d-sm-block d-md-none navbar-filter">
+        <div class="container post-container-home">
+            <div class="row align-items-end">
+                <div class="col-md-12 text-center">
+                    <ul class="list-inline navbar-followin-home">
+                        <li class="list-inline-item" v-if="session">
+                            <a v-bind:href="'/@' + session.account.username + '/feed'">Following</a>
+                        </li>
+                        <li class="list-inline-item"><a href="/popular" v-on:click="retrieveTrendingContent">Popular</a></li>
+                        <li class="list-inline-item"><a href="/skyrockets" v-on:click="retrieveHotContent">Skyrockets</a></li>
+                        <li class="list-inline-item"><a href="/now" v-on:click="retrieveNowContent">Now</a></li>
+                        <li class="list-inline-item"><a href="/promoted" v-on:click="retrievePromotedContent">Promoted</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

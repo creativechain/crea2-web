@@ -11,7 +11,7 @@
     float: right;
   }
   #slide-home {
-    padding: 65px 10px;
+    padding: 40px 0;
     min-height: 330px;
   }
 
@@ -93,6 +93,30 @@
 }
 
 @media (max-width: 767px) {
+  .logged-in-search {
+    i {
+      position: relative;
+      top: -2px;
+      right: 5px;
+    }
+  }
+  .disconnected-search {
+    i {
+      position: relative;
+      top: 4px;
+      right: 5px;
+    }
+  }
+  .navbar-followin-home {
+    font-size: 14px;
+    font-weight: 400;
+    a {
+      color: $grey-text;
+    }
+    a.active {
+      font-weight: 600;
+    }
+  }
   .navbar-filter {
     padding-top: 20px !important;
   }
@@ -297,6 +321,13 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  #slide-home {
+    padding: 60px 0 0;
+    min-height: 360px;
+  }
+  .navbar-filter {
+    padding-top: 15px !important;
+  }
   .post-like-count {
     .dropdown__container {
       left: -471.688px !important;
@@ -383,7 +414,9 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
-
+  .navbar-filter {
+    padding-top: 15px !important;
+  }
   .card-home {
     .dropdown__container.price > .container {
       min-width: 249px;
