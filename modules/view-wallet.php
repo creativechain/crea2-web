@@ -74,7 +74,7 @@
                                     <p>{{ lang.WALLET.BALANCES_CREA_TITLE }}</p>
                                     <p>{{ lang.WALLET.BALANCES_CREA_TEXT }}</p>
                                 </td>
-                                <td style="text-align: right">
+                                <td class="td-right-balance">
                                     <div class="dropdown">
                                         <span id="wallet-balance-crea" class="dropdown__trigger active">{{ state.user.balance }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
@@ -213,7 +213,7 @@
                                     <p>{{ lang.WALLET.BALANCES_CGY_TITLE }}</p>
                                     <p>{{ lang.WALLET.BALANCES_CGY_TEXT }}</p>
                                 </td>
-                                <td style="text-align: right">
+                                <td class="td-right-balance">
                                     <div class="dropdown">
                                         <span class="dropdown__trigger">{{ getCGYBalance().toFriendlyString(null, false) }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
@@ -303,7 +303,7 @@
                                     <p>{{ lang.WALLET.BALANCES_CBD_TITLE }}</p>
                                     <p>{{ lang.WALLET.BALANCES_CBD_TEXT }}</p>
                                 </td>
-                                <td style="text-align: right">
+                                <td class="td-right-balance">
                                     <div class="dropdown">
                                         <span class="dropdown__trigger">{{ state.user.cbd_balance }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
@@ -339,7 +339,7 @@
                                     <p>{{ lang.WALLET.BALANCES_SAVING_TITLE }}</p>
                                     <p>{{ lang.WALLET.BALANCES_SAVING_TEXT }}</p>
                                 </td>
-                                <td style="text-align: right">
+                                <td class="td-right-balance">
                                     <div class="dropdown">
                                         <span class="dropdown__trigger">{{ state.user.savings_balance }}</span>
                                         <div v-if="canWithdraw()" class="dropdown__container">
@@ -387,7 +387,7 @@
                                     <p>{{ lang.WALLET.BALANCES_ACCOUNT_TITLE }}</p>
                                     <p>{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}</p>
                                 </td>
-                                <td style="text-align: right">
+                                <td class="td-right-balance">
                                     <p class="total-active">{{ state.user.estimate_account_value }}$</p>
                                 </td>
                             </tr>

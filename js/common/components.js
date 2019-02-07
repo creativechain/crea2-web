@@ -194,7 +194,7 @@ Vue.component('post-like-big', {
 
 Vue.component('post-like', {
     template: `
-    <div class="position-relative">
+    <div class="text-right">
         <div class="lds-heart size-20 post-like" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }" v-on:click="makeVote">
             <div></div>
         </div>
@@ -495,9 +495,9 @@ Vue.component('comment-like', {
 });
 
 Vue.component('witness-like', {
-    template: `<div><span>
+    template: `<div><span class="d-flex">
                     {{ index }}
-                    <div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state > 0}" v-on:click="makeVote">
+                    <div class="lds-heart size-20" v-bind:class="{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state > 0}" v-on:click="makeVote" style="margin-top: 5px;">
                         <div></div>
                     </div>
                 </span></div>`,

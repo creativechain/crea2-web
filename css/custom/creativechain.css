@@ -283,6 +283,9 @@
     font-size: 12px;
     font-weight: normal; }
 
+.view-wallet .td-right-balance {
+  text-align: right;
+  padding-right: 20px; }
 .view-wallet .tabs li.active .tab__title span {
   font-size: 12px;
   text-transform: uppercase; }
@@ -688,7 +691,7 @@
     color: #0073FF; }
 .post-view .row-title .ul-social .row-likes {
   display: flex;
-  width: 100%; }
+  margin: 0 auto; }
   .post-view .row-title .ul-social .row-likes .position-relative {
     top: 0; }
 .post-view .row-title .ul-social li:nth-child(1) {
@@ -1137,31 +1140,31 @@
 .view-notifications .row-empty-notifications .img-empty {
   width: 300px; }
 
-#tags-explorer .title-explorer, #view-explorer .title-explorer {
+#tags-explorer .title-explorer, #view-explorer .title-explorer, #witnesses .title-explorer {
   font-size: 25px;
   font-weight: 600; }
-#tags-explorer table thead tr th:first-child, #view-explorer table thead tr th:first-child {
+#tags-explorer table thead tr th:first-child, #view-explorer table thead tr th:first-child, #witnesses table thead tr th:first-child {
   text-align: left;
   color: #222222; }
-#tags-explorer table thead tr th, #view-explorer table thead tr th {
+#tags-explorer table thead tr th, #view-explorer table thead tr th, #witnesses table thead tr th {
   color: #0569EF;
   font-size: 10px;
   text-transform: uppercase;
   background: white; }
-#tags-explorer table tbody td:first-child, #view-explorer table tbody td:first-child {
+#tags-explorer table tbody td:first-child, #view-explorer table tbody td:first-child, #witnesses table tbody td:first-child {
   color: #0569EF;
   text-align: left; }
-#tags-explorer table tbody td:last-child, #view-explorer table tbody td:last-child {
+#tags-explorer table tbody td:last-child, #view-explorer table tbody td:last-child, #witnesses table tbody td:last-child {
   font-weight: 600; }
-#tags-explorer .table--alternate-row tbody tr:nth-child(even), #view-explorer .table--alternate-row tbody tr:nth-child(even) {
+#tags-explorer .table--alternate-row tbody tr:nth-child(even), #view-explorer .table--alternate-row tbody tr:nth-child(even), #witnesses .table--alternate-row tbody tr:nth-child(even) {
   background: white; }
-#tags-explorer .table-vote img, #view-explorer .table-vote img {
+#tags-explorer .table-vote img, #view-explorer .table-vote img, #witnesses .table-vote img {
   width: 16px;
   margin-left: 10px; }
-#tags-explorer .table-vote tbody td:first-child, #view-explorer .table-vote tbody td:first-child {
+#tags-explorer .table-vote tbody td:first-child, #view-explorer .table-vote tbody td:first-child, #witnesses .table-vote tbody td:first-child {
   color: #222222;
   text-align: left; }
-#tags-explorer .table-vote tbody td:last-child, #view-explorer .table-vote tbody td:last-child {
+#tags-explorer .table-vote tbody td:last-child, #view-explorer .table-vote tbody td:last-child, #witnesses .table-vote tbody td:last-child {
   font-weight: normal; }
 
 .btn:focus, .btn.focus {

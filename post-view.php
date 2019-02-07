@@ -49,15 +49,15 @@
 
                                 </ul>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 text-center">
                                 <div class="dropdown dropdown-price">
-                                                            <span class="dropdown__trigger"> {{ getPayout() }}
-                                                                <i class="stack-down-open"></i>
-                                                            </span>
+                                        <span class="dropdown__trigger"> {{ getPayout() }}
+                                            <i class="stack-down-open"></i>
+                                        </span>
                                     <div class="dropdown__container price">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-9 col-sm-12 col-md-5 col-lg-4 dropdown__content amount-post-view-home">
+                                                <div class="col-9 col-sm-3 col-md-4 col-lg-3 dropdown__content amount-post-view-home">
                                                     <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
                                                     <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
                                                     <p>{{ getPayoutPostDate() }}</p>
