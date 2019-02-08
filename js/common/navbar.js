@@ -112,12 +112,11 @@
     }
 
     function checkUsername(event) {
-        let target = navbarContainer.$refs.loginusername;
-        target.value = target.value.toLowerCase();
-        navbarContainer.loginForm.username.value = target.value;
-        let username = target.value;
+        let target = event.target;
+        let username = target.value.toLowerCase();
+        navbarContainer.loginForm.username.value = username;
 
-        console.log(target.value);
+        //console.log(target.value, username);
         if (!crea.utils.validateAccountName(username)) {
             let accounts = [ username ];
             console.log("Checking", accounts);
