@@ -539,7 +539,9 @@ img {
   -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
   padding: 1.23809524em 1.85714286em;
 }
-
+.menu-vertical li.separate {
+  border-top: solid 1px #484848;
+}
 .card-2 .card__body {
   padding: 10px;
 }

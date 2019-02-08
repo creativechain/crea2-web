@@ -176,15 +176,10 @@
                             </div>
                         </li>
                         <li class="list-inline-item">
-                            <div class="li-avatar-navbar-mobile">
+                            <div class="li-avatar-navbar-mobile" data-toggle-class="#menu1;hidden-xs">
                                 <div class="user-avatar" >
                                     <avatar v-bind:account="user"></avatar>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="list-inline-item">
-                            <div class="hamburger-toggle cursor-link" data-toggle-class="#menu1;hidden-xs">
-                                <i class="icon icon--sm stack-interface stack-menu"></i>
                             </div>
                         </li>
                     </ul>
@@ -356,9 +351,30 @@
                                                         </a>
                                                     </li>
                                                     <li class="separate">
-                                                        <a href="shop-terms.html">
-                                                            social media
-                                                        </a>
+                                                        <div class="side-menu__module">
+                                                            <ul class="social-list list-inline list--hover">
+                                                                <li>
+                                                                    <a href="https://t.me/Creary_net" target="_blank">
+                                                                        <i class="socicon socicon-telegram icon icon--xs"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="https://twitter.com/Crearynet" target="_blank">
+                                                                        <i class="socicon socicon-twitter icon icon--xs"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="https://www.instagram.com/crearynet/" target="_blank">
+                                                                        <i class="socicon socicon-instagram icon icon--xs"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="https://medium.com/creary/" target="_blank">
+                                                                        <i class="socicon socicon-medium icon icon--xs"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>

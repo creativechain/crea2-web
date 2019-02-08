@@ -1,5 +1,16 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .social-list {
+    display: flex;
+    text-align: center;
+    width: 100px;
+    margin: 0 auto !important;
+    min-width: 100px;
+    li {
+      width: auto;
+      text-align: center;
+    }
+  }
   .view-publish .step-4 .input-radio-step-2 .input-radio {
     display: -webkit-box;
   }
