@@ -662,9 +662,9 @@
         };
 
         const today = new Date();
-        const oneDay = 86400 * 1000;
+        const oneDay = 60*60*24*1000;
         const yesterday = new Date(today.getTime() - oneDay).getTime();
-        const lastWeek = new Date(today.getTime() - 7 * oneDay).getTime();
+        const lastWeek = new Date(today.getTime() - (7 * oneDay)).getTime();
 
         let firstDate, finalDate;
         let rewardsOp = [];
@@ -684,19 +684,19 @@
 
                 if (firstDate > lastWeek) {
                     if (firstDate > yesterday) {
-                        rewards.rewards24Vests += vest.amount;
-                        rewards.rewards24Crea += crea.amount;
-                        rewards.rewards24CBD += cbd.amount;
+                        rewards.rewards24Vests += vest.toFloat();
+                        rewards.rewards24Crea += crea.toFloat();
+                        rewards.rewards24CBD += cbd.toFloat();
                     }
 
-                    rewards.rewardsWeekVests += vest.amount;
-                    rewards.rewardsWeekCrea += crea.amount;
-                    rewards.rewardsWeekCBD += cbd.amount;
+                    rewards.rewardsWeekVests += vest.toFloat();
+                    rewards.rewardsWeekCrea += crea.toFloat();
+                    rewards.rewardsWeekCBD += cbd.toFloat();
                 }
 
-                rewards.totalRewardsVests += vest.amount;
-                rewards.totalRewardsCrea += crea.amount;
-                rewards.totalRewardsCBD += cbd.amount;
+                rewards.totalRewardsVests += vest.toFloat();
+                rewards.totalRewardsCrea += crea.toFloat();
+                rewards.totalRewardsCBD += cbd.toFloat();
 
                 rewardsOp.push(item);
             } else if (item[1].op[0] === 'curation_reward' && rewardType === 'curation_reward') {
@@ -711,19 +711,20 @@
 
                 if (firstDate > lastWeek) {
                     if (firstDate > yesterday) {
-                        rewards.rewards24Vests += vest.amount;
+                        rewards.rewards24Vests += vest.toFloat();
                     }
 
-                    rewards.rewardsWeekVests += vest.amount;
+                    rewards.rewardsWeekVests += vest.toFloat();
                 }
 
-                rewards.totalRewardsVests += vest.amount;
+                rewards.totalRewardsVests += vest.toFloat();
 
                 rewardsOp.push(item);
             }
         });
 
 
+        console.log(rewards.totalRewardsVests)
         if (!rewardsContainer[rewardView]) {
             rewardsContainer[rewardView] = new Vue({
                 el: '#profile-' + rewardView,
