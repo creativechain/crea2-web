@@ -30,10 +30,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 label {
   font-size: 12px;
 }
-.alert.bg--primary {
-  background: #fafcfe;
-  border-color: transparent;
-}
 .li-avatar-navbar-mobile {
   position: relative;
   top: -2px;
@@ -68,7 +64,7 @@ label {
 
 }
 .navbar-filter {
-  padding-top: 15px !important;
+  padding-top: 65px !important;
   padding-bottom: 12px !important;
 }
 .main-container {
@@ -293,8 +289,8 @@ a:hover {
 
 .row-close {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 20px;
+  right: 25px;
   z-index: 100;
   font-size: 20px;
   a {
@@ -310,7 +306,7 @@ a:hover {
   transform-style: flat;
 }
 #slide-home {
-  padding: 100px 0 0;
+  padding: 75px 0 0;
   min-height: 360px;
 
   h1, h3, span {

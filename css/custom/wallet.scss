@@ -13,7 +13,7 @@
     a {
       text-decoration: none;
       span {
-        color: $color-dark-primary;
+        color: white;
       }
     }
     a:hover {
@@ -127,6 +127,9 @@
     }
   }
   .wallet-password-tab {
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+
     .button-recover-account {
       text-decoration: none;
       font-weight: bold;

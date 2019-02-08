@@ -498,8 +498,8 @@
                                 <label>{{ lang.CHANGE_PASSWORD.PASSWORD_CREATED }}</label>
                                 <input v-if="changePass.newPass" v-model="changePass.newPass" class="validate-required" type="text" v-bind:placeholder="lang.CHANGE_PASSWORD.PASSWORD" readonly/>
 
-                                <div v-else class="row">
-                                    <div class="col-md-12">
+                                <div v-else class="">
+                                    <div class="">
                                         <div v-on:click="suggestPassword" class="btn btn--sm btn--black mt-3 cursor">
                                             <span class="btn__text">{{ lang.CHANGE_PASSWORD.CONFIRM_PASSWORD }}</span>
                                         </div>

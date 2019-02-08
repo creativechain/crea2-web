@@ -1,5 +1,14 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .view-publish .step-4 .input-radio-step-2 .input-radio {
+    display: -webkit-box;
+  }
+  .navbar-filter {
+    padding-top: 65px !important;
+  }
+  #home-banner {
+    margin: 0px 0 -50px;
+  }
   .box-blockchain-certificate {
     .ul-blockchain-certificate {
       display: grid !important;
@@ -116,9 +125,6 @@
     a.active {
       font-weight: 600;
     }
-  }
-  .navbar-filter {
-    padding-top: 20px !important;
   }
   .dropdown-price {
     .dropdown__container {
@@ -272,6 +278,15 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar-filter {
+    padding-top: 65px !important;
+  }
+  .project-profile {
+    .masonry__item {
+      width: 100%;
+      padding: 0 10px;
+    }
+  }
   .bar + nav.bar {
     padding-bottom: 0;
   }
@@ -317,16 +332,22 @@
       text-transform: none;
     }
   }
+  #home-banner {
+    margin: 0px 0 -50px;
+  }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .navbar-filter {
+    padding-top: 65px !important;
+  }
+  #home-banner {
+    margin: 0 0 -50px;
+  }
   #slide-home {
     padding: 60px 0 0;
     min-height: 360px;
-  }
-  .navbar-filter {
-    padding-top: 15px !important;
   }
   .post-like-count {
     .dropdown__container {
@@ -415,7 +436,7 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .navbar-filter {
-    padding-top: 15px !important;
+    padding-top: 65px !important;
   }
   .card-home {
     .dropdown__container.price > .container {

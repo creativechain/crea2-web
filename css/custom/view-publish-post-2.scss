@@ -70,6 +70,9 @@
       .dropdown__container.price {
         position: absolute;
       }
+      .amount-post-view-home {
+        text-align: right;
+      }
     }
     .dropdown-price {
       border: 1px solid #505050;
@@ -516,7 +519,7 @@
       width: 15px;
       height: 15px;
       top: -2px;
-      left: 15px;
+      left: 14px;
     }
     .size-30-like div:before {
       left: -7px !important;

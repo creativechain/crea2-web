@@ -1,9 +1,14 @@
+.btn:not([class*='primary']) {
+  border-color: #505050;
+}
+
 .btn:focus, .btn.focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
 }
 
 #home-banner {
+  margin: 50px 0 -50px;
   .imagebg:not(.image--light) .btn:not([class*='primary']):hover {
     border-color: transparent;
   }
@@ -16,7 +21,11 @@
   -webkit-transform: translate3d(0, 0, 0);
 }
 .icons-navbar {
-  font-size: 16px !important;
+  font-size: 20px !important;
+}
+.search.icons-navbar {
+  position: relative;
+  top: 2px;
 }
 .bar-1 .menu-horizontal > li > .dropdown__trigger, .bar-1 .menu-horizontal > li > a {
   font-size: 14px;
@@ -89,7 +98,7 @@
 }
 .btn-following {
   color: #222222 !important;
-  border-color: #d3d3d3 !important;
+  border-color: #505050 !important;
   background-color: transparent !important;
 }
 .btn-following:hover {
