@@ -1210,7 +1210,7 @@
 
 .btn--secondary, .btn--secondary:visited {
   background: #FFD952;
-  border-color: #FFD952; }
+  border-color: transparent !important; }
 
 .color-secondary {
   color: #181818; }
