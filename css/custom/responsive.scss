@@ -1,5 +1,24 @@
-// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 412px) {
+  #slide-home {
+    padding: 90px 0 108px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  #slide-home {
+    padding: 60px 0 105px !important;
+  }
+}
+
 @media (max-width: 575.98px) {
+  .li-avatar-navbar-mobile {
+    position: relative;
+    top: 0;
+  }
+  .search.icons-navbar {
+    position: relative;
+    top: 4px;
+  }
   .social-list {
     display: flex;
     text-align: center;
@@ -15,10 +34,10 @@
     display: -webkit-box;
   }
   .navbar-filter {
-    padding-top: 65px !important;
+    padding-top: 20px !important;
   }
   #home-banner {
-    margin: 0px 0 -50px;
+    margin: 0 0 0;
   }
   .box-blockchain-certificate {
     .ul-blockchain-certificate {
@@ -31,8 +50,8 @@
     float: right;
   }
   #slide-home {
-    padding: 40px 0;
-    min-height: 330px;
+    padding: 60px 0 105px;
+    min-height: 384px;
   }
 
   .bar + nav.bar {
@@ -50,7 +69,7 @@
     margin-top: 0;
   }
   #slide-home .background-image-holder {
-    height: 330px;
+    height: 384px;
   }
   .card-home {
     .dropdown__container.price > .container {
@@ -113,6 +132,16 @@
 }
 
 @media (max-width: 767px) {
+  #navbar-container {
+    position: fixed;
+    width: 100%;
+    .bar.bar--sm {
+      margin: 0 10px;
+    }
+  }
+  .main-container {
+    top: 50px;
+  }
   .logged-in-search {
     i {
       position: relative;
@@ -350,6 +379,24 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  #navbar-container {
+    position: fixed;
+    width: 100%;
+    .bar.bar--sm {
+      margin: 0 10px;
+    }
+  }
+  .main-container {
+    top: 50px;
+  }
+  .post-view .row-comment-options .box-blockchain-certificate .feature-2 .feature__body {
+    width: 80%;
+  }
+  #profile-container {
+    .navbar-filter {
+      padding-top: 15px !important;
+    }
+  }
   .navbar-filter {
     padding-top: 65px !important;
   }
@@ -367,7 +414,7 @@
     }
   }
   .post-view .position-circle-fixed {
-    right: 5.857143em;
+    right: 1.857143em;
     bottom: 3.71428571em;
   }
   .dropdown-price {
@@ -400,7 +447,7 @@
       padding-left: 20px;
     }
     .feature-2 .feature__body p {
-      padding-left: 22px;
+      padding-left: 0;
     }
   }
   .post-view .menu-right .row-social .ul-social .dropdown-price {

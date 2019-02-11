@@ -450,10 +450,10 @@
   }
   .circle-like-post-active {
     position: fixed;
-    width: 4em !important;
-    height: 4em !important;
-    right: 1.757143em;
-    bottom: 3.61428571em;
+    width: 4.40em !important;
+    height: 4.40em !important;
+    right: 21px;
+    bottom: 44px;
     background: #fff !important;
     border-radius: 50%;
     text-align: center;
@@ -469,8 +469,8 @@
   }
   .position-circle-fixed {
     position: fixed;
-    width: 3.71428571em;
-    height: 3.71428571em;
+    width: 4.2em;
+    height: 4.2em;
     background-color: $notification-navbar;
     border-radius: 50%;
     text-align: center;
@@ -518,8 +518,8 @@
     .size-30-like div {
       width: 15px;
       height: 15px;
-      top: -2px;
-      left: 14px;
+      top: 0;
+      left: 15px;
     }
     .size-30-like div:before {
       left: -7px !important;
