@@ -122,4 +122,6 @@
         </div>
 
 
+        <script src="/js/common/market.js"></script>
+
 <?php include('element/footer.php'); ?>
