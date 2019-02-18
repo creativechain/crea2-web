@@ -15,12 +15,12 @@
 @import "faq";
 @import "witnesses";
 
-
 body {
   color: $color-dark-primary;
   font-size: 12px;
   background: $background-modal;
 }
+
 .bg-dark {
   background-color: $background-navbar-dark !important;
 }
@@ -29,6 +29,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 label {
   font-size: 12px;
+}
+.logo {
+  width: 110px;
 }
 .li-avatar-navbar-mobile {
   position: relative;
