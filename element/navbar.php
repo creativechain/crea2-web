@@ -101,11 +101,11 @@
                     <span >{{ lang.DOTS_MENU.ABOUT }}</span>
                 </a>
             </li>
-            <li>
+            <!--<li>
                 <a href="#">
                     <span>{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                 </a>
-            </li>
+            </li>-->
             <li>
                 <a href="#">
                     <span>{{ lang.DOTS_MENU.PRIVACY }}</span>
@@ -165,7 +165,7 @@
             <div class="row">
                 <div class="col-3 col-md-2">
                     <a href="/">
-                        <img class="logo" alt="logo" src="/img/logo-light.png"/>
+                        <img class="logo" alt="logo" src="/img/logo_creary_beta.svg"/>
                     </a>
                 </div>
 
@@ -287,7 +287,7 @@
                 <div class="col-2 col-md-2 col-lg-2 hidden-xs">
                     <div class="bar__module">
                         <a href="/">
-                            <img class="logo" alt="logo" src="/img/logo-light.png"/>
+                            <img class="logo" alt="logo" src="/img/logo_creary_beta.svg"/>
                         </a>
                     </div>
                 </div>

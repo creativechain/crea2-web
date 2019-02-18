@@ -107,7 +107,7 @@
             <div class="container row-promoter pt-3 pb-3" style="background-color: white">
                 <div class="row justify-content-between">
                     <div class="col">
-                        <img src="/img/icons/ic_share_black_24px.svg" alt="">
+                        <!--<img src="/img/icons/ic_share_black_24px.svg" alt="">-->
                     </div>
                     <div class="col text-right">
                         <div v-if="session" class="row-promote justify-content-center">
