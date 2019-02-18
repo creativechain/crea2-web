@@ -1,4 +1,19 @@
 .exchange {
+  .color--primary-exchange {
+    color: $color-dark-primary;
+  }
+  .color-sell {
+
+  }
+  .color-buy {
+    color: $color-buy;
+  }
+  .boxed {
+    padding: 0;
+  }
+  .tabs li:not(.active) {
+    opacity: 0.3;
+  }
   .gray-color {
     color: #999!important;
   }
@@ -25,6 +40,50 @@
       }
       .amount {
         font-size: 14px;
+      }
+    }
+  }
+  .ul-market-buy-sell {
+    border: 1px solid transparent;
+    li {
+      padding: 5px 10px 7px;
+    }
+    .table-buy-sell-market {
+      tbody {
+        tr {
+
+        }
+      }
+    }
+  }
+  .market-history {
+    li {
+      text-align: center;
+      width: 24%;
+      padding: 0 10px;
+    }
+  }
+  .tabs-content {
+    border-top: solid 1px $border-solid-grey;
+  }
+  table.dataTable thead th, table.dataTable thead td {
+    padding: 5px 8px;
+    border-right: solid 1px $border-solid-grey;
+  }
+  table.dataTable tbody th, table.dataTable tbody td {
+    padding: 3px 10px;
+  }
+  .dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 1px solid #efefef;
+  }
+  table {
+    thead {
+      tr {
+        th {
+          background: white;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
       }
     }
   }

@@ -21,6 +21,9 @@
     <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+
     <link rel="stylesheet" type="text/css" href="//loading.io/css/loading.css"/>
     <link rel="stylesheet" type="text/css" href="//loading.io/css/loading-btn.css"/>
 

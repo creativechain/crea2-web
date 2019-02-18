@@ -1411,6 +1411,14 @@
   font-size: 25px;
   font-weight: 600; }
 
+.exchange .color--primary-exchange {
+  color: #222222; }
+.exchange .color-buy {
+  color: #25D77C; }
+.exchange .boxed {
+  padding: 0; }
+.exchange .tabs li:not(.active) {
+  opacity: 0.3; }
 .exchange .gray-color {
   color: #999 !important; }
 .exchange .green-color {
@@ -1431,6 +1439,27 @@
     font-weight: 900; }
   .exchange .header-exchange .head-splits .amount {
     font-size: 14px; }
+.exchange .ul-market-buy-sell {
+  border: 1px solid transparent; }
+  .exchange .ul-market-buy-sell li {
+    padding: 5px 10px 7px; }
+.exchange .market-history li {
+  text-align: center;
+  width: 24%;
+  padding: 0 10px; }
+.exchange .tabs-content {
+  border-top: solid 1px #ececec; }
+.exchange table.dataTable thead th, .exchange table.dataTable thead td {
+  padding: 5px 8px;
+  border-right: solid 1px #ececec; }
+.exchange table.dataTable tbody th, .exchange table.dataTable tbody td {
+  padding: 3px 10px; }
+.exchange .dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: 1px solid #efefef; }
+.exchange table thead tr th {
+  background: white;
+  text-transform: uppercase;
+  font-weight: 600; }
 
 body {
   color: #222222;

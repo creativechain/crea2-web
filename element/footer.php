@@ -126,6 +126,8 @@
 <script src="/js/common/setup.js"></script>
 
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
 
 <script>
     $(document).ready(function(){
@@ -142,7 +144,50 @@
             });
         });
     });
+
+    $(document).ready(function() {
+        $('#example').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "paging":         false
+        });
+        $('#example1_result').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "400px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+        $('#example1').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false, aTargets : ['_all']
+            }],
+            order: []
+        });
+        $('#example2').DataTable({
+
+        });
+    } );
+
 </script>
+
+
+
 
 </body>
 </html>
