@@ -104,12 +104,12 @@
                 </a>
             </li>-->
             <li>
-                <a href="#">
+                <a href="/privacy_policy" target="_blank">
                     <span>{{ lang.DOTS_MENU.PRIVACY }}</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/terms_and_conditions"  target="_blank">
                     <span>{{ lang.DOTS_MENU.TERMS }}</span>
                 </a>
             </li>

@@ -1,5 +1,15 @@
 .view-welcome {
   background-color: white; }
+  .view-welcome .col-terms .error-color-form {
+    height: 20px; }
+  .view-welcome .col-terms a {
+    font-size: 14px;
+    text-decoration: none; }
+  .view-welcome .col-policy .error-color-form {
+    height: 20px; }
+  .view-welcome .col-policy a {
+    font-size: 14px;
+    text-decoration: none; }
   .view-welcome .logo-welcome {
     margin: 0 0 120px;
     width: 105px; }
@@ -1410,6 +1420,29 @@
 #witnesses .title-explorer {
   font-size: 25px;
   font-weight: 600; }
+
+#legal-doc p {
+  font-size: 14px; }
+#legal-doc h3 {
+  font-size: 25px;
+  font-weight: 600; }
+#legal-doc h4 {
+  margin-bottom: 0;
+  font-weight: 600; }
+#legal-doc li {
+  display: list-item;
+  text-align: -webkit-match-parent; }
+#legal-doc ul {
+  margin-top: 0;
+  margin-bottom: 1rem; }
+#legal-doc ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px; }
 
 body {
   color: #222222;

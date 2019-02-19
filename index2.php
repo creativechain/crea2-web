@@ -84,6 +84,8 @@ function handleRoute() {
     $router->addRoute('/explore', 'explore.php');
     $router->addRoute('/faq', 'faq.php');
     $router->addRoute('/recover-account', 'recover-account.php');
+    $router->addRoute('/terms_and_conditions', 'terms_and_conditions.php');
+    $router->addRoute('/privacy_policy', 'privacy_policy.php');
     $router->addRoute('/404', '404.php');
     $router->addRoute('/503', '503.php');
     $router->addRoute('^\/([\w\d\-\/]+)\/?$', 'home.php'); //

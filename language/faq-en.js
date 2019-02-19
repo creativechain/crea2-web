@@ -193,7 +193,7 @@ faq.en = {
                 "The Crea blockchain is the publicly accessible distributed database used by the social network Creary. In the blockchain of Crea are registered all the contents, downloads, likes, new user accounts, copyright certificates, token transactions, distribution of rewards and other system operations. It is where all text content and voting data are stored, and where all the reward calculations and payments to the contents are made.",
                 "It is the shared information record book that can not be manipulated and is governed by the user community itself."
             ],
-            "Is there any way to see the raw data that is stored in the blockchain?": ["Yes, you can view all the data in real time on creativechain.net/@user"],
+            "Is there any way to see the raw data that is stored in the blockchain?": ["Yes, you can view all the data in real time on creascan.net/@user"],
             "How often does the Crea blockchain issue a new block?": ["The blockchain of Crea is programmed so that the witnesses produce a new block every 3 seconds. 25 witness nodes produce 25 blocks in each 75-second round."],
             "Where can I find more information about how the Crea blockchain works?": ["All the information related to the Crea network can be found on https://creaproject.io/"],
             "What is a Recreary?": ["It is the function that allows a Crearian share a work of another Crearian in his feed. This function is ideal for discovering others' works and showing them to your followers."]
@@ -338,7 +338,7 @@ faq.en = {
                 "Once you reach about 500 CREA Energy, you will see a voting slider appear when you vote. You can use the slider to adjust the weight of your vote, between 1% and 100% of the voting strength. Voting with less than 100% of weight will spend less voting power, but will also have less influence on the rewards of the comment or post."
             ],
             "Is there any way to make my vows more powerful?": ["Yes. The more CREA Energy you have, the more your votes count. You can easily get CGY if you are a user that publishes quality content and collaborates in the curation of content in an active way. A shortcut to get CGY is to buy CREA in any exchange where the token is available. https://creaproject.io/buy"],
-            "Where can I verify my voting power?": ["You can see your current voting power and other profile data in the blockchain by consulting tools such as https://creativechain.net/@youraccount."]
+            "Where can I verify my voting power?": ["You can see your current voting power and other profile data in the blockchain by consulting tools such as https://creascan.net/@youraccount."]
         },
         "Economy": {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],

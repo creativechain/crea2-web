@@ -1,6 +1,24 @@
 @import "color";
 .view-welcome {
   background-color: $color-white;
+  .col-terms {
+    .error-color-form {
+      height: 20px;
+    }
+    a {
+      font-size: 14px;
+      text-decoration: none;
+    }
+  }
+  .col-policy {
+    .error-color-form {
+      height: 20px;
+    }
+    a {
+      font-size: 14px;
+      text-decoration: none;
+    }
+  }
   .logo-welcome {
     margin: 0 0 120px;
     width: 105px;
