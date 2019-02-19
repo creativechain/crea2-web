@@ -39,7 +39,7 @@ lang.en = {
         "MARKET": "Coins market",
         "PRIVACY": "Privacy policy",
         "ACCOUNTS": "Accounts recovery",
-        "FAQ": "FAQS",
+        "FAQ": "FAQs",
         "TERMS": "Terms and conditions",
         "WELCOME": "Welcome",
         "WHITEPAPER": "Whitepaper",

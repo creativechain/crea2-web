@@ -354,18 +354,18 @@
                                     <label for="welcome-check-terms"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedTerms }">
-                                    {{ lang.WELCOME.SLIDE7_CHECKBOX1 }}
+                                    <a href="/terms_and_conditions" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}</a>
                                 </span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 col-policy">
                                 <div class="input-checkbox">
                                     <input v-model="checkedPolicy" id="welcome-check-policy" type="checkbox" name="agree_policy" />
                                     <label for="welcome-check-policy"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedPolicy }">
-                                    {{ lang.WELCOME.SLIDE7_CHECKBOX2 }}
+                                    <a href="/privacy_policy" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}</a>
                                 </span>
                             </div>
                         </div>
