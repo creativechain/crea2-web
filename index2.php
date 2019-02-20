@@ -82,6 +82,7 @@ function handleRoute() {
     $router->addRoute('/validate', 'welcome.php');
     $router->addRoute('/publish', 'publish.php');
     $router->addRoute('/explore', 'explore.php');
+    $router->addRoute('/exchange', 'exchange.php');
     #$router->addRoute('/~market', 'exchange.php');
     $router->addRoute('/faq', 'faq.php');
     $router->addRoute('/recover-account', 'recover-account.php');
