@@ -107,7 +107,7 @@
         <div class="row">
             <div class="col">
                 <div class="btn btn--sm btn--primary" v-on:click="sendAccountUpdate">
-                    <span class="btn__text">
+                    <span class="btn__text font-weight-bold">
                         {{ lang.BUTTON.SAVE }}
                     </span>
                 </div>

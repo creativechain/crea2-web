@@ -27,7 +27,7 @@
                 </btn-follow>
 
                 <a v-else class="btn btn--sm" v-bind:href="'/@' + session.account.username + '/settings'" v-on:click="navigateTo($event, 'settings')">
-                    <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
+                    <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                 </a>
             </div>
 

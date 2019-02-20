@@ -232,14 +232,14 @@
                                                                         </div>
                                                                         <div class="col m-2">
                                                                             <div class="btn btn--transparent w-100">
-                                                                                <span class="btn__text color--dark" v-on:click="closeLogin">
+                                                                                <span class="btn__text color--dark font-weight-bold" v-on:click="closeLogin">
                                                                                     {{ lang.BUTTON.CANCEL }}
                                                                                 </span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col m-2">
                                                                             <div class="btn btn--primary w-100" v-on:click="login">
-                                                                                <span class="btn__text">
+                                                                                <span class="btn__text font-weight-bold">
                                                                                     {{ lang.BUTTON.LOGIN }}
                                                                                 </span>
                                                                             </div>
@@ -258,7 +258,7 @@
                                                                     <div class="row mt-3">
                                                                         <div class="col-md-8 offset-md-2 text-center">
                                                                             <a class="btn btn--black" href="/welcome">
-                                                                                <span class="btn__text color--white">
+                                                                                <span class="btn__text color--white font-weight-bold">
                                                                                     {{ lang.BUTTON.SIGN_UP }}
                                                                                 </span>
                                                                             </a>
@@ -409,21 +409,21 @@
                             <li v-if="session">
                                 <!-- mobile-->
                                 <a class="btn btn--sm btn--primary type--uppercase hidden-sm hidden-md hidden-lg li-publish-navbar mb-2" href="/publish" style="margin: 10px auto 20px !important;">
-                                    <span class="btn__text btn-publish-navbar">
+                                    <span class="btn__text btn-publish-navbar font-weight-bold">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
                                 </a>
                                 <!-- desktop-->
-                                <a class="btn btn--sm btn--primary type--uppercase  hidden-xs" href="/publish">
-                                    <span class="btn__text btn-publish-navbar">
+                                <a class="btn btn--sm btn--primary type--uppercase  hidden-xs w-100 ml-0" href="/publish">
+                                    <span class="btn__text btn-publish-navbar font-weight-bold">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
                                 </a>
                             </li>
 
                             <li v-if="!session" class="hidden-xs">
-                                <a class="btn btn--sm type--uppercase " href="/welcome">
-                                    <span class="btn__text btn-publish-navbar">
+                                <a class="btn btn--sm type--uppercase" href="/welcome">
+                                    <span class="btn__text btn-publish-navbar font-weight-bold">
                                         {{ lang.BUTTON.SIGN_UP }}
                                     </span>
                                 </a>
@@ -471,7 +471,7 @@
                                 </div>
                             </li>
 
-                            <li class="hidden-xs">
+                            <li class="hidden-xs" v-if="!session">
                                 <div class="modal-instance">
                                     <a href="#modal-login" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
@@ -501,14 +501,14 @@
                                                                             </div>
                                                                             <div class="col m-2">
                                                                                 <div class="btn btn--transparent w-100">
-                                                                                    <span class="btn__text color--dark" v-on:click="closeLogin">
+                                                                                    <span class="btn__text color--dark font-weight-bold" v-on:click="closeLogin">
                                                                                         {{ lang.BUTTON.CANCEL }}
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col m-2">
                                                                                 <div class="btn btn--primary w-100" v-on:click="login">
-                                                                                    <span class="btn__text">
+                                                                                    <span class="btn__text font-weight-bold">
                                                                                         {{ lang.BUTTON.LOGIN }}
                                                                                     </span>
                                                                                 </div>
@@ -527,7 +527,7 @@
                                                                         <div class="row mt-3">
                                                                             <div class="col-md-8 offset-md-2 text-center">
                                                                                 <a class="btn btn--black" href="/welcome">
-                                                                                    <span class="btn__text color--white">
+                                                                                    <span class="btn__text color--white font-weight-bold">
                                                                                         {{ lang.BUTTON.SIGN_UP }}
                                                                                     </span>
                                                                                 </a>
@@ -548,7 +548,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li v-pre class="hidden-xs">
+                            <li v-pre class="hidden-xs icon-menu-navbar-right">
                                 <div class="icons-navbar navbar-menu-icon" data-notification-link="side-menu">
                                     <i class="stack-menu"></i>
                                 </div>

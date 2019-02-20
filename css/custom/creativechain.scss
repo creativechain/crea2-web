@@ -35,6 +35,10 @@ label {
 .logo {
   width: 110px;
 }
+.icon-menu-navbar-right {
+  position: relative;
+  top: 3px;
+}
 .li-avatar-navbar-mobile {
   position: relative;
   top: -2px;
@@ -279,7 +283,7 @@ a:hover {
     min-height: 30px;
     min-width: 30px;
     border-radius: 50px;
-    margin-bottom: -10px;
+    margin-bottom: -12px;
   }
   .img-user-avatar {
     background-image: url("/img/crea-web/publish/demo-vertical.jpg");
@@ -426,6 +430,10 @@ img {
         margin-right: 5px;
         width: 16px;
       }
+      span {
+        position: relative;
+        top: 2px;
+      }
     }
   }
 
@@ -490,6 +498,7 @@ img {
       border-width: 1px;
       font-size: inherit;
       line-height: 1.85714286em;
+      font-weight: bold;
     }
     .btn .btn__text, .btn i {
       color: white;

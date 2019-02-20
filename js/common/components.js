@@ -568,7 +568,7 @@ let FOLLOW_STATE = {
 };
 
 Vue.component('btn-follow',  {
-    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm running ld ld-ext-right" v-bind:class="btnClasses">
+    template: `<div v-on:click="performFollow" v-on:mouseleave="onleave" v-on:mouseover="onover" class="btn btn-sm running ld ld-ext-right font-weight-bold" v-bind:class="btnClasses">
 <div class="btn__text ld-spin-fast ld" v-bind:class="textClasses"></div>{{ text }}<div></div>
 </div>`,
     props: {

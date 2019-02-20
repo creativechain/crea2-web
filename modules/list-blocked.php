@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-3 align-self-center text-right">
                     <div class="btn btn--sm btn--primary" v-on:click="unlock(b.name)">
-                        <span class="btn__text">{{ lang.BUTTON.UNLOCK }}</span>
+                        <span class="btn__text font-weight-bold">{{ lang.BUTTON.UNLOCK }}</span>
                     </div>
                 </div>
             </div>

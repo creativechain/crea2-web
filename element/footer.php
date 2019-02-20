@@ -16,7 +16,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12 text-right">
                                         <div class="btn btn--primary" v-on:click="closeModal">
-                                            <span class="btn__text">
+                                            <span class="btn__text ">
                                                 {{ lang.BUTTON.CLOSE }}
                                             </span>
                                         </div>
@@ -60,12 +60,12 @@
                                             </div>
                                             <div class="col m-2">
                                                 <a class="btn btn--transparent w-100" href="#" v-on:click="closeModal">
-                                                    <span class="btn__text color--dark">{{ lang.BUTTON.CANCEL }}</span>
+                                                    <span class="btn__text color--dark font-weight-bold">{{ lang.BUTTON.CANCEL }}</span>
                                                 </a>
                                             </div>
                                             <div class="col m-2">
                                                 <a class="btn btn--primary w-100" href="#" v-on:click="fetchKey">
-                                                    <span class="btn__text">{{ lang.BUTTON.LOGIN }}</span>
+                                                    <span class="btn__text font-weight-bold">{{ lang.BUTTON.LOGIN }}</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -145,8 +145,51 @@
         });
     });
 
+
+    $('#buy_left_result_all').DataTable({
+        bFilter: false,
+        bInfo: false,
+        "lengthChange": false,
+        aoColumnDefs : [ {
+            orderable : false,
+            aTargets : ['_all']
+        }],
+        order: [],
+        "scrollY":        "250px",
+        "scrollCollapse": true,
+        "paging":         false
+    });
+    $('#sell_left_result_all').DataTable({
+        bFilter: false,
+        bInfo: false,
+        "lengthChange": false,
+        aoColumnDefs : [ {
+            orderable : false,
+            aTargets : ['_all']
+        }],
+        order: [],
+        "scrollY":        "250px",
+        "scrollCollapse": true,
+        "paging":         false
+    });
+    $('#buy-left_all').DataTable({
+        bFilter: false,
+        bInfo: false,
+        "lengthChange": false,
+        aoColumnDefs : [ {
+            orderable : false,
+            aTargets : ['_all']
+        }],
+        order: [],
+        "paging":         false
+    });
+
+
+
+
+
     $(document).ready(function() {
-        $('#example').DataTable({
+        $('#buy-left').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -155,9 +198,16 @@
                 aTargets : ['_all']
             }],
             order: [],
-            "paging":         false
+            "paging":false,
+            "bAutoWidth": false,
+            "aoColumns" : [
+                { sWidth: '25%' },
+                { sWidth: '25%' },
+                { sWidth: '25%' },
+                { sWidth: '25%' }
+            ]
         });
-        $('#example1_result').DataTable({
+        $('#buy_left_result').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -170,17 +220,57 @@
             "scrollCollapse": true,
             "paging":         false
         });
+        $('#sell-left').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "paging":         false
+        });
+        $('#sell_left_result').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "400px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+
+
         $('#example1').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
             aoColumnDefs : [ {
-                orderable : false, aTargets : ['_all']
+                orderable : false,
+                aTargets : ['_all']
             }],
-            order: []
+            order: [],
+            "scrollY":        "534px",
+            "scrollCollapse": true,
+            "paging":         false
         });
         $('#example2').DataTable({
-
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "200px",
+            "scrollCollapse": true,
+            "paging":         false
         });
     } );
 

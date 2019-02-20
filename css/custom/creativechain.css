@@ -115,6 +115,10 @@
       height: 315px; }
       .simple-view-home .post-container-home .masonry__container .col-xl-2-cust .card__top .img-post-list {
         height: 315px; }
+  .simple-view-home .post-container-home .card-home .card__top {
+    height: 300px; }
+    .simple-view-home .post-container-home .card-home .card__top .img-post-list {
+      height: 300px; }
 
 .view-profile .tabs-container .tabs-content {
   margin-left: -2px;
@@ -1421,6 +1425,91 @@
   font-size: 25px;
   font-weight: 600; }
 
+.exchange .btn-buy-exchange {
+  background-color: #25D77C; }
+.exchange table.dataTable.row-border tbody th, .exchange table.dataTable.row-border tbody td, .exchange table.dataTable.display tbody th, .exchange table.dataTable.display tbody td {
+  border-top: 1px solid transparent; }
+.exchange .title-section {
+  font-size: 25px;
+  font-weight: 600; }
+.exchange .subtitle-module-exchange {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-bottom: 10px; }
+.exchange .navbar-resum {
+  padding: 0 15px !important; }
+.exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner {
+  width: 100% !important; }
+  .exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner table {
+    width: 100% !important; }
+    .exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner table thead th {
+      width: 64px !important; }
+    .exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner table thead th:nth-last-child {
+      width: 68px !important; }
+.exchange .form-buy-sell {
+  padding: 15px !important; }
+  .exchange .form-buy-sell i {
+    right: 15px;
+    left: auto;
+    top: 6px; }
+  .exchange .form-buy-sell .input-icon input {
+    padding-left: 15px;
+    padding-right: 83px; }
+  .exchange .form-buy-sell h6:not(:last-child), .exchange .form-buy-sell .h6:not(:last-child) {
+    margin-bottom: 10px; }
+.exchange .color--primary-exchange {
+  color: #222222; }
+.exchange .color-sell {
+  color: #ff5766; }
+.exchange .color-buy {
+  color: #25D77C; }
+.exchange .boxed {
+  padding: 0; }
+.exchange .tabs li:not(.active) {
+  opacity: 0.2; }
+.exchange .gray-color {
+  color: #999 !important; }
+.exchange .green-color {
+  color: #25D77C !important; }
+.exchange .red-color {
+  color: #ff5766 !important; }
+.exchange .header-exchange .head-splits {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+  .exchange .header-exchange .head-splits .title {
+    font-size: 1.2em;
+    font-weight: 900;
+    margin-bottom: 0; }
+  .exchange .header-exchange .head-splits p {
+    margin-bottom: 0;
+    font-weight: 900; }
+  .exchange .header-exchange .head-splits .amount {
+    font-size: 14px; }
+.exchange .ul-market-buy-sell {
+  border: 1px solid transparent; }
+  .exchange .ul-market-buy-sell li {
+    padding: 5px 10px 7px; }
+.exchange .market-history tbody tr.active-tr {
+  background-color: #F2F2F2 !important; }
+  .exchange .market-history tbody tr.active-tr td {
+    font-weight: 700; }
+.exchange .tabs-content {
+  border-top: solid 1px #ececec; }
+.exchange table.dataTable thead th, .exchange table.dataTable thead td {
+  padding: 5px 8px;
+  border-right: solid 1px transparent;
+  border-bottom: 1px solid transparent; }
+.exchange table.dataTable tbody th, .exchange table.dataTable tbody td {
+  padding: 3px 10px; }
+.exchange .dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: 1px solid #efefef; }
+.exchange table thead tr th {
+  background: white;
+  text-transform: uppercase;
+  font-weight: 600; }
+
 #legal-doc p {
   font-size: 14px; }
 #legal-doc h3 {
@@ -1444,56 +1533,6 @@
   margin-inline-end: 0px;
   padding-inline-start: 40px; }
 
-.exchange .color--primary-exchange {
-  color: #222222; }
-.exchange .color-buy {
-  color: #25D77C; }
-.exchange .boxed {
-  padding: 0; }
-.exchange .tabs li:not(.active) {
-  opacity: 0.3; }
-.exchange .gray-color {
-  color: #999 !important; }
-.exchange .green-color {
-  color: #70a800 !important; }
-.exchange .red-color {
-  color: #ff5766 !important; }
-.exchange .header-exchange .head-splits {
-  display: inline-block;
-  margin-right: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px; }
-  .exchange .header-exchange .head-splits .title {
-    font-size: 1.2em;
-    font-weight: 900;
-    margin-bottom: 0; }
-  .exchange .header-exchange .head-splits p {
-    margin-bottom: 0;
-    font-weight: 900; }
-  .exchange .header-exchange .head-splits .amount {
-    font-size: 14px; }
-.exchange .ul-market-buy-sell {
-  border: 1px solid transparent; }
-  .exchange .ul-market-buy-sell li {
-    padding: 5px 10px 7px; }
-.exchange .market-history li {
-  text-align: center;
-  width: 24%;
-  padding: 0 10px; }
-.exchange .tabs-content {
-  border-top: solid 1px #ececec; }
-.exchange table.dataTable thead th, .exchange table.dataTable thead td {
-  padding: 5px 8px;
-  border-right: solid 1px #ececec; }
-.exchange table.dataTable tbody th, .exchange table.dataTable tbody td {
-  padding: 3px 10px; }
-.exchange .dataTables_wrapper.no-footer .dataTables_scrollBody {
-  border-bottom: 1px solid #efefef; }
-.exchange table thead tr th {
-  background: white;
-  text-transform: uppercase;
-  font-weight: 600; }
-
 body {
   color: #222222;
   font-size: 12px;
@@ -1510,6 +1549,10 @@ label {
 
 .logo {
   width: 110px; }
+
+.icon-menu-navbar-right {
+  position: relative;
+  top: 3px; }
 
 .li-avatar-navbar-mobile {
   position: relative;
@@ -1726,7 +1769,7 @@ a:hover {
     min-height: 30px;
     min-width: 30px;
     border-radius: 50px;
-    margin-bottom: -10px; }
+    margin-bottom: -12px; }
   #menu1 .img-user-avatar {
     background-image: url("/img/crea-web/publish/demo-vertical.jpg");
     background-size: cover;
@@ -1842,6 +1885,9 @@ img {
       .card-home .li-comment p img {
         margin-right: 5px;
         width: 16px; }
+      .card-home .li-comment p span {
+        position: relative;
+        top: 2px; }
   .card-home .li-certificate {
     margin-top: 5px; }
     .card-home .li-certificate img {
@@ -1882,7 +1928,8 @@ img {
       border: 1px solid transparent;
       border-width: 1px;
       font-size: inherit;
-      line-height: 1.85714286em; }
+      line-height: 1.85714286em;
+      font-weight: bold; }
     .card-home .dropdown-info-user .btn .btn__text, .card-home .dropdown-info-user .btn i {
       color: white;
       border-color: white; }

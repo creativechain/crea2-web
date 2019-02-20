@@ -7,7 +7,7 @@
             </span>
             <span class="row-liquid">
                 <a href="#" class="btn btn--sm btn--secondary" v-on:click="claimRewards">
-                    <span class="btn__text color-secondary">{{ lang.BUTTON.CLAIM_REWARDS }}</span>
+                    <span class="btn__text color-secondary font-weight-bold">{{ lang.BUTTON.CLAIM_REWARDS }}</span>
                 </a>
             </span>
         </div>
@@ -35,23 +35,23 @@
                     </div>
                 </li>
                 <li class="text-right li-buy-crea d-sm-none d-none col-sm-3">
-                    <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
-                        <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
+                    <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary">
+                        <span class="btn__text font-weight-bold">{{ lang.BUTTON.BUY_CREA }}</span>
                     </a>
                 </li>
 
                 <!-- responsive laptop -->
                 <li class="text-right li-buy-crea d-none d-sm-none d-md-block">
-                    <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
-                        <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
+                    <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary">
+                        <span class="btn__text font-weight-bold">{{ lang.BUTTON.BUY_CREA }}</span>
                     </a>
                 </li>
             </ul>
 
             <!-- responsive mobile -->
             <div class="d-block d-sm-block d-md-none mobile-button-buy-crea">
-                <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary type--uppercase">
-                    <span class="btn__text">{{ lang.BUTTON.BUY_CREA }}</span>
+                <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary">
+                    <span class="btn__text font-weight-bold">{{ lang.BUTTON.BUY_CREA }}</span>
                 </a>
             </div>
 
@@ -419,10 +419,10 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div v-if="session && !showPriv.posting" class="btn btn--sm" v-on:click="getPrivKey('posting')">
-                                        <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                     </div>
                                     <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('posting')">
-                                        <span class="btn__text text__dark">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -434,10 +434,10 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div v-if="session && !showPriv.active" class="btn btn--sm" v-on:click="getPrivKey('active')">
-                                        <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                     </div>
                                     <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('active')">
-                                        <span class="btn__text text__dark">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -459,10 +459,10 @@
                                 </td>
                                 <td style="text-align: right">
                                     <div v-if="session && !showPriv.memo" class="btn btn--sm" v-on:click="getPrivKey('memo')">
-                                        <span class="btn__text text__dark">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
                                     </div>
                                     <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('memo')">
-                                        <span class="btn__text text__dark">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -501,7 +501,7 @@
                                 <div v-else class="">
                                     <div class="">
                                         <div v-on:click="suggestPassword" class="btn btn--sm btn--black mt-3 cursor">
-                                            <span class="btn__text">{{ lang.CHANGE_PASSWORD.CONFIRM_PASSWORD }}</span>
+                                            <span class="btn__text  font-weight-bold">{{ lang.CHANGE_PASSWORD.CONFIRM_PASSWORD }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -529,7 +529,7 @@
                             </div>
                             <div class="col-md-4 mt-3">
                                 <div class="btn btn--sm btn--primary cursor" v-on:click="changePassword">
-                                    <span class="btn__text">{{ lang.CHANGE_PASSWORD.UPDATE_PASSWORD }}</span>
+                                    <span class="btn__text  font-weight-bold">{{ lang.CHANGE_PASSWORD.UPDATE_PASSWORD }}</span>
                                 </div>
                             </div>
                         </div>

@@ -10,8 +10,8 @@
             <div class="col-md-8 col-lg-7 offset-1">
                 <h1>{{ lang.BANNER.TITLE }}</h1>
                 <h3>{{ lang.BANNER.SUBTITLE }}</h3>
-                <a href="/welcome" class="btn btn--sm type--uppercase">
-                    <span class="btn__text">
+                <a href="/welcome" class="btn btn--sm">
+                    <span class="btn__text font-weight-bold">
                             {{ lang.BUTTON.SIGN_UP }}
                     </span>
                 </a>
