@@ -470,7 +470,6 @@ function requireRoleKey(username, role, login, callback) {
         } else {
             console.log(id);
             creaEvents.on('crea.auth.role.' + id, function (roleKey, username) {
-                console.log(roleKey, typeof callback, typeof login);
                 if (callback) {
                     callback(roleKey, username);
                 }
