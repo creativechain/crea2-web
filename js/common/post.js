@@ -367,7 +367,7 @@
                                 let hash = re.exec(result.resource)[0];
                                 console.log(hash);
 
-                                let url = apiOptions.ipfsd + post.download.type + '/' + hash + '/' + post.download.name;
+                                let url = apiOptions.ipfsd + '/' + post.download.type + '/' + hash + '/' + post.download.name;
                                 url += '?stream=false';
                                 downloadFile(url, post.download.name);
                             }

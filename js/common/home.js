@@ -107,7 +107,7 @@
                         let featuredImage = post.metadata.featuredImage;
                         if (featuredImage && featuredImage.hash) {
                             return {
-                                url: apiOptions.ipfsd + featuredImage.hash
+                                url: apiOptions.ipfsd + '/' + featuredImage.hash
                             }
                         } else if (featuredImage && featuredImage.url) {
                             return featuredImage;
