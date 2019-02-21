@@ -114,13 +114,13 @@ function toHome(location) {
  */
 function resolveFilter(filter) {
     filter = filter.toLowerCase();
-    if (filter.startsWith('/popular')) {
+    /*if (filter.startsWith('/popular')) {
         return filter.replace('/popular', '/trending');
     } else if (filter.startsWith('/skyrockets')) {
         return filter.replace('/skyrockets', '/hot');
     } else if (filter.startsWith('/now')) {
         return filter.replace('/now', '/created');
-    }
+    }*/
 
     return filter;
 }
@@ -130,7 +130,7 @@ function createBlockchainAccount(username, password, callback) {
     let keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
 
     refreshAccessToken(function (accessToken) {
-        let http = new HttpClient('https://platform.creativechain.net/createCrearyAccount');
+        let http = new HttpClient(apiOptions.apiUrl + '/createCrearyAccount');
 
         http.when('done', function (data) {
             data = jsonify(data);
@@ -282,8 +282,8 @@ function refreshAccessToken(callback) {
 
         let params = {
             grant_type: 'client_credentials',
-            client_id: local ? '1_11gxxww27idwo0skoo8s4k0g044skswwkcg08c88swgsowkwgk' : '1_4juuakri1zqckgo444ows4gckw08so0w848sowkckk40wo8w80',
-            client_secret: local ? 'jf8ltr7u5fk0gwssos4g8w8kwc4owosk4gcs0g4wk4k8ks0wk' : '5co2o9zprcgskcw0ok4ko0csocwkc44swsko4k0kwks04o0koo'
+            client_id: '1_2e5ws1sr915wk0o4kksc0swwoc8kc4wgkgcksscgkkko404g8c,',
+            client_secret: '3c2x9uf9uwg0ook0kksk8koccsk44w0gg4csos04ows444ko4k'
         };
 
         http.when('done', function (data) {
@@ -311,7 +311,7 @@ function uploadToIpfs(file, maxSize, callback) {
         if (file.size <= maxSize) {
 
             refreshAccessToken(function (accessToken) {
-                let http = new HttpClient('https://platform.creativechain.net/ipfs');
+                let http = new HttpClient(apiOptions.ipfsd);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
@@ -370,7 +370,7 @@ function performSearch(search, page = 1, inHome = false, callback) {
     if (inHome) {
         updateUrl(path);
         refreshAccessToken(function (accessToken) {
-            let http = new HttpClient('https://platform.creativechain.net/searchCreaContent');
+            let http = new HttpClient(apiOptions.apiUrl + '/searchCreaContent');
             http.setHeaders({
                 Authorization: 'Bearer ' + accessToken
             });

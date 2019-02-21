@@ -165,7 +165,7 @@
             if (!catchError(err)) {
 
                 if (isUserFeed()) {
-                    let http = new HttpClient('https://platform.creativechain.net/creary/feed');
+                    let http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
 
                     let noFeedContent = function () {
                         //User not follows anything, load empty content

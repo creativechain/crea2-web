@@ -6,10 +6,10 @@
 let local = false;
 
 let apiOptions = {
-    nodes: ['https://node2.creary.net', 'https://node3.creary.net'],
-    apiUrl : 'https://platform.creativechain.net',
+    nodes: ['https://crea.owldevelopers.site'],
+    apiUrl : 'https://api.creary.net',
     ipfs: 'https://ipfs.creary.net',
-    ipfsd: 'https://platform.creativechain.net/ipfs/',
+    ipfsd: 'https://api.creary.net/ipfs/',
     addressPrefix: 'CREA',
     symbol: {
         CREA: 'CREA',

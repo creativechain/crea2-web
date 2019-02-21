@@ -107,7 +107,7 @@
                         let featuredImage = post.metadata.featuredImage;
                         if (featuredImage && featuredImage.hash) {
                             return {
-                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
+                                url: apiOptions.ipfsd + featuredImage.hash
                             }
                         } else if (featuredImage && featuredImage.url) {
                             return featuredImage;
@@ -349,7 +349,7 @@
         if (!onScrollCalling) {
             onScrollCalling = true;
             if (isUserFeed()) {
-                let http = new HttpClient('https://platform.creativechain.net/creary/feed');
+                let http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
 
                 http.when('done', function (response) {
                     let data = jsonify(response).data;

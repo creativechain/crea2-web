@@ -86,7 +86,7 @@
         if (validateEmail(email)) {
 
             refreshAccessToken(function (accessToken) {
-                let url = 'https://platform.creativechain.net/validateAccount';
+                let url = apiOptions.apiUrl + '/validateAccount';
                 let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
@@ -151,7 +151,7 @@
         if (!welcomeVue.error.email) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                let url = 'https://platform.creativechain.net/crearySignUp';
+                let url = apiOptions.apiUrl + '/crearySignUp';
                 let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
@@ -199,7 +199,7 @@
         if (token) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                let url = 'https://platform.creativechain.net/validate/' + token;
+                let url = apiOptions.apiUrl + '/validate/' + token;
                 let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
