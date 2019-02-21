@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACE,0BAAgB;EACd,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG",
+"sources": ["witnesses.scss"],
+"names": [],
+"file": "witnesses.css"
+}

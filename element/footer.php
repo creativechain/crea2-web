@@ -1,9 +1,94 @@
+<div class="modal-instance ">
+    <div id="modal-alert" class="modal-container modal-report" v-bind:class="{'modal-active': show}">
+        <div class="modal-content">
+            <section class="unpad ">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="boxed boxed--lg bg--white feature">
+                                <div class="modal-close modal-close-cross"></div>
+                                <h3>{{ config.title }}</h3>
+                                <div class="feature__body">
+                                    <p v-for="b in config.body">
+                                        {{ b }}
+                                    </p>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12 text-right">
+                                        <div class="btn btn--primary" v-on:click="closeModal">
+                                            <span class="btn__text ">
+                                                {{ lang.BUTTON.CLOSE }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal-instance">
+
+    <div id="modal-role" class="modal-container" v-bind:class="{'modal-active': show}">
+        <div class="modal-content section-modal">
+            <section class="unpad ">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="boxed boxed--lg bg--white text-center feature">
+                                <div class="modal-close modal-close-cross"></div>
+                                <h3>{{ lang.AUTH_MODAL.TITLE.replace('%s', role) }}</h3>
+                                <div class="feature__body">
+                                    <form action="#0" v-on:submit="fetchKey" class="content-login">
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input v-model="inputs.username.value"
+                                                       v-on:input="checkUsername"
+                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                <span class="error-color-form">{{ inputs.username.error || ' ' }}</span>
+                                            </div>
+                                            <div class="col-md-12 text-left">
+                                                <input v-model="inputs.password.value"
+                                                       type="password" v-bind:placeholder="lang.AUTH_MODAL.INPUT_PASSWORD"/>
+                                                <span class="error-color-form">{{ inputs.password.error || ' ' }}</span>
+                                            </div>
+                                            <div class="col m-2">
+                                                <a class="btn btn--transparent w-100" href="#" v-on:click="closeModal">
+                                                    <span class="btn__text color--dark font-weight-bold">{{ lang.BUTTON.CANCEL }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="col m-2">
+                                                <a class="btn btn--primary w-100" href="#" v-on:click="fetchKey">
+                                                    <span class="btn__text font-weight-bold">{{ lang.BUTTON.LOGIN }}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--end of row-->
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 </div>
-<!--<div class="loader"></div>-->
-<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
-    <i class="stack-interface stack-up-open-big"></i>
-</a>
 
 <div id="global-loading" v-bind:class="{ loading: true, hidden: !show }">
     <div class="center-loading">
@@ -13,38 +98,6 @@
         </svg>
     </div>
 </div>
-
-<script src="/js/tagsinput.js"></script>
-<script src="/js/moment.min.js"></script>
-<script src="/js/buffer.js"></script>
-<script src="/js/event-emitter.js"></script>
-<script src="/js/clipboard.min.js"></script>
-<script src="/js/crea.min.js"></script>
-<script src="https://unpkg.com/ipfs-api@24.0.2/dist/index.js"
-        integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
-        crossorigin="anonymous"></script>
-
-<script src="/js/common/conf.js"></script>
-<script src="/js/common/resources.js"></script>
-<script src="/language/lang-en.js"></script>
-<script src="/js/common/components.js"></script>
-<script src="/js/common/ls.js"></script>
-<script src="/js/common/util.js"></script>
-<script src="/js/common/http.js"></script>
-<script src="/js/lib/amount.js"></script>
-<script src="/js/lib/license.js"></script>
-<script src="/js/lib/error.js"></script>
-<script src="/js/lib/account.js"></script>
-<script src="/js/lib/session.js"></script>
-<script src="/js/common/login.js"></script>
-<script src="/js/common/common.js"></script>
-
-<script src="/js/common/navbar.js"></script>
-<script src="/js/common/profile.js"></script>
-<script src="/js/common/home.js"></script>
-<script src="/js/common/welcome.js"></script>
-<script src="/js/common/publish.js"></script>
-<script src="/js/common/post.js"></script>
 
 <script src="/js/flickity.min.js"></script>
 <script src="/js/easypiechart.min.js"></script>
@@ -60,10 +113,171 @@
 <script src="/js/twitterfetcher.min.js"></script>
 <script src="/js/spectragram.min.js"></script>
 <script src="/js/smooth-scroll.min.js"></script>
+<script src="/js/bootstrap-slider.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/tooltip.js"></script>
+<script src="/js/popover.js"></script>
 <script src="/js/scripts.js"></script>
 
 <script src="/js/custom.js"></script>
 
+<script src="/js/common/modals.js"></script>
 <script src="/js/common/setup.js"></script>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+        var $logo = $('#button-like');
+        $logo.addClass('d-none');
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 300) {
+                    $logo.removeClass('d-none');
+                    $logo.fadeIn(100);
+                } else {
+                    $logo.fadeOut(100);
+                }
+            });
+        });
+    });
+
+
+    $('#buy_left_result_all').DataTable({
+        bFilter: false,
+        bInfo: false,
+        "lengthChange": false,
+        aoColumnDefs : [ {
+            orderable : false,
+            aTargets : ['_all']
+        }],
+        order: [],
+        "scrollY":        "250px",
+        "scrollCollapse": true,
+        "paging":         false
+    });
+    $('#sell_left_result_all').DataTable({
+        bFilter: false,
+        bInfo: false,
+        "lengthChange": false,
+        aoColumnDefs : [ {
+            orderable : false,
+            aTargets : ['_all']
+        }],
+        order: [],
+        "scrollY":        "250px",
+        "scrollCollapse": true,
+        "paging":         false
+    });
+    $('#buy-left_all').DataTable({
+        bFilter: false,
+        bInfo: false,
+        "lengthChange": false,
+        aoColumnDefs : [ {
+            orderable : false,
+            aTargets : ['_all']
+        }],
+        order: [],
+        "paging":         false
+    });
+
+
+
+
+
+    $(document).ready(function() {
+        $('#buy-left').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "paging":false,
+            "bAutoWidth": false,
+            "aoColumns" : [
+                { sWidth: '25%' },
+                { sWidth: '25%' },
+                { sWidth: '25%' },
+                { sWidth: '25%' }
+            ]
+        });
+        $('#buy_left_result').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "400px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+        $('#sell-left').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "paging":         false
+        });
+        $('#sell_left_result').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "400px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+
+
+        $('#example1').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "534px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+        $('#example2').DataTable({
+            bFilter: false,
+            bInfo: false,
+            "lengthChange": false,
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            "scrollY":        "200px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+    } );
+
+</script>
+
+
+
+
 </body>
 </html>

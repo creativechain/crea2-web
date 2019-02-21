@@ -1,37 +1,32 @@
-<div class="col-md-12">
-    <div class="boxed boxed--border">
-        <div class="col-md-12">
-            <h3>Bloqueados</h3>
-        </div>
-        <div class="row-list-user">
-            <div class="user-avatar">
-                <div class="img-user-avatar"></div>
+<div v-cloak id="blocked-container" class="row">
+    <div class="w-100">
+        <h3 class="title-section-profile">{{ lang.PROFILE.TITLE_BLOCKED }}</h3>
+    </div>
+    <div class="w-100">
+        <div class="boxed boxed--border row-list pt-0 pb-0">
+            <div v-for="b in blocked" class="row row-list-user">
+                <div class="col-md-9">
+                    <div class="row-list-user-display">
+                        <div class="user-avatar">
+                            <a v-bind:href="'/@' + b.name ">
+                                <avatar v-bind:account="b"></avatar>
+                            </a>
+                        </div>
+                        <div class="list-data-user">
+                            <username v-bind:user="b.name" v-bind:name="b.metadata.publicName"></username>
+                            <p><span>{{ b.metadata.description || 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod' }}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 align-self-center text-right">
+                    <div class="btn btn--sm btn--primary" v-on:click="unlock(b.name)">
+                        <span class="btn__text font-weight-bold">{{ lang.BUTTON.UNLOCK }}</span>
+                    </div>
+                </div>
             </div>
-            <div class="list-data-user">
-                <p>Comando C <span>4 days ago</span></p>
-                <p><img src="../img/icons/like_ACT_RED.svg" alt="" class="icon-notification-list"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
-            </div>
-            <div class="align-self-center">
-                <a href="/publish.php" class="btn btn--sm btn--primary">
-                    <span class="btn__text">Unlock</span>
-                </a>
-            </div>
-            <hr>
-        </div>
-        <div class="row-list-user">
-            <div class="user-avatar">
-                <div class="img-user-avatar"></div>
-            </div>
-            <div class="list-data-user">
-                <p>Comando C <span>4 days ago</span></p>
-                <p><img src="../img/icons/like_ACT_RED.svg" alt="" class="icon-notification-list"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</span></p>
-            </div>
-            <div class="align-self-center">
-                <a href="#0" class="btn btn--sm">
-                    <span class="btn__text text__dark">Unock</span>
-                </a>
-            </div>
-            <hr>
         </div>
     </div>
 </div>
+
+
+

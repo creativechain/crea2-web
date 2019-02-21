@@ -1,6 +1,26 @@
 .simple-view-home {
-  .container{
+  .post-container-home {
     max-width: 500px;
+    .masonry__container {
+      .col-xl-2-cust {
+        width: 100% !important;
+        max-width: 100%;
+        .card__top {
+          height: 315px;
+          .img-post-list {
+            height: 315px;
+          }
+        }
+      }
+    }
+    .card-home {
+      .card__top {
+        height: 300px;
+        .img-post-list {
+          height: 300px ;
+        }
+      }
+    }
   }
 
 }

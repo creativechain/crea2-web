@@ -1,10 +1,11 @@
 <div id="wallet-profile" class="boxed boxed--sm boxed--border menu-profile-user">
     <div class="text-block text-center">
         <div class="user-avatar">
-            <avatar v-bind:username="state.user.name " v-bind:url="state.user.metadata.avatar.url "></avatar>
+            <avatar v-bind:account="state.user"></avatar>
         </div>
-        <span class="h5">{{ profile.publicName || '@' + state.user.name }} </span>
-        <p class="mb-0">{{ profile.web || '-' }}</p>
+        <span class="h5">{{ profile.publicName || ''}}</span>
+        <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>
+        <p class="mb-0"><a v-bind:href="toUrl(profile.web) || '#'">{{ profile.web || '-' }}</a></p>
         <p>{{ profile.about || '-' }}</p>
     </div>
     <div class="row">
@@ -20,111 +21,79 @@
     <div class="row mt-3">
         <div class="col text-center">
             <div v-if="session">
-                <a v-if="state.user.name != account.user.name" class="btn btn--sm btn--primary" href="#0"
-                   v-on:click="makeFollow(state.user.name)">
-                    <span class="btn__text">{{ lang.BUTTON.FOLLOW }}</span>
-                </a>
+                <btn-follow v-if="state.user.name != account.user.name"
+                            v-on:follow="onFollow" v-bind:session="session"
+                            v-bind:account="account.user" v-bind:user="state.user.name" >
+                </btn-follow>
 
-                <a v-else class="btn btn--sm" href="#0" v-on:click="navfilter = 'edit'">
-                    <span class="btn__text text__dark">{{ lang.BUTTON.EDIT_PROFILE }}</span>
+                <a v-else class="btn btn--sm" v-bind:href="'/@' + session.account.username + '/settings'" v-on:click="navigateTo($event, 'settings')">
+                    <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.EDIT_PROFILE }}</span>
                 </a>
             </div>
 
         </div>
     </div>
-    <hr>
-    <div class="row ranking-user-info">
-        <div class="col">
-            <img src="img/icons/trainer.svg" alt="">
-            <span>Traineer</span>
+
+    <hr />
+    <div class="row profile-summary">
+        <div class="col-7 col-md-7">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-uppercase a-follower" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
+                        {{ lang.PROFILE.FOLLOWERS }}
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="col">
-            <img src="img/icons/buzz.svg" alt="">
-            <span>{{ state.user.reputation }} Buzz</span>
+        <div class="col-5 col-md-5 text-right">
+            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
+                {{ state.user.follower_count }}
+            </a>
         </div>
+
+        <div class="col-7 col-md-7">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
+                        {{ lang.PROFILE.FOLLOWING }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-5 col-md-5 text-right">
+            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
+                {{ state.user.following_count }}
+            </a>
+        </div>
+
+        <div class="col-7 col-md-7">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-uppercase a-projects" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
+                        {{ lang.PROFILE.SECONDARY_MENU_PROJECTS }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-5 col-md-5 text-right">
+            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
+                {{ state.user.post_count }}
+            </a>
+        </div>
+
     </div>
-    <hr>
-    <div class="row">
-        <div class="col">
-            <table>
-                <thead class="hidden">
-                <tr>
-                    <th>Value 1</th>
-                    <th>Value 2</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/like.svg" alt="">
-                            <span>{{ lang.PROFILE.LIKES }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>0</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/comments.svg" alt="">
-                            <span>{{ lang.PROFILE.COMMENTS }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.comment_count }}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/followers.svg" alt="">
-                            <span>{{ lang.PROFILE.FOLLOWERS }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.followers_count }}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/following.svg" alt="">
-                            <span>{{ lang.PROFILE.FOLLOWING }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.following_count }}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="img/icons/projects.svg" alt="">
-                            <span>{{ lang.PROFILE.POSTS }}</span>
-                        </p>
-                    </td>
-                    <td class="text-right">
-                        <p>{{ state.user.post_count }}</p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <hr>
+    <hr />
     <div class="row profile-tags">
         <div class="col">
             <p class="title-tags">Tags</p>
-            <span> {{ profile.tags ? profile.tags.join(', ') : '' }}</span>
+            <span v-html="getLinkedTags(profile.tags, true)"></span>
         </div>
     </div>
-    <hr>
-    <div class="row block-all">
+    <hr v-if="!isUserProfile()">
+    <div v-if="!isUserProfile()" class="row block-all">
         <div class="col-md-12">
             <ul class="list-inline list-unstyled">
-                <li><p><img src="/img/icons/NO_see.svg" alt="">(0) Block all posts by this user</p></li>
+                <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
             </ul>
         </div>
     </div>

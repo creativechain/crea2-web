@@ -1,0 +1,143 @@
+.exchange {
+  .btn-buy-exchange {
+    background-color: $color-buy;
+  }
+  table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+    border-top: 1px solid transparent;
+  }
+  .title-section {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .subtitle-module-exchange {
+    font-size: 14px;
+    margin-left: 6px;
+    margin-bottom: 10px;
+  }
+  .navbar-resum {
+    padding: 0 15px !important;
+  }
+  #buy_left_result_all_wrapper {
+    .dataTables_scrollHeadInner {
+      width: 100% !important;
+      table {
+        width: 100% !important;
+        thead {
+          th {
+            width: 64px !important;
+          }
+          th:nth-last-child{
+            width: 68px !important;
+          }
+        }
+      }
+    }
+  }
+  .form-buy-sell {
+    padding: 15px !important;
+    i {
+      right: 15px;
+      left: auto;
+      top: 6px;
+    }
+    .input-icon input {
+      padding-left: 15px;
+      padding-right: 83px;
+    }
+    h6:not(:last-child), .h6:not(:last-child) {
+      margin-bottom: 10px ;
+    }
+  }
+  .color--primary-exchange {
+    color: $color-dark-primary;
+  }
+  .color-sell {
+    color: $notification-navbar;
+  }
+  .color-buy {
+    color: $color-buy;
+  }
+  .boxed {
+    padding: 0;
+  }
+  .tabs li:not(.active) {
+    opacity: 0.2;
+  }
+  .gray-color {
+    color: #999!important;
+  }
+  .green-color {
+    color: $color-buy !important;
+  }
+  .red-color {
+    color: $notification-navbar !important;
+  }
+  .header-exchange {
+    .head-splits {
+      display: inline-block;
+      margin-right: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      .title {
+        font-size: 1.2em;
+        font-weight: 900;
+        margin-bottom: 0;
+      }
+      p {
+        margin-bottom: 0;
+        font-weight: 900;
+      }
+      .amount {
+        font-size: 14px;
+      }
+    }
+  }
+  .ul-market-buy-sell {
+    border: 1px solid transparent;
+    li {
+      padding: 5px 10px 7px;
+    }
+    .table-buy-sell-market {
+      tbody {
+        tr {
+
+        }
+      }
+    }
+  }
+  .market-history {
+    tbody {
+      tr.active-tr {
+        background-color: #F2F2F2 !important;
+        td {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  .tabs-content {
+    border-top: solid 1px $border-solid-grey;
+  }
+  table.dataTable thead th, table.dataTable thead td {
+    padding: 5px 8px;
+    border-right: solid 1px transparent;
+    border-bottom: 1px solid transparent;
+  }
+  table.dataTable tbody th, table.dataTable tbody td {
+    padding: 3px 10px;
+  }
+  .dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 1px solid #efefef;
+  }
+  table {
+    thead {
+      tr {
+        th {
+          background: white;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

@@ -22,31 +22,73 @@ class Session {
             } else {
 
                 let accountData = result;
-                accountData.user = accountData.accounts[that.account.username];
-                accountData.user.metadata = jsonify(accountData.user.json_metadata);
-                accountData.user.metadata.avatar = accountData.user.metadata.avatar || {};
 
-                let auths = Object.keys(that.account.keys);
-                let logged = true;
+                if (accountData.accounts[that.account.username]) {
+                    accountData.user = accountData.accounts[that.account.username];
 
-                auths.forEach(function (auth) {
-                    if (that.account.keys[auth]) {
+                    crea.formatter.estimateAccountValue(accountData.user)
+                        .then(function (value) {
+                            accountData.user.estimate_account_value = value;
+                        });
+
+                    accountData.user.metadata = jsonify(accountData.user.json_metadata);
+                    accountData.user.metadata.avatar = accountData.user.metadata.avatar || {};
+                    accountData.user.metadata.adult_content = accountData.user.metadata.adult_content || 'hide';
+                    accountData.user.metadata.post_rewards = accountData.user.metadata.post_rewards || '50';
+                    accountData.user.metadata.comment_rewards = accountData.user.metadata.comment_rewards || '50';
+                    accountData.user.metadata.lang = accountData.user.metadata.lang || getNavigatorLanguage();
+
+                    let auths = Object.keys(that.account.keys);
+                    let logged = true;
+
+                    auths.some(function (r) {
                         let pubKey;
-                        if (auth == 'memo') {
+                        let auth = r;
+                        if (auth == 'unknown') {
+                            console.log(DEFAULT_ROLES);
+                            DEFAULT_ROLES.some(function (role) {
+                                if (role == 'memo') {
+                                    pubKey = accountData.user[role + '_key'];
+                                } else {
+                                    pubKey = accountData.user[role].key_auths[0][0];
+                                }
+
+                                if (that.account.keys[auth].pub == pubKey) {
+                                    that.account.keys[role] = clone(that.account.keys[auth]);
+                                    delete that.account.keys[auth];
+                                    auth = role;
+                                    return true;
+                                }
+                            })
+
+                        } else if (auth == 'memo') {
                             pubKey = accountData.user[auth + '_key'];
                         } else {
                             pubKey = accountData.user[auth].key_auths[0][0];
                         }
-                        logged = logged && that.account.keys[auth].pub == pubKey;
-                        console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
-                    }
-                });
 
-                if (logged) {
-                    callback(null, accountData);
+                        logged = that.account.keys[auth].pub == pubKey;
+                        console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
+                        return logged;
+                    });
+
+                    if (logged) {
+                        //Set Account lang
+                        localStorage.setItem(CREARY.LANG, accountData.user.metadata.lang);
+                        callback(null, accountData);
+                    } else {
+                        callback(Errors.USER_LOGIN_ERROR, accountData);
+                    }
                 } else {
-                    callback(Errors.USER_LOGIN_ERROR);
+                    //User not exists
+                    //Set default lang if it is not set
+                    if (localStorage.getItem(CREARY.LANG) === null) {
+                        localStorage.setItem(CREARY.LANG, getNavigatorLanguage());
+                    }
+
+                    callback(Errors.USER_NOT_FOUND);
                 }
+
             }
         })
     }
@@ -74,7 +116,7 @@ class Session {
      * @param role
      * @returns {Session}
      */
-    static create(username, password, role='owner') {
+    static create(username, password, role) {
         let account = Account.generate(username, password, role);
         return new Session(account);
     }

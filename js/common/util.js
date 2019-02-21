@@ -38,6 +38,27 @@ String.prototype.capitalize = function() {
 
 /**
  *
+ * @param {Event} event
+ */
+function cancelEventPropagation(event) {
+    if (event && event.preventDefault) {
+        event.preventDefault();
+    }
+}
+
+function isJSON(string) {
+    try {
+        JSON.parse(string);
+        return true;
+    } catch (e) {
+
+    }
+
+    return false;
+}
+
+/**
+ *
  * @param obj
  * @returns {*}
  */
@@ -143,4 +164,100 @@ function copyToClipboard(element) {
             console.error()
         }
     }
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ *
+ * @param {string|number|Date} date
+ * @returns {Date}
+ */
+function toLocaleDate(date) {
+    if (date) {
+        if (typeof date == 'string' || typeof date == 'number') {
+            date = new Date(date);
+        }
+
+        if (typeof date == 'object') {
+            let newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+            let offset = date.getTimezoneOffset() / 60;
+            let hours = date.getHours();
+
+            newDate.setHours(hours - offset);
+            return newDate;
+        }
+    }
+
+    return new Date(0);
+}
+
+/**
+ *
+ * @param src
+ * @returns {*}
+ */
+function clone(src) {
+    return Object.assign({}, src);
+}
+
+function humanFileSize(size) {
+    const UNIT = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    let i = Math.floor( Math.log(size) / Math.log(1024) );
+    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + UNIT[i];
+}
+
+/**
+ *
+ * @param {string} username
+ * @returns {boolean}
+ */
+function isUserFeed(username = null) {
+    let path = window.location.pathname;
+
+    let regexp = '(\/@[a-zA-Z0-9]+\/feed)';
+    if (username) {
+        username = username.replace('@', '');
+
+        regexp = '(\/@' + username + '\/feed)'
+    }
+
+    return new RegExp(regexp).exec(path) !== null;
+
+}
+
+/**
+ *
+ * @param {string} string
+ * @returns {string}
+ */
+function toUrl(string) {
+    if (string) {
+        if (!string.startsWith('http://') && !string.startsWith('https://')) {
+            string = 'http://' + string;
+        }
+
+        return string;
+    }
+
+    return null;
+}
+
+/**
+ *
+ * @param index
+ * @returns {string}
+ */
+function getPathPart(index = 0) {
+    let path = window.location.pathname;
+    let parts = path.split('/');
+    parts.splice(0, 1);
+
+    return parts[index] || '';
+}
+
+function getNavigatorLanguage() {
+    return navigator.language.split('-')[0];
 }

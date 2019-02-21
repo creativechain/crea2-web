@@ -4,10 +4,11 @@
     width: 72px;
     overflow: hidden;
     min-height: 53px;
-    min-width: 70px;
+    min-width: 72px;
     border-radius: 5px;
-    position: relative;
+    position: absolute;
     top: 6px;
+    right: 11px;
   }
   .img-user-notification {
     background-size: cover;
@@ -37,7 +38,13 @@
     padding: 10px 0;
   }
   .icon-notification-list {
-    width: 20px;
+    width: 16px;
     margin-right: 10px;
   }
+  .row-empty-notifications {
+    .img-empty {
+      width: 300px;
+    }
+  }
+
 }

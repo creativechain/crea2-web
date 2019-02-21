@@ -12,4 +12,18 @@ $(document).ready(function(){
         navbarS.addClass('hidden');
         footer.addClass('hidden');
     }
+
+    $("#view-changer").click(function(){
+        $(this).toggleClass('active-view-all');
+        $(this).toggleClass('img-view-all');
+        $('.main-container').toggleClass('simple-view-home');
+        $('.masonry__item').toggleClass('row-simple-view');
+    });
+});
+
+
+// With JQuery
+$("#ex6").slider();
+$("#ex6").on("slide", function(slideEvt) {
+    $("#ex6SliderVal").text(slideEvt.value);
 });

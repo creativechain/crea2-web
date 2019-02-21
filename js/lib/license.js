@@ -8,16 +8,19 @@ class LicensePermission {
      *
      * @param {number} flag
      * @param {string} name
+     * @param {string} tag
      * @param showName
      */
-    constructor(flag, name, showName = true) {
+    constructor(flag, name, tag, showName = true) {
         this.flag = flag;
         this.name = name;
+        this.tag = tag;
         this.showName = showName;
     }
 
     getIcon(color) {
-        return '/img/icons/license/' + this.name.toLowerCase() + (color ? '_' + color.toUpperCase() : '') + '.svg';
+        let fileName = this.name.toLowerCase().replace(' ', '_');
+        return '/img/icons/license/' + fileName + (color ? '_' + color.toUpperCase() : '') + '.svg';
     }
 }
 
@@ -86,6 +89,32 @@ class License {
      *
      * @returns {string}
      */
+    getLink() {
+        return LICENSE_LINKS[this.getFlag()];
+    }
+
+    /**
+     *
+     * @param flag
+     * @returns {boolean}
+     */
+    has(flag) {
+        let  flags = this.getFlag();
+        return flag === (flags & flag);
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    isCreativeCommons() {
+        return this.has(0x01);
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
     toString() {
         let str = '';
         this.licensePermissions.forEach(function (perm) {
@@ -101,6 +130,19 @@ class License {
         return str;
     }
 
+    /**
+     *
+     * @returns {string}
+     */
+    getTags() {
+        let tags = [];
+        this.licensePermissions.forEach(function (perm) {
+            tags.push(perm.tag)
+        });
+
+        return (this.isCreativeCommons() ? 'Creative Commons ' : '') +  tags.join('-');
+    }
+
     toLocaleString() {
         let str = '';
         this.licensePermissions.forEach(function (perm) {
@@ -109,7 +151,7 @@ class License {
                     str += '-';
                 }
 
-                str += lang.LICENSE[perm.name.toUpperCase()];
+                str += getLanguage().LICENSE[perm.name.toUpperCase()];
             }
         });
 
@@ -149,12 +191,22 @@ class License {
 }
 
 let LICENSE = {
-    NO_LICENSE: new LicensePermission(0x00, 'WithoutLicense'),
-    CREATIVE_COMMONS: new LicensePermission(0x01, 'CreativeCommons', false),
-    ATTRIBUTION: new LicensePermission(0x02, 'Attribution'),
-    SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike'),
-    NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial'),
-    NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates'),
-    NON_PERMISSION: new LicensePermission(0x20, 'NonPermission'),
-    FREE_CONTENT: new LicensePermission(0x80, 'FreeContent'),
+    NO_LICENSE: new LicensePermission(0x00, 'WithoutLicense', 'WL'),
+    CREATIVE_COMMONS: new LicensePermission(0x01, 'CreativeCommons', 'CC', false),
+    ATTRIBUTION: new LicensePermission(0x02, 'Attribution', 'BY'),
+    SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike', 'SA'),
+    NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial', 'NC'),
+    NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates', 'ND'),
+    NON_PERMISSION: new LicensePermission(0x20, getLanguage().LICENSE.NON_PERMISSION, 'NP'),
+    FREE_CONTENT: new LicensePermission(0x80, 'FreeContent', 'CC0'),
+};
+
+let LICENSE_LINKS = {
+    3: 'https://creativecommons.org/licenses/by/4.0/',
+    7: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    11: 'https://creativecommons.org/licenses/by-nc/4.0/',
+    15: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+    19: 'https://creativecommons.org/licenses/by-nd/4.0/',
+    27: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+    129: 'https://creativecommons.org/publicdomain/zero/1.0/',
 };

@@ -1,17 +1,17 @@
-<section v-cloak v-if="showBanner" class="imagebg image--light cover cover-blocks bg--secondary" id="slide-home">
+<section v-cloak v-if="showBanner" class="imagebg image--dark cover cover-blocks bg--secondary" id="slide-home">
     <div class="row-close" v-on:click="showBanner = false">
-        <a href="#"><i class="fas fa-times"></i></a>
+        <a class="cursor"><i class="fas fa-times"></i></a>
     </div>
     <div class="background-image-holder">
-        <img alt="background" src="img/crea-web/slide_casmiclab_logo.jpg"/>
+        <img alt="background" src="/img/crea-web/slide_casmiclab_logo.jpg"/>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-5 offset-1">
+            <div class="col-md-8 col-lg-7 offset-1">
                 <h1>{{ lang.BANNER.TITLE }}</h1>
                 <h3>{{ lang.BANNER.SUBTITLE }}</h3>
-                <a href="/welcome.php" class="btn btn--primary btn--sm btn--transparent type--uppercase">
-                    <span class="btn__text">
+                <a href="/welcome" class="btn btn--sm">
+                    <span class="btn__text font-weight-bold">
                             {{ lang.BUTTON.SIGN_UP }}
                     </span>
                 </a>

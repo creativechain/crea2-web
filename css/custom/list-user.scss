@@ -1,6 +1,12 @@
 .row-list-user {
-  display: flex;
   border-bottom: solid 1px $borde-dropdown-price;
+  .row-list-user-display {
+    display: flex;
+  }
+  .title-certificate {
+    padding: 20px 13px 0;
+    color: $border-btn-transparent;
+  }
   .avatare-list {
     margin-top: 10px;
     width: 40px;
@@ -10,7 +16,7 @@
     }
   }
   .list-data-user {
-    width: 80%;
+    width: 90%;
     margin: 0 5px;
     padding: 10px 0;
     p:nth-child(1) {
@@ -25,12 +31,15 @@
     p {
       margin-bottom: 0;
     }
+    a {
+      text-decoration: none;
+    }
   }
   .list-amount {
-    width: 15%;
     font-weight: 600;
     position: relative;
-    top: 33px;
+    top: 24px;
+    right: 10px;
   }
   .user-avatar {
     height: 40px;

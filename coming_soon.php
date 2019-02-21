@@ -27,7 +27,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-    <link rel="icon" type="image/ico" href="img/favicon.ico">
+    <link rel="icon" type="image/ico" href="/img/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126970682-1"></script>
@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                     <ul>
                         <li>
-                            <img class="logo-coming" src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="">
+                            <img class="logo-coming" src="img/crea-web/coming_soon/logo_creary_blanc_sombra.png" alt="" />
                         </li>
                         <li>
                             <h2 class="h2-title">OUR BETA TEST IS NOW LIVE!</h2>
@@ -65,9 +65,9 @@
                     <div class="row">
                         <div class="col-md-4 offset-md-4 col-xs-12">
                             <a class="btn bg--dark block btn-dark-primary" href="https://creaproject.io/the-creary-beta-test/" target="_blank">
-                        <span class="btn__text">
-                            START THE BETA TEST
-                        </span>
+                                <span class="btn__text">
+                                    START THE BETA TEST
+                                </span>
                             </a>
                         </div>
                     </div>

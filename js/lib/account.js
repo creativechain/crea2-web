@@ -18,41 +18,45 @@ class Account {
      * @param role
      * @returns {Account}
      */
-    static generate(username, password, role='owner') {
+    static generate(username, password, role = 'posting') {
+        let neededRoles = [];
+        let keys = {};
+
         if (crea.auth.isWif(password)) {
-            let keys = {};
-            if (DEFAULT_ROLES.indexOf(role)) {
-                keys[role] = {
-                    prv: password,
-                    pub: crea.auth.wifToPublic(password)
-                };
-                return new Account(username, keys);
+
+            if (role == null) {
+                role = 'unknown';
             }
 
-            throw 'Role not valid: ' + roles;
-        } else {
-            let privKeys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
-
-            let keys = {
-                owner: {
-                    prv: privKeys.owner,
-                    pub: privKeys.ownerPubkey
-                },
-                posting: {
-                    prv: privKeys.posting,
-                    pub: privKeys.postingPubkey
-                },
-                memo: {
-                    prv: privKeys.memo,
-                    pub: privKeys.memoPubkey
-                },
-                active: {
-                    prv: privKeys.active,
-                    pub: privKeys.activePubkey
-                }
+            keys[role] = {
+                prv: password,
+                pub: crea.auth.wifToPublic(password)
             };
 
             return new Account(username, keys);
+        } else {
+
+            if (DEFAULT_ROLES.indexOf(role) > -1) {
+                neededRoles.push(role);
+            } else {
+                throw 'Role not valid: ' + role;
+            }
+
+            let privKeys = crea.auth.getPrivateKeys(username, password, neededRoles);
+
+            neededRoles.forEach(function (r) {
+                keys[r] = {
+                    prv: privKeys[r],
+                    pub: privKeys[r + 'Pubkey']
+                }
+            });
+
+            return new Account(username, keys);
+
         }
+
+        //TODO: LOGIN ERROR
+
+
     }
 }

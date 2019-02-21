@@ -1,0 +1,31 @@
+#legal-doc {
+  p {
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  h4 {
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+  ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+}

@@ -1,0 +1,16 @@
+.exchange .gray-color {
+  color: #999 !important; }
+.exchange .header-exchange .head-splits {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+  .exchange .header-exchange .head-splits .title {
+    font-size: 1.2em;
+    font-weight: 900;
+    margin-bottom: 0; }
+  .exchange .header-exchange .head-splits p {
+    margin-bottom: 0;
+    font-weight: 900; }
+
+/*# sourceMappingURL=exchange.css.map */

@@ -15,37 +15,64 @@ function startLogin() {
  *
  * @param {string} username
  * @param {string} password
+ * @param callback
  */
-function login(username, password) {
+function login(username, password, callback) {
     //Check roles;
-    let roles = username.split('/');
 
     let session;
-    if (roles.length > 1) {
-        username = roles[0]; //First must be a username
-        let role = roles[1];
-
-        session = Session.create(username, password, role);
+    if (crea.auth.isWif(password)) {
+        //Unknown role
+        session = Session.create(username, password, null);
     } else {
+        //Default role (posting)
         session = Session.create(username, password);
     }
 
+
     session.login(function (err, account) {
-        console.log(err, account);
         if (err) {
-            console.error(err);
+            if (callback) {
+                callback(err);
+            }
         } else {
             session.save();
+
+            let count = 2;
+            let onTaskEnded = function (session, account) {
+
+                --count;
+
+                if (count === 0) {
+                    creaEvents.emit('crea.session.login', session, account);
+                    if (callback) {
+                        callback(null, session, account);
+                    }
+                }
+            };
+
             let followings = [];
+            let blockeds = [];
+
             crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
-                if (err) {
-                    console.error(err);
-                } else {
+
+                if (!catchError(err)) {
                     result.following.forEach(function (f) {
                         followings.push(f.following);
                     });
                     account.user.followings = followings;
-                    creaEvents.emit('crea.session.login', session, account);
+                    onTaskEnded(session, account);
+                }
+            });
+
+            crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, result) {
+                if (!catchError(err)) {
+                    result.following.forEach(function (f) {
+                        blockeds.push(f.following);
+                    });
+                    account.user.blockeds = blockeds;
+                    onTaskEnded(session, account)
+
                 }
             });
 

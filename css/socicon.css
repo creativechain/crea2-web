@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Socicon';
-  src:  url('../fonts/socicon.eot?a93r5t');
-  src:  url('../fonts/socicon.eot?a93r5t#iefix') format('embedded-opentype'),
-    url('../fonts/socicon.ttf?a93r5t') format('truetype'),
-    url('../fonts/socicon.woff?a93r5t') format('woff'),
-    url('../fonts/socicon.svg?a93r5t#Socicon') format('svg');
+  src:  url('/../fonts/socicon.eot?a93r5t');
+  src:  url('/../fonts/socicon.eot?a93r5t#iefix') format('embedded-opentype'),
+    url('/../fonts/socicon.ttf?a93r5t') format('truetype'),
+    url('/../fonts/socicon.woff?a93r5t') format('woff'),
+    url('/../fonts/socicon.svg?a93r5t#Socicon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,252 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.socicon-internet:before {
+  content: "\e957";
+}
+.socicon-moddb:before {
+  content: "\e94b";
+}
+.socicon-indiedb:before {
+  content: "\e94c";
+}
+.socicon-traxsource:before {
+  content: "\e94d";
+}
+.socicon-gamefor:before {
+  content: "\e94e";
+}
+.socicon-pixiv:before {
+  content: "\e94f";
+}
+.socicon-myanimelist:before {
+  content: "\e950";
+}
+.socicon-blackberry:before {
+  content: "\e951";
+}
+.socicon-wickr:before {
+  content: "\e952";
+}
+.socicon-spip:before {
+  content: "\e953";
+}
+.socicon-napster:before {
+  content: "\e954";
+}
+.socicon-beatport:before {
+  content: "\e955";
+}
+.socicon-hackerone:before {
+  content: "\e956";
+}
+.socicon-hackernews:before {
+  content: "\e946";
+}
+.socicon-smashwords:before {
+  content: "\e947";
+}
+.socicon-kobo:before {
+  content: "\e948";
+}
+.socicon-bookbub:before {
+  content: "\e949";
+}
+.socicon-mailru:before {
+  content: "\e94a";
+}
+.socicon-gitlab:before {
+  content: "\e945";
+}
+.socicon-instructables:before {
+  content: "\e944";
+}
+.socicon-portfolio:before {
+  content: "\e943";
+}
+.socicon-codered:before {
+  content: "\e940";
+}
+.socicon-origin:before {
+  content: "\e941";
+}
+.socicon-nextdoor:before {
+  content: "\e942";
+}
+.socicon-udemy:before {
+  content: "\e93f";
+}
+.socicon-livemaster:before {
+  content: "\e93e";
+}
+.socicon-crunchbase:before {
+  content: "\e93b";
+}
+.socicon-homefy:before {
+  content: "\e93c";
+}
+.socicon-calendly:before {
+  content: "\e93d";
+}
+.socicon-realtor:before {
+  content: "\e90f";
+}
+.socicon-tidal:before {
+  content: "\e910";
+}
+.socicon-qobuz:before {
+  content: "\e911";
+}
+.socicon-natgeo:before {
+  content: "\e912";
+}
+.socicon-mastodon:before {
+  content: "\e913";
+}
+.socicon-unsplash:before {
+  content: "\e914";
+}
+.socicon-homeadvisor:before {
+  content: "\e915";
+}
+.socicon-angieslist:before {
+  content: "\e916";
+}
+.socicon-codepen:before {
+  content: "\e917";
+}
+.socicon-slack:before {
+  content: "\e918";
+}
+.socicon-openaigym:before {
+  content: "\e919";
+}
+.socicon-logmein:before {
+  content: "\e91a";
+}
+.socicon-fiverr:before {
+  content: "\e91b";
+}
+.socicon-gotomeeting:before {
+  content: "\e91c";
+}
+.socicon-aliexpress:before {
+  content: "\e91d";
+}
+.socicon-guru:before {
+  content: "\e91e";
+}
+.socicon-appstore:before {
+  content: "\e91f";
+}
+.socicon-homes:before {
+  content: "\e920";
+}
+.socicon-zoom:before {
+  content: "\e921";
+}
+.socicon-alibaba:before {
+  content: "\e922";
+}
+.socicon-craigslist:before {
+  content: "\e923";
+}
+.socicon-wix:before {
+  content: "\e924";
+}
+.socicon-redfin:before {
+  content: "\e925";
+}
+.socicon-googlecalendar:before {
+  content: "\e926";
+}
+.socicon-shopify:before {
+  content: "\e927";
+}
+.socicon-freelancer:before {
+  content: "\e928";
+}
+.socicon-seedrs:before {
+  content: "\e929";
+}
+.socicon-bing:before {
+  content: "\e92a";
+}
+.socicon-doodle:before {
+  content: "\e92b";
+}
+.socicon-bonanza:before {
+  content: "\e92c";
+}
+.socicon-squarespace:before {
+  content: "\e92d";
+}
+.socicon-toptal:before {
+  content: "\e92e";
+}
+.socicon-gust:before {
+  content: "\e92f";
+}
+.socicon-ask:before {
+  content: "\e930";
+}
+.socicon-trulia:before {
+  content: "\e931";
+}
+.socicon-loomly:before {
+  content: "\e932";
+}
+.socicon-ghost:before {
+  content: "\e933";
+}
+.socicon-upwork:before {
+  content: "\e934";
+}
+.socicon-fundable:before {
+  content: "\e935";
+}
+.socicon-booking:before {
+  content: "\e936";
+}
+.socicon-googlemaps:before {
+  content: "\e937";
+}
+.socicon-zillow:before {
+  content: "\e938";
+}
+.socicon-niconico:before {
+  content: "\e939";
+}
+.socicon-toneden:before {
+  content: "\e93a";
+}
+.socicon-augment:before {
+  content: "\e908";
+}
+.socicon-bitbucket:before {
+  content: "\e909";
+}
+.socicon-fyuse:before {
+  content: "\e90a";
+}
+.socicon-yt-gaming:before {
+  content: "\e90b";
+}
+.socicon-sketchfab:before {
+  content: "\e90c";
+}
+.socicon-mobcrush:before {
+  content: "\e90d";
+}
+.socicon-microsoft:before {
+  content: "\e90e";
+}
+.socicon-pandora:before {
+  content: "\e907";
+}
+.socicon-messenger:before {
+  content: "\e906";
+}
 .socicon-gamewisp:before {
   content: "\e905";
 }
@@ -81,7 +327,7 @@
 .socicon-battlenet:before {
   content: "\e00c";
 }
-.socicon-beam:before {
+.socicon-mixer:before {
   content: "\e00d";
 }
 .socicon-bebee:before {
@@ -228,7 +474,7 @@
 .socicon-heroes:before {
   content: "\e03d";
 }
-.socicon-hitbox:before {
+.socicon-smashcast:before {
   content: "\e03e";
 }
 .socicon-horde:before {
@@ -552,4 +798,3 @@
 .socicon-zynga:before {
   content: "\e0a9";
 }
-

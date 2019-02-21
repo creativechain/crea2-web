@@ -5,7 +5,7 @@
     <section v-bind:class="{ hidden: slide !== 1, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_1@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome">
@@ -14,7 +14,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
 
                                 <h1>{{ lang.WELCOME.SLIDE1_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT1 }}</p>
@@ -25,12 +25,12 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a id="welcome-slide1-button-signup" class="btn btn--primary" href="#"  v-on:click="changeSlide(2)">
-                                        <span class="btn__text">
-                                            {{ lang.BUTTON.SIGN_UP }}
-                                        </span>
-                                        </a>
+                                    <div class="col-6">
+                                        <div id="welcome-slide1-button-signup" class="btn btn--primary w-100" v-on:click="changeSlide(2)">
+                                            <span class="btn__text">
+                                                {{ lang.BUTTON.SIGN_UP }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
     <section v-bind:class="{ hidden: slide !== 2, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_2@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome">
@@ -64,26 +64,26 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE2_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE2_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input v-on:input="checkUsername" v-bind:class="{ 'validate-required': true, 'field-error': error.username }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
-                                <span v-if="error.username" class="error-color-form">{{ error.username }}</span>
+                                <input ref="inputusername" v-on:input="checkUsername" v-bind:class="{ 'validate-required': true, 'field-error': error.username && error.username.length > 0 }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE2_INPUT_PLACEHOLDER" />
+                                <span v-if="error.username && error.username.length > 0" class="error-color-form">{{ error.username }}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary" v-on:click="changeSlide(3, error.username)">
-                                        <span class="btn__text">
-                                            {{ lang.BUTTON.CONTINUE }}
-                                        </span>
-                                        </a>
+                                    <div class="col-6">
+                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(3, error.username)">
+                                            <span class="btn__text">
+                                                {{ lang.BUTTON.CONTINUE }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
     <section v-bind:class="{ hidden: slide !== 3, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_3@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -120,33 +120,33 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE3_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE3_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email }" type="text" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
-                                <span v-if="error.email" class="error-color-form">{{ error.email }}</span>
+                                <input id="reg-email" type="email" v-on:input="checkEmail" v-bind:class="{ 'validate-required': true, 'field-error': error.email && error.email.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE3_INPUT_PLACEHOLDER" />
+                                <span v-if="error.email && error.email.length > 0" class="error-color-form">{{ error.email }}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row">
                                     <div class="col-md-6 col-6">
-                                        <a class="btn btn--transparent" href="#"  v-on:click="changeSlide(2, null)">
-                                        <span id="welcome-slide3-button-back" class="btn__text">
-                                            {{ lang.BUTTON.GO_BACK }}
-                                        </span>
-                                        </a>
+                                        <div class="btn btn--transparent w-100" v-on:click="changeSlide(2, null)">
+                                            <span id="welcome-slide3-button-back" class="btn__text">
+                                                {{ lang.BUTTON.GO_BACK }}
+                                            </span>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-6">
-                                        <a class="btn btn--primary" href="#" v-on:click="sendConfirmationMail()">
-                                        <span id="welcome-slide3-button-continue" class="btn__text">
-                                            {{ lang.BUTTON.CONTINUE}}
-                                        </span>
-                                        </a>
+                                        <div class="btn btn--primary w-100" v-on:click="sendConfirmationMail()">
+                                            <span id="welcome-slide3-button-continue" class="btn__text">
+                                                {{ lang.BUTTON.CONTINUE}}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
     <section v-bind:class="{ hidden: slide !== 4, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_4@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -183,7 +183,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE4_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE4_TEXT1 }}</p>
                             </div>
@@ -209,7 +209,7 @@
     <section v-bind:class="{ hidden: slide !== 5, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_5@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -218,20 +218,20 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ username }}!</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt--1">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary  " href="#" v-on:click="changeSlide(6)">
-                                        <span class="btn__text">
-                                            {{ lang.BUTTON.CONTINUE }}
-                                        </span>
-                                        </a>
+                                    <div class="col-6">
+                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(6)">
+                                            <span class="btn__text">
+                                                {{ lang.BUTTON.CONTINUE }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +256,7 @@
     <section v-bind:class="{ hidden: slide !== 6, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -265,7 +265,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
 
                                 <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
                                 <p class="lead">{{ lang.SLIDE6_TEXT1 }}</p>
@@ -281,27 +281,27 @@
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a class="btn btn--transparent w-100 btn_copy" data-clipboard-target="#welcome-slide6-input" href="#0">
-                                        <span class="btn__text btn_copy">
-                                            {{ lang.BUTTON.COPY_PASSWORD }}
-                                        </span>
-                                        </a>
+                                        <div class="btn btn--transparent w-100 btn_copy" data-clipboard-target="#welcome-slide6-input">
+                                            <span class="btn__text btn_copy">
+                                                {{ lang.BUTTON.COPY_PASSWORD }}
+                                            </span>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <a class="btn btn--black w-100" href="#" v-on:click="suggestPassword()">
-                                        <span class="btn__text color--white">
-                                            {{ lang.BUTTON.NEW_PASSWORD }}
-                                        </span>
-                                        </a>
+                                        <div class="btn btn--black w-100" v-on:click="suggestPassword()">
+                                            <span class="btn__text color--white">
+                                                {{ lang.BUTTON.NEW_PASSWORD }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 offset-md-3">
-                                        <a class="btn btn--primary w-100" href="#" v-on:click="changeSlide(7, error.password)">
-                                        <span class="btn__text">
-                                            {{ lang.BUTTON.CONTINUE }}
-                                        </span>
-                                        </a>
+                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(7, error.password)">
+                                            <span class="btn__text">
+                                               {{ lang.BUTTON.CONTINUE }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +326,7 @@
     <section v-bind:class="{ hidden: slide !== 7, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -335,7 +335,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE7_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT1 }}</p>
                                 <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT2 }}</p>
@@ -354,30 +354,30 @@
                                     <label for="welcome-check-terms"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedTerms }">
-                                    {{ lang.WELCOME.SLIDE7_CHECKBOX1 }}
+                                    <a href="/terms_and_conditions" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}</a>
                                 </span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 col-policy">
                                 <div class="input-checkbox">
                                     <input v-model="checkedPolicy" id="welcome-check-policy" type="checkbox" name="agree_policy" />
                                     <label for="welcome-check-policy"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedPolicy }">
-                                    {{ lang.WELCOME.SLIDE7_CHECKBOX2 }}
+                                    <a href="/privacy_policy" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}</a>
                                 </span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary " href="#" v-on:click="createAccount()">
-                                        <span class="btn__text">
-                                            {{ lang.BUTTON.CREATE_ACCOUNT }}
-                                        </span>
-                                        </a>
+                                    <div class="col-6">
+                                        <div class="btn btn--primary w-100" v-on:click="createAccount()">
+                                            <span class="btn__text">
+                                                {{ lang.BUTTON.CREATE_ACCOUNT }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -402,7 +402,7 @@
     <section v-bind:class="{ hidden: slide !== 8, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
-                <img alt="image" src="img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
+                <img alt="image" src="/img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
             </div>
         </div>
         <div class="container pos-vertical-center content-slide-welcome ">
@@ -411,7 +411,7 @@
                     <div class="welcome-content">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="img/welcome/logo-welcome.png" alt="">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
                             </div>
@@ -419,11 +419,11 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <a class="btn btn--primary  " href="/">
-                                        <span class="btn__text">
-                                            {{ lang.BUTTON.CONTINUE }}
-                                        </span>
+                                    <div class="col-6">
+                                        <a class="btn btn--primary w-100" href="/">
+                                            <span class="btn__text">
+                                                {{ lang.BUTTON.CONTINUE }}
+                                            </span>
                                         </a>
                                     </div>
                                 </div>
@@ -446,4 +446,5 @@
     </section>
 
 </div>
+    <script src="/js/common/welcome.js"></script>
 <?php include ('element/footer.php'); ?>
