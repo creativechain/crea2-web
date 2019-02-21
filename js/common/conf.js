@@ -6,7 +6,7 @@
 let local = false;
 
 let apiOptions = {
-    nodes: ['https://crea.owldevelopers.site'],
+    nodes: ['wss://nodes.creary.net'],
     apiUrl : 'https://api.creary.net',
     ipfs: 'https://ipfs.creary.net',
     ipfsd: 'https://api.creary.net/ipfs/',
