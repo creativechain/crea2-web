@@ -349,7 +349,7 @@
         let post = postContainer.state.post;
         if (session) {
 
-            requireRoleKey(session.account.username, 'posting', function (postingKey) {
+            requireRoleKey(session.account.username, 'active', function (postingKey) {
                 globalLoading.show = true;
                 let downloadResource = function () {
                     setTimeout(function () {
