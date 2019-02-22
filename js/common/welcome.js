@@ -121,7 +121,6 @@
 
     function inputCheckPassword(event) {
         let password = event.target.value;
-        console.log("Input check password", password);
 
         let match = welcomeVue.password === password;
         if (match) {
