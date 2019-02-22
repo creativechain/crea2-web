@@ -481,7 +481,7 @@
                                 </div>
                             </li>
 
-                            <li class="hidden-xs" v-if="!session">
+                            <li class="hidden-xs">
                                 <div class="modal-instance">
                                     <a href="#modal-login" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
