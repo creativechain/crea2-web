@@ -448,13 +448,19 @@
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
                         }
 
+                        amount.amount = parseInt(amount.amount / (amount.amount / 1500));
+
                         return '$ ' + amount.toPlainString();
                     },
                     getPendingPayouts: function (post) {
                         const PRICE_PER_CREA = Asset.parse({ amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(), nai: 'cbd'});
                         const CBD_PRINT_RATE = this.state.props.cbd_print_rate;
                         const CBD_PRINT_RATE_MAX = 10000;
-                        const PENDING_PAYOUT = Asset.parseString(post.pending_payout_value);
+
+                        let payout = Asset.parseString(post.pending_payout_value);
+                        payout.amount = parseInt(payout.amount / (payout.amount / 1500));
+
+                        const PENDING_PAYOUT = payout;
                         const PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
                         const PENDING_PAYOUT_CBD = Asset.parse({ amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS, nai: 'cbd'});
                         const PENDING_PAYOUT_CGY = Asset.parse({ amount: (PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat(), nai: 'cgy'});

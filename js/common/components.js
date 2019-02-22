@@ -261,14 +261,14 @@ Vue.component('post-like', {
         },
         hasVote: function () {
             let v = this.getVote();
-            return v && v.percent > 0;
+            return v != null && v.percent > 0;
         },
         makeVote: function (event) {
             if (event) {
                 event.preventDefault();
             }
 
-            if (this.$data.state !== 0) {
+            if (!this.hasVote() && this.$data.state !== 0) {
                 let that = this;
                 let session = this.$props.session;
                 let post = this.$props.post;
@@ -277,13 +277,7 @@ Vue.component('post-like', {
 
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = 0;
-                    let percent = 10000;
-
-                    if (that.hasVote()) {
-                        percent = 0; //Unlike
-                    }
-
-                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
+                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
                         console.log(err, result);
                         if (err) {
                             that.state = -1;
