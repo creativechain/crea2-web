@@ -243,7 +243,7 @@ class Asset {
         let amount = parseFloat(strSplitted[0]);
         let nai = apiOptions.nai[strSplitted[1]];
 
-        if (amount % 1 == 0) {
+        if (amount % 1 === 0) {
             amount = Math.round(amount * Math.pow(10, NAI[nai].precision))
         }
 
