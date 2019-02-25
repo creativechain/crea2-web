@@ -448,7 +448,7 @@
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
                         }
 
-                        amount.amount = amount.amount > 0 ? parseInt(amount.amount / (amount.amount / 9999)) : 0;
+                        amount.amount = parseInt(amount.amount / 1000000000);
 
                         return '$ ' + amount.toPlainString();
                     },
@@ -458,7 +458,7 @@
                         const CBD_PRINT_RATE_MAX = 10000;
 
                         let payout = Asset.parseString(post.pending_payout_value);
-                        payout.amount = payout.amount > 0 ? parseInt(payout.amount / (payout.amount / 1500)) : 0;
+                        payout.amount = parseInt(payout.amount / 1000000000);
 
                         const PENDING_PAYOUT = payout;
                         const PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
