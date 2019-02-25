@@ -160,7 +160,7 @@
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
                         }
 
-                        amount.amount = amount.amount > 0 ? parseInt(amount.amount / (amount.amount / 1500)) : 0;
+                        amount.amount = amount.amount > 0 ? parseInt(amount.amount / Math.pow(amount.amount, 2)) : 0;
                         return '$ ' + amount.toPlainString();
                     },
                     getPendingPayouts: function (post) {
