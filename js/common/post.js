@@ -84,11 +84,15 @@
 
                         return '$ ' + amount.toPlainString();
                     },
-                    getPayout: function () {
-                        let amount = Asset.parseString(this.state.post.pending_payout_value);
+                    getPayout: function (post) {
+                        if (!post) {
+                            post = this.state.post;
+                        }
+
+                        let amount = Asset.parseString(post.pending_payout_value);
                         if (this.hasPaid()) {
-                            amount = Asset.parseString(this.state.post.total_payout_value);
-                            amount = amount.add(Asset.parseString(this.state.post.curator_payout_value));
+                            amount = Asset.parseString(post.total_payout_value);
+                            amount = amount.add(Asset.parseString(post.curator_payout_value));
                         }
 
                         amount.amount = parseInt(amount.amount / 1000000000);
