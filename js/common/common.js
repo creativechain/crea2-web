@@ -282,8 +282,8 @@ function refreshAccessToken(callback) {
 
         let params = {
             grant_type: 'client_credentials',
-            client_id: '1_2e5ws1sr915wk0o4kksc0swwoc8kc4wgkgcksscgkkko404g8c',
-            client_secret: '3c2x9uf9uwg0ook0kksk8koccsk44w0gg4csos04ows444ko4k'
+            client_id: '1_2fv46zv91su8csgo84ogsokoco88cocg88cwkgc0o4gwoog800,',
+            client_secret: '4bzl5jhgtcissok0oks484o00kks84o0ggocwgow0ww4wsw0g0'
         };
 
         http.when('done', function (data) {
