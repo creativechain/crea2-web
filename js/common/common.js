@@ -114,13 +114,13 @@ function toHome(location) {
  */
 function resolveFilter(filter) {
     filter = filter.toLowerCase();
-    /*if (filter.startsWith('/popular')) {
+    if (filter.startsWith('/popular')) {
         return filter.replace('/popular', '/trending');
     } else if (filter.startsWith('/skyrockets')) {
         return filter.replace('/skyrockets', '/hot');
     } else if (filter.startsWith('/now')) {
         return filter.replace('/now', '/created');
-    }*/
+    }
 
     return filter;
 }
