@@ -84,14 +84,16 @@
 
                         return '$ ' + amount.toPlainString();
                     },
-                    getPayout: function () {
-                        let amount = Asset.parseString(this.state.post.pending_payout_value);
-                        if (this.hasPaid()) {
-                            amount = Asset.parseString(this.state.post.total_payout_value);
-                            amount = amount.add(Asset.parseString(this.state.post.curator_payout_value));
+                    getPayout: function (post) {
+                        if (!post) {
+                            post = this.state.post;
                         }
 
-                        //amount.amount = amount.amount > 0 ? parseInt(amount.amount / (amount.amount / 1500)) : 0;
+                        let amount = Asset.parseString(post.pending_payout_value);
+                        if (this.hasPaid()) {
+                            amount = Asset.parseString(post.total_payout_value);
+                            amount = amount.add(Asset.parseString(post.curator_payout_value));
+                        }
 
                         return '$ ' + amount.toPlainString(2);
                     },
@@ -102,7 +104,6 @@
                         const CBD_PRINT_RATE_MAX = 10000;
 
                         let payout = Asset.parseString(post.pending_payout_value);
-                        //payout.amount = payout.amount > 0 ? parseInt(payout.amount / (payout.amount / 1500)) : 0;
 
                         const PENDING_PAYOUT = payout;
                         const PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
