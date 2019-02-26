@@ -91,7 +91,7 @@
 
                     }
                 }
-                console.log("Checking", username, userTime, usernameInputs.last.value, usernameInputs.last.date, welcomeVue.username);
+                //console.log("Checking", username, userTime, usernameInputs.last.value, usernameInputs.last.date, welcomeVue.username);
 
             };
 
