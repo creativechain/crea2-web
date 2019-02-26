@@ -282,7 +282,7 @@ function refreshAccessToken(callback) {
 
         let params = {
             grant_type: 'client_credentials',
-            client_id: '1_2fv46zv91su8csgo84ogsokoco88cocg88cwkgc0o4gwoog800,',
+            client_id: '1_2fv46zv91su8csgo84ogsokoco88cocg88cwkgc0o4gwoog800',
             client_secret: '4bzl5jhgtcissok0oks484o00kks84o0ggocwgow0ww4wsw0g0'
         };
 
