@@ -12,6 +12,7 @@ class HttpClient extends EventEmitter {
         this.headers = {};
         this.mimeType = 'multipart/form-data';
         this.contentType = false
+        this.xhr = null;
     }
 
     __exec() {
@@ -42,7 +43,7 @@ class HttpClient extends EventEmitter {
             }
         }
 
-        $.ajax(settings)
+        this.xhr = $.ajax(settings)
             .done(function (data, textStatus, jqXHR) {
                 that.emit('done' + that.id, data, textStatus, jqXHR);
             })
@@ -100,5 +101,11 @@ class HttpClient extends EventEmitter {
         this.__exec();
 
         return this;
+    }
+
+    abort() {
+        if (this.xhr) {
+            this.xhr.abort();
+        }
     }
 }

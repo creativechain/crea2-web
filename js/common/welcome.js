@@ -6,7 +6,13 @@
 (function () {
     let welcomeVue;
 
-    let usernameCallback, emailCallback;
+    let emailCallback;
+    let usernameInputs = {
+        last: {
+            value: null,
+            date: 0
+        }
+    };
 
     function setUp() {
         console.log('Welcome setup');
@@ -58,29 +64,35 @@
 
     function checkUsername() {
 
-        if (usernameCallback) {
-            usernameCallback = null;
-        }
-
         let target = welcomeVue.$refs.inputusername;
         target.value = target.value.toLowerCase();
         let username = target.value;
 
+        let time = new Date().getTime();
+        usernameInputs.last.value = username;
+        usernameInputs.last.date = time;
+        usernameInputs[username] = time;
+
         if (!crea.utils.validateAccountName(username)) {
             let accounts = [ username ];
-            console.log("Checking", accounts);
 
-            usernameCallback = function (err, result) {
-                if (err) {
-                    console.error(err);
-                    welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
-                } else if (result[0] != null) {
-                    welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
-                } else {
-                    welcomeVue.error.username = null;
-                    welcomeVue.username = username;
-                    console.log("Checking", username);
+            let usernameCallback = function (err, result) {
+
+                let userTime = usernameInputs[username];
+                if (userTime > usernameInputs.last.date || (userTime >= usernameInputs.last.date && username === usernameInputs.last.value)) {
+                    if (err) {
+                        console.error(err);
+                        welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
+                    } else if (result[0] != null) {
+                        welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
+                    } else {
+                        welcomeVue.error.username = null;
+                        welcomeVue.username = username;
+
+                    }
                 }
+                console.log("Checking", username, userTime, usernameInputs.last.value, usernameInputs.last.date, welcomeVue.username);
+
             };
 
             crea.api.lookupAccountNames(accounts, usernameCallback)
