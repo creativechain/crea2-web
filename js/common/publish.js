@@ -143,7 +143,6 @@
 
                     if (!this.editor.show) {
                         //Check errors before continue
-                        console.log(jsonify(jsonstring(this.bodyElements)));
                         switch (this.step) {
                             case 1:
                                 this.bodyElements = cleanNullElements();
@@ -262,8 +261,6 @@
                 })
             }
 
-            console.log(text, text.isEmpty());
-
             publishContainer.updatingIndex = -1;
             editor.setData('');
             publishContainer.editor.editing = false;
@@ -378,8 +375,8 @@
             if (s && s.account.username === author) {
                 crea.api.getDiscussion(author, permlink, function (err, post) {
                     if (!catchError(err)) {
-                        post.body = jsonify(post.body) || {};
-                        post.metadata = jsonify(post.json_metadata) || {};
+
+                        post = parsePost(post);
 
                         let price = Asset.parse(post.download.price);
                         post.download.price = parseFloat(price.toPlainString());

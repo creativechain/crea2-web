@@ -6,37 +6,40 @@
         </div>
 
         <template v-for="k in Object.keys(bodyElements)">
-            <div v-if="bodyElements[k].type.indexOf('text/html') > -1">
-                <div class="upload-img">
-                    <div v-html="bodyElements[k].value" v-on:click="editText(k)"></div>
+            <div v-id="k != null">
+                <div v-if="bodyElements[k].type.indexOf('text/html') > -1">
+                    <div class="upload-img">
+                        <div v-html="bodyElements[k].value" v-on:click="editText(k)"></div>
+                        <div class="delete-img-step-1" v-on:click="removeElement(k)">
+                            <a href="#">X</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div v-else-if="bodyElements[k].type.indexOf('image/') > -1" class="upload-img">
                     <div class="delete-img-step-1" v-on:click="removeElement(k)">
                         <a href="#">X</a>
                     </div>
+                    <img v-bind:src="bodyElements[k].url" alt="" />
                 </div>
+                <div v-else-if="bodyElements[k].type.indexOf('video/') > -1" class="upload-img">
+                    <div class="delete-img-step-1" v-on:click="removeElement(k)">
+                        <a href="#">X</a>
+                    </div>
+                    <video controls>
+                        <source v-bind:src="bodyElements[k].url" v-bind:type="bodyElements[k].type">
+                    </video>
+                </div>
+                <div v-else-if="bodyElements[k].type.indexOf('audio/') > -1" class="upload-img">
+                    <div class="delete-img-step-1" v-on:click="removeElement(k)">
+                        <a href="#">X</a>
+                    </div>
+                    <audio controls>
+                        <source v-bind:src="bodyElements[k].url" v-bind:type="bodyElements[k].type">
+                    </audio>
+                </div>
+            </div>
 
-            </div>
-            <div v-else-if="bodyElements[k].type.indexOf('image/') > -1" class="upload-img">
-                <div class="delete-img-step-1" v-on:click="removeElement(k)">
-                    <a href="#">X</a>
-                </div>
-                <img v-bind:src="bodyElements[k].url" alt="" />
-            </div>
-            <div v-else-if="bodyElements[k].type.indexOf('video/') > -1" class="upload-img">
-                <div class="delete-img-step-1" v-on:click="removeElement(k)">
-                    <a href="#">X</a>
-                </div>
-                <video controls>
-                    <source v-bind:src="bodyElements[k].url" v-bind:type="bodyElements[k].type">
-                </video>
-            </div>
-            <div v-else-if="bodyElements[k].type.indexOf('audio/') > -1" class="upload-img">
-                <div class="delete-img-step-1" v-on:click="removeElement(k)">
-                    <a href="#">X</a>
-                </div>
-                <audio controls>
-                    <source v-bind:src="bodyElements[k].url" v-bind:type="bodyElements[k].type">
-                </audio>
-            </div>
         </template>
 
         <div class="box-content-step-1">
