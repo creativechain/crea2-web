@@ -543,7 +543,7 @@
                             let that = this;
                             let file = files[0];
 
-                            let maximumSize = CONSTANTS.FILE_MAX_SIZE[file.type.toUpperCase().split('/')[0]];
+                            let maximumSize = CONSTANTS.FILE_MAX_SIZE.PROFILE[file.type.toUpperCase().split('/')[0]];
 
                             uploadToIpfs(files[0], maximumSize, function (err, file) {
                                 globalLoading.show = false;

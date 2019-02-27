@@ -37,10 +37,18 @@ const CONSTANTS = {
         TRANSFER_TO_VESTS: 'transfer_to_vests',
     },
     FILE_MAX_SIZE: {
-        AUDIO: 100 * 1024 * 1024,
-        VIDEO: 200 * 1024 * 1024,
-        IMAGE: 1024 * 1024,
-        DOWNLOAD: 200 * 1024 * 1024, //200 MB
+        PROFILE: {
+            IMAGE: 1024 * 1024,
+        },
+        POST_BODY: {
+            AUDIO: 100 * 1024 * 1024,
+            VIDEO: 200 * 1024 * 1024,
+            IMAGE: 5 * 1024 * 1024,
+            DOWNLOAD: 200 * 1024 * 1024, //200 MB
+        },
+        POST_PREVIEW: {
+            IMAGE: 1024 * 1024
+        }
     },
     TEXT_MAX_SIZE: {
         PROFILE: {

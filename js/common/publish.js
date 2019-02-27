@@ -181,7 +181,7 @@
                         globalLoading.show = true;
 
                         let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.DOWNLOAD;
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.DOWNLOAD;
 
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
@@ -198,7 +198,7 @@
                         globalLoading.show = true;
 
                         let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
 
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize);
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
@@ -218,7 +218,7 @@
                         globalLoading.show = true;
 
                         let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
 
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
