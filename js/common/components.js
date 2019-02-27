@@ -242,7 +242,7 @@ Vue.component('post-like', {
             let payout = toLocaleDate(this.$props.post.cashout_time);
             return now.getTime() > payout.getTime();
         },
-        hasVote: function () {
+        getVote: function () {
             let session = this.$props.session;
             let post = this.$props.post;
 
@@ -252,19 +252,23 @@ Vue.component('post-like', {
                 for (let x = 0; x < activeVotes.length; x++) {
                     let vote = activeVotes[x];
                     if (session.account.username === vote.voter) {
-                        return true;
+                        return vote;
                     }
                 }
             }
 
-            return false;
+            return null;
+        },
+        hasVote: function () {
+            let v = this.getVote();
+            return v != null && v.percent > 0;
         },
         makeVote: function (event) {
             if (event) {
                 event.preventDefault();
             }
 
-            if (!this.hasVote() && this.$data.state != 0) {
+            if (!this.hasVote() && this.$data.state !== 0) {
                 let that = this;
                 let session = this.$props.session;
                 let post = this.$props.post;

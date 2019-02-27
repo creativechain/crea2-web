@@ -37,10 +37,18 @@ const CONSTANTS = {
         TRANSFER_TO_VESTS: 'transfer_to_vests',
     },
     FILE_MAX_SIZE: {
-        AUDIO: 100 * 1024 * 1024,
-        VIDEO: 200 * 1024 * 1024,
-        IMAGE: 1024 * 1024,
-        DOWNLOAD: 200 * 1024 * 1024, //200 MB
+        PROFILE: {
+            IMAGE: 1024 * 1024,
+        },
+        POST_BODY: {
+            AUDIO: 100 * 1024 * 1024,
+            VIDEO: 200 * 1024 * 1024,
+            IMAGE: 5 * 1024 * 1024,
+            DOWNLOAD: 200 * 1024 * 1024, //200 MB
+        },
+        POST_PREVIEW: {
+            IMAGE: 1024 * 1024
+        }
     },
     TEXT_MAX_SIZE: {
         PROFILE: {
@@ -282,7 +290,7 @@ function refreshAccessToken(callback) {
 
         let params = {
             grant_type: 'client_credentials',
-            client_id: '1_2e5ws1sr915wk0o4kksc0swwoc8kc4wgkgcksscgkkko404g8c,',
+            client_id: '1_2e5ws1sr915wk0o4kksc0swwoc8kc4wgkgcksscgkkko404g8c',
             client_secret: '3c2x9uf9uwg0ook0kksk8koccsk44w0gg4csos04ows444ko4k'
         };
 
@@ -470,7 +478,6 @@ function requireRoleKey(username, role, login, callback) {
         } else {
             console.log(id);
             creaEvents.on('crea.auth.role.' + id, function (roleKey, username) {
-                console.log(roleKey, typeof callback, typeof login);
                 if (callback) {
                     callback(roleKey, username);
                 }

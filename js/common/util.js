@@ -261,3 +261,11 @@ function getPathPart(index = 0) {
 function getNavigatorLanguage() {
     return navigator.language.split('-')[0];
 }
+
+/**
+ *
+ * @returns {boolean}
+ */
+function isSmallScreen() {
+    return window.screen.width < 576;
+}

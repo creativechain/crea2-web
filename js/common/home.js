@@ -107,7 +107,7 @@
                         let featuredImage = post.metadata.featuredImage;
                         if (featuredImage && featuredImage.hash) {
                             return {
-                                url: apiOptions.ipfsd + featuredImage.hash
+                                url: apiOptions.ipfs + featuredImage.hash
                             }
                         } else if (featuredImage && featuredImage.url) {
                             return featuredImage;
@@ -160,13 +160,18 @@
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
                         }
 
+                        amount.amount = parseInt(amount.amount / 1000000000);
                         return '$ ' + amount.toPlainString();
                     },
                     getPendingPayouts: function (post) {
                         const PRICE_PER_CREA = Asset.parse({ amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(), nai: 'cbd'});
                         const CBD_PRINT_RATE = this.state.props.cbd_print_rate;
                         const CBD_PRINT_RATE_MAX = 10000;
-                        const PENDING_PAYOUT = Asset.parseString(post.pending_payout_value);
+
+                        let payout = Asset.parseString(post.pending_payout_value);
+                        payout.amount = parseInt(payout.amount / 1000000000);
+
+                        const PENDING_PAYOUT = payout;
                         const PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
                         const PENDING_PAYOUT_CBD = Asset.parse({ amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS, nai: 'cbd'});
                         const PENDING_PAYOUT_CGY = Asset.parse({ amount: (PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat(), nai: 'cgy'});
@@ -469,18 +474,19 @@
                 let apiCall;
                 let category = homePosts.category;
 
+                console.log(category);
                 switch (category) {
-                    case 'created':
-                        apiCall = crea.api.getDiscussionsByCreated;
+                    case 'now':
+                        apiCall = crea.api.getDiscussionsByNow;
                         break;
-                    case 'hot':
-                        apiCall = crea.api.getDiscussionsByHot;
+                    case 'skyrockets':
+                        apiCall = crea.api.getDiscussionsBySkyrockets;
                         break;
                     case 'promoted':
                         apiCall = crea.api.getDiscussionsByPromoted;
                         break;
-                    case 'trending':
-                        apiCall = crea.api.getDiscussionsByTrending;
+                    case 'popular':
+                        apiCall = crea.api.getDiscussionsByPopular;
                         break;
                 }
 

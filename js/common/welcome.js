@@ -6,6 +6,14 @@
 (function () {
     let welcomeVue;
 
+    let emailCallback;
+    let usernameInputs = {
+        last: {
+            value: null,
+            date: 0
+        }
+    };
+
     function setUp() {
         console.log('Welcome setup');
         welcomeVue = new Vue({
@@ -55,31 +63,49 @@
     }
 
     function checkUsername() {
+
         let target = welcomeVue.$refs.inputusername;
         target.value = target.value.toLowerCase();
         let username = target.value;
 
-        console.log("Checking", username);
+        let time = new Date().getTime();
+        usernameInputs.last.value = username;
+        usernameInputs.last.date = time;
+        usernameInputs[username] = time;
+
         if (!crea.utils.validateAccountName(username)) {
             let accounts = [ username ];
-            console.log("Checking", accounts);
-            crea.api.lookupAccountNames(accounts, function (err, result) {
-                if (err) {
-                    console.error(err);
-                    welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
-                } else if (result[0] != null) {
-                    welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
-                } else {
-                    welcomeVue.error.username = null;
-                    welcomeVue.username = username;
+
+            let usernameCallback = function (err, result) {
+
+                let userTime = usernameInputs[username];
+                if (userTime > usernameInputs.last.date || (userTime >= usernameInputs.last.date && username === usernameInputs.last.value)) {
+                    if (err) {
+                        console.error(err);
+                        welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
+                    } else if (result[0] != null) {
+                        welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
+                    } else {
+                        welcomeVue.error.username = null;
+                        welcomeVue.username = username;
+
+                    }
                 }
-            })
+                //console.log("Checking", username, userTime, usernameInputs.last.value, usernameInputs.last.date, welcomeVue.username);
+
+            };
+
+            crea.api.lookupAccountNames(accounts, usernameCallback)
         } else {
             welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
         }
     }
 
     function checkEmail(event) {
+        if (!emailCallback) {
+            emailCallback = null;
+        }
+
         let email = event.target.value;
         console.log("Checking mail", email, validateEmail(email));
 
@@ -88,11 +114,15 @@
             refreshAccessToken(function (accessToken) {
                 let url = apiOptions.apiUrl + '/validateAccount';
                 let http = new HttpClient(url);
+
+                emailCallback = function (data) {
+                    console.log('Validate', data, email);
+                    welcomeVue.error.email = null;
+                    welcomeVue.email = email;
+                };
+                
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
-                }).post({
-                    username: welcomeVue.username,
-                    email: email
                 }).when('fail', function (data, status, error) {
                     console.error('Request failed', data, status, error, email);
                     if (data.responseText) {
@@ -103,12 +133,9 @@
                     } else {
                         welcomeVue.error.email = getLanguage().ERROR.UNKNOWN_ERROR;
                     }
-                });
-
-                http.when('done', function (data) {
-                    console.log('Validate', data, email);
-                    welcomeVue.error.email = null;
-                    welcomeVue.email = email;
+                }).when('done', emailCallback).post({
+                    username: welcomeVue.username,
+                    email: email
                 });
             });
 
@@ -121,7 +148,6 @@
 
     function inputCheckPassword(event) {
         let password = event.target.value;
-        console.log("Input check password", password);
 
         let match = welcomeVue.password === password;
         if (match) {

@@ -250,7 +250,7 @@
                                                             <li>
                                                                 <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[c]"></comment-like>
                                                                 <!--                                                                            <div class="cursor" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ state.content[c].active_votes.length }}</div></li>-->
-                                                            <li><p>{{ cbdToDollar(state.content[c].pending_payout_value) }}</p></li>
+                                                            <li><p>{{ getPayout(state.content[c]) }}</p></li>
                                                             <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                         </ul>
                                                     </div>

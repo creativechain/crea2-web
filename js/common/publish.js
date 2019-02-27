@@ -129,14 +129,28 @@
                     }
                 },
                 nextStep: function () {
+                    let that = this;
+                    let cleanNullElements = function () {
+                        let elements = [];
+                        that.bodyElements.forEach(function (el) {
+                            if (el !== null) {
+                                elements.push(el);
+                            }
+                        });
+
+                        return elements;
+                    };
+
                     if (!this.editor.show) {
                         //Check errors before continue
+                        console.log(jsonify(jsonstring(this.bodyElements)));
                         switch (this.step) {
                             case 1:
+                                this.bodyElements = cleanNullElements();
                                 this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
                                 break;
                             case 2:
-                                if (!this.featuredImage.hash || !this.title || this.tags.length == 0) {
+                                if (!this.featuredImage.hash || !this.title || this.tags.length === 0) {
                                     this.error = this.lang.PUBLISH.NO_TITLE_TAG_OR_IMAGE;
                                 } else {
                                     this.error = null;
@@ -167,7 +181,7 @@
                         globalLoading.show = true;
 
                         let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.DOWNLOAD;
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.DOWNLOAD;
 
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
@@ -184,7 +198,7 @@
                         globalLoading.show = true;
 
                         let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
 
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize);
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
@@ -204,7 +218,7 @@
                         globalLoading.show = true;
 
                         let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE[loadedFile.type.toUpperCase().split('/')[0]];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
 
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
@@ -238,19 +252,23 @@
         let editor = CKEDITOR.instances['editor'];
         let text = editor.getData();
 
-        if (index > -1) {
-            publishContainer.bodyElements[index].value = text;
-        } else {
-            publishContainer.bodyElements.push({
-                value: text,
-                type: 'text/html'
-            })
-        }
+        if (!text.isEmpty()) {
+            if (index > -1) {
+                publishContainer.bodyElements[index].value = text;
+            } else {
+                publishContainer.bodyElements.push({
+                    value: text,
+                    type: 'text/html'
+                })
+            }
 
-        publishContainer.updatingIndex = -1;
-        editor.setData('');
-        publishContainer.editor.editing = false;
-        publishContainer.editor.show = false;
+            console.log(text, text.isEmpty());
+
+            publishContainer.updatingIndex = -1;
+            editor.setData('');
+            publishContainer.editor.editing = false;
+            publishContainer.editor.show = false;
+        }
 
     }
 

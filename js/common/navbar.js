@@ -51,6 +51,7 @@
                     session: session,
                     user: userData ? userData.user : {},
                     loginForm: {
+                        xs: isSmallScreen(),
                         username: {
                             error: null,
                             value: ''
