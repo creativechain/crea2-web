@@ -474,18 +474,19 @@
                 let apiCall;
                 let category = homePosts.category;
 
+                console.log(category);
                 switch (category) {
-                    case 'created':
-                        apiCall = crea.api.getDiscussionsByCreated;
+                    case 'now':
+                        apiCall = crea.api.getDiscussionsByNow;
                         break;
-                    case 'hot':
-                        apiCall = crea.api.getDiscussionsByHot;
+                    case 'skyrockets':
+                        apiCall = crea.api.getDiscussionsBySkyrockets;
                         break;
                     case 'promoted':
                         apiCall = crea.api.getDiscussionsByPromoted;
                         break;
-                    case 'trending':
-                        apiCall = crea.api.getDiscussionsByTrending;
+                    case 'popular':
+                        apiCall = crea.api.getDiscussionsByPopular;
                         break;
                 }
 
