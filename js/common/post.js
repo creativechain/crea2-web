@@ -468,7 +468,6 @@
                         if (aKeys.length === 0) {
                             goTo('/404');
                         } else {
-                            console.log(result)
                             aKeys.forEach(function (k) {
                                 result.accounts[k] = parseAccount(result.accounts[k]);
                             });

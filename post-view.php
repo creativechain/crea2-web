@@ -77,27 +77,29 @@
                 <div class="row background-content-post row-content-post">
                     <div class="col-md-12 img-post-view content-post" >
                         <template v-for="el in state.post.body">
-                            <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value">
+                            <div v-if="el != null">
+                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value">
 
-                            </div>
-                            <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
-                                <p>
-                                    <img v-bind:src="el.url" v-bind:type="el.type" alt="" />
-                                </p>
-                            </div>
-                            <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
-                                <p>
-                                    <video controls >
-                                        <source v-bind:src="el.url" v-bind:type="el.type">
-                                    </video>
-                                </p>
-                            </div>
-                            <div v-else-if="el.type.indexOf('audio/') > -1" class="upload-img">
-                                <p>
-                                    <audio controls>
-                                        <source v-bind:src="el.url" v-bind:type="el.type">
-                                    </audio>
-                                </p>
+                                </div>
+                                <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
+                                    <p>
+                                        <img v-bind:src="el.url" v-bind:type="el.type" alt="" />
+                                    </p>
+                                </div>
+                                <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
+                                    <p>
+                                        <video controls >
+                                            <source v-bind:src="el.url" v-bind:type="el.type">
+                                        </video>
+                                    </p>
+                                </div>
+                                <div v-else-if="el.type.indexOf('audio/') > -1" class="upload-img">
+                                    <p>
+                                        <audio controls>
+                                            <source v-bind:src="el.url" v-bind:type="el.type">
+                                        </audio>
+                                    </p>
+                                </div>
                             </div>
                         </template>
                     </div>
