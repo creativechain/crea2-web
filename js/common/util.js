@@ -264,6 +264,27 @@ function getNavigatorLanguage() {
 
 /**
  *
+ * @param {Array} array
+ * @returns {Array}
+ */
+function cleanArray(array) {
+    if (Array.isArray(array)) {
+        let elements = [];
+        array.forEach(function (el) {
+            if (el) {
+                elements.push(el);
+            }
+        });
+
+        return elements;
+    }
+
+    return array;
+
+}
+
+/**
+ *
  * @returns {boolean}
  */
 function isSmallScreen() {

@@ -130,22 +130,12 @@
                 },
                 nextStep: function () {
                     let that = this;
-                    let cleanNullElements = function () {
-                        let elements = [];
-                        that.bodyElements.forEach(function (el) {
-                            if (el !== null) {
-                                elements.push(el);
-                            }
-                        });
-
-                        return elements;
-                    };
 
                     if (!this.editor.show) {
                         //Check errors before continue
                         switch (this.step) {
                             case 1:
-                                this.bodyElements = cleanNullElements();
+                                this.bodyElements = cleanArray(this.bodyElements);
                                 this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
                                 break;
                             case 2:
