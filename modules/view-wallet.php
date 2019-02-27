@@ -34,6 +34,8 @@
                         <span class="h5">{{ lang.WALLET.PASSWORDS }}</span>
                     </div>
                 </li>
+            </ul>
+            <ul style="display: contents">
                 <li class="text-right li-buy-crea d-sm-none d-none col-sm-3">
                     <a href="https://creaproject.io/buy/" target="_blank" class="btn btn--sm btn--primary">
                         <span class="btn__text font-weight-bold">{{ lang.BUTTON.BUY_CREA }}</span>
@@ -59,7 +61,7 @@
 
 
             <ul id="wallet-tabs" class="tabs-content no-padding">
-                <li v-bind:class="{ active: walletTab === 'balances' }">
+                <li v-bind:class="{ active: walletTab === 'balances' }" class="wallet-balances-tab">
                     <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'balances' }">
                         <table class="table-amount table">
                             <thead class="hidden">
@@ -401,7 +403,7 @@
                         </table>
                     </div>
                 </li>
-                <li v-if="session" v-bind:class="{ active: walletTab === 'permissions' }">
+                <li v-if="session" v-bind:class="{ active: walletTab === 'permissions' }" class="wallet-permissions-tab">
                     <div v-bind:class="{ tab__content: true, hidden: walletTab !== 'permissions' }">
                         <table class="table-permission table">
                             <thead class="hidden">
@@ -414,7 +416,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_POSTING }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('posting') }}</p>
+                                    <p>{{ getKey('posting') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -429,7 +431,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('active') }}</p>
+                                    <p>{{ getKey('active') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -444,7 +446,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_OWNER }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('owner') }}</p>
+                                    <p>{{ getKey('owner') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_OWNER }}</p>
                                 </td>
                                 <td style="text-align: right">
@@ -454,7 +456,7 @@
                             <tr>
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_MEMO }}</p>
-                                    <p><img src="/img/qr-demo-permisos.png" alt="" />{{ getKey('memo') }}</p>
+                                    <p>{{ getKey('memo') }}</p>
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_MEMO }}</p>
                                 </td>
                                 <td style="text-align: right">

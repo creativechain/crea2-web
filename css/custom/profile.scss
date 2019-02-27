@@ -1,8 +1,8 @@
 .view-profile {
   .tabs-container {
     .tabs-content {
-      margin-left: -2px;
-      min-width: 101%;
+      margin-left: 0;
+      min-width: 100%;
     }
   }
   .masonry__item:not(:empty) {
@@ -149,6 +149,7 @@
     .title-tags {
       font-weight: bold;
       margin-bottom: 5px;
+      text-transform: uppercase;
     }
     a {
       color: $color-dark-primary;
