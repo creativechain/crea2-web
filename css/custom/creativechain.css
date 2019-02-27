@@ -121,8 +121,8 @@
       height: 300px; }
 
 .view-profile .tabs-container .tabs-content {
-  margin-left: -2px;
-  min-width: 101%; }
+  margin-left: 0;
+  min-width: 100%; }
 .view-profile .masonry__item:not(:empty) {
   margin-bottom: 5px;
   transform-style: flat; }
@@ -187,13 +187,13 @@
   background-repeat: no-repeat;
   padding: 0 24px; }
 .view-profile .profile-summary a:hover {
-  color: #0569EF !important;
+  color: #0073FF !important;
   font-weight: 600; }
 .view-profile .profile-summary a {
   color: #222222;
   font-weight: 600; }
 .view-profile .profile-summary a.active {
-  color: #0569EF;
+  color: #0073FF;
   font-weight: bold; }
 .view-profile .p-top-15 {
   padding-top: 15px; }
@@ -214,12 +214,13 @@
   color: #222222; }
 .view-profile .profile-tags .title-tags {
   font-weight: bold;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  text-transform: uppercase; }
 .view-profile .profile-tags a {
   color: #222222;
   text-decoration: none; }
 .view-profile .profile-tags a:hover {
-  color: #0569EF;
+  color: #0073FF;
   text-decoration: none; }
 .view-profile .block-all img {
   width: 16px;
@@ -258,7 +259,7 @@
 .view-rewards .box-summary p {
   margin-bottom: 0; }
 .view-rewards .box-summary .blue-summary {
-  color: #0569EF; }
+  color: #0073FF; }
 .view-rewards .tbody-rewards tr:first-child td {
   border-top: 1px solid transparent !important; }
 
@@ -297,6 +298,14 @@
     font-size: 12px;
     font-weight: normal; }
 
+.view-wallet #wallet-tabs .wallet-balances-tab.active,
+.view-wallet #wallet-tabs .wallet-permissions-tab.active,
+.view-wallet #wallet-tabs .wallet-password-tab.active {
+  display: list-item; }
+.view-wallet #wallet-tabs .wallet-balances-tab,
+.view-wallet #wallet-tabs .wallet-permissions-tab,
+.view-wallet #wallet-tabs .wallet-password-tab {
+  display: none; }
 .view-wallet .td-right-balance {
   text-align: right;
   padding-right: 20px; }
@@ -339,7 +348,7 @@
 .view-wallet .li-buy-crea {
   position: absolute;
   right: 15px;
-  top: 0;
+  top: 18px;
   opacity: 1 !important; }
 .view-wallet .padding-b-10 {
   padding-bottom: 10px; }
@@ -355,22 +364,22 @@
   display: none; }
 .view-wallet .tabs--folder .tabs-content {
   border: 1px solid transparent;
-  padding-top: 0; }
-.view-wallet .table-amount tbody tr td:nth-child(1) {
-  width: 70%; }
-  .view-wallet .table-amount tbody tr td:nth-child(1) p:nth-child(1) {
-    font-weight: bold; }
-.view-wallet .table-amount tbody tr td p {
-  margin-bottom: 0; }
-.view-wallet .table-amount tbody tr td:nth-child(2) {
-  vertical-align: middle; }
+  padding-top: 0;
+  width: 100%; }
+.view-wallet .table-amount {
+  margin-bottom: 0px; }
+  .view-wallet .table-amount tbody tr td:nth-child(1) {
+    width: 70%; }
+    .view-wallet .table-amount tbody tr td:nth-child(1) p:nth-child(1) {
+      font-weight: bold; }
+  .view-wallet .table-amount tbody tr td p {
+    margin-bottom: 0; }
+  .view-wallet .table-amount tbody tr td:nth-child(2) {
+    vertical-align: middle; }
 .view-wallet .table-permission tbody tr td:nth-child(1) {
   width: 70%; }
   .view-wallet .table-permission tbody tr td:nth-child(1) p:nth-child(1) {
     font-weight: bold; }
-  .view-wallet .table-permission tbody tr td:nth-child(1) p:nth-child(2) img {
-    width: 45px !important;
-    margin-right: 10px; }
 .view-wallet .table-permission tbody tr td p {
   margin-bottom: 0; }
 .view-wallet .table-permission tbody tr td:nth-child(2) {
@@ -383,7 +392,7 @@
     font-weight: bold; }
   .view-wallet .wallet-password-tab .alert-wallet-tab {
     font-size: 14px;
-    color: #0569EF; }
+    color: #0073FF; }
   .view-wallet .wallet-password-tab .content-tab-password .col-md-* {
     margin-bottom: 20px; }
   .view-wallet .wallet-password-tab label {
@@ -485,12 +494,12 @@
 .view-publish .li-title-steps {
   font-size: 14px; }
   .view-publish .li-title-steps p.active {
-    color: #0569EF; }
+    color: #0073FF; }
 .view-publish .section-title-step, .view-publish .section-text-step {
   margin-bottom: 20px; }
   .view-publish .section-title-step .title-steps, .view-publish .section-text-step .title-steps {
     font-size: 14px;
-    color: #0569EF;
+    color: #0073FF;
     font-weight: bold;
     margin-bottom: 0; }
   .view-publish .section-title-step .description-step-title, .view-publish .section-text-step .description-step-title {
@@ -575,7 +584,7 @@
   height: 20px;
   left: 2px;
   top: 2px;
-  background-color: #0569EF;
+  background-color: #0073FF;
   border-radius: 50%; }
 .view-publish .step-2 .input-radio input:checked + label {
   background-color: white; }
@@ -602,7 +611,7 @@
   height: 20px;
   left: 2px;
   top: 2px;
-  background-color: #0569EF;
+  background-color: #0073FF;
   border-radius: 50%; }
 .view-publish .step-4 .input-radio input:checked + label {
   background-color: white; }
@@ -630,7 +639,7 @@
     margin-bottom: 0; }
   .view-publish .step-4 .row-text-license span {
     font-size: 14px;
-    color: #0569EF; }
+    color: #0073FF; }
 .view-publish .step-4 .row-text-finish {
   margin-bottom: 20px; }
   .view-publish .step-4 .row-text-finish p {
@@ -703,7 +712,7 @@
   .post-view .row-title .dropdown-price .dropdown__content p {
     margin: 0; }
   .post-view .row-title .dropdown-price .dropdown__content p.title {
-    color: #0569EF; }
+    color: #0073FF; }
 .post-view .row-title .dropdown-price:hover {
   border: 1px solid #0073FF; }
   .post-view .row-title .dropdown-price:hover span {
@@ -782,10 +791,10 @@
     font-size: 12px;
     font-weight: bold; }
   .post-view .row-comment-options .row-publish-tags a {
-    color: #878787;
+    color: #222222;
     font-weight: 600; }
   .post-view .row-comment-options .row-publish-tags a:hover {
-    color: #3B3B3C;
+    color: #0073FF;
     font-weight: 600; }
   .post-view .row-comment-options .row-publish-description .title {
     display: -webkit-box;
@@ -1166,12 +1175,12 @@
   text-align: left;
   color: #222222; }
 #tags-explorer table thead tr th, #view-explorer table thead tr th, #witnesses table thead tr th {
-  color: #0569EF;
+  color: #0073FF;
   font-size: 10px;
   text-transform: uppercase;
   background: white; }
 #tags-explorer table tbody td:first-child, #view-explorer table tbody td:first-child, #witnesses table tbody td:first-child {
-  color: #0569EF;
+  color: #0073FF;
   text-align: left; }
 #tags-explorer table tbody td:last-child, #view-explorer table tbody td:last-child, #witnesses table tbody td:last-child {
   font-weight: 600; }
@@ -1219,8 +1228,8 @@
   color: white; }
 
 .btn--primary, .btn--primary:visited {
-  background: #0569EF;
-  border-color: #0569EF; }
+  background: #0073FF;
+  border-color: #0073FF; }
 
 .btn--secondary, .btn--secondary:visited {
   background: #FFD952;
@@ -1655,16 +1664,16 @@ input[type], textarea, select {
   border-radius: 3px; }
 
 .input-checkbox label {
-  width: 20px;
-  height: 20px;
-  background: #CACACA; }
+  width: 18px;
+  height: 18px;
+  background: #eaeaea; }
 
 .input-checkbox input:checked + label {
   border-color: #0073FF;
   background: #0073FF; }
 
 a {
-  color: #0569EF; }
+  color: #0073FF; }
 
 a:hover {
   text-decoration: none; }
@@ -1673,10 +1682,10 @@ a:hover {
   color: #222222 !important; }
 
 .input-checkbox label:before {
-  border: 1px solid #0569EF; }
+  border: 1px solid #0073FF; }
 
 .color--primary {
-  color: #0569EF !important; }
+  color: #0073FF !important; }
 
 .input-checkbox + span {
   bottom: 7px; }
@@ -1896,7 +1905,7 @@ img {
   .card-home .dropdown-price .dropdown__content p {
     margin: 0; }
   .card-home .dropdown-price .dropdown__content p.title {
-    color: #0569EF; }
+    color: #0073FF; }
   .card-home .dropdown-autor {
     cursor: pointer; }
     .card-home .dropdown-autor .dropdown__content p {
@@ -1992,7 +2001,7 @@ img {
   .background-navbar-dark .menu-horizontal > li:not(:hover) > a, .background-navbar-dark .menu-horizontal > li:not(:hover) > span, .background-navbar-dark .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger {
     opacity: 1; }
   .background-navbar-dark .log-in {
-    color: #0569EF !important;
+    color: #0073FF !important;
     cursor: pointer; }
   .background-navbar-dark .navbar-notification {
     display: inline-grid;
@@ -2015,7 +2024,7 @@ img {
   width: 80%; }
 .view-error-404 .col-left .sub-text {
   font-size: 22px;
-  color: #0569EF; }
+  color: #0073FF; }
   .view-error-404 .col-left .sub-text span {
     font-weight: bold; }
 .view-error-404 .col-left p:nth-child(3), .view-error-404 .col-left p:nth-child(4) {
@@ -2335,6 +2344,9 @@ img {
   #home-banner {
     margin: 0px 0 -50px; } }
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .view-profile .container {
+    max-width: 100%; }
+
   #navbar-container {
     position: fixed;
     width: 100%; }
