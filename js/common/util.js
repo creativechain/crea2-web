@@ -288,5 +288,5 @@ function cleanArray(array) {
  * @returns {boolean}
  */
 function isSmallScreen() {
-    return window.screen.width < 576;
+    return window.screen.width < 768;
 }
