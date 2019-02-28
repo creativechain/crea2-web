@@ -2309,7 +2309,7 @@ img {
     padding: 0; } }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .navbar-filter {
-    padding-top: 65px !important; }
+    padding-top: 25px !important; }
 
   .project-profile .masonry__item {
     width: 100%;
