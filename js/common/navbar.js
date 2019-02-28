@@ -74,6 +74,7 @@
                     },
                     closeLogin: function () {
                         $('#modal-login').removeClass('modal-active');
+                        $('#modal-login-d').removeClass('modal-active');
                     },
                     logout: logout,
                     login: function (event) {
