@@ -33,13 +33,13 @@
 
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3 hidden-md hidden-lg">
         <div class="col-12 text-center">
             <span class="btn-more-info-profile">More info</span>
         </div>
     </div>
 
-    <div id="more-info-profile" class="d-none">
+    <div id="more-info-profile">
         <hr />
         <div id="profile-more-info" class="row profile-summary">
             <div class="col-7 col-md-7">

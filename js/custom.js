@@ -20,8 +20,14 @@ $(document).ready(function(){
         $('.masonry__item').toggleClass('row-simple-view');
     });
 
-
-
+    $(window).resize(function() {
+        if ($(window).width() < 991) {
+            $('#more-info-profile').addClass('d-none');
+        }
+        else {
+            $('#more-info-profile').removeClass('d-none');
+        }
+    });
 
     $(".btn-more-info-profile").click(function(){
         $('#more-info-profile').toggleClass('d-none');
