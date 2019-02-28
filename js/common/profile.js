@@ -214,7 +214,7 @@
         //console.log('Updating profile', jsonify(jsonstring(account)), jsonify(jsonstring(state)));
 
         let nextDeEnergize = null;
-        if (state.user.to_withdraw > 0 && state.user.name === session.account.username) {
+        if (state.user.to_withdraw > 0 && (session && state.user.name === session.account.username)) {
             nextDeEnergize = String.format(getLanguage().WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
         }
         if (!profileContainer) {
