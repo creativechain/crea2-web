@@ -31,18 +31,16 @@
                         <template v-else-if="step == 4">
                             <?php include ('publish/publish-step-4.php') ?>
                         </template>
-                        <div class="row">
-                            <div class="col-4 col-md-4 offset-4">
-                                <div v-if="step !== 4" v-bind:class="{ disabled: editor.show }" class="btn btn--primary type--uppercase w-100" v-on:click="nextStep">
+                        <div class="w-100 text-center">
+                            <div v-if="step !== 4" v-bind:class="{ disabled: editor.show }" class="btn btn--primary type--uppercase " v-on:click="nextStep">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.CONTINUE }}
                                     </span>
-                                </div>
-                                <div v-else class="btn btn--primary type--uppercase w-100" v-on:click="makePublication">
+                            </div>
+                            <div v-else class="btn btn--primary type--uppercase w-100" v-on:click="makePublication">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
-                                </div>
                             </div>
                         </div>
                     </div>
