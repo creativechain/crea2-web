@@ -1,4 +1,5 @@
 .view-profile {
+
   .tabs-container {
     .tabs-content {
       margin-left: 0;
@@ -170,6 +171,9 @@
     }
   }
   .menu-profile-user {
+    .btn-more-info-profile {
+      cursor: pointer;
+    }
     a {
       text-decoration: none;
     }

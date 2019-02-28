@@ -19,6 +19,14 @@ $(document).ready(function(){
         $('.main-container').toggleClass('simple-view-home');
         $('.masonry__item').toggleClass('row-simple-view');
     });
+
+
+
+
+    $(".btn-more-info-profile").click(function(){
+        $('#more-info-profile').toggleClass('d-none');
+
+    });
 });
 
 

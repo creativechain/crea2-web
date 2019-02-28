@@ -227,6 +227,8 @@
   margin-right: 5px; }
 .view-profile .block-all p {
   color: #999999; }
+.view-profile .menu-profile-user .btn-more-info-profile {
+  cursor: pointer; }
 .view-profile .menu-profile-user a {
   text-decoration: none; }
 .view-profile .menu-profile-user hr {
@@ -630,6 +632,8 @@
     display: flex; }
     .view-publish .step-4 .input-radio-step-2 .input-radio span {
       margin-left: 5px; }
+.view-publish .step-4 .ul-icon-license li {
+  margin-right: 5px !important; }
 .view-publish .step-4 .ul-icon-license img {
   width: 30px; }
 .view-publish .step-4 .row-text-license {
@@ -717,24 +721,26 @@
   border: 1px solid #0073FF; }
   .post-view .row-title .dropdown-price:hover span {
     color: #0073FF; }
-.post-view .row-title .ul-social .row-likes {
-  display: flex;
-  margin: 0 auto; }
-  .post-view .row-title .ul-social .row-likes .position-relative {
-    top: 0; }
-.post-view .row-title .ul-social li:nth-child(1) {
-  padding-top: 0;
-  padding-bottom: 0; }
-.post-view .row-title .ul-social li {
-  display: flex;
-  padding: 0; }
-  .post-view .row-title .ul-social li p {
+.post-view .row-title .stats-post {
+  margin-top: 20px; }
+.post-view .row-title .ul-social {
+  padding-left: 17px; }
+  .post-view .row-title .ul-social p {
     margin-left: 10px;
     margin-top: 3px; }
-  .post-view .row-title .ul-social li img {
+  .post-view .row-title .ul-social img {
     width: 16px;
     height: 16px;
     margin-top: 6px; }
+  .post-view .row-title .ul-social .row-likes {
+    display: flex;
+    margin: 0 auto; }
+    .post-view .row-title .ul-social .row-likes .position-relative {
+      top: 0; }
+  .post-view .row-title .ul-social .post-like-count {
+    position: relative;
+    top: 1px;
+    left: -15px; }
 .post-view .row-content-post {
   background-color: white; }
   .post-view .row-content-post .content-post h2.title-view-post {
@@ -2170,6 +2176,18 @@ img {
       color: white;
       text-transform: none; } }
 @media (max-width: 767px) {
+  .search.icons-navbar {
+    left: -10px; }
+
+  .menu-horizontal > li, .menu-vertical > li {
+    padding: 5px; }
+
+  .input-radio-step-2 span.input__label {
+    margin-top: 7px; }
+
+  .view-publish .step-4 .input-radio-step-2 .input-radio span {
+    margin-top: 10px; }
+
   #navbar-container {
     position: fixed;
     width: 100%; }
@@ -2182,11 +2200,11 @@ img {
   .logged-in-search i {
     position: relative;
     top: -2px;
-    right: 5px; }
+    right: 10px; }
 
   .disconnected-search i {
     position: relative;
-    top: 4px;
+    top: 0;
     right: 5px; }
 
   .navbar-followin-home {

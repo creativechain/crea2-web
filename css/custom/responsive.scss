@@ -132,6 +132,20 @@
 }
 
 @media (max-width: 767px) {
+  .search.icons-navbar {
+    left: -10px;
+  }
+  .menu-horizontal > li, .menu-vertical > li {
+    padding: 5px;
+  }
+  .input-radio-step-2 {
+    span.input__label {
+      margin-top: 7px;
+    }
+  }
+  .view-publish .step-4 .input-radio-step-2 .input-radio span {
+    margin-top: 10px;
+  }
   #navbar-container {
     position: fixed;
     width: 100%;
@@ -146,13 +160,13 @@
     i {
       position: relative;
       top: -2px;
-      right: 5px;
+      right: 10px ;
     }
   }
   .disconnected-search {
     i {
       position: relative;
-      top: 4px;
+      top: 0;
       right: 5px;
     }
   }

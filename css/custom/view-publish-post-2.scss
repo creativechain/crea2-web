@@ -93,7 +93,20 @@
         color: $active-circle;
       }
     }
+    .stats-post {
+      margin-top: 20px;
+    }
     .ul-social {
+      padding-left: 17px;
+      p {
+        margin-left: 10px;
+        margin-top: 3px;
+      }
+      img {
+        width: 16px;
+        height: 16px;
+        margin-top: 6px;
+      }
       .row-likes {
         display: flex;
         margin: 0 auto;
@@ -102,22 +115,10 @@
           top: 0;
         }
       }
-      li:nth-child(1) {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      li {
-        display: flex;
-        padding: 0;
-        p {
-          margin-left: 10px;
-          margin-top: 3px;
-        }
-        img {
-          width: 16px;
-          height: 16px;
-          margin-top: 6px;
-        }
+      .post-like-count {
+        position: relative;
+        top: 1px;
+        left: -15px;
       }
     }
   }

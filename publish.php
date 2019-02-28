@@ -32,7 +32,7 @@
                             <?php include ('publish/publish-step-4.php') ?>
                         </template>
                         <div class="row">
-                            <div class="col-md-4 offset-4">
+                            <div class="col-4 col-md-4 offset-4">
                                 <div v-if="step !== 4" v-bind:class="{ disabled: editor.show }" class="btn btn--primary type--uppercase w-100" v-on:click="nextStep">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.CONTINUE }}

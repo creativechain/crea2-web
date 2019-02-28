@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col text-center">
+        <div class="col-12 text-center">
             <div v-if="session">
                 <btn-follow v-if="state.user.name != account.user.name"
                             v-on:follow="onFollow" v-bind:session="session"
@@ -33,68 +33,76 @@
 
         </div>
     </div>
-
-    <hr />
-    <div class="row profile-summary">
-        <div class="col-7 col-md-7">
-            <ul class="list-inline">
-                <li class="list-inline-item">
-                    <a class="text-uppercase a-follower" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
-                        {{ lang.PROFILE.FOLLOWERS }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-5 col-md-5 text-right">
-            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
-                {{ state.user.follower_count }}
-            </a>
-        </div>
-
-        <div class="col-7 col-md-7">
-            <ul class="list-inline">
-                <li class="list-inline-item">
-                    <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
-                        {{ lang.PROFILE.FOLLOWING }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-5 col-md-5 text-right">
-            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
-                {{ state.user.following_count }}
-            </a>
-        </div>
-
-        <div class="col-7 col-md-7">
-            <ul class="list-inline">
-                <li class="list-inline-item">
-                    <a class="text-uppercase a-projects" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
-                        {{ lang.PROFILE.SECONDARY_MENU_PROJECTS }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-5 col-md-5 text-right">
-            <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
-                {{ state.user.post_count }}
-            </a>
-        </div>
-
-    </div>
-    <hr />
-    <div class="row profile-tags">
-        <div class="col">
-            <p class="title-tags">Tags</p>
-            <span v-html="getLinkedTags(profile.tags, true)"></span>
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <span class="btn-more-info-profile">More info</span>
         </div>
     </div>
-    <hr v-if="!isUserProfile()">
-    <div v-if="!isUserProfile()" class="row block-all">
-        <div class="col-md-12">
-            <ul class="list-inline list-unstyled">
-                <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
-            </ul>
+
+    <div id="more-info-profile" class="d-none">
+        <hr />
+        <div id="profile-more-info" class="row profile-summary">
+            <div class="col-7 col-md-7">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="text-uppercase a-follower" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
+                            {{ lang.PROFILE.FOLLOWERS }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-5 col-md-5 text-right">
+                <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/followers'" v-on:click="navigateTo($event, 'followers')" v-bind:class="{ active: navbar.section == 'followers' }">
+                    {{ state.user.follower_count }}
+                </a>
+            </div>
+
+            <div class="col-7 col-md-7">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="text-uppercase a-following" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
+                            {{ lang.PROFILE.FOLLOWING }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-5 col-md-5 text-right">
+                <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/following'" v-on:click="navigateTo($event, 'following')" v-bind:class="{ active: navbar.section == 'following' }">
+                    {{ state.user.following_count }}
+                </a>
+            </div>
+
+            <div class="col-7 col-md-7">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="text-uppercase a-projects" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
+                            {{ lang.PROFILE.SECONDARY_MENU_PROJECTS }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-5 col-md-5 text-right">
+                <a class="text-uppercase" v-bind:href="'/@' + state.user.name + '/projects'" v-on:click="navigateTo($event, 'projects')" v-bind:class="{ active: navbar.section == 'projects' }">
+                    {{ state.user.post_count }}
+                </a>
+            </div>
+
+        </div>
+        <hr />
+        <div class="row profile-tags">
+            <div class="col">
+                <p class="title-tags">Tags</p>
+                <span v-html="getLinkedTags(profile.tags, true)"></span>
+            </div>
+        </div>
+        <hr v-if="!isUserProfile()">
+        <div v-if="!isUserProfile()" class="row block-all">
+            <div class="col-md-12">
+                <ul class="list-inline list-unstyled">
+                    <li class="cursor" v-on:click="ignoreUser"><p><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
+                </ul>
+            </div>
         </div>
     </div>
+
 </div>

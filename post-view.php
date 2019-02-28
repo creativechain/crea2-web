@@ -20,8 +20,8 @@
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-6 text-right mt-3 mb-3 mb-md-0 mt-md-0">
-                        <div class="row align-items-center h-100">
-                            <div class="col-6">
+                        <ul class="stats-post">
+                            <li class="list-inline-item">
                                 <btn-follow v-if="session && !isSameUser()"
                                             v-on:follow="onFollow" v-bind:session="session"
                                             v-bind:account="user"
@@ -33,23 +33,18 @@
                                         {{ lang.BUTTON.EDIT_POST }}
                                     </span>
                                 </div>
-                            </div>
-                            <div class="col-2">
-                                <ul class="ul-social">
-                                    <li>
-                                        <div class="row-likes">
-                                            <div class="d-flex w-100">
-                                                <div class="">
-                                                    <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
-                                                </div>
-                                            </div>
+                            </li>
+                            <li class="ul-social list-inline-item">
+                                <div class="row-likes">
+                                    <div class="d-flex w-100">
+                                        <div class="">
+                                            <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
                                         </div>
+                                    </div>
+                                </div>
 
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="col-4 text-center">
+                            </li>
+                            <li class="list-inline-item">
                                 <div class="dropdown dropdown-price">
                                         <span class="dropdown__trigger"> {{ getPayout() }}
                                             <i class="stack-down-open"></i>
@@ -67,8 +62,8 @@
                                         </div><!--end container-->
                                     </div><!--end dropdown container-->
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
