@@ -370,6 +370,10 @@
   width: 100%; }
 .view-wallet .table-amount {
   margin-bottom: 0px; }
+  .view-wallet .table-amount tbody tr .dropdown__container {
+    left: 0 !important; }
+    .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+      left: 110px !important; }
   .view-wallet .table-amount tbody tr td:nth-child(1) {
     width: 70%; }
     .view-wallet .table-amount tbody tr td:nth-child(1) p:nth-child(1) {
@@ -703,6 +707,11 @@
 .post-view .row-title .dropdown-price {
   padding-top: 2px;
   padding-left: 11px; }
+  .post-view .row-title .dropdown-price .dropdown__container {
+    left: 0 !important; }
+    .post-view .row-title .dropdown-price .dropdown__container .dropdown__content {
+      max-width: 250px;
+      left: -170px !important; }
   .post-view .row-title .dropdown-price p {
     margin: 0; }
   .post-view .row-title .dropdown-price .dropdown__container.price {
@@ -741,6 +750,13 @@
     position: relative;
     top: 1px;
     left: -15px; }
+    .post-view .row-title .ul-social .post-like-count .dropdown__container {
+      left: 0 !important; }
+      .post-view .row-title .ul-social .post-like-count .dropdown__container .dropdown__content {
+        left: -140px !important; }
+    .post-view .row-title .ul-social .post-like-count .amount-post-view-home {
+      max-width: 330px;
+      width: 330px !important; }
 .post-view .row-content-post {
   background-color: white; }
   .post-view .row-content-post .content-post h2.title-view-post {
@@ -1647,9 +1663,12 @@ label {
 .notification.side-menu {
   width: 20.857143em; }
 
+.li-avatar-navbar .dropdown__container {
+  left: 0 !important; }
 .li-avatar-navbar .dropdown__content {
   padding: 0 !important;
-  max-width: 200px; }
+  left: -150px !important;
+  max-width: 190px; }
 .li-avatar-navbar ul li:first-child {
   margin-top: 15px; }
 .li-avatar-navbar ul li:last-child {
@@ -1875,6 +1894,11 @@ img {
     max-width: 230px; }
   .card-home .modal-instance {
     width: 100%; }
+  .card-home .dropdown-price .dropdown__container {
+    left: 0 !important; }
+    .card-home .dropdown-price .dropdown__container .dropdown__content {
+      max-width: 250px;
+      left: -170px !important; }
   .card-home .dropdown-price span {
     border: 1px solid #505050;
     border-radius: 25px;
@@ -2073,6 +2097,10 @@ img {
   #slide-home {
     padding: 60px 0 105px !important; } }
 @media (max-width: 575.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: -70px !important;
+    min-width: 150px; }
+
   .li-avatar-navbar-mobile {
     position: relative;
     top: 0; }
@@ -2176,6 +2204,9 @@ img {
       color: white;
       text-transform: none; } }
 @media (max-width: 767px) {
+  .post-view .post-like-count .dropdown__container {
+    position: absolute; }
+
   .search.icons-navbar {
     left: -10px; }
 
@@ -2308,6 +2339,9 @@ img {
     width: 100%;
     padding: 0; } }
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 0 !important; }
+
   .navbar-filter {
     padding-top: 25px !important; }
 
@@ -2362,6 +2396,9 @@ img {
   #home-banner {
     margin: 0px 0 -50px; } }
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 0 !important; }
+
   .view-profile .container {
     max-width: 100%; }
 
@@ -2455,6 +2492,9 @@ img {
       min-width: 165px;
       max-width: 165px; } }
 @media (min-width: 992px) and (max-width: 1199.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 0px !important; }
+
   .navbar-filter {
     padding-top: 65px !important; }
 
@@ -2465,6 +2505,9 @@ img {
     min-width: 249px;
     max-width: 250px; } }
 @media (min-width: 1200px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 40px !important; }
+
   #menu1 .container {
     max-width: 100%; }
   #menu1 .container-fluid {
@@ -2488,6 +2531,9 @@ img {
     min-width: 249px;
     max-width: 250px; } }
 @media (min-width: 1500px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 120px !important; }
+
   .post-container-home {
     max-width: 1500px; }
 

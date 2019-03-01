@@ -11,6 +11,10 @@
 }
 
 @media (max-width: 575.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: -70px !important;
+    min-width: 150px;
+  }
   .li-avatar-navbar-mobile {
     position: relative;
     top: 0;
@@ -132,6 +136,13 @@
 }
 
 @media (max-width: 767px) {
+  .post-view {
+    .post-like-count {
+      .dropdown__container {
+        position: absolute;
+      }
+    }
+  }
   .search.icons-navbar {
     left: -10px;
   }
@@ -332,6 +343,9 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 0 !important;
+  }
   .navbar-filter {
     padding-top: 25px !important;
   }
@@ -393,6 +407,9 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 0 !important;
+  }
   .view-profile {
     .container {
       max-width: 100%;
@@ -512,6 +529,9 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 0px !important;
+  }
   .navbar-filter {
     padding-top: 65px !important;
   }
@@ -530,6 +550,9 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 40px !important;
+  }
   #menu1 {
     .container {
       max-width: 100%;
@@ -566,6 +589,9 @@
 }
 
 @media (min-width: 1500px) {
+  .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
+    left: 120px !important;
+  }
   .post-container-home {
     max-width: 1500px;
   }
