@@ -135,9 +135,13 @@ label {
   width: 20.857143em;
 }
 .li-avatar-navbar {
+  .dropdown__container {
+    left: 0 !important;
+  }
   .dropdown__content {
     padding: 0 !important;
-    max-width: 200px;
+    left: -150px !important;
+    max-width: 190px;
   }
   ul {
     li:first-child {
@@ -394,6 +398,13 @@ img {
     width: 100%;
   }
   .dropdown-price {
+    .dropdown__container {
+      left: 0 !important;
+      .dropdown__content {
+        max-width: 250px;
+        left: -170px !important;
+      }
+    }
     span {
       border: 1px solid #505050;
       border-radius: 25px;

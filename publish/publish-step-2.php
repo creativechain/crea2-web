@@ -37,7 +37,7 @@
     </div>
     <div class="boxed boxed--border">
         <div class="section-title-step">
-            <h4 class="title-steps">{{ lang.PUBLISH.INFO_POST }}</h4>
+            <h4 class="title-steps">{{ lang.PUBLISH.PROJECT_INFO }}</h4>
         </div>
 
         <form action="" class="row">
