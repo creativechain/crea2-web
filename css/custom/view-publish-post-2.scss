@@ -64,6 +64,13 @@
     .dropdown-price {
       padding-top: 2px;
       padding-left: 11px;
+      .dropdown__container {
+        left: 0 !important;
+        .dropdown__content {
+          max-width: 250px;
+          left: -170px !important;
+        }
+      }
       p {
         margin: 0;
       }
@@ -119,6 +126,16 @@
         position: relative;
         top: 1px;
         left: -15px;
+        .dropdown__container {
+          left: 0 !important;
+          .dropdown__content {
+            left: -140px !important;
+          }
+        }
+        .amount-post-view-home {
+          max-width: 330px;
+          width: 330px !important;
+        }
       }
     }
   }

@@ -259,7 +259,7 @@ lang.en = {
         "IMAGE_MAX_FILE_SIZE": "Image Max: %s",
         "AUDIO_MAX_FILE_SIZE": "Audio Max: %s",
         "VIDEO_MAX_FILE_SIZE": "Video Max: %s",
-        "INFO_POST": "Post Information",
+        "PROJECT_INFO": "Project information",
         "SECONDARY_MENU_LICENSE": "License",
         "INFO_DESCRIPTION": "SHORT DESCRIPTION",
         "INFO_TAGS": "TAGS",
@@ -290,6 +290,7 @@ lang.en = {
         "VOTE_TITLE": "Vote for Witnesses"
     },
     "PROFILE": {
+        "MORE_INFO":"More info",
         "TITLE_BLOCKED": "Blocked",
         "TEXT_CURATION": "Estimated curation rewards last week",
         "TEXT_CURATION_HISTORY": "CURATION REWARDS HISTORY",

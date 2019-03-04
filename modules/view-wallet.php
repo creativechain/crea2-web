@@ -82,7 +82,7 @@
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
-                                                    <div class="col-md-3 col-lg-2 dropdown__content">
+                                                    <div class="col-12 col-sm-3 col-md-3 col-lg-2 dropdown__content">
                                                         <ul class="menu-vertical">
                                                             <li>
                                                                 <div class="modal-instance block">

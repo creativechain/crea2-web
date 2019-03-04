@@ -35,7 +35,7 @@
     </div>
     <div class="row mt-3 hidden-md hidden-lg">
         <div class="col-12 text-center">
-            <span class="btn-more-info-profile">More info</span>
+            <span class="btn-more-info-profile">{{ lang.PROFILE.MORE_INFO }}</span>
         </div>
     </div>
 
