@@ -377,6 +377,9 @@
                                 let hash = re.exec(result.resource)[0];
                                 console.log(hash);
 
+                                if (!post.download.type) {
+                                    post.download.type = 'application/octet-stream'
+                                }
                                 let url = apiOptions.ipfsd + '/' + post.download.type + '/' + hash + '/' + post.download.name;
                                 url += '?stream=false';
                                 downloadFile(url, post.download.name);
