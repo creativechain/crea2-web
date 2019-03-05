@@ -377,6 +377,7 @@
                                 let hash = re.exec(result.resource)[0];
                                 console.log(hash);
 
+                                //For .rar, .zip or unrecognized MIME type
                                 if (!post.download.type) {
                                     post.download.type = 'application/octet-stream'
                                 }
