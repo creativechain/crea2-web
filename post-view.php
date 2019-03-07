@@ -73,7 +73,7 @@
                     <div class="col-md-12 img-post-view content-post" >
                         <template v-for="el in state.post.body">
                             <div v-if="el != null">
-                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value">
+                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-all;">
 
                                 </div>
                                 <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -191,46 +191,21 @@
 
                 <div class="row">
                     <div class="col">
-                        <div class="slider slider--columns" data-arrows="true" data-paging="true">
+                        <div class="slider slider--columns">
                             <ul class="slides">
-                                <li class="col-md-4 col-6">
-                                    <a href="img/work-6.jpg" data-lightbox="Gallery 1">
-                                        <img alt="Image" src="img/work-6.jpg" />
-                                    </a>
-                                </li>
-                                <li class="col-md-4 col-6">
-                                    <a href="img/work-5.jpg" data-lightbox="Gallery 1">
-                                        <img alt="Image" src="img/work-5.jpg" />
-                                    </a>
-                                </li>
-                                <li class="col-md-4 col-6">
-                                    <a href="img/work-4.jpg" data-lightbox="Gallery 1">
-                                        <img alt="Image" src="img/work-4.jpg" />
-                                    </a>
-                                </li>
-                                <li class="col-md-4 col-6">
-                                    <a href="img/work-3.jpg" data-lightbox="Gallery 1">
-                                        <img alt="Image" src="img/work-3.jpg" />
-                                    </a>
-                                </li>
+                                <template v-for="o in otherProjects">
+                                    <li class="col-4 col-sm-4 col-md-4 mb-2">
+                                        <a v-bind:href="o.url">
+                                            <div class="img-more-projects"
+                                                 v-on:click="showPost(o)"
+                                                 v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
+                                        </a>
+                                    </li>
+                                </template>
                             </ul>
                         </div>
                     </div>
                     <!--end of col-->
-                </div>
-
-
-
-                <div class="row">
-                    <template v-for="o in otherProjects">
-                        <div class="col-4 col-sm-4 col-md-4 mb-2">
-                            <a v-bind:href="o.url">
-                                <div class="img-more-projects"
-                                     v-on:click="showPost(o)"
-                                     v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
-                            </a>
-                        </div>
-                    </template>
                 </div>
             </div>
 
