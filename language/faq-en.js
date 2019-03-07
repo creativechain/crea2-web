@@ -297,7 +297,7 @@ faq.en = {
                 "Crea's blockchain requires a set of nodes (witnesses) to create blocks and uses a consensus protocol called Delegated Proof Of Stake (DPOS). The community chooses \"witnesses\" to act as block producers. This way a government is created that represents the users who voted for them.",
                 "There are 24 full-time witnesses, producing one block each round of 75 seconds. The position of witness number 25 is shared by the backup witnesses who are in the queue to enter the list of the 24 most voted. This type of witnesses are programmed proportionally to the amount of approval of the community weighted by the interest they have. Witnesses are compensated with CREA Energy for each block they create. All users can vote up to 35 network witnesses. If a witness is not doing a good job, users can withdraw their vote to remove that witness from the main list so that their position is occupied by the next most voted witness.Witnesses can publicize their candidacy by offering developments that improve the ecosystem of the Crea network. To maintain the proper functioning of the network it is important that users use their legitimate right to vote for their favourite witnesses."
             ],
-            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/witnesses"]
+            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/~witness"]
         },
         "Voting and Curating": {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],
@@ -420,7 +420,7 @@ faq.en = {
                 "Medium: https://medium.com/creary",
                 "Discord: https://discord.gg/RkHFRE"
             ],
-            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/witnesses"]
+            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/~witness"]
         },
         "Developers": {
             "How does the stolen account recovery process work?": [

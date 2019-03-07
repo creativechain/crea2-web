@@ -482,7 +482,7 @@ faq.es = {
                 "Medium: https://medium.com/creary",
                 "Discord: https://discord.gg/RkHFRE"
             ],
-            "¿Cómo puedo votar por los testigos?": ["Desde el menú derecho en https://creary.net/witnesses"]
+            "¿Cómo puedo votar por los testigos?": ["Desde el menú derecho en https://creary.net/~witness"]
         },
         "Ayuda": {
             "¿Dónde se anuncian las actualizaciones y noticias relacionadas con el proyecto?": [
@@ -536,7 +536,7 @@ faq.es = {
                 "Los testigos pueden publicitar su candidatura ofreciendo desarrollos que mejoren el ecosistema de la red de Crea. Para mantener el buen funcionamiento de la red es importante que los usuarios ejerzan su derecho legítimo a votar por sus testigos preferidos.",
                 " "
             ],
-            "¿Cómo puedo votar por los testigos?": ["Desde el menú derecho en https://creary.net/witnesses"],
+            "¿Cómo puedo votar por los testigos?": ["Desde el menú derecho en https://creary.net/~witness"],
             "¿El código Creary.net o de la blockchain de Crea es de código abierto?": ["Si, puede encontrar el repositorio completo en https://github.com/creativechain "]
         },
         "Tecnología detrás de Creary ": {
