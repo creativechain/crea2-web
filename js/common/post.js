@@ -35,7 +35,6 @@
                     user: userAccount ? userAccount.user : null,
                     state: state,
                     comment: '',
-                    otherProjects: []
                 },
                 mounted: function () {
                     onVueReady();
@@ -427,6 +426,37 @@
     }
 
     function fetchOtherProjects(author, permlink) {
+
+        let loadOtherProjects = function (discussions) {
+            let otherProjects = new Vue({
+                el: '#more-projects',
+                data: {
+                    otherProjects: discussions
+                },
+                mounted: function () {
+                    mr.sliders.documentReady($);
+                    console.log("mounted", this.otherProjects.length)
+                },
+                methods: {
+                    showPost: showPost,
+                    getFeaturedImage: function (post) {
+                        let featuredImage = post.metadata.featuredImage;
+                        if (featuredImage && featuredImage.hash) {
+                            return {
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
+                            }
+                        } else if (featuredImage && featuredImage.url) {
+                            return featuredImage;
+                        }
+
+                        return {};
+                    },
+                }
+            })
+
+            otherProjects.$forceUpdate();
+        };
+
         let date = new Date().toISOString().replace('Z', '');
         crea.api.getDiscussionsByAuthorBeforeDateWith({start_permlink: '', limit: 100, before_date: date, author}, function (err, result) {
 
@@ -446,10 +476,13 @@
                         selectedDiscuss.push(discussions.splice(r, 1)[0])
                     }
 
-                    postContainer.otherProjects = selectedDiscuss;
-                } else if (discussions.length > 0) {
-                    postContainer.otherProjects = discussions;
+                    discussions = selectedDiscuss;
                 }
+
+                console.log(discussions.length, discussions);
+
+                loadOtherProjects(discussions)
+
             }
         });
     }
@@ -475,7 +508,7 @@
                             result.postKey = getPostKey(finalUrl);
                             result.post = parsePost(result.content[result.postKey]);
                             result.author = result.accounts[result.post.author];
-                            fetchOtherProjects(result.author.name, result.post.permlink);
+
 
                             //Order comments by date, latest first
                             let cKeys = Object.keys(result.content);
@@ -514,6 +547,24 @@
         }
 
     }
+
+    creaEvents.on('crea.dom.ready', function () {
+
+        let author = getPathPart();
+        let permlink;
+
+        if (!author.startsWith('@')) {
+            author = getPathPart(1).replace('@', '');
+            permlink = getPathPart(2);
+        } else {
+            author = getPathPart().replace('@', '');
+            permlink = getPathPart(1);
+        }
+
+        console.log(author, permlink);
+        fetchOtherProjects(author, permlink);
+    });
+
 
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
