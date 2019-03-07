@@ -191,7 +191,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <div class="slider slider--columns">
+                        <div class="slider slider--columns" data-timing="5000">
                             <ul class="slides">
                                 <template v-for="o in otherProjects">
                                     <li class="col-4 col-sm-4 col-md-4 mb-2">
