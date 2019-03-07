@@ -90,6 +90,7 @@ function handleRoute() {
     $router->addRoute('/privacy_policy', 'privacy_policy.php');
     $router->addRoute('/404', '404.php');
     $router->addRoute('/503', '503.php');
+    //$router->addRoute('/share\/(@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'share.php');
     $router->addRoute('^\/(skyrockets|votes|responses|popular|popular30|promoted|cashout|payout|payout_comments|now|active)\/?$', 'home.php'); //CATEGORIES
     $router->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php'); // TAG PROJECTS
     $router->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php');
