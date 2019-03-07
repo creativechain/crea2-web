@@ -443,9 +443,9 @@
                     }
                 });
 
-                if (discussions.length > 3) {
+                if (discussions.length > 12) {
                     let selectedDiscuss = [];
-                    for (let x = 0; x < 3; x++) {
+                    for (let x = 0; x < 12; x++) {
                         let r = randomNumber(0, discussions.length-1);
                         selectedDiscuss.push(discussions.splice(r, 1)[0])
                     }

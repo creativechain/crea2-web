@@ -50,9 +50,9 @@
                                             <i class="stack-down-open"></i>
                                         </span>
                                     <div class="dropdown__container price">
-                                        <div class="container">
+                                        <div class="">
                                             <div class="row">
-                                                <div class="col-12 col-sm-12 col-md-4 col-lg-3 dropdown__content amount-post-view-home">
+                                                <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                     <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
                                                     <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
                                                     <p>{{ getPayoutPostDate() }}</p>
@@ -73,7 +73,7 @@
                     <div class="col-md-12 img-post-view content-post" >
                         <template v-for="el in state.post.body">
                             <div v-if="el != null">
-                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value">
+                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-all;">
 
                                 </div>
                                 <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -167,20 +167,45 @@
                 </div>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="container row-project">
                 <div class="row">
                     <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                 </div>
+
                 <div class="row">
-                    <template v-for="o in otherProjects">
-                        <div class="col-4 col-sm-4 col-md-4 mb-2">
-                            <a v-bind:href="o.url">
-                                <div class="img-more-projects"
-                                     v-on:click="showPost(o)"
-                                     v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
-                            </a>
+                    <div class="col">
+                        <div class="slider slider--columns" data-timing="5000">
+                            <ul class="slides">
+                                <template v-for="o in otherProjects">
+                                    <li class="col-4 col-sm-4 col-md-4 mb-2">
+                                        <a v-bind:href="o.url">
+                                            <div class="img-more-projects"
+                                                 v-on:click="showPost(o)"
+                                                 v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
                         </div>
-                    </template>
+                    </div>
+                    <!--end of col-->
                 </div>
             </div>
 
