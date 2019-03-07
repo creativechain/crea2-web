@@ -39,7 +39,7 @@
         }
     });
 
-    creaEvents.on('crea.dom.ready', function (script) {
+    creaEvents.on('crea.dom.ready', function () {
         $.holdReady(false);
 
         $(window).scroll(function (event) {

@@ -189,19 +189,17 @@
                     <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                 </div>
 
-                <div class="row">
-                    <div class="col">
+                <div v-pre class="row">
+                    <div id="more-projects" class="col">
                         <div class="slider slider--columns" data-timing="5000">
                             <ul class="slides">
-                                <template v-for="o in otherProjects">
-                                    <li class="col-4 col-sm-4 col-md-4 mb-2">
-                                        <a v-bind:href="o.url">
-                                            <div class="img-more-projects"
-                                                 v-on:click="showPost(o)"
-                                                 v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
-                                        </a>
-                                    </li>
-                                </template>
+                                <li v-for="o in otherProjects" class="col-4 col-sm-4 col-md-4 mb-2">
+                                    <a v-bind:href="o.url">
+                                        <div class="img-more-projects"
+                                             v-on:click="showPost(o)"
+                                             v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }"></div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
