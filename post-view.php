@@ -167,10 +167,60 @@
                 </div>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="container row-project">
                 <div class="row">
                     <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                 </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="slider slider--columns" data-arrows="true" data-paging="true">
+                            <ul class="slides">
+                                <li class="col-md-4 col-6">
+                                    <a href="img/work-6.jpg" data-lightbox="Gallery 1">
+                                        <img alt="Image" src="img/work-6.jpg" />
+                                    </a>
+                                </li>
+                                <li class="col-md-4 col-6">
+                                    <a href="img/work-5.jpg" data-lightbox="Gallery 1">
+                                        <img alt="Image" src="img/work-5.jpg" />
+                                    </a>
+                                </li>
+                                <li class="col-md-4 col-6">
+                                    <a href="img/work-4.jpg" data-lightbox="Gallery 1">
+                                        <img alt="Image" src="img/work-4.jpg" />
+                                    </a>
+                                </li>
+                                <li class="col-md-4 col-6">
+                                    <a href="img/work-3.jpg" data-lightbox="Gallery 1">
+                                        <img alt="Image" src="img/work-3.jpg" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end of col-->
+                </div>
+
+
+
                 <div class="row">
                     <template v-for="o in otherProjects">
                         <div class="col-4 col-sm-4 col-md-4 mb-2">
