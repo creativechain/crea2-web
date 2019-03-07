@@ -73,7 +73,7 @@
                     <div class="col-md-12 img-post-view content-post" >
                         <template v-for="el in state.post.body">
                             <div v-if="el != null">
-                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-all;">
+                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-word;">
 
                                 </div>
                                 <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -159,29 +159,12 @@
                                             </section>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             <div class="container row-project">
