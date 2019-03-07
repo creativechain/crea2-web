@@ -50,9 +50,9 @@
                                             <i class="stack-down-open"></i>
                                         </span>
                                     <div class="dropdown__container price">
-                                        <div class="container">
+                                        <div class="">
                                             <div class="row">
-                                                <div class="col-12 col-sm-12 col-md-4 col-lg-3 dropdown__content amount-post-view-home">
+                                                <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                     <p class="title">{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT}} {{ getPayout() }}</p>
                                                     <p v-if="!hasPaid()">{{ getPendingPayouts() }}</p>
                                                     <p>{{ getPayoutPostDate() }}</p>
