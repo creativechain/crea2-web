@@ -142,6 +142,11 @@
         position: absolute;
       }
     }
+    .row-title {
+      .stats-post {
+        margin-top: 0;
+      }
+    }
   }
   .search.icons-navbar {
     left: -10px;
@@ -343,6 +348,7 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
+
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0 !important;
   }

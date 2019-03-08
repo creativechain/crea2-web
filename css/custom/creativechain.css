@@ -2209,6 +2209,8 @@ img {
 @media (max-width: 767px) {
   .post-view .post-like-count .dropdown__container {
     position: absolute; }
+  .post-view .row-title .stats-post {
+    margin-top: 0; }
 
   .search.icons-navbar {
     left: -10px; }
