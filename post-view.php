@@ -174,7 +174,7 @@
 
                 <div v-pre class="row">
                     <div id="more-projects" class="col">
-                        <div class="slider slider--columns" data-timing="5000">
+                        <div class="slider slider--columns" data-autoplay="false">
                             <ul class="slides">
                                 <li v-for="o in otherProjects" class="col-6 col-sm-6 col-md-4 mb-2">
                                     <a v-bind:href="o.url">
