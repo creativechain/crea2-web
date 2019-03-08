@@ -14,7 +14,7 @@
     function onVueReady() {
         --vueInstances;
 
-        if (vueInstances <= 0) {
+        if (vueInstances === 0) {
             creaEvents.emit('crea.dom.ready');
         }
     }
