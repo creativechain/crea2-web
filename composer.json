@@ -1,0 +1,15 @@
+{
+    "name": "creativechain/creary",
+    "description": "Blockchain-based social network of creative portfolios that rewards creatives and curators",
+    "type": "project",
+    "license": "GNU GPLv3",
+    "authors": [
+        {
+            "name": "Creativechain FDN",
+            "email": "admin@creaproject.io"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.6"
+    }
+}
