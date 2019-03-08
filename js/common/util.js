@@ -1,7 +1,10 @@
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 /**
  * Created by ander on 29/09/18.
  */
-
 if (!String.format) {
     /**
      *
@@ -9,15 +12,16 @@ if (!String.format) {
      * @param args
      * @return {*|void|XML|string}
      */
-    String.format = function(format, ...args) {
-        let splitter = '%s';
-        let parts = format.split(splitter);
-        let newFormat = '';
+    String.format = function (format) {
+        var splitter = '%s';
+        var parts = format.split(splitter);
+        var newFormat = '';
 
-        for (let x = 0; x < parts.length; x++) {
-            let r = args[x];
+        for (var x = 0; x < parts.length; x++) {
+            var r = x + 1 < 1 || arguments.length <= x + 1 ? undefined : arguments[x + 1];
+
             if (!r) {
-                r = ''
+                r = '';
             }
 
             newFormat += parts[x];
@@ -28,18 +32,19 @@ if (!String.format) {
     };
 }
 
-String.prototype.isEmpty = function() {
-    return (this.length === 0 || !this.trim());
+String.prototype.isEmpty = function () {
+    return this.length === 0 || !this.trim();
 };
 
-String.prototype.capitalize = function() {
+String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
-
 /**
  *
  * @param {Event} event
  */
+
+
 function cancelEventPropagation(event) {
     if (event && event.preventDefault) {
         event.preventDefault();
@@ -50,18 +55,17 @@ function isJSON(string) {
     try {
         JSON.parse(string);
         return true;
-    } catch (e) {
-
-    }
+    } catch (e) {}
 
     return false;
 }
-
 /**
  *
  * @param obj
  * @returns {*}
  */
+
+
 function jsonify(obj) {
     if (obj && typeof obj == 'string') {
         try {
@@ -75,7 +79,7 @@ function jsonify(obj) {
 }
 
 function jsonstring(obj) {
-    if (obj && typeof obj == 'object') {
+    if (obj && _typeof(obj) == 'object') {
         return JSON.stringify(obj);
     }
 
@@ -86,61 +90,72 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
-
 /**
  *
  * @param name
  * @param url
  * @returns {*}
  */
+
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
-    let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-
 /**
  *
  * @param base64
  * @returns {ArrayBuffer}
  */
+
+
 function base64ToBuffer(base64) {
-    let binary_string = window.atob(base64);
-    let len = binary_string.length;
-    let bytes = new Uint8Array( len );
-    for (let i = 0; i < len; i++)        {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+
+    for (var i = 0; i < len; i++) {
         bytes[i] = binary_string.charCodeAt(i);
     }
+
     return bytes.buffer;
 }
-
 /**
  *
  * @param ab
  * @returns {*|s|i|l|o|t}
  */
+
+
 function toBuffer(ab) {
-    let buf = new ipfs.Buffer(ab.byteLength);
-    let view = new Uint8Array(ab);
-    for (let i = 0; i < buf.length; ++i) {
+    var buf = new ipfs.Buffer(ab.byteLength);
+    var view = new Uint8Array(ab);
+
+    for (var i = 0; i < buf.length; ++i) {
         buf[i] = view[i];
     }
+
     return buf;
 }
-
 /**
  *
  * @param {string} str
  * @returns {string}
  */
+
+
 function toPermalink(str) {
     var re = /[^a-z0-9]+/gi; // global and case insensitive matching of non-char/non-numeric
-    var re2 = /^-*|-*$/g;     // get rid of any leading/trailing dashes
-    str = str.replace(re, '-');  // perform the 1st regexp
+
+    var re2 = /^-*|-*$/g; // get rid of any leading/trailing dashes
+
+    str = str.replace(re, '-'); // perform the 1st regexp
+
     return str.replace(re2, '').toLowerCase();
 }
 
@@ -148,10 +163,8 @@ function createAuth(key) {
     return {
         weight_threshold: 1,
         account_auths: [],
-        key_auths: [
-            [key, 1]
-        ]
-    }
+        key_auths: [[key, 1]]
+    };
 }
 
 function copyToClipboard(element) {
@@ -161,7 +174,7 @@ function copyToClipboard(element) {
         try {
             document.execCommand('copy');
         } catch (err) {
-            console.error()
+            console.error();
         }
     }
 }
@@ -169,23 +182,23 @@ function copyToClipboard(element) {
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 /**
  *
  * @param {string|number|Date} date
  * @returns {Date}
  */
+
+
 function toLocaleDate(date) {
     if (date) {
         if (typeof date == 'string' || typeof date == 'number') {
             date = new Date(date);
         }
 
-        if (typeof date == 'object') {
-            let newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-            let offset = date.getTimezoneOffset() / 60;
-            let hours = date.getHours();
-
+        if (_typeof(date) == 'object') {
+            var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+            var offset = date.getTimezoneOffset() / 60;
+            var hours = date.getHours();
             newDate.setHours(hours - offset);
             return newDate;
         }
@@ -193,46 +206,48 @@ function toLocaleDate(date) {
 
     return new Date(0);
 }
-
 /**
  *
  * @param src
  * @returns {*}
  */
+
+
 function clone(src) {
     return Object.assign({}, src);
 }
 
 function humanFileSize(size) {
-    const UNIT = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    let i = Math.floor( Math.log(size) / Math.log(1024) );
-    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + UNIT[i];
+    var UNIT = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    var i = Math.floor(Math.log(size) / Math.log(1024));
+    return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + UNIT[i];
 }
-
 /**
  *
  * @param {string} username
  * @returns {boolean}
  */
-function isUserFeed(username = null) {
-    let path = window.location.pathname;
 
-    let regexp = '(\/@[a-zA-Z0-9]+\/feed)';
+
+function isUserFeed() {
+    var username = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var path = window.location.pathname;
+    var regexp = '(\/@[a-zA-Z0-9]+\/feed)';
+
     if (username) {
         username = username.replace('@', '');
-
-        regexp = '(\/@' + username + '\/feed)'
+        regexp = '(\/@' + username + '\/feed)';
     }
 
     return new RegExp(regexp).exec(path) !== null;
-
 }
-
 /**
  *
  * @param {string} string
  * @returns {string}
  */
+
+
 function toUrl(string) {
     if (string) {
         if (!string.startsWith('http://') && !string.startsWith('https://')) {
@@ -244,49 +259,50 @@ function toUrl(string) {
 
     return null;
 }
-
 /**
  *
  * @param index
  * @returns {string}
  */
-function getPathPart(index = 0) {
-    let path = window.location.pathname;
-    let parts = path.split('/');
-    parts.splice(0, 1);
 
+
+function getPathPart() {
+    var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var path = window.location.pathname;
+    var parts = path.split('/');
+    parts.splice(0, 1);
     return parts[index] || '';
 }
 
 function getNavigatorLanguage() {
     return navigator.language.split('-')[0];
 }
-
 /**
  *
  * @param {Array} array
  * @returns {Array}
  */
+
+
 function cleanArray(array) {
     if (Array.isArray(array)) {
-        let elements = [];
+        var elements = [];
         array.forEach(function (el) {
             if (el) {
                 elements.push(el);
             }
         });
-
         return elements;
     }
 
     return array;
-
 }
-
 /**
  *
  * @returns {boolean}
  */
+
+
 function isSmallScreen() {
     return window.screen.width < 768;
 }

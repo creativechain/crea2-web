@@ -1,9 +1,11 @@
+"use strict";
+
 /**
  * Created by ander on 30/12/18.
  */
-
 (function () {
-    let recoverContainer;
+    var recoverContainer;
+
     function setUp() {
         recoverContainer = new Vue({
             el: '#recover-container',
@@ -17,5 +19,4 @@
         setUp();
         creaEvents.emit('crea.dom.ready', 'publish');
     });
-
 })();

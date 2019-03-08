@@ -1,11 +1,11 @@
+"use strict";
+
 /**
  * Created by ander on 22/10/18.
  */
-
-const R = {
+var R = {
     IMG: {
-        DEFAULT_AVATAR: ['/img/avatar/avatar1.png', '/img/avatar/avatar2.png', '/img/avatar/avatar3.png',
-            '/img/avatar/avatar4.png', '/img/avatar/avatar5.png'],
+        DEFAULT_AVATAR: ['/img/avatar/avatar1.png', '/img/avatar/avatar2.png', '/img/avatar/avatar3.png', '/img/avatar/avatar4.png', '/img/avatar/avatar5.png'],
         LIKE: {
             BORDER: '/img/crea-web/like/like.svg',
             BLUE: {
@@ -25,16 +25,16 @@ const R = {
             EXPERT: '/img/crea-web/roll/expert.svg',
             ADVANCED: '/img/crea-web/roll/advanced.svg',
             TRAINEE: '/img/crea-web/roll/trainee.svg',
-            NOVICE: '/img/crea-web/roll/novice.svg',
+            NOVICE: '/img/crea-web/roll/novice.svg'
         }
     }
 };
-
 /**
  *
  * @param account
  * @returns {string}
  */
+
 R.getAvatar = function (account) {
     if (account.metadata && account.metadata.avatar) {
         if (account.metadata.avatar.hash) {
@@ -46,15 +46,16 @@ R.getAvatar = function (account) {
 
     return R.getDefaultAvatar(account.name);
 };
-
 /**
  *
  * @param username
  * @returns {string}
  */
+
+
 R.getDefaultAvatar = function (username) {
-    let buffer = new window.Buffer(username);
-    let n = parseInt(buffer.toString('hex'), 16);
+    var buffer = new window.Buffer(username);
+    var n = parseInt(buffer.toString('hex'), 16);
     n = n % R.IMG.DEFAULT_AVATAR.length;
     return R.IMG.DEFAULT_AVATAR[n];
 };

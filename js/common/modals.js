@@ -1,16 +1,16 @@
+"use strict";
+
 /**
  * Created by ander on 21/12/18.
  */
-
 (function () {
-
-    let roleModal;
-    let alertModal;
+    var roleModal;
+    var alertModal;
 
     function setUpAlertModal() {
-        let defaultData = {
+        var defaultData = {
             title: '',
-            body: [],
+            body: []
         };
 
         if (!alertModal) {
@@ -21,29 +21,28 @@
                     config: clone(defaultData),
                     show: false
                 },
-                mounted: function () {
-                    let that = this;
+                mounted: function mounted() {
+                    var that = this;
                     $('#modal-alert').on('modalClosed.modals.mr', function () {
                         that.closeModal();
-                    })
+                    });
                 },
                 methods: {
-                    cleanModal: function () {
+                    cleanModal: function cleanModal() {
                         this.config = clone(defaultData);
                     },
-                    closeModal: function (event) {
+                    closeModal: function closeModal(event) {
                         cancelEventPropagation(event);
                         this.cleanModal();
                         this.show = false;
                     }
                 }
-            })
+            });
         }
     }
 
     function setUpRoleModal() {
-
-        let defaultData = {
+        var defaultData = {
             username: {
                 disabled: false,
                 value: '',
@@ -67,29 +66,30 @@
                     inputs: clone(defaultData),
                     show: false
                 },
-                mounted: function () {
-                    let that = this;
+                mounted: function mounted() {
+                    var that = this;
                     $('#modal-role').on('modalClosed.modals.mr', function () {
                         that.closeModal();
-                    })
+                    });
                 },
                 methods: {
-                    cleanModal: function () {
+                    cleanModal: function cleanModal() {
                         this.inputs = clone(defaultData);
                         this.title = '';
                         this.role = '';
                         this.id = null;
                     },
-                    closeModal: function (event) {
+                    closeModal: function closeModal(event) {
                         cancelEventPropagation(event);
                         this.cleanModal();
                         this.show = false;
                     },
-                    checkUsername: function (event) {
-                        let username = event.target.value.split('/')[0];
-                        let that = this;
+                    checkUsername: function checkUsername(event) {
+                        var username = event.target.value.split('/')[0];
+                        var that = this;
+
                         if (!crea.utils.validateAccountName(username)) {
-                            let accounts = [ username ];
+                            var accounts = [username];
                             crea.api.lookupAccountNames(accounts, function (err, result) {
                                 if (err) {
                                     console.error(err);
@@ -99,21 +99,20 @@
                                 } else {
                                     that.inputs.username.error = null;
                                 }
-                            })
+                            });
                         } else {
                             that.inputs.username.error = that.lang.ERROR.INVALID_USERNAME;
                         }
                     },
-                    fetchKey: function (event) {
+                    fetchKey: function fetchKey(event) {
                         cancelEventPropagation(event);
 
                         if (!this.inputs.username.error && this.inputs.password.value) {
-                            let that = this;
-                            let username = this.inputs.username.value.split('/')[0];
-                            let role = this.role;
-                            let password = this.inputs.password.value;
-
-                            let s = Session.create(username, password, role);
+                            var that = this;
+                            var username = this.inputs.username.value.split('/')[0];
+                            var role = this.role;
+                            var password = this.inputs.password.value;
+                            var s = Session.create(username, password, role);
                             s.login(function (err, result) {
                                 if (!catchError(err)) {
                                     if (that.login) {
@@ -123,12 +122,11 @@
                                     creaEvents.emit('crea.auth.role.' + that.id, s.account.keys[role].prv, username);
                                     that.closeModal();
                                 }
-                            })
+                            });
                         }
-
                     }
                 }
-            })
+            });
         }
     }
 
@@ -138,19 +136,17 @@
     }
 
     creaEvents.on('crea.alert', function (data) {
-       alertModal.config = data;
-       alertModal.show = true;
+        alertModal.config = data;
+        alertModal.show = true;
     });
-
     creaEvents.on('crea.auth.role', function (username, role, login, id) {
         roleModal.id = id;
         roleModal.inputs.username.value = username;
         roleModal.role = role;
         roleModal.login = login;
-        roleModal.show = true
+        roleModal.show = true;
     });
-
     creaEvents.on('crea.content.loaded', function () {
         setUp();
-    })
+    });
 })();
