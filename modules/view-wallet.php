@@ -152,7 +152,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-10">
                                                                                                                     <div class="input-icon input-icon--right">
-                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name" />
+                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your memo" />
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
