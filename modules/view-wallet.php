@@ -158,11 +158,11 @@
                                                                                                             </div>
                                                                                                             <div class="row mt-3">
                                                                                                                 <div class="col text-right">
-                                                                                                                    <div v-if="config.confirmed" class="btn btn--sm type--uppercase"
+                                                                                                                    <div v-if="config.confirmed" class="btn btn--sm"
                                                                                                                          v-on:click="cancelSend">
                                                                                                                         <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL}}</span>
                                                                                                                     </div>
-                                                                                                                    <div class="btn btn--sm btn--primary type--uppercase" v-on:click="sendCrea">
+                                                                                                                    <div class="btn btn--sm btn--primary" v-on:click="sendCrea">
                                                                                                                         <span class="btn__text">{{ config.confirmed ? config.button : lang.BUTTON.CONFIRM }}</span>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -270,7 +270,7 @@
                                                                                                         </div>
                                                                                                         <div class="row mt-1">
                                                                                                             <div class="col text-right">
-                                                                                                                <a href="#0" v-on:click="makePowerDown" class="btn btn--sm btn--primary type--uppercase">
+                                                                                                                <a href="#0" v-on:click="makePowerDown" class="btn btn--sm btn--primary">
                                                                                                                     <span class="btn__text">{{ lang.BUTTON.DE_ENERGIZE }}</span>
                                                                                                                 </a>
                                                                                                             </div>
@@ -493,7 +493,7 @@
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>{{ lang.CHANGE_PASSWORD.CURRENT_PASSWORD }}</label>
-                                <label class="float-right"><a href="" class="type--uppercase color--primary button-recover-account">{{ lang.CHANGE_PASSWORD.ACCOUNT_RECOVERY }}</a></label>
+                                <label class="float-right"><a href="" class="color--primary button-recover-account">{{ lang.CHANGE_PASSWORD.ACCOUNT_RECOVERY }}</a></label>
                                 <input v-model="changePass.oldPass" class="validate-required" type="password" v-bind:placeholder="lang.CHANGE_PASSWORD.PASSWORD"/>
                             </div>
                             <div class="col-md-12 mt-3">

@@ -145,7 +145,7 @@
                                                                         </div>
                                                                         <div class="row mt-3">
                                                                             <div class="col text-right">
-                                                                                <div v-on:click="makePromotion" class="btn btn--sm btn--primary type--uppercase" >
+                                                                                <div v-on:click="makePromotion" class="btn btn--sm btn--primary" >
                                                                                     <span class="btn__text">{{ lang.BUTTON.PROMOTE }}</span>
                                                                                 </div>
                                                                             </div>
@@ -407,14 +407,14 @@
                                                                                 </div>
                                                                                 <div class="row mt-3">
                                                                                     <div class="col text-right">
-                                                                                        <div v-if="modal.confirmed" class="btn btn--sm btn--primary type--uppercase modal-close"
+                                                                                        <div v-if="modal.confirmed" class="btn btn--sm modal-close"
                                                                                              v-on:click="cancelPay">
-                                                                                            <span class="btn__text">{{ lang.BUTTON.CANCEL}}</span>
+                                                                                            <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL}}</span>
                                                                                         </div>
-                                                                                        <div v-if="modal.alreadyPayed" v-on:click="confirmDownload" class="btn btn--sm btn--primary type--uppercase modal-close" >
+                                                                                        <div v-if="modal.alreadyPayed" v-on:click="confirmDownload" class="btn btn--sm btn--primary modal-close" >
                                                                                             <span class="btn__text">{{ lang.BUTTON.DOWNLOAD }}</span>
                                                                                         </div>
-                                                                                        <div v-else v-on:click="confirmDownload" class="btn btn--sm btn--primary type--uppercase" >
+                                                                                        <div v-else v-on:click="confirmDownload" class="btn btn--sm btn--primary" >
                                                                                             <span class="btn__text">{{ modal.confirmed ? lang.BUTTON.PAY : lang.BUTTON.CONFIRM }}</span>
                                                                                         </div>
                                                                                     </div>
