@@ -1206,25 +1206,25 @@
             var onState = function onState(err, state) {
                 if (!catchError(err)) {
                     var posts = Object.keys(state.content);
-                    posts.forEach(function (k) {
-                        state.content[k].metadata = jsonify(state.content[k].json_metadata);
-                        state.content[k].down_votes = [];
-                        state.content[k].up_votes = [];
-                        state.content[k].active_votes.forEach(function (v) {
-                            if (v.percent <= -10000) {
-                                state.content[k].down_votes.push(v);
-                            } else {
-                                state.content[k].up_votes.push(v);
-                            }
-                        });
-                    });
+
+                    for (var x = 0; x < posts.length; x++) {
+                        var k = posts[x];
+                        state.content[k] = parsePost(state.content[k]);
+
+                    }
+
                     state.discussion_idx = {};
                     posts.sort(function (k1, k2) {
                         var d1 = new Date(state.content[k1].created);
                         var d2 = new Date(state.content[k2].created);
                         return d2.getTime() - d1.getTime();
                     });
+
                     state.discussion_idx[''] = posts;
+
+                    var contentArray = state.discussion_idx[''];
+                    lastPage = state.content[contentArray[contentArray.length - 1]];
+
                     detectNav(state, session, account, profileName);
                     setUpModals(state, session);
                 }
@@ -1333,4 +1333,43 @@
 
     creaEvents.on('crea.session.login', handleSession);
     creaEvents.on('crea.session.update', handleSession);
+
+    var onScrollCalling;
+    var lastPage;
+    creaEvents.on('crea.scroll.bottom', function () {
+        if (!onScrollCalling) {
+            onScrollCalling = true;
+
+            if (lastPage) {
+                var beforeDate = new Date().toISOString().replace('Z', '');
+                crea.api.getDiscussionsByAuthorBeforeDate(lastPage.author, lastPage.permlink, beforeDate, 21, function (err, result) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        //Get new accounts
+                        var discussions = result.discussions;
+
+                        //Remove first duplicate post
+                        discussions.shift();
+
+                        for (var x = 0; x < discussions.length; x++) {
+                            var d = parsePost(discussions[x]);
+
+                            var permlink = d.author + '/' + d.permlink;
+                            profileContainer.state.content[permlink] = d;
+                            profileContainer.state.discussion_idx[''].push(permlink);
+                        }
+
+                        var contentArray = profileContainer.state.discussion_idx[''];
+                        lastPage = profileContainer.state.content[contentArray[contentArray.length - 1]];
+
+                        profileContainer.$forceUpdate();
+
+                        onScrollCalling = false;
+                    }
+                })
+            }
+        }
+
+    });
 })();
