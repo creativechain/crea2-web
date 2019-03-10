@@ -29,7 +29,7 @@
                     lang: getLanguage(),
                     CONSTANTS: CONSTANTS,
                     session: session,
-                    user: userAccount ? userAccount.user : null,
+                    user: userAccount ? userAccount.user : false,
                     state: state,
                     comment: ''
                 },
@@ -224,102 +224,118 @@
             postContainer.user = userAccount ? userAccount.user : null;
         }
 
-        if (!promoteModal) {
-            promoteModal = new Vue({
-                el: "#modal-promote",
-                data: {
-                    lang: getLanguage(),
-                    session: session,
-                    user: userAccount ? userAccount.user : null,
-                    state: state,
-                    amount: 0
-                },
-                mounted: function mounted() {
-                    onVueReady();
-                },
-                methods: {
-                    hideModalPromote: function hideModalPromote(event) {
-                        cancelEventPropagation(event);
-                        $('#modal-promote').removeClass('modal-active');
-                    },
-                    makePromotion: function makePromotion(event) {
-                        cancelEventPropagation(event);
-                        var from = this.session.account.username;
-                        var to = 'null';
-                        var memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
-                        var amount = parseFloat(this.amount) + 0.0001;
-                        console.log(amount);
-                        amount = Asset.parse({
-                            amount: amount,
-                            nai: apiOptions.nai.CBD
-                        }).toFriendlyString(null, false);
-                        console.log(amount);
-                        var that = this;
-                        requireRoleKey(from, 'active', function (activeKey) {
-                            globalLoading.show = true;
-                            crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
-                                globalLoading.show = false;
-
-                                if (!catchError(err)) {
-                                    that.hideModalPromote();
-                                    updateUserSession();
-                                }
-                            });
-                        });
-                    }
-                }
-            });
-        } else {
-            promoteModal.session = session;
-            promoteModal.user = userAccount ? userAccount.user : null;
-            promoteModal.state = state;
-        }
-
-        if (state.post.download.resource) {
-            if (!downloadModal) {
-                var price = Asset.parse(state.post.download.price);
-                var balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString(userAccount.user.balance) : Asset.parseString(userAccount.user.cbd_balance);
-                var alreadyPayed = state.post.download.downloaders.includes(userAccount.user.name);
-                downloadModal = new Vue({
-                    el: '#modal-download',
+        if (session) {
+            if (!promoteModal) {
+                promoteModal = new Vue({
+                    el: "#modal-promote",
                     data: {
                         lang: getLanguage(),
                         session: session,
                         user: userAccount ? userAccount.user : null,
                         state: state,
-                        modal: {
-                            amount: price.toPlainString(null, false),
-                            symbol: price.asset.symbol.toUpperCase(),
-                            balance: balance.toFriendlyString(null, false),
-                            alreadyPayed: alreadyPayed,
-                            confirmed: false
-                        }
+                        amount: 0
                     },
                     mounted: function mounted() {
                         onVueReady();
+                        creaEvents.emit('crea.modal.ready');
                     },
                     methods: {
-                        cancelPay: function cancelPay() {
-                            this.modal.confirmed = false;
+                        hideModalPromote: function hideModalPromote(event) {
+                            cancelEventPropagation(event);
+                            $('#modal-promote').removeClass('modal-active');
                         },
-                        confirmDownload: function confirmDownload() {
-                            if (this.modal.alreadyPayed || this.modal.confirmed) {
-                                makeDownload();
-                            } else {
-                                this.modal.confirmed = true;
-                            }
+                        makePromotion: function makePromotion(event) {
+                            cancelEventPropagation(event);
+                            var from = this.session.account.username;
+                            var to = 'null';
+                            var memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
+                            var amount = parseFloat(this.amount) + 0.0001;
+                            console.log(amount);
+                            amount = Asset.parse({
+                                amount: amount,
+                                nai: apiOptions.nai.CBD
+                            }).toFriendlyString(null, false);
+                            console.log(amount);
+                            var that = this;
+                            requireRoleKey(from, 'active', function (activeKey) {
+                                globalLoading.show = true;
+                                crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
+                                    globalLoading.show = false;
+
+                                    if (!catchError(err)) {
+                                        that.hideModalPromote();
+                                        updateUserSession();
+                                    }
+                                });
+                            });
                         }
                     }
                 });
             } else {
-                downloadModal.session = session;
-                downloadModal.user = userAccount ? userAccount.user : null;
-                downloadModal.state = state;
+                promoteModal.session = session;
+                promoteModal.user = userAccount ? userAccount.user : null;
+                promoteModal.state = state;
+            }
+
+            if (state.post.download.resource) {
+                if (!downloadModal) {
+                    var price = Asset.parse(state.post.download.price);
+
+                    var balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString('0.000 CREA') : Asset.parseString('0.000 CBD');
+                    var alreadyPayed = false;
+
+                    if (session) {
+                        balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString(userAccount.user.balance) : Asset.parseString(userAccount.user.cbd_balance);
+                        alreadyPayed = state.post.download.downloaders.includes(userAccount.user.name);
+                    }
+
+                    downloadModal = new Vue({
+                        el: '#modal-download',
+                        data: {
+                            lang: getLanguage(),
+                            session: session,
+                            user: userAccount ? userAccount.user : false,
+                            state: state,
+                            modal: {
+                                amount: price.toPlainString(null, false),
+                                symbol: price.asset.symbol.toUpperCase(),
+                                balance: balance.toFriendlyString(null, false),
+                                alreadyPayed: alreadyPayed,
+                                confirmed: false
+                            }
+                        },
+                        mounted: function mounted() {
+                            onVueReady();
+                            creaEvents.emit('crea.modal.ready');
+                        },
+                        methods: {
+                            cancelPay: function cancelPay() {
+                                this.modal.confirmed = false;
+                            },
+                            confirmDownload: function confirmDownload() {
+                                if (this.modal.alreadyPayed || this.modal.confirmed) {
+                                    makeDownload();
+                                } else {
+                                    this.modal.confirmed = true;
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    downloadModal.session = session;
+                    downloadModal.user = userAccount ? userAccount.user : null;
+                    downloadModal.state = state;
+                }
+            } else {
+                //This post not has a download, so downloadModal cannot be mounted
+                onVueReady();
             }
         } else {
-            //This post not has a download, so downloadModal cannot be instanced;
+            //No session, so downloadModal and modalPromoted can not be mounted
+            onVueReady();
             onVueReady();
         }
+
     }
 
     function makeComment() {
@@ -436,7 +452,6 @@
                 },
                 mounted: function mounted() {
                     mr.sliders.documentReady($);
-                    console.log("mounted", this.otherProjects.length);
                 },
                 methods: {
                     showPost: showPost,
@@ -486,7 +501,6 @@
                     discussions = selectedDiscuss;
                 }
 
-                console.log(discussions.length, discussions);
                 loadOtherProjects(discussions);
             }
         });
@@ -494,8 +508,8 @@
 
     function fetchContent() {
         if (url) {
+            //Delete first char "/"
             var parts = url.slice(1, url.length).split('/').length;
-
             var fetchContentState = function fetchContentState(finalUrl) {
                 crea.api.getState(finalUrl, function (err, result) {
                     if (!catchError(err)) {
@@ -555,22 +569,26 @@
             permlink = getPathPart(1);
         }
 
-        console.log(author, permlink);
         fetchOtherProjects(author, permlink);
     });
+
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         userAccount = a;
+
         fetchContent();
     });
+
     creaEvents.on('crea.session.update', function (s, a) {
         session = s;
         userAccount = a;
         fetchContent();
     });
+
     creaEvents.on('crea.session.logout', function () {
         session = false;
         userAccount = false;
+
         fetchContent();
     });
 })();

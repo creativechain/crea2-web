@@ -208,7 +208,7 @@
                             </div>
                         </li>
 
-                        <li v-if="!session">
+                        <li>
                             <div class="modal-instance w-100">
                                 <a class="btn btn--sm type--uppercase modal-trigger log-in mt-1" href="#modal-login-d" style="line-height: 30px;width: 100%;">
                                     <span class="btn__text btn-publish-navbar">
@@ -400,7 +400,7 @@
                     <!-- Mobile --->
                     <div class="bar__module d-block d-sm-block d-md-none" v-if="session">
                         <ul class="menu-horizontal text-left">
-                            <li><a href="." v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
+                            <li class="cursor-link"><a v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                         </ul>
                     </div>
 
@@ -471,7 +471,7 @@
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/passwords'">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/settings'">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>
-                                                        <li class="separate"><a href="." v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
+                                                        <li class="separate cursor-link"><a v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                                                     </ul>
                                                 </div>
                                             </div><!--end row-->

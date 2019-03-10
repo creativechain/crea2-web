@@ -36,6 +36,15 @@
             creaEvents.emit('crea.session.login', false);
         }
     });
+
+    creaEvents.on('crea.modal.ready', function () {
+        console.log('building modals');
+        setTimeout(function () {
+            mr.modals.documentReady($);
+        }, 1000);
+
+    });
+
     creaEvents.on('crea.dom.ready', function () {
         $.holdReady(false);
         $(window).scroll(function (event) {

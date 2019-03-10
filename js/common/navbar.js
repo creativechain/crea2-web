@@ -71,6 +71,7 @@
                 },
                 mounted: function mounted() {
                     this.applyRightMenuEvents($);
+                    creaEvents.emit('crea.modal.ready');
                 },
                 methods: {
                     applyRightMenuEvents: function applyRightMenuEvents($) {
@@ -280,6 +281,7 @@
     });
     creaEvents.on('crea.session.logout', function () {
         updateNavbarSession(false, false);
+        creaEvents.emit('crea.modal.ready');
     });
     creaEvents.on('crea.content.filter', function (filter) {
         if (!filter.startsWith('/')) {
