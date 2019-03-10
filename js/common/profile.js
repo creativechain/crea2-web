@@ -702,6 +702,13 @@
         var lastWeek = new Date(today.getTime() - 7 * oneDay).getTime();
         var firstDate, finalDate;
         var rewardsOp = [];
+
+        state.user.transfer_history.sort(function (r1, r2) {
+            var d1 = toLocaleDate(r1[1].timestamp);
+            var d2 = toLocaleDate(r2[1].timestamp);
+            return d2.getTime() - d1.getTime();
+        });
+
         state.user.transfer_history.forEach(function (item) {
             if (item[1].op[0] === 'author_reward' && rewardType === 'author_reward') {
                 if (!finalDate) {
