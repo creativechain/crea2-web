@@ -14,7 +14,7 @@
                         </div>
                         <div class="list-data-user">
                             <username v-bind:user="b.name" v-bind:name="b.metadata.publicName"></username>
-                            <p><span>{{ b.metadata.description || 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod' }}</span></p>
+                            <p><span>{{ b.metadata.about || '-' }}</span></p>
                         </div>
                     </div>
                 </div>
