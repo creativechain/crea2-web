@@ -53,8 +53,7 @@
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_TAGS }}</label>
                     <input id="publish-tags" class="validate-required"
-                           v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + '}'"
-                           type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS" />
+                           type="text" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.QUESTION }}</label>
