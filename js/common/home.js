@@ -476,49 +476,55 @@
                     case 'popular':
                         apiCall = crea.api.getDiscussionsByPopular;
                         break;
+                    default:
+                        apiCall = crea.api['getDiscussionsBy' + category.capitalize()];
+                        break;
                 }
 
-                apiCall(lastPage.author, lastPage.permlink, 21, function (err, result) {
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        //Get new accounts
-                        var discussions = result.discussions; //Remove first duplicate post
+                if (apiCall) {
+                    apiCall(lastPage.author, lastPage.permlink, 21, function (err, result) {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            //Get new accounts
+                            var discussions = result.discussions; //Remove first duplicate post
 
-                        discussions.shift();
-                        var accounts = [];
+                            discussions.shift();
+                            var accounts = [];
 
-                        for (var x = 0; x < discussions.length; x++) {
-                            var d = discussions[x];
-                            discussions[x] = parsePost(d);
+                            for (var x = 0; x < discussions.length; x++) {
+                                var d = discussions[x];
+                                discussions[x] = parsePost(d);
 
-                            if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
-                                accounts.push(d.author);
-                            }
-                        } //Get new accounts
+                                if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
+                                    accounts.push(d.author);
+                                }
+                            } //Get new accounts
 
 
-                        getAccounts(accounts, function (err, newAccounts) {
-                            if (!catchError(err)) {
-                                //Update accounts
-                                newAccounts.forEach(function (a) {
-                                    homePosts.state.accounts[a.name] = a;
-                                }); //Update Posts
+                            getAccounts(accounts, function (err, newAccounts) {
+                                if (!catchError(err)) {
+                                    //Update accounts
+                                    newAccounts.forEach(function (a) {
+                                        homePosts.state.accounts[a.name] = a;
+                                    }); //Update Posts
 
-                                discussions.forEach(function (d) {
-                                    var permlink = d.author + '/' + d.permlink;
-                                    homePosts.state.content[permlink] = d;
-                                    var discuss = homePosts.discuss;
-                                    homePosts.state.discussion_idx[discuss][category].push(permlink);
-                                });
-                                lastPage = discussions[discussions.length - 1];
-                                homePosts.$forceUpdate();
-                            }
+                                    discussions.forEach(function (d) {
+                                        var permlink = d.author + '/' + d.permlink;
+                                        homePosts.state.content[permlink] = d;
+                                        var discuss = homePosts.discuss;
+                                        homePosts.state.discussion_idx[discuss][category].push(permlink);
+                                    });
+                                    lastPage = discussions[discussions.length - 1];
+                                    homePosts.$forceUpdate();
+                                }
 
-                            onScrollCalling = false;
-                        });
-                    }
-                });
+                                onScrollCalling = false;
+                            });
+                        }
+                    });
+                }
+
             }
         }
     });
