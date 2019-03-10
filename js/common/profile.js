@@ -759,7 +759,6 @@
                 rewardsOp.push(item);
             }
         });
-        console.log(rewards.totalRewardsVests);
 
         if (!rewardsContainer[rewardView]) {
             rewardsContainer[rewardView] = new Vue({
@@ -892,39 +891,42 @@
     }
 
     function fetchBlockeds(session, account) {
-        crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, followings) {
-            if (!catchError(err)) {
-                var accounts = [];
-                followings = followings.following;
-                followings.forEach(function (r) {
-                    if (r.follower === session.account.username) {
-                        if (!accounts.includes(r.following)) {
-                            accounts.push(r.following);
-                        }
-                    }
-                }); //Get blocked accounts;
-
-                if (accounts.length) {
-                    crea.api.getAccounts(accounts, function (err, blockeds) {
-                        if (!catchError(err)) {
-                            var data = {};
-
-                            for (var x = 0; x < blockeds.length; x++) {
-                                var c = blockeds[x];
-                                c.metadata = jsonify(c.json_metadata);
-                                data[c.name] = c;
+        if (session) {
+            crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, followings) {
+                if (!catchError(err)) {
+                    var accounts = [];
+                    followings = followings.following;
+                    followings.forEach(function (r) {
+                        if (r.follower === session.account.username) {
+                            if (!accounts.includes(r.following)) {
+                                accounts.push(r.following);
                             }
-
-                            setUpBlocked(session, account, data);
                         }
-                    });
-                } else {
-                    //Not blockeds
-                    console.log('Not blockeds');
-                    setUpBlocked(session, account, {});
+                    }); //Get blocked accounts;
+
+                    if (accounts.length) {
+                        crea.api.getAccounts(accounts, function (err, blockeds) {
+                            if (!catchError(err)) {
+                                var data = {};
+
+                                for (var x = 0; x < blockeds.length; x++) {
+                                    var c = blockeds[x];
+                                    c.metadata = jsonify(c.json_metadata);
+                                    data[c.name] = c;
+                                }
+
+                                setUpBlocked(session, account, data);
+                            }
+                        });
+                    } else {
+                        //Not blockeds
+                        console.log('Not blockeds');
+                        setUpBlocked(session, account, {});
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     function fetchFollowing(state, session, account) {
@@ -942,7 +944,7 @@
             });
         };
 
-        if (state.user.name === account.user.name) {
+        if (account && state.user.name === account.user.name) {
             onFetchFollowing(account);
         } else {
             crea.api.getFollowing(state.user.name, '', 'blog', 1000, function (err, result) {
