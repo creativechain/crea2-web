@@ -1352,6 +1352,13 @@
                         //Remove first duplicate post
                         discussions.shift();
 
+                        //Sort discussions
+                        discussions.sort(function (k1, k2) {
+                            var d1 = toLocaleDate(k1.created);
+                            var d2 = toLocaleDate(k2.created);
+                            return d2.getTime() - d1.getTime();
+                        });
+
                         for (var x = 0; x < discussions.length; x++) {
                             var d = parsePost(discussions[x]);
 
