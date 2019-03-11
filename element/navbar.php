@@ -12,10 +12,10 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--<link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>-->
     <link href="/css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--<link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>-->
     <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
@@ -47,18 +47,12 @@
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/common/start.js"></script>
     <script src="/js/vue.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
 
     <script src="/js/tagsinput.js"></script>
     <script src="/js/moment.min.js"></script>
     <script src="/js/buffer.js"></script>
     <script src="/js/event-emitter.js"></script>
-    <script src="/js/clipboard.min.js"></script>
     <script src="/js/crea.min.js"></script>
-    <script src="https://unpkg.com/ipfs-api@24.0.2/dist/index.js"
-            integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
-            crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 
     <script src="/js/common/ls.js"></script>
     <script src="/js/common/conf.js"></script>

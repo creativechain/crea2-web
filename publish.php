@@ -48,6 +48,7 @@
             </div>
         </section>
     </div>
+    <script src="/ckeditor/ckeditor.js"></script>
     <script src="/js/common/publish.js"></script>
 
 <?php include ('element/footer.php'); ?>

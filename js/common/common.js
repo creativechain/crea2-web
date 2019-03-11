@@ -20,11 +20,7 @@ var IpfsFile = function IpfsFile(hash, name, type, size) {
 };
 
 var creaEvents = new EventEmitter();
-var ipfs = IpfsApi({
-    host: 'ipfs.creary.net',
-    port: 443,
-    protocol: 'https'
-});
+
 var bannerVue;
 var globalLoading;
 var CONSTANTS = {

@@ -125,23 +125,7 @@ function base64ToBuffer(base64) {
 
     return bytes.buffer;
 }
-/**
- *
- * @param ab
- * @returns {*|s|i|l|o|t}
- */
 
-
-function toBuffer(ab) {
-    var buf = new ipfs.Buffer(ab.byteLength);
-    var view = new Uint8Array(ab);
-
-    for (var i = 0; i < buf.length; ++i) {
-        buf[i] = view[i];
-    }
-
-    return buf;
-}
 /**
  *
  * @param {string} str

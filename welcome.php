@@ -446,5 +446,6 @@
     </section>
 
 </div>
+    <script src="/js/clipboard.min.js"></script>
     <script src="/js/common/welcome.js"></script>
 <?php include ('element/footer.php'); ?>
