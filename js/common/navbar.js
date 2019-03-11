@@ -143,9 +143,9 @@
             crea.api.lookupAccountNames(accounts, function (err, result) {
                 if (err) {
                     console.error(err);
-                    navbarContainer.loginForm.username.error = lang.ERROR.INVALID_USERNAME;
+                    navbarContainer.loginForm.username.error = getLanguage().ERROR.INVALID_USERNAME;
                 } else if (result[0] == null) {
-                    navbarContainer.loginForm.username.error = lang.ERROR.USERNAME_NOT_EXISTS;
+                    navbarContainer.loginForm.username.error = getLanguage().ERROR.USERNAME_NOT_EXISTS;
                 } else {
                     navbarContainer.loginForm.username.error = null;
                 }

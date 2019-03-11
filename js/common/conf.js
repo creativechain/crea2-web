@@ -39,7 +39,7 @@ function getLanguage() {
     var language = localStorage.getItem(CREARY.LANG) || getNavigatorLanguage();
 
     if (lang[language]) {
-        return lang[language];
+        return jsonify(jsonstring(lang[language]));
     }
 
     return jsonify(jsonstring(lang.en));
