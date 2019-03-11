@@ -100,10 +100,10 @@
 </div>
 
 <script src="/js/flickity.min.js"></script>
-<script src="/js/easypiechart.min.js"></script>
+<!--<script src="/js/easypiechart.min.js"></script>-->
 <script src="/js/parallax.js"></script>
 <script src="/js/isotope.min.js"></script>
-<script src="/js/granim.min.js"></script>
+<!--<script src="/js/granim.min.js"></script>-->
 <script src="/js/bootstrap-slider.js"></script>
 <script src="/js/popper.js"></script>
 <script src="/js/util.js"></script>
