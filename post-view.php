@@ -328,7 +328,7 @@
                                                     </div>
                                                 </li>
 
-                                                <li class="cursor" v-on:click="ignoreUser"><p class="p-report"><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
+                                                <li class="cursor-link" v-on:click="ignoreUser"><p class="p-report link-report"><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
                                             </ul>
                                         </div>
                                     </div>
