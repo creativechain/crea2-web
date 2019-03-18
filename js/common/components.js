@@ -439,18 +439,41 @@ Vue.component('comment-like', {
     }
 });
 Vue.component('witness-like', {
-    template: "<div><span class=\"d-flex\">\n                    {{ index }}\n                    <div class=\"lds-heart size-20\" v-bind:class=\"{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state > 0}\" v-on:click=\"makeVote\" style=\"margin-top: 5px;\">\n                        <div></div>\n                    </div>\n                </span></div>",
+    template: '<div>' +
+        '<span class=\"d-flex\">{{ index }}' +
+        '   <div class="lds-heart size-20" v-bind:class="voteClasses" v-on:click="makeVote" style="margin-top: 5px;">' +
+        '       <div></div>' +
+        '   </div>' +
+        '</span></div>',
     props: {
         session: [Object, Boolean],
         account: [Object, Boolean],
         witness: Object,
         index: Number
     },
+    watch: {
+        account: {
+            immediate: true,
+            deep: true,
+            handler: function handler(newVal, oldVal) {
+                this.state = this.hasVote() ? 1 : -1;
+            }
+        }
+    },
     data: function data() {
         return {
             R: R,
             state: 0
         };
+    },
+    computed: {
+        voteClasses: function () {
+            return {
+                'like-normal': this.state == -1,
+                'active-like': this.state == 0,
+                'like-normal-activate': this.state > 0
+            }
+        }
     },
     methods: {
         hasVote: function hasVote() {
@@ -473,11 +496,22 @@ Vue.component('witness-like', {
                 var session = this.$props.session;
                 var witness = this.$props.witness;
                 var username = session ? session.account.username : null;
+                var vote = !this.hasVote();
+                console.log('Voting for', witness.owner, vote);
+
                 requireRoleKey(username, 'active', function (activeKey, username) {
                     that.state = 0;
-                    crea.broadcast.accountWitnessVote(activeKey, username, witness.owner, true, function (err, result) {
+
+                    crea.broadcast.accountWitnessVote(activeKey, username, witness.owner, vote, function (err, result) {
                         if (err) {
-                            that.state = that.hasVote() ? 1 : -1;
+                            if (vote) {
+                                that.account.witness_votes.push(witness.owner);
+                            } else {
+                                var i = that.account.witness_votes.indexOf(witness.owner);
+                                if (i > -1) {
+                                    that.account.witness_votes.splice(i, 1);
+                                }
+                            }
                             that.$emit('vote', err);
                         } else {
                             that.state = 1;
@@ -485,11 +519,15 @@ Vue.component('witness-like', {
                         }
                     });
                 });
+
             }
         }
     },
-    mounted: function mounted() {
-        this.state = this.hasVote() ? 1 : -1;
+    updated: function () {
+        if (this.state != 0) {
+            this.state = this.hasVote() ? 1 : -1;
+        }
+
     }
 });
 var FOLLOW_STATE = {
