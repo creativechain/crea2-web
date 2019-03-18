@@ -20,14 +20,34 @@
 
                     creaEvents.emit('crea.session.login', false);
                 } else {
+                    var count = 2;
+                    var onTaskEnded = function onTaskEnded(session, account) {
+                        --count;
+
+                        if (count === 0) {
+                            creaEvents.emit('crea.session.login', session, account);
+                        }
+                    };
+
                     var followings = [];
+                    var blockeds = [];
                     crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
                         if (!catchError(err)) {
                             result.following.forEach(function (f) {
                                 followings.push(f.following);
                             });
                             account.user.followings = followings;
-                            creaEvents.emit('crea.session.login', session, account);
+                            onTaskEnded(session, account);
+                        }
+                    });
+
+                    crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, result) {
+                        if (!catchError(err)) {
+                            result.following.forEach(function (f) {
+                                blockeds.push(f.following);
+                            });
+                            account.user.blockeds = blockeds;
+                            onTaskEnded(session, account);
                         }
                     });
                 }
