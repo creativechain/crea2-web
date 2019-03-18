@@ -4,7 +4,14 @@
  * Created by ander on 16/10/18.
  */
 Vue.component('slider', {
-    template: "\n                <div class=\"slider slider-horizontal\" v-on:mousedown=\"onMouseDown\" v-on:mouseup=\"onMouseUp\" v-on:mousemove=\"onMouse\">\n                    <div class=\"slider-track\">\n                        <div class=\"slider-track-low\" style=\"left: 0px; width: 0px;\"></div>\n                        <div class=\"slider-selection\" v-bind:style=\"{ left: '0%', width: percentage + '%' }\"></div>\n                        <div class=\"slider-selection hidden\" v-bind:style=\"{ right: '0px', width: (100 - percentage) + '%' }\"></div>\n                    </div>\n                    <div class=\"slider-handle min-slider-handle round\" v-bind:style=\"{left: percentage + '%'}\" tabindex=\"0\"></div>\n                </div>",
+    template: "<div class=\"slider slider-horizontal\" v-on:mousedown=\"onMouseDown\" v-on:mouseup=\"onMouseUp\" v-on:mousemove=\"onMouse\">" +
+        "<div class=\"slider-track\">" +
+        "   <div class=\"slider-track-low\" style=\"left: 0px; width: 0px;\"></div>" +
+        "   <div class=\"slider-selection\" v-bind:style=\"{ left: '0%', width: percentage + '%' }\"></div>" +
+        "   <div class=\"slider-selection hidden\" v-bind:style=\"{ right: '0px', width: (100 - percentage) + '%' }\"></div>" +
+        "</div>" +
+        "<div class=\"slider-handle min-slider-handle round\" v-bind:style=\"{left: percentage + '%'}\" tabindex=\"0\"></div>" +
+        "</div>",
     props: {
         initvalue: {
             type: Number,
