@@ -229,12 +229,24 @@
                     this.editor.editing = data.length > 0;
                 },
                 updateText: updateText,
+                removeTitleEmojis: removeTitleEmojis,
+                removeDescriptionEmojis: removeDescriptionEmojis,
                 editText: editText,
                 removeElement: removeElement,
                 makePublication: makePublication,
                 humanFileSize: humanFileSize
             }
         });
+    }
+
+    function removeTitleEmojis(event) {
+        var target = event.target;
+        publishContainer.title = removeEmojis(target.value);
+    }
+
+    function removeDescriptionEmojis(event) {
+        var target = event.target;
+        publishContainer.description = removeEmojis(target.value);
     }
 
     function updateText() {
