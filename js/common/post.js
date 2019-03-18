@@ -36,8 +36,6 @@
             }
         }
 
-        console.log(jsonify(jsonstring(state.post)));
-
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',

@@ -183,7 +183,6 @@ function removeBlockedContents(state, account, discussion_idx) {
                 }
             });
 
-            console.log(allowedContents);
             return allowedContents;
         }
 

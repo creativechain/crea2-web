@@ -16,7 +16,7 @@
      */
 
     function showPosts(urlFilter, filter, state) {
-        console.log(urlFilter, filter, state);
+        //console.log(urlFilter, filter, state);
         var content = state.content;
         var accounts = state.accounts;
         var cKeys = Object.keys(content);
@@ -82,7 +82,6 @@
                 },
                 updated: function updated() {
                     if (mr.masonry) {
-                        console.log('Updating layout');
                         mr.masonry.windowLoad();
                         mr.masonry.updateLayout();
                     }
