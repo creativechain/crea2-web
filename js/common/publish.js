@@ -311,9 +311,9 @@
 
             if (!download.resource) {
                 download = '';
-            } //Build body
+            }
 
-
+            //Build body
             var body = jsonstring(publishContainer.bodyElements);
             var title = publishContainer.title;
             var permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
