@@ -22,6 +22,22 @@
     function setUp(state) {
         updateUrl(state.current_route);
 
+        state.post.reported = false;
+        if (session) {
+            //Set reported by user
+            var username = session.account.username;
+            for (var x = 0; x < state.post.down_votes.length; x++) {
+                var v = state.post.down_votes[x];
+                if (v.voter == username) {
+
+                    state.post.reported = true;
+                    break;
+                }
+            }
+        }
+
+        console.log(jsonify(jsonstring(state.post)));
+
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',
@@ -151,21 +167,6 @@
                         }
 
                         return linkedTags;
-                    },
-                    isReportedByUser: function isReportedByUser() {
-                        var reported = false;
-
-                        if (this.session) {
-                            var username = this.session.account.username;
-                            this.state.post.down_votes.forEach(function (v) {
-                                if (v.voter === username) {
-                                    reported = true;
-                                    return;
-                                }
-                            });
-                        }
-
-                        return reported;
                     },
                     isSameUser: function isSameUser() {
                         if (this.session) {

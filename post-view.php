@@ -281,7 +281,7 @@
                                         <div class="col-md-12">
                                             <ul class="list-inline list-unstyled">
 
-                                                <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
+                                                <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)"><p class="p-report link-report"><img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                 <li v-else >
                                                     <div class="modal-instance ">
                                                         <p class="p-report">
@@ -311,7 +311,7 @@
                                                                                     </div>
                                                                                     <div class="row mt-3">
                                                                                         <div class="col-md-12 text-right">
-                                                                                            <div class="btn btn--primary" v-on:click="vote(-10000)">
+                                                                                            <div class="btn btn--primary modal-close" v-on:click="vote(-10000)">
                                                                                                     <span class="btn__text">
                                                                                                         {{ lang.BUTTON.REPORT }}
                                                                                                     </span>

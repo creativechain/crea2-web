@@ -212,9 +212,11 @@ function parsePost(post) {
         post.down_votes = [];
         post.up_votes = [];
         post.active_votes.forEach(function (v) {
-            if (v.percent <= -10000) {
+            if (v.percent < 0) {
+                //Content reports
                 post.down_votes.push(v);
-            } else {
+            } else if (v.percent > 0) {
+                //Content likes
                 post.up_votes.push(v);
             }
         });
