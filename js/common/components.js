@@ -3,6 +3,15 @@
 /**
  * Created by ander on 16/10/18.
  */
+
+var LIKE_STATE = {
+    LIKE_OP: 0,
+    NO_LIKE: 1,
+    LIKED: 2,
+    NO_LIKE_END: 3,
+    LIKED_END: 4
+};
+
 Vue.component('slider', {
     template: "<div class=\"slider slider-horizontal\" v-on:mousedown=\"onMouseDown\" v-on:mouseup=\"onMouseUp\" v-on:mousemove=\"onMouse\">" +
         "<div class=\"slider-track\">" +
@@ -100,8 +109,14 @@ Vue.component('slider', {
         }
     }
 });
+
 Vue.component('post-like-big', {
-    template: "\n    <div class=\"circle-like-post bs-popover-left\" v-bind:class=\"{'circle-like-post-active': state === 1}\" role=\"button\" data-toggle=\"popover\" data-trigger=\"hover\" data-placement=\"left\" data-html=\"true\" v-bind:title=\"post.active_votes.length  + ' Likes'\" v-bind:data-content=\"payouts\">\n        <div class=\"lds-heart size-20 size-30-like post-like\" v-bind:class=\"{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }\" v-on:click=\"makeVote\">\n            <div></div>\n        </div>\n    </div>",
+    template: '' +
+        '<div class="circle-like-post bs-popover-left" v-bind:class="circleClasses" role="button" data-toggle="popover" data-trigger="hover" data-placement="left" data-html="true" v-bind:title="post.up_votes.length  + \' Likes\'" v-bind:data-content="payouts">' +
+        '   <div class="lds-heart size-20 size-30-like post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
+        '       <div></div>' +
+        '   </div>' +
+        '<div>',
     props: {
         payouts: [String, Boolean],
         session: [Object, Boolean],
@@ -109,9 +124,25 @@ Vue.component('post-like-big', {
             type: Object
         }
     },
+    computed: {
+        circleClasses: function circleClasses(){
+            return {
+                'circle-like-post-active': this.state == this.states.LIKED
+            }
+        },
+
+        likeClasses: function likeClasses() {
+            return {
+                'like-normal': this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END,
+                'like-normal-activate': this.state == this.states.LIKED || this.state == this.states.LIKED_END,
+                'active-like': this.state == this.states.LIKE_OP
+            };
+        }
+    },
     data: function data() {
         return {
             R: R,
+            states: LIKE_STATE,
             state: 0
         };
     },
@@ -128,23 +159,49 @@ Vue.component('post-like-big', {
             var payout = toLocaleDate(this.$props.post.cashout_time);
             return now.getTime() > payout.getTime();
         },
-        hasVote: function hasVote() {
+        getVote: function getVote() {
             var session = this.$props.session;
             var post = this.$props.post;
 
             if (session && post) {
-                var activeVotes = post.active_votes;
+                var upVotes = post.up_votes;
 
-                for (var x = 0; x < activeVotes.length; x++) {
-                    var vote = activeVotes[x];
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
-                        return true;
+                        return vote;
                     }
                 }
             }
 
-            return false;
+            return null;
+        },
+        removeVote: function removeVote(username) {
+            var post = this.post;
+
+            if (post) {
+                var upVotes = post.up_votes;
+                var i = -1;
+
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
+
+                    if (username === vote.voter) {
+                        i = x;
+                        break;
+                    }
+                }
+
+                if (i > -1) {
+                    this.post.up_votes.slice(i, 1);
+                    this.$forceUpdate();
+                }
+            }
+        },
+        hasVote: function hasVote() {
+            var v = this.getVote();
+            return v != null;
         },
         makeVote: function makeVote(event) {
             if (event) {//event.preventDefault();
@@ -176,8 +233,31 @@ Vue.component('post-like-big', {
         this.state = this.hasVote() ? 1 : -1;
     }
 });
+
 Vue.component('post-like', {
-    template: "\n    <div class=\"text-right\">\n        <div class=\"lds-heart size-20 post-like\" v-bind:class=\"{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }\" v-on:click=\"makeVote\">\n            <div></div>\n        </div>\n\n        <div class=\"dropdown inline post-like-count\">\n            <span class=\"dropdown__trigger\"> {{ post.up_votes.length }}</span>\n            <div class=\"dropdown__container\">\n                <div class=\"\">\n                    <div class=\"row\">\n                        <div class=\"col-4 col-sm-3 col-md-6 col-lg-2 dropdown__content amount-post-view-home\">\n                            <ul>\n                                <li v-for=\"v in (post.up_votes.length > 10 ? 10 : post.up_votes.length)\">\n                                    <a v-if=\"(v-1) < 10\" class=\"text-truncate\" v-bind:href=\"'/@' + post.up_votes[v-1].voter\">+{{ post.up_votes[v-1].voter }}</a>\n                                    <span v-else class=\"text-truncate\" >+{{ '..and ' + post.up_votes.length - 10  + ' users'}}</span>\n                                </li>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>",
+    template: "" +
+        '<div class="text-right">' +
+        '   <div class="lds-heart size-20 post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
+        '       <div></div>' +
+        '   </div>' +
+        '   <div class="dropdown inline post-like-count">' +
+        '      <span class="dropdown__trigger"> {{ post.up_votes.length }}</span>' +
+        '       <div class="dropdown__container">' +
+        '           <div>' +
+        '               <div class="row">' +
+        '                   <div class="col-4 col-sm-3 col-md-6 col-lg-2 dropdown__content amount-post-view-home">' +
+        '                       <ul>' +
+        '                           <li v-for="v in (post.up_votes.length > 10 ? 10 : post.up_votes.length)">' +
+        '                               <a v-if="(v-1) < 10" class="text-truncate" v-bind:href="\'/@\' + post.up_votes[v-1].voter">+{{ post.up_votes[v-1].voter }}</a>' +
+        '                               <span v-else class="text-truncate" >+{{ "..and " + post.up_votes.length - 10  + " users"}}</span>' +
+        '                           </li>' +
+        '                       </ul>' +
+        '                   </div>' +
+        '               </div>' +
+        '           </div>' +
+        '       </div>' +
+        '   </div>' +
+        '</div>',
     props: {
         session: [Object, Boolean],
         post: {
@@ -187,8 +267,18 @@ Vue.component('post-like', {
     data: function data() {
         return {
             R: R,
+            states: LIKE_STATE,
             state: 0
         };
+    },
+    computed: {
+        likeClasses: function likeClasses() {
+            return {
+                'like-normal': this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END,
+                'like-normal-activate': this.state == this.states.LIKED || this.state == this.states.LIKED_END,
+                'active-like': this.state == this.states.LIKE_OP
+            };
+        }
     },
     methods: {
         getIcon: function getIcon() {
@@ -208,10 +298,10 @@ Vue.component('post-like', {
             var post = this.$props.post;
 
             if (session && post) {
-                var activeVotes = post.active_votes;
+                var upVotes = post.up_votes;
 
-                for (var x = 0; x < activeVotes.length; x++) {
-                    var vote = activeVotes[x];
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
                         return vote;
@@ -221,30 +311,65 @@ Vue.component('post-like', {
 
             return null;
         },
+        removeVote: function removeVote(username) {
+            var post = this.post;
+
+            if (post) {
+                var upVotes = post.up_votes;
+                var i = -1;
+
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
+
+                    if (username === vote.voter) {
+                        i = x;
+                        break;
+                    }
+                }
+
+                console.log(i, username);
+                if (i > -1) {
+                    this.post.up_votes.slice(i, 1);
+                    this.$forceUpdate();
+                }
+            }
+        },
         hasVote: function hasVote() {
             var v = this.getVote();
-            return v != null && v.percent > 0;
+            return v != null;
         },
         makeVote: function makeVote(event) {
             if (event) {
                 event.preventDefault();
             }
 
-            if (!this.hasVote() && this.$data.state !== 0) {
+            if (this.state !== this.states.LIKE_OP) {
                 var that = this;
                 var session = this.$props.session;
                 var post = this.$props.post;
                 var username = session ? session.account.username : null;
+                var percent = that.hasVote() ? 0 : 10000;
+
                 requireRoleKey(username, 'posting', function (postingKey, username) {
-                    that.state = 0;
-                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
+                    that.state = that.states.LIKE_OP;
+                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
                         console.log(err, result);
 
                         if (err) {
-                            that.state = -1;
                             that.$emit('vote', err);
                         } else {
-                            that.state = 1;
+                            if (percent > 0) {
+                                that.post.up_votes.push({
+                                    voter: username,
+                                    author: post.author,
+                                    permlink: post.permlink,
+                                    percent: percent
+                                });
+                                that.state = that.states.LIKED_END;
+                            } else {
+                                that.removeVote(username);
+                                that.state = that.states.NO_LIKE_END;
+                            }
                             that.$emit('vote', null, result);
                         }
                     });
@@ -253,16 +378,15 @@ Vue.component('post-like', {
         }
     },
     mounted: function mounted() {
-        this.state = this.hasVote() ? 1 : -1;
+        this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+    },
+    updated: function updated() {
+        if (this.state != LIKE_STATE.LIKE_OP) {
+            this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+        }
     }
 });
-var LIKE_STATE = {
-    LIKE_OP: 0,
-    NO_LIKE: 1,
-    LIKED: 2,
-    NO_LIKE_END: 3,
-    LIKED_END: 4
-};
+
 Vue.component('like', {
     template: "<div>\n<div class=\"lds-heart size-20\" v-bind:class=\"likeClasses\" v-on:click=\"makeVote\">\n<div></div>\n</div><span>{{ post.up_votes.length }}</span></div>",
     props: {
@@ -371,6 +495,7 @@ Vue.component('like', {
         this.state = this.getVote();
     }
 });
+
 Vue.component('comment-like', {
     template: "<div>\n<div class=\"lds-heart size-20 comment-like\" v-bind:class=\"{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }\" v-on:click=\"makeVote\">\n<div></div>\n</div><span>{{ post.up_votes.length }}</span></div>",
     props: {
@@ -445,6 +570,7 @@ Vue.component('comment-like', {
         this.state = this.hasVote() ? 1 : -1;
     }
 });
+
 Vue.component('witness-like', {
     template: '<div>' +
         '<span class=\"d-flex\">{{ index }}' +
@@ -537,6 +663,7 @@ Vue.component('witness-like', {
 
     }
 });
+
 var FOLLOW_STATE = {
     NO_FOLLOWING: 0,
     UNFOLLOWED: 1,
@@ -545,6 +672,7 @@ var FOLLOW_STATE = {
     UNFOLLOWING_OP: 4,
     FOLLOWING_OP: 5
 };
+
 Vue.component('btn-follow', {
     template: "<div v-on:click=\"performFollow\" v-on:mouseleave=\"onleave\" v-on:mouseover=\"onover\" class=\"btn btn-sm running ld ld-ext-right font-weight-bold\" v-bind:class=\"btnClasses\">\n<div class=\"btn__text ld-spin-fast ld\" v-bind:class=\"textClasses\"></div>{{ text }}<div></div>\n</div>",
     props: {
@@ -681,6 +809,7 @@ Vue.component('btn-follow', {
         this.updateText();
     }
 });
+
 Vue.component('username', {
     template: "<a v-bind:href=\"'/@' + user\" class=\"color-name\"><p  v-bind:style=\"{ display: inline > 0 ? 'inline' : 'inherit' }\">{{ name || user }}</p></a>",
     props: {
@@ -696,6 +825,7 @@ Vue.component('username', {
         }
     }
 });
+
 Vue.component('linkname', {
     template: "<a v-bind:href=\"'/@' + user\" class=\"link-username\">{{ name || '@' + user }}</a>",
     props: {
@@ -707,8 +837,9 @@ Vue.component('linkname', {
         }
     }
 });
+
 Vue.component('avatar', {
-    template: "<div class=\"img-user-avatar\" v-bind:style=\"{ 'background-image': 'url(' + ( getDefaultAvatar(account)) + ')' }\"></div>",
+    template: '<div class="img-user-avatar" v-bind:style="{ \'background-image\': \'url(\' + ( getDefaultAvatar(account)) + \')\' }"></div>',
     props: {
         account: {
             type: Object
@@ -718,6 +849,7 @@ Vue.component('avatar', {
         getDefaultAvatar: R.getAvatar
     }
 });
+
 Vue.component('taginput', {
     template: "<input :id=\"id\" class=\"validate-required\" type=\"text\" :value=\"value\" :data-role=\"data-role\" :data-options=\"data-options\" :placeholder=\"placeholder\" />",
     props: {

@@ -36,6 +36,8 @@
             }
         }
 
+        console.log(jsonify(jsonstring(state.post)));
+
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',
@@ -209,10 +211,12 @@
                             });
                         }
                     },
-                    onVote: function onVote() {
+                    onVote: function onVote(err) {
+                        catchError(err);
                         updateUserSession();
                     },
                     onFollow: function onFollow(err, result) {
+                        catchError(err);
                         updateUserSession();
                     }
                 }
