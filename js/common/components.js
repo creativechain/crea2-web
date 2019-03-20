@@ -124,6 +124,15 @@ Vue.component('post-like-big', {
             type: Object
         }
     },
+    watch: {
+        post: {
+            immediate: true,
+            deep: true,
+            handler: function handler(newVal, oldVal) {
+                this.state = this.hasVote() ? this.states.LIKED : this.states.NO_LIKE;
+            }
+        }
+    },
     computed: {
         circleClasses: function circleClasses(){
             return {
@@ -147,13 +156,6 @@ Vue.component('post-like-big', {
         };
     },
     methods: {
-        getIcon: function getIcon() {
-            if (this.hasVote()) {
-                return this.R.IMG.LIKE.RED.FILLED;
-            }
-
-            return this.R.IMG.LIKE.BORDER;
-        },
         hasPaid: function hasPaid() {
             var now = new Date();
             var payout = toLocaleDate(this.$props.post.cashout_time);
@@ -230,7 +232,12 @@ Vue.component('post-like-big', {
         }
     },
     mounted: function mounted() {
-        this.state = this.hasVote() ? 1 : -1;
+        this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+    },
+    updated: function updated() {
+        if (this.state != LIKE_STATE.LIKE_OP) {
+            this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+        }
     }
 });
 
@@ -264,6 +271,15 @@ Vue.component('post-like', {
             type: Object
         }
     },
+    watch: {
+        post: {
+            immediate: true,
+            deep: true,
+            handler: function handler(newVal, oldVal) {
+                this.state = this.hasVote() ? this.states.LIKED : this.states.NO_LIKE;
+            }
+        }
+    },
     data: function data() {
         return {
             R: R,
@@ -281,13 +297,6 @@ Vue.component('post-like', {
         }
     },
     methods: {
-        getIcon: function getIcon() {
-            if (this.hasVote()) {
-                return this.R.IMG.LIKE.RED.FILLED;
-            }
-
-            return this.R.IMG.LIKE.BORDER;
-        },
         hasPaid: function hasPaid() {
             var now = new Date();
             var payout = toLocaleDate(this.$props.post.cashout_time);
@@ -388,7 +397,13 @@ Vue.component('post-like', {
 });
 
 Vue.component('like', {
-    template: "<div>\n<div class=\"lds-heart size-20\" v-bind:class=\"likeClasses\" v-on:click=\"makeVote\">\n<div></div>\n</div><span>{{ post.up_votes.length }}</span></div>",
+    template: '' +
+        '<div>' +
+        '   <div class="lds-heart size-20" v-bind:class="likeClasses" v-on:click="makeVote">' +
+        '       <div></div>' +
+        '   </div>' +
+        '   <span>{{ post.up_votes.length }}</span>' +
+        '</div>',
     props: {
         session: [Object, Boolean],
         post: {
@@ -400,7 +415,7 @@ Vue.component('like', {
             immediate: true,
             deep: true,
             handler: function handler(newVal, oldVal) {
-                this.state = this.getVote();
+                this.state = this.hasVote() ? this.states.LIKED : this.states.NO_LIKE;
             }
         }
     },
@@ -421,13 +436,6 @@ Vue.component('like', {
         }
     },
     methods: {
-        getIcon: function getIcon() {
-            if (this.hasVote()) {
-                return this.R.IMG.LIKE.RED.FILLED;
-            }
-
-            return this.R.IMG.LIKE.BORDER;
-        },
         hasPaid: function hasPaid() {
             var now = new Date();
             var payout = toLocaleDate(this.$props.post.cashout_time);
@@ -438,40 +446,78 @@ Vue.component('like', {
             var post = this.$props.post;
 
             if (session && post) {
-                var activeVotes = post.active_votes;
+                var upVotes = post.up_votes;
 
-                for (var x = 0; x < activeVotes.length; x++) {
-                    var vote = activeVotes[x];
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
-                        return this.states.LIKED;
+                        return vote;
                     }
                 }
             }
 
-            return this.states.NO_LIKE;
+            return null;
+        },
+        removeVote: function removeVote(username) {
+            var post = this.post;
+
+            if (post) {
+                var upVotes = post.up_votes;
+                var i = -1;
+
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
+
+                    if (username === vote.voter) {
+                        i = x;
+                        break;
+                    }
+                }
+
+                console.log(i, username);
+                if (i > -1) {
+                    this.post.up_votes.slice(i, 1);
+                    this.$forceUpdate();
+                }
+            }
         },
         hasVote: function hasVote() {
-            return this.getVote() === this.states.LIKED || this.getVote() === this.states.LIKED_END;
+            var v = this.getVote();
+            return v != null;
         },
         makeVote: function makeVote(event) {
             if (event) {
                 event.preventDefault();
             }
 
-            if (!this.hasVote() && this.$data.state !== this.states.LIKE_OP) {
+            if (this.state !== this.states.LIKE_OP) {
                 var that = this;
                 var session = this.$props.session;
                 var post = this.$props.post;
                 var username = session ? session.account.username : null;
-                this.state = this.states.LIKE_OP;
+                var percent = that.hasVote() ? 0 : 10000;
+
                 requireRoleKey(username, 'posting', function (postingKey, username) {
-                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
+                    that.state = that.states.LIKE_OP;
+                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
+                        console.log(err, result);
+
                         if (err) {
-                            that.state = that.states.NO_LIKE_END;
                             that.$emit('vote', err);
                         } else {
-                            that.state = that.states.LIKED_END;
+                            if (percent > 0) {
+                                that.post.up_votes.push({
+                                    voter: username,
+                                    author: post.author,
+                                    permlink: post.permlink,
+                                    percent: percent
+                                });
+                                that.state = that.states.LIKED_END;
+                            } else {
+                                that.removeVote(username);
+                                that.state = that.states.NO_LIKE_END;
+                            }
                             that.$emit('vote', null, result);
                         }
                     });
@@ -479,45 +525,56 @@ Vue.component('like', {
             }
         }
     },
-    updated: function updated() {
-        switch (this.state) {
-            case this.states.NO_LIKE:
-            case this.states.NO_LIKE_END:
-                this.state = this.states.NO_LIKE;
-                break;
-
-            case this.states.LIKED:
-            case this.states.LIKED_END:
-                this.state = this.states.LIKED;
-        }
-    },
     mounted: function mounted() {
-        this.state = this.getVote();
+        this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+    },
+    updated: function updated() {
+        if (this.state != LIKE_STATE.LIKE_OP) {
+            this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+        }
     }
 });
 
 Vue.component('comment-like', {
-    template: "<div>\n<div class=\"lds-heart size-20 comment-like\" v-bind:class=\"{'like-normal': $data.state == -1, 'active-like': $data.state == 0, 'like-normal-activate': $data.state == 1 }\" v-on:click=\"makeVote\">\n<div></div>\n</div><span>{{ post.up_votes.length }}</span></div>",
+    template: '' +
+        '<div>' +
+        '   <div class="lds-heart size-20 comment-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
+        '       <div></div>' +
+        '   </div>' +
+        '   <span>{{ post.up_votes.length }}</span>' +
+        '</div>',
     props: {
         session: [Object, Boolean],
         post: {
             type: Object
         }
     },
+    watch: {
+        post: {
+            immediate: true,
+            deep: true,
+            handler: function handler(newVal, oldVal) {
+                this.state = this.hasVote() ? this.states.LIKED : this.states.NO_LIKE;
+            }
+        }
+    },
     data: function data() {
         return {
             R: R,
+            states: LIKE_STATE,
             state: 0
         };
     },
+    computed: {
+        likeClasses: function likeClasses() {
+            return {
+                'like-normal': this.state === this.states.NO_LIKE || this.state === this.states.NO_LIKE_END,
+                'like-normal-activate': this.state === this.states.LIKED || this.state === this.states.LIKED_END,
+                'active-like': this.state === this.states.LIKE_OP
+            };
+        }
+    },
     methods: {
-        getIcon: function getIcon() {
-            if (this.hasVote()) {
-                return this.R.IMG.LIKE.RED.FILLED;
-            }
-
-            return this.R.IMG.LIKE.BORDER;
-        },
         hasPaid: function hasPaid() {
             var now = new Date();
             var payout = toLocaleDate(this.$props.post.cashout_time);
@@ -546,19 +603,33 @@ Vue.component('comment-like', {
                 event.preventDefault();
             }
 
-            if (!this.hasVote() && this.$data.state != 0) {
+            if (this.state !== this.states.LIKE_OP) {
                 var that = this;
                 var session = this.$props.session;
                 var post = this.$props.post;
                 var username = session ? session.account.username : null;
+                var percent = that.hasVote() ? 0 : 10000;
+
                 requireRoleKey(username, 'posting', function (postingKey, username) {
-                    that.state = 0;
-                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
+                    that.state = that.states.LIKE_OP;
+                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
+                        console.log(err, result);
+
                         if (err) {
-                            that.state = -1;
                             that.$emit('vote', err);
                         } else {
-                            that.state = 1;
+                            if (percent > 0) {
+                                that.post.up_votes.push({
+                                    voter: username,
+                                    author: post.author,
+                                    permlink: post.permlink,
+                                    percent: percent
+                                });
+                                that.state = that.states.LIKED_END;
+                            } else {
+                                that.removeVote(username);
+                                that.state = that.states.NO_LIKE_END;
+                            }
                             that.$emit('vote', null, result);
                         }
                     });
@@ -567,7 +638,12 @@ Vue.component('comment-like', {
         }
     },
     mounted: function mounted() {
-        this.state = this.hasVote() ? 1 : -1;
+        this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+    },
+    updated: function updated() {
+        if (this.state != LIKE_STATE.LIKE_OP) {
+            this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
+        }
     }
 });
 
