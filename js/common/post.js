@@ -405,6 +405,8 @@
 
                                 _url += '?stream=false';
                                 downloadFile(_url, post.download.name);
+                                //Close modal download
+                                $('#modal-download').removeClass('modal-active');
                             }
                         });
                     }, 3000);
