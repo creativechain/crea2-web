@@ -112,7 +112,7 @@ Vue.component('slider', {
 
 Vue.component('post-like-big', {
     template: '' +
-        '<div class="circle-like-post bs-popover-left" v-bind:class="circleClasses" role="button" data-toggle="popover" data-trigger="hover" data-placement="left" data-html="true" v-bind:title="post.up_votes.length  + \' Likes\'" v-bind:data-content="payouts">' +
+        '<div v-on:mouseover="onOver(true)" v-on:mouseleave="onOver(false)" class="circle-like-post bs-popover-left" v-bind:class="circleClasses" role="button" data-toggle="popover" data-trigger="hover" data-placement="left" data-html="true" v-bind:title="post.up_votes.length  + \' Likes\'" v-bind:data-content="payouts">' +
         '   <div class="lds-heart size-20 size-30-like post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
         '       <div></div>' +
         '   </div>' +
@@ -136,14 +136,14 @@ Vue.component('post-like-big', {
     computed: {
         circleClasses: function circleClasses(){
             return {
-                'circle-like-post-active': this.state == this.states.LIKED
+                'circle-like-post-active': (!this.over && this.state == this.states.LIKED) || (this.over && (this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END))
             }
         },
 
         likeClasses: function likeClasses() {
             return {
-                'like-normal': this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END,
-                'like-normal-activate': this.state == this.states.LIKED || this.state == this.states.LIKED_END,
+                'like-normal': !this.over && (this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END) || (this.over && (this.state == this.states.LIKED || this.state == this.states.LIKED_END)),
+                'like-normal-activate': !this.over && (this.state == this.states.LIKED || this.state == this.states.LIKED_END) || (this.over && (this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END)),
                 'active-like': this.state == this.states.LIKE_OP
             };
         }
@@ -152,10 +152,14 @@ Vue.component('post-like-big', {
         return {
             R: R,
             states: LIKE_STATE,
-            state: 0
+            state: 0,
+            over: false
         };
     },
     methods: {
+        onOver: function onOver(isOver) {
+            this.over = isOver;
+        },
         hasPaid: function hasPaid() {
             var now = new Date();
             var payout = toLocaleDate(this.$props.post.cashout_time);
@@ -206,24 +210,37 @@ Vue.component('post-like-big', {
             return v != null;
         },
         makeVote: function makeVote(event) {
-            if (event) {//event.preventDefault();
+            if (event) {
+                event.preventDefault();
             }
 
-            if (!this.hasVote() && this.$data.state != 0) {
+            if (this.state !== this.states.LIKE_OP) {
                 var that = this;
                 var session = this.$props.session;
                 var post = this.$props.post;
                 var username = session ? session.account.username : null;
+                var percent = that.hasVote() ? 0 : 10000;
+
                 requireRoleKey(username, 'posting', function (postingKey, username) {
-                    that.state = 0;
-                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, 10000, function (err, result) {
+                    that.state = that.states.LIKE_OP;
+                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
                         console.log(err, result);
 
                         if (err) {
-                            that.state = -1;
                             that.$emit('vote', err);
                         } else {
-                            that.state = 1;
+                            if (percent > 0) {
+                                that.post.up_votes.push({
+                                    voter: username,
+                                    author: post.author,
+                                    permlink: post.permlink,
+                                    percent: percent
+                                });
+                                that.state = that.states.LIKED_END;
+                            } else {
+                                that.removeVote(username);
+                                that.state = that.states.NO_LIKE_END;
+                            }
                             that.$emit('vote', null, result);
                         }
                     });
