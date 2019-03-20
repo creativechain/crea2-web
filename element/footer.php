@@ -50,7 +50,8 @@
                                             <div class="col-md-12 text-left">
                                                 <input v-model="inputs.username.value"
                                                        v-on:input="checkUsername"
-                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"
+                                                       disabled />
                                                 <span class="error-color-form">{{ inputs.username.error || ' ' }}</span>
                                             </div>
                                             <div class="col-md-12 text-left">
