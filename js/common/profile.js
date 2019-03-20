@@ -73,6 +73,7 @@
                         requireRoleKey(username, 'active', function (activeKey) {
                             globalLoading.show = true;
                             var finalAmount = that.finalAmount + ' CREA';
+                            console.log(finalAmount);
                             var vests = cgyToVests(that.state, finalAmount);
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;

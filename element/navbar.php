@@ -10,6 +10,7 @@
     <meta property="og:image" content="https://creary.net/img/creary-social-media.jpg">
 
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/slider.min.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
     <!--<link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>-->
