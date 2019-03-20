@@ -227,7 +227,7 @@
   margin-right: 5px; }
 .view-profile .block-all p {
   color: #999999; }
-.view-profile .menu-profile-user .btn-more-info-profile {
+.view-profile .menu-profile-user .btn-more-info-profile, .view-profile .menu-profile-user .btn-hidden-info-profile {
   cursor: pointer; }
 .view-profile .menu-profile-user a {
   text-decoration: none; }
@@ -2104,10 +2104,6 @@ img {
     left: -70px !important;
     min-width: 150px; }
 
-  .li-avatar-navbar-mobile {
-    position: relative;
-    top: 0; }
-
   .search.icons-navbar {
     position: relative;
     top: 4px; }
@@ -2207,10 +2203,28 @@ img {
       color: white;
       text-transform: none; } }
 @media (max-width: 767px) {
+  .li-avatar-navbar-mobile {
+    position: relative;
+    top: 0;
+    right: 5px; }
+
+  .table-permission tr {
+    display: inline-flex; }
+    .table-permission tr td:nth-child(1) {
+      width: 50% !important;
+      display: block; }
+      .table-permission tr td:nth-child(1) p:nth-child(2) {
+        word-break: break-word; }
+    .table-permission tr td:nth-child(2) {
+      width: 50%;
+      text-align: center !important; }
+
   .post-view .post-like-count .dropdown__container {
     position: absolute; }
   .post-view .row-title .stats-post {
     margin-top: 0; }
+  .post-view .row-post-comments .ul-row-share-comment li {
+    margin-right: 20px; }
 
   .search.icons-navbar {
     left: -10px; }

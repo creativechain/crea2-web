@@ -28,6 +28,13 @@ $(document).ready(function () {
         }
     });
     $(".btn-more-info-profile").click(function () {
+        $('.btn-more-info-profile').addClass('hidden');
+        $('.btn-hidden-info-profile').removeClass('hidden');
+        $('#more-info-profile').toggleClass('d-none');
+    });
+    $(".btn-hidden-info-profile").click(function () {
+        $('.btn-more-info-profile').removeClass('hidden');
+        $('.btn-hidden-info-profile').addClass('hidden');
         $('#more-info-profile').toggleClass('d-none');
     });
 }); // With JQuery
