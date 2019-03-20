@@ -5,7 +5,7 @@
         </div>
         <span class="h5">{{ profile.publicName || ''}}</span>
         <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>
-        <p class="mb-0"><a v-bind:href="toUrl(profile.web) || '#'">{{ profile.web || '-' }}</a></p>
+        <p class="mb-0"><a target="_blank" v-bind:href="toUrl(profile.web) || '#'">{{ profile.web || '-' }}</a></p>
         <p>{{ profile.about || '-' }}</p>
     </div>
     <div class="row">
