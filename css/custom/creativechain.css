@@ -1338,6 +1338,14 @@
 .ld-ring-blue {
   color: #CACACA !important; }
 
+.like-normal-activate:hover div {
+  background: #cacaca;
+  cursor: pointer; }
+
+.like-normal-activate:hover div:after,
+.like-normal-activate:hover div:before {
+  background: #cacaca; }
+
 .like-normal div {
   background: #cacaca;
   cursor: pointer; }
@@ -1345,14 +1353,6 @@
 .like-normal div:after,
 .like-normal div:before {
   background: #cacaca; }
-
-.like-normal:hover div {
-  background: #ff5766;
-  cursor: pointer; }
-
-.like-normal:hover div:after,
-.like-normal:hover div:before {
-  background: #ff5766; }
 
 .like-normal:hover div {
   background: #ff5766;
