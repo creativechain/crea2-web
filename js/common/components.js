@@ -116,7 +116,7 @@ Vue.component('post-like-big', {
         '   <div class="lds-heart size-20 size-30-like post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
         '       <div></div>' +
         '   </div>' +
-        '<div>',
+        '</div>',
     props: {
         payouts: [String, Boolean],
         session: [Object, Boolean],
@@ -580,23 +580,50 @@ Vue.component('comment-like', {
             var payout = toLocaleDate(this.$props.post.cashout_time);
             return now.getTime() > payout.getTime();
         },
-        hasVote: function hasVote() {
+        getVote: function getVote() {
             var session = this.$props.session;
             var post = this.$props.post;
 
             if (session && post) {
-                var activeVotes = post.active_votes;
+                var upVotes = post.up_votes;
 
-                for (var x = 0; x < activeVotes.length; x++) {
-                    var vote = activeVotes[x];
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
-                        return true;
+                        return vote;
                     }
                 }
             }
 
-            return false;
+            return null;
+        },
+        removeVote: function removeVote(username) {
+            var post = this.post;
+
+            if (post) {
+                var upVotes = post.up_votes;
+                var i = -1;
+
+                for (var x = 0; x < upVotes.length; x++) {
+                    var vote = upVotes[x];
+
+                    if (username === vote.voter) {
+                        i = x;
+                        break;
+                    }
+                }
+
+                console.log(i, username);
+                if (i > -1) {
+                    this.post.up_votes.slice(i, 1);
+                    this.$forceUpdate();
+                }
+            }
+        },
+        hasVote: function hasVote() {
+            var v = this.getVote();
+            return v != null;
         },
         makeVote: function makeVote(event) {
             if (event) {
