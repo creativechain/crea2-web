@@ -15,10 +15,6 @@
     left: -70px !important;
     min-width: 150px;
   }
-  .li-avatar-navbar-mobile {
-    position: relative;
-    top: 0;
-  }
   .search.icons-navbar {
     position: relative;
     top: 4px;
@@ -136,6 +132,27 @@
 }
 
 @media (max-width: 767px) {
+  .li-avatar-navbar-mobile {
+    position: relative;
+    top: 0;
+    right: 5px;
+  }
+  .table-permission {
+    tr {
+      display: inline-flex;
+      td:nth-child(1) {
+        width: 50% !important;
+        display: block;
+        p:nth-child(2) {
+          word-break: break-word;
+        }
+      }
+      td:nth-child(2) {
+        width: 50%;
+        text-align: center !important;
+      }
+    }
+  }
   .post-view {
     .post-like-count {
       .dropdown__container {
@@ -145,6 +162,13 @@
     .row-title {
       .stats-post {
         margin-top: 0;
+      }
+    }
+    .row-post-comments {
+      .ul-row-share-comment {
+        li {
+          margin-right: 20px;
+        }
       }
     }
   }
