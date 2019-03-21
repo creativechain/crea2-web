@@ -515,10 +515,11 @@
                                         homePosts.state.accounts[a.name] = a;
                                     }); //Update Posts
 
+                                    var discuss = homePosts.discuss;
                                     discussions.forEach(function (d) {
                                         var permlink = d.author + '/' + d.permlink;
                                         homePosts.state.content[permlink] = d;
-                                        var discuss = homePosts.discuss;
+
                                         homePosts.state.discussion_idx[discuss][category].push(permlink);
                                     });
 

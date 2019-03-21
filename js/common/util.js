@@ -79,7 +79,7 @@ function jsonify(obj) {
 }
 
 function jsonstring(obj) {
-    if (obj && _typeof(obj) == 'object') {
+    if (obj && typeof obj== 'object') {
         return JSON.stringify(obj);
     }
 
