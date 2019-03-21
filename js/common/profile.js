@@ -67,7 +67,7 @@
                         cancelEventPropagation(event);
                         $('#wallet-de-energize').parent().removeClass('modal-active');
                     },
-                    makePowerDown: function makePowerDown(event, amount) {
+                    makeDeEnergize: function makePowerDown(event, amount) {
                         cancelEventPropagation(event);
                         var that = this;
                         var username = this.session.account.username;

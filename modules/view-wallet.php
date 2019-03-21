@@ -266,7 +266,7 @@
                                                                                                         </div>
                                                                                                         <div class="row mt-1">
                                                                                                             <div class="col text-right">
-                                                                                                                <a href="#0" v-on:click="makePowerDown" class="btn btn--sm btn--primary">
+                                                                                                                <a href="#0" v-on:click="makeDeEnergize" class="btn btn--sm btn--primary">
                                                                                                                     <span class="btn__text">{{ lang.BUTTON.DE_ENERGIZE }}</span>
                                                                                                                 </a>
                                                                                                             </div>
