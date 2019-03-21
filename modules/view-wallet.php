@@ -241,9 +241,9 @@
                                                                                                     <div class="modal-close modal-close-cross"></div>
                                                                                                     <div class="text-block">
                                                                                                         <h3>De-Energize</h3>
-                                                                                                        <div class="slide-energize">
+                                                                                                        <!--<div class="slide-energize">
                                                                                                             <slider :initvalue="sliderValue" v-bind:max="maxPowerDown" v-on:change="onAmount"></slider>
-                                                                                                        </div>
+                                                                                                        </div>-->
                                                                                                     </div>
                                                                                                     <form>
                                                                                                         <div class="row">
