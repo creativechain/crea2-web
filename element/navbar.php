@@ -56,9 +56,21 @@
         gtag('config', 'AW-785576980');
     </script>
 
-    <!-- Event snippet for Registro Creary conversion page -->
+    <!-- Event snippet for Registro Creary botón conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
     <script>
-        gtag('event', 'conversion', {'send_to': 'AW-785576980/ugByCLPi15YBEJToy_YC'});
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-785576980/zEkCCM_DkZcBEJToy_YC',
+                'event_callback': callback
+            });
+            return false;
+        }
     </script>
 
     <script src="/js/jquery-3.1.1.min.js"></script>
