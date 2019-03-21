@@ -428,7 +428,7 @@
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
                                     <p>{{ getKey('active') }}</p>
-                                    <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
+                                    <p>{{ lang.WALLET.PERMISSIONS_TEXT_ACTIVE }}</p>
                                 </td>
                                 <td style="text-align: right">
                                     <div v-if="session && !showPriv.active" class="btn btn--sm" v-on:click="getPrivKey('active')">

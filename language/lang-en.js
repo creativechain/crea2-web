@@ -343,7 +343,7 @@ lang.en = {
         "UPDATE_SECONDARY_SENTENCE": "Insert the password of your wallet",
         "DROPDOWN_MENU_WITHDRAW_CBD": "Withdraw CBD",
         "PERMISSIONS_TITLE_OWNER": "OWNER",
-        "PERMISSIONS_TEXT_ACTIVE": "The active key allows to make transfers and place orders in the market tool included in Creary.",
+        "PERMISSIONS_TEXT_ACTIVE": "The active key is used to make transfers and place buy and sell orders in the CREA/CBD internal market.",
         "CONVERT_CGY_TITLE": "Convert to CREA ENERGY",
         "TRANSFER_CREA_TEXT": "Move funds to another CREA account.",
         "TRANSFER_CREA_TITLE": "Transfer CREA",
