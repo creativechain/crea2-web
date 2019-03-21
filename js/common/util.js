@@ -153,6 +153,11 @@ function createAuth(key) {
 
 function copyToClipboard(element) {
     if (element) {
+
+        if (typeof element == 'string') {
+            element = document.getElementById(element);
+        }
+
         element.select();
 
         try {

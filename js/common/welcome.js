@@ -14,7 +14,6 @@
     };
 
     function setUp() {
-        console.log('Welcome setup');
         welcomeVue = new Vue({
             el: '#welcome',
             data: {
@@ -56,7 +55,8 @@
                 },
                 checkUsername: checkUsername,
                 sendConfirmationMail: sendConfirmationMail,
-                createAccount: createAccount
+                createAccount: createAccount,
+                copyToClipboard: copyToClipboard
             }
         });
         creaEvents.emit('crea.dom.ready');
@@ -211,7 +211,6 @@
 
     creaEvents.on('crea.content.loaded', function () {
         console.log('Content loaded!');
-        new ClipboardJS('.btn_copy');
         setUp();
         var token = getParameterByName('token'); //console.log('Token', token);
 
