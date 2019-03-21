@@ -48,7 +48,7 @@
                             amount: amount,
                             nai: apiOptions.nai.CREA
                         });
-                        this.finalAmount = parseFloat(asset.toPlainString(null, false));
+                        //this.finalAmount = parseFloat(asset.toPlainString(null, false));
                         this.amountByWeek = amount < 0.001 ? '' : String.format(this.lang.WALLET.DE_ENERGIZE_AMOUNT_BY_WEEK, asset.divide(8).toFriendlyString(null, false));
                     },
                     onManualChange: function onManualChange(event) {
@@ -59,7 +59,8 @@
                                 amount = 0;
                             }
 
-                            this.sliderValue = amount;
+                            //this.sliderValue = amount;
+                            this.onAmount(amount);
                         }
                     },
                     hideModalDeEnergize: function hideModalDeEnergize(event) {
