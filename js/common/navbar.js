@@ -288,7 +288,6 @@
             filter = '/' + filter;
         }
 
-        console.log('Retrieve', filter, 'content');
         retrieveContent(null, filter);
     });
 })();

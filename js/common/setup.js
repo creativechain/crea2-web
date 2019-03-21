@@ -58,7 +58,6 @@
     });
 
     creaEvents.on('crea.modal.ready', function () {
-        console.log('building modals');
         setTimeout(function () {
             mr.modals.documentReady($);
         }, 1000);

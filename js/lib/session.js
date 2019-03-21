@@ -78,7 +78,6 @@ var Session =
                                 }
 
                                 logged = that.account.keys[auth].pub == pubKey;
-                                console.log('Checking', auth, pubKey, '==', that.account.keys[auth].pub, logged);
                                 return logged;
                             });
 

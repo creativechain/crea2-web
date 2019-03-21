@@ -64,8 +64,6 @@
 
         state.discussion_idx[discuss][category] = removeBlockedContents(state, account, state.discussion_idx[discuss][category]);
 
-        console.log('Filter:', filter, 'discussion:', discuss, 'category:', category, state.discussion_idx[discuss][category]);
-
         if (!homePosts) {
             homePosts = new Vue({
                 el: '#home-posts',
@@ -464,7 +462,6 @@
             } else {
                 var apiCall;
                 var category = homePosts.category;
-                console.log(category);
 
                 switch (category) {
                     case 'now':
