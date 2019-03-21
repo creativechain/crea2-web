@@ -45,6 +45,22 @@
         gtag('config', 'UA-126970682-1');
     </script>
 
+
+    <!-- Global site tag (gtag.js) - Google Ads: 785576980 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-785576980"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-785576980');
+    </script>
+
+    <!-- Event snippet for Registro Creary conversion page -->
+    <script>
+        gtag('event', 'conversion', {'send_to': 'AW-785576980/ugByCLPi15YBEJToy_YC'});
+    </script>
+
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/common/start.js"></script>
     <script src="/js/vue.js"></script>
