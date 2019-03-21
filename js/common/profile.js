@@ -16,8 +16,8 @@
 
     function updateModalDeEnergize(state, session) {
         console.log('Modal De-Energize', jsonify(jsonstring(state)));
-        var vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString());
-        var delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString());
+        var vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString(null, false));
+        var delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString(null, false));
         var maxPowerDown = vestsCrea - delegatedVesting;
         var withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(null, false), apiOptions.nai.CREA);
         var toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(null, false), apiOptions.nai.CREA);
