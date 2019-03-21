@@ -284,7 +284,7 @@
                                                             </li>
 
                                                             <li>
-                                                                <div class="cursor" v-on:click="cancelPowerDown">
+                                                                <div class="cursor-link" v-on:click="cancelPowerDown">
                                                                     <span class="btn__text">{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</span>
                                                                 </div>
                                                             </li>
