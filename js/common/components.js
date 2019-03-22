@@ -12,6 +12,14 @@ var LIKE_STATE = {
     LIKED_END: 4
 };
 
+var WITNESS_STATE = {
+    VOTE_OP: 0,
+    NO_VOTE: 1,
+    VOTED: 2,
+    NO_VOTE_END: 3,
+    VOTED_END: 4
+};
+
 Vue.component('slider', {
     template: "<div class=\"slider slider-horizontal\" v-on:mousedown=\"onMouseDown\" v-on:mouseup=\"onMouseUp\" v-on:mousemove=\"onMouse\">" +
         "<div class=\"slider-track\">" +
@@ -693,7 +701,7 @@ Vue.component('comment-like', {
 
 Vue.component('witness-like', {
     template: '<div>' +
-        '<span class=\"d-flex\">{{ index }}' +
+        '<span class="d-flex">{{ index }}' +
         '   <div class="lds-heart size-20" v-bind:class="voteClasses" v-on:click="makeVote" style="margin-top: 5px;">' +
         '       <div></div>' +
         '   </div>' +
@@ -709,22 +717,23 @@ Vue.component('witness-like', {
             immediate: true,
             deep: true,
             handler: function handler(newVal, oldVal) {
-                this.state = this.hasVote() ? 1 : -1;
+                this.state = this.hasVote() ? this.states.VOTED : this.states.NO_VOTE;
             }
         }
     },
     data: function data() {
         return {
             R: R,
-            state: 0
+            states: WITNESS_STATE,
+            state: WITNESS_STATE.NO_VOTE
         };
     },
     computed: {
         voteClasses: function () {
             return {
-                'like-normal': this.state == -1,
-                'active-like': this.state == 0,
-                'like-normal-activate': this.state > 0
+                'like-normal': this.state == this.states.NO_VOTE,
+                'active-like': this.state == this.states.VOTE_OP,
+                'like-normal-activate': this.state == this.states.VOTED || this.states.VOTED_END
             }
         }
     },
@@ -744,7 +753,7 @@ Vue.component('witness-like', {
                 event.preventDefault();
             }
 
-            if (this.$data.state != 0) {
+            if (this.$data.state != this.states.VOTE_OP) {
                 var that = this;
                 var session = this.$props.session;
                 var witness = this.$props.witness;
@@ -753,10 +762,13 @@ Vue.component('witness-like', {
                 console.log('Voting for', witness.owner, vote);
 
                 requireRoleKey(username, 'active', function (activeKey, username) {
-                    that.state = 0;
+                    that.state = that.states.VOTE_OP;
 
                     crea.broadcast.accountWitnessVote(activeKey, username, witness.owner, vote, function (err, result) {
                         if (err) {
+                            that.state = this.hasVote() ? this.states.VOTED : this.states.NO_VOTE;
+                            that.$emit('vote', err);
+                        } else {
                             if (vote) {
                                 that.account.witness_votes.push(witness.owner);
                             } else {
@@ -765,9 +777,6 @@ Vue.component('witness-like', {
                                     that.account.witness_votes.splice(i, 1);
                                 }
                             }
-                            that.$emit('vote', err);
-                        } else {
-                            that.state = 1;
                             that.$emit('vote', null, result);
                         }
                     });
@@ -777,8 +786,8 @@ Vue.component('witness-like', {
         }
     },
     updated: function () {
-        if (this.state != 0) {
-            this.state = this.hasVote() ? 1 : -1;
+        if (this.state != this.states.VOTE_OP) {
+            this.state = this.hasVote() ? this.states.VOTED : this.states.NO_VOTE;
         }
 
     }
