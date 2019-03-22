@@ -1767,9 +1767,9 @@ mr = (function (mr, $, window, document){
             var trigger = modalInstance.find('.modal-trigger');
             
             // Link modal with modal-id attribute
-            
-            trigger.attr('data-modal-index',index);
-            modal.attr('data-modal-index',index);
+            var modalIndex = mr.modals.allModalsContainer.children().length;
+            trigger.attr('data-modal-index',modalIndex);
+            modal.attr('data-modal-index',modalIndex);
             
             // Set unique id for multiple triggers
             
@@ -1779,7 +1779,7 @@ mr = (function (mr, $, window, document){
             
 
             // Attach the modal to the body
-            modal.attr('modal-attached', true);
+            modalInstance.attr('modal-attached', true);
             modal = modal.detach();
             mr.modals.allModalsContainer.append(modal);
         });

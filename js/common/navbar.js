@@ -71,6 +71,7 @@
                 },
                 mounted: function mounted() {
                     this.applyRightMenuEvents($);
+                    $('#modal-login').parent().removeAttr('modal-attached');
                     creaEvents.emit('crea.modal.ready');
                 },
                 methods: {

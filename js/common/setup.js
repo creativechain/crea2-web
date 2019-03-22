@@ -59,7 +59,9 @@
 
     creaEvents.on('crea.modal.ready', function () {
         setTimeout(function () {
+            console.log('setting up new modals');
             mr.modals.documentReady($);
+            console.log('done');
         }, 1000);
 
     });

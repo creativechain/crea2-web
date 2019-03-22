@@ -232,7 +232,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                         </li>
 
                         <li>
-                            <div class="modal-instance w-100">
+                            <div v-if="!session" class="modal-instance w-100">
                                 <a class="btn btn--sm type--uppercase modal-trigger log-in mt-1" href="#modal-login-d" style="line-height: 30px;width: 100%;">
                                     <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.LOGIN }}
@@ -504,10 +504,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                             </li>
 
                             <li class="hidden-xs">
-                                <div class="modal-instance">
-                                    <a v-if="!session" href="#modal-login" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+                                <div v-if="!session" class="modal-instance">
+                                    <a href="#modal-login" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
-                                    <div id="modal-login" v-if="!session" class="modal-container">
+                                    <div id="modal-login" class="modal-container">
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
                                                 <div class="container">
