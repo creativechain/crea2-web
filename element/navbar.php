@@ -81,7 +81,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     <script src="/js/moment.min.js"></script>
     <script src="/js/buffer.js"></script>
     <script src="/js/event-emitter.js"></script>
-    <script src="/js/crea.min.js"></script>
+    <script src="/js/crea.js"></script>
 
     <script src="/js/common/ls.js"></script>
     <script src="/js/common/conf.js"></script>
