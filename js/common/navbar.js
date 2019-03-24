@@ -57,6 +57,7 @@
                     lang: getLanguage(),
                     session: session,
                     user: userData ? userData.user : {},
+                    nav: getPathPart(),
                     loginForm: {
                         xs: isSmallScreen(),
                         username: {

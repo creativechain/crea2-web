@@ -329,10 +329,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                             <li v-if="session" class="d-none d-md-inline-block">
                                 <a v-bind:href="'/@' + session.account.username + '/feed'">{{ lang.HOME.MENU_FOLLOWING }}</a>
                             </li>
-                            <li class="d-none d-md-inline-block"><a href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
-                            <li class="d-none d-md-inline-block"><a href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
-                            <li class="d-none d-md-inline-block"><a href="/now" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
-                            <li class="d-none d-md-inline-block"><a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
+                            <li class="d-none d-md-inline-block"><a v-bind:class="{'nav-active': nav == 'popular'}" href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
+                            <li class="d-none d-md-inline-block"><a v-bind:class="{'nav-active': nav == 'skyrockets'}" href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
+                            <li class="d-none d-md-inline-block"><a v-bind:class="{'nav-active': nav == 'now'}" href="/now" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
+                            <li class="d-none d-md-inline-block"><a v-bind:class="{'nav-active': nav == 'promoted'}" href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
 
 
 
