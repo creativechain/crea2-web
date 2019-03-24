@@ -77,6 +77,7 @@ function handleRoute() {
 
     $router->addRoute('/', 'home.php');
     $router->addRoute('/search', 'home.php');
+    $router->addRoute('/share', 'share.php');
     $router->addRoute('/~witness', 'witnesses.php');
     $router->addRoute('/welcome', 'welcome.php');
     $router->addRoute('/validate', 'welcome.php');
