@@ -3,14 +3,14 @@
         <div class="user-avatar">
             <avatar v-bind:account="state.user"></avatar>
         </div>
-        <span class="h5">{{ profile.publicName || ''}}</span>
+        <span class="h5" v-if="profile.publicName">{{ profile.publicName }}</span>
         <p class="mb-2 nameUser">{{ '@' + state.user.name }}</p>
-        <p class="mb-0"><a target="_blank" v-bind:href="toUrl(profile.web) || '#'">{{ profile.web || '-' }}</a></p>
-        <p>{{ profile.about || '-' }}</p>
+        <p class="mb-0" v-if="profile.web"><a target="_blank" v-bind:href="toUrl(profile.web) || '#'">{{ profile.web }}</a></p>
+        <p v-if="profile.about">{{ profile.about }}</p>
     </div>
-    <div class="row">
+    <div v-if="profile.contact" class="row">
         <div class="col text-center">
-            <a href="#">{{ profile.contact || '-' }}</a>
+            <a href="#">{{ profile.contact }}</a>
         </div>
     </div>
     <div class="row">
