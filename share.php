@@ -6,7 +6,10 @@
  * Time: 10:20
  */
 
-$p = $_REQUEST['p'];
+$parts = parse_url($_SERVER['REQUEST_URI']);
+parse_str($parts['query'], $query);
+
+$p = $query['p'];
 $author = explode('/', $p)[0];
 $permlink = explode('/', $p)[1];
 
