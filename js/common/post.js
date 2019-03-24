@@ -20,7 +20,7 @@
     }
 
     function setUp(state) {
-        updateUrl(state.current_route);
+        //updateUrl(state.current_route);
 
         state.post.reported = false;
         if (session) {
