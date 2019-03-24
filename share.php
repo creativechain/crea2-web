@@ -6,7 +6,7 @@
  * Time: 10:20
  */
 
-$p = $_GET['p'];
+$p = $_REQUEST['p'];
 $author = explode('/', $p)[0];
 $permlink = explode('/', $p)[1];
 
