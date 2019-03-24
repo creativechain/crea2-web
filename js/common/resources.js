@@ -17,6 +17,15 @@ var R = {
                 FILLED: '/img/crea-web/like/like_ACT_RED.svg'
             }
         },
+        LICENSE: {
+            ATTRIBUTION: { BLACK: '/img/icons/license/attribution.svg', WHITE: '/img/icons/license/attribution_WHITE.svg' },
+            COPYRIGHT: { BLACK: '/img/icons/license/copyright.svg', WHITE: '/img/icons/license/copyright_WHITE.svg' },
+            CREATIVE_COMMONS: { BLACK: '/img/icons/license/creativecommons.svg', WHITE: '/img/icons/license/creativecommons_WHITE.svg' },
+            FREE_CONTENT: { BLACK: '/img/icons/license/freecontent.svg', WHITE: '/img/icons/license/freecontent_WHITE.svg' },
+            NON_COMMERCIAL: { BLACK: '/img/icons/license/noncommercial.svg', WHITE: '/img/icons/license/noncommercial_WHITE.svg' },
+            NON_DERIVATES: { BLACK: '/img/icons/license/nonderivates.svg', WHITE: '/img/icons/license/nonderivates_WHITE.svg' },
+            SHARE_ALIKE: { BLACK: '/img/icons/license/sharealike.svg', WHITE: '/img/icons/license/sharealike_WHITE.svg' }
+        },
         BUZZ: {
             GENIUS: '/img/crea-web/roll/genius.svg',
             GURU: '/img/crea-web/roll/guru.svg',

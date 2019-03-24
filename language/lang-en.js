@@ -458,7 +458,7 @@ lang.en = {
         "SHAREALIKE": "ShareAlike",
         "NONDERIVATES": "NonDerivates",
         "INTERNATIONAL": "International",
-        "NON_PERMISSION": "Without license"
+        "NON_PERMISSION": "No license"
     },
     "HISTORY": {
         TRANSFER_FROM: 'Transfer from ',

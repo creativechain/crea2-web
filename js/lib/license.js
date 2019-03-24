@@ -19,24 +19,26 @@ var LicensePermission =
          * @param {number} flag
          * @param {string} name
          * @param {string} tag
-         * @param showName
+         * @param {Object} icons
          */
-        function LicensePermission(flag, name, tag) {
-            var showName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+        function LicensePermission(flag, name, tag, icons) {
+            var showName = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
 
             _classCallCheck(this, LicensePermission);
 
             this.flag = flag;
             this.name = name;
             this.tag = tag;
+            this.icons = icons;
             this.showName = showName;
         }
 
         _createClass(LicensePermission, [{
             key: "getIcon",
             value: function getIcon(color) {
-                var fileName = this.name.toLowerCase().replace(' ', '_');
-                return '/img/icons/license/' + fileName + (color ? '_' + color.toUpperCase() : '') + '.svg';
+                color = color ? color : 'WHITE';
+                color = color.toUpperCase();
+                return this.icons[color];
             }
         }]);
 
@@ -240,14 +242,14 @@ var License =
     }();
 
 var LICENSE = {
-    NO_LICENSE: new LicensePermission(0x00, 'WithoutLicense', 'WL'),
-    CREATIVE_COMMONS: new LicensePermission(0x01, 'CreativeCommons', 'CC', false),
-    ATTRIBUTION: new LicensePermission(0x02, 'Attribution', 'BY'),
-    SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike', 'SA'),
-    NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial', 'NC'),
-    NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates', 'ND'),
-    NON_PERMISSION: new LicensePermission(0x20, getLanguage().LICENSE.NON_PERMISSION, 'NP'),
-    FREE_CONTENT: new LicensePermission(0x80, 'FreeContent', 'CC0')
+    NO_LICENSE: new LicensePermission(0x00, 'WithoutLicense', 'WL', {}),
+    CREATIVE_COMMONS: new LicensePermission(0x01, 'CreativeCommons', 'CC', R.IMG.LICENSE.CREATIVE_COMMONS, false),
+    ATTRIBUTION: new LicensePermission(0x02, 'Attribution', 'BY', R.IMG.LICENSE.ATTRIBUTION),
+    SHARE_ALIKE: new LicensePermission(0x04, 'ShareAlike', 'SA', R.IMG.LICENSE.SHARE_ALIKE),
+    NON_COMMERCIAL: new LicensePermission(0x08, 'NonCommercial', 'NC', R.IMG.LICENSE.NON_COMMERCIAL),
+    NON_DERIVATES: new LicensePermission(0x10, 'NonDerivates', 'ND', R.IMG.LICENSE.NON_DERIVATES),
+    NON_PERMISSION: new LicensePermission(0x20, getLanguage().LICENSE.NON_PERMISSION, getLanguage().LICENSE.NON_PERMISSION, R.IMG.LICENSE.COPYRIGHT),
+    FREE_CONTENT: new LicensePermission(0x80, 'FreeContent', 'CC0', R.IMG.LICENSE.FREE_CONTENT)
 };
 var LICENSE_LINKS = {
     3: 'https://creativecommons.org/licenses/by/4.0/',
