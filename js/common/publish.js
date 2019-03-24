@@ -16,7 +16,8 @@
         var license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
 
         if (editablePost) {
-            downloadFile = editablePost.download;
+            //
+            //downloadFile = editablePost.download;
             var mFi = editablePost.metadata.featuredImage;
             featuredImage = mFi.url ? mFi : mfi ? {
                 url: mFi
@@ -145,6 +146,15 @@
                                 } else {
                                     this.error = null;
                                 }
+                                break;
+
+                            case 3:
+                                if ((this.editablePost && this.editablePost.download.size) && !this.downloadFile.size) {
+                                    this.error = String.format(this.lang.PUBLISH.RELOAD_DOWNLOAD_FILE, this.editablePost.download.size.name)
+                                } else {
+                                    this.error = null
+                                }
+                                break;
 
                         }
 
@@ -234,7 +244,8 @@
                 editText: editText,
                 removeElement: removeElement,
                 makePublication: makePublication,
-                humanFileSize: humanFileSize
+                humanFileSize: humanFileSize,
+                stringFormat: String.format
             }
         });
     }

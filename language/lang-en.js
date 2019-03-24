@@ -281,7 +281,8 @@ lang.en = {
         "LICENSE_TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
         "NO_ELEMENTS_ERROR": "You must add at least one element (image, audio, video or text)",
         "FILE_TO_LARGE": "The file is too large",
-        "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag"
+        "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag",
+        "RELOAD_DOWNLOAD_FILE": "It's necessary to reload the download file: %s"
 
     },
     "WITNESS": {

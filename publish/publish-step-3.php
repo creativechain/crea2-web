@@ -6,6 +6,9 @@
             <span class="description-step-title">{{ lang.PUBLISH.DOWNLOAD_SUBTITLE }}</span>
         </div>
         <form action="" class="row">
+            <div v-if="editablePost && editablePost.download.size > 0" class="col-md-12">
+                <span class="error-color-form">{{ stringFormat(lang.PUBLISH.RELOAD_DOWNLOAD_FILE, editablePost.download.name) }}</span>
+            </div>
             <div class="col-md-12">
                 <input type="file" v-on:input="onInputDownloadFile" class="form-control-file" id="exampleFormControlFile1" />
             </div>
