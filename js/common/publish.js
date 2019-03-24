@@ -192,6 +192,7 @@
                     }
                 },
                 onLoadFile: function onLoadFile(event) {
+                    var that = this;
                     var files = event.target.files;
 
                     if (files.length > 0) {
@@ -203,15 +204,23 @@
                             globalLoading.show = false;
 
                             if (err) {
-                                publishContainer.error = err;
+                                that.error = err;
                             } else {
-                                publishContainer.bodyElements.push(file);
-                                publishContainer.error = null;
+
+                                that.bodyElements.push(file);
+                                that.error = null;
+
+                                //Set first loaded image as preview
+                                if (file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
+                                    that.featuredImage = file;
+                                    console.log('Featured image loaded!');
+                                }
                             }
                         });
                     }
                 },
                 onLoadFeaturedImage: function onLoadFeaturedImage(event) {
+                    var that = this;
                     var files = event.target.files;
 
                     if (files.length > 0) {
@@ -222,8 +231,8 @@
                             globalLoading.show = false;
 
                             if (!catchError(err)) {
-                                publishContainer.featuredImage = file;
-                                publishContainer.error = null;
+                                that.featuredImage = file;
+                                that.error = null;
                             }
                         });
                     }
