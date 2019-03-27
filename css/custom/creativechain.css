@@ -2264,10 +2264,11 @@ img {
   .navbar-followin-home {
     font-size: 14px;
     font-weight: 400; }
-    .navbar-followin-home a {
+    .navbar-followin-home li.active a {
+      font-weight: 600;
+      color: #222222; }
+    .navbar-followin-home li a {
       color: #484848; }
-    .navbar-followin-home a.active {
-      font-weight: 600; }
 
   .dropdown-price .dropdown__container {
     width: 200px;
@@ -2360,7 +2361,10 @@ img {
 
   .project-profile .masonry__item {
     width: 100%;
-    padding: 0; } }
+    padding: 0; }
+
+  #body .navbar-filter.mobile {
+    margin-top: 45px; } }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0 !important; }

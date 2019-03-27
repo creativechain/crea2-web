@@ -213,12 +213,18 @@
   .navbar-followin-home {
     font-size: 14px;
     font-weight: 400;
-    a {
-      color: $grey-text;
+    li.active {
+      a {
+        font-weight: 600;
+        color: $color-dark-primary;
+      }
     }
-    a.active {
-      font-weight: 600;
+    li {
+      a {
+        color: $grey-text;
+      }
     }
+
   }
   .dropdown-price {
     .dropdown__container {
@@ -367,7 +373,11 @@
       padding: 0;
     }
   }
-
+  #body {
+    .navbar-filter.mobile {
+      margin-top: 45px;
+    }
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
