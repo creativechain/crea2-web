@@ -193,7 +193,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 
 <!--end of notification-->
-<div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
+<div v-cloak id="navbar-container" class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
         <div class="container">
             <div class="row">
@@ -327,7 +327,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 <div class="col-12 col-md-10 col-lg-10  text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li v-if="session" class="d-none d-md-inline-block">
+                            <li v-if="session" class="d-none d-md-inline-block" v-bind:class="{'active': isUserFeed()}">
                                 <a v-bind:href="'/@' + session.account.username + '/feed'">{{ lang.HOME.MENU_FOLLOWING }}</a>
                             </li>
                             <li class="d-none d-md-inline-block" v-bind:class="{'active': nav == 'popular'}">

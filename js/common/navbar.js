@@ -119,6 +119,7 @@
                             });
                         }
                     }),
+                    isUserFeed: isUserFeed(),
                     checkUsername: checkUsername,
                     goTo: goTo,
                     getDefaultAvatar: R.getAvatar,
