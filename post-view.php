@@ -121,7 +121,7 @@
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
                                                 <div class="container">
-                                                    <div class="row">
+                                                    <div class="row justify-content-center">
                                                         <div class="col-lg-6 col-md-8 col-sm-12">
                                                             <div class="feature feature-1">
                                                                 <div class="feature__body boxed boxed--lg boxed--border">
