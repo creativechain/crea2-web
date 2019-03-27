@@ -281,7 +281,8 @@ lang.en = {
         "LICENSE_TEXT_INMUTABLE": "The content of your project is immutable. It can be re-edited but not deleted from the blockchain.",
         "NO_ELEMENTS_ERROR": "You must add at least one element (image, audio, video or text)",
         "FILE_TO_LARGE": "The file is too large",
-        "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag"
+        "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag",
+        "RELOAD_DOWNLOAD_FILE": "It's necessary to reload the download file: %s"
 
     },
     "WITNESS": {
@@ -343,7 +344,7 @@ lang.en = {
         "UPDATE_SECONDARY_SENTENCE": "Insert the password of your wallet",
         "DROPDOWN_MENU_WITHDRAW_CBD": "Withdraw CBD",
         "PERMISSIONS_TITLE_OWNER": "OWNER",
-        "PERMISSIONS_TEXT_ACTIVE": "The active key allows to make transfers and place orders in the market tool included in Creary.",
+        "PERMISSIONS_TEXT_ACTIVE": "The active key is used to make transfers and place buy and sell orders in the CREA/CBD internal market.",
         "CONVERT_CGY_TITLE": "Convert to CREA ENERGY",
         "TRANSFER_CREA_TEXT": "Move funds to another CREA account.",
         "TRANSFER_CREA_TITLE": "Transfer CREA",
@@ -457,7 +458,7 @@ lang.en = {
         "SHAREALIKE": "ShareAlike",
         "NONDERIVATES": "NonDerivates",
         "INTERNATIONAL": "International",
-        "NON_PERMISSION": "Without license"
+        "NON_PERMISSION": "No license"
     },
     "HISTORY": {
         TRANSFER_FROM: 'Transfer from ',

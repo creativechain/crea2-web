@@ -32,12 +32,12 @@
                             <?php include ('publish/publish-step-4.php') ?>
                         </template>
                         <div class="w-100 text-center">
-                            <div v-if="step !== 4" v-bind:class="{ disabled: editor.show }" class="btn btn--primary type--uppercase " v-on:click="nextStep">
+                            <div v-if="step !== 4" v-bind:class="{ disabled: editor.show }" class="btn btn--primary" v-on:click="nextStep">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.CONTINUE }}
                                     </span>
                             </div>
-                            <div v-else class="btn btn--primary type--uppercase w-100" v-on:click="makePublication">
+                            <div v-else class="btn btn--primary" v-on:click="makePublication">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
@@ -48,6 +48,7 @@
             </div>
         </section>
     </div>
+    <script src="/ckeditor/ckeditor.js"></script>
     <script src="/js/common/publish.js"></script>
 
 <?php include ('element/footer.php'); ?>

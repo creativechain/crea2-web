@@ -1,11 +1,13 @@
+"use strict";
+
 /**
  * @author Phil Teare
  * using wikipedia data
  */
-const isoLangs = {
-    "en":{
+var isoLangs = {
+    "en": {
         "code": "en",
-        "name":"English",
-        "nativeName":"English"
-    },
+        "name": "English",
+        "nativeName": "English"
+    }
 };

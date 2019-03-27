@@ -3,19 +3,21 @@
 <head>
     <meta charset="utf-8">
     <title>CREARY</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"    <meta property="og:url" content="https://creary.net/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:url" content="https://creary.net/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CREARY">
     <meta property="og:description" content="Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.">
     <meta property="og:image" content="https://creary.net/img/creary-social-media.jpg">
 
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--<link href="/css/slider.min.css" rel="stylesheet" type="text/css" media="all"/>-->
     <link href="/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--<link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>-->
     <link href="/css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--<link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>-->
     <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/custom/creativechain.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/tagsinput.css" rel="stylesheet" type="text/css" media="all" />
@@ -44,21 +46,43 @@
         gtag('config', 'UA-126970682-1');
     </script>
 
+
+    <!-- Global site tag (gtag.js) - Google Ads: 785576980 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-785576980"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-785576980');
+    </script>
+
+    <!-- Event snippet for Registro Creary botón conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-785576980/zEkCCM_DkZcBEJToy_YC',
+                'event_callback': callback
+            });
+            return false;
+        }
+    </script>
+
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/common/start.js"></script>
     <script src="/js/vue.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
 
     <script src="/js/tagsinput.js"></script>
     <script src="/js/moment.min.js"></script>
     <script src="/js/buffer.js"></script>
     <script src="/js/event-emitter.js"></script>
-    <script src="/js/clipboard.min.js"></script>
-    <script src="/js/crea.min.js"></script>
-    <script src="https://unpkg.com/ipfs-api@24.0.2/dist/index.js"
-            integrity="sha384-thjn3ED9bGCo7vHWbuwbVVJ4i/4LFfScA3c4oYcahbQkMpu6QAu/pcaq+1xhkheg"
-            crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/js/crea.js"></script>
 
     <script src="/js/common/ls.js"></script>
     <script src="/js/common/conf.js"></script>
@@ -169,7 +193,7 @@
 
 
 <!--end of notification-->
-<div v-cloak id="navbar-container"  class="nav-container background-navbar-dark">
+<div v-cloak id="navbar-container" class="nav-container background-navbar-dark">
     <div class="bar bar--sm visible-xs">
         <div class="container">
             <div class="row">
@@ -208,8 +232,8 @@
                             </div>
                         </li>
 
-                        <li v-if="!session">
-                            <div class="modal-instance w-100">
+                        <li>
+                            <div v-if="!session" class="modal-instance w-100">
                                 <a class="btn btn--sm type--uppercase modal-trigger log-in mt-1" href="#modal-login-d" style="line-height: 30px;width: 100%;">
                                     <span class="btn__text btn-publish-navbar">
                                         {{ lang.BUTTON.LOGIN }}
@@ -303,14 +327,21 @@
                 <div class="col-12 col-md-10 col-lg-10  text-center text-left-xs text-left-sm">
                     <div class="bar__module">
                         <ul class="menu-horizontal text-left">
-                            <li v-if="session" class="d-none d-md-inline-block">
+                            <li v-if="session" class="d-none d-md-inline-block" v-bind:class="{'active': isUserFeed()}">
                                 <a v-bind:href="'/@' + session.account.username + '/feed'">{{ lang.HOME.MENU_FOLLOWING }}</a>
                             </li>
-                            <li class="d-none d-md-inline-block"><a href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a></li>
-                            <li class="d-none d-md-inline-block"><a href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a></li>
-                            <li class="d-none d-md-inline-block"><a href="/now" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a></li>
-                            <li class="d-none d-md-inline-block"><a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a></li>
-
+                            <li class="d-none d-md-inline-block" v-bind:class="{'active': nav == 'popular'}">
+                                <a  href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a>
+                            </li>
+                            <li class="d-none d-md-inline-block" v-bind:class="{'active': nav == 'skyrockets'}">
+                                <a href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a>
+                            </li>
+                            <li class="d-none d-md-inline-block" v-bind:class="{'active': nav == 'now'}">
+                                <a href="/now" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a>
+                            </li>
+                            <li class="d-none d-md-inline-block" v-bind:class="{'active': nav == 'promoted'}">
+                                <a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a>
+                            </li>
 
 
                             <!--- Links Mobil --->
@@ -400,7 +431,7 @@
                     <!-- Mobile --->
                     <div class="bar__module d-block d-sm-block d-md-none" v-if="session">
                         <ul class="menu-horizontal text-left">
-                            <li><a href="." v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
+                            <li class="cursor-link"><a v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                         </ul>
                     </div>
 
@@ -471,7 +502,7 @@
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/wallet'">{{ lang.PROFILE_MENU.WALLET }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/passwords'">{{ lang.PROFILE_MENU.CHANGE_PASSWORD }}</a></li>
                                                         <li class="separate"><a v-bind:href="'/@' + session.account.username + '/settings'">{{ lang.PROFILE_MENU.SETTINGS }}</a></li>
-                                                        <li class="separate"><a href="." v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
+                                                        <li class="separate cursor-link"><a v-on:click="logout">{{ lang.PROFILE_MENU.LOGOUT }}</a></li>
                                                     </ul>
                                                 </div>
                                             </div><!--end row-->
@@ -481,10 +512,10 @@
                             </li>
 
                             <li class="hidden-xs">
-                                <div class="modal-instance">
-                                    <a href="#modal-login" v-if="!session" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
+                                <div v-if="!session" class="modal-instance">
+                                    <a href="#modal-login" class="modal-trigger log-in">{{ lang.BUTTON.LOGIN }}</a>
 
-                                    <div id="modal-login" v-if="!session" class="modal-container">
+                                    <div id="modal-login" class="modal-container">
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
                                                 <div class="container">

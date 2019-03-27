@@ -1719,14 +1719,16 @@ mr = (function (mr, $, window, document){
         var allPageModals = "<div class=\"all-page-modals\"></div>",
             mainContainer = $('div.main-container');
 
-        if(mainContainer.length){
-            jQuery(allPageModals).insertAfter(mainContainer);
-            mr.modals.allModalsContainer = $('div.all-page-modals');
+        if (!$('.all-page-modals').length) {
+            if(mainContainer.length){
+                jQuery(allPageModals).insertAfter(mainContainer);
+                mr.modals.allModalsContainer = $('div.all-page-modals');
+            } else {
+                jQuery('body').append(allPageModals);
+                mr.modals.allModalsContainer = jQuery('body div.all-page-modals');
+            }
         }
-        else{
-            jQuery('body').append(allPageModals);
-            mr.modals.allModalsContainer = jQuery('body div.all-page-modals');
-        }
+
 
         $('.modal-container').each(function(){
 
@@ -1758,16 +1760,16 @@ mr = (function (mr, $, window, document){
         });
 
 
-        $('.modal-instance').each(function(index){
+        $('.modal-instance:not([modal-attached])').each(function(index){
             var modalInstance = $(this);
             var modal = modalInstance.find('.modal-container');
             var modalContent = modalInstance.find('.modal-content');
             var trigger = modalInstance.find('.modal-trigger');
             
             // Link modal with modal-id attribute
-            
-            trigger.attr('data-modal-index',index);
-            modal.attr('data-modal-index',index);
+            var modalIndex = mr.modals.allModalsContainer.children().length;
+            trigger.attr('data-modal-index',modalIndex);
+            modal.attr('data-modal-index',modalIndex);
             
             // Set unique id for multiple triggers
             
@@ -1776,7 +1778,8 @@ mr = (function (mr, $, window, document){
             }
             
 
-            // Attach the modal to the body            
+            // Attach the modal to the body
+            modalInstance.attr('modal-attached', true);
             modal = modal.detach();
             mr.modals.allModalsContainer.append(modal);
         });

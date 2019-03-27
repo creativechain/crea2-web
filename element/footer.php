@@ -50,7 +50,8 @@
                                             <div class="col-md-12 text-left">
                                                 <input v-model="inputs.username.value"
                                                        v-on:input="checkUsername"
-                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"/>
+                                                       type="text" v-bind:placeholder="lang.LOGIN.USERNAME"
+                                                       disabled />
                                                 <span class="error-color-form">{{ inputs.username.error || ' ' }}</span>
                                             </div>
                                             <div class="col-md-12 text-left">
@@ -100,19 +101,10 @@
 </div>
 
 <script src="/js/flickity.min.js"></script>
-<script src="/js/easypiechart.min.js"></script>
+<!--<script src="/js/easypiechart.min.js"></script>-->
 <script src="/js/parallax.js"></script>
-<script src="/js/typed.min.js"></script>
-<script src="/js/datepicker.js"></script>
 <script src="/js/isotope.min.js"></script>
-<script src="/js/ytplayer.min.js"></script>
-<script src="/js/lightbox.min.js"></script>
-<script src="/js/granim.min.js"></script>
-<script src="/js/jquery.steps.min.js"></script>
-<script src="/js/countdown.min.js"></script>
-<script src="/js/twitterfetcher.min.js"></script>
-<script src="/js/spectragram.min.js"></script>
-<script src="/js/smooth-scroll.min.js"></script>
+<!--<script src="/js/granim.min.js"></script>-->
 <script src="/js/bootstrap-slider.js"></script>
 <script src="/js/popper.js"></script>
 <script src="/js/util.js"></script>

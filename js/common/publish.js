@@ -1,26 +1,27 @@
+"use strict";
+
 /**
  * Created by ander on 12/10/18.
  */
-
 (function () {
-
-    let publishContainer;
-    let session, account;
+    var publishContainer;
+    var session, account;
 
     function setUp(editablePost) {
-        let downloadFile = {
+        var downloadFile = {
             price: 0,
             currency: 'CREA'
         };
-
-        let featuredImage = {};
-        let license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
+        var featuredImage = {};
+        var license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
 
         if (editablePost) {
-            downloadFile = editablePost.download;
-
-            let mFi = editablePost.metadata.featuredImage;
-            featuredImage = mFi.url ? mFi : mfi ? {url: mFi} : featuredImage;
+            //
+            //downloadFile = editablePost.download;
+            var mFi = editablePost.metadata.featuredImage;
+            featuredImage = mFi.url ? mFi : mfi ? {
+                url: mFi
+            } : featuredImage;
         }
 
         publishContainer = new Vue({
@@ -45,36 +46,36 @@
                 adult: editablePost ? editablePost.metadata.adult : false,
                 downloadFile: downloadFile,
                 publicDomain: license.has(LICENSE.FREE_CONTENT.flag) ? LICENSE.FREE_CONTENT.flag : LICENSE.NO_LICENSE.flag,
-                share: license.has(LICENSE.SHARE_ALIKE.flag) ? LICENSE.SHARE_ALIKE.flag : license.has(LICENSE.NON_DERIVATES.flag) ?  LICENSE.NON_DERIVATES.flag : LICENSE.NO_LICENSE.flag,
+                share: license.has(LICENSE.SHARE_ALIKE.flag) ? LICENSE.SHARE_ALIKE.flag : license.has(LICENSE.NON_DERIVATES.flag) ? LICENSE.NON_DERIVATES.flag : LICENSE.NO_LICENSE.flag,
                 commercial: license.has(LICENSE.NON_COMMERCIAL.flag) ? LICENSE.NON_COMMERCIAL.flag : LICENSE.NO_LICENSE.flag,
                 noLicense: license.has(LICENSE.NON_PERMISSION.flag) ? LICENSE.NON_PERMISSION.flag : LICENSE.NO_LICENSE.flag,
                 showEditor: false,
                 tagsConfig: {
                     init: false,
-                    addedEvents: false,
+                    addedEvents: false
                 },
                 error: null
             },
-            mounted: function () {
-                //creaEvents.emit('crea.dom.ready', 'publish');
+            mounted: function mounted() {//creaEvents.emit('crea.dom.ready', 'publish');
             },
-            updated: function () {
+            updated: function updated() {
                 console.log('updating');
+
                 if (this.step !== 2) {
                     this.tagsConfig.init = false;
                     this.tagsConfig.addedEvents = false;
                 }
 
                 if (this.step === 2) {
-                    let inputTags = $('#publish-tags');
-                    let that = this;
+                    var inputTags = $('#publish-tags');
+                    var that = this;
+
                     if (!this.tagsConfig.init) {
                         inputTags.tagsinput({
                             maxTags: CONSTANTS.MAX_TAGS,
                             maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
                             delimiter: ' '
                         });
-
                         this.tagsConfig.init = true;
                     }
 
@@ -84,34 +85,34 @@
                                 that.tags.push(event.item);
                             }
                         });
-
                         inputTags.on('itemRemoved', function (event) {
-                            let i = that.tags.indexOf(event.item);
+                            var i = that.tags.indexOf(event.item);
+
                             if (i > -1) {
                                 that.tags.splice(i, 1);
                             }
                         });
-
                         this.tagsConfig.addedEvents = true;
+
                         if (editablePost) {
-                            let tags = editablePost.metadata.tags;
+                            var tags = editablePost.metadata.tags;
                             tags.forEach(function (t) {
                                 inputTags.tagsinput('add', t);
-                            })
+                            });
                         }
                     }
 
                     if (that.tags.length > 0) {
                         that.tags.forEach(function (t) {
                             inputTags.tagsinput('add', t);
-                        })
+                        });
                     }
                 }
-
             },
             methods: {
-                getLicense: function () {
-                    let license;
+                getLicense: function getLicense() {
+                    var license;
+
                     if (this.noLicense === LICENSE.NON_PERMISSION.flag) {
                         license = License.fromFlag(this.noLicense);
                     } else if (this.publicDomain === LICENSE.FREE_CONTENT.flag) {
@@ -123,13 +124,13 @@
 
                     return license;
                 },
-                toStep: function (toStep) {
-                    if (!this.editor.show && this.step > toStep) {
-                        this.step = toStep;
+                toStep: function toStep(_toStep) {
+                    if (!this.editor.show && this.step > _toStep) {
+                        this.step = _toStep;
                     }
                 },
-                nextStep: function () {
-                    let that = this;
+                nextStep: function nextStep() {
+                    var that = this;
 
                     if (!this.editor.show) {
                         //Check errors before continue
@@ -138,42 +139,51 @@
                                 this.bodyElements = cleanArray(this.bodyElements);
                                 this.error = this.bodyElements.length > 0 ? null : this.lang.PUBLISH.NO_ELEMENTS_ERROR;
                                 break;
+
                             case 2:
                                 if (!this.featuredImage.hash || !this.title || this.tags.length === 0) {
                                     this.error = this.lang.PUBLISH.NO_TITLE_TAG_OR_IMAGE;
                                 } else {
                                     this.error = null;
                                 }
+                                break;
+
+                            case 3:
+                                if ((this.editablePost && this.editablePost.download.size) && !this.downloadFile.size) {
+                                    this.error = String.format(this.lang.PUBLISH.RELOAD_DOWNLOAD_FILE, this.editablePost.download.size.name)
+                                } else {
+                                    this.error = null
+                                }
+                                break;
+
                         }
 
                         if (!this.error) {
-
                             this.step += 1;
                         }
                     }
                 },
-                loadFile: function (event) {
+                loadFile: function loadFile(event) {
                     if (!this.editor.show) {
-                        const elem = this.$refs.publishInputFile;
+                        var elem = this.$refs.publishInputFile;
                         elem.click();
                     }
-
                 },
-                loadFeaturedImage: function (event) {
-                    const elem = this.$refs.publishInputCover;
+                loadFeaturedImage: function loadFeaturedImage(event) {
+                    var elem = this.$refs.publishInputCover;
                     elem.click();
                 },
-                onInputDownloadFile: function (event) {
-                    let files = event.target.files;
-                    let that = this;
+                onInputDownloadFile: function onInputDownloadFile(event) {
+                    var files = event.target.files;
+                    var that = this;
+
                     if (files.length > 0) {
                         globalLoading.show = true;
-
-                        let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.DOWNLOAD;
-
+                        var loadedFile = files[0];
+                        var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.DOWNLOAD;
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
+
                             if (!catchError(err)) {
                                 file.resource = file.url;
                                 that.downloadFile = Object.assign(that.downloadFile, jsonify(jsonstring(file)));
@@ -181,65 +191,88 @@
                         });
                     }
                 },
-                onLoadFile: function (event) {
-                    let files = event.target.files;
+                onLoadFile: function onLoadFile(event) {
+                    var that = this;
+                    var files = event.target.files;
+
                     if (files.length > 0) {
                         globalLoading.show = true;
-
-                        let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
-
+                        var loadedFile = files[0];
+                        var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize);
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
+
                             if (err) {
-                                publishContainer.error = err;
+                                that.error = err;
                             } else {
-                                publishContainer.bodyElements.push(file);
-                                publishContainer.error = null;
+
+                                that.bodyElements.push(file);
+                                that.error = null;
+
+                                //Set first loaded image as preview
+                                if (file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
+                                    that.featuredImage = file;
+                                    console.log('Featured image loaded!');
+                                }
                             }
                         });
                     }
                 },
-                onLoadFeaturedImage: function (event) {
-                    let files = event.target.files;
+                onLoadFeaturedImage: function onLoadFeaturedImage(event) {
+                    var that = this;
+                    var files = event.target.files;
+
                     if (files.length > 0) {
                         globalLoading.show = true;
-
-                        let loadedFile = files[0];
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
-
+                        var loadedFile = files[0];
+                        var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
+
                             if (!catchError(err)) {
-                                publishContainer.featuredImage = file;
-                                publishContainer.error = null;
+                                that.featuredImage = file;
+                                that.error = null;
                             }
                         });
                     }
                 },
-                toggleEditor: function (event) {
+                toggleEditor: function toggleEditor(event) {
                     cancelEventPropagation(event);
+
                     if (!this.editor.show) {
                         this.editor.show = !this.editor.show;
                     }
-
                 },
-                editorInput: function (data) {
+                editorInput: function editorInput(data) {
                     this.editor.editing = data.length > 0;
                 },
                 updateText: updateText,
+                removeTitleEmojis: removeTitleEmojis,
+                removeDescriptionEmojis: removeDescriptionEmojis,
                 editText: editText,
                 removeElement: removeElement,
                 makePublication: makePublication,
-                humanFileSize: humanFileSize
+                humanFileSize: humanFileSize,
+                stringFormat: String.format
             }
         });
     }
 
-    function updateText(index = -1) {
-        let editor = CKEDITOR.instances['editor'];
-        let text = editor.getData();
+    function removeTitleEmojis(event) {
+        var target = event.target;
+        publishContainer.title = removeEmojis(target.value);
+    }
+
+    function removeDescriptionEmojis(event) {
+        var target = event.target;
+        publishContainer.description = removeEmojis(target.value);
+    }
+
+    function updateText() {
+        var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+        var editor = CKEDITOR.instances['editor'];
+        var text = editor.getData();
 
         if (!text.isEmpty()) {
             if (index > -1) {
@@ -248,7 +281,7 @@
                 publishContainer.bodyElements.push({
                     value: text,
                     type: 'text/html'
-                })
+                });
             }
 
             publishContainer.updatingIndex = -1;
@@ -256,16 +289,16 @@
             publishContainer.editor.editing = false;
             publishContainer.editor.show = false;
         }
-
     }
 
     function editText(index) {
         console.log('Editing text', index);
+
         if (index > -1) {
             publishContainer.editor.show = true;
             setTimeout(function () {
-                let editor = CKEDITOR.instances['editor'];
-                let text = publishContainer.bodyElements[index].value;
+                var editor = CKEDITOR.instances['editor'];
+                var text = publishContainer.bodyElements[index].value;
                 editor.setData(text);
                 publishContainer.updatingIndex = index;
                 publishContainer.editor.editing = true;
@@ -274,122 +307,113 @@
     }
 
     function removeElement(index) {
-        if (index > -1 && index <= (publishContainer.bodyElements.length -1)) {
+        if (index > -1 && index <= publishContainer.bodyElements.length - 1) {
             publishContainer.bodyElements.splice(index, 1);
         }
     }
 
     function makePublication(event) {
         cancelEventPropagation(event);
-
-        let username = session.account.username;
-
+        var username = session.account.username;
         requireRoleKey(username, 'posting', function (postingKey) {
+            var _crea$broadcast;
 
             //All tags must be lowercase;
             globalLoading.show = true;
-            let tags = publishContainer.tags;
-            for (let x = 0; x < tags.length; x++)  {
+            var tags = publishContainer.tags;
+
+            for (var x = 0; x < tags.length; x++) {
                 tags[x] = tags[x].toLowerCase();
             }
 
-            let metadata = {
+            var metadata = {
                 description: publishContainer.description,
                 tags: tags,
                 adult: publishContainer.adult,
                 featuredImage: publishContainer.featuredImage,
                 license: publishContainer.getLicense().getFlag()
             };
+            var download = publishContainer.downloadFile;
 
-            let download = publishContainer.downloadFile;
             if (!download.price) {
                 download.price = 0;
             }
+
             download.price = Asset.parseString(download.price + ' ' + download.currency).toFriendlyString(null, false);
+
             if (!download.resource) {
                 download = '';
             }
 
             //Build body
-            let body = jsonstring(publishContainer.bodyElements);
-            let title = publishContainer.title;
-            let permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title);
+            var body = jsonstring(publishContainer.bodyElements);
+            var title = publishContainer.title;
+            var permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
 
-            //Add category to tags if is editing
             if (publishContainer.editablePost && publishContainer.editablePost.metadata.tags) {
-                let category = publishContainer.editablePost.metadata.tags[0];
+                var category = publishContainer.editablePost.metadata.tags[0];
+
                 if (category && !metadata.tags.includes(category)) {
                     metadata.tags.unshift(category);
                 }
             }
 
-            let operations = [];
-            operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body,
-                jsonstring(download), jsonstring(metadata)));
+            var operations = [];
+            operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
 
             switch (account.user.metadata.post_rewards) {
                 case '0':
                     operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
                     break;
+
                 case '100':
                     operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
             }
 
-            let keys = [postingKey];
+            var keys = [postingKey];
 
-
-            crea.broadcast.sendOperations(keys, ...operations, function (err, result) {
+            (_crea$broadcast = crea.broadcast).sendOperations.apply(_crea$broadcast, [keys].concat(operations, [function (err, result) {
                 if (!catchError(err)) {
                     console.log(result);
-                    let post = {
+                    var post = {
                         url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
                     };
                     showPost(post);
                 } else {
                     globalLoading.show = false;
                 }
-            });
-
+            }]));
         });
-
     }
 
     creaEvents.on('crea.content.loaded', function () {
-        let edit = getParameterByName('edit');
-        if (edit) {
-            let author = edit.split('/')[0];
-            let permlink = edit.split('/')[1];
+        var edit = getParameterByName('edit');
 
-            //Check if author is the user
-            let s = Session.getAlive();
+        if (edit) {
+            var author = edit.split('/')[0];
+            var permlink = edit.split('/')[1]; //Check if author is the user
+
+            var s = Session.getAlive();
+
             if (s && s.account.username === author) {
                 crea.api.getDiscussion(author, permlink, function (err, post) {
                     if (!catchError(err)) {
-
                         post = parsePost(post);
-
-                        let price = Asset.parse(post.download.price);
+                        var price = Asset.parse(post.download.price);
                         post.download.price = parseFloat(price.toPlainString());
                         post.download.currency = price.asset.symbol;
                         setUp(post);
                     }
-                })
-            } else {
-                //TODO: SHOW EDIT ERROR
+                });
+            } else {//TODO: SHOW EDIT ERROR
             }
-
-
         } else {
             setUp();
         }
-
-
     });
-
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         account = a;
         creaEvents.emit('crea.dom.ready');
-    })
-
+    });
 })();

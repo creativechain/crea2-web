@@ -13,23 +13,32 @@
         </div>
     </section>
 
-    <section class="cta cta-4 space--xxs border--bottom d-block d-sm-block d-md-none navbar-filter">
+    <section v-cloak id="navbar-mobile" class="cta cta-4 space--xxs border--bottom d-block d-sm-block d-md-none navbar-filter">
         <div class="container post-container-home">
             <div class="row align-items-end">
                 <div class="col-md-12 text-center">
                     <ul class="list-inline navbar-followin-home">
-                        <li class="list-inline-item" v-if="session">
-                            <a v-bind:href="'/@' + session.account.username + '/feed'">Following</a>
+                        <li class="list-inline-item" v-if="session" v-bind:class="{'active': isUserFeed()}">
+                            <a v-bind:href="'/@' + session.account.username + '/feed'">{{ lang.HOME.MENU_FOLLOWING }}</a>
                         </li>
-                        <li class="list-inline-item"><a href="/popular" v-on:click="retrieveTrendingContent">Popular</a></li>
-                        <li class="list-inline-item"><a href="/skyrockets" v-on:click="retrieveHotContent">Skyrockets</a></li>
-                        <li class="list-inline-item"><a href="/now" v-on:click="retrieveNowContent">Now</a></li>
-                        <li class="list-inline-item"><a href="/promoted" v-on:click="retrievePromotedContent">Promoted</a></li>
+                        <li class="list-inline-item" v-bind:class="{'active': nav == 'popular'}">
+                            <a href="/popular" v-on:click="retrieveTrendingContent">{{ lang.HOME.MENU_POPULAR }}</a>
+                        </li>
+                        <li class="list-inline-item" v-bind:class="{'active': nav == 'skyrockets'}">
+                            <a href="/skyrockets" v-on:click="retrieveHotContent">{{ lang.HOME.MENU_SKYROCKETS }}</a>
+                        </li>
+                        <li class="list-inline-item" v-bind:class="{'active': nav == 'now'}">
+                            <a href="/now" v-on:click="retrieveNowContent">{{ lang.HOME.MENU_NOW }}</a>
+                        </li>
+                        <li class="list-inline-item" v-bind:class="{'active': nav == 'promoted'}">
+                            <a href="/promoted" v-on:click="retrievePromotedContent">{{ lang.HOME.MENU_PROMOTED }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
+    <script src="/js/common/navbar-mobile.js"></script>
 
     <div v-cloak id="home-posts">
         <section v-if="state.discussion_idx[discuss][category].length > 0" class="pt-4">

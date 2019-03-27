@@ -152,17 +152,17 @@
                                                                                                                 </div>
                                                                                                                 <div class="col-md-10">
                                                                                                                     <div class="input-icon input-icon--right">
-                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your name" />
+                                                                                                                        <input v-bind:disabled="config.confirmed" v-model="memo" type="text" placeholder="Enter your memo" />
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row mt-3">
                                                                                                                 <div class="col text-right">
-                                                                                                                    <div v-if="config.confirmed" class="btn btn--sm type--uppercase"
+                                                                                                                    <div v-if="config.confirmed" class="btn btn--sm"
                                                                                                                          v-on:click="cancelSend">
                                                                                                                         <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL}}</span>
                                                                                                                     </div>
-                                                                                                                    <div class="btn btn--sm btn--primary type--uppercase" v-on:click="sendCrea">
+                                                                                                                    <div class="btn btn--sm btn--primary" v-on:click="sendCrea">
                                                                                                                         <span class="btn__text">{{ config.confirmed ? config.button : lang.BUTTON.CONFIRM }}</span>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -241,13 +241,9 @@
                                                                                                     <div class="modal-close modal-close-cross"></div>
                                                                                                     <div class="text-block">
                                                                                                         <h3>De-Energize</h3>
-                                                                                                        <div class="slide-energize">
-                                                                                                            <!--<input id="ex6" type="text" v-bind:data-slider-formatter="onAmount"
-                                                                                                                   data-slider-min="0" v-bind:data-slider-max="100" data-slider-step="1"
-                                                                                                                   data-slider-value="1"/>
-                                                                                                            <span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">3</span></span>-->
+                                                                                                        <!--<div class="slide-energize">
                                                                                                             <slider :initvalue="sliderValue" v-bind:max="maxPowerDown" v-on:change="onAmount"></slider>
-                                                                                                        </div>
+                                                                                                        </div>-->
                                                                                                     </div>
                                                                                                     <form>
                                                                                                         <div class="row">
@@ -270,7 +266,7 @@
                                                                                                         </div>
                                                                                                         <div class="row mt-1">
                                                                                                             <div class="col text-right">
-                                                                                                                <a href="#0" v-on:click="makePowerDown" class="btn btn--sm btn--primary type--uppercase">
+                                                                                                                <a href="#0" v-on:click="makeDeEnergize" class="btn btn--sm btn--primary">
                                                                                                                     <span class="btn__text">{{ lang.BUTTON.DE_ENERGIZE }}</span>
                                                                                                                 </a>
                                                                                                             </div>
@@ -288,7 +284,7 @@
                                                             </li>
 
                                                             <li>
-                                                                <div class="cursor" v-on:click="cancelPowerDown">
+                                                                <div class="cursor-link" v-on:click="cancelPowerDown">
                                                                     <span class="btn__text">{{ lang.WALLET.DROPDOWN_MENU_CANCEL_DE_ENERGIZE }}</span>
                                                                 </div>
                                                             </li>
@@ -432,7 +428,7 @@
                                 <td>
                                     <p>{{ lang.WALLET.PERMISSIONS_TITLE_ACTIVE }}</p>
                                     <p>{{ getKey('active') }}</p>
-                                    <p>{{ lang.WALLET.PERMISSIONS_TEXT_POSTING }}</p>
+                                    <p>{{ lang.WALLET.PERMISSIONS_TEXT_ACTIVE }}</p>
                                 </td>
                                 <td style="text-align: right">
                                     <div v-if="session && !showPriv.active" class="btn btn--sm" v-on:click="getPrivKey('active')">
@@ -493,7 +489,7 @@
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>{{ lang.CHANGE_PASSWORD.CURRENT_PASSWORD }}</label>
-                                <label class="float-right"><a href="" class="type--uppercase color--primary button-recover-account">{{ lang.CHANGE_PASSWORD.ACCOUNT_RECOVERY }}</a></label>
+                                <label class="float-right"><a href="" class="color--primary button-recover-account">{{ lang.CHANGE_PASSWORD.ACCOUNT_RECOVERY }}</a></label>
                                 <input v-model="changePass.oldPass" class="validate-required" type="password" v-bind:placeholder="lang.CHANGE_PASSWORD.PASSWORD"/>
                             </div>
                             <div class="col-md-12 mt-3">

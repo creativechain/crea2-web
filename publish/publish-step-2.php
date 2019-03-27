@@ -43,18 +43,18 @@
         <form action="" class="row">
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_POST_TITLE }}</label>
-                    <input v-model="title" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE"
+                    <input v-model="title" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.TITLE" v-on:input="removeTitleEmojis"
                            class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TITLE" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_DESCRIPTION }}</label>
-                    <input v-model="description" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.DESCRIPTION" class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_DESCRIPTION" />
+                    <input v-model="description" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.DESCRIPTION" v-on:input="removeDescriptionEmojis"
+                           class="validate-required" type="text" name="My Input" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_DESCRIPTION" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.INFO_TAGS }}</label>
                     <input id="publish-tags" class="validate-required"
-                           v-bind:data-options="'{maxTags: '+ CONSTANTS.MAX_TAGS + ', maxChars: ' + CONSTANTS.TEXT_MAX_SIZE.TAG + '}'"
-                           type="text" data-role="tagsinput" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS" />
+                           type="text" value="" v-bind:placeholder="lang.PUBLISH.INFO_INPUT_TAGS" />
                 </div>
                 <div class="col-md-12">
                     <label>{{ lang.PUBLISH.QUESTION }}</label>

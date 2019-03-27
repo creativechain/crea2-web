@@ -73,7 +73,7 @@
                     <div class="col-md-12 img-post-view content-post" >
                         <template v-for="el in state.post.body">
                             <div v-if="el != null">
-                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-all;">
+                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-word;">
 
                                 </div>
                                 <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -121,7 +121,7 @@
                                         <div class="modal-content section-modal">
                                             <section class="unpad ">
                                                 <div class="container">
-                                                    <div class="row">
+                                                    <div class="row justify-content-center">
                                                         <div class="col-lg-6 col-md-8 col-sm-12">
                                                             <div class="feature feature-1">
                                                                 <div class="feature__body boxed boxed--lg boxed--border">
@@ -145,7 +145,7 @@
                                                                         </div>
                                                                         <div class="row mt-3">
                                                                             <div class="col text-right">
-                                                                                <div v-on:click="makePromotion" class="btn btn--sm btn--primary type--uppercase" >
+                                                                                <div v-on:click="makePromotion" class="btn btn--sm btn--primary" >
                                                                                     <span class="btn__text">{{ lang.BUTTON.PROMOTE }}</span>
                                                                                 </div>
                                                                             </div>
@@ -159,29 +159,12 @@
                                             </section>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             <div class="container row-project">
@@ -191,9 +174,9 @@
 
                 <div v-pre class="row">
                     <div id="more-projects" class="col">
-                        <div class="slider slider--columns" data-timing="5000">
+                        <div class="slider slider--columns" data-autoplay="false">
                             <ul class="slides">
-                                <li v-for="o in otherProjects" class="col-4 col-sm-4 col-md-4 mb-2">
+                                <li v-for="o in otherProjects" class="col-6 col-sm-6 col-md-4 mb-2">
                                     <a v-bind:href="o.url">
                                         <div class="img-more-projects"
                                              v-on:click="showPost(o)"
@@ -298,7 +281,7 @@
                                         <div class="col-md-12">
                                             <ul class="list-inline list-unstyled">
 
-                                                <li v-if="isReportedByUser()" class="cursor" v-on:click="vote(0)"><p><img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
+                                                <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)"><p class="p-report link-report"><img src="/img/icons/report_content.svg" alt="" />({{ state.post.down_votes.length }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                 <li v-else >
                                                     <div class="modal-instance ">
                                                         <p class="p-report">
@@ -328,7 +311,7 @@
                                                                                     </div>
                                                                                     <div class="row mt-3">
                                                                                         <div class="col-md-12 text-right">
-                                                                                            <div class="btn btn--primary" v-on:click="vote(-10000)">
+                                                                                            <div class="btn btn--primary modal-close" v-on:click="vote(-10000)">
                                                                                                     <span class="btn__text">
                                                                                                         {{ lang.BUTTON.REPORT }}
                                                                                                     </span>
@@ -345,7 +328,7 @@
                                                     </div>
                                                 </li>
 
-                                                <li class="cursor" v-on:click="ignoreUser"><p class="p-report"><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
+                                                <li class="cursor-link" v-on:click="ignoreUser"><p class="p-report link-report"><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -424,14 +407,14 @@
                                                                                 </div>
                                                                                 <div class="row mt-3">
                                                                                     <div class="col text-right">
-                                                                                        <div v-if="modal.confirmed" class="btn btn--sm btn--primary type--uppercase modal-close"
+                                                                                        <div v-if="modal.confirmed" class="btn btn--sm modal-close"
                                                                                              v-on:click="cancelPay">
-                                                                                            <span class="btn__text">{{ lang.BUTTON.CANCEL}}</span>
+                                                                                            <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL}}</span>
                                                                                         </div>
-                                                                                        <div v-if="modal.alreadyPayed" v-on:click="confirmDownload" class="btn btn--sm btn--primary type--uppercase modal-close" >
+                                                                                        <div v-if="modal.alreadyPayed" v-on:click="confirmDownload" class="btn btn--sm btn--primary modal-close" >
                                                                                             <span class="btn__text">{{ lang.BUTTON.DOWNLOAD }}</span>
                                                                                         </div>
-                                                                                        <div v-else v-on:click="confirmDownload" class="btn btn--sm btn--primary type--uppercase" >
+                                                                                        <div v-else v-on:click="confirmDownload" class="btn btn--sm btn--primary" >
                                                                                             <span class="btn__text">{{ modal.confirmed ? lang.BUTTON.PAY : lang.BUTTON.CONFIRM }}</span>
                                                                                         </div>
                                                                                     </div>

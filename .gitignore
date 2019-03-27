@@ -4,3 +4,4 @@ resources
 webconfig.json
 /vendor/
 composer.lock
+robots.txt

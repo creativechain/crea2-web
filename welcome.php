@@ -281,7 +281,7 @@
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="btn btn--transparent w-100 btn_copy" data-clipboard-target="#welcome-slide6-input">
+                                        <div class="btn btn--transparent w-100" v-on:click="copyToClipboard('welcome-slide6-input')">
                                             <span class="btn__text btn_copy">
                                                 {{ lang.BUTTON.COPY_PASSWORD }}
                                             </span>

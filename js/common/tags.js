@@ -1,8 +1,8 @@
-
+"use strict";
 
 (function () {
+    var tagsContainer;
 
-    let tagsContainer;
     function setUp(state, session, account) {
         if (!tagsContainer) {
             tagsContainer = new Vue({
@@ -13,7 +13,7 @@
                     account: account,
                     state: state
                 }
-            })
+            });
         } else {
             tagsContainer.session = session;
             tagsContainer.account = account;
@@ -28,10 +28,10 @@
             if (!catchError(err)) {
                 setUp(result, session, account);
             }
-        })
+        });
     }
 
     creaEvents.on('crea.session.login', function (session, account) {
         fetchTags(session, account);
-    })
+    });
 })();

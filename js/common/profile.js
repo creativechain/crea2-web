@@ -1,31 +1,28 @@
+"use strict";
+
 /**
  * Created by ander on 25/09/18.
  */
-
-
 (function () {
-    let profileContainer;
-    let rewardsContainer = {};
-    let blockedContainer;
-    let followingContainer;
-    let followerContainer;
-    let walletModalSend;
-    let walletModalDeEnergize;
-
-    let lang;
-    let defaultModalConfig;
+    var profileContainer;
+    var rewardsContainer = {};
+    var blockedContainer;
+    var followingContainer;
+    var followerContainer;
+    var walletModalSend;
+    var walletModalDeEnergize;
+    var lang;
+    var defaultModalConfig;
 
     function updateModalDeEnergize(state, session) {
         console.log('Modal De-Energize', jsonify(jsonstring(state)));
+        var vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString(null, false));
+        var delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString(null, false));
+        var maxPowerDown = vestsCrea - delegatedVesting;
+        var withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(null, false), apiOptions.nai.CREA);
+        var toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(null, false), apiOptions.nai.CREA);
+        var withdrawNote = '';
 
-        let vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString());
-        let delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString());
-        let maxPowerDown = vestsCrea - delegatedVesting;
-
-        let withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(null, false), apiOptions.nai.CREA);
-        let toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(null, false), apiOptions.nai.CREA);
-
-        let withdrawNote = '';
         if (toWithdraw.amount - withdrawn.amount > 0) {
             withdrawNote = String.format(getLanguage().WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
         }
@@ -42,41 +39,43 @@
                     sliderValue: 0,
                     amountByWeek: '',
                     withdrawNote: withdrawNote
-
                 },
                 methods: {
                     formatString: String.format,
-                    onAmount: function (amount) {
+                    onAmount: function onAmount(amount) {
                         amount += 0.0001;
-                        let asset = Asset.parse({amount: amount, nai: apiOptions.nai.CREA});
-                        this.finalAmount = parseFloat(asset.toPlainString(null, false));
+                        var asset = Asset.parse({
+                            amount: amount,
+                            nai: apiOptions.nai.CREA
+                        });
+                        //this.finalAmount = parseFloat(asset.toPlainString(null, false));
                         this.amountByWeek = amount < 0.001 ? '' : String.format(this.lang.WALLET.DE_ENERGIZE_AMOUNT_BY_WEEK, asset.divide(8).toFriendlyString(null, false));
                     },
-                    onManualChange: function (event) {
+                    onManualChange: function onManualChange(event) {
                         if (event) {
-                            let amount = event.target.valueAsNumber;
+                            var amount = event.target.valueAsNumber;
+
                             if (isNaN(amount)) {
                                 amount = 0;
                             }
-                            this.sliderValue = amount;
+
+                            //this.sliderValue = amount;
+                            this.onAmount(amount);
                         }
                     },
-                    hideModalDeEnergize: function (event) {
+                    hideModalDeEnergize: function hideModalDeEnergize(event) {
                         cancelEventPropagation(event);
-
                         $('#wallet-de-energize').parent().removeClass('modal-active');
                     },
-                    makePowerDown: function (event, amount) {
+                    makeDeEnergize: function makePowerDown(event, amount) {
                         cancelEventPropagation(event);
-
-                        let that = this;
-                        let username = this.session.account.username;
-
+                        var that = this;
+                        var username = this.session.account.username;
                         requireRoleKey(username, 'active', function (activeKey) {
                             globalLoading.show = true;
-                            let finalAmount = that.finalAmount + ' CREA';
-                            let vests = cgyToVests(that.state, finalAmount);
-
+                            var finalAmount = that.finalAmount + ' CREA';
+                            console.log(finalAmount);
+                            var vests = cgyToVests(that.state, finalAmount);
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;
 
@@ -86,10 +85,9 @@
                                 }
                             });
                         });
-
                     }
                 }
-            })
+            });
         } else {
             walletModalDeEnergize.session = session;
             walletModalDeEnergize.state = state;
@@ -109,78 +107,74 @@
                     amount: 0,
                     memo: '',
                     config: clone(defaultModalConfig),
-                    toError: false,
+                    toError: false
                 },
-                mounted: function () {
-                    let that = this;
+                mounted: function mounted() {
+                    var that = this;
                     $('#wallet-send').on('modalClosed.modals.mr', function () {
                         that.clearFields();
-                    })
+                    });
                 },
                 methods: {
-                    shouldShowMemo() {
-                        const avoidMemoOps = ['transfer_to_vests', 'transfer_to_savings_crea', 'transfer_to_savings_cbd'];
+                    shouldShowMemo: function shouldShowMemo() {
+                        var avoidMemoOps = ['transfer_to_vests', 'transfer_to_savings_crea', 'transfer_to_savings_cbd'];
                         return !avoidMemoOps.includes(this.config.op);
                     },
-                    cancelSend: function (event) {
+                    cancelSend: function cancelSend(event) {
                         cancelEventPropagation(event);
-
                         this.config.confirmed = false;
                     },
-                    hideModalSend: function (event) {
+                    hideModalSend: function hideModalSend(event) {
                         cancelEventPropagation(event);
-
                         $('#wallet-send').removeClass('modal-active');
                         this.clearFields();
                     },
-                    clearFields: function () {
+                    clearFields: function clearFields() {
                         //Clear fields
                         this.amount = 0;
                         this.memo = '';
                         this.config = clone(defaultModalConfig);
                     },
-                    useTotalAmount: function (event) {
+                    useTotalAmount: function useTotalAmount(event) {
                         cancelEventPropagation(event);
-
                         this.amount = this.config.total_amount.toPlainString();
                     },
-                    sendCrea: function () {
-                        if (this.toError || !this.amount) {
-                            //TODO: SHOW ERRORS
+                    sendCrea: function sendCrea() {
+                        if (this.toError || !this.amount) {//TODO: SHOW ERRORS
                         } else if (this.config.confirmed) {
-                            let that = this;
-
-                            let amountData = { amount: that.amount, nai: that.config.nai.toLowerCase(), round: true};
-                            let amount = Asset.parse(amountData).toFriendlyString(null, false);
-
+                            var that = this;
+                            var amountData = {
+                                amount: that.amount,
+                                nai: that.config.nai.toLowerCase(),
+                                round: true
+                            };
+                            var amount = Asset.parse(amountData).toFriendlyString(null, false);
                             requireRoleKey(this.session.account.username, 'active', function (activeKey) {
                                 globalLoading.show = true;
                                 console.log('Key:', activeKey, that.config.op);
                                 transfer(activeKey, that.config.op, that.session, that.config.to, amount, that.memo, function (err, result) {
-                                    globalLoading.show  = false;
+                                    globalLoading.show = false;
+
                                     if (!catchError(err)) {
                                         if (result) {
                                             updateUserSession();
                                             that.hideModalSend();
                                         }
                                     }
-
                                 });
                             });
-
-
                         } else {
                             this.config.confirmed = true;
                             this.config.button = this.lang.BUTTON.SEND;
                         }
-
                     },
-                    validateDestiny: function(event) {
-                        let username = event.target.value;
+                    validateDestiny: function validateDestiny(event) {
+                        var username = event.target.value;
+
                         if (!crea.utils.validateAccountName(username)) {
-                            let accounts = [ username ];
+                            var accounts = [username];
                             console.log("Checking", accounts);
-                            let that = this;
+                            var that = this;
                             crea.api.lookupAccountNames(accounts, function (err, result) {
                                 if (err) {
                                     console.error(err);
@@ -188,7 +182,7 @@
                                 } else {
                                     that.toError = result[0] == null;
                                 }
-                            })
+                            });
                         } else {
                             this.toError = true;
                         }
@@ -210,13 +204,18 @@
      * @param navSection
      * @param walletSection
      */
-    function updateProfileView(state, session, account, usernameFilter, navSection = 'projects', walletSection = 'balance') {
-        //console.log('Updating profile', jsonify(jsonstring(account)), jsonify(jsonstring(state)));
 
-        let nextDeEnergize = null;
-        if (state.user.to_withdraw > 0 && (session && state.user.name === session.account.username)) {
+
+    function updateProfileView(state, session, account, usernameFilter) {
+        var navSection = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'projects';
+        var walletSection = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'balance';
+        //console.log('Updating profile', jsonify(jsonstring(account)), jsonify(jsonstring(state)));
+        var nextDeEnergize = null;
+
+        if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
             nextDeEnergize = String.format(getLanguage().WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
         }
+
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -253,15 +252,16 @@
                         checkedStoredPass: false,
                         error: null
                     },
-                    nextDeEnergize: nextDeEnergize,
+                    nextDeEnergize: nextDeEnergize
                 },
-                updated: function () {
-                    let t = $('#wallet-tabs').prev();
+                updated: function updated() {
+                    var t = $('#wallet-tabs').prev();
+
                     if (t.is(':empty')) {
                         t.remove();
                     }
 
-                    let inputTags = $('#profile-edit-tags');
+                    var inputTags = $('#profile-edit-tags');
                     inputTags.tagsinput({
                         maxTags: CONSTANTS.MAX_TAGS,
                         maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
@@ -271,23 +271,23 @@
                     if (this.profile.tags) {
                         this.profile.tags.forEach(function (t) {
                             inputTags.tagsinput('add', t);
-                        })
+                        });
                     }
                 },
                 methods: {
                     getDefaultAvatar: R.getAvatar,
                     toUrl: toUrl,
-                    hidePrivKey: function (auth) {
+                    hidePrivKey: function hidePrivKey(auth) {
                         this.showPriv[auth] = false;
                     },
-                    getPrivKey: function (auth) {
-                        let that = this;
-                        let username = this.session ? this.session.account.username : '';
+                    getPrivKey: function getPrivKey(auth) {
+                        var that = this;
+                        var username = this.session ? this.session.account.username : '';
                         requireRoleKey(username, auth, function (authKey) {
                             that.showPriv[auth] = authKey;
                         });
                     },
-                    getKey: function (auth) {
+                    getKey: function getKey(auth) {
                         if (this.showPriv[auth]) {
                             return this.showPriv[auth];
                         } else if (auth === 'memo') {
@@ -296,108 +296,137 @@
                             return state.user[auth].key_auths[0][0];
                         }
                     },
-                    prepareModal: function(op) {
-                        let config;
+                    prepareModal: function prepareModal(op) {
+                        var config;
+
                         switch (op) {
                             case 'transfer_crea':
-                                config = {title: this.lang.WALLET.TRANSFER_CREA_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_CREA_TEXT, button: this.lang.BUTTON.CONFIRM,
-                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.balance)
-                                };
-                                break;
-                            case 'transfer_to_savings_crea':
-                                config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.balance),
-                                    to: this.session.account.username,
-                                    disableTo: true,
-                                };
-                                break;
-                            case 'transfer_to_savings_cbd':
-                                config = {title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.symbol.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance),
-                                    to: this.session.account.username,
-                                    disableTo: true,
-                                };
-                                break;
-                            case 'transfer_from_savings_cbd':
-                                config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
-                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.symbol.CBD, total_amount: Asset.parseString(this.state.user.savings_cbd_balance),
-                                };
-                                break;
-                            case 'transfer_from_savings_crea':
-                                config = {title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
-                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.savings_balance),
-                                };
-                                break;
-                            case 'transfer_to_vests':
-                                config = {title: this.lang.WALLET.CONVERT_CGY_TITLE,
-                                    text: this.lang.WALLET.CONVERT_CGY_TEXT, button: this.lang.BUTTON.TRANSFER,
-                                    nai: apiOptions.symbol.CREA, total_amount: Asset.parseString(this.state.user.balance),
-                                    to: this.session.account.username,
-                                    disableTo: true,
-                                };
-                                break;
-                            case 'transfer_cbd':
-                                config = {title: this.lang.WALLET.TRANSFER_CBD_TITLE,
-                                    text: this.lang.WALLET.TRANSFER_CBD_TEXT, button: this.lang.BUTTON.SEND,
-                                    nai: apiOptions.symbol.CBD, total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                config = {
+                                    title: this.lang.WALLET.TRANSFER_CREA_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_CREA_TEXT,
+                                    button: this.lang.BUTTON.CONFIRM,
+                                    nai: apiOptions.symbol.CREA,
+                                    total_amount: Asset.parseString(this.state.user.balance)
                                 };
                                 break;
 
+                            case 'transfer_to_savings_crea':
+                                config = {
+                                    title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT,
+                                    button: this.lang.BUTTON.TRANSFER,
+                                    nai: apiOptions.symbol.CREA,
+                                    total_amount: Asset.parseString(this.state.user.balance),
+                                    to: this.session.account.username,
+                                    disableTo: true
+                                };
+                                break;
+
+                            case 'transfer_to_savings_cbd':
+                                config = {
+                                    title: this.lang.WALLET.TRANSFER_TO_SAVINGS_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_TO_SAVINGS_TEXT,
+                                    button: this.lang.BUTTON.TRANSFER,
+                                    nai: apiOptions.symbol.CBD,
+                                    total_amount: Asset.parseString(this.state.user.cbd_balance),
+                                    to: this.session.account.username,
+                                    disableTo: true
+                                };
+                                break;
+
+                            case 'transfer_from_savings_cbd':
+                                config = {
+                                    title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
+                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT,
+                                    button: this.lang.BUTTON.TRANSFER,
+                                    nai: apiOptions.symbol.CBD,
+                                    total_amount: Asset.parseString(this.state.user.savings_cbd_balance)
+                                };
+                                break;
+
+                            case 'transfer_from_savings_crea':
+                                config = {
+                                    title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
+                                    text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT,
+                                    button: this.lang.BUTTON.TRANSFER,
+                                    nai: apiOptions.symbol.CREA,
+                                    total_amount: Asset.parseString(this.state.user.savings_balance)
+                                };
+                                break;
+
+                            case 'transfer_to_vests':
+                                config = {
+                                    title: this.lang.WALLET.CONVERT_CGY_TITLE,
+                                    text: this.lang.WALLET.CONVERT_CGY_TEXT,
+                                    button: this.lang.BUTTON.TRANSFER,
+                                    nai: apiOptions.symbol.CREA,
+                                    total_amount: Asset.parseString(this.state.user.balance),
+                                    to: this.session.account.username,
+                                    disableTo: true
+                                };
+                                break;
+
+                            case 'transfer_cbd':
+                                config = {
+                                    title: this.lang.WALLET.TRANSFER_CBD_TITLE,
+                                    text: this.lang.WALLET.TRANSFER_CBD_TEXT,
+                                    button: this.lang.BUTTON.SEND,
+                                    nai: apiOptions.symbol.CBD,
+                                    total_amount: Asset.parseString(this.state.user.cbd_balance)
+                                };
+                                break;
                         }
+
                         config.op = op;
                         walletModalSend.config = Object.assign(clone(defaultModalConfig), config);
                     },
-                    canWithdraw: function () {
+                    canWithdraw: function canWithdraw() {
                         return this.session && this.session.account.username == state.user.name;
                     },
-                    parseAsset: function (asset, maxDecimals = null, abbr = true) {
+                    parseAsset: function parseAsset(asset) {
+                        var maxDecimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+                        var abbr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
                         return Asset.parse(asset).toFriendlyString(maxDecimals, abbr);
                     },
                     openPost: showPost,
                     showProfile: showProfile,
-                    getJoinDate: function () {
-                        let date = new Date(this.state.user.created);
+                    getJoinDate: function getJoinDate() {
+                        var date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                     },
-                    getBuzz: function (reputation) {
+                    getBuzz: function getBuzz(reputation) {
                         return crea.formatter.reputation(reputation);
                     },
-                    getFeaturedImage: function (post) {
-                        let featuredImage = post.metadata.featuredImage;
+                    getFeaturedImage: function getFeaturedImage(post) {
+                        var featuredImage = post.metadata.featuredImage;
+
                         if (featuredImage && featuredImage.hash) {
                             return {
                                 url: apiOptions.ipfs + featuredImage.hash
-                            }
+                            };
                         } else if (featuredImage && featuredImage.url) {
                             return featuredImage;
                         }
 
                         return {};
                     },
-                    getTags: function (post) {
-                        let tags = post.metadata.tags;
+                    getTags: function getTags(post) {
+                        var tags = post.metadata.tags;
+                        var linkedTags = []; //Select only 8 first tags
 
-                        let linkedTags = [];
-
-                        //Select only 8 first tags
                         tags = tags.slice(0, 7);
                         tags.forEach(function (t) {
                             linkedTags.push('<a href="/search?page=1&query=' + encodeURIComponent(t) + '">' + t + '</a>');
                         });
-
                         return linkedTags.join(', ');
                     },
-                    getLinkedTags: function(tags, asString) {
+                    getLinkedTags: function getLinkedTags(tags, asString) {
                         //<a v-bind:href="'/popular/' + x">{{ x }}</a>
-                        let linkedTags = [];
+                        var linkedTags = [];
+
                         if (tags) {
                             tags.forEach(function (t) {
-                                linkedTags.push('<a href="/search?page=1&query=' + encodeURIComponent(t) + '">' + t + '</a>')
+                                linkedTags.push('<a href="/search?page=1&query=' + encodeURIComponent(t) + '">' + t + '</a>');
                             });
 
                             if (asString) {
@@ -407,30 +436,29 @@
 
                         return linkedTags;
                     },
-                    hasPaid: function (post) {
-                        let now = new Date();
-                        let payout = toLocaleDate(post.cashout_time);
+                    hasPaid: function hasPaid(post) {
+                        var now = new Date();
+                        var payout = toLocaleDate(post.cashout_time);
                         return now.getTime() > payout.getTime();
                     },
-                    getPayoutPostDate: function (post) {
-                        let date = toLocaleDate(post.cashout_time);
+                    getPayoutPostDate: function getPayoutPostDate(post) {
+                        var date = toLocaleDate(post.cashout_time);
+
                         if (this.hasPaid(post)) {
                             date = toLocaleDate(post.last_payout);
                         }
 
                         return moment(date).fromNow();
                     },
-                    hasPromotion: function (post) {
-                        let amount = Asset.parseString(post.promoted);
+                    hasPromotion: function hasPromotion(post) {
+                        var amount = Asset.parseString(post.promoted);
                         return amount.amount > 0;
                     },
-                    getPromotion: function (post) {
-                        let amount = Asset.parseString(post.promoted);
-
+                    getPromotion: function getPromotion(post) {
+                        var amount = Asset.parseString(post.promoted);
                         return '$ ' + amount.toPlainString();
                     },
-                    parseJSON: function (strJson) {
-
+                    parseJSON: function parseJSON(strJson) {
                         if (strJson && strJson.length > 0) {
                             try {
                                 return JSON.parse(strJson);
@@ -441,166 +469,175 @@
 
                         return {};
                     },
-                    getPayout: function (post) {
-                        let amount = Asset.parseString(post.pending_payout_value);
+                    getPayout: function getPayout(post) {
+                        var amount = Asset.parseString(post.pending_payout_value);
+
                         if (this.hasPaid(post)) {
                             amount = Asset.parseString(post.total_payout_value);
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
-                        }
+                        } //amount.amount = parseInt(amount.amount / 1000000000);
 
-                        //amount.amount = parseInt(amount.amount / 1000000000);
 
                         return '$ ' + amount.toPlainString();
                     },
-                    getPendingPayouts: function (post) {
-                        const PRICE_PER_CREA = Asset.parse({ amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(), nai: 'cbd'});
-                        const CBD_PRINT_RATE = this.state.props.cbd_print_rate;
-                        const CBD_PRINT_RATE_MAX = 10000;
+                    getPendingPayouts: function getPendingPayouts(post) {
+                        var PRICE_PER_CREA = Asset.parse({
+                            amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(),
+                            nai: 'cbd'
+                        });
+                        var CBD_PRINT_RATE = this.state.props.cbd_print_rate;
+                        var CBD_PRINT_RATE_MAX = 10000;
+                        var payout = Asset.parseString(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
 
-                        let payout = Asset.parseString(post.pending_payout_value);
-                        //payout.amount = parseInt(payout.amount / 1000000000);
-
-                        const PENDING_PAYOUT = payout;
-                        const PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
-                        const PENDING_PAYOUT_CBD = Asset.parse({ amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS, nai: 'cbd'});
-                        const PENDING_PAYOUT_CGY = Asset.parse({ amount: (PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat(), nai: 'cgy'});
-                        const PENDING_PAYOUT_PRINTED_CBD = Asset.parse({ amount: PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX), nai: 'cbd'});
-                        const PENDING_PAYOUT_PRINTED_CREA = Asset.parse({ amount: (PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat(), nai: 'crea'});
-
-                        return '(' + PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false) +
-                                ', ' + PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false) +
-                                ', ' + PENDING_PAYOUT_CGY.toFriendlyString(null, false);
-
+                        var PENDING_PAYOUT = payout;
+                        var PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
+                        var PENDING_PAYOUT_CBD = Asset.parse({
+                            amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS,
+                            nai: 'cbd'
+                        });
+                        var PENDING_PAYOUT_CGY = Asset.parse({
+                            amount: (PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat(),
+                            nai: 'cgy'
+                        });
+                        var PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
+                            amount: PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX),
+                            nai: 'cbd'
+                        });
+                        var PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
+                            amount: (PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat(),
+                            nai: 'crea'
+                        });
+                        return '(' + PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_CGY.toFriendlyString(null, false);
                     },
-                    dateFromNow(date) {
+                    dateFromNow: function dateFromNow(date) {
                         return moment(toLocaleDate(date)).fromNow();
                     },
-                    getFutureDate: function (date) {
+                    getFutureDate: function getFutureDate(date) {
                         return moment(toLocaleDate(date)).fromNow();
                     },
-                    onFollow: function (err, result) {
+                    onFollow: function onFollow(err, result) {
                         updateUserSession();
                     },
-                    onVote: function (err, result) {
+                    onVote: function onVote(err, result) {
                         updateUserSession();
                     },
-                    getLicense(flag) {
+                    getLicense: function getLicense(flag) {
                         if (flag) {
                             return License.fromFlag(flag);
                         }
 
                         return new License(LICENSE.FREE_CONTENT);
                     },
-                    getCGYReward() {
-                        let reward = parseFloat(this.state.user.reward_vesting_crea.split(' ')[0]);
+                    getCGYReward: function getCGYReward() {
+                        var reward = parseFloat(this.state.user.reward_vesting_crea.split(' ')[0]);
                         return reward + ' CGY';
                     },
-                    getCGYBalance() {
+                    getCGYBalance: function getCGYBalance() {
                         return vestingCrea(this.state.user, this.state.props);
                     },
-                    hasRewardBalance: function () {
-                        let crea = Asset.parseString(this.state.user.reward_crea_balance);
-                        let cbd = Asset.parseString(this.state.user.reward_cbd_balance);
-                        let vests = Asset.parseString(this.state.user.reward_vesting_balance);
+                    hasRewardBalance: function hasRewardBalance() {
+                        var crea = Asset.parseString(this.state.user.reward_crea_balance);
+                        var cbd = Asset.parseString(this.state.user.reward_cbd_balance);
+                        var vests = Asset.parseString(this.state.user.reward_vesting_balance);
                         return crea.amount > 0 || cbd.amount > 0 || vests.amount > 0;
                     },
-                    cancelPowerDown: function (event) {
+                    cancelPowerDown: function cancelPowerDown(event) {
                         cancelEventPropagation(event);
-
-                        let username = this.session.account.username;
-
+                        var username = this.session.account.username;
                         requireRoleKey(username, 'active', function (activeKey) {
                             globalLoading.show = true;
-                            let vests = new Vests(0);
-
+                            var vests = new Vests(0);
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;
+
                                 if (!catchError(err)) {
                                     updateUserSession();
                                 }
                             });
-
-                        })
-
+                        });
                     },
-                    navigateTo: function (event, tab) {
+                    navigateTo: function navigateTo(event, tab) {
                         cancelEventPropagation(event);
-
                         updateUrl('/@' + this.state.user.name + '/' + tab);
                         this.navbar.section = tab;
                     },
-                    isUserProfile: function () {
+                    isUserProfile: function isUserProfile() {
                         if (this.session) {
                             return this.session.account.username === state.user.name;
                         }
 
                         return false;
                     },
-                    onLoadAvatar: function (event) {
-                        let files = event.target.files;
+                    onLoadAvatar: function onLoadAvatar(event) {
+                        var files = event.target.files;
+
                         if (files.length > 0) {
                             globalLoading.show = true;
-                            let that = this;
-                            let file = files[0];
-
-                            let maximumSize = CONSTANTS.FILE_MAX_SIZE.PROFILE[file.type.toUpperCase().split('/')[0]];
-
+                            var that = this;
+                            var file = files[0];
+                            var maximumSize = CONSTANTS.FILE_MAX_SIZE.PROFILE[file.type.toUpperCase().split('/')[0]];
                             uploadToIpfs(files[0], maximumSize, function (err, file) {
                                 globalLoading.show = false;
+
                                 if (!catchError(err)) {
                                     Vue.set(that.profile, 'avatar', file);
                                 }
                             });
                         }
                     },
-                    loadAvatar: function (event) {
+                    loadAvatar: function loadAvatar(event) {
                         cancelEventPropagation(event);
-
                         $('#profile-edit-input-avatar').click();
                     },
-                    suggestPassword: function() {
+                    suggestPassword: function suggestPassword() {
                         this.changePass.newPass = 'P' + crea.formatter.createSuggestedPassword();
                     },
                     claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate,
-                    ignoreUser: function () {
+                    ignoreUser: function (_ignoreUser) {
+                        function ignoreUser() {
+                            return _ignoreUser.apply(this, arguments);
+                        }
 
+                        ignoreUser.toString = function () {
+                            return _ignoreUser.toString();
+                        };
+
+                        return ignoreUser;
+                    }(function () {
                         ignoreUser(this.state.user.name, true, function (err, result) {
                             updateUserSession();
                         });
-                    },
-                    changePassword: function () {
-                        let that = this;
+                    }),
+                    changePassword: function changePassword() {
+                        var that = this;
 
-                        let setError = function (error) {
+                        var setError = function setError(error) {
                             that.changePass.error = error;
                             globalLoading.show = false;
                         };
 
-                        globalLoading.show = true;
-                        //Check current password
-                        if (this.changePass.oldPass) {
+                        globalLoading.show = true; //Check current password
 
+                        if (this.changePass.oldPass) {
                             //Check if passwords match
                             if (this.changePass.newPass && this.changePass.newPass === this.changePass.matchedPass) {
-
                                 //Check radio inputs
                                 if (this.changePass.checkedLostPass && this.changePass.checkedStoredPass) {
-                                    let session = Session.create(this.changePass.username, this.changePass.oldPass);
+                                    var _session = Session.create(this.changePass.username, this.changePass.oldPass); //Check if current is valid
 
-                                    //Check if current is valid
-                                    session.login(function (err, result) {
+
+                                    _session.login(function (err, result) {
                                         if (err) {
                                             if (err === Errors.USER_LOGIN_ERROR) {
                                                 setError(that.lang.CHANGE_PASSWORD.ERROR_CURRENT_PASSWORD);
                                             }
                                         } else {
                                             //Current pass is valid
-
-                                            let keys = Account.generate(that.changePass.username, that.changePass.newPass).keys;
-
+                                            var keys = Account.generate(that.changePass.username, that.changePass.newPass).keys;
                                             sendAccountUpdate(null, keys, function (err, result) {
-                                                let s = Session.getAlive();
+                                                var s = Session.getAlive();
+
                                                 if (s) {
                                                     s.logout();
                                                     goTo('/');
@@ -608,19 +645,15 @@
                                             });
                                         }
                                     });
-
                                 } else {
                                     setError(that.lang.CHANGE_PASSWORD.ERROR_CONDITIONS);
                                 }
-
                             } else {
                                 setError(that.lang.CHANGE_PASSWORD.ERROR_MATCHED_PASSWORDS);
                             }
-
                         } else {
                             setError(that.lang.CHANGE_PASSWORD.ERROR_CURRENT_PASSWORD);
                         }
-
                     }
                 }
             });
@@ -638,12 +671,13 @@
         profileContainer.$forceUpdate();
         creaEvents.emit('crea.dom.ready');
     }
-
     /**
      *
      * @param state
      * @param {Session} session
      */
+
+
     function setUpModals(state, session) {
         if (session && session.account.username === state.user.name) {
             updateModalSendView(state, session);
@@ -652,10 +686,8 @@
     }
 
     function setUpRewards(rewardView, session, state) {
-
-        let rewardType = rewardView.replace('s', '').replace('-', '_');
-
-        let rewards = {
+        var rewardType = rewardView.replace('s', '').replace('-', '_');
+        var rewards = {
             rewards24Vests: 0,
             rewardsWeekVests: 0,
             totalRewardsVests: 0,
@@ -666,71 +698,70 @@
             rewardsWeekCBD: 0,
             totalRewardsCBD: 0
         };
+        var today = new Date();
+        var oneDay = 60 * 60 * 24 * 1000;
+        var yesterday = new Date(today.getTime() - oneDay).getTime();
+        var lastWeek = new Date(today.getTime() - 7 * oneDay).getTime();
+        var firstDate, finalDate;
+        var rewardsOp = [];
 
-        const today = new Date();
-        const oneDay = 60*60*24*1000;
-        const yesterday = new Date(today.getTime() - oneDay).getTime();
-        const lastWeek = new Date(today.getTime() - (7 * oneDay)).getTime();
+        state.user.transfer_history.sort(function (r1, r2) {
+            var d1 = toLocaleDate(r1[1].timestamp);
+            var d2 = toLocaleDate(r2[1].timestamp);
+            return d2.getTime() - d1.getTime();
+        });
 
-        let firstDate, finalDate;
-        let rewardsOp = [];
         state.user.transfer_history.forEach(function (item) {
-
             if (item[1].op[0] === 'author_reward' && rewardType === 'author_reward') {
-
                 if (!finalDate) {
                     finalDate = new Date(item[1].timestamp).getTime();
                 }
 
                 firstDate = new Date(item[1].timestamp).getTime();
+                var vest = Asset.parseString(item[1].op[1].vesting_payout);
 
-                const vest = Asset.parseString(item[1].op[1].vesting_payout);
-                const crea = Asset.parseString(item[1].op[1].crea_payout);
-                const cbd = Asset.parseString(item[1].op[1].cbd_payout);
+                var _crea = Asset.parseString(item[1].op[1].crea_payout);
+
+                var cbd = Asset.parseString(item[1].op[1].cbd_payout);
 
                 if (firstDate > lastWeek) {
                     if (firstDate > yesterday) {
                         rewards.rewards24Vests += vest.toFloat();
-                        rewards.rewards24Crea += crea.toFloat();
+                        rewards.rewards24Crea += _crea.toFloat();
                         rewards.rewards24CBD += cbd.toFloat();
                     }
 
                     rewards.rewardsWeekVests += vest.toFloat();
-                    rewards.rewardsWeekCrea += crea.toFloat();
+                    rewards.rewardsWeekCrea += _crea.toFloat();
                     rewards.rewardsWeekCBD += cbd.toFloat();
                 }
 
                 rewards.totalRewardsVests += vest.toFloat();
-                rewards.totalRewardsCrea += crea.toFloat();
+                rewards.totalRewardsCrea += _crea.toFloat();
                 rewards.totalRewardsCBD += cbd.toFloat();
-
                 rewardsOp.push(item);
             } else if (item[1].op[0] === 'curation_reward' && rewardType === 'curation_reward') {
-
                 if (!finalDate) {
                     finalDate = new Date(item[1].timestamp).getTime();
                 }
 
                 firstDate = new Date(item[1].timestamp).getTime();
 
-                const vest = Asset.parseString(item[1].op[1].reward);
+                var _vest = Asset.parseString(item[1].op[1].reward);
 
                 if (firstDate > lastWeek) {
                     if (firstDate > yesterday) {
-                        rewards.rewards24Vests += vest.toFloat();
+                        rewards.rewards24Vests += _vest.toFloat();
                     }
 
-                    rewards.rewardsWeekVests += vest.toFloat();
+                    rewards.rewardsWeekVests += _vest.toFloat();
                 }
 
-                rewards.totalRewardsVests += vest.toFloat();
-
+                rewards.totalRewardsVests += _vest.toFloat();
                 rewardsOp.push(item);
             }
         });
 
-
-        console.log(rewards.totalRewardsVests)
         if (!rewardsContainer[rewardView]) {
             rewardsContainer[rewardView] = new Vue({
                 el: '#profile-' + rewardView,
@@ -742,12 +773,22 @@
                     rewardsOp: rewardsOp
                 },
                 methods: {
-                    vestsToCgy: function (vests) {
+                    vestsToCgy: function (_vestsToCgy) {
+                        function vestsToCgy(_x) {
+                            return _vestsToCgy.apply(this, arguments);
+                        }
+
+                        vestsToCgy.toString = function () {
+                            return _vestsToCgy.toString();
+                        };
+
+                        return vestsToCgy;
+                    }(function (vests) {
                         return vestsToCgy(this.state, vests);
-                    },
+                    }),
                     parseAsset: Asset.parse,
-                    formatTime: function (date) {
-                        return moment(date).format('DD MMM HH:MM')
+                    formatTime: function formatTime(date) {
+                        return moment(date).format('DD MMM HH:MM');
                     }
                 }
             });
@@ -760,7 +801,6 @@
     }
 
     function setUpBlocked(session, account, blocked) {
-
         if (!blockedContainer) {
             blockedContainer = new Vue({
                 el: '#blocked-container',
@@ -771,26 +811,23 @@
                     blocked: blocked
                 },
                 methods: {
-                    unlock: function (user) {
-
+                    unlock: function unlock(user) {
                         ignoreUser(user, false, function (err, result) {
                             if (!catchError(err)) {
                                 updateUserSession();
                             }
-                        })
+                        });
                     }
                 }
-            })
+            });
         } else {
             blockedContainer.session = session;
             blockedContainer.account = account;
             blockedContainer.blocked = blocked;
         }
-
     }
 
     function setUpFollowing(state, session, account, following) {
-
         if (!followingContainer) {
             followingContainer = new Vue({
                 el: '#following-container',
@@ -802,11 +839,11 @@
                     following: following
                 },
                 methods: {
-                    onFollow: function () {
+                    onFollow: function onFollow() {
                         updateUserSession();
                     }
                 }
-            })
+            });
         } else {
             followingContainer.state = state;
             followingContainer.session = session;
@@ -816,7 +853,6 @@
     }
 
     function setUpFollowers(state, session, account, follower) {
-
         if (!followerContainer) {
             followerContainer = new Vue({
                 el: '#follower-container',
@@ -828,129 +864,114 @@
                     follower: follower
                 },
                 methods: {
-                    onFollow: function () {
+                    onFollow: function onFollow() {
                         updateUserSession();
                     }
                 }
-            })
+            });
         } else {
             followerContainer.state = state;
             followerContainer.session = session;
             followerContainer.account = account;
             followerContainer.follower = follower;
         }
-
     }
-
     /**
      *
      * @param {Session} session
      */
+
+
     function fetchRewards(session) {
-
-        let username = getPathPart().replace('@', '');
-
+        var username = getPathPart().replace('@', '');
         fetchUserState(username, 'transfers', function (err, state) {
             if (!catchError(err)) {
                 setUpRewards('author-rewards', session, state);
                 setUpRewards('curation-rewards', session, state);
             }
-        })
+        });
     }
 
     function fetchBlockeds(session, account) {
-
-        crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, followings) {
-            if (!catchError(err)) {
-                let accounts = [];
-
-                followings = followings.following;
-
-                followings.forEach(function (r) {
-                    if (r.follower === session.account.username) {
-                        if (!accounts.includes(r.following)) {
-                            accounts.push(r.following);
-                        }
-                    }
-                });
-
-                //Get blocked accounts;
-                if (accounts.length) {
-                    crea.api.getAccounts(accounts, function (err, blockeds) {
-                        if (!catchError(err)) {
-
-                            let data = {};
-                            for (let x = 0; x < blockeds.length; x++) {
-                                let c = blockeds[x];
-
-                                c.metadata = jsonify(c.json_metadata);
-                                data[c.name] = c;
+        if (session) {
+            crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, followings) {
+                if (!catchError(err)) {
+                    var accounts = [];
+                    followings = followings.following;
+                    followings.forEach(function (r) {
+                        if (r.follower === session.account.username) {
+                            if (!accounts.includes(r.following)) {
+                                accounts.push(r.following);
                             }
-
-                            setUpBlocked(session, account, data);
                         }
-                    })
-                } else {
-                    //Not blockeds
-                    console.log('Not blockeds');
-                    setUpBlocked(session, account, {});
-                }
+                    }); //Get blocked accounts;
 
-            }
-        })
-    }
+                    if (accounts.length) {
+                        crea.api.getAccounts(accounts, function (err, blockeds) {
+                            if (!catchError(err)) {
+                                var data = {};
 
-    function fetchFollowing(state, session, account) {
-        let onFetchFollowing = function (accountState) {
-            crea.api.getAccounts(accountState.user.followings, function (err, result) {
-                if (!catchError(err)) {
+                                for (var x = 0; x < blockeds.length; x++) {
+                                    var c = blockeds[x];
+                                    c.metadata = jsonify(c.json_metadata);
+                                    data[c.name] = c;
+                                }
 
-                    let followings = {};
-
-                    result.forEach(function (a) {
-
-                        a.metadata = jsonify(a.json_metadata);
-                        a.metadata.avatar = a.metadata.avatar || {};
-                        followings[a.name] = a;
-                    });
-
-                    setUpFollowing(state, session, account, followings);
-                }
-            });
-        };
-
-        if (state.user.name === account.user.name) {
-            onFetchFollowing(account);
-        } else {
-            crea.api.getFollowing(state.user.name, '', 'blog', 1000, function (err, result) {
-                if (!catchError(err)) {
-                    let followings = [];
-                    result.following.forEach(function (f) {
-                        followings.push(f.following);
-                    });
-                    state.user.followings = followings;
-                    onFetchFollowing(state);
-
+                                setUpBlocked(session, account, data);
+                            }
+                        });
+                    } else {
+                        //Not blockeds
+                        console.log('Not blockeds');
+                        setUpBlocked(session, account, {});
+                    }
                 }
             });
         }
 
     }
-    
+
+    function fetchFollowing(state, session, account) {
+        var onFetchFollowing = function onFetchFollowing(accountState) {
+            crea.api.getAccounts(accountState.user.followings, function (err, result) {
+                if (!catchError(err)) {
+                    var followings = {};
+                    result.forEach(function (a) {
+                        a.metadata = jsonify(a.json_metadata);
+                        a.metadata.avatar = a.metadata.avatar || {};
+                        followings[a.name] = a;
+                    });
+                    setUpFollowing(state, session, account, followings);
+                }
+            });
+        };
+
+        if (account && state.user.name === account.user.name) {
+            onFetchFollowing(account);
+        } else {
+            crea.api.getFollowing(state.user.name, '', 'blog', 1000, function (err, result) {
+                if (!catchError(err)) {
+                    var followings = [];
+                    result.following.forEach(function (f) {
+                        followings.push(f.following);
+                    });
+                    state.user.followings = followings;
+                    onFetchFollowing(state);
+                }
+            });
+        }
+    }
+
     function fetchFollowers(state, session, account) {
-        let onFetchFollowers = function (accountState) {
+        var onFetchFollowers = function onFetchFollowers(accountState) {
             crea.api.getAccounts(accountState.user.followers, function (err, result) {
                 if (!catchError(err)) {
-
-                    let followers = {};
-
+                    var followers = {};
                     result.forEach(function (a) {
-
                         a.metadata = jsonify(a.json_metadata);
                         a.metadata.avatar = a.metadata.avatar || {};
                         followers[a.name] = a;
                     });
-
                     setUpFollowers(state, session, account, followers);
                 }
             });
@@ -958,18 +979,15 @@
 
         crea.api.getFollowers(state.user.name, '', 'blog', 1000, function (err, result) {
             if (!catchError(err)) {
-                let followers = [];
+                var followers = [];
                 result.followers.forEach(function (f) {
                     followers.push(f.follower);
                 });
                 state.user.followers = followers;
                 onFetchFollowers(state);
-
             }
         });
-
     }
-
     /**
      *
      * @param state
@@ -977,9 +995,11 @@
      * @param account
      * @param usernameFilter
      */
+
+
     function detectNav(state, session, account, usernameFilter) {
-        let nav = getPathPart(1);
-        let walletNav = 'balances';
+        var nav = getPathPart(1);
+        var walletNav = 'balances';
 
         if (!nav || nav.isEmpty()) {
             nav = 'projects';
@@ -994,7 +1014,6 @@
         }
 
         nav = nav.toLowerCase();
-
         updateProfileView(state, session, account, usernameFilter, nav, walletNav);
         fetchRewards(session);
         fetchBlockeds(session, account);
@@ -1003,80 +1022,84 @@
     }
 
     function sendAccountUpdate(event, keys, callback) {
-        let lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
-        let now = new Date();
-        let time = now.getTime() - lastUpdate.getTime();
+        var lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
+        var now = new Date();
+        var time = now.getTime() - lastUpdate.getTime();
 
         if (time >= CONSTANTS.ACCOUNT.UPDATE_THRESHOLD) {
-            let session = Session.getAlive();
+            var session = Session.getAlive();
 
             if (session) {
-                let metadata = profileContainer.profile;
+                var metadata = profileContainer.profile;
                 metadata.tags = $('#profile-edit-tags').val().split(' ');
                 metadata = jsonstring(metadata);
 
                 if (!keys) {
-                    let user = profileContainer.state.user;
+                    var user = profileContainer.state.user;
                     keys = {
-                        memo: { pub: user.memo_key },
-                        active: { pub: user.active.key_auths[0][0] },
-                        posting: { pub: user.posting.key_auths[0][0] },
-                        owner: { pub: user.owner.key_auths[0][0] },
-                    }
+                        memo: {
+                            pub: user.memo_key
+                        },
+                        active: {
+                            pub: user.active.key_auths[0][0]
+                        },
+                        posting: {
+                            pub: user.posting.key_auths[0][0]
+                        },
+                        owner: {
+                            pub: user.owner.key_auths[0][0]
+                        }
+                    };
                 }
 
                 requireRoleKey(session.account.username, 'owner', function (ownerKey) {
+                    crea.broadcast.accountUpdate(ownerKey, session.account.username, createAuth(keys.owner.pub), createAuth(keys.active.pub), createAuth(keys.posting.pub), keys.memo.pub, metadata, function (err, data) {
+                        globalLoading.show = false;
 
-                    crea.broadcast.accountUpdate(ownerKey, session.account.username,
-                        createAuth(keys.owner.pub), createAuth(keys.active.pub),
-                        createAuth(keys.posting.pub), keys.memo.pub, metadata,
-                        function (err, data) {
-                            globalLoading.show = false;
+                        if (err) {
+                            if (callback) {
+                                callback(err);
+                            }
+                        } else {
+                            updateUserSession();
 
-                            if (err) {
-                                if (callback) {
-                                    callback(err);
-                                }
-                            } else {
-                                updateUserSession();
-                                if (callback) {
-                                    callback(null, data);
-                                }
+                            if (callback) {
+                                callback(null, data);
                             }
                         }
-                    )
-
+                    });
                 });
-
             } else {
                 globalLoading.show = false;
+
                 if (callback) {
                     callback(Errors.USER_NOT_LOGGED);
                 }
             }
         } else {
             //Show alert to avoid update
-            let title = getLanguage().PROFILE.UPDATE_ACCOUNT_TITLE;
-            let message = String.format(getLanguage().PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
+            var title = getLanguage().PROFILE.UPDATE_ACCOUNT_TITLE;
+            var message = String.format(getLanguage().PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
             showAlert(title, message);
         }
     }
-
     /**
      *
      * @param {string} username
      */
-    function fetchHistory(username) {
 
+
+    function fetchHistory(username) {
         setTimeout(function () {
             crea.api.getAccountHistory(username, -1, 50, function (err, result) {
                 if (!catchError(err)) {
                     result.history = result.history.reverse();
-                    let accounts = [];
-                    let history = [];
+                    var accounts = [];
+                    var history = [];
                     result.history.forEach(function (h) {
                         h = h[1];
-                        let addIfNotExists = function(account) {
+
+                        var addIfNotExists = function addIfNotExists(account) {
                             if (account && accounts.indexOf(account) < 0) {
                                 accounts.push(account);
                             }
@@ -1108,14 +1131,13 @@
 
                         history.push(h);
                     });
-
                     crea.api.getAccounts(accounts, function (err, result) {
                         if (err) {
                             console.error(err);
                         } else {
-                            let opsAccounts = {};
+                            var opsAccounts = {};
                             accounts.forEach(function (u) {
-                                for (let x = 0; x < result.length; x++) {
+                                for (var x = 0; x < result.length; x++) {
                                     if (u == result[x].name) {
                                         opsAccounts[u] = result[x];
                                         opsAccounts[u].metadata = jsonify(opsAccounts[u].json_metadata);
@@ -1124,25 +1146,27 @@
                                     }
                                 }
                             });
-
                             profileContainer.history.data = history;
                             profileContainer.history.accounts = opsAccounts;
                         }
-                    })
-
+                    });
                 }
-            })
+            });
         });
     }
-
     /**
      *
      * @param {string} username
      * @param {string|Function} view
      * @param {Function} callback
      */
-    function fetchUserState(username, view = null, callback = null) {
-        let stateUrl;
+
+
+    function fetchUserState(username) {
+        var view = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+        var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+        var stateUrl;
+
         if (!username.startsWith('/@')) {
             stateUrl = '/@' + username;
         } else {
@@ -1158,14 +1182,12 @@
         }
 
         crea.api.getState(stateUrl, function (err, state) {
-
             if (err) {
                 if (callback) {
                     callback(err);
                 }
-            } else  {
-                let accounts = Object.keys(state.accounts);
-
+            } else {
+                var accounts = Object.keys(state.accounts);
                 accounts.forEach(function (k) {
                     state.accounts[k].metadata = jsonify(state.accounts[k].json_metadata);
                     state.accounts[k].metadata.avatar = state.accounts[k].metadata.avatar || {};
@@ -1173,10 +1195,9 @@
 
                 if (state.accounts[username]) {
                     state.user = state.accounts[username];
-                    crea.formatter.estimateAccountValue(state.user)
-                        .then(function (value) {
-                            state.user.estimate_account_value = value;
-                        });
+                    crea.formatter.estimateAccountValue(state.user).then(function (value) {
+                        state.user.estimate_account_value = value;
+                    });
                 }
 
                 if (callback) {
@@ -1187,38 +1208,33 @@
     }
 
     function handleView(session, account) {
-        let profileName = getPathPart();
+        var profileName = getPathPart();
         profileName = profileName.replace('@', '');
+
         if (profileName) {
             fetchHistory(profileName);
 
-            let onState = function (err, state) {
+            var onState = function onState(err, state) {
                 if (!catchError(err)) {
-                    let posts = Object.keys(state.content);
+                    var posts = Object.keys(state.content);
 
-                    posts.forEach(function (k) {
-                        state.content[k].metadata = jsonify(state.content[k].json_metadata);
+                    for (var x = 0; x < posts.length; x++) {
+                        var k = posts[x];
+                        state.content[k] = parsePost(state.content[k]);
 
-                        state.content[k].down_votes = [];
-                        state.content[k].up_votes = [];
-                        state.content[k].active_votes.forEach(function (v) {
-                            if (v.percent <= -10000) {
-                                state.content[k].down_votes.push(v);
-                            } else {
-                                state.content[k].up_votes.push(v);
-                            }
-                        });
-                    });
+                    }
 
                     state.discussion_idx = {};
                     posts.sort(function (k1, k2) {
-                        let d1 = new Date(state.content[k1].created);
-                        let d2 = new Date(state.content[k2].created);
-
+                        var d1 = new Date(state.content[k1].created);
+                        var d2 = new Date(state.content[k2].created);
                         return d2.getTime() - d1.getTime();
                     });
 
                     state.discussion_idx[''] = posts;
+
+                    var contentArray = state.discussion_idx[''];
+                    lastPage = state.content[contentArray[contentArray.length - 1]];
 
                     detectNav(state, session, account, profileName);
                     setUpModals(state, session);
@@ -1227,7 +1243,7 @@
 
             if (session && account) {
                 if (session.account.username === profileName) {
-                    let state = clone(account);
+                    var state = clone(account);
                     onState(null, state);
                 } else {
                     fetchUserState(profileName, onState);
@@ -1238,29 +1254,25 @@
         }
     }
 
-    function claimRewards (event) {
+    function claimRewards(event) {
         if (event) {
             event.preventDefault();
         }
 
-        let creaBalance = profileContainer.state.user.reward_crea_balance;
-        let cbd = profileContainer.state.user.reward_cbd_balance;
-        let cgy = profileContainer.state.user.reward_vesting_balance;
-
+        var creaBalance = profileContainer.state.user.reward_crea_balance;
+        var cbd = profileContainer.state.user.reward_cbd_balance;
+        var cgy = profileContainer.state.user.reward_vesting_balance;
         requireRoleKey(profileContainer.session.account.username, 'posting', function (activeKey) {
             globalLoading.show = true;
-            crea.broadcast.claimRewardBalance(activeKey,
-                profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
-                    globalLoading.show = false;
+            crea.broadcast.claimRewardBalance(activeKey, profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
+                globalLoading.show = false;
 
-                    if (!catchError(err)) {
-                        updateUserSession();
-                    }
-                })
+                if (!catchError(err)) {
+                    updateUserSession();
+                }
+            });
         });
-
     }
-
     /**
      *
      * @param {string} wif
@@ -1271,6 +1283,8 @@
      * @param {string} [memo]
      * @param {Function} [callback]
      */
+
+
     function transfer(wif, op, session, to, amount, memo, callback) {
         if (typeof memo === 'function') {
             callback = memo;
@@ -1278,26 +1292,29 @@
         }
 
         if (session) {
-            let from = session.account.username;
+            var from = session.account.username;
 
             switch (op) {
                 case CONSTANTS.TRANSFER.TRANSFER_CREA:
                 case CONSTANTS.TRANSFER.TRANSFER_CBD:
                     crea.broadcast.transfer(wif, from, to, amount, memo, callback);
                     break;
+
                 case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CREA:
                 case CONSTANTS.TRANSFER.TRANSFER_TO_SAVINGS_CBD:
                     crea.broadcast.transferToSavings(wif, from, to, amount, memo, callback);
                     break;
+
                 case CONSTANTS.TRANSFER.TRANSFER_FROM_SAVINGS_CREA:
                 case CONSTANTS.TRANSFER.TRANSFER_FROM_SAVINGS_CBD:
                     crea.broadcast.transferFromSavings(wif, from, parseInt(new Date().getTime() / 1000), to, amount, memo, callback);
                     break;
+
                 case CONSTANTS.TRANSFER.TRANSFER_TO_VESTS:
                     crea.broadcast.transferToVesting(wif, from, to, amount, callback);
                     break;
             }
-        } else if(callback) {
+        } else if (callback) {
             callback(Errors.USER_NOT_LOGGED);
         }
     }
@@ -1326,7 +1343,51 @@
     }
 
     creaEvents.on('crea.session.login', handleSession);
-
     creaEvents.on('crea.session.update', handleSession);
 
+    var onScrollCalling;
+    var lastPage;
+    creaEvents.on('crea.scroll.bottom', function () {
+        if (!onScrollCalling) {
+            onScrollCalling = true;
+
+            if (lastPage) {
+                var beforeDate = new Date().toISOString().replace('Z', '');
+                crea.api.getDiscussionsByAuthorBeforeDate(lastPage.author, lastPage.permlink, beforeDate, 21, function (err, result) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        //Get new accounts
+                        var discussions = result.discussions;
+
+                        //Remove first duplicate post
+                        discussions.shift();
+
+                        //Sort discussions
+                        discussions.sort(function (k1, k2) {
+                            var d1 = toLocaleDate(k1.created);
+                            var d2 = toLocaleDate(k2.created);
+                            return d2.getTime() - d1.getTime();
+                        });
+
+                        for (var x = 0; x < discussions.length; x++) {
+                            var d = parsePost(discussions[x]);
+
+                            var permlink = d.author + '/' + d.permlink;
+                            profileContainer.state.content[permlink] = d;
+                            profileContainer.state.discussion_idx[''].push(permlink);
+                        }
+
+                        var contentArray = profileContainer.state.discussion_idx[''];
+                        lastPage = profileContainer.state.content[contentArray[contentArray.length - 1]];
+
+                        profileContainer.$forceUpdate();
+
+                        onScrollCalling = false;
+                    }
+                })
+            }
+        }
+
+    });
 })();
