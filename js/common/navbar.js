@@ -181,6 +181,7 @@
 
         var filter = resolveFilter(urlFilter);
         updateUrl(urlFilter);
+
         crea.api.getState(filter, function (err, urlState) {
             if (!catchError(err)) {
                 if (isUserFeed()) {
@@ -274,6 +275,10 @@
     function retrievePromotedContent(event) {
         retrieveContent(event, "/promoted");
     }
+
+    creaEvents.on('crea.posts', function () {
+        navbarContainer.nav = getPathPart();
+    });
 
     creaEvents.on('crea.session.update', function (session, account) {
         updateNavbarSession(session, account);
