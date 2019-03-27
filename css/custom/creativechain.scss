@@ -299,6 +299,11 @@ a:hover {
   .menu-horizontal {
     li.active {
       a {
+        color: $borde-dropdown-price;
+      }
+    }
+    li {
+      a {
         color: #999999;
       }
     }
