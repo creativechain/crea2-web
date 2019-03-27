@@ -138,6 +138,22 @@ function resolveFilter(filter) {
     return filter;
 }
 
+/**
+ *
+ * @returns {boolean}
+ */
+function isInHome() {
+    var filters = ['/hot', '/trending', '/trending30', '/created', '/promoted', '/votes', '/actives', '/cashout', '/responses', '/payout', '/payout_comments', '/skyrockets', '/popular', '/now']; //Check if path is user feed
+
+    var s = Session.getAlive();
+
+    if (s && isUserFeed(s.account.username)) {
+        return true;
+    }
+
+    return filters.includes(window.location.pathname);
+}
+
 function createBlockchainAccount(username, password, callback) {
     var keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
     refreshAccessToken(function (accessToken) {

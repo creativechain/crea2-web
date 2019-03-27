@@ -5,6 +5,7 @@
  */
 (function () {
     var navbarContainer;
+
     var navbarSearch = new Vue({
         el: '#navbar-search',
         data: {
@@ -119,7 +120,7 @@
                             });
                         }
                     }),
-                    isUserFeed: isUserFeed(),
+                    isUserFeed: isUserFeed,
                     checkUsername: checkUsername,
                     goTo: goTo,
                     getDefaultAvatar: R.getAvatar,
@@ -132,6 +133,30 @@
         } else {
             navbarContainer.session = session;
             navbarContainer.user = userData ? userData.user : {};
+        }
+
+        if (!navbarMobile) {
+            navbarMobile = new Vue({
+                el: '#navbar-mobile',
+                data: {
+                    lang: getLanguage(),
+                    session: session,
+                    user: userData ? userData.user : {},
+                    nav: getPathPart()
+                },
+                methods: {
+                    isUserFeed: isUserFeed,
+                    goTo: goTo,
+                    getDefaultAvatar: R.getAvatar,
+                    retrieveNowContent: retrieveNewContent,
+                    retrieveTrendingContent: retrieveTrendingContent,
+                    retrieveHotContent: retrieveHotContent,
+                    retrievePromotedContent: retrievePromotedContent
+                }
+            });
+        } else {
+            navbarMobile.session = session;
+            navbarMobile.user = userData ? userData.user : {};
         }
     }
 
@@ -156,23 +181,6 @@
         } else {
             navbarContainer.loginForm.username.error = getLanguage().ERROR.INVALID_USERNAME;
         }
-    }
-    /**
-     *
-     * @returns {boolean}
-     */
-
-
-    function isInHome() {
-        var filters = ['/hot', '/trending', '/trending30', '/created', '/promoted', '/votes', '/actives', '/cashout', '/responses', '/payout', '/payout_comments', '/skyrockets', '/popular', '/now']; //Check if path is user feed
-
-        var s = Session.getAlive();
-
-        if (s && isUserFeed(s.account.username)) {
-            return true;
-        }
-
-        return filters.includes(window.location.pathname);
     }
 
     function retrieveContent(event, urlFilter) {
@@ -284,13 +292,16 @@
     creaEvents.on('crea.session.update', function (session, account) {
         updateNavbarSession(session, account);
     });
+
     creaEvents.on('crea.session.login', function (session, account) {
         updateNavbarSession(session, account);
     });
+
     creaEvents.on('crea.session.logout', function () {
         updateNavbarSession(false, false);
         creaEvents.emit('crea.modal.ready');
     });
+
     creaEvents.on('crea.content.filter', function (filter) {
         if (!filter.startsWith('/')) {
             filter = '/' + filter;
