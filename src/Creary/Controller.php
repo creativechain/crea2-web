@@ -66,6 +66,7 @@ class Controller
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
+     * @throws \Exception
      */
     public function handle() {
         $requestUri = $_SERVER['REQUEST_URI'];
@@ -79,7 +80,10 @@ class Controller
 
         }
 
-        return $this->viewRender->render($view);
+        $language = $this->getLanguage();
+        return $this->viewRender->render($view, array(
+            'lang' => $language
+        ));
     }
 
     /**
