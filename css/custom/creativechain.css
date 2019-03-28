@@ -2364,7 +2364,7 @@ img {
     padding: 0; }
 
   #body .navbar-filter.mobile {
-    margin-top: 45px; } }
+    margin-top: 0; } }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0 !important; }
