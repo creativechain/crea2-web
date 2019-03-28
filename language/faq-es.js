@@ -247,7 +247,7 @@ faq.es = {
             ],
             "¿Cuánto cuestan las transacciones de CREA a otros usuarios?": ["No hay tarifas por ningún tipo de transferencia o conversión ( Energize o De-Energize) dentro de la red de Crea Network. "],
             "¿En qué intercambios puedes encontrar CREA?": ["Puedes encontrar en https://creaproject.io/buy/ la lista completa de exchanges donde comprar o intercambiar tus tokens con otros tokens o pasarlos a monedas fiat como el Euro o el Dollar. "],
-            "¿Cuándo puedo reclamar mis recompensas?": ["El periodo de adquisición de una recompensa es de 7 días. Finalizado este periodo podrás liquidar la recompensa haciendo click en el botón amarillo que se muestra sobre tu wallet. "],
+            "¿Cuándo puedo reclamar mis recompensas?": ["El periodo de adquisición de una recompensa es de 10 días. Finalizado este periodo podrás liquidar la recompensa haciendo click en el botón amarillo que se muestra sobre tu wallet. "],
             "¿Qué es el CREA Energy delegado?": [
                 "Se puede delegar CREA Energy CGY a otros usuarios de la red otorgando todo el poder derivado de tener en tu posesión ese CGY.  Sin embargo, los usuarios no pueden hacer De-Energize para retirar ese CGY delegado, ya que todavía pertenece al propietario original.",
                 "El CREA Energy delegada aparece en el wallet de un usuario debajo de su balance de de CGY real entre paréntesis."
@@ -301,7 +301,7 @@ faq.es = {
             "¿1 CREA dollar (CBD) siempre valdrá $ 1.00 USD?": ["El valor de mercado de un CBD está determinado por la oferta y la demanda del token. Por lo tanto, es posible que 1 CBD valga más o menos que 1 USD dependiendo de las condiciones del mercado en ese momento."],
             "¿Cuántos nuevos tokens genera la cadena de bloques?": ["Con el lanzamiento de Crea 2.0 la red comenzó a crear nuevos tokens a una tasa de inflación anual del 7%. La tasa de inflación disminuye a una tasa de 0.01% cada 300,000 bloques, o alrededor de 0.35% por año. La inflación continuará disminuyendo a este ritmo hasta que la tasa de inflación general alcance el 1% (Esto tomará aproximadamente 20 años) Consulta este post para conocer más detalles del sistema de emisión de tokens. (link) "],
             "¿Qué representan los importes en dólares para pagos pendientes?": [
-                "Los montos en dólares junto a las publicaciones y comentarios son estimaciones del pago potencial que se producirán cuando finalice el período de pago de 7 días, según la actividad de votación actual y el precio de CREA. Por ello estos montos de pago potenciales pueden fluctuar hacia arriba o hacia abajo hasta que finalice el período de pago.",
+                "Los montos en dólares junto a las publicaciones y comentarios son estimaciones del pago potencial que se producirán cuando finalice el período de pago de 10 días, según la actividad de votación actual y el precio de CREA. Por ello estos montos de pago potenciales pueden fluctuar hacia arriba o hacia abajo hasta que finalice el período de pago.",
                 "Los pagos se realizan en una combinación de CGY y CBD. A veces, la blockchain puede sustituir CREA en lugar de los CGY según las condiciones del mercado.",
                 "La Blockchain calcula el valor en dólares de CREA y CGY según el precio promedio de los últimos 3.5 días de CREA informado siempre por los testigos. "
             ],

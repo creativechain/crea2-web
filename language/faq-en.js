@@ -283,7 +283,6 @@ faq.en = {
                 "Master password",
                 "The master password is used to manage all the previous keys. A hashing function calculates the corresponding private and public keys based on the master password, the account name and the key type.",
                 "The master password allows you to recover all the private keys of a user account.",
-                "Do not use the master password to log on to creary.net or any other application in the Crea network. Never copy the master password in any publication and do not share it in social networks using messaging or mail systems or other social networks.",
                 "Use the lower privilege keys (Publication Key or Active Key to maintain the security of your account.)"
             ],
             "Are my CREA and CREA Energy tokens insured in case someone hacks into your device or account?": [
@@ -311,7 +310,7 @@ faq.en = {
             ],
             "Why don't my upvotes have an effect on a post's rewards?": [
                 "Users with more CREA Energy (CGY) are going to have a larger influence on the rewards than users with less CGY. Often, one like from a user with a lot of CGY can have more impact than 100 votes from users with a small amount of CGY.",
-                "But don\u2019t worry, unity is strength, if your vote alone doesn\u2019t have an immediate effect, when added together with all the other votes at the end of the 7 day payment period, they can affect the final payment.",
+                "But don\u2019t worry, unity is strength, if your vote alone doesn\u2019t have an immediate effect, when added together with all the other votes at the end of the 10 day payment period, they can affect the final payment.",
                 "If you want your votes to have more influence, you will have to get more CGY by publishing content, curating content or Energize more CREA to get CGY. If you do not have CREA to Energize and increase your voting power, you will have to get it in the exchanges and send it to your CREA wallet in creary.net."
             ],
             "Do I get curation rewards for downvoting posts or comments?": ["No. Since downvoting reduces the rewards on a post/comment, it does not earn curation rewards."],
@@ -344,7 +343,7 @@ faq.en = {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],
             "How long does it take to transfer tokens between users within the Crea network?": ["A transfer of tokens between accounts will normally take 3 seconds. The crea network is one of the fastest cryptocurrency payment networks in the blockchain ecosystem. For example, transactions in Bitcoin can take at least 10 minutes."],
             "What do dollar amounts represent for pending payments?": [
-                "The amounts in dollars indicated in the publications and comments are estimates of the potential payment that will occur when the 7-day payment period ends, according to the current voting activity and the CREA price. Therefore, these potential payment amounts may fluctuate up or down until the payment period ends.",
+                "The amounts in dollars indicated in the publications and comments are estimates of the potential payment that will occur when the 10-day payment period ends, according to the current voting activity and the CREA price. Therefore, these potential payment amounts may fluctuate up or down until the payment period ends.",
                 "Payments are made in a combination of CGY and CBD. Sometimes, the blockchain can substitute CREA instead of the CGY according to market conditions.",
                 "The Blockchain calculates the value in dollars of CREA and CGY according to the average price of the last 3.5 days of CREA always informed by the witnesses."
             ],

@@ -13,7 +13,7 @@
         </div>
     </section>
 
-    <section v-cloak id="navbar-mobile" class="cta cta-4 space--xxs border--bottom d-block d-sm-block d-md-none navbar-filter">
+    <section v-cloak id="navbar-mobile" class="cta cta-4 space--xxs border--bottom d-block d-sm-block d-md-none navbar-filter mobile">
         <div class="container post-container-home">
             <div class="row align-items-end">
                 <div class="col-md-12 text-center">
