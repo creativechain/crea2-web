@@ -849,7 +849,7 @@ Vue.component('btn-follow', {
     },
     data: function data() {
         return {
-            lang: getLanguage(),
+            lang: lang,
             over: false,
             states: FOLLOW_STATE,
             state: FOLLOW_STATE.NO_FOLLOWING,

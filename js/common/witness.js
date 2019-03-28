@@ -11,7 +11,7 @@
             witnessContainer = new Vue({
                 el: '#witnesses',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     account: account,
                     state: state

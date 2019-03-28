@@ -9,7 +9,7 @@
     var navbarSearch = new Vue({
         el: '#navbar-search',
         data: {
-            lang: getLanguage(),
+            lang: lang,
             search: null,
             page: 1
         },
@@ -41,7 +41,7 @@
     var navbarRightMenu = new Vue({
         el: '#navbar-right-menu',
         data: {
-            lang: getLanguage()
+            lang: lang
         }
     });
     /**
@@ -55,7 +55,7 @@
             navbarContainer = new Vue({
                 el: '#navbar-container',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     user: userData ? userData.user : {},
                     nav: getPathPart(),
@@ -134,30 +134,6 @@
             navbarContainer.session = session;
             navbarContainer.user = userData ? userData.user : {};
         }
-
-        if (!navbarMobile) {
-            navbarMobile = new Vue({
-                el: '#navbar-mobile',
-                data: {
-                    lang: getLanguage(),
-                    session: session,
-                    user: userData ? userData.user : {},
-                    nav: getPathPart()
-                },
-                methods: {
-                    isUserFeed: isUserFeed,
-                    goTo: goTo,
-                    getDefaultAvatar: R.getAvatar,
-                    retrieveNowContent: retrieveNewContent,
-                    retrieveTrendingContent: retrieveTrendingContent,
-                    retrieveHotContent: retrieveHotContent,
-                    retrievePromotedContent: retrievePromotedContent
-                }
-            });
-        } else {
-            navbarMobile.session = session;
-            navbarMobile.user = userData ? userData.user : {};
-        }
     }
 
     function checkUsername(event) {
@@ -171,15 +147,15 @@
             crea.api.lookupAccountNames(accounts, function (err, result) {
                 if (err) {
                     console.error(err);
-                    navbarContainer.loginForm.username.error = getLanguage().ERROR.INVALID_USERNAME;
+                    navbarContainer.loginForm.username.error = lang.ERROR.INVALID_USERNAME;
                 } else if (result[0] == null) {
-                    navbarContainer.loginForm.username.error = getLanguage().ERROR.USERNAME_NOT_EXISTS;
+                    navbarContainer.loginForm.username.error = lang.ERROR.USERNAME_NOT_EXISTS;
                 } else {
                     navbarContainer.loginForm.username.error = null;
                 }
             });
         } else {
-            navbarContainer.loginForm.username.error = getLanguage().ERROR.INVALID_USERNAME;
+            navbarContainer.loginForm.username.error = lang.ERROR.INVALID_USERNAME;
         }
     }
 

@@ -3,5 +3,6 @@ resources
 .htaccess
 webconfig.json
 /vendor/
+/var/
 composer.lock
 robots.txt

@@ -11,7 +11,6 @@
     var followerContainer;
     var walletModalSend;
     var walletModalDeEnergize;
-    var lang;
     var defaultModalConfig;
 
     function updateModalDeEnergize(state, session) {
@@ -24,14 +23,14 @@
         var withdrawNote = '';
 
         if (toWithdraw.amount - withdrawn.amount > 0) {
-            withdrawNote = String.format(getLanguage().WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
+            withdrawNote = String.format(lang.WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
         }
 
         if (!walletModalDeEnergize) {
             walletModalDeEnergize = new Vue({
                 el: '#wallet-de-energize',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     state: state,
                     maxPowerDown: maxPowerDown,
@@ -102,7 +101,7 @@
                     CONSTANTS: CONSTANTS,
                     session: session,
                     state: state,
-                    lang: getLanguage(),
+                    lang: lang,
                     from: state.user.name,
                     amount: 0,
                     memo: '',
@@ -213,7 +212,7 @@
         var nextDeEnergize = null;
 
         if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
-            nextDeEnergize = String.format(getLanguage().WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+            nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
         }
 
         if (!profileContainer) {
@@ -221,7 +220,7 @@
                 el: '#profile-container',
                 data: {
                     CONSTANTS: CONSTANTS,
-                    lang: getLanguage(),
+                    lang: lang,
                     isoLangs: isoLangs,
                     session: session,
                     account: account,
@@ -766,7 +765,7 @@
             rewardsContainer[rewardView] = new Vue({
                 el: '#profile-' + rewardView,
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     state: state,
                     rewards: rewards,
@@ -805,7 +804,7 @@
             blockedContainer = new Vue({
                 el: '#blocked-container',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     account: account,
                     blocked: blocked
@@ -832,7 +831,7 @@
             followingContainer = new Vue({
                 el: '#following-container',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     state: state,
                     session: session,
                     account: account,
@@ -857,7 +856,7 @@
             followerContainer = new Vue({
                 el: '#follower-container',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     state: state,
                     session: session,
                     account: account,
@@ -1078,8 +1077,8 @@
             }
         } else {
             //Show alert to avoid update
-            var title = getLanguage().PROFILE.UPDATE_ACCOUNT_TITLE;
-            var message = String.format(getLanguage().PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
+            var title = lang.PROFILE.UPDATE_ACCOUNT_TITLE;
+            var message = String.format(lang.PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
             showAlert(title, message);
         }
     }
@@ -1324,12 +1323,12 @@
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
 
             if (session.account.username === account.user.name) {
-                lang = getLanguage();
+                lang = lang;
                 defaultModalConfig = {
                     op: 'transfer_crea',
-                    title: getLanguage().WALLET.TRANSFER_CREA_TITLE,
-                    text: getLanguage().WALLET.TRANSFER_CREA_TEXT,
-                    button: getLanguage().BUTTON.SEND,
+                    title: lang.WALLET.TRANSFER_CREA_TITLE,
+                    text: lang.WALLET.TRANSFER_CREA_TEXT,
+                    button: lang.BUTTON.SEND,
                     total_amount: Asset.parseString('0.000 CREA'),
                     nai: apiOptions.symbol.CREA,
                     confirmed: false,

@@ -57,6 +57,17 @@
         }
     });
 
+    function updateCookies(session) {
+        if (session) {
+            CreaCookies.set('creary.username', session.account.username);
+        } else {
+            CreaCookies.remove('creary.username')
+        }
+    }
+    creaEvents.on('crea.session.login', updateCookies);
+    creaEvents.on('crea.session.update', updateCookies);
+    creaEvents.on('crea.session.logout', updateCookies);
+
     creaEvents.on('crea.modal.ready', function () {
         setTimeout(function () {
             console.log('setting up new modals');

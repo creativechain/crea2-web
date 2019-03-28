@@ -35,7 +35,7 @@
                 checkedPolicy: false,
                 suggestedPassword: '',
                 password: '',
-                lang: getLanguage()
+                lang: lang
             },
             methods: {
                 inputPassword: inputPassword,
@@ -80,9 +80,9 @@
                 if (userTime > usernameInputs.last.date || userTime >= usernameInputs.last.date && username === usernameInputs.last.value) {
                     if (err) {
                         console.error(err);
-                        welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
+                        welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
                     } else if (result[0] != null) {
-                        welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
+                        welcomeVue.error.username = lang.ERROR.USERNAME_EXISTS;
                     } else {
                         welcomeVue.error.username = null;
                         welcomeVue.username = username;
@@ -93,7 +93,7 @@
 
             crea.api.lookupAccountNames(accounts, usernameCallback);
         } else {
-            welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
+            welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
         }
     }
 
@@ -125,10 +125,10 @@
                         var response = jsonify(data.responseText);
 
                         if (response.error === 'REGISTERED_EMAIL') {
-                            welcomeVue.error.email = getLanguage().ERROR.EMAIL_EXISTS;
+                            welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
                         }
                     } else {
-                        welcomeVue.error.email = getLanguage().ERROR.UNKNOWN_ERROR;
+                        welcomeVue.error.email = lang.ERROR.UNKNOWN_ERROR;
                     }
                 }).when('done', emailCallback).post({
                     username: welcomeVue.username,
@@ -136,7 +136,7 @@
                 });
             });
         } else {
-            welcomeVue.error.email = getLanguage().ERROR.INVALID_EMAIL;
+            welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
             welcomeVue.email = '';
         }
     }
@@ -149,7 +149,7 @@
             welcomeVue.error.matchPassword = null;
             welcomeVue.passwordMatch = true;
         } else {
-            welcomeVue.error.matchPassword = getLanguage().ERROR.PASSWORDS_NOT_MATCH;
+            welcomeVue.error.matchPassword = lang.ERROR.PASSWORDS_NOT_MATCH;
         }
 
         welcomeVue.passwordMatch = match;
@@ -163,7 +163,7 @@
             welcomeVue.password = event.target.value;
             welcomeVue.error.password = null;
         } else {
-            welcomeVue.error.password = getLanguage().ERROR.INVALID_PASSWORD;
+            welcomeVue.error.password = lang.ERROR.INVALID_PASSWORD;
         }
     }
 

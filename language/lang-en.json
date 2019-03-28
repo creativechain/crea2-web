@@ -1,30 +1,30 @@
-lang.en = {
+{
     "CODE": "en",
     "COMMON": {
         "OR_CAP": "OR",
         "YES": "Yes",
         "NO": "No",
-        "AND": 'and',
+        "AND": "and",
         "FOR": "for"
     },
-    ERROR: {
-        1: "Username not exist",
-        2: "Password is not valid",
-        USERNAME_NOT_EXISTS: "Username not exist",
-        INVALID_USERNAME: "Username is not valid",
-        INVALID_EMAIL: "Email is not valid",
-        INVALID_PASSWORD: "Password is not valid",
-        USERNAME_EXISTS: "Username already exist",
-        EMAIL_EXISTS: "Email already exist",
-        PASSWORDS_NOT_MATCH: "Password does not match",
-        DENIED_TERMS: "You must read and accept the terms and conditions",
-        DENIED_POLICY: "You must read and accept the privacy policy",
-        UNKNOWN_ERROR: "Unknow error ocurred"
+    "ERROR": {
+        "1": "Username not exist",
+        "2": "Password is not valid",
+        "USERNAME_NOT_EXISTS": "Username not exist",
+        "INVALID_USERNAME": "Username is not valid",
+        "INVALID_EMAIL": "Email is not valid",
+        "INVALID_PASSWORD": "Password is not valid",
+        "USERNAME_EXISTS": "Username already exist",
+        "EMAIL_EXISTS": "Email already exist",
+        "PASSWORDS_NOT_MATCH": "Password does not match",
+        "DENIED_TERMS": "You must read and accept the terms and conditions",
+        "DENIED_POLICY": "You must read and accept the privacy policy",
+        "UNKNOWN_ERROR": "Unknow error ocurred"
 
     },
     "BANNER": {
-        TITLE: "Create, inspire, influence",
-        SUBTITLE: "Welcome to the decentralized community of creative portfolios, that rewards artists and curators. Be creative!"
+        "TITLE": "Create, inspire, influence",
+        "SUBTITLE": "Welcome to the decentralized community of creative portfolios, that rewards artists and curators. Be creative!"
     },
     "TRENDING": {
         "PAYOUTS": "PAYOUTS",
@@ -96,17 +96,17 @@ lang.en = {
         "FREE_DOWNLOAD": "Free Download",
         "PROMOTE_TITLE": "Promote the Post",
         "PROMOTE_TEXT": "Spend your CREA DOLLAR to promote your content in the promotion section.",
-        MODAL_DOWNLOAD_TITLE: "Payment content",
-        MODAL_DOWNLOAD_TEXT: "To make the download you must pay the following amount to the author.",
-        MODAL_DOWNLOAD_TEXT_PAYED: "You have already downloaded this content before, you can download it again at no cost.",
-        MODAL_REPORT_TITLE: "Report content",
-        MODAL_REPORT_HEAD1: "Report content helps improve the quality of the platform.",
-        MODAL_REPORT_HEAD2: "The most common reasons to report content are:",
-        MODAL_REPORT_REASON1: "Fraud or plagiarism.",
-        MODAL_REPORT_REASON2: "Copyright infringement.",
-        MODAL_REPORT_REASON3: "Offensive material that incites hatred and violence.",
-        MODAL_REPORT_REASON4: "Project using tag spam (irrelevant tags) or containing spam.",
-        MODAL_REPORT_FOOTER: "Remember that reporting content can influence the visibility and the rewards achieved by the publication. It depends on you to consider these most common cases to report content.",
+        "MODAL_DOWNLOAD_TITLE": "Payment content",
+        "MODAL_DOWNLOAD_TEXT": "To make the download you must pay the following amount to the author.",
+        "MODAL_DOWNLOAD_TEXT_PAYED": "You have already downloaded this content before, you can download it again at no cost.",
+        "MODAL_REPORT_TITLE": "Report content",
+        "MODAL_REPORT_HEAD1": "Report content helps improve the quality of the platform.",
+        "MODAL_REPORT_HEAD2": "The most common reasons to report content are:",
+        "MODAL_REPORT_REASON1": "Fraud or plagiarism.",
+        "MODAL_REPORT_REASON2": "Copyright infringement.",
+        "MODAL_REPORT_REASON3": "Offensive material that incites hatred and violence.",
+        "MODAL_REPORT_REASON4": "Project using tag spam (irrelevant tags) or containing spam.",
+        "MODAL_REPORT_FOOTER": "Remember that reporting content can influence the visibility and the rewards achieved by the publication. It depends on you to consider these most common cases to report content."
     },
     "PROFILE_MENU": {
         "LOGOUT": "Logout",
@@ -177,47 +177,38 @@ lang.en = {
         "CLOSE": "Close",
         "REPORT": "Report content",
         "UNLOCK": "Unlock",
-        PAY: "Pay"
+        "PAY": "Pay"
     },
     "WELCOME": {
-        SLIDE1_TITLE: "Discover the Crea community!",
-        SLIDE1_TEXT1: "Creary is the decentralized creative community connected to the blockchain of Crea. We are not a " +
-        "conventional social network controlled by a centralized entity.",
-        SLIDE1_TEXT2: "The blockchain of Crea is supported transversally by the members of the community around the world.",
-        SLIDE1_TEXT3: "In order to create an account in Creary, a micro fee is charged to avoid the massive registration" +
-        " of bots or malicious accounts. With great pleasure Creary will cover this rate, we will only need your email " +
-        "in order to verify that you are a real person.",
-        SLIDE2_TITLE: "The registration begins",
-        SLIDE2_TEXT1: "Your username will be public and it is how you will be known in the community of Creary and in " +
-        "other applications based on Crea.",
-        SLIDE2_INPUT_PLACEHOLDER: "Type a name for your user",
-        SLIDE3_TITLE: "Enter your email address",
-        SLIDE3_TEXT1: "Enter a valid email to continue with the validation process",
-        SLIDE3_INPUT_PLACEHOLDER: "Type your mail",
-        SLIDE4_TITLE: "Check your email",
-        SLIDE4_TEXT1: "Check your email and click on the email validation link.",
-        SLIDE5_TITLE: "Congratulations",
-        SLIDE5_TEXT1: "Your email has been verified correctly.",
-        SLIDE6_TITLE: "Password",
-        SLIDE6_TEXT1: "Keep your password in a safe place. <strong>IMPORTANTE:</strong> If you ever lose your password, " +
-        "your account will be irretrievably lost and you will not be able to access your content or your tokens. We do " +
-        "not have your password, and we can not help you recover it.",
-        SLIDE6_INPUT_PLACEHOLDER: "Type your password",
-        SLIDE7_TITLE: "Confirm your password",
-        SLIDE7_TEXT1: "Add the password again to make sure it has been copied correctly. Make sure you have stored your " +
-        "password in a safe place.",
-        SLIDE7_TEXT2: "We recommend that you keep copies of your password in different media such as a flash drive, a " +
-        "printed paper or in your preferred key manager.",
-        SLIDE7_INPUT_PLACEHOLDER: "Type your password",
-        SLIDE7_CHECKBOX1: "I agree to the terms and conditions of the Creary service",
-        SLIDE7_CHECKBOX2: "I agree with the Creary privacy policy",
-        SLIDE8_TITLE: "Congratulations and you are part of the Crea community!",
-        SLIDE8_TEXT1: "Now you are ready to start traveling in the universe of Creary. Publish your creations and start " +
-        "earning your first cryptocurrencies."
+        "SLIDE1_TITLE": "Discover the Crea community!",
+        "SLIDE1_TEXT1": "Creary is the decentralized creative community connected to the blockchain of Crea. We are not a \nconventional social network controlled by a centralized entity.",
+        "SLIDE1_TEXT2": "The blockchain of Crea is supported transversally by the members of the community around the world.",
+        "SLIDE1_TEXT3": "In order to create an account in Creary, a micro fee is charged to avoid the massive registration \nof bots or malicious accounts. With great pleasure Creary will cover this rate, we will only need your email \nin order to verify that you are a real person.",
+        "SLIDE2_TITLE": "The registration begins",
+        "SLIDE2_TEXT1": "Your username will be public and it is how you will be known in the community of Creary and in \nother applications based on Crea.",
+        "SLIDE2_INPUT_PLACEHOLDER": "Type a name for your user",
+        "SLIDE3_TITLE": "Enter your email address",
+        "SLIDE3_TEXT1": "Enter a valid email to continue with the validation process",
+        "SLIDE3_INPUT_PLACEHOLDER": "Type your mail",
+        "SLIDE4_TITLE": "Check your email",
+        "SLIDE4_TEXT1": "Check your email and click on the email validation link.",
+        "SLIDE5_TITLE": "Congratulations",
+        "SLIDE5_TEXT1": "Your email has been verified correctly.",
+        "SLIDE6_TITLE": "Password",
+        "SLIDE6_TEXT1": "Keep your password in a safe place. <strong>IMPORTANTE:</strong> If you ever lose your password, \nyour account will be irretrievably lost and you will not be able to access your content or your tokens. We do \nnot have your password, and we can not help you recover it.",
+        "SLIDE6_INPUT_PLACEHOLDER": "Type your password",
+        "SLIDE7_TITLE": "Confirm your password",
+        "SLIDE7_TEXT1": "Add the password again to make sure it has been copied correctly. Make sure you have stored your \npassword in a safe place.",
+        "SLIDE7_TEXT2": "We recommend that you keep copies of your password in different media such as a flash drive, a \nprinted paper or in your preferred key manager.",
+        "SLIDE7_INPUT_PLACEHOLDER": "Type your password",
+        "SLIDE7_CHECKBOX1": "I agree to the terms and conditions of the Creary service",
+        "SLIDE7_CHECKBOX2": "I agree with the Creary privacy policy",
+        "SLIDE8_TITLE": "Congratulations and you are part of the Crea community!",
+        "SLIDE8_TEXT1": "Now you are ready to start traveling in the universe of Creary. Publish your creations and start \nearning your first cryptocurrencies."
 
     },
     "CHANGE_PASSWORD": {
-        PASSWORD: "Password",
+        "PASSWORD": "Password",
         "ACCOUNT_NAME": "ACCOUNT NAME",
         "RECOVERY": "ACCOUNT RECOVERY",
         "INSERT_PASSWORD_CREATED": "INSERT THE PASSWORD CREATED",
@@ -229,15 +220,15 @@ lang.en = {
         "UPDATE_PASSWORD": "Update password",
         "RADIO_INPUT_SAFELY": "I have safely stored my new password.",
         "RADIO_INPUT_UNDERSTAND": "I understand that Creary can\u2019t recover lost passwords.",
-        ERROR_CURRENT_PASSWORD: "Current password is not valid.",
-        ERROR_MATCHED_PASSWORDS: "Passwords do not match.",
-        ERROR_CONDITIONS: "Check the conditions to change the password.",
-        RULE_1: "If you ever lose your password, your account will be irretrievably lost and you will not be able to access its content or its tokens.",
-        RULE_2: "We do not save your password, and we can not help you recover it.",
-        RULE_3: "If you add a new password that you can memorize, this is not a secure password.",
-        RULE_4: "Use passwords created in a random way, against more characters of length have more secure will be.",
-        RULE_5: "Do not tell anyone your Creary password.",
-        RULE_6: "Always make some backup of your password.",
+        "ERROR_CURRENT_PASSWORD": "Current password is not valid.",
+        "ERROR_MATCHED_PASSWORDS": "Passwords do not match.",
+        "ERROR_CONDITIONS": "Check the conditions to change the password.",
+        "RULE_1": "If you ever lose your password, your account will be irretrievably lost and you will not be able to access its content or its tokens.",
+        "RULE_2": "We do not save your password, and we can not help you recover it.",
+        "RULE_3": "If you add a new password that you can memorize, this is not a secure password.",
+        "RULE_4": "Use passwords created in a random way, against more characters of length have more secure will be.",
+        "RULE_5": "Do not tell anyone your Creary password.",
+        "RULE_6": "Always make some backup of your password."
     },
     "PUBLISH": {
         "INFO_SUBTITLE": "Select or drag a featured image for the cover of your post.",
@@ -322,7 +313,7 @@ lang.en = {
         "NO_POSTS_FAQ": "Frequently Asked Questions.",
         "NO_POSTS_PROFILE": "There are no projects related to this user.",
         "UPDATE_ACCOUNT_TITLE": "Account update",
-        "UPDATE_ACCOUNT_MESSAGE": "The account can not be updated more than once in less than 1 hour. Last time: %s.",
+        "UPDATE_ACCOUNT_MESSAGE": "The account can not be updated more than once in less than 1 hour. Last time: %s."
     },
     "COIN_MARKETS": {"TITLE": "Coin markets"},
     "WALLET": {
@@ -414,7 +405,7 @@ lang.en = {
         "DESCRIPTION_1": "If someone manages to hack your account by accessing the place where you saved your password, he could change it and prevent access to the original owner of the account.",
         "DESCRIPTION_2": "The blockchain of Crea incorporates a system for recovering stolen accounts. If your password has been changed without your consent, then the account designated as your recovery account can generate a new owner key for the account.",
         "DESCRIPTION_3": "This recovery process must be completed within 30 days after the password is modified, and the user must provide a recent owner key that has been valid in the last 30 days.",
-        "DESCRIPTION_4": "This functionality can only be used in creary.net as long as the owner of the account has included Creary as his trusted account and has also accepted the terms and conditions of service of Creary.net.",
+        "DESCRIPTION_4": "This functionality can only be used in creary.net as long as the owner of the account has included Creary as his trusted account and has also accepted the terms and conditions of service of Creary.net."
     },
     "LOGIN": {
         "PASSWORD": "Password",
@@ -461,22 +452,22 @@ lang.en = {
         "NON_PERMISSION": "No license"
     },
     "HISTORY": {
-        TRANSFER_FROM: 'Transfer from ',
-        TRANSFER_TO: 'Transfer to ',
-        TRANSFER_VESTING_FROM: 'Transfer to vesting from ',
-        TRANSFER_VESTING_TO: 'Transfer to vesting to ',
-        TRANSFER_SAVINGS_FROM: 'Transfer to savings from ',
-        TRANSFER_SAVINGS_TO: 'Transfer to savings to ',
-        CURATE: 'Received %s by %s curation',
-        PRODUCED: 'Received %s by block production',
-        POSTED: 'Posted ',
-        COMMENTED: 'Commented in ',
-        VOTED_FOR: 'Voted for ',
-        CREATE_ACCOUNT: ' create account '
+        "TRANSFER_FROM": "Transfer from ",
+        "TRANSFER_TO": "Transfer to ",
+        "TRANSFER_VESTING_FROM": "Transfer to vesting from ",
+        "TRANSFER_VESTING_TO": "Transfer to vesting to ",
+        "TRANSFER_SAVINGS_FROM": "Transfer to savings from ",
+        "TRANSFER_SAVINGS_TO": "Transfer to savings to ",
+        "CURATE": "Received %s by %s curation",
+        "PRODUCED": "Received %s by block production",
+        "POSTED": "Posted ",
+        "COMMENTED": "Commented in ",
+        "VOTED_FOR": "Voted for ",
+        "CREATE_ACCOUNT": " create account "
     },
     "AUTH_MODAL": {
-        TITLE: "This action requires the %s key",
-        INPUT_PASSWORD: "Enter the Masterkey or Wif"
+        "TITLE": "This action requires the %s key",
+        "INPUT_PASSWORD": "Enter the Masterkey or Wif"
     },
     "ERROR_PAGES": {
         "REQUESTED_URL": "The requested URL",
@@ -486,7 +477,10 @@ lang.en = {
         "MESSAGE_503_2": "We’ll be back shortly.",
         "THATS_ERROR": "That’s an error.",
         "WE_KNOW": "That’s all we know."
-
+    },
+    "METADATA": {
+        "DESCRIPTION": "Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.",
+        "IMAGE": "https://creary.net/img/creary-social-media.jpg"
     }
 
-};
+}

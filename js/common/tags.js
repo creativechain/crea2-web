@@ -8,7 +8,7 @@
             tagsContainer = new Vue({
                 el: '#tags-explorer',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     account: account,
                     state: state

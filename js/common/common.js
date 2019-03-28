@@ -379,7 +379,7 @@ function uploadToIpfs(file, maxSize, callback) {
             console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maxSize);
 
             if (callback) {
-                callback(getLanguage().PUBLISH.FILE_TO_LARGE);
+                callback(lang.PUBLISH.FILE_TO_LARGE);
             }
         }
     } else {
@@ -540,7 +540,7 @@ creaEvents.on('crea.content.prepare', function () {
             el: '#home-banner',
             data: {
                 showBanner: false,
-                lang: getLanguage()
+                lang: lang
             }
         });
     }

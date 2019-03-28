@@ -24,23 +24,17 @@ var apiOptions = {
     },
     chainId: '0000000000000000000000000000000000000000000000000000000000000000'
 };
+
 localStorage.debug = 'crea:*';
 crea.api.setOptions(apiOptions);
 crea.config.set('address_prefix', apiOptions.addressPrefix);
 crea.config.set('chain_id', apiOptions.chainId);
-var lang = {};
+var isoLangs = {};
+
 var faq = {};
-/**
- *
- * @returns {*}
- */
 
-function getLanguage() {
-    var language = localStorage.getItem(CREARY.LANG) || getNavigatorLanguage();
+var language = $('html').attr('lang');
 
-    if (lang[language]) {
-        return jsonify(jsonstring(lang[language]));
-    }
-
-    return jsonify(jsonstring(lang.en));
-} //Vue.config.silent = false;
+$.getJSON('/language/isolangs.json', function(data) {
+    isoLangs = data;
+});

@@ -42,7 +42,7 @@
             postContainer = new Vue({
                 el: '#post-view',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     CONSTANTS: CONSTANTS,
                     session: session,
                     user: userAccount ? userAccount.user : false,
@@ -232,7 +232,7 @@
                 promoteModal = new Vue({
                     el: "#modal-promote",
                     data: {
-                        lang: getLanguage(),
+                        lang: lang,
                         session: session,
                         user: userAccount ? userAccount.user : null,
                         state: state,
@@ -295,7 +295,7 @@
                     downloadModal = new Vue({
                         el: '#modal-download',
                         data: {
-                            lang: getLanguage(),
+                            lang: lang,
                             session: session,
                             user: userAccount ? userAccount.user : false,
                             state: state,

@@ -1,0 +1,22 @@
+{{ include ('element/navbar.php') }}
+<div class="main-container simple-view-home">
+    <section class="cta cta-4 space--xxs border--bottom ">
+        <div class="container">
+            <div class="row">
+                {{ include ('modules/navbar-filter-home.php') }}
+            </div>
+        </div>
+    </section>
+
+    <section class="space--sm">
+        <div class="container">
+            <div class="masonry">
+                <div class="masonry__container row">
+                    {{ include ('modules/post-view-home.php') }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {{ include ('element/footer.php') }}

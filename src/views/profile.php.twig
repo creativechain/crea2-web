@@ -1,0 +1,85 @@
+{{ include ('element/navbar.php.twig') }}
+
+<div class="main-container view-profile">
+    <div id="profile-container" v-cloak>
+        <section v-cloak class="cta cta-4 space--xxs border--bottom navbar-filter">
+            <div class="container">
+                <div class="row">
+                    {{ include ('modules/navbar-profile.php.twig') }}
+                </div>
+            </div>
+        </section>
+
+        <section v-cloak class="bg--secondary p-top-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3">
+                        {{ include ('modules/profile-info.php.twig') }}
+                    </div>
+                    <div class="col-lg-8 col-xl-9">
+                        <section class="space--sm unpad--top">
+                            <div class="container">
+                                <div v-show="navbar.section === 'projects' && session && session.account.username == state.user.name && Object.keys(state.content).length == 0" class="row welcome-profile-empty">
+                                    {{ include ('modules/welcome-profile-empty.php.twig') }}
+                                </div>
+                                <div v-show="(!session || session.account.username != state.user.name) && Object.keys(state.content).length == 0 && navbar.section === 'projects'">
+                                    <h3>{{ '{{ lang.PROFILE.NO_POSTS_PROFILE }}' }}</h3>
+                                </div>
+                                <div v-show="navbar.section === 'projects'" class="row project-profile">
+                                    <template v-for="p in state.discussion_idx['']">
+                                        {{ include ('modules/post-view-home.php.twig') }}
+                                    </template>
+                                </div>
+                                <div v-show="session && account.user.name === state.user.name && navbar.section === 'notifications'" class="row view-notifications" >
+                                    {{ include ('modules/list-notifications.php.twig') }}
+                                </div>
+                                <div v-show="navbar.section === 'author-rewards'" >
+                                    <div v-pre >
+                                        <div v-cloak id="profile-author-rewards" class="row view-rewards">
+                                            {{ include('modules/view-rewards-author.php.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-show="navbar.section === 'curation-rewards'" class="view-rewards" >
+                                    <div v-pre >
+                                        <div v-cloak id="profile-curation-rewards" class="row view-rewards">
+                                            {{ include('modules/view-rewards-curation.php.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-show="session && account.user.name === state.user.name && navbar.section === 'blocked'" class="view-notifications" >
+                                    <div v-pre>
+                                        {{ include ('modules/list-blocked.php.twig') }}
+                                    </div>
+
+                                </div>
+                                <div v-show="navbar.section === 'wallet'" class="row view-wallet">
+                                    {{ include ('modules/view-wallet.php.twig') }}
+                                </div>
+                                <div v-show="navbar.section === 'settings'" class="row view-edit-profile">
+                                    {{ include ('modules/profile-edit.php.twig') }}
+                                </div>
+                                <div v-show="navbar.section === 'followers'" class="view-notifications">
+                                    <div v-pre >
+                                        {{ include ('modules/list-followers.php.twig') }}
+                                    </div>
+                                </div>
+                                <div v-show="navbar.section === 'following'" class="view-notifications">
+                                    <div v-pre >
+                                        {{ include ('modules/list-following.php.twig') }}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/js/common/profile.js"></script>
+
+
+
+    {{ include ('element/footer.php.twig') }}

@@ -10,7 +10,7 @@
         recoverContainer = new Vue({
             el: '#recover-container',
             data: {
-                lang: getLanguage()
+                lang: lang
             }
         });
     }

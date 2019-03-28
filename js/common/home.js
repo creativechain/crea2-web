@@ -76,7 +76,7 @@
                     urlFilter: urlFilter,
                     state: state,
                     search: getParameterByName('query'),
-                    lang: getLanguage()
+                    lang: lang
                 },
                 updated: function updated() {
                     if (mr.masonry) {

@@ -1,5 +1,6 @@
 <?php
 
+namespace Creary;
 /**
  * Created by PhpStorm.
  * User: ander
@@ -12,6 +13,11 @@ class Router
      * @var array
      */
     private $routes;
+
+    /**
+     * @var string
+     */
+    private $matchedRoute;
 
     public function __construct()
     {
@@ -30,6 +36,15 @@ class Router
     }
 
     /**
+     * @return string
+     */
+    public function getMatchedRoute()
+    {
+        return $this->matchedRoute;
+    }
+
+
+    /**
      * @param $route
      * @return string|null
      */
@@ -42,10 +57,11 @@ class Router
 
         foreach ($this->routes as $r) {
             $matches = array();
-            error_log('Matching: ' . $r['route'] . ', url: ' . $route);
+            //error_log('Matching: ' . $r['route'] . ', url: ' . $route);
 
             if ($r['route'] === $route) {
-                error_log('Equal Route: ' . $r['route'] . ', url: ' . $route);
+                //error_log('Equal Route: ' . $r['route'] . ', url: ' . $route);
+                $this->matchedRoute = $r['route'];
                 return $r['includeFile'];
             } else if (preg_match('/'. $r['route']. '/', $route, $matches)) {
 
@@ -63,13 +79,15 @@ class Router
                 }
 
                 if ($fullMatch) {
-                    error_log('Matched Route: ' . $r['route'] . ', url: ' . $route);
+                    //error_log('Matched Route: ' . $r['route'] . ', url: ' . $route);
+                    $this->matchedRoute = $r['route'];
                     return $r['includeFile'];
                 }
             }
 
         }
 
-        return '404.php';
+        $this->matchedRoute = null;
+        return '404.php.view';
     }
 }

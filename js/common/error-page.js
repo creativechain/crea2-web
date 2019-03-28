@@ -11,7 +11,7 @@
             errorContainer = new Vue({
                 el: '#error-container',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     url: window.location.pathname
                 }
             });

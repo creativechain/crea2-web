@@ -9,7 +9,13 @@
             "email": "admin@creaproject.io"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Creary\\": "src/Creary/"
+        }
+    },
     "require": {
-        "twig/twig": "^2.6"
+        "twig/twig": "^2.6",
+        "guzzlehttp/guzzle": "^6.3"
     }
 }

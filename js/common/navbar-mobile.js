@@ -8,7 +8,7 @@
             navbarMobile = new Vue({
                 el: '#navbar-mobile',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     session: session,
                     user: userData ? userData.user : {},
                     nav: getPathPart()
