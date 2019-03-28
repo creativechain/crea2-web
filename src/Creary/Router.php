@@ -88,6 +88,6 @@ class Router
         }
 
         $this->matchedRoute = null;
-        return '404.php.view';
+        return '404.php.twig';
     }
 }
