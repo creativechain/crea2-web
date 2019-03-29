@@ -79,9 +79,7 @@
                                 <td class="td-right-balance">
                                     <div class="dropdown">
                                         <div id="wallet-balance-crea" class="dropdown__trigger active">
-                                            <span>{{ '{{ assetPart(state.user.balance, "int") + "." }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.balance, "dec") }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.balance, "sym") }}' }}</span>
+                                            <amount v-bind:value="state.user.balance"></amount>
                                         </div>
 
                                         <div v-if="canWithdraw()" class="dropdown__container">
@@ -223,9 +221,7 @@
                                 <td class="td-right-balance">
                                     <div class="dropdown">
                                         <div  class="dropdown__trigger">
-                                            <span>{{ '{{ assetPart(getCGYBalance().toFriendlyString(null, false), "int") + "." }}' }}</span>
-                                            <span>{{ '{{ assetPart(getCGYBalance().toFriendlyString(null, false), "dec") }}' }}</span>
-                                            <span>{{ '{{ assetPart(getCGYBalance().toFriendlyString(null, false), "sym") }}' }}</span>
+                                            <amount v-bind:value="getCGYBalance().toFriendlyString(null, false)"></amount>
                                         </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
@@ -313,9 +309,7 @@
                                 <td class="td-right-balance">
                                     <div class="dropdown">
                                         <div class="dropdown__trigger">
-                                            <span>{{ '{{ assetPart(state.user.cbd_balance, "int") + "." }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.cbd_balance, "dec") }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.cbd_balance, "sym") }}' }}</span>
+                                            <amount v-bind:value="state.user.cbd_balance"></amount>
                                         </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
@@ -353,9 +347,7 @@
                                 <td class="td-right-balance">
                                     <div class="dropdown">
                                         <div class="dropdown__trigger">
-                                            <span>{{ '{{ assetPart(state.user.savings_balance, "int") + "." }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.savings_balance, "dec") }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.savings_balance, "sym") }}' }}</span>
+                                            <amount v-bind:value="state.user.savings_cbd_balance"></amount>
                                         </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
@@ -377,9 +369,7 @@
                                     </div>
                                     <div class="dropdown">
                                         <div class="dropdown__trigger">
-                                            <span>{{ '{{ assetPart(state.user.savings_cbd_balance, "int") + "." }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.savings_cbd_balance, "dec") }}' }}</span>
-                                            <span>{{ '{{ assetPart(state.user.savings_cbd_balance, "sym") }}' }}</span>
+                                            <amount v-bind:value="state.user.savings_cbd_balance"></amount>
                                         </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">

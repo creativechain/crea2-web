@@ -28,7 +28,7 @@ Vue.component('amount', {
         "   <span>{{ assetPart(value, 'sym') }}</span>" +
         "</div>",
     props: {
-        value: [Number, String]
+        value: [Number, String, Object]
     },
     methods : {
         assetPart: function assetPart(asset, part) {
