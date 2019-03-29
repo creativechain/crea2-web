@@ -136,6 +136,7 @@ if (loadConfig()) {
     } else if (boolval($CONFIG['maintenance'])) {
         http_response_code(503);
         header('Location: https://' . $_SERVER['SERVER_NAME'] . '/503');
+        die();
     } else {
         handleRoute();
     }
