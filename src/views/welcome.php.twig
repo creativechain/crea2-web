@@ -17,10 +17,10 @@
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
 
-                                <h1>{{ '{{ lang.WELCOME.SLIDE1_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE1_TEXT1 }}' }}</p>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE1_TEXT2 }}' }}</p>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE1_TEXT3 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE1_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT1 }}</p>
+                                <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT2 }}</p>
+                                <p class="lead">{{ lang.WELCOME.SLIDE1_TEXT3 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -29,7 +29,7 @@
                                     <div class="col-6">
                                         <div id="welcome-slide1-button-signup" class="btn btn--primary w-100" v-on:click="changeSlide(2)">
                                             <span class="btn__text">
-                                                {{ '{{ lang.BUTTON.SIGN_UP }}' }}
+                                                {{ lang.BUTTON.SIGN_UP }}
                                             </span>
                                         </div>
                                     </div>
@@ -66,8 +66,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ '{{ lang.WELCOME.SLIDE2_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE2_TEXT1 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE2_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE2_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -82,7 +82,7 @@
                                     <div class="col-6">
                                         <div class="btn btn--primary w-100" v-on:click="changeSlide(3, error.username)">
                                             <span class="btn__text">
-                                                {{ '{{ lang.BUTTON.CONTINUE }}' }}
+                                                {{ lang.BUTTON.CONTINUE }}
                                             </span>
                                         </div>
                                     </div>
@@ -122,8 +122,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ '{{ lang.WELCOME.SLIDE3_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE3_TEXT1 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE3_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE3_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -138,14 +138,14 @@
                                     <div class="col-md-6 col-6">
                                         <div class="btn btn--transparent w-100" v-on:click="changeSlide(2, null)">
                                             <span id="welcome-slide3-button-back" class="btn__text">
-                                                {{ '{{ lang.BUTTON.GO_BACK }}' }}
+                                                {{ lang.BUTTON.GO_BACK }}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-6">
                                         <div class="btn btn--primary w-100" v-on:click="sendConfirmationMail()">
                                             <span id="welcome-slide3-button-continue" class="btn__text">
-                                                {{ '{{ lang.BUTTON.CONTINUE }}' }}
+                                                {{ lang.BUTTON.CONTINUE }}
                                             </span>
                                         </div>
                                     </div>
@@ -185,8 +185,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ '{{ lang.WELCOME.SLIDE4_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE4_TEXT1 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE4_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE4_TEXT1 }}</p>
                             </div>
                         </div>
 
@@ -220,8 +220,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ '{{ lang.WELCOME.SLIDE5_TITLE }} {{ username }}' }}!</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE5_TEXT1 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ '{{ username }}' }}!</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row mt--1">
@@ -230,7 +230,7 @@
                                     <div class="col-6">
                                         <div class="btn btn--primary w-100" v-on:click="changeSlide(6)">
                                             <span class="btn__text">
-                                                {{ '{{ lang.BUTTON.CONTINUE }}' }}
+                                                {{ lang.BUTTON.CONTINUE }}
                                             </span>
                                         </div>
                                     </div>
@@ -268,8 +268,8 @@
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
 
-                                <h1>{{ '{{ lang.WELCOME.SLIDE6_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.SLIDE6_TEXT1 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
+                                <p class="lead">{{ lang.SLIDE6_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -284,14 +284,14 @@
                                     <div class="col-md-6">
                                         <div class="btn btn--transparent w-100" v-on:click="copyToClipboard('welcome-slide6-input')">
                                             <span class="btn__text btn_copy">
-                                                {{ '{{ lang.BUTTON.COPY_PASSWORD }}' }}
+                                                {{ lang.BUTTON.COPY_PASSWORD }}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="btn btn--black w-100" v-on:click="suggestPassword()">
                                             <span class="btn__text color--white">
-                                                {{ '{{ lang.BUTTON.NEW_PASSWORD }}' }}
+                                                {{ lang.BUTTON.NEW_PASSWORD }}
                                             </span>
                                         </div>
                                     </div>
@@ -300,7 +300,7 @@
                                     <div class="col-md-6 offset-md-3">
                                         <div class="btn btn--primary w-100" v-on:click="changeSlide(7, error.password)">
                                             <span class="btn__text">
-                                               {{ '{{ lang.BUTTON.CONTINUE }}' }}
+                                               {{ lang.BUTTON.CONTINUE }}
                                             </span>
                                         </div>
                                     </div>
@@ -337,9 +337,9 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ '{{ lang.WELCOME.SLIDE7_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE7_TEXT1 }}' }}</p>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE7_TEXT2 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE7_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT1 }}</p>
+                                <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT2 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -355,7 +355,7 @@
                                     <label for="welcome-check-terms"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedTerms }">
-                                    <a href="/terms_and_conditions" target="_blank">{{ '{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}' }}</a>
+                                    <a href="/terms_and_conditions" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}</a>
                                 </span>
                             </div>
                         </div>
@@ -366,7 +366,7 @@
                                     <label for="welcome-check-policy"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedPolicy }">
-                                    <a href="/privacy_policy" target="_blank">{{ '{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}' }}</a>
+                                    <a href="/privacy_policy" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}</a>
                                 </span>
                             </div>
                         </div>
@@ -376,7 +376,7 @@
                                     <div class="col-6">
                                         <div class="btn btn--primary w-100" v-on:click="createAccount()">
                                             <span class="btn__text">
-                                                {{ '{{ lang.BUTTON.CREATE_ACCOUNT }}' }}
+                                                {{ lang.BUTTON.CREATE_ACCOUNT }}
                                             </span>
                                         </div>
                                     </div>
@@ -413,8 +413,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ '{{ lang.WELCOME.SLIDE8_TITLE }}' }}</h1>
-                                <p class="lead">{{ '{{ lang.WELCOME.SLIDE8_TEXT1 }}' }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -423,7 +423,7 @@
                                     <div class="col-6">
                                         <a class="btn btn--primary w-100" href="/">
                                             <span class="btn__text">
-                                                {{ '{{ lang.BUTTON.CONTINUE }}' }}
+                                                {{ lang.BUTTON.CONTINUE }}
                                             </span>
                                         </a>
                                     </div>

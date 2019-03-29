@@ -30,7 +30,7 @@
                                 </btn-follow>
                                 <div v-else-if="session" class="btn btn--primary" v-on:click="editPost()">
                                     <span class="btn__text">
-                                        {{ '{{ lang.BUTTON.EDIT_POST }}' }}
+                                        {{ lang.BUTTON.EDIT_POST }}
                                     </span>
                                 </div>
                             </li>
@@ -66,7 +66,7 @@
                                                         <post-amount v-bind:value="getPendingPayouts('cgy')"></post-amount>)#}
                                                     </p>
                                                     <p>{{ '{{ getPayoutPostDate() }}' }}</p>
-                                                    <p v-if="hasPromotion()">{{ '{{ lang.HOME.PROMOTION_COST }}' }}: {{ '{{ getPromotion() }}' }}</p>
+                                                    <p v-if="hasPromotion()">{{ lang.HOME.PROMOTION_COST }}: {{ '{{ getPromotion() }}' }}</p>
                                                 </div>
                                             </div><!--end row-->
                                         </div><!--end container-->
@@ -122,7 +122,7 @@
 
                                 <a href="#modal-promote" class="btn btn--transparent modal-trigger">
                                             <span class="btn__text color--dark">
-                                                {{ '{{ lang.BUTTON.PROMOTE }}' }}
+                                                {{ lang.BUTTON.PROMOTE }}
                                             </span>
                                 </a>
 
@@ -137,26 +137,26 @@
                                                                 <div class="feature__body boxed boxed--lg boxed--border">
                                                                     <div class="modal-close modal-close-cross"></div>
                                                                     <div class="text-block">
-                                                                        <h3>{{ '{{ lang.PUBLICATION.PROMOTE_TITLE }}' }}</h3>
-                                                                        <p>{{ '{{ lang.PUBLICATION.PROMOTE_TEXT }}' }}</p>
+                                                                        <h3>{{ lang.PUBLICATION.PROMOTE_TITLE }}</h3>
+                                                                        <p>{{ lang.PUBLICATION.PROMOTE_TEXT }}</p>
                                                                     </div>
                                                                     <form>
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <p class="text-p-form">{{ '{{ lang.MODAL.WALLET_AMOUNT }}' }}</p>
+                                                                                <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="input-icon input-icon--right">
                                                                                     <i class="">CBD ($)</i>
                                                                                     <input v-model="amount" type="number" step="0.001" name="input" />
-                                                                                    <p class="amount-save mt-4" >{{ '{{ lang.WALLET.BALANCE }}' }}: {{ '{{ user.cbd_balance }}' }}</p>
+                                                                                    <p class="amount-save mt-4" >{{ lang.WALLET.BALANCE }}: {{ '{{ user.cbd_balance }}' }}</p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row mt-3">
                                                                             <div class="col text-right">
                                                                                 <div v-on:click="makePromotion" class="btn btn--sm btn--primary" >
-                                                                                    <span class="btn__text">{{ '{{ lang.BUTTON.PROMOTE }}' }}</span>
+                                                                                    <span class="btn__text">{{ lang.BUTTON.PROMOTE }}</span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -179,7 +179,7 @@
 
             <div class="container row-project">
                 <div class="row">
-                    <div class="col-md-12"><p class="subtitle-content-publish">{{ '{{ lang.PUBLICATION.MORE_PROJECTS }}' }}</p></div>
+                    <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                 </div>
 
                 <div v-pre class="row">
@@ -203,7 +203,7 @@
             <div class="container row-title-comment">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="subtitle-content-publish mb-0">{{ '{{ lang.PUBLICATION.COMMENTS }}' }}</p>
+                        <p class="subtitle-content-publish mb-0">{{ lang.PUBLICATION.COMMENTS }}</p>
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                                 <div class="col-md-12 mt--1 text-right">
                                     <div class="btn btn--primary" v-on:click="makeComment">
                                         <span class="btn__text">
-                                            {{ '{{ lang.BUTTON.POST_COMMENT }}' }}
+                                            {{ lang.BUTTON.POST_COMMENT }}
                                         </span>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="title">{{ '{{ lang.PUBLICATION.COMMENTS + " (" + state.post.children + ")" }}' }}</h3>
+                                    <h3 class="title">{{ lang.PUBLICATION.COMMENTS }} ({{ '{{ state.post.children }}' }})</h3>
                                 </div>
                             </div>
 
@@ -264,7 +264,7 @@
                                                                 <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[c]"></comment-like>
                                                                 <!--                                                                            <div class="cursor" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ '{{ state.content[c].active_votes.length }}' }}</div></li>-->
                                                             <li><p>{{ '{{ getPayout(state.content[c]) }}' }}</p></li>
-                                                            <li class="hidden" v-if="session"><p>{{ '{{ lang.PUBLICATION.COMMENT }}' }}</p></li>
+                                                            <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -279,7 +279,7 @@
 
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <a href="" class="more-comments">{{ '{{ lang.PUBLICATION.MORE_COMMENTS }}' }}</a>
+                                    <a href="" class="more-comments">{{ lang.PUBLICATION.MORE_COMMENTS }}</a>
                                 </div>
                             </div>
                         </div>
@@ -291,12 +291,12 @@
                                         <div class="col-md-12">
                                             <ul class="list-inline list-unstyled">
 
-                                                <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)"><p class="p-report link-report"><img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }}) {{ '{{ lang.PUBLICATION.REMOVE_REPORT }}' }}</p></li>
+                                                <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)"><p class="p-report link-report"><img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                 <li v-else >
                                                     <div class="modal-instance ">
                                                         <p class="p-report">
                                                             <img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }})
-                                                            <a href="#modal-report" class="modal-trigger link-report">{{ '{{ lang.PUBLICATION.REPORT_CONTENT }}' }}</a>
+                                                            <a href="#modal-report" class="modal-trigger link-report">{{ lang.PUBLICATION.REPORT_CONTENT }}</a>
                                                         </p>
 
                                                         <div id="modal-report" data-modal-id="modal-report" class="modal-container modal-report">
@@ -307,23 +307,23 @@
                                                                             <div class="col-md-6">
                                                                                 <div class="boxed boxed--lg bg--white feature">
                                                                                     <div class="modal-close modal-close-cross"></div>
-                                                                                    <h3>{{ '{{ lang.PUBLICATION.MODAL_REPORT_TITLE }}' }}</h3>
+                                                                                    <h3>{{ lang.PUBLICATION.MODAL_REPORT_TITLE }}</h3>
                                                                                     <div class="feature__body">
-                                                                                        <p class="mb-0">{{ '{{ lang.PUBLICATION.MODAL_REPORT_HEAD1 }}' }}</p>
-                                                                                        <p>{{ '{{ lang.PUBLICATION.MODAL_REPORT_HEAD2 }}' }}</p>
+                                                                                        <p class="mb-0">{{ lang.PUBLICATION.MODAL_REPORT_HEAD1 }}</p>
+                                                                                        <p>{{ lang.PUBLICATION.MODAL_REPORT_HEAD2 }}</p>
                                                                                         <ul>
-                                                                                            <li><p>- {{ '{{ lang.PUBLICATION.MODAL_REPORT_REASON1 }}' }}</p></li>
-                                                                                            <li><p>- {{ '{{ lang.PUBLICATION.MODAL_REPORT_REASON2 }}' }}</p></li>
-                                                                                            <li><p>- {{ '{{ lang.PUBLICATION.MODAL_REPORT_REASON3 }}' }}</p></li>
-                                                                                            <li><p>- {{ '{{ lang.PUBLICATION.MODAL_REPORT_REASON4 }}' }}</p></li>
+                                                                                            <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON1 }}</p></li>
+                                                                                            <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON2 }}</p></li>
+                                                                                            <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON3 }}</p></li>
+                                                                                            <li><p>- {{ lang.PUBLICATION.MODAL_REPORT_REASON4 }}</p></li>
                                                                                         </ul>
-                                                                                        <p>{{ '{{ lang.PUBLICATION.MODAL_REPORT_FOOTER }}' }}</p>
+                                                                                        <p>{{ lang.PUBLICATION.MODAL_REPORT_FOOTER }}</p>
                                                                                     </div>
                                                                                     <div class="row mt-3">
                                                                                         <div class="col-md-12 text-right">
                                                                                             <div class="btn btn--primary modal-close" v-on:click="vote(-10000)">
                                                                                                     <span class="btn__text">
-                                                                                                        {{ '{{ lang.BUTTON.REPORT }}' }}
+                                                                                                        {{ lang.BUTTON.REPORT }}
                                                                                                     </span>
                                                                                             </div>
                                                                                         </div>
@@ -338,7 +338,7 @@
                                                     </div>
                                                 </li>
 
-                                                <li class="cursor-link" v-on:click="ignoreUser"><p class="p-report link-report"><img src="/img/icons/NO_see.svg" alt="" />{{ '{{ lang.PUBLICATION.BLOCK_USER }}' }}</p></li>
+                                                <li class="cursor-link" v-on:click="ignoreUser"><p class="p-report link-report"><img src="/img/icons/NO_see.svg" alt="" />{{ lang.PUBLICATION.BLOCK_USER }}</p></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -353,16 +353,16 @@
                         <div v-if="state.post.download.resource" class="boxed boxed--border box-comment  mt--2 mt-3">
                             <div class="row row-download">
                                 <div class="col-md-12 row-format mt-0">
-                                    <p class="title">{{ '{{ lang.PUBLICATION.FORMAT }}' }}</p>
+                                    <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
                                     <span class="description">{{ '{{ state.post.download.type }}' }}</span>
                                 </div>
                                 <div class="col-md-12 row-format">
-                                    <p class="title">{{ '{{ lang.PUBLICATION.SIZE }}' }}</p>
+                                    <p class="title">{{ lang.PUBLICATION.SIZE }}</p>
                                     <span class="description">{{ '{{ humanFileSize(state.post.download.size) }}' }}</span>
                                 </div>
                                 <div class="col-md-12 row-format">
-                                    <p class="title">{{ '{{ lang.PUBLICATION.PRICE }}' }}</p>
-                                    <span v-if="state.post.download.price.amount === 0" class="description">{{ '{{ lang.PUBLICATION.FREE_DOWNLOAD }}' }}</span>
+                                    <p class="title">{{ lang.PUBLICATION.PRICE }}</p>
+                                    <span v-if="state.post.download.price.amount === 0" class="description">{{ lang.PUBLICATION.FREE_DOWNLOAD }}</span>
                                     <div v-else>
 {#                                        <span class="description">{{ '{{ assetPart(state.post.download.price, "int") + "." }}' }}</span>
                                         <span class="description --gray">{{ '{{ assetPart(state.post.download.price, "dec") }}' }}</span>
@@ -377,7 +377,7 @@
                                         <div v-if="state.post.download.resource">
                                             <li v-if="state.post.download.resource">
                                                 <img src="/img/icons/downloads.svg" alt="" />
-                                                <p>{{ '{{ state.post.download.times_downloaded }} {{ lang.PUBLICATION.DOWNLOADS }}' }}</p>
+                                                <p>{{ '{{ state.post.download.times_downloaded }}' }} {{ lang.PUBLICATION.DOWNLOADS }}</p>
                                             </li>
                                         </div>
                                     </ul>
@@ -390,7 +390,7 @@
                                     <div class="modal-instance">
                                         <a href="#modal-download" class="btn btn--primary modal-trigger">
                                             <span class="btn__text">
-                                                {{ '{{ lang.BUTTON.DOWNLOAD }}' }}
+                                                {{ lang.BUTTON.DOWNLOAD }}
                                             </span>
                                         </a>
 
@@ -405,19 +405,19 @@
                                                                         <div class="feature__body boxed boxed--lg boxed--border">
                                                                             <div class="modal-close modal-close-cross" v-on:click="cancelPay"></div>
                                                                             <div class="text-block">
-                                                                                <h3>{{ '{{ lang.PUBLICATION.MODAL_DOWNLOAD_TITLE }}' }}</h3>
+                                                                                <h3>{{ lang.PUBLICATION.MODAL_DOWNLOAD_TITLE }}</h3>
                                                                                 <p>{{ '{{ modal.alreadyPayed ? lang.PUBLICATION.MODAL_DOWNLOAD_TEXT_PAYED : lang.PUBLICATION.MODAL_DOWNLOAD_TEXT }}' }}</p>
                                                                             </div>
                                                                             <form>
                                                                                 <div v-if="!modal.alreadyPayed" class="row">
                                                                                     <div class="col-md-12">
-                                                                                        <p class="text-p-form">{{ '{{ lang.MODAL.WALLET_AMOUNT }}' }}</p>
+                                                                                        <p class="text-p-form">{{ lang.MODAL.WALLET_AMOUNT }}</p>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <div class="input-icon input-icon--right">
                                                                                             <i class="">{{ '{{ modal.symbol }}' }}</i>
                                                                                             <input disabled v-model="modal.amount" type="number" step="0.001" name="input" />
-                                                                                            <p class="amount-save mt-4" >{{ '{{ lang.WALLET.BALANCE }}: {{ modal.balance }}' }}</p>
+                                                                                            <p class="amount-save mt-4" >{{ lang.WALLET.BALANCE }}: {{ '{{ modal.balance }}' }}</p>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -425,10 +425,10 @@
                                                                                     <div class="col text-right">
                                                                                         <div v-if="modal.confirmed" class="btn btn--sm modal-close"
                                                                                              v-on:click="cancelPay">
-                                                                                            <span class="btn__text text__dark">{{ '{{ lang.BUTTON.CANCEL }}' }}</span>
+                                                                                            <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
                                                                                         </div>
                                                                                         <div v-if="modal.alreadyPayed" v-on:click="confirmDownload" class="btn btn--sm btn--primary modal-close" >
-                                                                                            <span class="btn__text">{{ '{{ lang.BUTTON.DOWNLOAD }}' }}</span>
+                                                                                            <span class="btn__text">{{ lang.BUTTON.DOWNLOAD }}</span>
                                                                                         </div>
                                                                                         <div v-else v-on:click="confirmDownload" class="btn btn--sm btn--primary" >
                                                                                             <span class="btn__text">{{ '{{ modal.confirmed ? lang.BUTTON.PAY : lang.BUTTON.CONFIRM }}' }}</span>
@@ -475,7 +475,7 @@
                                 <div class="col-md-12">
                                     <div class="feature feature-2">
                                         <div class="feature__body">
-                                            <h2 class="title-certificate">{{ '{{ lang.PUBLICATION.CERTIFICATE }}' }}</h2>
+                                            <h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2>
                                             <hr>
                                             <p>License: <a v-bind:href="getLicense().getLink()">{{ '{{ getLicense().getTags() }}' }}</a></p>
                                             <p>Timestamp: {{ '{{ new Date(state.post.created).toLocaleString() }}' }}</p>

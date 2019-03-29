@@ -2,8 +2,8 @@
 
     <div class="boxed boxed--border">
         <div class="section-title-step">
-            <h4 class="title-steps">{{ '{{ lang.PUBLISH.DOWNLOAD_TITLE }}' }}</h4>
-            <span class="description-step-title">{{ '{{ lang.PUBLISH.DOWNLOAD_SUBTITLE }}' }}</span>
+            <h4 class="title-steps">{{ lang.PUBLISH.DOWNLOAD_TITLE }}</h4>
+            <span class="description-step-title">{{ lang.PUBLISH.DOWNLOAD_SUBTITLE }}</span>
         </div>
         <form action="" class="row">
             <div v-if="editablePost && editablePost.download.size > 0" class="col-md-12">
@@ -13,7 +13,7 @@
                 <input type="file" v-on:input="onInputDownloadFile" class="form-control-file" id="exampleFormControlFile1" />
             </div>
             <div class="col-md-8">
-                <label>{{ '{{ lang.PUBLISH.PRICE }}' }}</label>
+                <label>{{ lang.PUBLISH.PRICE }}</label>
                 <input class="validate-required" v-model="downloadFile.price" type="number" min="0" step="0.001" v-bind:placeholder="lang.PUBLISH.INPUT_PRICE" />
             </div>
             <div class="col-md-4">

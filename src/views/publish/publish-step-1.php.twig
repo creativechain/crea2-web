@@ -1,8 +1,8 @@
 <div class="step-1">
     <div class="boxed boxed--border">
         <div v-if="bodyElements.length == 0 && !editor.show" class="section-title-step">
-            <h4 class="title-steps">{{ '{{ lang.PUBLISH.SECONDARY_MENU_CONTENT }}' }}</h4>
-            <span class="description-step-title">{{ '{{ lang.PUBLISH.CONTENT_SUBTITLE }}' }}</span>
+            <h4 class="title-steps">{{ lang.PUBLISH.SECONDARY_MENU_CONTENT }}</h4>
+            <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SUBTITLE }}</span>
         </div>
 
         <template v-for="k in Object.keys(bodyElements)">
@@ -45,21 +45,21 @@
         <div class="box-content-step-1">
             <div v-if="editor.show" class="section-editor">
                 <div class="section-title-step upload-img">
-                    <h4 class="title-steps">{{ '{{ lang.PUBLISH.CONTENT_TEXT }}' }}</h4>
-                    <span class="description-step-title">{{ '{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}' }}</span>
+                    <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
+                    <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
                 </div>
                 <ckeditor v-on:input="editorInput"></ckeditor>
             </div>
             <div v-if="editor.show" class="row mt-3 justify-content-end" style="z-index: 1;position: relative;">
                 <div class="col-6 col-md-3 text-center">
                     <div class="btn btn--sm" v-on:click="editor.show = false">
-                        <span class="btn__text text__dark">{{ '{{ lang.BUTTON.CANCEL }}' }}</span>
+                        <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
                     </div>
                 </div>
 
                 <div class="col-6 col-md-3 text-center">
                     <div class="btn btn--sm btn--primary"  v-on:click="updateText(updatingIndex)">
-                        <span class="btn__text">{{ '{{ lang.BUTTON.SAVE }}' }}</span>
+                        <span class="btn__text">{{ lang.BUTTON.SAVE }}</span>
                     </div>
                 </div>
             </div>
@@ -70,13 +70,13 @@
                         <div class="row row-options-steps-1">
                             <div class="col-6 text-center">
                                 <div v-bind:class="{ 'img-disabled-file': editor.show }" class="button-add-file" v-on:click="loadFile"></div>
-                                <p v-bind:class="{ disabled: editor.show }" class="title">{{ '{{ lang.PUBLISH.FILE }}' }}</p>
-                                <p class="disabled">{{ '{{ lang.PUBLISH.FILE_TYPE_INFO }}' }}</p>
+                                <p v-bind:class="{ disabled: editor.show }" class="title">{{ lang.PUBLISH.FILE }}</p>
+                                <p class="disabled">{{ lang.PUBLISH.FILE_TYPE_INFO }}</p>
                                 <input ref="publishInputFile" type="file" accept="image/*|audio/*|video/*" class="hidden" v-on:change="onLoadFile" />
                             </div>
                             <div class="col-6 text-center">
                                 <div v-bind:class="{ 'img-disabled-text': editor.show }" class="button-add-text" v-on:click="toggleEditor"></div>
-                                <p v-bind:class="{ disabled: editor.show }" class="title">{{ '{{ lang.PUBLISH.TEXT }}' }}</p>
+                                <p v-bind:class="{ disabled: editor.show }" class="title">{{ lang.PUBLISH.TEXT }}</p>
                             </div>
                         </div>
                     </div>

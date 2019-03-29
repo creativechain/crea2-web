@@ -34,7 +34,7 @@
                                             {{ '{{ getPendingPayouts(state.content[p]) }}' }}
                                         </p>
                                         <p>{{ '{{ getPayoutPostDate(state.content[p]) }}' }}</p>
-                                        <p v-if="hasPromotion(state.content[p])">{{ '{{ lang.HOME.PROMOTION_COST }} : {{ getPromotion(state.content[p]) }}' }}</p>
+                                        <p v-if="hasPromotion(state.content[p])">{{ lang.HOME.PROMOTION_COST }} : {{ '{{ getPromotion(state.content[p]) }}' }}</p>
                                     </div>
                                 </div><!--end row-->
                             </div><!--end container-->
@@ -102,15 +102,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="title-stats">{{ '{{ lang.HOME.DROPDOWN_USER_PROFILE_PROJECTS }}' }}</p>
+                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_PROJECTS }}</p>
                                                 <span>{{ '{{ state.accounts[state.content[p].author].post_count }}' }}</span>
                                             </div>
                                             <div class="col">
-                                                <p class="title-stats">{{ '{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWERS }}' }}</p>
+                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWERS }}</p>
                                                 <span>{{ '{{ state.accounts[state.content[p].author].follower_count }}' }}</span>
                                             </div>
                                             <div class="col">
-                                                <p class="title-stats">{{ '{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWING }}' }}</p>
+                                                <p class="title-stats">{{ lang.HOME.DROPDOWN_USER_PROFILE_FOLLOWING }}</p>
                                                 <span>{{ '{{ state.accounts[state.content[p].author].following_count }}' }}</span>
                                             </div>
                                         </div>
