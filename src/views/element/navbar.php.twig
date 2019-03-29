@@ -75,7 +75,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     </script>
 
     <script>
-        var lang = {{ lang|json_encode|raw }};
+        window.lang = {{ lang|json_encode|raw }};
     </script>
 
     <script src="/js/js-cookie-2.2.0.min.js"></script>
