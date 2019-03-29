@@ -46,7 +46,12 @@
                             </li>
                             <li class="list-inline-item">
                                 <div class="dropdown dropdown-price">
-                                        <span class="dropdown__trigger"> {{ '{{ getPayout() }}' }}
+                                        <span class="dropdown__trigger">
+                                            <post-amount v-bind:value="state.post.pending_payout_value"
+                                                         v-bind:symbol="'$'"
+                                                         v-bind:symbefore="true" >
+
+                                            </post-amount>
                                             <i class="stack-down-open"></i>
                                         </span>
                                     <div class="dropdown__container price">
@@ -54,7 +59,12 @@
                                             <div class="row">
                                                 <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                     <p class="title">{{ '{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout() }}' }}</p>
-                                                    <p v-if="!hasPaid()">{{ '{{ getPendingPayouts() }}' }}</p>
+                                                    <p v-if="!hasPaid()">
+                                                        {#{{ '{{ getPendingPayouts() }}' }}#}
+                                                        (<post-amount v-bind:value="getPendingPayouts('cbd')"></post-amount>,
+                                                        <post-amount v-bind:value="getPendingPayouts('crea')"></post-amount>,
+                                                        <post-amount v-bind:value="getPendingPayouts('cgy')"></post-amount>)
+                                                    </p>
                                                     <p>{{ '{{ getPayoutPostDate() }}' }}</p>
                                                     <p v-if="hasPromotion()">{{ '{{ lang.HOME.PROMOTION_COST }}' }}: {{ '{{ getPromotion() }}' }}</p>
                                                 </div>

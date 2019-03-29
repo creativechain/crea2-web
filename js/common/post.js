@@ -125,7 +125,9 @@
 
                         return '$ ' + amount.toPlainString(2);
                     },
-                    getPendingPayouts: function getPendingPayouts() {
+                    getPendingPayouts: function getPendingPayouts(asset) {
+                        asset = asset ? asset.toLowerCase() : '';
+
                         var post = this.state.post;
                         var PRICE_PER_CREA = Asset.parse({
                             amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(),
@@ -153,7 +155,17 @@
                             amount: (PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat(),
                             nai: 'crea'
                         });
-                        return '(' + PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_CGY.toFriendlyString(null, false) + ')';
+
+                        switch (asset) {
+                            case 'cgy':
+                                return PENDING_PAYOUT_CGY.toFriendlyString(null, false);
+                            case 'cbd':
+                                return PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false);
+                            case 'crea':
+                                return PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false);
+                            default:
+                                return '(' + PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_CGY.toFriendlyString(null, false) + ')';
+                        }
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;
