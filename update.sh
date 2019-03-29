@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Update sources
-git pull origin test
+git pull
 
 # Update dependencies
 composer update
