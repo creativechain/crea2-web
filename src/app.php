@@ -77,7 +77,7 @@ function receiveRequest()
     return json_decode($json, true);
 }
 
-function handleRoute() {
+function handleRoute($controller) {
     global $CONFIG;
     $debug = $CONFIG['renderization']['debug'];
     $renderOptions = array(
@@ -135,7 +135,7 @@ if (loadConfig()) {
 
     } else if (boolval($CONFIG['maintenance'])) {
         http_response_code(503);
-        include __DIR__ . '/views/errors/503.php.twig';
+        header('Location: https://' . $_SERVER['SERVER_NAME'] . '/503');
     } else {
         handleRoute();
     }
