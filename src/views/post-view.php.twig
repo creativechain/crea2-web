@@ -353,7 +353,12 @@
                                 <div class="col-md-12 row-format">
                                     <p class="title">{{ '{{ lang.PUBLICATION.PRICE }}' }}</p>
                                     <span v-if="state.post.download.price.amount === 0" class="description">{{ '{{ lang.PUBLICATION.FREE_DOWNLOAD }}' }}</span>
-                                    <span v-else class="description">{{ '{{ assetToString(state.post.download.price) }}' }}</span>
+                                    <div v-else>
+                                        <span class="description">{{ '{{ assetPart(state.post.download.price, "int") + "." }}' }}</span>
+                                        <span class="description --gray">{{ '{{ assetPart(state.post.download.price, "dec") }}' }}</span>
+                                        <span class="description">{{ '{{ assetPart(state.post.download.price, "sym") }}' }}</span>
+                                    </div>
+
                                 </div>
                                 <div class="borderHr"></div>
                                 <div class="col-md-12">

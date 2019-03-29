@@ -251,6 +251,10 @@ var Asset =
         }], [{
             key: "parse",
             value: function parse(assetData) {
+                if (typeof assetData === 'string') {
+                    return Asset.parseString(assetData);
+                }
+
                 var nai = NAI[assetData.nai] || NAI[assetData.asset.symbol.toLowerCase()];
 
                 if (typeof assetData.amount === 'number') {

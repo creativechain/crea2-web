@@ -387,6 +387,20 @@
                         var abbr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
                         return Asset.parse(asset).toFriendlyString(maxDecimals, abbr);
                     },
+                    assetPart: function assetPart(asset, part) {
+                        asset = Asset.parse(asset);
+
+                        switch (part) {
+                            case 'int':
+                                return asset.toPlainString(null, false).split('.')[0];
+                            case 'dec':
+                                return asset.toPlainString(null, false).split('.')[1];
+                            case 'sym':
+                                return asset.asset.symbol;
+                            default:
+                                return Asset.parse(asset).toFriendlyString(null, true);
+                        }
+                    },
                     openPost: showPost,
                     showProfile: showProfile,
                     getJoinDate: function getJoinDate() {

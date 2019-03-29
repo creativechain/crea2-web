@@ -78,7 +78,12 @@
                                 </td>
                                 <td class="td-right-balance">
                                     <div class="dropdown">
-                                        <span id="wallet-balance-crea" class="dropdown__trigger active">{{ '{{ state.user.balance }}' }}</span>
+                                        <div id="wallet-balance-crea" class="dropdown__trigger active">
+                                            <span>{{ '{{ assetPart(state.user.balance, "int") + "." }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.balance, "dec") }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.balance, "sym") }}' }}</span>
+                                        </div>
+
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -217,7 +222,11 @@
                                 </td>
                                 <td class="td-right-balance">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ '{{ getCGYBalance().toFriendlyString(null, false) }}' }}</span>
+                                        <div  class="dropdown__trigger">
+                                            <span>{{ '{{ assetPart(getCGYBalance().toFriendlyString(null, false), "int") + "." }}' }}</span>
+                                            <span>{{ '{{ assetPart(getCGYBalance().toFriendlyString(null, false), "dec") }}' }}</span>
+                                            <span>{{ '{{ assetPart(getCGYBalance().toFriendlyString(null, false), "sym") }}' }}</span>
+                                        </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -303,7 +312,11 @@
                                 </td>
                                 <td class="td-right-balance">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ '{{ state.user.cbd_balance }}' }}</span>
+                                        <div class="dropdown__trigger">
+                                            <span>{{ '{{ assetPart(state.user.cbd_balance, "int") + "." }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.cbd_balance, "dec") }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.cbd_balance, "sym") }}' }}</span>
+                                        </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -339,7 +352,11 @@
                                 </td>
                                 <td class="td-right-balance">
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ '{{ state.user.savings_balance }}' }}</span>
+                                        <div class="dropdown__trigger">
+                                            <span>{{ '{{ assetPart(state.user.savings_balance, "int") + "." }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.savings_balance, "dec") }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.savings_balance, "sym") }}' }}</span>
+                                        </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -359,7 +376,11 @@
                                         </div><!--end dropdown container-->
                                     </div>
                                     <div class="dropdown">
-                                        <span class="dropdown__trigger">{{ '{{ state.user.savings_cbd_balance }}' }}</span>
+                                        <div class="dropdown__trigger">
+                                            <span>{{ '{{ assetPart(state.user.savings_cbd_balance, "int") + "." }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.savings_cbd_balance, "dec") }}' }}</span>
+                                            <span>{{ '{{ assetPart(state.user.savings_cbd_balance, "sym") }}' }}</span>
+                                        </div>
                                         <div v-if="canWithdraw()" class="dropdown__container">
                                             <div class="container">
                                                 <div class="row">
@@ -386,7 +407,7 @@
                                     <p>{{ '{{ lang.WALLET.BALANCES_ACCOUNT_TEXT }}' }}</p>
                                 </td>
                                 <td class="td-right-balance">
-                                    <p class="total-active">{{ '{{ state.user.estimate_account_value }}' }}$</p>
+                                    <p class="total-active">${{ '{{ state.user.estimate_account_value }}' }}</p>
                                 </td>
                             </tr>
                             <tr v-if="nextDeEnergize">

@@ -61,6 +61,20 @@
                     assetToString: function assetToString(asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
+                    assetPart: function assetPart(asset, part) {
+                        asset = Asset.parse(asset);
+
+                        switch (part) {
+                            case 'int':
+                                return asset.toPlainString(null, false).split('.')[0];
+                            case 'dec':
+                                return asset.toPlainString(null, false).split('.')[1];
+                            case 'sym':
+                                return asset.asset.symbol;
+                            default:
+                                return Asset.parse(asset).toFriendlyString();
+                        }
+                    },
                     getDefaultAvatar: R.getAvatar,
                     getLicense: function getLicense() {
                         return License.fromFlag(this.state.post.metadata.license);
