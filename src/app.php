@@ -77,7 +77,7 @@ function receiveRequest()
     return json_decode($json, true);
 }
 
-function handleRoute($controller) {
+function handleRoute() {
     global $CONFIG;
     $debug = $CONFIG['renderization']['debug'];
     $renderOptions = array(
@@ -132,7 +132,8 @@ if (loadConfig()) {
         }
 
         echo 'Well';
-
+    } else if (strpos($URI, '/admin') === 0 && boolval($CONFIG['maintenance'])) {
+        handleRoute();
     } else if (boolval($CONFIG['maintenance'])) {
         http_response_code(503);
         header('Location: https://' . $_SERVER['SERVER_NAME'] . '/503');
