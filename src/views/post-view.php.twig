@@ -60,10 +60,10 @@
                                                 <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                     <p class="title">{{ '{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout() }}' }}</p>
                                                     <p v-if="!hasPaid()">
-                                                        {#{{ '{{ getPendingPayouts() }}' }}#}
-                                                        (<post-amount v-bind:value="getPendingPayouts('cbd')"></post-amount>,
+                                                        {{ '{{ getPendingPayouts() }}' }}
+                                                        {#(<post-amount v-bind:value="getPendingPayouts('cbd')"></post-amount>,
                                                         <post-amount v-bind:value="getPendingPayouts('crea')"></post-amount>,
-                                                        <post-amount v-bind:value="getPendingPayouts('cgy')"></post-amount>)
+                                                        <post-amount v-bind:value="getPendingPayouts('cgy')"></post-amount>)#}
                                                     </p>
                                                     <p>{{ '{{ getPayoutPostDate() }}' }}</p>
                                                     <p v-if="hasPromotion()">{{ '{{ lang.HOME.PROMOTION_COST }}' }}: {{ '{{ getPromotion() }}' }}</p>
