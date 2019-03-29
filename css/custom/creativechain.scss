@@ -58,6 +58,12 @@ label {
     background-position: 50% 50%;
   }
 }
+.amount-price {
+  span:nth-child(2) {
+    margin-left: -2px;
+    color: $grey-light;
+  }
+}
 .dropdown__content-mobile {
   background: #191919 !important;
   border: solid transparent !important;
