@@ -104,6 +104,7 @@
 
                         if (!this.loginForm.username.error) {
                             login(this.loginForm.username.value, this.loginForm.password.value, function (err) {
+                                console.log(err);
                                 if (err) {
                                     console.error(err);
 

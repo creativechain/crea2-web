@@ -71,6 +71,11 @@
     creaEvents.on('crea.modal.ready', function () {
         setTimeout(function () {
             console.log('setting up new modals');
+
+            //Remove login modals to prevent id conflicts
+            $('.all-page-modals #modal-login').remove();
+            $('.all-page-modals #modal-login-d').remove();
+
             mr.modals.documentReady($);
             console.log('done');
         }, 1000);
