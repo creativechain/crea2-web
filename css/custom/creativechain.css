@@ -120,6 +120,8 @@
     .simple-view-home .post-container-home .card-home .card__top .img-post-list {
       height: 300px; }
 
+.view-profile .amount-price {
+  display: inline; }
 .view-profile .tabs-container .tabs-content {
   margin-left: 0;
   min-width: 100%; }
