@@ -6,4 +6,3 @@ webconfig.json
 /var/
 composer.lock
 robots.txt
-update.sh
