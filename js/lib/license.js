@@ -36,7 +36,7 @@ var LicensePermission =
         _createClass(LicensePermission, [{
             key: "getIcon",
             value: function getIcon(color) {
-                color = color ? color : 'WHITE';
+                color = color ? color : 'BLACK';
                 color = color.toUpperCase();
                 return this.icons[color];
             }
@@ -106,8 +106,7 @@ var License =
 
         }, {
             key: "getIcons",
-            value: function getIcons() {
-                var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            value: function getIcons(color) {
                 var icons = [];
                 this.licensePermissions.forEach(function (perm) {
                     icons.push(perm.getIcon(color));
