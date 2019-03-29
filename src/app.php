@@ -135,7 +135,7 @@ if (loadConfig()) {
 
     } else if (boolval($CONFIG['maintenance'])) {
         http_response_code(503);
-        include __DIR__ . 'views/errors/503.php.twig';
+        include __DIR__ . '/views/errors/503.php.twig';
     } else {
         handleRoute();
     }
