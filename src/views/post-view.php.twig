@@ -469,7 +469,7 @@
                                             <hr>
                                             <p>License: <a v-bind:href="getLicense().getLink()">{{ '{{ getLicense().getTags() }}' }}</a></p>
                                             <p>Timestamp: {{ '{{ new Date(state.post.created).toLocaleString() }}' }}</p>
-                                            <p>{{ '{{ state.post.metadata.hash || '-' }}' }}</p>
+                                            <p>{{ '{{ state.post.metadata.hash || "-" }}' }}</p>
                                             <ul class="float-left mt-3">
                                                 <li class="li-blockchain-certificate">
                                                     <template v-for="i in getLicense().getIcons('white')">
