@@ -132,7 +132,7 @@ if (loadConfig()) {
         }
 
         echo 'Well';
-    } else if (strpos($URI, '/admin') === 0 && boolval($CONFIG['maintenance'])) {
+    } else if (strpos($URI, '/503') === 0 && boolval($CONFIG['maintenance'])) {
         handleRoute();
     } else if (boolval($CONFIG['maintenance'])) {
         http_response_code(503);
