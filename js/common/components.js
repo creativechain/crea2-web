@@ -20,6 +20,35 @@ var WITNESS_STATE = {
     VOTED_END: 4
 };
 
+Vue.component('amount', {
+    template:
+        "<div class='amount-price'> " +
+        "   <span>{{ assetPart(value, 'int') + '.' }}</span>" +
+        "   <span>{{ assetPart(value, 'dec') }}</span>" +
+        "   <span>{{ assetPart(value, 'sym') }}</span>" +
+        "</div>",
+    props: {
+        value: [Number, String]
+    },
+    methods : {
+        assetPart: function assetPart(asset, part) {
+            asset = Asset.parse(asset);
+
+            switch (part) {
+                case 'int':
+                    return asset.toPlainString(null, false).split('.')[0];
+                case 'dec':
+                    return asset.toPlainString(null, false).split('.')[1];
+                case 'sym':
+                    return asset.asset.symbol;
+                default:
+                    return Asset.parse(asset).toFriendlyString();
+            }
+        },
+    }
+});
+
+
 Vue.component('slider', {
     template: "<div class=\"slider slider-horizontal\" v-on:mousedown=\"onMouseDown\" v-on:mouseup=\"onMouseUp\" v-on:mousemove=\"onMouse\">" +
         "<div class=\"slider-track\">" +
