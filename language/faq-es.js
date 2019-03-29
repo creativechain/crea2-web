@@ -61,7 +61,7 @@ faq.es = {
         ],
         "Seguidores, Feeds y Recreary": ["¿Qué es Recreary? "],
         "Desarrolladores": ["¿El código Creary.net o de la blockchain de Crea es de código abierto?"],
-        "Votación y Curating": [
+        "Votación y Curación": [
             "¿Cuál es mi poder de voto?",
             "¿Cuántas veces puedo votar sin agotar mi poder de voto?",
             "¿Puedo votar con menos del 100% de mi poder de voto?",
@@ -70,7 +70,8 @@ faq.es = {
             "¿Recibiré recompensas de curaduría por denunciar, publicaciones o comentarios?",
             "¿Por qué mis votaciones no tienen efecto en las recompensas de una publicación?",
             "¿Hay alguna manera de conseguir que mis votos tengan más influencia? ",
-            "¿Cuáles son los motivos válidos para realizar un voto negativo al reportar un contenido?"
+            "¿Cuáles son los motivos válidos para realizar un voto negativo al reportar un contenido?",
+            "¿Por qué cuando doy un Me gusta a un proyecto, no agrega una recompensa?"
         ],
         "Seguridad": [
             "¿Cómo puedo mantener segura mi cuenta de Crea?",
@@ -369,7 +370,7 @@ faq.es = {
             ],
             "¿El código Creary.net o de la blockchain de Crea es de código abierto?": ["Si, puede encontrar el repositorio completo en https://github.com/creativechain "]
         },
-        "Votación y Curating": {
+        "Votación y Curación": {
             "¿Recibiré recompensas de curaduría por denunciar, publicaciones o comentarios?": ["No. Ya que denunciar un contenido con un voto negativo reduce las recompensas en una publicación / comentario, por esta razón no se obtendrá recompensas de curación."],
             "¿Hay alguna manera de conseguir que mis votos tengan más influencia? ": ["Sí. Cuanto más CREA Energy tengas, más influencia tendrán tus votos. Puedes conseguir fácilmente CGY si eres un usuario que publica contenidos de calidad y colabora en la curación de contenidos de una manera activa. Un atajo para conseguir CGY es comprar CREA en cualquier intercambio que comercie con el token. https://creaproject.io/buy/"],
             "¿Cuánto cuestan las transacciones de CREA a otros usuarios?": ["No hay tarifas por ningún tipo de transferencia o conversión ( Energize o De-Energize) dentro de la red de Crea Network. "],
@@ -408,6 +409,14 @@ faq.es = {
                 "A los 6 minutos, el 80% va al autor y el 20% al curador.",
                 "A los 15 minutos es una división 50/50.",
                 "Si una publicación se vota 30 minutos después su publicación, el 100% de la recompensa de curación se destina a los curadores. "
+            ],
+            "¿Por qué cuando doy un Me gusta a un proyecto, no agrega una recompensa?": [
+                "Si sus \"me gusta\" no dan una recompensa, puede deberse a varias razones.",
+                "1- Para tener una mayor influencia en tus gustos, necesitarás tener CREA Energy (CGY) cuanto más CGY tengas, mayor será tu influencia en la distribución de las recompensas. Para obtener más CGY tienes diferentes opciones:",
+                "-La primera opción es ganar recompensas por su actividad en la red social, por ejemplo, creando contenido de calidad, escribiendo comentarios interesantes o dando \"me gusta\" a contenido de calidad.",
+                "-La segunda y más rápida opción es energizar CREA y convertirla en CGY en su billetera. Si no tiene CREA, puede obtenerlo en cualquier punto de venta o intercambio disponible en https://creaproject.io/buy/",
+                "2- Es posible que todavía seas un recién llegado y tu BUZZ (reputación) sea todavía muy bajo. Puede consultar su reputación exacta en https://creascan.net/@youruser/data, sección de reputación. Si tu reputación es 0 o muy baja, tus gustos tendrán muy poco efecto, incluso si tienes mucho CGY.",
+                "3- Si cumple con los 2 requisitos anteriores y sus \"me gusta\" aún no dan recompensas, es posible que haya agotado su energía de voto. Puede verificarlo en https://creascan.net/@youruser, donde encontrará una barra que indica su energía de votación en la columna derecha. Si este indicador está en 0% o en un porcentaje muy bajo, el sistema le permitirá dar \"Me gusta\" pero no tendrán influencia. La energía de votación se recarga, poco a poco (puede tomar minutos u horas), cuanto mayor sea su reputación, más rápido se recargará."
             ]
         },
         "Seguridad": {

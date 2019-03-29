@@ -55,7 +55,8 @@ faq.en = {
             "Do I get curation rewards for downvoting posts or comments?",
             "Why don't my upvotes have an effect on a post's rewards?",
             "Is there any way to make my vows more powerful?",
-            "What are the valid reasons for downvoting when reporting a content?"
+            "What are the valid reasons for downvoting when reporting a content?",
+            "Why when I give a like to a project, it doesn't add a reward?"
         ],
         "Economy": [
             "Where do the new CREA tokens come from?",
@@ -337,7 +338,15 @@ faq.en = {
                 "Once you reach about 500 CREA Energy, you will see a voting slider appear when you vote. You can use the slider to adjust the weight of your vote, between 1% and 100% of the voting strength. Voting with less than 100% of weight will spend less voting power, but will also have less influence on the rewards of the comment or post."
             ],
             "Is there any way to make my vows more powerful?": ["Yes. The more CREA Energy you have, the more your votes count. You can easily get CGY if you are a user that publishes quality content and collaborates in the curation of content in an active way. A shortcut to get CGY is to buy CREA in any exchange where the token is available. https://creaproject.io/buy"],
-            "Where can I verify my voting power?": ["You can see your current voting power and other profile data in the blockchain by consulting tools such as https://creascan.net/@youraccount."]
+            "Where can I verify my voting power?": ["You can see your current voting power and other profile data in the blockchain by consulting tools such as https://creascan.net/@youraccount."],
+            "Why when I give a like to a project, it doesn't add a reward?": [
+                "If your likes don’t give a reward, it can be due to several reasons.",
+                "1- To have greater influence on your likes you will need to have CREA Energy (CGY) the more CGY you have your influence in the distribution of the rewards will be greater. To get more CGY you have different options:",
+                "-The first option is to earn rewards for your activity in the social network, for example by creating quality content, writing interesting comments or giving likes to quality content.",
+                "-The second and fastest option is to energize CREA and convert it into CGY on your wallet. If you do not have CREA you can get it at any point of sale or exchange available https://creaproject.io/buy/",
+                "2- It is possible that you are still a newcomer and your BUZZ (reputation) is still very low. You can check your exact reputation at https://creascan.net/@youruser/data, reputation section. If your reputation is 0 or very low, your likes will have very little effect even if you have a lot of CGY.",
+                "3- If you meet the 2 previous requirements and your likes still don’t give rewards, it’s possible that you have exhausted your voting energy. You can check it at https://creascan.net/@youruser where you’ll find a bar that indicates your voting energy in the right column. If this indicator is at 0% or at a very low %, the system will allow you to give likes but they won’t have influence. The voting energy recharges itself, little by little (it can take minutes or hours), the higher your reputation the faster it will recharge."
+            ]
         },
         "Economy": {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],
