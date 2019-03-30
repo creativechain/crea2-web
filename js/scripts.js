@@ -1790,10 +1790,17 @@ mr = (function (mr, $, window, document){
             var modalTrigger = $(this);
             var uniqueID, targetModal;
             // Determine if the modal id is set by user or is set programatically
-   
+
             if(typeof modalTrigger.attr('data-modal-id') !== typeof undefined){
                 uniqueID = modalTrigger.attr('data-modal-id');
-                targetModal = mr.modals.allModalsContainer.find('.modal-container[data-modal-id="'+uniqueID+'"]');    
+
+                //Find by id
+                targetModal = mr.modals.allModalsContainer.find('.modal-container[id="'+uniqueID+'"]');
+
+                if (targetModal.length < 1) {
+                    targetModal = mr.modals.allModalsContainer.find('.modal-container[data-modal-id="'+uniqueID+'"]');
+                }
+
             }else{
                 uniqueID = $(this).attr('data-modal-index');
                 targetModal = mr.modals.allModalsContainer.find('.modal-container[data-modal-index="'+uniqueID+'"]');

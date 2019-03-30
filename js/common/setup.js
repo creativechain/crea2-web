@@ -63,22 +63,31 @@
         } else {
             CreaCookies.remove('creary.username')
         }
+
+        //Send language
+        //console.log('cookies');
+        var navLang = navigator.language.toLowerCase().split('-')[0];
+        CreaCookies.set('creary.language', navLang);
+
+        //console.log(navLang, CreaCookies.get('creary.language'));
     }
     creaEvents.on('crea.session.login', updateCookies);
     creaEvents.on('crea.session.update', updateCookies);
     creaEvents.on('crea.session.logout', updateCookies);
 
-    creaEvents.on('crea.modal.ready', function () {
+    creaEvents.on('crea.modal.ready', function (remove) {
         setTimeout(function () {
             console.log('setting up new modals');
 
-            //Remove login modals to prevent id conflicts
-            $('.all-page-modals #modal-login').remove();
-            $('.all-page-modals #modal-login-d').remove();
+            if (remove) {
+                //Remove login modals to prevent id conflicts
+                $('.all-page-modals #modal-login').remove();
+                $('.all-page-modals #modal-login-d').remove();
+            }
 
             mr.modals.documentReady($);
             console.log('done');
-        }, 1000);
+        }, 500);
 
     });
 
@@ -106,5 +115,8 @@
             });
         });
         $('[data-toggle="popover"]').popover();
+
+        //Build modals
+        creaEvents.emit('crea.modal.ready');
     });
 })();

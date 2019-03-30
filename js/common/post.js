@@ -266,7 +266,6 @@
                     },
                     mounted: function mounted() {
                         onVueReady();
-                        creaEvents.emit('crea.modal.ready');
                     },
                     methods: {
                         hideModalPromote: function hideModalPromote(event) {
@@ -335,7 +334,6 @@
                         },
                         mounted: function mounted() {
                             onVueReady();
-                            creaEvents.emit('crea.modal.ready');
                         },
                         methods: {
                             cancelPay: function cancelPay() {

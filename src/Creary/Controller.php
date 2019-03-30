@@ -141,8 +141,8 @@ class Controller
      */
     private function getLanguage() {
         $profile = $this->getProfileOfCookie();
-        $lang = 'en';
-
+        $lang = $this->getCookie('creary_language');
+        $lang = $lang ? $lang : 'en';
         if ($profile) {
             $lang = $profile['metadata']['lang'];
         }
