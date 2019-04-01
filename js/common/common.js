@@ -190,10 +190,11 @@ function removeBlockedContents(state, accountState, discussion_idx) {
 
         if (accountState) {
             var allowedContents = [];
+            console.log(jsonify(jsonstring(accountState.user)));
             cKeys.forEach(function (ck) {
                 var c = state.content[ck];
 
-                console.log(jsonify(jsonstring(accountState)), jsonify(jsonstring(accountState.user)));
+
                 //If author is blocked, post must be blocked
                 if (accountState.user.blockeds.indexOf(c.author) < 0) {
                     allowedContents.push(ck);
