@@ -183,18 +183,19 @@ function createBlockchainAccount(username, password, callback) {
     });
 }
 
-function removeBlockedContents(state, account, discussion_idx) {
+function removeBlockedContents(state, accountState, discussion_idx) {
     if (state) {
         //Remove post for blocked users
         var cKeys = discussion_idx ? discussion_idx : Object.keys(state.content);
 
-        if (account) {
+        if (accountState) {
             var allowedContents = [];
             cKeys.forEach(function (ck) {
                 var c = state.content[ck];
 
+                console.log(jsonify(jsonstring(accountState)), jsonify(jsonstring(accountState.user)));
                 //If author is blocked, post must be blocked
-                if (account.user.blockeds.indexOf(c.author) < 0) {
+                if (accountState.user.blockeds.indexOf(c.author) < 0) {
                     allowedContents.push(ck);
                 }
             });
