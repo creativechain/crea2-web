@@ -161,7 +161,8 @@ class Controller
         $language = $this->getLanguage();
 
         //die(print_r($language, true));
-        $title =  ucfirst(URLUtils::splitRequestUri()) . ' - CREARY';
+        $title =  ucfirst(URLUtils::splitRequestUri());
+        $title = $title ? $title . ' - CREARY' : 'CREARY';
         return $this->viewRender->render($view, array(
             'lang' => $language,
             'og' => $this->buildOG($title, $language->METADATA->DESCRIPTION, $language->METADATA->IMAGE)
