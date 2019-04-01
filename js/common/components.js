@@ -32,7 +32,8 @@ Vue.component('post-amount', {
         "       {{ assetPart(value, 'int') + '.' }}" +
         "       <span>{{ assetPart(value, 'dec') }}</span>" +
         "       {{ assetPart(value, 'sym') }}" +
-        "   </template>",
+        "   </template>" +
+        "</span>",
     props: {
         value: [Number, String, Object],
         symbol: [String],
