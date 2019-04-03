@@ -88,6 +88,6 @@ class Router
         }
 
         $this->matchedRoute = null;
-        return '404.php.twig';
+        return 'errors/404.php.twig';
     }
 }
