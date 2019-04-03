@@ -465,6 +465,26 @@
         "VOTED_FOR": "Voted for ",
         "CREATE_ACCOUNT": " create account "
     },
+    "MARKET": {
+        "MARKETS": "Markets",
+        "MARKET_HISTORY": "Market History",
+        "LAST_PRICE": "Last Price",
+        "CHANGE_24H": "24H Change",
+        "HIGH_24H": "24H High",
+        "LOW_24H": "24H Low",
+        "VOLUME_24H": "24H Volume",
+        "PRICE": "Price",
+        "DATE": "Date",
+        "BUY": "Buy",
+        "SELL": "Sell",
+        "BUY_CREA": "Buy CREA",
+        "SELL_CREA": "Sell CREA",
+        "AMOUNT": "Amount",
+        "TOTAL": "Total",
+        "TOTAL_CREA": "Total CREA",
+        "TYPE": "Type",
+        "ACTION": "BUTTON"
+    },
     "AUTH_MODAL": {
         "TITLE": "This action requires the %s key",
         "INPUT_PASSWORD": "Enter the Masterkey or Wif"

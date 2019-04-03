@@ -1,0 +1,1097 @@
+{{  include('element/navbar.php.twig') }}
+    <div class="main-container exchange mt--3">
+        <div v-cloak id="market-container">
+            <div class="container header-exchange">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="title-section">{{ lang.MARKET.MARKETS }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="boxed boxed--border navbar-resum">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="head-splits name">
+                                        <h4 class="title">CREA<span class="gray-color">/CBD</span></h4>
+                                        <p>CREA</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="head-splits">
+                                        <p class="small gray-color">{{ lang.MARKET.LAST_PRICE }}</p>
+                                        <p class="amount"><strong><span class="green-color">{{ '{{ ticker.latest }}' }}</span></strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="head-splits">
+                                        <p class="small gray-color">{{ lang.MARKET.CHANGE_24H }}</p>
+                                        <p class="amount"><strong><span class="red-color">-0.00000467</span> -$0.05</strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="head-splits">
+                                        <p class="small gray-color">{{ lang.MARKET.HIGH_24H }}</p>
+                                        <p class="amount"><strong><span class="gray-color">{{ '{{ ticker.highest_bid }}' }}</span></strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="head-splits">
+                                        <p class="small gray-color">{{ lang.MARKET.LOW_24H }}</p>
+                                        <p class="amount"><strong><span class="gray-color">{{ '{{ ticker.lowest_ask }}' }}</span></strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="head-splits">
+                                        <p class="small gray-color">{{ lang.MARKET.VOLUME_24H }}</p>
+                                        <p class="amount"><strong><span class="gray-color">{{ '{{ parseAsset(ticker.cbd_volume).toPlainString(null, false) }}' }}</span> CBD</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container content-exchange">
+                <div class="row">
+                    <div class="col">
+                        <div class="boxed boxed--border">
+                            <div class="tabs-container" data-content-align="left">
+                                <ul class="tabs w-100 ul-market-buy-sell mb-0">
+                                    <li class="active">
+                                        <div class="tab__title text-center">
+                                            <img src="/img/exchange/all.svg" alt="">
+                                        </div>
+                                        <div class="tab__content">
+
+                                            <table id="buy_left_result_all" class="display table-buy-sell-market" >
+                                                <thead>
+                                                <tr>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                <tr>
+                                                    <td class="color-sell">10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <table id="buy-left_all" class="display table-buy-sell-market">
+                                                <thead>
+                                                <tr style="display: none;">
+                                                    <th>Price</th>
+                                                    <th>Crea</th>
+                                                    <th>Cbd</th>
+                                                    <th>Total Cbd</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td colspan="4" class="text-center"><p class="color-buy font-weight-bold" style="font-size: 14px;">50000000 <i class="icon-To-Top"></i> <span class="font-weight-bold color--primary-exchange">$0.065</span></p></td>
+                                                    <td style="display: none;"></td>
+                                                    <td style="display: none;"></td>
+                                                    <td style="display: none;"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <table id="sell_left_result_all" class="display buy_left_result_all" >
+                                                <thead>
+                                                <tr style="display: none;">
+                                                    <th>Price</th>
+                                                    <th>Crea</th>
+                                                    <th>Cbd</th>
+                                                    <th>Total Cbd</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                <tr>
+                                                    <td class="color-buy">10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="tab__title text-center">
+                                            <img src="/img/exchange/buy.svg" alt="">
+                                        </div>
+                                        <div class="tab__content">
+                                            <table id="buy-left" class="display table-buy-sell-market">
+                                                <thead>
+                                                <tr>
+                                                    <th>Price</th>
+                                                    <th>Crea</th>
+                                                    <th>Cbd</th>
+                                                    <th>Total Cbd</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td colspan="4" class="text-center"><p class="color-buy font-weight-bold" style="font-size: 14px;">50000000 <i class="icon-To-Top"></i> <span class="font-weight-bold color--primary-exchange">$0.065</span></p></td>
+                                                    <td style="display: none;"></td>
+                                                    <td style="display: none;"></td>
+                                                    <td style="display: none;"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table id="buy_left_result" class="display table-buy-sell-market">
+                                                <thead>
+                                                <tr style="display: none">
+                                                    <th>Price</th>
+                                                    <th>Crea</th>
+                                                    <th>Cbd</th>
+                                                    <th>Total Cbd</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                <tr>
+                                                    <td class="color-buy">10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-buy">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="tab__title text-center">
+                                            <img src="/img/exchange/sell.svg" alt="">
+                                        </div>
+                                        <div class="tab__content">
+                                            <table id="sell_left_result" class="display table-buy-sell-market">
+                                                <thead>
+                                                <tr>
+                                                    <th>Price</th>
+                                                    <th>Crea</th>
+                                                    <th>Cbd</th>
+                                                    <th>Total Cbd</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                <tr>
+                                                    <td class="color-sell">10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                    <td>10000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="color-sell">50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                    <td>50000.000</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <table id="sell-left" class="display table-buy-sell-market">
+                                                <thead>
+                                                <tr style="display: none">
+                                                    <th>Price</th>
+                                                    <th>Crea</th>
+                                                    <th>Cbd</th>
+                                                    <th>Total Cbd</th>
+                                                </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td colspan="4" class="text-center"><p class="color-sell font-weight-bold" style="font-size: 14px;">50000000 <i class="icon-To-Top"></i> <span class="font-weight-bold color--primary-exchange">$0.065</span></p></td>
+                                                    <td style="display: none;"></td>
+                                                    <td style="display: none;"></td>
+                                                    <td style="display: none;"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!--end of tabs container-->
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="boxed boxed--border" style="height: 260px">
+                            grafica
+                        </div>
+
+                        <div class="boxed boxed--border form-buy-sell">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h6 class="title"><strong>{{ lang.MARKET.BUY_CREA }}:</strong><span class="pull-right"> 3.87062</span></h6>
+                                    <div class="form-group">
+                                        <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
+
+                                        <div class="input-icon">
+                                            <i class="">CREA/CBD</i>
+                                            <input type="number" name="input" placeholder="Price CREA/CBD" />
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="text-uppercase">{{ lang.MARKET.AMOUNT }}</label>
+                                        <div class="input-icon">
+                                            <i class="">CREA</i>
+                                            <input type="number" name="input" placeholder="Amount CREA" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="text-uppercase">{{ lang.MARKET.TOTAL }}</label>
+                                        <div class="input-icon">
+                                            <i class="">CBD</i>
+                                            <input type="number" name="input" placeholder="{{ lang.MARKET.TOTAL_CREA }}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="btn btn-primary w-100 btn-buy-exchange">
+                                            <span class="btn__text">{{ lang.MARKET.BUY }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h6 class="title"><strong>{{ lang.MARKET.SELL_CREA }}:</strong><span class="pull-right"> 3.87062</span></h6>
+                                    <div class="form-group">
+                                        <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
+
+                                        <div class="input-icon">
+                                            <i class="">CREA/CBD</i>
+                                            <input type="number" name="input" placeholder="{{ lang.MARKET.PRICE }} CREA/CBD" />
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="text-uppercase">{{ lang.MARKET.AMOUNT }}</label>
+                                        <div class="input-icon">
+                                            <i class="">CREA</i>
+                                            <input type="number" name="input" placeholder="{{ lang.MARKET.AMOUNT }} CREA" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="text-uppercase">{{ lang.MARKET.TOTAL }}</label>
+                                        <div class="input-icon">
+                                            <i class="">CBD</i>
+                                            <input type="number" name="input" placeholder="{{ lang.MARKET.TOTAL }} CREA" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="btn btn-unfollow color--white w-100">{{ lang.MARKET.SELL }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="subtitle-module-exchange">{{ lang.MARKET.MARKET_HISTORY }}</p>
+                            </div>
+                        </div>
+                        <div class="boxed boxed--border">
+                            <table id="example1" class="display market-history text-right" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>{{ lang.MARKET.DATE }}</th>
+                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                    <th>CBD</th>
+                                    <th>CREA</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">50000.000</td>
+                                    <td>50000.000</td>
+                                    <td>50000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr class="active-tr">
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-buy">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                <tr>
+                                    <td>12:12:12</td>
+                                    <td class="color-sell">0.903</td>
+                                    <td>0.903</td>
+                                    <td>0.903</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="boxed boxed--border">
+                            <table id="example2" class="display" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>{{ lang.MARKET.DATE }}</th>
+                                    <th>{{ lang.MARKET.TYPE }}</th>
+                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                    <th>CREA</th>
+                                    <th>CBD</th>
+                                    <th>{{ lang.MARKET.ACTION }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-buy">Buy</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-sell">Sell</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-sell">Sell</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-buy">Buy</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-buy">Buy</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-sell">Sell</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td class="color-sell">Sell</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                <tr>
+                                    <td>15 minutes ago</td>
+                                    <td  class="color-buy">Buy</td>
+                                    <td>$0.784499</td>
+                                    <td>1.000 CREA</td>
+                                    <td>0.078 CBS</td>
+                                    <td>button</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/js/common/market.js"></script>
+
+        {{ include('element/footer.php.twig') }}
