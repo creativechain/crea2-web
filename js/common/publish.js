@@ -28,6 +28,7 @@
             el: '#publish-container',
             data: {
                 lang: lang,
+                session: session,
                 LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
                 step: 1,
@@ -411,8 +412,11 @@
             setUp();
         }
     });
+
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
+        publishContainer.session = s;
+        publishContainer.$forceUpdate();
         account = a;
         creaEvents.emit('crea.dom.ready');
     });
