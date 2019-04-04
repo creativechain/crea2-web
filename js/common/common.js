@@ -354,7 +354,12 @@ function refreshAccessToken(callback) {
 
 function uploadToIpfs(file, maxSize, callback) {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
-        if (file.size <= maxSize) {
+        if (!maxSize) {
+            //If maxSize is undefined means that file format is not allowed
+            if (callback) {
+                callback(lang.PUBLISH.FILE_FORMAT_NOT_ALLOWED);
+            }
+        } else if (file.size <= maxSize) {
             refreshAccessToken(function (accessToken) {
                 var http = new HttpClient(apiOptions.ipfsd);
                 http.setHeaders({
@@ -381,7 +386,7 @@ function uploadToIpfs(file, maxSize, callback) {
             console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maxSize);
 
             if (callback) {
-                callback(lang.PUBLISH.FILE_TO_LARGE);
+                callback(lang.PUBLISH.FILE_TOO_LARGE);
             }
         }
     } else {
