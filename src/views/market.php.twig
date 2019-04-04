@@ -77,107 +77,19 @@
                                                 </thead>
                                                 <tbody>
 
-                                                <tr>
-                                                    <td class="color-sell">10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
+                                                <template v-for="ask in orderBook.asks">
+                                                    <tr>
+                                                        <td class="color-sell">{{ '{{ ask.order_price }}' }}</td>
+                                                        <td>{{ '{{ ask.crea }}' }}</td>
+                                                        <td>{{ '{{ ask.cbd }}' }}</td>
+                                                        <td>0.000</td>
+                                                    </tr>
+                                                </template>
 
                                                 </tbody>
                                             </table>
 
-                                            <table id="buy-left_all" class="display table-buy-sell-market">
+                                            {#<table id="buy-left_all" class="display table-buy-sell-market">
                                                 <thead>
                                                 <tr style="display: none;">
                                                     <th>Price</th>
@@ -195,7 +107,7 @@
                                                     <td style="display: none;"></td>
                                                 </tr>
                                                 </tbody>
-                                            </table>
+                                            </table>#}
 
                                             <table id="sell_left_result_all" class="display buy_left_result_all" >
                                                 <thead>
@@ -209,109 +121,21 @@
                                                 </thead>
                                                 <tbody>
 
-                                                <tr>
-                                                    <td class="color-buy">10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
+                                                <template v-for="bid in orderBook.bids">
+                                                    <tr>
+                                                        <td class="color-buy">{{ '{{ bid.order_price }}' }}</td>
+                                                        <td>{{ '{{ bid.crea }}' }}</td>
+                                                        <td>{{ '{{ bid.cbd }}' }}</td>
+                                                        <td>0.000</td>
+                                                    </tr>
+                                                </template>
 
                                                 </tbody>
                                             </table>
 
                                         </div>
                                     </li>
-                                    <li>
+{#                                    <li>
                                         <div class="tab__title text-center">
                                             <img src="/img/exchange/buy.svg" alt="">
                                         </div>
@@ -632,7 +456,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </li>
+                                    </li>#}
                                 </ul>
                             </div><!--end of tabs container-->
                         </div>
