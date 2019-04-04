@@ -143,7 +143,7 @@ function resolveFilter(filter) {
  * @returns {boolean}
  */
 function isInHome() {
-    var filters = ['/hot', '/trending', '/trending30', '/created', '/promoted', '/votes', '/actives', '/cashout', '/responses', '/payout', '/payout_comments', '/skyrockets', '/popular', '/now']; //Check if path is user feed
+    var filters = ['/skyrockets', '/popular', '/now', '/popular30', '/created', '/promoted', '/votes', '/actives', '/cashout', '/responses', '/payout', '/payout_comments']; //Check if path is user feed
 
     var s = Session.getAlive();
 
