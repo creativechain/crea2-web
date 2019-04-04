@@ -25,7 +25,7 @@
     maxTags: undefined,
     maxChars: undefined,
     confirmKeys: [13, 32, 44],
-    invalidKeys: ['#'],
+    invalidChars: ['#'],
     delimiter: ',',
     delimiterRegex: null,
     cancelConfirmKeysOnEmpty: false,
@@ -465,8 +465,22 @@
         $input.attr('size', Math.max(this.inputSize, size));
       }, self));
 
+      self.$container.bind('paste', function (e) {
+        var text = e.originalEvent.clipboardData.getData('text');
+
+        var chars = text.split("");
+
+        for (var x = 0; x < chars.length; x++) {
+          if (self.options.invalidChars.indexOf(chars[x]) > -1) {
+            e.preventDefault();
+            //e.originalEvent.preventDefault();
+            break;
+          }
+        }
+
+      })
       self.$container.on('keydown', $.proxy(function (event) {
-        if (keyCombinationInList(event, self.options.invalidKeys)) {
+        if (keyCombinationInList(event, self.options.invalidChars)) {
           event.preventDefault();
         }
       }));
