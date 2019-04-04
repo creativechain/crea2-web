@@ -403,7 +403,7 @@
         var post = postContainer.state.post;
 
         if (session) {
-            requireRoleKey(session.account.username, 'active', function (postingKey) {
+            requireRoleKey(session.account.username, 'active', function (activeKey) {
                 globalLoading.show = true;
 
                 var downloadResource = function downloadResource() {
@@ -411,7 +411,7 @@
                         var authorBuff = Buffer.from(post.author);
                         var permlinkBuff = Buffer.from(post.permlink);
                         var buff = Buffer.concat([authorBuff, permlinkBuff]);
-                        var signature = crea.utils.Signature.signBuffer(buff, postingKey);
+                        var signature = crea.utils.Signature.signBuffer(buff, activeKey);
                         var s64 = signature.toBuffer().toString('base64');
                         crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
                             globalLoading.show = false;
@@ -437,7 +437,7 @@
                 };
 
                 var payDownload = function payDownload() {
-                    crea.broadcast.commentDownload(postingKey, session.account.username, post.author, post.permlink, function (err, result) {
+                    crea.broadcast.commentDownload(activeKey, session.account.username, post.author, post.permlink, function (err, result) {
                         if (!catchError(err)) {
                             downloadResource();
                             fetchContent();
