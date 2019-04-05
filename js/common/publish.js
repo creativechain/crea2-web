@@ -196,6 +196,7 @@
                     var that = this;
                     var files = event.target.files;
 
+                    console.log('File loading', event);
                     if (files.length > 0) {
                         globalLoading.show = true;
                         var loadedFile = files[0];
@@ -216,6 +217,10 @@
                                     that.featuredImage = file;
                                     console.log('Featured image loaded!');
                                 }
+
+                                //Clear input
+                                var elem = that.$refs.publishInputFile;
+                                $(elem).val('');
                             }
                         });
                     }
