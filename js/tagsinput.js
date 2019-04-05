@@ -24,8 +24,9 @@
     addOnBlur: true,
     maxTags: undefined,
     maxChars: undefined,
-    confirmKeys: [13, 32, 44],
-    invalidChars: ['#'],
+    confirmKeys: [13, 32, 44, ','],
+    alphanumeric: true,
+    invalidChars: [],
     delimiter: ',',
     delimiterRegex: null,
     cancelConfirmKeysOnEmpty: false,
@@ -466,24 +467,21 @@
       }, self));
 
       self.$container.bind('paste', function (e) {
-        var text = e.originalEvent.clipboardData.getData('text');
+        if (self.options.alphanumeric) {
+          var text = e.originalEvent.clipboardData.getData('text');
 
-        var chars = text.split("");
-
-        for (var x = 0; x < chars.length; x++) {
-          if (self.options.invalidChars.indexOf(chars[x]) > -1) {
+          var matched = text.match(/^[a-z0-9-]+$/i);
+          if (!matched) {
             e.preventDefault();
-            //e.originalEvent.preventDefault();
-            break;
           }
         }
+      });
 
-      })
-      self.$container.on('keydown', $.proxy(function (event) {
+      /*self.$container.on('keydown', $.proxy(function (event) {
         if (keyCombinationInList(event, self.options.invalidChars)) {
           event.preventDefault();
         }
-      }));
+      }));*/
 
       self.$container.on('keypress', 'input', $.proxy(function(event) {
          var $input = $(event.target);
@@ -507,6 +505,16 @@
                 event.preventDefault();
             }
          }
+
+        if (self.options.alphanumeric) {
+          console.log(event);
+          var text = event.key;
+
+          var matched = text.match(/^[a-z0-9-]+$/i);
+          if (!matched) {
+            event.preventDefault();
+          }
+        }
 
          // Reset internal input's size
          var textLength = $input.val().length,
