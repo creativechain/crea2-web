@@ -165,7 +165,7 @@
                         });
                         var CBD_PRINT_RATE = this.state.props.cbd_print_rate;
                         var CBD_PRINT_RATE_MAX = 10000;
-                        var payout = Asset.parseString(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
+                        var payout = Asset.parse(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
 
                         var PENDING_PAYOUT = payout;
                         var PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
@@ -174,15 +174,15 @@
                             nai: 'cbd'
                         });
                         var PENDING_PAYOUT_CGY = Asset.parse({
-                            amount: (PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat(),
+                            amount: NaNOr(((PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'cgy'
                         });
                         var PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
-                            amount: PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX),
+                            amount: NaNOr((PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX)), 0),
                             nai: 'cbd'
                         });
                         var PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
-                            amount: (PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat(),
+                            amount: NaNOr(((PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'crea'
                         });
 

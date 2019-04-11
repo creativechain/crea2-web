@@ -190,7 +190,6 @@ function removeBlockedContents(state, accountState, discussion_idx) {
 
         if (accountState) {
             var allowedContents = [];
-            console.log(jsonify(jsonstring(accountState.user)));
             cKeys.forEach(function (ck) {
                 var c = state.content[ck];
 

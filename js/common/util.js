@@ -308,3 +308,15 @@ function removeEmojis(text) {
 
     return '';
 }
+
+function NaNOr(number, defaultN) {
+    if (!isNaN(number)) {
+        return number;
+    }
+
+    if (defaultN !== undefined && defaultN !== null && !isNaN(defaultN)) {
+        return defaultN;
+    }
+
+    return NaN;
+}
