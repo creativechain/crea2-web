@@ -5,7 +5,9 @@ LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
-if [ $LOCAL = $BASE ]; then
+if [ $LOCAL = $REMOTE ]; then
+    echo "Already up to date"
+elif [ $LOCAL = $BASE ]; then
     # Need pull. Update sources
     git pull
 
