@@ -17,5 +17,3 @@ elif [ $LOCAL = $BASE ]; then
     # Clear twig cache
     rm -rf var/twig_cache
 fi
-
-echo "${UPSTREAM}, ${LOCAL}, ${REMOTE}, ${BASE}"
