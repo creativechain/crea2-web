@@ -14,11 +14,11 @@ function cgyToVests(state, creaEnergy) {
     var energy = creaEnergy;
 
     if (typeof creaEnergy === 'string') {
-        energy = parseFloat(Asset.parseString(creaEnergy).toPlainString(null, false));
+        energy = parseFloat(Asset.parse(creaEnergy).toPlainString(null, false));
     }
 
-    var total_vests = parseFloat(Asset.parseString(state.props.total_vesting_shares).toPlainString(null, false));
-    var total_vest_crea = parseFloat(Asset.parseString(state.props.total_vesting_fund_crea).toPlainString(null, false));
+    var total_vests = parseFloat(Asset.parse(state.props.total_vesting_shares).toPlainString(null, false));
+    var total_vest_crea = parseFloat(Asset.parse(state.props.total_vesting_fund_crea).toPlainString(null, false));
     return Asset.parse({
         amount: energy / total_vest_crea * total_vests,
         nai: apiOptions.nai.VESTS
@@ -38,11 +38,11 @@ function vestsToCgy(state, vestingShares) {
     var vests = vestingShares;
 
     if (typeof vestingShares === 'string') {
-        vests = parseFloat(Asset.parseString(vestingShares).toPlainString(null, false));
+        vests = parseFloat(Asset.parse(vestingShares).toPlainString(null, false));
     }
 
-    var total_vests = parseFloat(Asset.parseString(state.props.total_vesting_shares).toPlainString(null, false));
-    var total_vest_crea = parseFloat(Asset.parseString(state.props.total_vesting_fund_crea).toPlainString(null, false));
+    var total_vests = parseFloat(Asset.parse(state.props.total_vesting_shares).toPlainString(null, false));
+    var total_vest_crea = parseFloat(Asset.parse(state.props.total_vesting_fund_crea).toPlainString(null, false));
     return Asset.parse({
         amount: total_vest_crea * (vests / total_vests),
         nai: nai
@@ -57,9 +57,9 @@ function vestsToCgy(state, vestingShares) {
 
 
 function vestingCrea(account, props) {
-    var vests = parseFloat(Asset.parseString(account.vesting_shares).toPlainString(null, false));
-    var totalVests = parseFloat(Asset.parseString(props.total_vesting_shares).toPlainString(null, false));
-    var totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString(null, false));
+    var vests = parseFloat(Asset.parse(account.vesting_shares).toPlainString(null, false));
+    var totalVests = parseFloat(Asset.parse(props.total_vesting_shares).toPlainString(null, false));
+    var totalVestCrea = parseFloat(Asset.parse(props.total_vesting_fund_crea).toPlainString(null, false));
     var vestingCrea = totalVestCrea * (vests / totalVests);
     return Asset.parse({
         amount: vestingCrea,
@@ -75,11 +75,11 @@ function vestingCrea(account, props) {
 
 
 function delegatedCrea(account, props) {
-    var delegatedVests = parseFloat(Asset.parseString(account.delegated_vesting_shares).toPlainString(null, false));
-    var receivedVests = parseFloat(Asset.parseString(account.received_vesting_shares).toPlainString(null, false));
+    var delegatedVests = parseFloat(Asset.parse(account.delegated_vesting_shares).toPlainString(null, false));
+    var receivedVests = parseFloat(Asset.parse(account.received_vesting_shares).toPlainString(null, false));
     var vests = delegatedVests - receivedVests;
-    var totalVests = parseFloat(Asset.parseString(props.total_vesting_shares).toPlainString(null, false));
-    var totalVestCrea = parseFloat(Asset.parseString(props.total_vesting_fund_crea).toPlainString(null, false));
+    var totalVests = parseFloat(Asset.parse(props.total_vesting_shares).toPlainString(null, false));
+    var totalVestCrea = parseFloat(Asset.parse(props.total_vesting_fund_crea).toPlainString(null, false));
     var vestingCrea = totalVestCrea * (vests / totalVests);
     return Asset.parse({
         amount: vestingCrea,

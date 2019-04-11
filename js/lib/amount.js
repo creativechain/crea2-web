@@ -252,40 +252,34 @@ var Asset =
             key: "parse",
             value: function parse(assetData) {
 
-                try {
-                    if (typeof assetData === 'string') {
-                        return Asset.parseString(assetData);
-                    }
-
-                    var nai = NAI[assetData.nai.toLowerCase()] || NAI[assetData.asset.symbol.toLowerCase()];
-                    nai.precision = assetData.precision || nai.precision;
-
-                    if (typeof assetData.amount === 'number') {
-                        if (assetData.amount % 1 !== 0 || assetData.round) {
-                            assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
-                        }
-                    } else if (typeof assetData.amount === 'string') {
-                        assetData.amount = assetData.amount.replace(',', '.');
-
-                        if (!isNaN(assetData.amount)) {
-                            if (assetData.amount.indexOf('.') > 0) {
-                                assetData.amount = parseFloat(assetData.amount);
-                            } else {
-                                assetData.amount = parseInt(assetData.amount);
-                            }
-
-                            return Asset.parse(assetData);
-                        }
-                    } else {
-                        assetData.amount = 0;
-                    }
-
-                    return new Asset(assetData.amount, nai);
-                } catch (e) {
-                    console.error(e);
+                if (typeof assetData === 'string') {
+                    return Asset.parseString(assetData);
                 }
 
-                return null;
+                var nai = assetData.asset ? NAI[assetData.asset.symbol.toLowerCase()] : NAI[assetData.nai.toLowerCase()];
+                nai.precision = assetData.precision || nai.precision;
+
+                if (typeof assetData.amount === 'number') {
+                    if (assetData.amount % 1 !== 0 || assetData.round) {
+                        assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
+                    }
+                } else if (typeof assetData.amount === 'string') {
+                    assetData.amount = assetData.amount.replace(',', '.');
+
+                    if (!isNaN(assetData.amount)) {
+                        if (assetData.amount.indexOf('.') > 0) {
+                            assetData.amount = parseFloat(assetData.amount);
+                        } else {
+                            assetData.amount = parseInt(assetData.amount);
+                        }
+
+                        return Asset.parse(assetData);
+                    }
+                } else {
+                    assetData.amount = 0;
+                }
+
+                return new Asset(assetData.amount, nai);
 
             }
             /**
@@ -299,13 +293,14 @@ var Asset =
             value: function parseString(assetString) {
                 var strSplitted = assetString.split(' ');
                 var amount = parseFloat(strSplitted[0]);
-                var nai = apiOptions.nai[strSplitted[1]];
+                var symbol = strSplitted[1];
+                var nai = NAI[symbol.toLowerCase()];
 
                 if (amount % 1 === 0) {
-                    amount = Math.round(amount * Math.pow(10, NAI[nai].precision));
+                    amount = Math.round(amount * Math.pow(10, nai.precision));
                 }
 
-                return new Asset(amount, NAI[nai]);
+                return Asset.parse({amount: amount, nai: symbol.toLowerCase()});
             }
         }]);
 

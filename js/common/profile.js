@@ -550,9 +550,9 @@
                         return vestingCrea(this.state.user, this.state.props);
                     },
                     hasRewardBalance: function hasRewardBalance() {
-                        var crea = Asset.parseString(this.state.user.reward_crea_balance);
-                        var cbd = Asset.parseString(this.state.user.reward_cbd_balance);
-                        var vests = Asset.parseString(this.state.user.reward_vesting_balance);
+                        var crea = Asset.parse(this.state.user.reward_crea_balance);
+                        var cbd = Asset.parse(this.state.user.reward_cbd_balance);
+                        var vests = Asset.parse(this.state.user.reward_vesting_balance);
                         return crea.amount > 0 || cbd.amount > 0 || vests.amount > 0;
                     },
                     cancelPowerDown: function cancelPowerDown(event) {
