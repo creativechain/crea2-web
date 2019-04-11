@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
-# Update sources
-git pull
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse "$UPSTREAM")
+BASE=$(git merge-base @ "$UPSTREAM")
 
-# Update dependencies
-composer update
+if [ $LOCAL = $BASE ]; then
+    # Need pull. Update sources
+    git pull
 
-# Clear twig cache
-rm -rf var/twig_cache
+    # Update dependencies
+    composer update
+
+    # Clear twig cache
+    rm -rf var/twig_cache
+fi
+
+echo "${UPSTREAM}, ${LOCAL}, ${REMOTE}, ${BASE}"
