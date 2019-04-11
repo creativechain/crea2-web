@@ -251,47 +251,42 @@ var Asset =
         }], [{
             key: "parse",
             value: function parse(assetData) {
-                if (typeof assetData === 'string') {
-                    return Asset.parseString(assetData);
-                }
 
-                var nai = NAI[assetData.nai] || NAI[assetData.asset.symbol.toLowerCase()];
-
-                if (typeof assetData.amount === 'number') {
-                    if (assetData.amount % 1 != 0 || assetData.round) {
-                        assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
+                try {
+                    if (typeof assetData === 'string') {
+                        return Asset.parseString(assetData);
                     }
-                } else if (typeof assetData.amount === 'string') {
-                    assetData.amount = assetData.amount.replace(',', '.');
 
-                    if (!isNaN(assetData.amount)) {
-                        if (assetData.amount.indexOf('.') > 0) {
-                            assetData.amount = parseFloat(assetData.amount);
-                        } else {
-                            assetData.amount = parseInt(assetData.amount);
+                    var nai = NAI[assetData.nai.toLowerCase()] || NAI[assetData.asset.symbol.toLowerCase()];
+                    nai.precision = assetData.precision || nai.precision;
+
+                    if (typeof assetData.amount === 'number') {
+                        if (assetData.amount % 1 !== 0 || assetData.round) {
+                            assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
                         }
+                    } else if (typeof assetData.amount === 'string') {
+                        assetData.amount = assetData.amount.replace(',', '.');
 
-                        return Asset.parse(assetData);
+                        if (!isNaN(assetData.amount)) {
+                            if (assetData.amount.indexOf('.') > 0) {
+                                assetData.amount = parseFloat(assetData.amount);
+                            } else {
+                                assetData.amount = parseInt(assetData.amount);
+                            }
+
+                            return Asset.parse(assetData);
+                        }
+                    } else {
+                        assetData.amount = 0;
                     }
-                } else {
-                    assetData.amount = 0;
+
+                    return new Asset(assetData.amount, nai);
+                } catch (e) {
+                    console.error(e);
                 }
 
-                switch (nai) {
-                    case ASSET_CBD:
-                        return new CreaDollar(assetData.amount);
+                return null;
 
-                    case ASSET_CREA:
-                        return new Crea(assetData.amount);
-
-                    case ASSET_CGY:
-                        return new CreaEnergy(assetData.amount);
-
-                    case ASSET_VESTS:
-                        return new Vests(assetData.amount);
-                }
-
-                return undefined;
             }
             /**
              *
@@ -310,10 +305,7 @@ var Asset =
                     amount = Math.round(amount * Math.pow(10, NAI[nai].precision));
                 }
 
-                return Asset.parse({
-                    amount: amount,
-                    nai: nai
-                });
+                return new Asset(amount, NAI[nai]);
             }
         }]);
 

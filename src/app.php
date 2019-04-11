@@ -98,7 +98,7 @@ function handleRoute() {
     $controller->addRoute('/explore', 'explore.php.twig');
     $controller->addRoute('/exchange', 'exchange.php.twig');
     $controller->addRoute('/twig', 'index.old.php.twig');
-    //$controller->addRoute('/market', 'market.php.twig');
+    $controller->addRoute('/market', 'market.php.twig');
     $controller->addRoute('/faq', 'faq.php.twig');
     $controller->addRoute('/recover-account', 'recover-account.php.twig');
     $controller->addRoute('/terms_and_conditions', 'terms_and_conditions.php.twig');

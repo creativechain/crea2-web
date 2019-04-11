@@ -63,9 +63,9 @@
                                         <div class="tab__title text-center">
                                             <img src="/img/exchange/all.svg" alt="">
                                         </div>
-                                        <div class="tab__content">
+                                        <div v-pre class="tab__content">
 
-                                            <table id="buy_left_result_all" class="display table-buy-sell-market" >
+                                            <table id="buy-orders" class="display table-buy-sell-market" >
                                                 <thead>
                                                 <tr>
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -77,14 +77,15 @@
                                                 </thead>
                                                 <tbody>
 
-                                                <template v-for="ask in orderBook.asks">
+                                                {#<template v-for="ask in orderBook.asks">
                                                     <tr>
+                                                        {{ '{{ ask }}' }}
                                                         <td class="color-sell">{{ '{{ ask.order_price }}' }}</td>
                                                         <td>{{ '{{ ask.crea }}' }}</td>
                                                         <td>{{ '{{ ask.cbd }}' }}</td>
                                                         <td>0.000</td>
                                                     </tr>
-                                                </template>
+                                                </template>#}
 
                                                 </tbody>
                                             </table>
@@ -109,7 +110,7 @@
                                                 </tbody>
                                             </table>#}
 
-                                            <table id="sell_left_result_all" class="display buy_left_result_all" >
+                                            <table id="sell-orders" class="display buy_left_result_all" >
                                                 <thead>
                                                 <tr style="display: none;">
                                                     <th>Price</th>
@@ -121,14 +122,14 @@
                                                 </thead>
                                                 <tbody>
 
-                                                <template v-for="bid in orderBook.bids">
+                                                {#<template v-for="bid in orderBook.bids">
                                                     <tr>
                                                         <td class="color-buy">{{ '{{ bid.order_price }}' }}</td>
                                                         <td>{{ '{{ bid.crea }}' }}</td>
                                                         <td>{{ '{{ bid.cbd }}' }}</td>
                                                         <td>0.000</td>
                                                     </tr>
-                                                </template>
+                                                </template>#}
 
                                                 </tbody>
                                             </table>
@@ -548,288 +549,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">50000.000</td>
-                                    <td>50000.000</td>
-                                    <td>50000.000</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr class="active-tr">
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-buy">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
-                                <tr>
-                                    <td>12:12:12</td>
-                                    <td class="color-sell">0.903</td>
-                                    <td>0.903</td>
-                                    <td>0.903</td>
-                                </tr>
+
+                                <template v-for="t in recentTrades">
+                                    <tr>
+                                        <td>{{ '{{ dateFromNow(t.date) }}' }}</td>
+                                        <td class="color-sell">{{ '{{ priceFor(t.current_pays, t.open_pays).toPlainString(null, false) }}' }}</td>
+                                        <td>{{ '{{ parseAsset(t.open_pays).toPlainString(null, false) }}' }}</td>
+                                        <td>{{ '{{ parseAsset(t.current_pays).toPlainString(null, false) }}' }}</td>
+                                    </tr>
+                                </template>
+
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    {#User Open Orders#}
+                    <div v-if="session" class="col-12">
                         <div class="boxed boxed--border">
                             <table id="example2" class="display" style="width:100%">
                                 <thead>
@@ -843,70 +580,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-buy">Buy</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-sell">Sell</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-sell">Sell</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-buy">Buy</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-buy">Buy</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-sell">Sell</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td class="color-sell">Sell</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
-                                <tr>
-                                    <td>15 minutes ago</td>
-                                    <td  class="color-buy">Buy</td>
-                                    <td>$0.784499</td>
-                                    <td>1.000 CREA</td>
-                                    <td>0.078 CBS</td>
-                                    <td>button</td>
-                                </tr>
+
+                                <template v-for="o in openOrders">
+                                    <tr>
+                                        <td>{{ '{{ dateFromNow(o.created) }}' }}</td>
+                                        <td class="color-buy">Buy</td>
+                                        <td>{{ '{{ priceFor(o.sell_price.base, o.sell_price.quote).toPlainString(null, false) }}' }}</td>
+                                        <td>{{ '{{ parseAsset(o.sell_price.base).toPlainString(null, false) }}' }}</td>
+                                        <td>{{ '{{ parseAsset(o.sell_price.quote).toPlainString(null, false) }}' }}</td>
+                                        <td>button</td>
+                                    </tr>
+                                </template>
                                 </tbody>
                             </table>
                         </div>
