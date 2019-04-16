@@ -77,7 +77,6 @@
 
     creaEvents.on('crea.modal.ready', function (remove) {
         setTimeout(function () {
-            console.log('setting up new modals');
 
             if (remove) {
                 //Remove login modals to prevent id conflicts
@@ -86,7 +85,6 @@
             }
 
             mr.modals.documentReady($);
-            console.log('done');
         }, 500);
 
     });

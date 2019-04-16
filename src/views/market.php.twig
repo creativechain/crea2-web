@@ -63,7 +63,7 @@
                                         <div class="tab__title text-center">
                                             <img src="/img/exchange/all.svg" alt="">
                                         </div>
-                                        <div v-pre class="tab__content">
+                                        <div class="tab__content">
 
                                             <table id="buy-orders" class="display table-buy-sell-market" >
                                                 <thead>
@@ -77,26 +77,16 @@
                                                 </thead>
                                                 <tbody>
 
-                                                {#<template v-for="ask in orderBook.asks">
-                                                    <tr>
-                                                        {{ '{{ ask }}' }}
-                                                        <td class="color-sell">{{ '{{ ask.order_price }}' }}</td>
-                                                        <td>{{ '{{ ask.crea }}' }}</td>
-                                                        <td>{{ '{{ ask.cbd }}' }}</td>
-                                                        <td>0.000</td>
-                                                    </tr>
-                                                </template>#}
-
                                                 </tbody>
                                             </table>
 
-                                            {#<table id="buy-left_all" class="display table-buy-sell-market">
+                                            <table id="buy-left_all" class="display table-buy-sell-market">
                                                 <thead>
                                                 <tr style="display: none;">
-                                                    <th>Price</th>
-                                                    <th>Crea</th>
-                                                    <th>Cbd</th>
-                                                    <th>Total Cbd</th>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
                                                 </tr>
 
                                                 </thead>
@@ -108,35 +98,26 @@
                                                     <td style="display: none;"></td>
                                                 </tr>
                                                 </tbody>
-                                            </table>#}
+                                            </table>
 
                                             <table id="sell-orders" class="display buy_left_result_all" >
                                                 <thead>
                                                 <tr style="display: none;">
-                                                    <th>Price</th>
-                                                    <th>Crea</th>
-                                                    <th>Cbd</th>
-                                                    <th>Total Cbd</th>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
                                                 </tr>
 
                                                 </thead>
                                                 <tbody>
-
-                                                {#<template v-for="bid in orderBook.bids">
-                                                    <tr>
-                                                        <td class="color-buy">{{ '{{ bid.order_price }}' }}</td>
-                                                        <td>{{ '{{ bid.crea }}' }}</td>
-                                                        <td>{{ '{{ bid.cbd }}' }}</td>
-                                                        <td>0.000</td>
-                                                    </tr>
-                                                </template>#}
 
                                                 </tbody>
                                             </table>
 
                                         </div>
                                     </li>
-{#                                    <li>
+                                    <li>
                                         <div class="tab__title text-center">
                                             <img src="/img/exchange/buy.svg" alt="">
                                         </div>
@@ -144,10 +125,10 @@
                                             <table id="buy-left" class="display table-buy-sell-market">
                                                 <thead>
                                                 <tr>
-                                                    <th>Price</th>
-                                                    <th>Crea</th>
-                                                    <th>Cbd</th>
-                                                    <th>Total Cbd</th>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
                                                 </tr>
 
                                                 </thead>
@@ -160,114 +141,19 @@
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <table id="buy_left_result" class="display table-buy-sell-market">
+
+                                            <table id="buy-orders-all" class="display table-buy-sell-market">
                                                 <thead>
                                                 <tr style="display: none">
-                                                    <th>Price</th>
-                                                    <th>Crea</th>
-                                                    <th>Cbd</th>
-                                                    <th>Total Cbd</th>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
                                                 </tr>
 
                                                 </thead>
                                                 <tbody>
 
-                                                <tr>
-                                                    <td class="color-buy">10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-buy">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
 
                                                 </tbody>
                                             </table>
@@ -278,172 +164,27 @@
                                             <img src="/img/exchange/sell.svg" alt="">
                                         </div>
                                         <div class="tab__content">
-                                            <table id="sell_left_result" class="display table-buy-sell-market">
+                                            <table id="sell-all-orders" class="display table-buy-sell-market">
                                                 <thead>
                                                 <tr>
-                                                    <th>Price</th>
-                                                    <th>Crea</th>
-                                                    <th>Cbd</th>
-                                                    <th>Total Cbd</th>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
                                                 </tr>
 
                                                 </thead>
                                                 <tbody>
-
-                                                <tr>
-                                                    <td class="color-sell">10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                    <td>10000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="color-sell">50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                    <td>50000.000</td>
-                                                </tr>
 
                                                 </tbody>
                                             </table>
                                             <table id="sell-left" class="display table-buy-sell-market">
                                                 <thead>
                                                 <tr style="display: none">
-                                                    <th>Price</th>
-                                                    <th>Crea</th>
-                                                    <th>Cbd</th>
-                                                    <th>Total Cbd</th>
+                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th>CREA</th>
+                                                    <th>CBD</th>
+                                                    <th>Total CBD</th>
                                                 </tr>
 
                                                 </thead>
@@ -457,7 +198,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </li>#}
+                                    </li>
                                 </ul>
                             </div><!--end of tabs container-->
                         </div>
@@ -470,13 +211,16 @@
                         <div class="boxed boxed--border form-buy-sell">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h6 class="title"><strong>{{ lang.MARKET.BUY_CREA }}:</strong><span class="pull-right"> 3.87062</span></h6>
+                                    <h6 class="title"><strong>{{ lang.MARKET.BUY_CREA }}</strong></h6>
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
 
                                         <div class="input-icon">
                                             <i class="">CREA/CBD</i>
-                                            <input type="number" name="input" placeholder="Price CREA/CBD" />
+                                            <input v-model="buyForm.price"
+                                                   v-on:keypress="inputBuy($event, 'price')"
+                                                   v-on:blur="onParseBuyForm"
+                                                   type="text" name="input" placeholder="{{ lang.MARKET.PRICE }} CREA/CBD" step="0.001" />
                                         </div>
 
                                     </div>
@@ -484,30 +228,39 @@
                                         <label for="" class="text-uppercase">{{ lang.MARKET.AMOUNT }}</label>
                                         <div class="input-icon">
                                             <i class="">CREA</i>
-                                            <input type="number" name="input" placeholder="Amount CREA" />
+                                            <input v-model="buyForm.amount"
+                                                   v-on:keypress="inputBuy($event, 'amount')"
+                                                   v-on:blur="onParseBuyForm"
+                                                   type="text" name="input" placeholder="{{  lang.MARKET.AMOUNT }} CREA" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.TOTAL }}</label>
                                         <div class="input-icon">
                                             <i class="">CBD</i>
-                                            <input type="number" name="input" placeholder="{{ lang.MARKET.TOTAL_CREA }}" />
+                                            <input v-model="buyForm.total"
+                                                   v-on:keypress="inputBuy($event, 'total')"
+                                                   v-on:blur="onParseBuyForm"
+                                                   type="text" name="input" placeholder="{{ lang.MARKET.TOTAL_CREA }}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <a class="btn btn-primary w-100 btn-buy-exchange">
+                                        <a class="btn btn-primary w-100 btn-buy-exchange" v-on:click="makeOrder('buy')">
                                             <span class="btn__text">{{ lang.MARKET.BUY }}</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h6 class="title"><strong>{{ lang.MARKET.SELL_CREA }}:</strong><span class="pull-right"> 3.87062</span></h6>
+                                    <h6 class="title"><strong>{{ lang.MARKET.SELL_CREA }}</strong></h6>
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
 
                                         <div class="input-icon">
                                             <i class="">CREA/CBD</i>
-                                            <input type="number" name="input" placeholder="{{ lang.MARKET.PRICE }} CREA/CBD" />
+                                            <input v-model="sellForm.price"
+                                                   v-on:keypress="inputSell($event, 'price')"
+                                                   v-on:blur="onParseSellForm"
+                                                   type="text" name="input" placeholder="{{ lang.MARKET.PRICE }} CREA/CBD" />
                                         </div>
 
                                     </div>
@@ -515,23 +268,33 @@
                                         <label for="" class="text-uppercase">{{ lang.MARKET.AMOUNT }}</label>
                                         <div class="input-icon">
                                             <i class="">CREA</i>
-                                            <input type="number" name="input" placeholder="{{ lang.MARKET.AMOUNT }} CREA" />
+                                            <input v-model="sellForm.amount"
+                                                   v-on:keypress="inputSell($event, 'amount')"
+                                                   v-on:blur="onParseSellForm"
+                                                   type="text" name="input" placeholder="{{ lang.MARKET.AMOUNT }} CREA" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.TOTAL }}</label>
                                         <div class="input-icon">
                                             <i class="">CBD</i>
-                                            <input type="number" name="input" placeholder="{{ lang.MARKET.TOTAL }} CREA" />
+                                            <input v-model="sellForm.total"
+                                                   v-on:keypress="inputSell($event, 'total')"
+                                                   v-on:blur="onParseSellForm"
+                                                   type="text" name="input" placeholder="{{ lang.MARKET.TOTAL }} CREA" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <a class="btn btn-unfollow color--white w-100">{{ lang.MARKET.SELL }}</a>
+                                        <a class="btn btn-unfollow color--white w-100" v-on:click="makeOrder('sell')">
+                                            <span class="btn__text">{{ lang.MARKET.SELL }}</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {# Market History #}
                     <div class="col">
                         <div class="row">
                             <div class="col-md-12">
@@ -539,7 +302,7 @@
                             </div>
                         </div>
                         <div class="boxed boxed--border">
-                            <table id="example1" class="display market-history text-right" style="width:100%">
+                            <table id="market-history" class="display market-history text-right" style="width:100%">
                                 <thead>
                                 <tr>
                                     <th>{{ lang.MARKET.DATE }}</th>
@@ -550,16 +313,6 @@
                                 </thead>
                                 <tbody>
 
-                                <template v-for="t in recentTrades">
-                                    <tr>
-                                        <td>{{ '{{ dateFromNow(t.date) }}' }}</td>
-                                        <td class="color-sell">{{ '{{ priceFor(t.current_pays, t.open_pays).toPlainString(null, false) }}' }}</td>
-                                        <td>{{ '{{ parseAsset(t.open_pays).toPlainString(null, false) }}' }}</td>
-                                        <td>{{ '{{ parseAsset(t.current_pays).toPlainString(null, false) }}' }}</td>
-                                    </tr>
-                                </template>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -568,7 +321,7 @@
                     {#User Open Orders#}
                     <div v-if="session" class="col-12">
                         <div class="boxed boxed--border">
-                            <table id="example2" class="display" style="width:100%">
+                            <table id="user-orders" class="display" style="width:100%">
                                 <thead>
                                 <tr>
                                     <th>{{ lang.MARKET.DATE }}</th>
@@ -581,16 +334,6 @@
                                 </thead>
                                 <tbody>
 
-                                <template v-for="o in openOrders">
-                                    <tr>
-                                        <td>{{ '{{ dateFromNow(o.created) }}' }}</td>
-                                        <td class="color-buy">Buy</td>
-                                        <td>{{ '{{ priceFor(o.sell_price.base, o.sell_price.quote).toPlainString(null, false) }}' }}</td>
-                                        <td>{{ '{{ parseAsset(o.sell_price.base).toPlainString(null, false) }}' }}</td>
-                                        <td>{{ '{{ parseAsset(o.sell_price.quote).toPlainString(null, false) }}' }}</td>
-                                        <td>button</td>
-                                    </tr>
-                                </template>
                                 </tbody>
                             </table>
                         </div>
@@ -599,7 +342,7 @@
             </div>
         </div>
 
-
+        <script src="/js/datatables.js"></script>
         <script src="/js/common/market.js"></script>
 
         {{ include('element/footer.php.twig') }}

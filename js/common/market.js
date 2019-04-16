@@ -1,11 +1,11 @@
 "use strict";
 var marketContainer;
-var buyTable, sellTable;
+var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
 (function () {
 
+    var session, account;
 
-
-    function setUp(session, account) {
+    function setUp() {
         if (!marketContainer) {
             marketContainer = new Vue({
                 el: '#market-container',
@@ -13,19 +13,24 @@ var buyTable, sellTable;
                     lang: lang,
                     session: session,
                     account: account,
-                    orderBook : {
-                        bids: [],
-                        asks: []
-                    },
                     recentTrades: [],
-                    openOrders: [],
                     ticker: {
-                        latest: 0.00000000000000000,
-                        lowest_ask: 0.00000000000000000,
-                        highest_bid: 0.00000000000000000,
-                        percent_change: 0.00000000000000000,
+                        latest: "0.000000",
+                        lowest_ask: "0.000000",
+                        highest_bid: "0.000000",
+                        percent_change: "0.000000",
                         crea_volume: "0.000 CREA",
                         cbd_volume: "0.000 CREA"
+                    },
+                    buyForm: {
+                        price: '0.000',
+                        amount: '0.000',
+                        total: '0.000'
+                    },
+                    sellForm: {
+                        price: '0.000',
+                        amount: '0.000',
+                        total: '0.000'
                     }
                 },
                 methods: {
@@ -42,12 +47,179 @@ var buyTable, sellTable;
                             amount: plainPrice,
                             nai: assetQuote.asset.symbol
                         })
+                    },
+                    clearOrderForm: function(type) {
+                        type = type.toLowerCase();
+                        if (type === 'buy') {
+                            this.buyForm.price = '0.000';
+                            this.buyForm.amount = '0.000';
+                            this.buyForm.total = '0.000';
+                        } else {
+                            this.sellForm.price = '0.000';
+                            this.sellForm.amount = '0.000';
+                            this.sellForm.total = '0.000';
+                        }
+                    },
+                    onParseBuyForm: function () {
+                        this.buyForm.price = Asset.parse({
+                            amount: parseFloat(this.buyForm.price) + 0.0001,
+                            nai: 'cbd'
+                        }).toPlainString();
+
+                        this.buyForm.amount = Asset.parse({
+                            amount: parseFloat(this.buyForm.amount) + 0.0001,
+                            nai: 'cbd'
+                        }).toPlainString();
+
+                        if (!isNaN(this.buyForm.price) && !isNaN(this.buyForm.amount)) {
+                            this.buyForm.total = Asset.parse({amount: parseFloat(this.buyForm.price * this.buyForm.amount) + 0.0001, nai: 'cbd'}).toPlainString();
+                        } else {
+                            this.buyForm.total = Asset.parse({
+                                amount: parseFloat(this.buyForm.total) + 0.0001,
+                                nai: 'cbd'
+                            }).toPlainString();
+                        }
+                    },
+                    inputBuy: function (event, field) {
+                        field = field.toLowerCase();
+                        var charCode = (event.which) ? event.which : event.keyCode;
+                        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                            cancelEventPropagation(event);
+                            return false;
+                        }
+
+                        var value = event.target.value + String.fromCharCode(charCode);
+                        console.log(value, field);
+
+                        if (!isNaN(value)) {
+                            this.buyForm[field] = Asset.parse({amount: value, nai: 'crea'}).toPlainString();
+                            var amount = this.buyForm.amount;
+                            switch (field) {
+                                case 'price':
+                                    //change only total if amount != 0
+                                    // total = amount * price
+                                    if (amount) {
+                                        var t = (amount * value) + 0.0001;
+                                        this.buyForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                    }
+                                    break;
+                                case 'amount':
+                                    //change only total if price != 0
+                                    // total = amount * price
+                                    var price = this.buyForm.price;
+                                    if (price) {
+                                        var t = (value * price) + 0.0001;
+                                        this.buyForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                    }
+                                    break;
+                                default:
+                                    //change only price if amount != 0
+                                    // price = total / amount
+                                    if (amount) {
+                                        var p = (value / amount) + 0.0001;
+                                        this.buyForm.price = Asset.parse({amount: p, nai: 'cbd'}).toPlainString();
+                                    }
+                            }
+                        }
+                        return true;
+                    },
+                    onParseSellForm: function () {
+                        this.sellForm.price = Asset.parse({
+                            amount: parseFloat(this.sellForm.price) + 0.0001,
+                            nai: 'cbd'
+                        }).toPlainString();
+
+                        this.sellForm.amount = Asset.parse({
+                            amount: parseFloat(this.sellForm.amount) + 0.0001,
+                            nai: 'cbd'
+                        }).toPlainString();
+
+                        if (!isNaN(this.sellForm.price) && !isNaN(this.sellForm.amount)) {
+                            this.sellForm.total = Asset.parse({amount: parseFloat(this.sellForm.price * this.sellForm.amount) + 0.0001, nai: 'cbd'}).toPlainString();
+                        } else {
+                            this.sellForm.total = Asset.parse({
+                                amount: parseFloat(this.sellForm.total) + 0.0001,
+                                nai: 'cbd'
+                            }).toPlainString();
+                        }
+                    },
+                    inputSell: function (event, field) {
+                        field = field.toLowerCase();
+                        var charCode = (event.which) ? event.which : event.keyCode;
+                        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                            cancelEventPropagation(event);
+                            return false;
+                        }
+
+                        var value = event.target.value + String.fromCharCode(charCode);
+                        console.log(value, field);
+
+                        if (!isNaN(value)) {
+                            this.sellForm[field] = Asset.parse({amount: value, nai: 'crea'}).toPlainString();
+                            var amount = this.sellForm.amount;
+                            switch (field) {
+                                case 'price':
+                                    //change only total if amount != 0
+                                    // total = amount * price
+                                    if (amount) {
+                                        var t = (amount * value) + 0.0001;
+                                        this.sellForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                    }
+                                    break;
+                                case 'amount':
+                                    //change only total if price != 0
+                                    // total = amount * price
+                                    var price = this.sellForm.price;
+                                    if (price) {
+                                        var t = (value * price) + 0.0001;
+                                        this.sellForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                    }
+                                    break;
+                                default:
+                                    //change only price if amount != 0
+                                    // price = total / amount
+                                    if (amount) {
+                                        var p = (value / amount) + 0.0001;
+                                        this.sellForm.price = Asset.parse({amount: p, nai: 'cbd'}).toPlainString();
+                                    }
+                            }
+                        }
+                        return true;
+                    },
+                    makeOrder: function (type) {
+                        type = type.toLowerCase();
+                        var that = this;
+                        var username = session ? session.account.username : null;
+                        requireRoleKey(username, 'active', function (activeKey, username) {
+                            var amountToSell, minToReceive, expiration, orderId;
+
+                            var now = new Date();
+                            expiration = new Date(now.getTime() + (60 * 60 * 24 * 27 * 1000)); //28 days
+                            orderId = randomNumber(0, 0xFFFFFFFF); //MAX uint32_t
+
+                            if (type === 'buy') {
+                                //Buy CREA - Sell CBD
+                                amountToSell = that.buyForm.total + ' CBD';
+                                minToReceive = that.buyForm.amount + ' CREA';
+                            } else if (type === 'sell') {
+                                //Sell CREA - Buy CBD
+                                amountToSell = that.sellForm.amount + ' CREA';
+                                minToReceive = that.sellForm.total + ' CBD';
+                            }
+
+                            crea.broadcast.limitOrderCreate(activeKey, username, orderId, amountToSell, minToReceive, false, expiration, function (err, result) {
+                                if (!catchError(err)) {
+                                    that.clearOrderForm(type);
+                                    fetchOpenOrders(session);
+                                }
+                            })
+                        });
+
+
                     }
                 }
             })
         }
-
-        creaEvents.emit('crea.dom.ready');
     }
 
     function fetchOpenOrders(session) {
@@ -55,8 +227,38 @@ var buyTable, sellTable;
         if (session) {
             crea.api.getOpenOrders(session.account.username, function (err, result) {
                 if (!catchError(err)) {
-                    marketContainer.openOrders = result;
-                    marketContainer.$forceUpdate();
+
+                    var parseOpenOrder = function (order) {
+                        var priceBase = Asset.parse(order.sell_price.base);
+                        var priceQuote = Asset.parse(order.sell_price.quote);
+                        var type = priceBase.asset.symbol === 'CREA' ? 'Buy' : 'Sell';
+
+                        return {
+                            date: order.created,
+                            type: type,
+                            price: Asset.parse({
+                                amount: (type === 'Buy' ? priceQuote.toFloat() / priceBase.toFloat() : priceBase.toFloat() / priceQuote.toFloat()) + 0.0001,
+                                nai: 'cbd'
+                            }).toPlainString(),
+                            crea: type === 'Buy' ? Asset.parse({amount: order.for_sale, nai: 'crea'}).toPlainString() : priceQuote.toPlainString(),
+                            cbd: type === 'Buy' ? priceQuote.toPlainString() : Asset.parse({amount: order.for_sale, nai: 'cbd'}).toPlainString(),
+                            action: 'button'
+                        };
+                    };
+
+                    var userOrders = [];
+
+                    result.forEach(function (o) {
+                        userOrders.push(parseOpenOrder(o));
+                    });
+
+                    userOrders.sort(function (a, b) {
+                        return new Date(b.date).getTime() - new Date(a.date).getTime();
+                    });
+
+
+                    console.log(userOrders);
+                    userOrdersTable.rows.add(userOrders).draw();
                 }
             })
         }
@@ -65,6 +267,10 @@ var buyTable, sellTable;
     function fetchTicker() {
         crea.api.getTicker(function (err, result) {
             if (!err) {
+                result.latest = Asset.parse({amount: result.latest, nai: 'cbd', precision: 6}).toPlainString();
+                result.lowest_ask = Asset.parse({amount: result.lowest_ask, nai: 'cbd', precision: 6}).toPlainString();
+                result.highest_bid = Asset.parse({amount: result.highest_bid, nai: 'cbd', precision: 6}).toPlainString();
+
                 marketContainer.ticker = result;
                 marketContainer.$forceUpdate();
             } else {
@@ -80,37 +286,47 @@ var buyTable, sellTable;
                 var asks = [];
                 var bids = [];
 
-                console.log('parsing asks');
+                var parseOrder = function(order) {
+                    return {
+                        price: order.order_price,
+                        crea: order.crea,
+                        cbd: order.cbd,
+                        total_cbd: order.cbd
+                    };
+                };
+
                 result.asks.forEach(function (ask, index) {
-                    var base = Asset.parse(ask.order_price.base);
-                    var quote = Asset.parse(ask.order_price.quote);
-                    ask.order_price = Asset.parse({amount: base.amount / quote.amount, nai: quote.asset.symbol}).toFloat();
+                    ask.order_price = Asset.parse({
+                        amount: ask.real_price,
+                        nai: 'cbd',
+                        precision: 6
+                    }).toPlainString();
 
-                    ask.crea = Asset.parse({amount: ask.crea, nai: 'crea'}).toFloat();
-                    ask.cbd = Asset.parse({amount: ask.cbd, nai: 'cbd'}).toFloat();
+                    ask.crea = Asset.parse({amount: ask.crea, nai: 'crea'}).toPlainString();
+                    ask.cbd = Asset.parse({amount: ask.cbd, nai: 'cbd'}).toPlainString();
 
-                    asks.push(ask);
-                    buyTable.row(index).data(ask).draw();
-
+                    asks.push(parseOrder(ask));
                 });
 
-                console.log('parsing bids');
+                buyTable.rows.add(asks).draw();
+                buyAllTable.rows.add(asks).draw();
+
                 result.bids.forEach(function (bid, index) {
-                    var base = Asset.parse(bid.order_price.base);
-                    var quote = Asset.parse(bid.order_price.quote);
-                    bid.order_price = Asset.parse({amount: base.toFloat() / quote.toFloat(), nai: quote.asset.symbol}).toFloat();
+                    bid.order_price = Asset.parse({
+                        amount: bid.real_price,
+                        nai: 'cbd',
+                        precision: 6
+                    }).toPlainString();
 
-                    bid.crea = Asset.parse({amount: bid.crea, nai: 'crea'}).toFloat();
-                    bid.cbd = Asset.parse({amount: bid.cbd, nai: 'cbd'}).toFloat();
+                    bid.crea = Asset.parse({amount: bid.crea, nai: 'crea'}).toPlainString();
+                    bid.cbd = Asset.parse({amount: bid.cbd, nai: 'cbd'}).toPlainString();
 
-                    bids.push(bid);
-                    sellTable.api().row(index).data(bid).draw();
+                    bids.push(parseOrder(bid));
+                    //sellTable.row.add(bid).draw();
                 });
-                marketContainer.orderBook = {asks: asks, bids: bids};
-                marketContainer.$forceUpdate();
 
-                //buyTable.row(buyTable).data(asks).draw();
-                //sellTable.row(buyTable).data(bids).draw();
+                sellTable.rows.add(bids).draw();
+                sellAllTable.rows.add(bids).draw();
 
             }
         })
@@ -127,17 +343,46 @@ var buyTable, sellTable;
         })
     }
 
-    function refreshData() {
-        setInterval(function () {
+    function refreshData(interval) {
+        var refresh = function () {
             fetchTicker();
+            fetchOpenOrders(session);
             loadOrderBook();
             loadRecentTrades();
-        }, 3000);
+        };
+
+        if (interval) {
+            setInterval(function () {
+                refresh();
+            }, interval);
+        } else {
+            refresh();
+        }
+
     }
 
-    creaEvents.on('crea.dom.ready', function () {
-        console.log('dom ready')
+    function setUpTables() {
         buyTable = $('#buy-orders').DataTable({
+            bFilter: false,
+            bInfo: false,
+            /*lengthChange: false,*/
+            aoColumnDefs : [ {
+                orderable : false,
+                aTargets : ['_all']
+            }],
+            order: [],
+            scrollY:        "250px",
+            scrollCollapse: true,
+            paging:         false,
+            columns: [
+                {data: 'price', className: 'color-buy'},
+                {data: 'crea'},
+                {data: 'cbd'},
+                {data: 'total_cbd'}
+            ]
+        });
+
+        buyAllTable = $('#buy-orders-all').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -146,9 +391,15 @@ var buyTable, sellTable;
                 aTargets : ['_all']
             }],
             order: [],
-            "scrollY":        "250px",
+            "scrollY":        "400px",
             "scrollCollapse": true,
-            "paging":         false
+            "paging":         false,
+            columns: [
+                {data: 'price', className: 'color-buy'},
+                {data: 'crea'},
+                {data: 'cbd'},
+                {data: 'total_cbd'}
+            ]
         });
 
         sellTable = $('#sell-orders').DataTable({
@@ -159,43 +410,18 @@ var buyTable, sellTable;
                 orderable : false,
                 aTargets : ['_all']
             }],
-            order: [],
             "scrollY":        "250px",
             "scrollCollapse": true,
-            "paging":         false
-        });
-
-        $('#buy-left_all').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "paging":         false
-        });
-
-        $('#buy-left').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "paging":false,
-            "bAutoWidth": false,
-            "aoColumns" : [
-                { sWidth: '25%' },
-                { sWidth: '25%' },
-                { sWidth: '25%' },
-                { sWidth: '25%' }
+            "paging":         false,
+            columns: [
+                {data: 'price', className: 'color-sell'},
+                {data: 'crea'},
+                {data: 'cbd'},
+                {data: 'total_cbd'}
             ]
         });
-        $('#buy_left_result').DataTable({
+
+        sellAllTable = $('#sell-all-orders').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -206,35 +432,16 @@ var buyTable, sellTable;
             order: [],
             "scrollY":        "400px",
             "scrollCollapse": true,
-            "paging":         false
-        });
-        $('#sell-left').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "paging":         false
-        });
-        $('#sell_left_result').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "scrollY":        "400px",
-            "scrollCollapse": true,
-            "paging":         false
+            "paging":         false,
+            columns: [
+                {data: 'price', className: 'color-sell'},
+                {data: 'crea'},
+                {data: 'cbd'},
+                {data: 'total_cbd'}
+            ]
         });
 
-
-        $('#example1').DataTable({
+        userOrdersTable = $('#user-orders').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -245,9 +452,18 @@ var buyTable, sellTable;
             order: [],
             "scrollY":        "534px",
             "scrollCollapse": true,
-            "paging":         false
+            "paging":         false,
+            columns: [
+                {data: 'date'},
+                {data: 'type'},
+                {data: 'price'},
+                {data: 'crea'},
+                {data: 'cbd'},
+                {data: 'action'}
+            ]
         });
-        $('#example2').DataTable({
+
+/*        marketHistoryTable = $('#market-history').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -258,17 +474,28 @@ var buyTable, sellTable;
             order: [],
             "scrollY":        "200px",
             "scrollCollapse": true,
-            "paging":         false
-        });
-    })
+            "paging":         false,
+            columns: [
+                {data: 'date'},
+                {data: 'price'},
+                {data: 'crea'},
+                {data: 'cbd'}
+            ]
+        });*/
+    }
 
     creaEvents.on('crea.session.login', function (s, a) {
-        console.log('session started')
-        setUp(s, a);
-        fetchOpenOrders(s);
-        fetchTicker();
-        loadOrderBook();
-        loadRecentTrades();
-        //refreshData();
+        creaEvents.emit('crea.dom.ready');
+        session = s;
+        account = a;
+        setUp();
+        setTimeout(function () {
+            console.log('session started');
+
+            setUpTables();
+            refreshData()
+        }, 500)
+
+
     });
 })();

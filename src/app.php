@@ -97,15 +97,13 @@ function handleRoute() {
     $controller->addRoute('/publish', 'publish.php.twig');
     $controller->addRoute('/explore', 'explore.php.twig');
     $controller->addRoute('/exchange', 'exchange.php.twig');
-    $controller->addRoute('/twig', 'index.old.php.twig');
-    //$controller->addRoute('/market', 'market.php.twig');
+    $controller->addRoute('/~market', 'market.php.twig');
     $controller->addRoute('/faq', 'faq.php.twig');
     $controller->addRoute('/recover-account', 'recover-account.php.twig');
     $controller->addRoute('/terms_and_conditions', 'terms_and_conditions.php.twig');
     $controller->addRoute('/privacy_policy', 'privacy_policy.php.twig');
     $controller->addRoute('/404', 'errors/404.php.twig');
     $controller->addRoute('/503', 'errors/503.php.twig');
-    //$router->addRoute('/share\/(@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'share.php.twig');
     $controller->addRoute('^\/(skyrockets|votes|responses|popular|popular30|promoted|cashout|payout|payout_comments|now|active)\/?$', 'home.php.twig', 'home'); //CATEGORIES
     $controller->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php.twig', 'home'); // TAG PROJECTS
     $controller->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php.twig', 'home');

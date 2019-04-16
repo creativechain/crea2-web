@@ -457,6 +457,7 @@ function performSearch(search) {
 
 function catchError(err) {
     if (err) {
+        console.error(err);
         var title;
         var body = [];
 

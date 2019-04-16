@@ -204,7 +204,7 @@ var Asset =
         }, {
             key: "toPlainString",
             value: function toPlainString(maxDecimals) {
-                var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+                var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
                 if (isNaN(maxDecimals) || maxDecimals === null) {
                     maxDecimals = this.asset.precision;
@@ -224,7 +224,7 @@ var Asset =
              * @returns {string}
              */
             value: function toFriendlyString(maxDecimals) {
-                var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+                var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
                 return this.toPlainString(maxDecimals, abbr) + " " + this.asset.symbol;
             }
         }, {
@@ -257,6 +257,7 @@ var Asset =
                 }
 
                 var nai = assetData.asset ? NAI[assetData.asset.symbol.toLowerCase()] : NAI[assetData.nai.toLowerCase()];
+                nai = Object.assign({}, nai);
                 nai.precision = assetData.precision || nai.precision;
 
                 if (typeof assetData.amount === 'number') {
