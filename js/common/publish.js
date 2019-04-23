@@ -213,7 +213,8 @@
                                 that.error = null;
 
                                 //Set first loaded image as preview
-                                if (file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
+
+                                if (file.size <= maximumSize && file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
                                     that.featuredImage = file;
                                     console.log('Featured image loaded!');
                                 }
