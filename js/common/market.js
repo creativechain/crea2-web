@@ -392,7 +392,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
 
                 //marketContainer.recentTrades = trades;
                 //marketContainer.$forceUpdate();
-                //marketHistoryTable.rows.add(trades).draw();
+                marketHistoryTable.rows.add(trades).draw();
             } else {
                 console.error('Error getting recent trades', err);
             }
@@ -562,7 +562,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
             ]
         });
 
-/*        marketHistoryTable = $('#market-history').DataTable({
+        marketHistoryTable = $('#market-history').DataTable({
             bFilter: false,
             bInfo: false,
             "lengthChange": false,
@@ -580,7 +580,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                 {data: 'crea'},
                 {data: 'cbd'}
             ]
-        });*/
+        });
     }
 
     creaEvents.on('crea.session.login', function (s, a) {
