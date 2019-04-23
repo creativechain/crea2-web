@@ -3,7 +3,7 @@ var marketContainer;
 var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
 (function () {
 
-    var session, account;
+    var session, account, chart;
 
     function setUp() {
         if (!marketContainer) {
@@ -222,6 +222,14 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
         }
     }
 
+    function prepareFormOrder(order, type) {
+        type = type.toLowerCase();
+
+        if (type === 'buy') {
+            marketContainer.buyForm.price = order.price;
+            marketContainer.buyForm.amount = order.crea;
+        }
+    }
     function fetchOpenOrders(session) {
 
         if (session) {
@@ -256,7 +264,6 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                         return new Date(b.date).getTime() - new Date(a.date).getTime();
                     });
 
-
                     console.log(userOrders);
                     userOrdersTable.rows.add(userOrders).draw();
                 }
@@ -270,6 +277,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                 result.latest = Asset.parse({amount: result.latest, nai: 'cbd', precision: 6}).toPlainString();
                 result.lowest_ask = Asset.parse({amount: result.lowest_ask, nai: 'cbd', precision: 6}).toPlainString();
                 result.highest_bid = Asset.parse({amount: result.highest_bid, nai: 'cbd', precision: 6}).toPlainString();
+                result.percent_change = parseFloat(result.percent_change).toFixed(3);
 
                 marketContainer.ticker = result;
                 marketContainer.$forceUpdate();
@@ -283,19 +291,21 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
         crea.api.getOrderBook(100, function (err, result) {
             if (!catchError(err)) {
                 //parse order book
-                var asks = [];
-                var bids = [];
+                var asks = []; //Offer CREA - Demand CBD
+                var bids = []; //Demand CREA - Offer CBD
 
                 var parseOrder = function(order) {
                     return {
                         price: order.order_price,
                         crea: order.crea,
                         cbd: order.cbd,
-                        total_cbd: order.cbd
+                        total_cbd: order.total_cbd
                     };
                 };
 
-                result.asks.forEach(function (ask, index) {
+                var accumulativeAsk = 0;
+                var accumulativeBid = 0;
+                result.bids.forEach(function (ask, index) {
                     ask.order_price = Asset.parse({
                         amount: ask.real_price,
                         nai: 'cbd',
@@ -305,13 +315,21 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     ask.crea = Asset.parse({amount: ask.crea, nai: 'crea'}).toPlainString();
                     ask.cbd = Asset.parse({amount: ask.cbd, nai: 'cbd'}).toPlainString();
 
+                    accumulativeAsk += parseFloat(ask.cbd);
+                    ask.total_cbd = Asset.parse({amount: accumulativeAsk, nai: 'cbd'}).toPlainString();
+
                     asks.push(parseOrder(ask));
+                });
+
+                //Order ask by price ASC
+                asks.sort(function (a, b) {
+                    return b.price - a.price;
                 });
 
                 buyTable.rows.add(asks).draw();
                 buyAllTable.rows.add(asks).draw();
 
-                result.bids.forEach(function (bid, index) {
+                result.asks.forEach(function (bid, index) {
                     bid.order_price = Asset.parse({
                         amount: bid.real_price,
                         nai: 'cbd',
@@ -321,8 +339,16 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     bid.crea = Asset.parse({amount: bid.crea, nai: 'crea'}).toPlainString();
                     bid.cbd = Asset.parse({amount: bid.cbd, nai: 'cbd'}).toPlainString();
 
+                    accumulativeBid += parseFloat(bid.cbd);
+                    bid.total_cbd = Asset.parse({amount: accumulativeBid, nai: 'cbd'}).toPlainString();
+
                     bids.push(parseOrder(bid));
                     //sellTable.row.add(bid).draw();
+                });
+
+                //Order sell by price ASC
+                bids.sort(function (a, b) {
+                    return a.price - b.price;
                 });
 
                 sellTable.rows.add(bids).draw();
@@ -335,12 +361,64 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
     function loadRecentTrades() {
         crea.api.getRecentTrades(100, function (err, result) {
             if (!err) {
-                marketContainer.recentTrades = result.trades;
-                marketContainer.$forceUpdate();
+                var trades = [];
+
+                //Order by date DESC
+                result.trades.sort(function (a, b) {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime();
+                });
+
+                result.trades.forEach(function (t) {
+                    t.date = moment(toLocaleDate(t.date)).fromNow();
+                    var currentPays = Asset.parse(t.current_pays);
+                    var openPays = Asset.parse(t.open_pays);
+
+                    t.current_pays = currentPays.toPlainString();
+                    t.open_pays = openPays.toPlainString();
+
+                    t.cbd = currentPays.asset.symbol === 'CBD' ? t.current_pays : t.open_pays;
+                    t.crea = currentPays.asset.symbol === 'CBD' ? t.open_pays : t.current_pays;
+                    t.type = currentPays.asset.symbol === 'CBD' ? 'buy' : 'sell';
+
+                    //Show price in CBD
+                    t.price = Asset.parse({
+                        amount: currentPays.asset.symbol === 'CBD' ? (t.current_pays / t.open_pays) : (t.open_pays / t.current_pays),
+                        nai: 'cbd',
+                        precision: 6
+                    }).toPlainString();
+
+                    trades.push(t);
+                });
+
+                //marketContainer.recentTrades = trades;
+                //marketContainer.$forceUpdate();
+                //marketHistoryTable.rows.add(trades).draw();
             } else {
                 console.error('Error getting recent trades', err);
             }
         })
+    }
+
+    function fetchDataToChart() {
+        var now = moment().format('YYYY-MM-DD[T]H:mm:ss');
+        var yesterday = moment().subtract(7, 'days').format('YYYY-MM-DD[T]H:mm:ss');
+
+        crea.api.getMarketHistory(86400, yesterday, now, function (err, result) {
+            if (!err) {
+                var buckets = [];
+                result.buckets.forEach(function (b) {
+                    b.t = new Date(b.open);
+                    b.o = Asset.parse({amount: b.non_crea.open, nai: 'cbd'}).toFloat();
+                    b.h = Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat();
+                    b.l = Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat();
+                    b.c = Asset.parse({amount: b.non_crea.close, nai: 'cbd'}).toFloat();
+
+                });
+                setUpChart(result.buckets);
+            } else {
+                console.error('Fail getting chart data', err)
+            }
+        });
     }
 
     function refreshData(interval) {
@@ -349,6 +427,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
             fetchOpenOrders(session);
             loadOrderBook();
             loadRecentTrades();
+            fetchDataToChart();
         };
 
         if (interval) {
@@ -359,6 +438,25 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
             refresh();
         }
 
+    }
+
+    function setUpChart(data) {
+        if (!chart) {
+            //Build
+            var ctx = document.getElementById('market-chart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'candlestick',
+                data: {
+                    datasets: [{
+                        data: data
+                    }]
+                }
+            })
+        } else {
+            //Update
+            chart.config.data.datasets[0] = data;
+            chart.update();
+        }
     }
 
     function setUpTables() {
@@ -410,6 +508,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                 orderable : false,
                 aTargets : ['_all']
             }],
+            order: [],
             "scrollY":        "250px",
             "scrollCollapse": true,
             "paging":         false,

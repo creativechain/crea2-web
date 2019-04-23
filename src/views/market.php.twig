@@ -26,7 +26,13 @@
                                 <div class="col-md-2">
                                     <div class="head-splits">
                                         <p class="small gray-color">{{ lang.MARKET.CHANGE_24H }}</p>
-                                        <p class="amount"><strong><span class="red-color">-0.00000467</span> -$0.05</strong></p>
+                                        <p class="amount">
+                                            <strong>
+                                                <span v-bind:class="{'red-color': ticker.percent_change < 0, 'green-colo': ticker.percent_change >= 0}">
+                                                    {{ '{{ ticker.percent_change }}' }}%
+                                                </span>
+                                            </strong>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -65,7 +71,7 @@
                                         </div>
                                         <div class="tab__content">
 
-                                            <table id="buy-orders" class="display table-buy-sell-market" >
+                                            <table id="sell-orders" class="display table-buy-sell-market" >
                                                 <thead>
                                                 <tr>
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -100,7 +106,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <table id="sell-orders" class="display buy_left_result_all" >
+                                            <table id="buy-orders" class="display buy_left_result_all" >
                                                 <thead>
                                                 <tr style="display: none;">
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -204,8 +210,10 @@
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="boxed boxed--border" style="height: 260px">
-                            grafica
+                        <div v-pre class="boxed boxed--border" style="height: 260px">
+                            <canvas id="market-chart">
+
+                            </canvas>
                         </div>
 
                         <div class="boxed boxed--border form-buy-sell">
@@ -313,6 +321,17 @@
                                 </thead>
                                 <tbody>
 
+{#                                <template v-for="t in recentTrades">
+                                    <tr>
+                                        <td>{{ '{{ t.date }}' }}</td>
+                                        <td v-bind:class="{'red-color': t.type == 'sell', 'green-color': t.type == 'buy'}">
+                                            {{ '{{ t.price }}' }}
+                                        </td>
+                                        <td>{{ '{{ t.cbd }}' }}</td>
+                                        <td>{{ '{{ t.crea }}' }}</td>
+                                    </tr>
+
+                                </template>#}
                                 </tbody>
                             </table>
                         </div>
@@ -342,6 +361,9 @@
             </div>
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+        <script src="/js/chart-candlestick.js"></script>
         <script src="/js/datatables.js"></script>
         <script src="/js/common/market.js"></script>
 
