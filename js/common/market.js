@@ -400,10 +400,10 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
     }
 
     function fetchDataToChart() {
-        var now = moment().format('YYYY-MM-DD[T]H:mm:ss');
-        var yesterday = moment().subtract(7, 'days').format('YYYY-MM-DD[T]H:mm:ss');
+        var endDate = moment().format('YYYY-MM-DD[T]H:mm:ss');
+        var startDate = moment().subtract(7, 'days').format('YYYY-MM-DD[T]H:mm:ss');
 
-        crea.api.getMarketHistory(86400, yesterday, now, function (err, result) {
+        crea.api.getMarketHistory(86400, startDate, endDate, function (err, result) {
             if (!err) {
                 var buckets = [];
                 result.buckets.forEach(function (b) {
