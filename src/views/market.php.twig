@@ -61,7 +61,7 @@
 
             <div class="container content-exchange">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-3 order-md-1 order-lg-1">
                         <div class="boxed boxed--border">
                             <div class="tabs-container" data-content-align="left">
                                 <ul class="tabs w-100 ul-market-buy-sell mb-0">
@@ -86,7 +86,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <table id="buy-left_all" class="display table-buy-sell-market">
+                                            <table id="buy-left_all" class="display table-buy-sell-market mb-0">
                                                 <thead>
                                                 <tr style="display: none;">
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -128,7 +128,7 @@
                                             <img src="/img/exchange/buy.svg" alt="">
                                         </div>
                                         <div class="tab__content">
-                                            <table id="buy-left" class="display table-buy-sell-market">
+                                            <table id="buy-left" class="display table-buy-sell-market mb-0">
                                                 <thead>
                                                 <tr>
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -184,7 +184,7 @@
 
                                                 </tbody>
                                             </table>
-                                            <table id="sell-left" class="display table-buy-sell-market">
+                                            <table id="sell-left" class="display table-buy-sell-market mb-0">
                                                 <thead>
                                                 <tr style="display: none">
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -209,7 +209,7 @@
                             </div><!--end of tabs container-->
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-sm-12 col-md-12 col-lg-6 order-md-3 order-lg-2">
                         <div v-pre class="boxed boxed--border" style="height: 260px">
                             <canvas id="market-chart">
 
@@ -303,7 +303,7 @@
                     </div>
 
                     {# Market History #}
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-3 order-md-2 order-lg-3">
                         <div class="row">
                             <div class="col-md-12">
                                 <p class="subtitle-module-exchange">{{ lang.MARKET.MARKET_HISTORY }}</p>
@@ -338,7 +338,7 @@
                     </div>
 
                     {#User Open Orders#}
-                    <div v-if="session" class="col-12">
+                    <div v-if="session" class="col-12 order-md-4 order-lg-4">
                         <div class="boxed boxed--border">
                             <table id="user-orders" class="display" style="width:100%">
                                 <thead>
@@ -357,6 +357,51 @@
                             </table>
                         </div>
                     </div>
+
+
+
+                    <!-- INICIO NO VALE -->
+                    <div v-if="session" class="col-12 order-md-4 order-lg-4">
+                        <div class="boxed boxed--border">
+                            <table class="display" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>{{ lang.MARKET.DATE }}</th>
+                                    <th>{{ lang.MARKET.TYPE }}</th>
+                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                    <th>CREA</th>
+                                    <th>CBD</th>
+                                    <th>{{ lang.MARKET.ACTION }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                        <td>2019-04-24T08:09:15</td>
+                                        <td>BUY</td>
+                                        <td>3.000</td>
+                                        <td>35.920</td>
+                                        <td>35.920</td>
+                                        <td>
+                                            <a href="#" class="btn btn--sm"><span class="btn__text text__dark font-weight-bold">Cancel</span></a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row" class="even">
+                                        <td>2019-04-24T08:09:15</td>
+                                        <td>BUY</td>
+                                        <td>3.000</td>
+                                        <td>35.920</td>
+                                        <td>35.920</td>
+                                        <td>
+                                            <a href="#" class="btn btn--sm"><span class="btn__text text__dark font-weight-bold">Cancel</span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- FIN NO VALE -->
+
+
                 </div>
             </div>
         </div>

@@ -1523,7 +1523,8 @@
   .exchange .header-exchange .head-splits .amount {
     font-size: 14px; }
 .exchange .ul-market-buy-sell {
-  border: 1px solid transparent; }
+  border: 1px solid transparent;
+  display: flex; }
   .exchange .ul-market-buy-sell li {
     padding: 5px 10px 7px; }
 .exchange .market-history tbody tr.active-tr {
@@ -1544,7 +1545,14 @@
   background: white;
   text-transform: uppercase;
   font-weight: 600; }
+.exchange .dataTables_scrollHeadInner {
+  width: 100% !important; }
+  .exchange .dataTables_scrollHeadInner .display {
+    width: 100% !important; }
 
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .exchange .container {
+    max-width: 100%; } }
 #legal-doc p {
   font-size: 14px; }
 #legal-doc h3 {
