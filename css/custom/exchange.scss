@@ -1,4 +1,5 @@
 .exchange {
+
   .btn-buy-exchange {
     background-color: $color-buy;
   }
@@ -94,6 +95,7 @@
   }
   .ul-market-buy-sell {
     border: 1px solid transparent;
+    display: flex;
     li {
       padding: 5px 10px 7px;
     }
@@ -140,4 +142,19 @@
       }
     }
   }
+  .dataTables_scrollHeadInner {
+    width: 100% !important;
+    .display {
+      width: 100% !important;
+    }
+  }
 }
+
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .exchange {
+    .container {
+      max-width: 100%;
+    }
+  }
+}
+
