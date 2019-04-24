@@ -24,19 +24,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * Created by ander on 10/10/18.
  */
 var ASSET_CREA = {
-    precision: 3,
+    exponent: 3,
     symbol: apiOptions.symbol.CREA
 };
 var ASSET_CBD = {
-    precision: 3,
+    exponent: 3,
     symbol: apiOptions.symbol.CBD
 };
 var ASSET_CGY = {
-    precision: 3,
+    exponent: 3,
     symbol: apiOptions.symbol.CGY
 };
 var ASSET_VESTS = {
-    precision: 6,
+    exponent: 6,
     symbol: apiOptions.symbol.VESTS
 };
 var NAI = {
@@ -131,7 +131,7 @@ var Asset =
         /**
          *
          * @param {Number} amount
-         * @param {{precision: Number, symbol: String}} asset
+         * @param {{exponent: Number, symbol: String}} asset
          */
         function Asset(amount, asset) {
             _classCallCheck(this, Asset);
@@ -207,12 +207,12 @@ var Asset =
                 var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
                 if (isNaN(maxDecimals) || maxDecimals === null) {
-                    maxDecimals = this.asset.precision;
+                    maxDecimals = this.asset.exponent;
                 }
 
                 var mf = new MonetaryFormat();
                 mf.digits(maxDecimals);
-                return mf.format(Math.abs(this.amount), this.asset.precision, abbr);
+                return mf.format(Math.abs(this.amount), this.asset.exponent, abbr);
             }
         }, {
             key: "toFriendlyString",
@@ -230,7 +230,7 @@ var Asset =
         }, {
             key: "toString",
             value: function toString() {
-                return this.toFriendlyString(this.asset.precision);
+                return this.toFriendlyString(this.asset.exponent);
             }
         }, {
             key: "toFloat",
@@ -250,28 +250,39 @@ var Asset =
 
         }], [{
             key: "parse",
-            value: function parse(assetData) {
+            value: function parse(assetData, log) {
 
+                if (log) {
+                    console.log('Asset log:', assetData);
+                }
                 if (typeof assetData === 'string') {
                     return Asset.parseString(assetData);
                 }
 
                 var nai = assetData.asset ? NAI[assetData.asset.symbol.toLowerCase()] : NAI[assetData.nai.toLowerCase()];
                 nai = Object.assign({}, nai);
-                nai.precision = assetData.precision || nai.precision;
+                nai.exponent = assetData.exponent || nai.exponent;
 
                 if (typeof assetData.amount === 'number') {
                     if (assetData.amount % 1 !== 0 || assetData.round) {
-                        assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.precision));
+                        if (assetData.precision) {
+                            assetData.amount = assetData.amount / Math.pow(10, assetData.precision);
+                        }
+                        assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.exponent));
                     }
                 } else if (typeof assetData.amount === 'string') {
                     assetData.amount = assetData.amount.replace(',', '.');
 
                     if (!isNaN(assetData.amount)) {
-                        if (assetData.amount.indexOf('.') > 0) {
+                        if (assetData.amount % 1 !== 0) {
                             assetData.amount = parseFloat(assetData.amount);
                         } else {
-                            assetData.amount = parseInt(assetData.amount);
+                            if (assetData.precision) {
+                                assetData.amount = assetData.amount / Math.pow(10, assetData.precision);
+                            }
+
+                            assetData.amount = parseInt(assetData.amount * Math.pow(10, nai.exponent));
+                            assetData.precision = nai.exponent;
                         }
 
                         return Asset.parse(assetData);
@@ -297,9 +308,7 @@ var Asset =
                 var symbol = strSplitted[1];
                 var nai = NAI[symbol.toLowerCase()];
 
-                if (amount % 1 === 0) {
-                    amount = Math.round(amount * Math.pow(10, nai.precision));
-                }
+                amount = Math.round(amount * Math.pow(10, nai.exponent));
 
                 return Asset.parse({amount: amount, nai: symbol.toLowerCase()});
             }

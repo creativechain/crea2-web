@@ -1,6 +1,6 @@
 "use strict";
 var marketContainer;
-var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
+var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
 (function () {
 
     var session, account, chart;
@@ -99,7 +99,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                                     //change only total if amount != 0
                                     // total = amount * price
                                     if (amount) {
-                                        var t = (amount * value) + 0.0001;
+                                        var t = (amount * value);
                                         this.buyForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
                                     }
                                     break;
@@ -108,7 +108,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                                     // total = amount * price
                                     var price = this.buyForm.price;
                                     if (price) {
-                                        var t = (value * price) + 0.0001;
+                                        var t = (value * price);
                                         this.buyForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
                                     }
                                     break;
@@ -116,7 +116,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                                     //change only price if amount != 0
                                     // price = total / amount
                                     if (amount) {
-                                        var p = (value / amount) + 0.0001;
+                                        var p = (value / amount);
                                         this.buyForm.price = Asset.parse({amount: p, nai: 'cbd'}).toPlainString();
                                     }
                             }
@@ -162,7 +162,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                                     //change only total if amount != 0
                                     // total = amount * price
                                     if (amount) {
-                                        var t = (amount * value) + 0.0001;
+                                        var t = (amount * value);
                                         this.sellForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
                                     }
                                     break;
@@ -171,7 +171,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                                     // total = amount * price
                                     var price = this.sellForm.price;
                                     if (price) {
-                                        var t = (value * price) + 0.0001;
+                                        var t = (value * price);
                                         this.sellForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
                                     }
                                     break;
@@ -179,7 +179,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                                     //change only price if amount != 0
                                     // price = total / amount
                                     if (amount) {
-                                        var p = (value / amount) + 0.0001;
+                                        var p = (value / amount);
                                         this.sellForm.price = Asset.parse({amount: p, nai: 'cbd'}).toPlainString();
                                     }
                             }
@@ -230,6 +230,18 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
             marketContainer.buyForm.amount = order.crea;
         }
     }
+
+    function cancelOrder(orderId) {
+        requireRoleKey(session.account.username, 'active', function (activeKey) {
+            crea.broadcast.limitOrderCancel(activeKey, session.account.username, orderId, function (err, result) {
+                if (!catchError(err)) {
+                    fetchOpenOrders(session);
+                }
+            })
+        });
+
+    }
+
     function fetchOpenOrders(session) {
 
         if (session) {
@@ -239,18 +251,19 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     var parseOpenOrder = function (order) {
                         var priceBase = Asset.parse(order.sell_price.base);
                         var priceQuote = Asset.parse(order.sell_price.quote);
-                        var type = priceBase.asset.symbol === 'CREA' ? 'Buy' : 'Sell';
+                        var type = priceBase.asset.symbol === 'CREA' ? 'Sell' : 'Buy';
 
                         return {
                             date: order.created,
                             type: type,
-                            price: Asset.parse({
-                                amount: (type === 'Buy' ? priceQuote.toFloat() / priceBase.toFloat() : priceBase.toFloat() / priceQuote.toFloat()) + 0.0001,
+                            price: '$' + Asset.parse({
+                                amount: (type === 'Buy' ? priceBase.toFloat() / priceQuote.toFloat() : priceQuote.toFloat() / priceBase.toFloat()) + 0.0001,
                                 nai: 'cbd'
                             }).toPlainString(),
-                            crea: type === 'Buy' ? Asset.parse({amount: order.for_sale, nai: 'crea'}).toPlainString() : priceQuote.toPlainString(),
-                            cbd: type === 'Buy' ? priceQuote.toPlainString() : Asset.parse({amount: order.for_sale, nai: 'cbd'}).toPlainString(),
-                            action: 'button'
+                            crea: type === 'Buy' ? priceQuote.toFriendlyString() : Asset.parse({amount: order.for_sale, nai: 'crea'}).toFriendlyString(),
+                            cbd: type === 'Buy' ? Asset.parse({amount: order.for_sale, nai: 'cbd'}).toFriendlyString() : priceQuote.toFriendlyString(),
+                            action: 'button',
+                            orderid: order.orderid
                         };
                     };
 
@@ -264,7 +277,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                         return new Date(b.date).getTime() - new Date(a.date).getTime();
                     });
 
-                    console.log(userOrders);
+                    userOrdersTable.clear();
                     userOrdersTable.rows.add(userOrders).draw();
                 }
             })
@@ -274,9 +287,9 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
     function fetchTicker() {
         crea.api.getTicker(function (err, result) {
             if (!err) {
-                result.latest = Asset.parse({amount: result.latest, nai: 'cbd', precision: 6}).toPlainString();
-                result.lowest_ask = Asset.parse({amount: result.lowest_ask, nai: 'cbd', precision: 6}).toPlainString();
-                result.highest_bid = Asset.parse({amount: result.highest_bid, nai: 'cbd', precision: 6}).toPlainString();
+                result.latest = Asset.parse({amount: result.latest, nai: 'cbd', exponent: 6}).toPlainString();
+                result.lowest_ask = Asset.parse({amount: result.lowest_ask, nai: 'cbd', exponent: 6}).toPlainString();
+                result.highest_bid = Asset.parse({amount: result.highest_bid, nai: 'cbd', exponent: 6}).toPlainString();
                 result.percent_change = parseFloat(result.percent_change).toFixed(3);
 
                 marketContainer.ticker = result;
@@ -309,7 +322,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     ask.order_price = Asset.parse({
                         amount: ask.real_price,
                         nai: 'cbd',
-                        precision: 6
+                        exponent: 6
                     }).toPlainString();
 
                     ask.crea = Asset.parse({amount: ask.crea, nai: 'crea'}).toPlainString();
@@ -321,11 +334,13 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     asks.push(parseOrder(ask));
                 });
 
-                //Order ask by price ASC
+                //Order ask by price DESC
                 asks.sort(function (a, b) {
                     return b.price - a.price;
                 });
 
+                buyTable.clear();
+                buyAllTable.clear();
                 buyTable.rows.add(asks).draw();
                 buyAllTable.rows.add(asks).draw();
 
@@ -333,7 +348,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     bid.order_price = Asset.parse({
                         amount: bid.real_price,
                         nai: 'cbd',
-                        precision: 6
+                        exponent: 6
                     }).toPlainString();
 
                     bid.crea = Asset.parse({amount: bid.crea, nai: 'crea'}).toPlainString();
@@ -351,6 +366,8 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     return a.price - b.price;
                 });
 
+                sellTable.clear();
+                sellAllTable.clear();
                 sellTable.rows.add(bids).draw();
                 sellAllTable.rows.add(bids).draw();
 
@@ -384,7 +401,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
                     t.price = Asset.parse({
                         amount: currentPays.asset.symbol === 'CBD' ? (t.current_pays / t.open_pays) : (t.open_pays / t.current_pays),
                         nai: 'cbd',
-                        precision: 6
+                        exponent: 6
                     }).toPlainString();
 
                     trades.push(t);
@@ -392,6 +409,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
 
                 //marketContainer.recentTrades = trades;
                 //marketContainer.$forceUpdate();
+                marketHistoryTable.clear();
                 marketHistoryTable.rows.add(trades).draw();
             } else {
                 console.error('Error getting recent trades', err);
@@ -401,7 +419,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
 
     function fetchDataToChart() {
         var endDate = moment().format('YYYY-MM-DD[T]H:mm:ss');
-        var startDate = moment().subtract(7, 'days').format('YYYY-MM-DD[T]H:mm:ss');
+        var startDate = '2019-02-19T00:00:00';
 
         crea.api.getMarketHistory(86400, startDate, endDate, function (err, result) {
             if (!err) {
@@ -421,7 +439,8 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
         });
     }
 
-    function refreshData(interval) {
+    function refreshData(interval, inmediate) {
+
         var refresh = function () {
             fetchTicker();
             fetchOpenOrders(session);
@@ -430,12 +449,14 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
             fetchDataToChart();
         };
 
+        if (inmediate || inmediate === undefined) {
+            refresh();
+        }
+
         if (interval) {
             setInterval(function () {
                 refresh();
             }, interval);
-        } else {
-            refresh();
         }
 
     }
@@ -460,127 +481,160 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
     }
 
     function setUpTables() {
-        buyTable = $('#buy-orders').DataTable({
-            bFilter: false,
-            bInfo: false,
-            /*lengthChange: false,*/
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            scrollY:        "250px",
-            scrollCollapse: true,
-            paging:         false,
-            columns: [
-                {data: 'price', className: 'color-buy'},
-                {data: 'crea'},
-                {data: 'cbd'},
-                {data: 'total_cbd'}
-            ]
-        });
+        if (!tablesInitiated) {
+            tablesInitiated = true;
 
-        buyAllTable = $('#buy-orders-all').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "scrollY":        "400px",
-            "scrollCollapse": true,
-            "paging":         false,
-            columns: [
-                {data: 'price', className: 'color-buy'},
-                {data: 'crea'},
-                {data: 'cbd'},
-                {data: 'total_cbd'}
-            ]
-        });
+            buyTable = $('#buy-orders').DataTable({
+                bFilter: false,
+                bInfo: false,
+                /*lengthChange: false,*/
+                aoColumnDefs : [ {
+                    orderable : false,
+                    aTargets : ['_all']
+                }],
+                order: [],
+                scrollY:        "250px",
+                scrollCollapse: true,
+                paging:         false,
+                columns: [
+                    {data: 'price', className: 'color-buy'},
+                    {data: 'crea'},
+                    {data: 'cbd'},
+                    {data: 'total_cbd'}
+                ]
+            });
 
-        sellTable = $('#sell-orders').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "scrollY":        "250px",
-            "scrollCollapse": true,
-            "paging":         false,
-            columns: [
-                {data: 'price', className: 'color-sell'},
-                {data: 'crea'},
-                {data: 'cbd'},
-                {data: 'total_cbd'}
-            ]
-        });
+            buyAllTable = $('#buy-orders-all').DataTable({
+                bFilter: false,
+                bInfo: false,
+                "lengthChange": false,
+                aoColumnDefs : [ {
+                    orderable : false,
+                    aTargets : ['_all']
+                }],
+                order: [],
+                "scrollY":        "400px",
+                "scrollCollapse": true,
+                "paging":         false,
+                columns: [
+                    {data: 'price', className: 'color-buy'},
+                    {data: 'crea'},
+                    {data: 'cbd'},
+                    {data: 'total_cbd'}
+                ]
+            });
 
-        sellAllTable = $('#sell-all-orders').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "scrollY":        "400px",
-            "scrollCollapse": true,
-            "paging":         false,
-            columns: [
-                {data: 'price', className: 'color-sell'},
-                {data: 'crea'},
-                {data: 'cbd'},
-                {data: 'total_cbd'}
-            ]
-        });
+            sellTable = $('#sell-orders').DataTable({
+                bFilter: false,
+                bInfo: false,
+                "lengthChange": false,
+                aoColumnDefs : [ {
+                    orderable : false,
+                    aTargets : ['_all']
+                }],
+                order: [],
+                "scrollY":        "250px",
+                "scrollCollapse": true,
+                "paging":         false,
+                columns: [
+                    {data: 'price', className: 'color-sell'},
+                    {data: 'crea'},
+                    {data: 'cbd'},
+                    {data: 'total_cbd'}
+                ]
+            });
 
-        userOrdersTable = $('#user-orders').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "scrollY":        "534px",
-            "scrollCollapse": true,
-            "paging":         false,
-            columns: [
-                {data: 'date'},
-                {data: 'type'},
-                {data: 'price'},
-                {data: 'crea'},
-                {data: 'cbd'},
-                {data: 'action'}
-            ]
-        });
+            sellAllTable = $('#sell-all-orders').DataTable({
+                bFilter: false,
+                bInfo: false,
+                "lengthChange": false,
+                aoColumnDefs : [ {
+                    orderable : false,
+                    aTargets : ['_all']
+                }],
+                order: [0, 'asc'],
+                "scrollY":        "400px",
+                "scrollCollapse": true,
+                "paging":         false,
+                columns: [
+                    {data: 'price', className: 'color-sell'},
+                    {data: 'crea'},
+                    {data: 'cbd'},
+                    {data: 'total_cbd'}
+                ]
+            });
 
-        marketHistoryTable = $('#market-history').DataTable({
-            bFilter: false,
-            bInfo: false,
-            "lengthChange": false,
-            aoColumnDefs : [ {
-                orderable : false,
-                aTargets : ['_all']
-            }],
-            order: [],
-            "scrollY":        "200px",
-            "scrollCollapse": true,
-            "paging":         false,
-            columns: [
-                {data: 'date'},
-                {data: 'price'},
-                {data: 'crea'},
-                {data: 'cbd'}
-            ]
-        });
+            userOrdersTable = $('#user-orders').DataTable({
+                bFilter: false,
+                bInfo: false,
+                "lengthChange": false,
+                aoColumnDefs : [ {
+                    orderable : false,
+                    aTargets : ['_all']
+                }],
+                order: [],
+                "scrollY":        "534px",
+                "scrollCollapse": true,
+                "paging":         false,
+                columns: [
+                    {data: 'date'},
+                    {
+                        data: 'type',
+                        render: function (cellValue, type, rowData, meta) {
+                            if (cellValue.toLowerCase() === 'buy') {
+                                return '<span class="color-buy">' + cellValue.toUpperCase() + '</span>'
+                            } else {
+                                return '<span class="color-sell">' + cellValue.toUpperCase() + '</span>'
+                            }
+                        }
+                    },
+                    {data: 'price'},
+                    {data: 'crea'},
+                    {data: 'cbd'},
+                    {
+                        data: 'action',
+                        render: function (cellValue, type, rowData, meta) {
+                            return '<div id="' + rowData.orderid + '" class="btn btn--sm"><span class="btn__text text__dark font-weight-bold"> ' + lang.BUTTON.CANCEL + '</span></a>';
+                        }
+                    }
+                ],
+                fnCreatedRow: function (row, data, index) {
+                    $('#' + data.orderid, row).click(function () {
+                        cancelOrder(data.orderid);
+                    })
+                }
+            });
+
+            marketHistoryTable = $('#market-history').DataTable({
+                bFilter: false,
+                bInfo: false,
+                "lengthChange": false,
+                aoColumnDefs : [ {
+                    orderable : false,
+                    aTargets : ['_all']
+                }],
+                order: [],
+                "scrollY":        "200px",
+                "scrollCollapse": true,
+                "paging":         false,
+                columns: [
+                    {data: 'date'},
+                    {
+                        data: 'price',
+                        render: function (cellValue, type, rowData, meta) {
+                            if (rowData.type.toLowerCase() === 'buy') {
+                                return '<span class="color-buy">' + cellValue.toUpperCase() + '</span>'
+                            } else {
+                                return '<span class="color-sell">' + cellValue.toUpperCase() + '</span>'
+                            }
+                        }
+                    },
+                    {data: 'crea'},
+                    {data: 'cbd'}
+                ]
+            });
+        }
+
     }
 
     creaEvents.on('crea.session.login', function (s, a) {
@@ -592,7 +646,7 @@ var buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHisto
             console.log('session started');
 
             setUpTables();
-            refreshData()
+            refreshData(3000);
         }, 500)
 
 
