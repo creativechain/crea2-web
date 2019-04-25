@@ -589,8 +589,8 @@ var chart;
                 columns: [
                     {data: 'price', className: 'color-buy'},
                     {data: 'crea'},
-                    {data: 'cbd'},
-                    {data: 'total_cbd'}
+                    {data: 'cbd'}/*,
+                    {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
                     $(row).click(function () {
@@ -614,8 +614,8 @@ var chart;
                 columns: [
                     {data: 'price', className: 'color-buy'},
                     {data: 'crea'},
-                    {data: 'cbd'},
-                    {data: 'total_cbd'}
+                    {data: 'cbd'}/*,
+                    {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
                     $(row).click(function () {
@@ -639,8 +639,8 @@ var chart;
                 columns: [
                     {data: 'price', className: 'color-sell'},
                     {data: 'crea'},
-                    {data: 'cbd'},
-                    {data: 'total_cbd'}
+                    {data: 'cbd'}/*,
+                    {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
                     $(row).click(function () {
@@ -664,8 +664,8 @@ var chart;
                 columns: [
                     {data: 'price', className: 'color-sell'},
                     {data: 'crea'},
-                    {data: 'cbd'},
-                    {data: 'total_cbd'}
+                    {data: 'cbd'}/*,
+                    {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
                     $(row).click(function () {
