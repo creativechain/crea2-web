@@ -224,17 +224,15 @@
                         </div>
 
                         <div class="boxed boxed--border form-buy-sell">
-                            <div v-if="session" class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p>{{ lang.MARKET.AVAILABLE_CBD }}: {{ '{{ account.user.cbd_balance }}' }}</p>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p>{{ lang.MARKET.AVAILABLE_CREA }}: {{ '{{ account.user.balance }}' }}</p>
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p class="title"><strong>{{ lang.MARKET.BUY_CREA }}</strong></p>
+                                    <div class="d-flex" style="justify-content: space-between;">
+                                        <p class="title"><strong>{{ lang.MARKET.BUY_CREA }}</strong></p>
+                                        <p v-if="session"><i class="fas fa-wallet"></i> {{ '{{ account.user.cbd_balance }}' }}</p>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
 
@@ -274,7 +272,13 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p class="title"><strong>{{ lang.MARKET.SELL_CREA }}</strong></p>
+
+                                    <div class="d-flex" style="justify-content: space-between;">
+                                        <p class="title"><strong>{{ lang.MARKET.SELL_CREA }}</strong></p>
+                                        <p v-if="session"><p><i class="fas fa-wallet"></i> {{ '{{ account.user.balance }}' }}</p>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
 
