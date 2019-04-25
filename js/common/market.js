@@ -468,7 +468,7 @@ var chart;
         var endDate = moment().format('YYYY-MM-DD[T]H:mm:ss');
         var startDate = '2019-02-19T00:00:00';
 
-        crea.api.getMarketHistory(60, startDate, endDate, function (err, result) {
+        crea.api.getMarketHistory(86400, startDate, endDate, function (err, result) {
             if (!err) {
                 var buckets = [];
                 result.buckets.forEach(function (b) {
@@ -518,6 +518,7 @@ var chart;
     }
 
     function setUpChart(data) {
+        console.log('Chart data', data);
         if (!chart) {
             // Themes begin
             am4core.useTheme(am4themes_animated);
