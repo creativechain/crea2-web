@@ -224,12 +224,17 @@ var chart;
         }
     }
 
-    function prepareFormOrder(order, type) {
-        type = type.toLowerCase();
+    function prepareFormOrder(order, formType) {
+        formType = formType.toLowerCase();
 
-        if (type === 'buy') {
+        if (formType === 'buy') {
             marketContainer.buyForm.price = order.price;
             marketContainer.buyForm.amount = order.crea;
+            marketContainer.onParseBuyForm();
+        } else {
+            marketContainer.sellForm.price = order.price;
+            marketContainer.sellForm.amount = order.crea;
+            marketContainer.onParseSellForm();
         }
     }
 
@@ -384,7 +389,6 @@ var chart;
     }
 
     function updateLatestPrices(buyPrice, sellPrice) {
-        console.log(buyPrice, sellPrice);
         if (buyPrice) {
             $('[buy-last-price]').html(buyPrice);
         }
@@ -571,7 +575,12 @@ var chart;
                     {data: 'crea'},
                     {data: 'cbd'},
                     {data: 'total_cbd'}
-                ]
+                ],
+                fnCreatedRow: function (row, data, index) {
+                    $(row).click(function () {
+                        prepareFormOrder(data, 'sell');
+                    })
+                }
             });
 
             buyAllTable = $('#buy-orders-all').DataTable({
@@ -591,7 +600,12 @@ var chart;
                     {data: 'crea'},
                     {data: 'cbd'},
                     {data: 'total_cbd'}
-                ]
+                ],
+                fnCreatedRow: function (row, data, index) {
+                    $(row).click(function () {
+                        prepareFormOrder(data, 'sell');
+                    })
+                }
             });
 
             sellTable = $('#sell-orders').DataTable({
@@ -611,7 +625,12 @@ var chart;
                     {data: 'crea'},
                     {data: 'cbd'},
                     {data: 'total_cbd'}
-                ]
+                ],
+                fnCreatedRow: function (row, data, index) {
+                    $(row).click(function () {
+                        prepareFormOrder(data, 'buy');
+                    })
+                }
             });
 
             sellAllTable = $('#sell-all-orders').DataTable({
@@ -631,7 +650,12 @@ var chart;
                     {data: 'crea'},
                     {data: 'cbd'},
                     {data: 'total_cbd'}
-                ]
+                ],
+                fnCreatedRow: function (row, data, index) {
+                    $(row).click(function () {
+                        prepareFormOrder(data, 'buy');
+                    })
+                }
             });
 
             userOrdersTable = $('#user-orders').DataTable({
