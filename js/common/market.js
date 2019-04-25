@@ -581,6 +581,14 @@ var chart;
         if (!tablesInitiated) {
             tablesInitiated = true;
 
+            $.fn.dataTable.render.ellipsis = function () {
+                return function (data, type, row) {
+                    return type === 'display' && data.length > 10 ?
+                        data.substr( 0, 10 ) +'…' :
+                        data;
+                }
+            };
+
             buyTable = $('#buy-orders').DataTable({
                 bFilter: false,
                 bInfo: false,
@@ -594,9 +602,9 @@ var chart;
                 scrollCollapse: true,
                 paging:         false,
                 columns: [
-                    {data: 'price', className: 'color-buy'},
-                    {data: 'crea'},
-                    {data: 'cbd'}/*,
+                    {data: 'price', className: 'color-buy', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'crea', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'cbd', render: $.fn.dataTable.render.ellipsis() }/*,
                     {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
@@ -619,9 +627,9 @@ var chart;
                 "scrollCollapse": true,
                 "paging":         false,
                 columns: [
-                    {data: 'price', className: 'color-buy'},
-                    {data: 'crea'},
-                    {data: 'cbd'}/*,
+                    {data: 'price', className: 'color-buy', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'crea', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'cbd', render: $.fn.dataTable.render.ellipsis() }/*,
                     {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
@@ -644,9 +652,9 @@ var chart;
                 "scrollCollapse": true,
                 "paging":         false,
                 columns: [
-                    {data: 'price', className: 'color-sell'},
-                    {data: 'crea'},
-                    {data: 'cbd'}/*,
+                    {data: 'price', className: 'color-sell', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'crea', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'cbd', render: $.fn.dataTable.render.ellipsis() }/*,
                     {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
@@ -669,9 +677,9 @@ var chart;
                 "scrollCollapse": true,
                 "paging":         false,
                 columns: [
-                    {data: 'price', className: 'color-sell'},
-                    {data: 'crea'},
-                    {data: 'cbd'}/*,
+                    {data: 'price', className: 'color-sell', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'crea', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'cbd', render: $.fn.dataTable.render.ellipsis() }/*,
                     {data: 'total_cbd'}*/
                 ],
                 fnCreatedRow: function (row, data, index) {
@@ -735,19 +743,19 @@ var chart;
                 "scrollCollapse": true,
                 "paging":         false,
                 columns: [
-                    {data: 'date'},
+                    {data: 'date', render: $.fn.dataTable.render.ellipsis() },
                     {
                         data: 'price',
                         render: function (cellValue, type, rowData, meta) {
                             if (rowData.type.toLowerCase() === 'buy') {
-                                return '<span class="color-buy">' + cellValue.toUpperCase() + '</span>'
+                                return '<span class="color-buy">' + cellValue + '</span>'
                             } else {
-                                return '<span class="color-sell">' + cellValue.toUpperCase() + '</span>'
+                                return '<span class="color-sell">' + cellValue + '</span>'
                             }
                         }
                     },
-                    {data: 'crea'},
-                    {data: 'cbd'}
+                    {data: 'crea', render: $.fn.dataTable.render.ellipsis() },
+                    {data: 'cbd', render: $.fn.dataTable.render.ellipsis() }
                 ]
             });
         }
