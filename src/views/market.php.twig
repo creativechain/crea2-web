@@ -86,7 +86,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <table id="buy-left_all" class="display table-buy-sell-market mb-0">
+                                            <table class="display table-buy-sell-market mb-0">
                                                 <thead>
                                                 <tr style="display: none;">
                                                     <th>{{ lang.MARKET.PRICE }}</th>
@@ -100,7 +100,7 @@
                                                 <tr>
                                                     <td colspan="4" class="text-center">
                                                         <p class="color-buy font-weight-bold" style="font-size: 14px;">
-                                                            {{ '{{ ticker.latest }}' }} <i class="icon-To-Top"></i>
+                                                            <span buy-last-price >0.000000</span> <i class="icon-To-Top"></i>
                                                         </p>
                                                     </td>
                                                     <td style="display: none;"></td>
@@ -144,7 +144,11 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td colspan="4" class="text-center"><p class="color-buy font-weight-bold" style="font-size: 14px;">50000000 <i class="icon-To-Top"></i> <span class="font-weight-bold color--primary-exchange">$0.065</span></p></td>
+                                                    <td colspan="4" class="text-center">
+                                                        <p class="color-buy font-weight-bold" style="font-size: 14px;">
+                                                            <span buy-last-price>0.000000</span> <i class="icon-To-Top"></i>
+                                                        </p>
+                                                    </td>
                                                     <td style="display: none;"></td>
                                                     <td style="display: none;"></td>
                                                     <td style="display: none;"></td>
@@ -200,7 +204,11 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td colspan="4" class="text-center"><p class="color-sell font-weight-bold" style="font-size: 14px;">50000000 <i class="icon-To-Top"></i> <span class="font-weight-bold color--primary-exchange">$0.065</span></p></td>
+                                                    <td colspan="4" class="text-center">
+                                                        <p class="color-sell font-weight-bold" style="font-size: 14px;">
+                                                            <span sell-last-price>0.000000</span> <i class="icon-To-Top"></i>
+                                                        </p>
+                                                    </td>
                                                     <td style="display: none;"></td>
                                                     <td style="display: none;"></td>
                                                     <td style="display: none;"></td>

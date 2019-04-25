@@ -383,11 +383,23 @@ var chart;
         })
     }
 
+    function updateLatestPrices(buyPrice, sellPrice) {
+        console.log(buyPrice, sellPrice);
+        if (buyPrice) {
+            $('[buy-last-price]').html(buyPrice);
+        }
+
+        if (sellPrice) {
+            $('[sell-last-price]').html(sellPrice);
+        }
+
+    }
     function loadRecentTrades() {
         crea.api.getRecentTrades(100, function (err, result) {
             if (!err) {
                 var trades = [];
 
+                var buyLastPrice, sellLastPrice;
                 //Order by date DESC
                 result.trades.sort(function (a, b) {
                     return new Date(b.date).getTime() - new Date(a.date).getTime();
@@ -413,12 +425,23 @@ var chart;
                     }).toPlainString();
 
                     trades.push(t);
+
+                    if (t.type === 'sell' && !buyLastPrice) {
+                        buyLastPrice = t.price;
+                    }
+
+                    if (t.type === 'buy' && !sellLastPrice) {
+                        sellLastPrice = t.price;
+                    }
                 });
 
                 //marketContainer.recentTrades = trades;
                 //marketContainer.$forceUpdate();
                 marketHistoryTable.clear();
                 marketHistoryTable.rows.add(trades).draw();
+
+                //Update latest prices
+                updateLatestPrices(buyLastPrice, sellLastPrice);
             } else {
                 console.error('Error getting recent trades', err);
             }
@@ -479,7 +502,6 @@ var chart;
     }
 
     function setUpChart(data) {
-        console.log('setting data', data);
         if (!chart) {
             // Themes begin
             am4core.useTheme(am4themes_animated);
