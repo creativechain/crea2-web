@@ -1,12 +1,7 @@
 {{  include('element/navbar.php.twig') }}
     <div class="main-container exchange mt--3">
         <div v-cloak id="market-container">
-            <div class="container header-exchange">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="title-section">{{ lang.MARKET.MARKETS }}</h3>
-                    </div>
-                </div>
+            <div class="container header-exchange mt-4">
                 <div class="row">
                     <div class="col">
                         <div class="boxed boxed--border navbar-resum">
@@ -19,13 +14,13 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="head-splits">
-                                        <p class="small gray-color">{{ lang.MARKET.LAST_PRICE }}</p>
+                                        <p class=" gray-color">{{ lang.MARKET.LAST_PRICE }}</p>
                                         <p class="amount"><strong><span class="green-color">{{ '{{ ticker.latest }}' }}</span></strong></p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="head-splits">
-                                        <p class="small gray-color">{{ lang.MARKET.CHANGE_24H }}</p>
+                                        <p class=" gray-color">{{ lang.MARKET.CHANGE_24H }}</p>
                                         <p class="amount">
                                             <strong>
                                                 <span v-bind:class="{'red-color': ticker.percent_change < 0, 'green-colo': ticker.percent_change >= 0}">
@@ -37,19 +32,19 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="head-splits">
-                                        <p class="small gray-color">{{ lang.MARKET.HIGH_24H }}</p>
+                                        <p class=" gray-color">{{ lang.MARKET.HIGH_24H }}</p>
                                         <p class="amount"><strong><span class="gray-color">{{ '{{ ticker.highest_bid }}' }}</span></strong></p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="head-splits">
-                                        <p class="small gray-color">{{ lang.MARKET.LOW_24H }}</p>
+                                        <p class=" gray-color">{{ lang.MARKET.LOW_24H }}</p>
                                         <p class="amount"><strong><span class="gray-color">{{ '{{ ticker.lowest_ask }}' }}</span></strong></p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="head-splits">
-                                        <p class="small gray-color">{{ lang.MARKET.VOLUME_24H }}</p>
+                                        <p class=" gray-color">{{ lang.MARKET.VOLUME_24H }}</p>
                                         <p class="amount"><strong><span class="gray-color">{{ '{{ parseAsset(ticker.cbd_volume).toPlainString(null, false) }}' }}</span> CBD</strong></p>
                                     </div>
                                 </div>
@@ -74,7 +69,7 @@
                                             <table id="sell-orders" class="display table-buy-sell-market" >
                                                 <thead>
                                                 <tr>
-                                                    <th>{{ lang.MARKET.PRICE }}</th>
+                                                    <th class="color-title-table-primary">{{ lang.MARKET.PRICE }}</th>
                                                     <th>CREA</th>
                                                     <th>CBD</th>
                                                     <th>Total CBD</th>
@@ -231,7 +226,7 @@
                         <div class="boxed boxed--border form-buy-sell">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h6 class="title"><strong>{{ lang.MARKET.BUY_CREA }}</strong></h6>
+                                    <p class="title"><strong>{{ lang.MARKET.BUY_CREA }}</strong></p>
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
 
@@ -264,14 +259,14 @@
                                                    type="text" name="input" placeholder="{{ lang.MARKET.TOTAL_CREA }}" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <a class="btn btn-primary w-100 btn-buy-exchange" v-on:click="makeOrder('buy')">
                                             <span class="btn__text">{{ lang.MARKET.BUY }}</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h6 class="title"><strong>{{ lang.MARKET.SELL_CREA }}</strong></h6>
+                                    <p class="title"><strong>{{ lang.MARKET.SELL_CREA }}</strong></p>
                                     <div class="form-group">
                                         <label for="" class="text-uppercase">{{ lang.MARKET.PRICE }}</label>
 
@@ -304,8 +299,8 @@
                                                    type="text" name="input" placeholder="{{ lang.MARKET.TOTAL }} CREA" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <a class="btn btn-unfollow color--white w-100" v-on:click="makeOrder('sell')">
+                                    <div class="form-group text-center">
+                                        <a class="btn btn-sell-exchange color--white w-100" v-on:click="makeOrder('sell')">
                                             <span class="btn__text">{{ lang.MARKET.SELL }}</span>
                                         </a>
                                     </div>

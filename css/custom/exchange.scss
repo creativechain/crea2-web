@@ -3,6 +3,18 @@
   .btn-buy-exchange {
     background-color: $color-buy;
   }
+  .btn-buy-exchange:hover {
+    background-color: #1D9658;
+    border-color: transparent ;
+  }
+  .btn-sell-exchange {
+    background-color: #ff5766;
+    border-color: transparent;
+  }
+  .btn-sell-exchange:hover {
+    background-color: #AD343F;
+    border-color: transparent;
+  }
   table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
     border-top: 1px solid transparent;
   }
@@ -34,6 +46,13 @@
       }
     }
   }
+  #market-history_wrapper {
+    .dataTables_scroll {
+      .dataTables_scrollBody {
+        max-height: 532px !important;
+      }
+    }
+  }
   .form-buy-sell {
     padding: 15px !important;
     i {
@@ -47,6 +66,13 @@
     }
     h6:not(:last-child), .h6:not(:last-child) {
       margin-bottom: 10px ;
+    }
+    .title {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    a.btn {
+      max-width: 100px;
     }
   }
   .color--primary-exchange {
@@ -96,6 +122,13 @@
   .ul-market-buy-sell {
     border: 1px solid transparent;
     display: flex;
+    li:not(.active) {
+      img {
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+      }
+    }
+
     li {
       padding: 5px 10px 7px;
     }
@@ -116,6 +149,16 @@
         }
       }
     }
+  }
+  #sell-orders {
+    tbody {
+      tr {
+        td:last-child {
+          text-align: right;
+        }
+      }
+    }
+
   }
   .tabs-content {
     border-top: solid 1px $border-solid-grey;
@@ -148,6 +191,10 @@
       width: 100% !important;
     }
   }
+  .color-title-table-primary {
+    color: #252525;
+  }
+
 }
 
 @media (max-width: 991.98px) and (min-width: 768px) {

@@ -1462,6 +1462,15 @@
 
 .exchange .btn-buy-exchange {
   background-color: #25D77C; }
+.exchange .btn-buy-exchange:hover {
+  background-color: #1D9658;
+  border-color: transparent; }
+.exchange .btn-sell-exchange {
+  background-color: #ff5766;
+  border-color: transparent; }
+.exchange .btn-sell-exchange:hover {
+  background-color: #AD343F;
+  border-color: transparent; }
 .exchange table.dataTable.row-border tbody th, .exchange table.dataTable.row-border tbody td, .exchange table.dataTable.display tbody th, .exchange table.dataTable.display tbody td {
   border-top: 1px solid transparent; }
 .exchange .title-section {
@@ -1481,6 +1490,8 @@
       width: 64px !important; }
     .exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner table thead th:nth-last-child {
       width: 68px !important; }
+.exchange #market-history_wrapper .dataTables_scroll .dataTables_scrollBody {
+  max-height: 532px !important; }
 .exchange .form-buy-sell {
   padding: 15px !important; }
   .exchange .form-buy-sell i {
@@ -1492,6 +1503,11 @@
     padding-right: 83px; }
   .exchange .form-buy-sell h6:not(:last-child), .exchange .form-buy-sell .h6:not(:last-child) {
     margin-bottom: 10px; }
+  .exchange .form-buy-sell .title {
+    font-size: 14px;
+    margin-bottom: 10px; }
+  .exchange .form-buy-sell a.btn {
+    max-width: 100px; }
 .exchange .color--primary-exchange {
   color: #222222; }
 .exchange .color-sell {
@@ -1525,12 +1541,18 @@
 .exchange .ul-market-buy-sell {
   border: 1px solid transparent;
   display: flex; }
+  .exchange .ul-market-buy-sell li:not(.active) img {
+    -webkit-filter: grayscale(100%);
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%); }
   .exchange .ul-market-buy-sell li {
     padding: 5px 10px 7px; }
 .exchange .market-history tbody tr.active-tr {
   background-color: #F2F2F2 !important; }
   .exchange .market-history tbody tr.active-tr td {
     font-weight: 700; }
+.exchange #sell-orders tbody tr td:last-child {
+  text-align: right; }
 .exchange .tabs-content {
   border-top: solid 1px #ececec; }
 .exchange table.dataTable thead th, .exchange table.dataTable thead td {
@@ -1549,6 +1571,8 @@
   width: 100% !important; }
   .exchange .dataTables_scrollHeadInner .display {
     width: 100% !important; }
+.exchange .color-title-table-primary {
+  color: #252525; }
 
 @media (max-width: 991.98px) and (min-width: 768px) {
   .exchange .container {
