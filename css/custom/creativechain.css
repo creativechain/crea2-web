@@ -1497,7 +1497,8 @@
   .exchange .form-buy-sell i {
     right: 15px;
     left: auto;
-    top: 6px; }
+    top: 6px;
+    color: #999999; }
   .exchange .form-buy-sell .input-icon input {
     padding-left: 15px;
     padding-right: 83px; }
