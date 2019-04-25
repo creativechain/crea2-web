@@ -453,8 +453,12 @@ var chart;
 
                 //marketContainer.recentTrades = trades;
                 //marketContainer.$forceUpdate();
-                marketHistoryTable.clear();
-                marketHistoryTable.rows.add(trades).draw();
+
+                var lastTrades = mixToArray(marketHistoryTable.rows().data());
+                if (!isEqual(lastTrades, trades)) {
+                    marketHistoryTable.clear();
+                    marketHistoryTable.rows.add(trades).draw();
+                }
 
                 //Update latest prices
                 updateLatestPrices(buyLastPrice, sellLastPrice);
@@ -518,7 +522,6 @@ var chart;
     }
 
     function setUpChart(data) {
-        console.log('Chart data', data);
         if (!chart) {
             // Themes begin
             am4core.useTheme(am4themes_animated);
