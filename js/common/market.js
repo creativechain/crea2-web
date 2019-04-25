@@ -64,12 +64,12 @@ var chart;
                     },
                     onParseBuyForm: function () {
                         this.buyForm.price = Asset.parse({
-                            amount: parseFloat(this.buyForm.price) + 0.0001,
+                            amount: this.buyForm.price ? parseFloat(this.buyForm.price) + 0.0001 : '0.000',
                             nai: 'cbd'
                         }).toPlainString();
 
                         this.buyForm.amount = Asset.parse({
-                            amount: parseFloat(this.buyForm.amount) + 0.0001,
+                            amount: this.buyForm.amount ? parseFloat(this.buyForm.amount) + 0.0001 : '0.000',
                             nai: 'cbd'
                         }).toPlainString();
 
@@ -127,12 +127,12 @@ var chart;
                     },
                     onParseSellForm: function () {
                         this.sellForm.price = Asset.parse({
-                            amount: parseFloat(this.sellForm.price) + 0.0001,
+                            amount: this.sellForm.price ? parseFloat(this.sellForm.price) + 0.0001 : '0.000',
                             nai: 'cbd'
                         }).toPlainString();
 
                         this.sellForm.amount = Asset.parse({
-                            amount: parseFloat(this.sellForm.amount) + 0.0001,
+                            amount: this.sellForm.amount ? parseFloat(this.sellForm.amount) + 0.0001 : '0.000',
                             nai: 'cbd'
                         }).toPlainString();
 
