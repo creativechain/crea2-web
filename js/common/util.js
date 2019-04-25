@@ -341,3 +341,18 @@ function isEqual(obj1, obj2) {
     var jObj2 = jsonstring(obj2);
     return jObj1 === jObj2;
 }
+
+/**
+ *
+ * @param mixedObj
+ * @returns {Array}
+ */
+function mixToArray(mixedObj) {
+    var arr = [];
+
+    for (var x = 0; x < mixedObj.length; x++) {
+        arr.push(mixedObj[x]);
+    }
+
+    return arr;
+}

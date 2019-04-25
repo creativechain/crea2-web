@@ -319,6 +319,8 @@ var chart;
                 //parse order book
                 var asks = []; //Offer CREA - Demand CBD
                 var bids = []; //Demand CREA - Offer CBD
+                var asksData = mixToArray(buyTable.rows().data());
+                var bidsData = mixToArray(sellTable.rows().data());
 
                 var parseOrder = function(order) {
                     return {
@@ -347,15 +349,17 @@ var chart;
                     asks.push(parseOrder(ask));
                 });
 
-                //Order ask by price DESC
+                //Order ask by price ASC
                 asks.sort(function (a, b) {
-                    return b.price - a.price;
+                    return a.price - b.price;
                 });
 
-                buyTable.clear();
-                buyAllTable.clear();
-                buyTable.rows.add(asks).draw();
-                buyAllTable.rows.add(asks).draw();
+                if (!isEqual(asksData, asks)) {
+                    buyTable.clear();
+                    buyAllTable.clear();
+                    buyTable.rows.add(asks).draw();
+                    buyAllTable.rows.add(asks).draw();
+                }
 
                 result.asks.forEach(function (bid, index) {
                     bid.order_price = Asset.parse({
@@ -374,16 +378,24 @@ var chart;
                     //sellTable.row.add(bid).draw();
                 });
 
-                //Order sell by price ASC
+                //Order sell by price DESC
                 bids.sort(function (a, b) {
-                    return a.price - b.price;
+                    return b.price - a.price;
                 });
 
-                sellTable.clear();
-                sellAllTable.clear();
-                sellTable.rows.add(bids).draw();
-                sellAllTable.rows.add(bids).draw();
+                if (!isEqual(bidsData, bids)) {
+                    sellTable.clear();
+                    sellAllTable.clear();
+                    sellTable.rows.add(bids).draw();
+                    sellAllTable.rows.add(bids).draw();
 
+                    //Set scroll to bottom
+                    var sellTableScroll = $(sellTable.table().node()).parent();
+                    sellTableScroll.scrollTop(sellTableScroll.get(0).scrollHeight);
+
+                    var sellAllTableScroll = $(sellAllTable.table().node()).parent();
+                    sellAllTableScroll.scrollTop(sellAllTableScroll.get(0).scrollHeight);
+                }
             }
         })
     }
@@ -641,7 +653,7 @@ var chart;
                     orderable : false,
                     aTargets : ['_all']
                 }],
-                order: [0, 'asc'],
+                order: [],
                 "scrollY":        "400px",
                 "scrollCollapse": true,
                 "paging":         false,
