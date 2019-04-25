@@ -213,6 +213,7 @@ var chart;
                                 if (!catchError(err)) {
                                     that.clearOrderForm(type);
                                     fetchOpenOrders(session);
+                                    updateUserSession();
                                 }
                             })
                         });
@@ -221,6 +222,11 @@ var chart;
                     }
                 }
             })
+        } else {
+            //Update session and account
+            marketContainer.session = session;
+            marketContainer.account = account;
+            marketContainer.$forceUpdate();
         }
     }
 
@@ -243,6 +249,7 @@ var chart;
             crea.broadcast.limitOrderCancel(activeKey, session.account.username, orderId, function (err, result) {
                 if (!catchError(err)) {
                     fetchOpenOrders(session);
+                    updateUserSession();
                 }
             })
         });
@@ -747,11 +754,15 @@ var chart;
 
     }
 
-    creaEvents.on('crea.session.login', function (s, a) {
-        creaEvents.emit('crea.dom.ready');
+    function setUpUser(s, a) {
         session = s;
         account = a;
         setUp();
+    }
+
+    creaEvents.on('crea.session.login', function (s, a) {
+        creaEvents.emit('crea.dom.ready');
+        setUpUser(s, a);
         setTimeout(function () {
             console.log('session started');
 
@@ -761,5 +772,9 @@ var chart;
 
 
     });
+
+    creaEvents.on('crea.session.update', function (s, a) {
+        setUpUser(s, a);
+    })
 
 })();

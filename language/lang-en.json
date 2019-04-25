@@ -484,7 +484,9 @@
         "TOTAL": "Total",
         "TOTAL_CREA": "Total CREA",
         "TYPE": "Type",
-        "ACTION": "Action"
+        "ACTION": "Action",
+        "AVAILABLE_CREA": "Available CREA",
+        "AVAILABLE_CBD": "Available CBD"
     },
     "AUTH_MODAL": {
         "TITLE": "This action requires the %s key",

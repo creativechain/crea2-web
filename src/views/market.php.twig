@@ -224,6 +224,14 @@
                         </div>
 
                         <div class="boxed boxed--border form-buy-sell">
+                            <div v-if="session" class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p>{{ lang.MARKET.AVAILABLE_CBD }}: {{ '{{ account.user.cbd_balance }}' }}</p>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p>{{ lang.MARKET.AVAILABLE_CREA }}: {{ '{{ account.user.balance }}' }}</p>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <p class="title"><strong>{{ lang.MARKET.BUY_CREA }}</strong></p>
