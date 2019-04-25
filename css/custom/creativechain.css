@@ -1547,6 +1547,16 @@
     filter: grayscale(100%); }
   .exchange .ul-market-buy-sell li {
     padding: 5px 10px 7px; }
+  .exchange .ul-market-buy-sell .table-buy-sell-market thead tr th:last-child {
+    text-align: right; }
+.exchange .table-buy-sell-market thead tr th {
+  width: 33% !important; }
+.exchange .table-buy-sell-market thead tr th:nth-child(3) {
+  text-align: right; }
+.exchange .buy_left_result_all tbody tr td {
+  width: 33%; }
+.exchange #buy-orders tbody tr td:last-child {
+  text-align: right; }
 .exchange .market-history tbody tr.active-tr {
   background-color: #F2F2F2 !important; }
   .exchange .market-history tbody tr.active-tr td {

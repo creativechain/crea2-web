@@ -133,9 +133,41 @@
       padding: 5px 10px 7px;
     }
     .table-buy-sell-market {
-      tbody {
+      thead {
         tr {
-
+          th:last-child {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  .table-buy-sell-market {
+    thead {
+      tr {
+        th {
+          width: 33% !important;
+        }
+        th:nth-child(3) {
+          text-align: right;
+        }
+      }
+    }
+  }
+  .buy_left_result_all {
+    tbody {
+      tr {
+        td {
+          width: 33%;
+        }
+      }
+    }
+  }
+  #buy-orders {
+    tbody {
+      tr {
+        td:last-child {
+          text-align: right;
         }
       }
     }
