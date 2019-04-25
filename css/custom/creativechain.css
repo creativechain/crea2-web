@@ -1491,7 +1491,7 @@
     .exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner table thead th:nth-last-child {
       width: 68px !important; }
 .exchange #market-history_wrapper .dataTables_scroll .dataTables_scrollBody {
-  max-height: 532px !important; }
+  max-height: 572px !important; }
 .exchange .form-buy-sell {
   padding: 15px !important; }
   .exchange .form-buy-sell i {
