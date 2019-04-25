@@ -1,9 +1,10 @@
 "use strict";
 var marketContainer;
 var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
+var chart;
 (function () {
 
-    var session, account, chart;
+    var session, account;
 
     function setUp() {
         if (!marketContainer) {
@@ -15,6 +16,7 @@ var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersT
                     account: account,
                     recentTrades: [],
                     ticker: {
+                        penultimate: null,
                         latest: "0.000000",
                         lowest_ask: "0.000000",
                         highest_bid: "0.000000",
@@ -287,10 +289,16 @@ var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersT
     function fetchTicker() {
         crea.api.getTicker(function (err, result) {
             if (!err) {
+
                 result.latest = Asset.parse({amount: result.latest, nai: 'cbd', exponent: 6}).toPlainString();
                 result.lowest_ask = Asset.parse({amount: result.lowest_ask, nai: 'cbd', exponent: 6}).toPlainString();
                 result.highest_bid = Asset.parse({amount: result.highest_bid, nai: 'cbd', exponent: 6}).toPlainString();
                 result.percent_change = parseFloat(result.percent_change).toFixed(3);
+                result.penultimate = marketContainer.ticker.penultimate;
+
+                if (marketContainer.ticker.latest !== result.latest) {
+                    result.penultimate = marketContainer.ticker.latest;
+                }
 
                 marketContainer.ticker = result;
                 marketContainer.$forceUpdate();
@@ -421,18 +429,27 @@ var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersT
         var endDate = moment().format('YYYY-MM-DD[T]H:mm:ss');
         var startDate = '2019-02-19T00:00:00';
 
-        crea.api.getMarketHistory(86400, startDate, endDate, function (err, result) {
+        crea.api.getMarketHistory(60, startDate, endDate, function (err, result) {
             if (!err) {
                 var buckets = [];
                 result.buckets.forEach(function (b) {
-                    b.t = new Date(b.open);
-                    b.o = Asset.parse({amount: b.non_crea.open, nai: 'cbd'}).toFloat();
-                    b.h = Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat();
-                    b.l = Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat();
-                    b.c = Asset.parse({amount: b.non_crea.close, nai: 'cbd'}).toFloat();
+                    var buck = {
+                        date: moment(b.open).format('DD-MM-YYYY H:mm'),
+                        open: Asset.parse({amount: b.non_crea.open, nai: 'cbd'}).toFloat(),
+                        high: Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat(),
+                        low: Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat(),
+                        close: Asset.parse({amount: b.non_crea.close, nai: 'cbd'}).toFloat()
+                    };
+
+                    buckets.push(buck)
 
                 });
-                setUpChart(result.buckets);
+
+                //Update only detected new data
+                if (!isEqual(chart ? chart.data : [], buckets)) {
+                    setUpChart(buckets);
+                }
+
             } else {
                 console.error('Fail getting chart data', err)
             }
@@ -462,22 +479,53 @@ var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersT
     }
 
     function setUpChart(data) {
+        console.log('setting data', data);
         if (!chart) {
-            //Build
-            var ctx = document.getElementById('market-chart').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'candlestick',
-                data: {
-                    datasets: [{
-                        data: data
-                    }]
-                }
-            })
-        } else {
-            //Update
-            chart.config.data.datasets[0] = data;
-            chart.update();
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+// Themes end
+
+            chart = am4core.create("market-chart", am4charts.XYChart);
+            chart.paddingRight = 20;
+
+            chart.dateFormatter.inputDateFormat = "dd-MM-yyyy HH:mm";
+
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.grid.template.location = 0;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.tooltip.disabled = true;
+
+            var series = chart.series.push(new am4charts.CandlestickSeries());
+            series.dataFields.dateX = "date";
+            series.dataFields.valueY = "close";
+            series.dataFields.openValueY = "open";
+            series.dataFields.lowValueY = "low";
+            series.dataFields.highValueY = "high";
+            series.simplifiedProcessing = true;
+            series.tooltipText = "Open:${openValueY.value}\nLow:${lowValueY.value}\nHigh:${highValueY.value}\nClose:${valueY.value}";
+
+            chart.cursor = new am4charts.XYCursor();
+
+// a separate series for scrollbar
+            var lineSeries = chart.series.push(new am4charts.LineSeries());
+            lineSeries.dataFields.dateX = "date";
+            lineSeries.dataFields.valueY = "close";
+// need to set on default state, as initially series is "show"
+            lineSeries.defaultState.properties.visible = false;
+
+// hide from legend too (in case there is one)
+            lineSeries.hiddenInLegend = true;
+            lineSeries.fillOpacity = 0.5;
+            lineSeries.strokeOpacity = 0.5;
+
+            var scrollbarX = new am4charts.XYChartScrollbar();
+            scrollbarX.series.push(lineSeries);
+            chart.scrollbarX = scrollbarX;
+
         }
+
+        chart.data = data;
     }
 
     function setUpTables() {
@@ -651,4 +699,5 @@ var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersT
 
 
     });
+
 })();

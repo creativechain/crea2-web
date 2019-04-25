@@ -78,6 +78,11 @@ function jsonify(obj) {
     return {};
 }
 
+/**
+ *
+ * @param obj
+ * @returns {string}
+ */
 function jsonstring(obj) {
     if (obj && typeof obj== 'object') {
         return JSON.stringify(obj);
@@ -319,4 +324,20 @@ function NaNOr(number, defaultN) {
     }
 
     return NaN;
+}
+
+/**
+ *
+ * @param obj1
+ * @param obj2
+ * @returns {boolean}
+ */
+function isEqual(obj1, obj2) {
+    if (typeof obj1 !== typeof obj2) {
+        return false;
+    }
+
+    var jObj1 = jsonstring(obj1);
+    var jObj2 = jsonstring(obj2);
+    return jObj1 === jObj2;
 }

@@ -98,7 +98,11 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td colspan="4" class="text-center"><p class="color-buy font-weight-bold" style="font-size: 14px;">50000000 <i class="icon-To-Top"></i> <span class="font-weight-bold color--primary-exchange">$0.065</span></p></td>
+                                                    <td colspan="4" class="text-center">
+                                                        <p class="color-buy font-weight-bold" style="font-size: 14px;">
+                                                            {{ '{{ ticker.latest }}' }} <i class="icon-To-Top"></i>
+                                                        </p>
+                                                    </td>
                                                     <td style="display: none;"></td>
                                                     <td style="display: none;"></td>
                                                     <td style="display: none;"></td>
@@ -210,10 +214,10 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 order-md-3 order-lg-2">
-                        <div v-pre class="boxed boxed--border" style="height: 260px">
-                            <canvas id="market-chart">
+                        <div v-pre class="boxed boxed--border" style="height: 260px;">
+                            <div id="market-chart" style="height: 100%">
 
-                            </canvas>
+                            </div>
                         </div>
 
                         <div class="boxed boxed--border form-buy-sell">
@@ -361,9 +365,10 @@
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-        <script src="/js/chart-candlestick.js"></script>
+        <script src="https://www.amcharts.com/lib/4/core.js"></script>
+        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
         <script src="/js/datatables.js"></script>
         <script src="/js/common/market.js"></script>
 
