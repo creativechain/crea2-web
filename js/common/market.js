@@ -554,6 +554,12 @@ var chart;
             series.simplifiedProcessing = true;
             series.tooltipText = "Open:${openValueY.value}\nLow:${lowValueY.value}\nHigh:${highValueY.value}\nClose:${valueY.value}";
 
+            //Change Candlestick colors
+            series.riseFromOpenState.properties.fill = am4core.color('#25D77C');
+            series.dropFromOpenState.properties.fill = am4core.color('#ff5766');
+            series.riseFromOpenState.properties.stroke = am4core.color('#25D77C');
+            series.dropFromOpenState.properties.stroke = am4core.color('#ff5766');
+
             chart.cursor = new am4charts.XYCursor();
 
 // a separate series for scrollbar
