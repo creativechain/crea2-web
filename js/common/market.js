@@ -269,7 +269,8 @@ var chart;
                         var type = priceBase.asset.symbol === 'CREA' ? 'Sell' : 'Buy';
 
                         return {
-                            date: order.created,
+                            date: moment(order.created).format('MMM DD, YYYY H:mm:ss'),
+                            expiration: moment(order.expiration).format('MMM DD, YYYY H:mm:ss'),
                             type: type,
                             price: '$' + Asset.parse({
                                 amount: (type === 'Buy' ? priceBase.toFloat() / priceQuote.toFloat() : priceQuote.toFloat() / priceBase.toFloat()) + 0.0001,
@@ -714,6 +715,7 @@ var chart;
                 "paging":         false,
                 columns: [
                     {data: 'date'},
+                    {data: 'expiration'},
                     {
                         data: 'type',
                         render: function (cellValue, type, rowData, meta) {
