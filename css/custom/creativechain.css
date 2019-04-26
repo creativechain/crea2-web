@@ -1491,7 +1491,7 @@
     .exchange #buy_left_result_all_wrapper .dataTables_scrollHeadInner table thead th:nth-last-child {
       width: 68px !important; }
 .exchange #market-history_wrapper .dataTables_scroll .dataTables_scrollBody {
-  max-height: 572px !important; }
+  max-height: 553px !important; }
 .exchange .form-buy-sell {
   padding: 15px !important; }
   .exchange .form-buy-sell i {
@@ -1564,6 +1564,10 @@
     font-weight: 700; }
 .exchange #sell-orders tbody tr td:last-child {
   text-align: right; }
+.exchange #sell-orders_wrapper .dataTables_scrollBody {
+  min-height: 250px; }
+.exchange #buy-orders_wrapper .dataTables_scrollBody {
+  min-height: 250px; }
 .exchange .tabs-content {
   border-top: solid 1px #ececec; }
 .exchange table.dataTable thead th, .exchange table.dataTable thead td {

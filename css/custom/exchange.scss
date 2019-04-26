@@ -49,7 +49,7 @@
   #market-history_wrapper {
     .dataTables_scroll {
       .dataTables_scrollBody {
-        max-height: 572px !important;
+        max-height: 553px !important;
       }
     }
   }
@@ -192,6 +192,16 @@
       }
     }
 
+  }
+  #sell-orders_wrapper {
+    .dataTables_scrollBody {
+      min-height: 250px;
+    }
+  }
+  #buy-orders_wrapper {
+    .dataTables_scrollBody {
+      min-height: 250px;
+    }
   }
   .tabs-content {
     border-top: solid 1px $border-solid-grey;
