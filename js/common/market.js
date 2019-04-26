@@ -356,9 +356,9 @@ var chart;
                     asks.push(parseOrder(ask));
                 });
 
-                //Order ask by price ASC
+                //Order ask by price DESC
                 asks.sort(function (a, b) {
-                    return a.price - b.price;
+                    return b.price - a.price;
                 });
 
                 if (!isEqual(asksData, asks)) {
