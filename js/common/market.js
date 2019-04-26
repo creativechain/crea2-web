@@ -1,11 +1,19 @@
 "use strict";
-var marketContainer;
-var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
-var chart;
+
 (function () {
+
+    var marketContainer;
+    var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
+    var chart;
 
     var session = null;
     var account = null;
+
+    var socket = new WebSocket('wss://nodes.creary.net');
+
+    socket.addEventListener('message', function (ev) {
+        console.log('WS MSG', ev);
+    });
 
     function setUp() {
         if (!marketContainer) {
@@ -301,6 +309,15 @@ var chart;
     }
 
     function fetchTicker() {
+        var data = jsonstring({
+            jsonrpc: '2.0',
+            id: randomNumber(1, 9007199254740991),
+            method: 'market_history_api.get_ticker',
+            params: {}
+        });
+        console.log(data);
+        socket.send(data);;
+
         crea.api.getTicker(function (err, result) {
             if (!err) {
 
