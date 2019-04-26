@@ -4,7 +4,8 @@ var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersT
 var chart;
 (function () {
 
-    var session, account;
+    var session = null;
+    var account = null;
 
     function setUp() {
         if (!marketContainer) {
@@ -552,7 +553,11 @@ var chart;
             series.dataFields.lowValueY = "low";
             series.dataFields.highValueY = "high";
             series.simplifiedProcessing = true;
-            series.tooltipText = "Open:${openValueY.value}\nLow:${lowValueY.value}\nHigh:${highValueY.value}\nClose:${valueY.value}";
+            series.tooltipText = "" +
+                "Open: ${openValueY.value}\n" +
+                "Low: ${lowValueY.value}\n" +
+                "High: ${highValueY.value}\n" +
+                "Close: ${valueY.value}";
 
             //Change Candlestick colors
             series.riseFromOpenState.properties.fill = am4core.color('#25D77C');
@@ -774,9 +779,9 @@ var chart;
         setUp();
     }
 
-    creaEvents.on('crea.session.login', function (s, a) {
+    creaEvents.on('crea.session.login', function (session, account) {
         creaEvents.emit('crea.dom.ready');
-        setUpUser(s, a);
+        setUpUser(session, account);
         setTimeout(function () {
             console.log('session started');
 
@@ -787,8 +792,8 @@ var chart;
 
     });
 
-    creaEvents.on('crea.session.update', function (s, a) {
-        setUpUser(s, a);
+    creaEvents.on('crea.session.update', function (session, account) {
+        setUpUser(session, account);
     })
 
 })();

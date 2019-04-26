@@ -274,8 +274,12 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="d-flex" style="justify-content: space-between;">
-                                        <p class="title"><strong>{{ lang.MARKET.SELL_CREA }}</strong></p>
-                                        <p v-if="session"><p><i class="fas fa-wallet"></i> {{ '{{ account.user.balance }}' }}</p>
+                                        <p class="title">
+                                            <strong>{{ lang.MARKET.SELL_CREA }}</strong>
+                                        </p>
+                                        <p v-if="session">
+                                            <i class="fas fa-wallet"></i> {{ '{{ account.user.balance }}' }}
+                                        </p>
                                     </div>
 
 
