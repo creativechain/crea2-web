@@ -9,10 +9,11 @@
     var session = null;
     var account = null;
 
-    var socket = new WebSocket('wss://nodes.creary.net');
+    var socket = new RpcWsClient('wss://nodes.creary.net');
+    socket.connect();
 
-    socket.addEventListener('message', function (ev) {
-        console.log('WS MSG', ev);
+    socket.on('ws.message', function (data, id) {
+        console.log('WS MSG', data, id);
     });
 
     function setUp() {
@@ -221,7 +222,7 @@
                             crea.broadcast.limitOrderCreate(activeKey, username, orderId, amountToSell, minToReceive, false, expiration, function (err, result) {
                                 if (!catchError(err)) {
                                     that.clearOrderForm(type);
-                                    fetchOpenOrders(session);
+                                    fetchOpenOrders();
                                     updateUserSession();
                                 }
                             })
@@ -257,7 +258,7 @@
         requireRoleKey(session.account.username, 'active', function (activeKey) {
             crea.broadcast.limitOrderCancel(activeKey, session.account.username, orderId, function (err, result) {
                 if (!catchError(err)) {
-                    fetchOpenOrders(session);
+                    fetchOpenOrders();
                     updateUserSession();
                 }
             })
@@ -265,10 +266,15 @@
 
     }
 
-    function fetchOpenOrders(session) {
+    function fetchOpenOrders() {
 
         if (session) {
-            crea.api.getOpenOrders(session.account.username, function (err, result) {
+            var data = {
+                method: 'condenser_api.get_open_orders',
+                params: [session.account.username]
+            };
+
+            socket.send(data, function (err, result) {
                 if (!catchError(err)) {
 
                     var parseOpenOrder = function (order) {
@@ -304,21 +310,17 @@
                     userOrdersTable.clear();
                     userOrdersTable.rows.add(userOrders).draw();
                 }
-            })
+            });
         }
     }
 
     function fetchTicker() {
-        var data = jsonstring({
-            jsonrpc: '2.0',
-            id: randomNumber(1, 9007199254740991),
+        var data = {
             method: 'market_history_api.get_ticker',
             params: {}
-        });
-        console.log(data);
-        socket.send(data);;
+        };
 
-        crea.api.getTicker(function (err, result) {
+        socket.send(data, function (err, result) {
             if (!err) {
 
                 result.latest = Asset.parse({amount: result.latest, nai: 'cbd', exponent: 6}).toPlainString();
@@ -336,11 +338,16 @@
             } else {
                 console.error('Error getting ticker', err);
             }
-        })
+        });
     }
 
     function loadOrderBook () {
-        crea.api.getOrderBook(100, function (err, result) {
+        var data = {
+            method: 'condenser_api.get_order_book',
+            params: [100]
+        };
+
+        socket.send(data, function (err, result) {
             if (!catchError(err)) {
                 //parse order book
                 var asks = []; //Offer CREA - Demand CBD
@@ -423,7 +430,7 @@
                     sellAllTableScroll.scrollTop(sellAllTableScroll.get(0).scrollHeight);
                 }
             }
-        })
+        });
     }
 
     function updateLatestPrices(buyPrice, sellPrice) {
@@ -437,7 +444,14 @@
 
     }
     function loadRecentTrades() {
-        crea.api.getRecentTrades(100, function (err, result) {
+        var data = {
+            method: 'market_history_api.get_recent_trades',
+            params: {
+                limit: 100
+            }
+        };
+
+        socket.send(data, function (err, result) {
             if (!err) {
                 var trades = [];
 
@@ -498,7 +512,16 @@
         var endDate = moment().format('YYYY-MM-DD[T]H:mm:ss');
         var startDate = '2019-02-19T00:00:00';
 
-        crea.api.getMarketHistory(86400, startDate, endDate, function (err, result) {
+        var data = {
+            method: 'market_history_api.get_market_history',
+            params: {
+                bucket_seconds: 86400,
+                end: endDate,
+                start: startDate
+            }
+        };
+
+        socket.send(data, function (err, result) {
             if (!err) {
                 var buckets = [];
                 result.buckets.forEach(function (b) {
@@ -529,7 +552,7 @@
 
         var refresh = function () {
             fetchTicker();
-            fetchOpenOrders(session);
+            fetchOpenOrders();
             loadOrderBook();
             loadRecentTrades();
             fetchDataToChart();
