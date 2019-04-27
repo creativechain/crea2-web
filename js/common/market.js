@@ -833,6 +833,12 @@
 
     creaEvents.on('crea.session.update', function (session, account) {
         setUpUser(session, account);
+    });
+
+    //Close socket on unload
+    $(window).on('beforeunload', function () {
+        console.log('before unload event');
+        socket.close();
     })
 
 })();
