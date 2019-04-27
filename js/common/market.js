@@ -509,15 +509,12 @@
     }
 
     function fetchDataToChart() {
-        var endDate = moment().format('YYYY-MM-DD[T]H:mm:ss');
-        var startDate = '2019-02-19T00:00:00';
-
         var data = {
             method: 'market_history_api.get_market_history',
             params: {
-                bucket_seconds: 86400,
-                end: endDate,
-                start: startDate
+                bucket_seconds: 86400, //15, 30, 60, 3600, 86400
+                end: moment().format('YYYY-MM-DD[T]H:mm:ss'),
+                start: '2019-02-19T00:00:00'
             }
         };
 
