@@ -27,6 +27,11 @@ $(document).ready(function () {
             $('#more-info-profile').removeClass('d-none');
         }
     });
+
+
+    $("#more-info-profile").toggleClass('d-none');
+
+
     $(".btn-more-info-profile").click(function () {
         $('.btn-more-info-profile').addClass('hidden');
         $('.btn-hidden-info-profile').removeClass('hidden');

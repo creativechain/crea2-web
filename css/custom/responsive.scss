@@ -8,9 +8,28 @@
   #slide-home {
     padding: 60px 0 105px !important;
   }
+  .post-view {
+    #post-view {
+      .ld-ext-right.running {
+        padding-right: 20px !important;
+        min-width: auto;
+      }
+    }
+  }
 }
 
 @media (max-width: 575.98px) {
+  .post-view {
+    #post-view {
+      padding: 0 0 25px !important;
+      .flickity-viewport {
+        height: 150px !important;
+        .img-more-projects {
+          height: 150px;
+        }
+      }
+    }
+  }
   .li-avatar-navbar-mobile {
     position: relative;
     top: 0;
@@ -137,6 +156,27 @@
 }
 
 @media (max-width: 767px) {
+  #post-view {
+    .flickity-viewport {
+      height: 250px !important;
+      .img-more-projects {
+        height: 250px;
+
+      }
+    }
+    .row-promote {
+      text-align: center;
+    }
+    .row-comment-options {
+      .p-report {
+        margin-left: 20px;
+      }
+      .box-blockchain-certificate .feature-2 .feature__body {
+        width: 83%;
+        float: right;
+      }
+    }
+  }
   .li-avatar-navbar-mobile {
     position: relative;
     top: 0;
@@ -245,7 +285,7 @@
     }
   }
   .post-view #post-view {
-    padding: 40px 0 25px;
+    padding: 0 0 25px;
   }
   .post-view .row-content-post .img-post-view img {
     margin-bottom: 0;
@@ -274,6 +314,24 @@
       .full-post {
         .img-more-projects {
           height: 70px;
+        }
+      }
+    }
+    .box-comment {
+      .row-post-comments {
+        .user-comments {
+          .ul-row-share-comment {
+            li:nth-child(1) {
+              span {
+                top: 2px;
+                position: relative;
+              }
+            }
+            li:nth-child(2) {
+              top: 2px;
+              position: relative;
+            }
+          }
         }
       }
     }
@@ -315,14 +373,32 @@
         margin-top: 20px;
         margin-bottom: 20px;
       }
+      .btn {
+        min-width: 80%;
+      }
     }
   }
+  .view-faq {
+    section {
+      padding: 30px 0 50px;
+    }
+  }
+  .space--sm {
+    padding-top: 30px !important;
+    padding-bottom: 50px !important;
+  }
   .view-profile {
+    .ul-rewards {
+      li {
+        padding: 0;
+      }
+    }
     .dropdown {
       .dropdown__container {
         position: absolute;
       }
     }
+
     .view-wallet {
       .tabs-container-primary {
         .tabs-primary {
@@ -517,9 +593,6 @@
   }
   .post-view #post-view {
     padding: 40px 0 25px;
-  }
-  .post-view .border-post-view .full-post .img-more-projects {
-    height: 120px;
   }
   .box-blockchain-certificate {
     .ul-blockchain-certificate {
