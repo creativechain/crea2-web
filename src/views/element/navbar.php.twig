@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ title ? title : 'CREARY' }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, shrink-to-fit=no">
 
     {%  for data in metas %}
         <meta {{ data.key }}="{{ data.keyValue }}" content="{{ data.content }}">
@@ -386,18 +386,18 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                                                             <span >{{ lang.DOTS_MENU.ABOUT }}</span>
                                                         </a>
                                                     </li>
-                                                    <li class="">
+                                                    <!--<li class="">
                                                         <a href="#">
                                                             <span>{{ lang.DOTS_MENU.WHITEPAPER }}</span>
                                                         </a>
-                                                    </li>
+                                                    </li>-->
                                                     <li class="">
-                                                        <a href="#">
+                                                        <a href="/privacy_policy">
                                                             <span>{{ lang.DOTS_MENU.PRIVACY }}</span>
                                                         </a>
                                                     </li>
                                                     <li class="">
-                                                        <a href="#">
+                                                        <a href="/terms_and_conditions">
                                                             <span>{{ lang.DOTS_MENU.TERMS }}</span>
                                                         </a>
                                                     </li>
