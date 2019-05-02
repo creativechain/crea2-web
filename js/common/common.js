@@ -470,12 +470,21 @@ function catchError(err) {
 
             if (err.message) {
                 var m = err.message.split(':');
-                body.push(m[m.length - 1]);
+                var message = m[m.length - 1];
+                console.error(message);
+
+                //RC Special case
+                if (message === ' Account does not have enough flow to vote.') {
+                    title = lang.ERROR.INSUFFICIENT_RC.TITLE;
+                    body = lang.ERROR.INSUFFICIENT_RC.BODY;
+                    console.log(body)
+                } else {
+                    body.push(message);
+                }
             }
         }
 
-        body.unshift(title);
-        showAlert.apply(null, body);
+        showAlert(title, body);
         return true;
     }
 
@@ -488,15 +497,12 @@ function catchError(err) {
  */
 
 
-function showAlert(title) {
-    for (var _len = arguments.length, body = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        body[_key - 1] = arguments[_key];
-    }
-
+function showAlert(title, body) {
     var config = {
         title: title,
         body: body
     };
+
     creaEvents.emit('crea.alert', config);
 }
 /**

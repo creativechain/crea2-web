@@ -19,7 +19,22 @@
         "PASSWORDS_NOT_MATCH": "Password does not match",
         "DENIED_TERMS": "You must read and accept the terms and conditions",
         "DENIED_POLICY": "You must read and accept the privacy policy",
-        "UNKNOWN_ERROR": "Unknow error ocurred"
+        "UNKNOWN_ERROR": "Unknow error ocurred",
+        "INSUFFICIENT_RC": {
+            "TITLE": " Your operation could not be processed. Insufficient FLOW.",
+            "BODY": ["This happens when your user account runs out of sufficient FLOW.",
+                "The FLOW is a non-transferable type of resource or token that is granted intelligently by the CREA blockchain to each @user account according to the amount of CREA Energy (CGY) it has. The FLOW is proportional to the CGY.",
+                "The FLOW is a resource that is consumed every time a user makes transactions (votes, likes, comments, transfers or energizations).",
+                "Each transaction has a specific cost in FLOW. If you have enough FLOW to cover the cost, you can make the transaction.",
+                "This system allows in a decentralized way to protect the blockchain from malicious actions such as spam.",
+                "",
+                "What can I do if I run out of FLOW?",
+                "When a user runs out of FLOW, he can do two things:",
+                "",
+                "1. Wait for it to recharge again. Each day 22% will be refilled, therefore to have 100% FLOW you will need 5 days.",
+                "",
+                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/  you can access different services that sell or exchange CREA."]
+        }
 
     },
     "BANNER": {

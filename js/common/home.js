@@ -210,7 +210,7 @@
                         return {};
                     },
                     onVote: function onVote(err, result) {
-                        //creaEvents.emit('crea.content.filter', this.urlFilter);
+                        catchError(err);
                         updateUserSession();
                     },
                     getLicense: function getLicense(flag) {

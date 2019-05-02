@@ -8,10 +8,11 @@
                             <div class="boxed boxed--lg bg--white feature">
                                 <div class="modal-close modal-close-cross"></div>
                                 <h3>{{ '{{ config.title }}' }}</h3>
-                                <div class="feature__body">
-                                    <p v-for="b in config.body">
-                                        {{ '{{ b }}' }}
-                                    </p>
+                                <div >
+
+                                    <template v-for="b in config.body">
+                                        {{ '{{ b }}' }}<br />
+                                    </template>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12 text-right">
