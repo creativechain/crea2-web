@@ -23,7 +23,6 @@ $(document).ready(function () {
     $(window).resize(function () {
         if ($(window).width() < 991) {
             $('#more-info-profile').addClass('d-none');
-            $('.btn-more-info-profile').removeClass('hidden');
         } else {
             $('#more-info-profile').removeClass('d-none');
         }
