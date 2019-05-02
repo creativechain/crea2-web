@@ -167,27 +167,29 @@ class Controller
     public function home($view, $route, $requestUri) {
         $language = $this->getLanguage();
 
-        //die(print_r($language, true));
-        $title =  ucfirst(URLUtils::splitRequestUri());
-        $title = $title ? $title . ' — Creary' : 'Creary';
+        $page = '/' .URLUtils::splitRequestUri();
 
+        $pageMeta = $language->METADATA->{ $page };
+
+        //dd($pageMeta);
         $metas = array(
             $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
-            $this->buildMeta('property', 'og:title', $title),
+            $this->buildMeta('property', 'og:title', $pageMeta->TITLE),
             $this->buildMeta('property', 'og:image', $language->METADATA->IMAGE),
-            $this->buildMeta('property', 'og:description', $language->METADATA->DESCRIPTION),
+            $this->buildMeta('property', 'og:description', $pageMeta->DESCRIPTION),
             $this->buildMeta('property', 'og:type', 'website'),
             $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
             $this->buildMeta('name', 'twitter:site', '@crearynet'),
-            $this->buildMeta('name', 'twitter:title', $title),
-            $this->buildMeta('name', 'twitter:description', $language->METADATA->DESCRIPTION),
+            $this->buildMeta('name', 'twitter:title', $pageMeta->TITLE),
+            $this->buildMeta('name', 'twitter:description', $pageMeta->DESCRIPTION),
             $this->buildMeta('name', 'twitter:image',$language->METADATA->IMAGE),
-            $this->buildMeta('name', 'description', $language->METADATA->DESCRIPTION),
+            $this->buildMeta('name', 'description', $pageMeta->DESCRIPTION),
         );
+
         return $this->viewRender->render($view, array(
             'lang' => $language,
             'metas' => $metas,
-            'title' => $title
+            'title' => $pageMeta->TITLE
         ));
     }
 
@@ -220,7 +222,7 @@ class Controller
         if ($post) {
             //dd($post['author']['metadata']['publicName'], $post['author']['name']);
             $authorName = $post['author']['metadata']['publicName'] ? $post['author']['metadata']['publicName'] : $author;
-            $title = $post['title'] . ' — Creary' ;
+            $title = 'Creary - ' . $post['title'];
             $metas = array(
                 $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
                 $this->buildMeta('property', 'og:title', $title),
@@ -278,9 +280,9 @@ class Controller
         if ($profile) {
             $publicName = $profile['metadata']['publicName'];
             if ($publicName) {
-                $title = $publicName . ' (@' . $profileName . ') — Creary';
+                $title = 'Creary - ' . $publicName . ' (@' . $profileName . ')';
             } else {
-                $title = '@' . $profileName . ' — Creary';
+                $title = 'Creary - @' . $profileName;
             }
 
             $metas = array(

@@ -28,7 +28,7 @@ class Lang
     public static function getLang(string $lang = 'en') {
         $availableLangs = self::getAvailableLangs();
 
-        if (!$availableLangs[$lang] || !$lang) {
+        if (!array_key_exists($lang, $availableLangs) || !$lang) {
             $lang = 'en';
         }
 

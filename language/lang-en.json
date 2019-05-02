@@ -516,7 +516,50 @@
         "WE_KNOW": "That’s all we know."
     },
     "METADATA": {
-        "DESCRIPTION": "Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.",
+        "/": {
+            "TITLE": "Creary - Best of Creary",
+            "DESCRIPTION": "Creary is the decentralized social network of creative portfolios that rewards artists and curators across industries. Be creative!"
+        },
+        "/popular": {
+            "TITLE": "Creary - Popular",
+            "DESCRIPTION": "Discover the best creative portfolios with the greatest impact and that accumulate a higher pending payment"
+        },
+        "/skyrockets": {
+            "TITLE": "Creary - Skyrockets",
+            "DESCRIPTION": "Discover the most popular recent publications at the moment in the social network of creative portfolios"
+        },
+        "/now": {
+            "TITLE": "Creary - Now",
+            "DESCRIPTION": "Discover the creative portfolios online ordered by the publication time starting from the most recent ones"
+        },
+        "/promoted": {
+            "TITLE": "Creary - Promoted",
+            "DESCRIPTION": "Discover the digital portfolios of art and graphic design, which have been promoted by artists and members of the community"
+        },
+        "/faq": {
+            "TITLE": "Creary - FAQ",
+            "DESCRIPTION": "Learn how to build your digital art portfolio on the blockchain and start promoting your graphic designs on Creary."
+        },
+        "/explore": {
+            "TITLE": "Creary - Explore",
+            "DESCRIPTION": "Discover the most used art trendings on Creary, the decentralized network of digital art portfolios"
+        },
+        "/~witness": {
+            "TITLE": "Creary - Vote for Witnesses",
+            "DESCRIPTION": "Vote for your favorite witnesses node or those that best contribute to the decentralized ecosystem of Creary"
+        },
+        "/~market": {
+            "TITLE": "Creary - Currency market",
+            "DESCRIPTION": "CREA - CBD cryptocurrency exchange. Trade your coins earned thanks to your activity on Creary, the decentralized network of digital art portfolios"
+        },
+        "/privacy_policy": {
+            "TITLE": "Creary - Privacy Policy",
+            "DESCRIPTION": "Creativechain FDN privacy policy for Creary.net services"
+        },
+        "/terms_and_conditions": {
+            "TITLE": "Creary - Terms of service",
+            "DESCRIPTION": "Creativechain FDN Terms and Conditions for Creary.net services"
+        },
         "IMAGE": "https://creary.net/img/creary-social-media.jpg"
     }
 
