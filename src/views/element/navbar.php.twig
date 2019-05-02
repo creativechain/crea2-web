@@ -2,13 +2,18 @@
 <html lang="{{ lang ? lang.CODE : 'en' }}">
 <head>
     <meta charset="utf-8">
-    <title>CREARY</title>
+    <title>{{ title ? title : 'CREARY' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:url" content="{{ og ? og.url : 'https://creary.net/' }}">
+
+    {%  for data in metas %}
+        <meta {{ data.key }}="{{ data.keyValue }}" content="{{ data.content }}">
+    {%  endfor %}
+
+{#    <meta property="og:url" content="{{ og ? og.url : 'https://creary.net/' }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ og ? og.title : 'CREARY' }}">
     <meta property="og:description" content="{{ og ? og.description : 'Creary is the blockchain-based social network of creative portfolios that rewards creatives and curators.' }}">
-    <meta property="og:image" content="{{ og ? og.image : 'https://creary.net/img/creary-social-media.jpg' }}">
+    <meta property="og:image" content="{{ og ? og.image : 'https://creary.net/img/creary-social-media.jpg' }}">#}
 
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <!--<link href="/css/slider.min.css" rel="stylesheet" type="text/css" media="all"/>-->

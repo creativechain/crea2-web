@@ -88,15 +88,20 @@ function handleRoute() {
     $controller = new Controller(new ViewRender(__DIR__ . '/views', $renderOptions), new Router());
 
 
-    $controller->addRoute('/', 'home.php.twig', 'home');
-    $controller->addRoute('/search', 'home.php.twig', 'home');
-    $controller->addRoute('/share', 'share.php.twig');
+    $controller->addRoute('/', 'home.php.twig');
+    $controller->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php.twig'); // TAG PROJECTS
+    $controller->addRoute('^\/(skyrockets|votes|responses|popular|popular30|promoted|cashout|payout|payout_comments|now|active)\/?$', 'home.php.twig'); //CATEGORIES
+    $controller->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php.twig');
+    $controller->addRoute('^\/(@[\w\.\d-]+)\/?$', 'profile.php.twig', 'profile');
+    $controller->addRoute('^\/(@[\w\.\d-]+)\/(projects|following|followers|curation-rewards|author-rewards|blocked|wallet|settings|passwords|balances|permissions)\/?$', 'profile.php.twig', 'profile');
+    $controller->addRoute('^\/([\w\d\-\/]+)\/(\@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php.twig', 'post');
+    $controller->addRoute('^\/(@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php.twig', 'post');
+    $controller->addRoute('/search', 'home.php.twig');
     $controller->addRoute('/~witness', 'witnesses.php.twig');
     $controller->addRoute('/welcome', 'welcome.php.twig');
     $controller->addRoute('/validate', 'welcome.php.twig');
     $controller->addRoute('/publish', 'publish.php.twig');
     $controller->addRoute('/explore', 'explore.php.twig');
-    $controller->addRoute('/exchange', 'exchange.php.twig');
     $controller->addRoute('/~market', 'market.php.twig');
     $controller->addRoute('/faq', 'faq.php.twig');
     $controller->addRoute('/recover-account', 'recover-account.php.twig');
@@ -104,13 +109,7 @@ function handleRoute() {
     $controller->addRoute('/privacy_policy', 'privacy_policy.php.twig');
     $controller->addRoute('/404', 'errors/404.php.twig');
     $controller->addRoute('/503', 'errors/503.php.twig');
-    $controller->addRoute('^\/(skyrockets|votes|responses|popular|popular30|promoted|cashout|payout|payout_comments|now|active)\/?$', 'home.php.twig', 'home'); //CATEGORIES
-    $controller->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php.twig', 'home'); // TAG PROJECTS
-    $controller->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php.twig', 'home');
-    $controller->addRoute('^\/(@[\w\.\d-]+)\/?$', 'profile.php.twig', 'profile');
-    $controller->addRoute('^\/(@[\w\.\d-]+)\/(projects|following|followers|curation-rewards|author-rewards|blocked|wallet|settings|passwords|balances|permissions)\/?$', 'profile.php.twig', 'profile');
-    $controller->addRoute('^\/([\w\d\-\/]+)\/(\@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php.twig', 'post');
-    $controller->addRoute('^\/(@[\w\d\.-]+)\/([\w\d-]+)\/?$', 'post-view.php.twig', 'post');
+
 
     echo $controller->handle();
 }

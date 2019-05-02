@@ -64,7 +64,7 @@ class CrearyClient
         if (array_key_exists('result', $response)) {
             $post = $response['result'];
             $post['metadata'] = json_decode($post['json_metadata'], true);
-
+            $post['author'] = $this->getAccount($post['author']);
             return $post;
         }
 

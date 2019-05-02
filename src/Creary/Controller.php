@@ -43,7 +43,7 @@ class Controller
      * @param string $view
      * @param string|null $callMethod
      */
-    public function addRoute(string $route, string $view, string $callMethod = null) {
+    public function addRoute(string $route, string $view, string $callMethod = 'home') {
         $this->router->addRoute($route, $view);
 
         if ($callMethod) {
@@ -86,6 +86,13 @@ class Controller
         ));
     }
 
+    private function buildMeta($key, $keyValue, $content) {
+        return array(
+            'key' => $key,
+            'keyValue' => $keyValue,
+            'content' => $content
+        );
+    }
     /**
      * @param string $url
      * @param string $title
@@ -93,16 +100,16 @@ class Controller
      * @param string $image
      * @return array
      */
-    private function buildOG($title, $description, $image, $url = null) {
+    private function buildOGMetadata($title, $description, $image, $url = null) {
         if (!$url) {
             $url = URLUtils::getFQDNUri();
         }
 
         return array (
-            'url' => $url,
-            'title' => $title,
-            'image' => $image,
-            'description' => $description
+            $this->buildMeta('property', 'og:url', $url),
+            $this->buildMeta('property', 'og:title', $title),
+            $this->buildMeta('property', 'og:image', $image),
+            $this->buildMeta('property', 'og:description', $description)
         );
     }
 
@@ -162,10 +169,25 @@ class Controller
 
         //die(print_r($language, true));
         $title =  ucfirst(URLUtils::splitRequestUri());
-        $title = $title ? $title . ' - CREARY' : 'CREARY';
+        $title = $title ? $title . ' — Creary' : 'Creary';
+
+        $metas = array(
+            $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
+            $this->buildMeta('property', 'og:title', $title),
+            $this->buildMeta('property', 'og:image', $language->METADATA->IMAGE),
+            $this->buildMeta('property', 'og:description', $language->METADATA->DESCRIPTION),
+            $this->buildMeta('property', 'og:type', 'website'),
+            $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
+            $this->buildMeta('name', 'twitter:site', '@crearynet'),
+            $this->buildMeta('name', 'twitter:title', $title),
+            $this->buildMeta('name', 'twitter:description', $language->METADATA->DESCRIPTION),
+            $this->buildMeta('name', 'twitter:image',$language->METADATA->IMAGE),
+            $this->buildMeta('name', 'description', $language->METADATA->DESCRIPTION),
+        );
         return $this->viewRender->render($view, array(
             'lang' => $language,
-            'og' => $this->buildOG($title, $language->METADATA->DESCRIPTION, $language->METADATA->IMAGE)
+            'metas' => $metas,
+            'title' => $title
         ));
     }
 
@@ -178,10 +200,9 @@ class Controller
      */
     private function post($view, $route, $requestUri) {
         //Get author and permlink;
-        $parts = explode('/', substr($requestUri, 1, strlen($requestUri)));
-
         $author = URLUtils::splitRequestUri();
         $permlink = URLUtils::splitRequestUri(1);
+
         if (substr($author, 0, 1) === '@') {
             //URL: /@author/permlink
             $author = substr($author, 1, strlen($author));
@@ -197,10 +218,39 @@ class Controller
 
         $language = $this->getLanguage();
         if ($post) {
+            //dd($post['author']['metadata']['publicName'], $post['author']['name']);
+            $authorName = $post['author']['metadata']['publicName'] ? $post['author']['metadata']['publicName'] : $author;
+            $title = $post['title'] . ' — Creary' ;
+            $metas = array(
+                $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
+                $this->buildMeta('property', 'og:title', $title),
+                $this->buildMeta('property', 'og:image', $post['metadata']['featuredImage']['url']),
+                $this->buildMeta('property', 'og:description', $post['description']),
+                $this->buildMeta('property', 'og:type', 'article'),
+                $this->buildMeta('property', 'article:published_time', $post['created']),
+                $this->buildMeta('property', 'article:modified_time', $post['last_update']),
+                $this->buildMeta('property', 'article:author', $authorName),
+                $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
+                $this->buildMeta('name', 'twitter:site', '@crearynet'),
+                $this->buildMeta('name', 'twitter:title', $title),
+                $this->buildMeta('name', 'twitter:description', $post['description']),
+                $this->buildMeta('name', 'twitter:image', $post['metadata']['featuredImage']['url']),
+                $this->buildMeta('name', 'description', $post['description']),
+            );
+
+            $tags = $post['metadata']['tags'];
+            if ($tags) {
+                $metas[] = $this->buildMeta('name', 'keywords', implode(',', $tags));
+                foreach ($tags as $t) {
+                    $metas[] = $this->buildMeta('property', 'article:tag', $t);
+                }
+            }
+
             return $this->viewRender->render($view, array(
                 'lang' => $language,
                 'post' => $post,
-                'og' => $this->buildOG($post['title'], $post['metadata']['description'], $post['metadata']['featuredImage']['url'])
+                'metas' => $metas,
+                'title' => $title
             ));
         }
 
@@ -226,11 +276,39 @@ class Controller
 
         $language = $this->getLanguage();
         if ($profile) {
-            $name = $profile['metadata']['publicName'] ? $profile['metadata']['publicName'] : $profile['name'];
+            $publicName = $profile['metadata']['publicName'];
+            if ($publicName) {
+                $title = $publicName . ' (@' . $profileName . ') — Creary';
+            } else {
+                $title = '@' . $profileName . ' — Creary';
+            }
+
+            $metas = array(
+                $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
+                $this->buildMeta('property', 'og:title', $title),
+                $this->buildMeta('property', 'og:image', $profile['metadata']['avatar']['url']),
+                $this->buildMeta('property', 'og:description', $profile['metadata']['description']),
+                $this->buildMeta('property', 'og:type', 'profile'),
+                $this->buildMeta('property', 'profile:first_name', $publicName ? $publicName : $profileName),
+                $this->buildMeta('property', 'profile:username', $profileName),
+                $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
+                $this->buildMeta('name', 'twitter:site', '@crearynet'),
+                $this->buildMeta('name', 'twitter:title', $title),
+                $this->buildMeta('name', 'twitter:description', $profile['metadata']['description']),
+                $this->buildMeta('name', 'twitter:image', $profile['metadata']['avatar']['url']),
+                $this->buildMeta('name', 'description', $profile['metadata']['description']),
+            );
+
+            $tags = $profile['metadata']['tags'];
+            if ($tags) {
+                $metas[] = $this->buildMeta('name', 'keywords', implode(',', $tags));
+            }
+
             return $this->viewRender->render($view, array(
                 'lang' => $language,
                 'profile' => $profile,
-                'og' => $this->buildOG($name, $profile['metadata']['about'], $profile['metadata']['avatar']['url'])
+                'metas' => $metas,
+                'title' => $title
             ));
         }
 
