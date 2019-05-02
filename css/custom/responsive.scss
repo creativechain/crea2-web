@@ -1,3 +1,74 @@
+@media (width: 320px) {
+  .card-home {
+    .card__top {
+      height: 298px !important;
+      .img-post-list {
+        height: 298px !important;
+      }
+    }
+  }
+}
+@media (width: 360px) {
+  .card-home {
+    .card__top {
+      height: 338px !important;
+      .img-post-list {
+        height: 338px !important;
+      }
+    }
+  }
+}
+@media (width: 375px) {
+  .card-home {
+    .card__top {
+      height: 353px !important;
+      .img-post-list {
+        height: 353px !important;
+      }
+    }
+  }
+}
+@media (width: 384px) {
+  .card-home {
+    .card__top {
+      height: 362px !important;
+      .img-post-list {
+        height: 362px !important;
+      }
+    }
+  }
+}
+@media (width: 412px) {
+  .card-home {
+    .card__top {
+      height: 390px !important;
+      .img-post-list {
+        height: 390px !important;
+      }
+    }
+  }
+}
+@media (width: 414px) {
+  .card-home {
+    .card__top {
+      height: 392px !important;
+      .img-post-list {
+        height: 392px !important;
+      }
+    }
+  }
+}
+@media (width: 480px) {
+  .card-home {
+    .card__top {
+      height: 458px !important;
+      .img-post-list {
+        height: 458px !important;
+      }
+    }
+  }
+}
+
 @media (max-width: 412px) {
   #slide-home {
     padding: 90px 0 108px !important;
@@ -458,7 +529,14 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+  .card-home {
+    .card__top {
+      height: 266px;
+      .img-post-list {
+        height: 266px;
+      }
+    }
+  }
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0 !important;
   }
@@ -630,6 +708,12 @@
       min-width: 249px;
       max-width: 250px;
     }
+    .card__top {
+      height: 218px;
+      .img-post-list {
+        height: 218px;
+      }
+    }
   }
   .li-avatar-navbar {
     .dropdown__container {
@@ -659,6 +743,20 @@
     .dropdown__container.dropdown-info-user > .container  {
       min-width: 249px;
       max-width: 250px;
+    }
+    .card__top {
+      height: 226px;
+      .img-post-list {
+        height: 226px;
+      }
+    }
+  }
+  .view-profile {
+    .card__top {
+      height: 191px ;
+      .img-post-list {
+        height: 191px ;
+      }
     }
   }
 
@@ -701,6 +799,21 @@
       min-width: 249px;
       max-width: 250px;
     }
+
+    .card__top {
+      height: 278px ;
+      .img-post-list {
+        height: 278px ;
+      }
+    }
+  }
+  .view-profile {
+    .card__top {
+      height: 198px ;
+      .img-post-list {
+        height: 198px ;
+      }
+    }
   }
 }
 
@@ -736,6 +849,12 @@
     .dropdown__container.dropdown-info-user > .container  {
       min-width: 249px;
       max-width: 250px;
+    }
+    .card__top {
+      height: 228px;
+      .img-post-list {
+        height: 228px;
+      }
     }
   }
 }
