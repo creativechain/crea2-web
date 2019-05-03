@@ -590,13 +590,16 @@
                             var that = this;
                             var file = files[0];
                             var maximumSize = CONSTANTS.FILE_MAX_SIZE.PROFILE[file.type.toUpperCase().split('/')[0]];
-                            uploadToIpfs(files[0], maximumSize, function (err, file) {
-                                globalLoading.show = false;
+                            resizeImage(file, function (resizedImage) {
+                                uploadToIpfs(resizedImage, maximumSize, function (err, uploadedFile) {
+                                    globalLoading.show = false;
 
-                                if (!catchError(err)) {
-                                    Vue.set(that.profile, 'avatar', file);
-                                }
+                                    if (!catchError(err)) {
+                                        Vue.set(that.profile, 'avatar', uploadedFile);
+                                    }
+                                });
                             });
+
                         }
                     },
                     loadAvatar: function loadAvatar(event) {
