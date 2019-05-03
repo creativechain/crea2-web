@@ -38,7 +38,7 @@ var CONSTANTS = {
     },
     FILE_MAX_SIZE: {
         PROFILE: {
-            IMAGE: 1024 * 1024
+            IMAGE: 1024 * 500
         },
         POST_BODY: {
             AUDIO: 100 * 1024 * 1024,

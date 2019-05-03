@@ -213,10 +213,19 @@
                                 that.error = null;
 
                                 //Set first loaded image as preview
+                                if (file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
+                                    resizeImage(loadedFile, function (resizedFile) {
+                                        var maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
+                                        uploadToIpfs(resizedFile, maximumPreviewSize, function (err, uploadedPreview) {
+                                            if (!err) {
+                                                that.featuredImage = uploadedPreview;
+                                                console.log('Featured image loaded!');
+                                            } else {
+                                                console.error(err, resizedFile)
+                                            }
 
-                                if (file.size <= maximumSize && file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
-                                    that.featuredImage = file;
-                                    console.log('Featured image loaded!');
+                                        })
+                                    })
                                 }
 
                                 //Clear input
@@ -234,14 +243,17 @@
                         globalLoading.show = true;
                         var loadedFile = files[0];
                         var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
-                        uploadToIpfs(loadedFile, maximumSize, function (err, file) {
-                            globalLoading.show = false;
+                        resizeImage(loadedFile, function (resizedFile) {
+                            uploadToIpfs(resizedFile, maximumSize, function (err, file) {
+                                globalLoading.show = false;
 
-                            if (!catchError(err)) {
-                                that.featuredImage = file;
-                                that.error = null;
-                            }
+                                if (!catchError(err)) {
+                                    that.featuredImage = file;
+                                    that.error = null;
+                                }
+                            });
                         });
+
                     }
                 },
                 toggleEditor: function toggleEditor(event) {
@@ -264,6 +276,56 @@
                 stringFormat: String.format
             }
         });
+    }
+
+    function resizeImage(file, callback) {
+        var MAX_PIXEL_SIZE = 500;
+        console.log(file);
+        if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
+            //Only PNG, JPG, JPEG
+
+            var reader = new FileReader();
+            reader.onload = function (event) {
+
+                var tmpImage = new Image();
+
+                tmpImage.onload = function () {
+                    var options;
+                    if (tmpImage.width <= tmpImage.height && tmpImage.width > MAX_PIXEL_SIZE) {
+                        options = {
+                            maxWidth: MAX_PIXEL_SIZE,
+                            maxHeight: Infinity
+                        }
+                    } else if (tmpImage.height <= tmpImage.width && tmpImage.height > MAX_PIXEL_SIZE) {
+                        options = {
+                            maxWidth: Infinity,
+                            maxHeight: MAX_PIXEL_SIZE
+                        }
+                    }
+
+                    if (options) {
+                        options.quality = 0.6;
+                        options.success = function (result) {
+                            console.log(result);
+                            if (callback) {
+                                callback(result);
+                            }
+                        };
+
+                        new Compressor(file, options);
+                    } else if (callback) {
+                        //Nothing to do
+                        callback(file);
+                    }
+                };
+
+                tmpImage.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        } else if (callback) {
+            callback(file);
+        }
     }
 
     function removeTitleEmojis(event) {
