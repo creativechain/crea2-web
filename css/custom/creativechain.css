@@ -1938,7 +1938,8 @@ img {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    cursor: pointer; }
+    cursor: pointer;
+    margin-bottom: 10px; }
   .card-home .card__body .description-post-box {
     margin-bottom: 0.92857143em;
     display: block;
