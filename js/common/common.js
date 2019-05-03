@@ -377,7 +377,7 @@ function resizeImage(file, callback) {
                 }
 
                 if (options) {
-                    options.quality = 0.6;
+                    options.quality = 0.8;
                     options.success = function (result) {
                         console.log(result);
                         if (callback) {
