@@ -48,7 +48,7 @@ var CONSTANTS = {
 
         },
         POST_PREVIEW: {
-            IMAGE: 1024 * 1024
+            IMAGE: 1024 * 500
         }
     },
     TEXT_MAX_SIZE: {
@@ -351,6 +351,56 @@ function refreshAccessToken(callback) {
     }
 }
 
+function resizeImage(file, callback) {
+    var MAX_PIXEL_SIZE = 500;
+    console.log(file);
+    if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
+        //Only PNG, JPG, JPEG
+
+        var reader = new FileReader();
+        reader.onload = function (event) {
+
+            var tmpImage = new Image();
+
+            tmpImage.onload = function () {
+                var options;
+                if (tmpImage.width <= tmpImage.height && tmpImage.width > MAX_PIXEL_SIZE) {
+                    options = {
+                        maxWidth: MAX_PIXEL_SIZE,
+                        maxHeight: Infinity
+                    }
+                } else if (tmpImage.height <= tmpImage.width && tmpImage.height > MAX_PIXEL_SIZE) {
+                    options = {
+                        maxWidth: Infinity,
+                        maxHeight: MAX_PIXEL_SIZE
+                    }
+                }
+
+                if (options) {
+                    options.quality = 0.6;
+                    options.success = function (result) {
+                        console.log(result);
+                        if (callback) {
+                            callback(result);
+                        }
+                    };
+
+                    new Compressor(file, options);
+                } else if (callback) {
+                    //Nothing to do
+                    callback(file);
+                }
+            };
+
+            tmpImage.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    } else if (callback) {
+        callback(file);
+    }
+}
+
 function uploadToIpfs(file, maxSize, callback) {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
         if (!maxSize) {
@@ -392,6 +442,8 @@ function uploadToIpfs(file, maxSize, callback) {
         globalLoading.show = false;
     }
 }
+
+
 /**
  *
  * @param {string} url
