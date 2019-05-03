@@ -93,25 +93,6 @@ class Controller
             'content' => $content
         );
     }
-    /**
-     * @param string $url
-     * @param string $title
-     * @param string $description
-     * @param string $image
-     * @return array
-     */
-    private function buildOGMetadata($title, $description, $image, $url = null) {
-        if (!$url) {
-            $url = URLUtils::getFQDNUri();
-        }
-
-        return array (
-            $this->buildMeta('property', 'og:url', $url),
-            $this->buildMeta('property', 'og:title', $title),
-            $this->buildMeta('property', 'og:image', $image),
-            $this->buildMeta('property', 'og:description', $description)
-        );
-    }
 
     /**
      * @param $cookie
@@ -227,7 +208,7 @@ class Controller
                 $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
                 $this->buildMeta('property', 'og:title', $title),
                 $this->buildMeta('property', 'og:image', $post['metadata']['featuredImage']['url']),
-                $this->buildMeta('property', 'og:description', $post['description']),
+                $this->buildMeta('property', 'og:description', $post['metadata']['description']),
                 $this->buildMeta('property', 'og:type', 'article'),
                 $this->buildMeta('property', 'article:published_time', $post['created']),
                 $this->buildMeta('property', 'article:modified_time', $post['last_update']),
@@ -237,7 +218,7 @@ class Controller
                 $this->buildMeta('name', 'twitter:title', $title),
                 $this->buildMeta('name', 'twitter:description', $post['description']),
                 $this->buildMeta('name', 'twitter:image', $post['metadata']['featuredImage']['url']),
-                $this->buildMeta('name', 'description', $post['description']),
+                $this->buildMeta('name', 'description', $post['metadata']['description']),
             );
 
             $tags = $post['metadata']['tags'];
