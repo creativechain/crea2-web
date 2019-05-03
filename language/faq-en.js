@@ -44,7 +44,9 @@ faq.en = {
         ],
         "Witnesses": [
             "What are Crea witnesses?",
-            "How can I vote for witnesses?"
+            "How can I vote for witnesses?",
+            "How to set a CREA witness node?",
+
         ],
         "Voting and Curating": [
             "What is my voting power?",
@@ -76,7 +78,9 @@ faq.en = {
             "Will the price of 1 CREA dollar (CBD) always be $ 1.00 USD?",
             "What can I do with my CREA tokens?",
             "What can I do with my CBD tokens?",
-            "How much do CREA transactions cost to other users?"
+            "How much do CREA transactions cost to other users?",
+            "What is FLOW?",
+            "What can I do if I run out of FLOW?"
         ],
         "Diverse": ["Where are the updates and news related to Creary and Crea announced?"],
         "Developers": ["Are the Creary.net or the Crea blockchain codes open source?"],
@@ -297,7 +301,8 @@ faq.en = {
                 "Crea's blockchain requires a set of nodes (witnesses) to create blocks and uses a consensus protocol called Delegated Proof Of Stake (DPOS). The community chooses \"witnesses\" to act as block producers. This way a government is created that represents the users who voted for them.",
                 "There are 24 full-time witnesses, producing one block each round of 75 seconds. The position of witness number 25 is shared by the backup witnesses who are in the queue to enter the list of the 24 most voted. This type of witnesses are programmed proportionally to the amount of approval of the community weighted by the interest they have. Witnesses are compensated with CREA Energy for each block they create. All users can vote up to 35 network witnesses. If a witness is not doing a good job, users can withdraw their vote to remove that witness from the main list so that their position is occupied by the next most voted witness.Witnesses can publicize their candidacy by offering developments that improve the ecosystem of the Crea network. To maintain the proper functioning of the network it is important that users use their legitimate right to vote for their favourite witnesses."
             ],
-            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/~witness"]
+            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/~witness"],
+            "How to set a CREA witness node?": ["Here https://creaproject.io/set-crea-witness-node you will find step by step all the necessary indications to become an elected witness in this consensus protocol."]
         },
         "Voting and Curating": {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],
@@ -416,7 +421,18 @@ faq.en = {
                 "If you still do not have CREA in your wallet, you can buy it with euro or dollar or with bitcoin (BTC) on exchanges like Lescovex.com. You can get BTC in several known exchanges.",
                 "Check the full list https://creaproject.io/buy/ of exchanges where CREA is currently traded."
             ],
-            "When can I obtain my rewards?": ["The period of paying out a reward is 7 days. After this period you can collect the reward by clicking on the yellow button that is displayed on your wallet."]
+            "When can I obtain my rewards?": ["The period of paying out a reward is 7 days. After this period you can collect the reward by clicking on the yellow button that is displayed on your wallet."],
+            "What is FLOW?": [
+                "The FLOW is a non-transferable type of resource or token that is granted intelligently by the CREA blockchain to each @user account according to the amount of CREA Energy (CGY) it has. The FLOW is proportional to the CGY.",
+                "The FLOW is a resource that is consumed every time a user makes transactions (votes, likes, comments, transfers or energizations).",
+                "Each transaction has a specific cost in FLOW. If you have enough FLOW to cover the cost, you can make the transaction.",
+                "This system allows in a decentralized way to protect the blockchain from malicious actions such as spam."
+            ],
+            "What can I do if I run out of FLOW?": [
+                "When a user runs out of FLOW, he can do two things:",
+                "1. Wait for it to recharge again. Each day 22% will be refilled, therefore to have 100% FLOW you will need 5 days.",
+                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/ you can access different services that sell or exchange CREA."
+            ]
         },
         "Diverse": {
             "Where are the updates and news related to Creary and Crea announced?": [

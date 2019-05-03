@@ -48,7 +48,9 @@ faq.es = {
             "¿1 CREA dollar (CBD) siempre valdrá $ 1.00 USD?",
             "¿Qué puedo hacer con mis tokens de CREA?",
             "¿Qué puedo hacer con mis tokens CBD?",
-            "¿Cuánto cuestan las transacciones de CREA a otros usuarios?"
+            "¿Cuánto cuestan las transacciones de CREA a otros usuarios?",
+            "¿Qué es el FLOW?",
+            "¿Qué puedo hacer si me quedo sin FLOW?"
         ],
         "Navegación": [
             "¿Cómo voto una publicación o comentario en Creary?",
@@ -102,7 +104,8 @@ faq.es = {
         ],
         "Testigos": [
             "¿Qué son los testigos de Crea?",
-            "¿Cómo puedo votar por los testigos?"
+            "¿Cómo puedo votar por los testigos?",
+            "¿Cómo configurar un nodo testigo de CREA?"
         ],
         "Tecnología detrás de Creary ": [
             "¿Qué es una blockchain?",
@@ -308,7 +311,18 @@ faq.es = {
             ],
             "¿Qué determina el precio de CREA?": ["El precio de CREA se basa en la oferta y la demanda del token, según lo determinen los compradores y vendedores en los mercados de criptomonedas. Es muy parecido a cómo se determina el precio de un producto o materia prima como el oro. "],
             "¿De dónde vienen los nuevos tokens CREA?": ["En Crea, al igual que en la mayoría de blockchains como Bitcoin, Litecoin o Ethereum, cada vez que se produce un bloque (3 segundos) se generan nuevos tokens. Pero, a diferencia de otras blockchains en las que todas las nuevas monedas van directamente a los productores de bloques (llamados mineros), la blockchain de Crea asigna la gran mayoría (70% de los tokens generados anualmente) de los nuevos tokens a un fondo de recompensa llamado \"Reward Pool\". Este Reward Pool ofrece a los usuarios tokens por su participación en la red ya sea haciendo de curadores o de generadores de contenidos. "],
-            "¿Cuánto tiempo lleva la transferencia de tokens entre usuarios dentro de la red de Crea?": ["Una transferencia de tokens entre cuentas normalmente tomará 3 segundos. La red de crea es una de la redes de pagos en criptomonedas más rápida del ecosistema blockchain. Por ejemplo las transacciones en Bitcoin pueden llevar como mínimo 10 minutos.  "]
+            "¿Cuánto tiempo lleva la transferencia de tokens entre usuarios dentro de la red de Crea?": ["Una transferencia de tokens entre cuentas normalmente tomará 3 segundos. La red de crea es una de la redes de pagos en criptomonedas más rápida del ecosistema blockchain. Por ejemplo las transacciones en Bitcoin pueden llevar como mínimo 10 minutos."]
+            "¿Qué es el FLOW?": [
+                "El FLOW es un tipo de recurso o token no transferible que la cadena de bloques CREA otorga de manera inteligente a cada cuenta de usuario de acuerdo con la cantidad de CREA Energy (CGY) que tiene. El FLUJO es proporcional al CGY.",
+                "El FLOW es un recurso que se consume cada vez que un usuario realiza transacciones (votos, me gusta, comentarios, transferencias o energizaciones).",
+                "Cada transacción tiene un costo específico en FLOW. Si tiene suficiente FLUJO para cubrir el costo, puede realizar la transacción.",
+                "Este sistema permite de manera descentralizada proteger la cadena de bloques de acciones maliciosas, como el spam."
+            ],
+            "¿Qué puedo hacer si me quedo sin FLOW?": [
+                "Cuando un usuario se queda sin FLOW, puede hacer dos cosas:",
+                "1. Espere a que se recargue de nuevo. Cada día se rellenará el 22%, por lo tanto, para tener un 100% de FLUJO, necesitará 5 días.",
+                "2. La opción más rápida para aumentar su FLUJO es comprar más CREA y energizarlo. Siguiendo este enlace creaproject.io/buy/ puede acceder a diferentes servicios que venden o intercambian CREA."
+            ]
         },
         "Navegación": {
             "¿Cómo veo mis recompensas recientes?": [
@@ -546,7 +560,10 @@ faq.es = {
                 " "
             ],
             "¿Cómo puedo votar por los testigos?": ["Desde el menú derecho en https://creary.net/~witness"],
-            "¿El código Creary.net o de la blockchain de Crea es de código abierto?": ["Si, puede encontrar el repositorio completo en https://github.com/creativechain "]
+            "¿El código Creary.net o de la blockchain de Crea es de código abierto?": ["Si, puede encontrar el repositorio completo en https://github.com/creativechain "],
+            " ¿Cómo configurar un nodo testigo CREA?": [
+                "Aquí https://creaproject.io/set-crea-witness-node/ encontrarás paso a paso todas las indicaciones necesarias para convertirte en un testigo electo en este protocolo de consenso."
+            ]
         },
         "Tecnología detrás de Creary ": {
             "¿Con qué frecuencia la blockchain de Crea produce un nuevo bloque?": ["La blockchain de Crea está programada para que los testigos produzcan un nuevo bloque cada 3 segundos. 25 nodos testigos producen 25 bloques en cada ronda de 75 segundos."],
