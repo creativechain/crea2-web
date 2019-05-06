@@ -518,6 +518,8 @@ function catchError(err) {
         } else {
             if (err.name) {
                 title = name;
+            } else if (err.TITLE) {
+                title = err.TITLE;
             }
 
             if (err.message) {
@@ -533,6 +535,10 @@ function catchError(err) {
                 } else {
                     body.push(message);
                 }
+            }
+
+            if (err.BODY) {
+                body = err.BODY;
             }
         }
 

@@ -367,41 +367,64 @@
             //Build body
             var body = jsonstring(publishContainer.bodyElements);
             var title = publishContainer.title;
-            var permlink = publishContainer.editablePost ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
+            var editing = !!publishContainer.editablePost;
+            var permlink = editing ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
 
-            if (publishContainer.editablePost && publishContainer.editablePost.metadata.tags) {
-                var category = publishContainer.editablePost.metadata.tags[0];
+            var publishPost = function () {
+                if (editing && publishContainer.editablePost.metadata.tags) {
+                    var category = publishContainer.editablePost.metadata.tags[0];
 
-                if (category && !metadata.tags.includes(category)) {
-                    metadata.tags.unshift(category);
+                    if (category && !metadata.tags.includes(category)) {
+                        metadata.tags.unshift(category);
+                    }
                 }
+
+                var operations = [];
+                operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
+
+                switch (account.user.metadata.post_rewards) {
+                    case '0':
+                        operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
+                        break;
+
+                    case '100':
+                        operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
+                }
+
+                var keys = [postingKey];
+
+                (_crea$broadcast = crea.broadcast).sendOperations.apply(_crea$broadcast, [keys].concat(operations, [function (err, result) {
+                    if (!catchError(err)) {
+                        console.log(result);
+                        var post = {
+                            url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
+                        };
+                        showPost(post);
+                    } else {
+                        globalLoading.show = false;
+                    }
+                }]));
+            };
+
+            if (!editing) {
+                //Check if already has a post with same permlink
+                crea.api.getDiscussion(username, permlink, function (err, result) {
+                    console.log(err, result);
+                    if (!err) {
+                        //If id is 0, post not exists, so publish
+                        if (result.id !== 0) {
+                            catchError(lang.ERROR.PERMLINK_ALREADY_EXISTS)
+                            globalLoading.show = false;
+                        } else {
+                            publishPost();
+                        }
+                    }
+                })
+            } else {
+                publishPost();
             }
 
-            var operations = [];
-            operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
 
-            switch (account.user.metadata.post_rewards) {
-                case '0':
-                    operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
-                    break;
-
-                case '100':
-                    operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
-            }
-
-            var keys = [postingKey];
-
-            (_crea$broadcast = crea.broadcast).sendOperations.apply(_crea$broadcast, [keys].concat(operations, [function (err, result) {
-                if (!catchError(err)) {
-                    console.log(result);
-                    var post = {
-                        url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
-                    };
-                    showPost(post);
-                } else {
-                    globalLoading.show = false;
-                }
-            }]));
         });
     }
 
