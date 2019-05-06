@@ -239,7 +239,7 @@
                                         <div class="input-icon">
                                             <i class="">CREA/CBD</i>
                                             <input v-model="buyForm.price"
-                                                   v-on:keypress="inputBuy($event, 'price')"
+                                                   v-on:input="inputBuy($event, 'price')"
                                                    v-on:blur="onParseBuyForm"
                                                    type="text" name="input" placeholder="{{ lang.MARKET.PRICE }} CREA/CBD" step="0.001" />
                                         </div>
@@ -250,7 +250,7 @@
                                         <div class="input-icon">
                                             <i class="">CREA</i>
                                             <input v-model="buyForm.amount"
-                                                   v-on:keypress="inputBuy($event, 'amount')"
+                                                   v-on:input="inputBuy($event, 'amount')"
                                                    v-on:blur="onParseBuyForm"
                                                    type="text" name="input" placeholder="{{  lang.MARKET.AMOUNT }} CREA" />
                                         </div>
@@ -260,7 +260,7 @@
                                         <div class="input-icon">
                                             <i class="">CBD</i>
                                             <input v-model="buyForm.total"
-                                                   v-on:keypress="inputBuy($event, 'total')"
+                                                   v-on:input="inputBuy($event, 'total')"
                                                    v-on:blur="onParseBuyForm"
                                                    type="text" name="input" placeholder="{{ lang.MARKET.TOTAL_CREA }}" />
                                         </div>
@@ -289,7 +289,7 @@
                                         <div class="input-icon">
                                             <i class="">CREA/CBD</i>
                                             <input v-model="sellForm.price"
-                                                   v-on:keypress="inputSell($event, 'price')"
+                                                   v-on:input="inputSell($event, 'price')"
                                                    v-on:blur="onParseSellForm"
                                                    type="text" name="input" placeholder="{{ lang.MARKET.PRICE }} CREA/CBD" />
                                         </div>
@@ -300,7 +300,7 @@
                                         <div class="input-icon">
                                             <i class="">CREA</i>
                                             <input v-model="sellForm.amount"
-                                                   v-on:keypress="inputSell($event, 'amount')"
+                                                   v-on:input="inputSell($event, 'amount')"
                                                    v-on:blur="onParseSellForm"
                                                    type="text" name="input" placeholder="{{ lang.MARKET.AMOUNT }} CREA" />
                                         </div>
@@ -310,7 +310,7 @@
                                         <div class="input-icon">
                                             <i class="">CBD</i>
                                             <input v-model="sellForm.total"
-                                                   v-on:keypress="inputSell($event, 'total')"
+                                                   v-on:input="inputSell($event, 'total')"
                                                    v-on:blur="onParseSellForm"
                                                    type="text" name="input" placeholder="{{ lang.MARKET.TOTAL }} CREA" />
                                         </div>

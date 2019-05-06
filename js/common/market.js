@@ -100,19 +100,20 @@
                             return false;
                         }
 
-                        var value = event.target.value + String.fromCharCode(charCode);
-                        console.log(value, field);
+                        var value = event.target.value;
+                        var formValue = Asset.parse({amount: value, nai: 'crea', exponent: 3}).toPlainString();
 
-                        if (!isNaN(value)) {
-                            this.buyForm[field] = Asset.parse({amount: value, nai: 'crea'}).toPlainString();
+                        //console.log(formValue, field);
+                        if (!isNaN(value) || !isNaN(formValue)) {
+
                             var amount = this.buyForm.amount;
                             switch (field) {
                                 case 'price':
                                     //change only total if amount != 0
                                     // total = amount * price
                                     if (amount) {
-                                        var t = (amount * value);
-                                        this.buyForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                        var t = (amount * formValue).toString();
+                                        this.buyForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
                                 case 'amount':
@@ -120,19 +121,21 @@
                                     // total = amount * price
                                     var price = this.buyForm.price;
                                     if (price) {
-                                        var t = (value * price);
-                                        this.buyForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                        var t = (formValue * price).toString();
+                                        this.buyForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
                                 default:
                                     //change only price if amount != 0
                                     // price = total / amount
                                     if (amount) {
-                                        var p = (value / amount);
-                                        this.buyForm.price = Asset.parse({amount: p, nai: 'cbd'}).toPlainString();
+                                        var p = (formValue / amount).toString();
+                                        this.buyForm.price = Asset.parse({amount: p, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                             }
+
                         }
+
                         return true;
                     },
                     onParseSellForm: function () {
@@ -163,19 +166,20 @@
                             return false;
                         }
 
-                        var value = event.target.value + String.fromCharCode(charCode);
-                        console.log(value, field);
+                        var value = event.target.value;
+                        var formValue = Asset.parse({amount: value, nai: 'crea', exponent: 3}).toPlainString();
 
-                        if (!isNaN(value)) {
-                            this.sellForm[field] = Asset.parse({amount: value, nai: 'crea'}).toPlainString();
+                        //console.log(formValue, field);
+                        if (!isNaN(value) || !isNaN(formValue)) {
+
                             var amount = this.sellForm.amount;
                             switch (field) {
                                 case 'price':
                                     //change only total if amount != 0
                                     // total = amount * price
                                     if (amount) {
-                                        var t = (amount * value);
-                                        this.sellForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                        var t = (amount * value).toString();
+                                        this.sellForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
                                 case 'amount':
@@ -183,16 +187,16 @@
                                     // total = amount * price
                                     var price = this.sellForm.price;
                                     if (price) {
-                                        var t = (value * price);
-                                        this.sellForm.total = Asset.parse({amount: t, nai: 'cbd'}).toPlainString();
+                                        var t = (value * price).toString();
+                                        this.sellForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
                                 default:
                                     //change only price if amount != 0
                                     // price = total / amount
                                     if (amount) {
-                                        var p = (value / amount);
-                                        this.sellForm.price = Asset.parse({amount: p, nai: 'cbd'}).toPlainString();
+                                        var p = (value / amount).toString();
+                                        this.sellForm.price = Asset.parse({amount: p, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                             }
                         }
