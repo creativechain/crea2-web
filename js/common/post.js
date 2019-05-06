@@ -110,7 +110,8 @@
                         var amount = Asset.parseString(post.promoted);
                         return '$ ' + amount.toPlainString();
                     },
-                    getPayout: function getPayout(post) {
+                    getPayout: function getPayout(post, sym) {
+
                         if (!post) {
                             post = this.state.post;
                         }
@@ -123,7 +124,10 @@
                         } //amount.amount = parseInt(amount.amount / 1000000000);
 
 
-                        return '$ ' + amount.toPlainString(2);
+                        return (sym ? '$ ' : '') + amount.toPlainString(2);
+                    },
+                    getFriendlyPayout: function getFriendlyPayout() {
+                        return this.getPayout(null, false) + ' CBD';
                     },
                     getPendingPayouts: function getPendingPayouts(asset) {
                         asset = asset ? asset.toLowerCase() : '';

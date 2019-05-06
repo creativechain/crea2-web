@@ -47,7 +47,7 @@
                             <li class="list-inline-item">
                                 <div class="dropdown dropdown-price">
                                         <span class="dropdown__trigger">
-                                            <post-amount v-bind:value="state.post.pending_payout_value"
+                                            <post-amount v-bind:value="getFriendlyPayout()"
                                                          v-bind:symbol="'$'"
                                                          v-bind:symbefore="true" >
 
