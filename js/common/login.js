@@ -67,7 +67,6 @@ function login(username, password, callback) {
                         blockeds.push(f.following);
                     });
                     account.user.blockeds = blockeds;
-                    console.log(blockeds)
                     onTaskEnded(session, account);
                 }
             });

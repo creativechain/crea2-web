@@ -184,6 +184,7 @@ function createBlockchainAccount(username, password, callback) {
 }
 
 function removeBlockedContents(state, accountState, discussion_idx) {
+    //console.log('State:', jsonify(jsonstring(state)), 'Account:', jsonify(jsonstring(accountState)), 'discussion:', discussion_idx);
     if (state) {
         //Remove post for blocked users
         var cKeys = discussion_idx ? discussion_idx : Object.keys(state.content);
@@ -305,14 +306,34 @@ function updateUserSession() {
     if (session) {
         session.login(function (err, account) {
             if (!catchError(err)) {
+                var count = 2;
+
+                var onTaskEnded = function onTaskEnded(session, account) {
+                    --count;
+
+                    if (count === 0) {
+                        creaEvents.emit('crea.session.login', session, account);
+                    }
+                };
+
                 var followings = [];
+                var blockeds = [];
                 crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
                     if (!catchError(err)) {
                         result.following.forEach(function (f) {
                             followings.push(f.following);
                         });
                         account.user.followings = followings;
-                        creaEvents.emit('crea.session.update', session, account);
+                        onTaskEnded(session, account);
+                    }
+                });
+                crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, result) {
+                    if (!catchError(err)) {
+                        result.following.forEach(function (f) {
+                            blockeds.push(f.following);
+                        });
+                        account.user.blockeds = blockeds;
+                        onTaskEnded(session, account);
                     }
                 });
             }

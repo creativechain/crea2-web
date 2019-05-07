@@ -55,29 +55,29 @@ var Session =
                                 var pubKey;
                                 var auth = r;
 
-                                if (auth == 'unknown') {
+                                if (auth === 'unknown') {
                                     console.log(DEFAULT_ROLES);
                                     DEFAULT_ROLES.some(function (role) {
-                                        if (role == 'memo') {
+                                        if (role === 'memo') {
                                             pubKey = accountData.user[role + '_key'];
                                         } else {
                                             pubKey = accountData.user[role].key_auths[0][0];
                                         }
 
-                                        if (that.account.keys[auth].pub == pubKey) {
+                                        if (that.account.keys[auth].pub === pubKey) {
                                             that.account.keys[role] = clone(that.account.keys[auth]);
                                             delete that.account.keys[auth];
                                             auth = role;
                                             return true;
                                         }
                                     });
-                                } else if (auth == 'memo') {
+                                } else if (auth === 'memo') {
                                     pubKey = accountData.user[auth + '_key'];
                                 } else {
                                     pubKey = accountData.user[auth].key_auths[0][0];
                                 }
 
-                                logged = that.account.keys[auth].pub == pubKey;
+                                logged = that.account.keys[auth].pub === pubKey;
                                 return logged;
                             });
 
