@@ -517,7 +517,8 @@
   padding: 20px; }
 .view-publish .step-1 .upload-img {
   position: relative;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  text-align: center; }
   .view-publish .step-1 .upload-img p {
     word-break: break-word;
     word-break: all;
@@ -582,6 +583,9 @@
   min-height: 300px; }
   .view-publish .step-2 .box-image-step-2 .img-protada {
     margin-top: 60px; }
+  .view-publish .step-2 .box-image-step-2 .row-image div {
+    text-align: center;
+    width: 100%; }
 .view-publish .step-2 .row-options-steps-1 {
   margin-top: 160px;
   margin-bottom: -50px; }
@@ -2481,6 +2485,8 @@ img {
         margin-top: 5px; }
     .view-profile .view-wallet .row-list-user .list-amount {
       top: 20px; }
+  .view-profile .view-wallet .table-amount tbody tr td:nth-child(1) {
+    width: 50%; }
   .view-profile .view-wallet .table-amount tbody tr td:nth-child(2) {
     vertical-align: top; }
   .view-profile .view-wallet .alert__body {
@@ -2495,7 +2501,12 @@ img {
 
   .project-profile .masonry__item {
     width: 100%;
-    padding: 0; } }
+    padding: 0; }
+
+  #slide-home h1 {
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.7); }
+  #slide-home h3 {
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.7); } }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .card-home .card__top {
     height: 266px; }
