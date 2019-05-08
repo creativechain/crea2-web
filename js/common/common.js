@@ -107,8 +107,6 @@ function updateUrl(url) {
 
 
 function toHome(location) {
-    console.log('Real location:', window.location.href, 'Checked location:', location, location && window.location.href.indexOf(location) > -1);
-
     if (location) {
         if (window.location.href.indexOf(location) > -1) {
             goTo('/');
@@ -222,6 +220,7 @@ function parseAccount(account) {
 
 function parsePost(post) {
     if (post) {
+        post.link = post.author + '/' + post.permlink;
         post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
         post.body = cleanArray(post.body);
         post.metadata = jsonify(post.json_metadata);
@@ -272,6 +271,18 @@ function getAccounts(accounts, callback) {
     });
 }
 
+function getDiscussion(author, permlink, callback) {
+
+    if (typeof permlink === 'function') {
+        callback = permlink;
+        var all;
+        [all, author, permlink] = /([\w\.\d-]+)\/([\w\d-]+)/gm.exec(author);
+    } else {
+        author = /[\w\.\d-]+/gm.exec(author)[0];
+    }
+
+    crea.api.getDiscussion(author, permlink, callback);
+}
 function ignoreUser(following, ignore, callback) {
     var s = Session.getAlive();
 

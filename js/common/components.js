@@ -303,7 +303,7 @@ Vue.component('post-like-big', {
                         console.log(err, result);
 
                         if (err) {
-                            that.$emit('vote', err);
+                            that.$emit('vote', err, null, post);
                         } else {
                             if (percent > 0) {
                                 that.post.up_votes.push({
@@ -317,7 +317,7 @@ Vue.component('post-like-big', {
                                 that.removeVote(username);
                                 that.state = that.states.NO_LIKE_END;
                             }
-                            that.$emit('vote', null, result);
+                            that.$emit('vote', null, result, post);
                         }
                     });
                 });
@@ -458,7 +458,7 @@ Vue.component('post-like', {
                         console.log(err, result);
 
                         if (err) {
-                            that.$emit('vote', err);
+                            that.$emit('vote', err, null, post);
                         } else {
                             if (percent > 0) {
                                 that.post.up_votes.push({
@@ -472,7 +472,7 @@ Vue.component('post-like', {
                                 that.removeVote(username);
                                 that.state = that.states.NO_LIKE_END;
                             }
-                            that.$emit('vote', null, result);
+                            that.$emit('vote', null, result, post);
                         }
                     });
                 });
@@ -597,7 +597,7 @@ Vue.component('comment-like', {
                         console.log(err, result);
 
                         if (err) {
-                            that.$emit('vote', err);
+                            that.$emit('vote', err, null, post);
                         } else {
                             if (percent > 0) {
                                 that.post.up_votes.push({
@@ -611,7 +611,7 @@ Vue.component('comment-like', {
                                 that.removeVote(username);
                                 that.state = that.states.NO_LIKE_END;
                             }
-                            that.$emit('vote', null, result);
+                            that.$emit('vote', null, result, post);
                         }
                     });
                 });
@@ -736,7 +736,7 @@ Vue.component('like', {
                         console.log(err, result);
 
                         if (err) {
-                            that.$emit('vote', err);
+                            that.$emit('vote', err, null, post);
                         } else {
                             if (percent > 0) {
                                 that.post.up_votes.push({
@@ -750,7 +750,7 @@ Vue.component('like', {
                                 that.removeVote(username);
                                 that.state = that.states.NO_LIKE_END;
                             }
-                            that.$emit('vote', null, result);
+                            that.$emit('vote', null, result, post);
                         }
                     });
                 });

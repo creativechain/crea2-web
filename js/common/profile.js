@@ -532,8 +532,17 @@
                     onFollow: function onFollow(err, result) {
                         updateUserSession();
                     },
-                    onVote: function onVote(err, result) {
-                        updateUserSession();
+                    onVote: function onVote(err, result, post) {
+                        catchError(err);
+                        //updateUserSession();
+                        var that = this;
+                        getDiscussion(post.author, post.permlink, function (err, result) {
+                            if (!err) {
+                                var updatedPost = parsePost(result);
+                                that.state.content[updatedPost.link] = updatedPost;
+                                that.$forceUpdate();
+                            }
+                        })
                     },
                     getLicense: function getLicense(flag) {
                         if (flag) {
