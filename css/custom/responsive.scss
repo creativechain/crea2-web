@@ -499,6 +499,9 @@
       .table-amount {
         tbody {
           tr {
+            td:nth-child(1) {
+              width: 50%;
+            }
             td:nth-child(2) {
               vertical-align: top;
             }
@@ -525,9 +528,16 @@
       padding: 0;
     }
   }
+  #slide-home {
+    h1 {
+      text-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.7);
+    }
+    h3 {
+      text-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.7);
+    }
+  }
 }
 
-// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
   .card-home {
     .card__top {
@@ -602,7 +612,6 @@
   }
 }
 
-// Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0 !important;
@@ -727,7 +736,6 @@
   }
 }
 
-// Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0px !important;
@@ -762,7 +770,6 @@
 
 }
 
-// Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 40px !important;
@@ -859,9 +866,6 @@
   }
 }
 
-
-
-
 @media (min-width: 1200px) and (max-width: 2500px){
   .li-avatar-navbar {
     .dropdown__container {
@@ -874,6 +878,7 @@
     }
   }
 }
+
 @media (max-width: 640px) {
   .post-view {
     .dropdown-price .dropdown__container {
