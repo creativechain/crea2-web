@@ -343,11 +343,10 @@
                 //Avoid see feed
                 if (session) {
                     if (getPathPart() !== ('@' + session.account.username)) {
-                        window.location = '/' + getPathPart();
+                        showProfile(getPathPart());
                     }
                 } else {
-                    //Show popular
-                    window.location = '/' + getPathPart();
+                    showProfile(getPathPart());
                 }
             } else if (path.startsWith('/search')) {
                 var search = getParameterByName('query');

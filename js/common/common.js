@@ -91,11 +91,10 @@ function showPost(post) {
 }
 
 function showProfile(username) {
-    if (!username.startsWith('/@')) {
-        username = '/@' + username;
+    username = username.match(/[\w\.\d-]+/gm);
+    if (username) {
+        goTo('/@' + username);
     }
-
-    goTo(username);
 }
 
 function updateUrl(url) {
