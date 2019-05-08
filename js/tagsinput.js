@@ -471,6 +471,7 @@
           var text = e.originalEvent.clipboardData.getData('text');
 
           var matched = text.match(/^[a-z0-9-]+$/i);
+          console.log('paste', text, matched);
           if (!matched) {
             e.preventDefault();
           }
@@ -507,9 +508,7 @@
          }
 
         if (self.options.alphanumeric) {
-          console.log(event);
-          var text = event.key;
-
+          var text = String.fromCharCode(event.which);
           var matched = text.match(/^[a-z0-9-]+$/i);
           if (!matched) {
             event.preventDefault();
