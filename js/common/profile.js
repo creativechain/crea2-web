@@ -1346,7 +1346,16 @@
     }
 
     function handleSession(session, account) {
+        var settingsPart = getPathPart(1);
+
         if (session) {
+            if (settingsPart) {
+                var username = getPathPart();
+                if ('@' + session.account.username !== username) {
+                    showProfile(username);
+                    return;
+                }
+            }
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
 
             if (session.account.username === account.user.name) {
@@ -1362,6 +1371,11 @@
                     disableTo: false
                 };
             }
+        } else if (settingsPart) {
+            var username = getPathPart();
+            showProfile(username);
+            return;
+
         }
 
         handleView(session, account);
