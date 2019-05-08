@@ -1350,7 +1350,6 @@
             account.user.cgy_balance = '0.000 ' + apiOptions.symbol.CGY;
 
             if (session.account.username === account.user.name) {
-                lang = lang;
                 defaultModalConfig = {
                     op: 'transfer_crea',
                     title: lang.WALLET.TRANSFER_CREA_TITLE,
