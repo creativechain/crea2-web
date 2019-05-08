@@ -45,10 +45,10 @@ $(document).ready(function () {
 
 
 
-    $("input[type=text], textarea").on({ 'touchstart' : function() {
+    $("input[type=text], input[type=password], textarea").on({ 'touchstart' : function() {
             zoomDisable();
         }});
-    $("input[type=text], textarea").on({ 'touchend' : function() {
+    $("input[type=text], input[type=password], textarea").on({ 'touchend' : function() {
             setTimeout(zoomEnable, 500);
         }});
 
