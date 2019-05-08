@@ -339,7 +339,17 @@
                 creaEvents.emit('crea.content.filter', '/popular');
             }
         } else {
-            if (path.startsWith('/search')) {
+            if (isUserFeed(getPathPart())) {
+                //Avoid see feed
+                if (session) {
+                    if (getPathPart() !== ('@' + session.account.username)) {
+                        window.location = '/404';
+                    }
+                } else {
+                    //Show popular
+                    window.location = '/404';
+                }
+            } else if (path.startsWith('/search')) {
                 var search = getParameterByName('query');
                 var page = getParameterByName('page') || 1;
                 performSearch(search, page, true);
