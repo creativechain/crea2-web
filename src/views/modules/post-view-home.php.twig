@@ -82,9 +82,9 @@
                                                 <p class="user  text-truncate">
                                                     <linkname v-bind:user="state.content[p].author"></linkname>
                                                 </p>
-                                                <p class="description-user text-truncate">{{ '{{ state.accounts[state.content[p].author].metadata.about || "-" }}' }}</p>
+                                                <p class="description-user text-truncate">{{ '{{ state.accounts[state.content[p].author].metadata.about || "" }}' }}</p>
                                                 <p class="email-user text-truncate">
-                                                    {{ '{{ state.accounts[state.content[p].author].metadata.contact || state.accounts[state.content[p].author].metadata.web || "-" }}' }}
+                                                    {{ '{{ state.accounts[state.content[p].author].metadata.contact || state.accounts[state.content[p].author].metadata.web || "" }}' }}
                                                 </p>
                                             </div>
                                         </div>
