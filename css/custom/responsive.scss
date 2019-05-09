@@ -528,14 +528,7 @@
       padding: 0;
     }
   }
-  #slide-home {
-    h1 {
-      text-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.7);
-    }
-    h3 {
-      text-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.7);
-    }
-  }
+
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -764,6 +757,13 @@
       height: 191px ;
       .img-post-list {
         height: 191px ;
+      }
+    }
+  }
+  .view-publish {
+    .step-1 {
+      .btn {
+        min-width: 100%;
       }
     }
   }

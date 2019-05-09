@@ -1900,8 +1900,13 @@ a:hover {
 #slide-home {
   padding: 75px 0 0;
   min-height: 360px; }
+  #slide-home h1 {
+    font-weight: bold;
+    text-shadow: 0 0 50px black, 0 0 1px rgba(255, 255, 255, 0.7); }
+  #slide-home h3 {
+    text-shadow: 0 0 30px black, 0 0 1px rgba(255, 255, 255, 0.7); }
   #slide-home h1, #slide-home h3, #slide-home span {
-    color: white; }
+    color: white !important; }
   #slide-home .background-image-holder {
     height: 360px; }
   #slide-home h3 {
@@ -2501,12 +2506,7 @@ img {
 
   .project-profile .masonry__item {
     width: 100%;
-    padding: 0; }
-
-  #slide-home h1 {
-    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.7); }
-  #slide-home h3 {
-    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.7); } }
+    padding: 0; } }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .card-home .card__top {
     height: 266px; }
@@ -2690,7 +2690,10 @@ img {
   .view-profile .card__top {
     height: 191px; }
     .view-profile .card__top .img-post-list {
-      height: 191px; } }
+      height: 191px; }
+
+  .view-publish .step-1 .btn {
+    min-width: 100%; } }
 @media (min-width: 1200px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 40px !important; }
