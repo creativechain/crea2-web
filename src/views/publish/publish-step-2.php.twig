@@ -11,11 +11,12 @@
                     <p>{{ lang.PUBLISH.INFO_IMAGE }}</p>
                     <p class="disabled">{{ '{{ String.format(lang.PUBLISH.IMAGE_MAX_FILE_SIZE, humanFileSize(CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW.IMAGE)) }}' }}</p>
                 </div>
-                <div v-else>
-                    <img v-bind:src="featuredImage.url" alt="" />
+                <div v-else class="upload-img">
                     <div class="delete-img-step-1">
                         <a href="#">X</a>
                     </div>
+                    <img v-bind:src="featuredImage.url" alt="" />
+
                 </div>
             </div>
             <div class="pos-vertical-center text-center hidden">
@@ -28,11 +29,12 @@
                             </div>
                         </div>
                     </div>
-                    <div v-else>
-                        <img v-bind:src="featuredImage.url" alt="" />
+                    <div v-else class="upload-img">
                         <div class="delete-img-step-1">
                             <a href="#">X</a>
                         </div>
+                        <img v-bind:src="featuredImage.url" alt="" />
+
                     </div>
                 </div>
             </div>
