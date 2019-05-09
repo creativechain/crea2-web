@@ -2728,8 +2728,14 @@ img {
   .view-profile .card__top {
     height: 198px; }
     .view-profile .card__top .img-post-list {
-      height: 198px; } }
+      height: 198px; }
+
+  #slide-home h3 {
+    max-width: 430px; } }
 @media (min-width: 1500px) {
+  #slide-home h3 {
+    max-width: 430px; }
+
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 120px !important; }
 
