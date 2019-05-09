@@ -1902,9 +1902,9 @@ a:hover {
   min-height: 360px; }
   #slide-home h1 {
     font-weight: bold;
-    text-shadow: 0 0 20px black, 0 0 1px rgba(255, 255, 255, 0.7); }
+    text-shadow: 0 0 50px black, 0 0 1px rgba(255, 255, 255, 0.7); }
   #slide-home h3 {
-    text-shadow: 0 0 20px black, 0 0 1px rgba(255, 255, 255, 0.7); }
+    text-shadow: 0 0 30px black, 0 0 1px rgba(255, 255, 255, 0.7); }
   #slide-home h1, #slide-home h3, #slide-home span {
     color: white !important; }
   #slide-home .background-image-holder {
