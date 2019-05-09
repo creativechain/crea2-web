@@ -352,6 +352,9 @@
                 if (session) {
                     if (getPathPart() !== ('@' + session.account.username)) {
                         showProfile(getPathPart());
+                    } else {
+                        //Show user feed
+                        creaEvents.emit('crea.content.filter', path);
                     }
                 } else {
                     showProfile(getPathPart());

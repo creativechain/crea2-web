@@ -14,7 +14,7 @@
                 if (err) {
                     console.error(err);
 
-                    if (err == Errors.USER_LOGIN_ERROR) {
+                    if (err === Errors.USER_LOGIN_ERROR) {
                         session.logout();
                     }
 
