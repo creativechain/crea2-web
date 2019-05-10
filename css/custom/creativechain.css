@@ -577,15 +577,36 @@
   margin-top: 10px; }
 .view-publish .step-1 p.disabled {
   color: #999999; }
+.view-publish .step-2 .upload-img {
+  position: relative;
+  margin-bottom: 10px;
+  text-align: center; }
+  .view-publish .step-2 .upload-img p {
+    word-break: break-word;
+    word-break: all;
+    padding: 0 40px 0 0; }
+  .view-publish .step-2 .upload-img .delete-img-step-1 {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    border: solid 1px #ececec; }
+    .view-publish .step-2 .upload-img .delete-img-step-1 a {
+      color: #999999;
+      position: relative;
+      top: -1px; }
+  .view-publish .step-2 .upload-img video {
+    width: 100%; }
 .view-publish .step-2 p.disabled {
   color: #999999; }
 .view-publish .step-2 .box-image-step-2 {
   min-height: 300px; }
   .view-publish .step-2 .box-image-step-2 .img-protada {
     margin-top: 60px; }
-  .view-publish .step-2 .box-image-step-2 .row-image div {
-    text-align: center;
-    width: 100%; }
 .view-publish .step-2 .row-options-steps-1 {
   margin-top: 160px;
   margin-bottom: -50px; }
