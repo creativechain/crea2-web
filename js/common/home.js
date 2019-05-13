@@ -76,6 +76,7 @@
                     urlFilter: urlFilter,
                     state: state,
                     search: getParameterByName('query'),
+                    simpleView: false,
                     lang: lang
                 },
                 updated: function updated() {
@@ -86,6 +87,10 @@
                 },
                 methods: {
                     getDefaultAvatar: R.getAvatar,
+                    toggleSimpleView: function () {
+                        this.simpleView = !this.simpleView;
+                        console.log('SimpleView', this.simpleView)
+                    },
                     onFollow: function onFollow(err, result) {
                         //creaEvents.emit('crea.content.filter', this.urlFilter);
                         updateUserSession();
@@ -625,4 +630,11 @@
             });
         }
     });
+
+
+    creaEvents.on('crea.dom.ready', function () {
+        $("#view-changer").click(function () {
+            homePosts.toggleSimpleView();
+        });
+    })
 })();

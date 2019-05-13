@@ -251,7 +251,8 @@
                         checkedStoredPass: false,
                         error: null
                     },
-                    nextDeEnergize: nextDeEnergize
+                    nextDeEnergize: nextDeEnergize,
+                    simpleView: false //No used, but is needed
                 },
                 updated: function updated() {
                     var t = $('#wallet-tabs').prev();
