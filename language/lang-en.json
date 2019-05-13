@@ -33,7 +33,7 @@
                 "",
                 "1. Wait for it to recharge again. Each day 22% will be refilled, therefore to have 100% FLOW you will need 5 days.",
                 "",
-                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/  you can access different services that sell or exchange CREA."],
+                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/  you can access different services that sell or exchange CREA."]
         },
         "PERMLINK_ALREADY_EXISTS" : {
             "TITLE": "Invalid title or Permlink",
@@ -338,7 +338,7 @@
         "NO_POSTS_PUBLISH": "Post your work.",
         "NO_POSTS_EXPLORE": "Explore the trending works.",
         "NO_POSTS_FAQ": "Frequently Asked Questions.",
-        "NO_POSTS_PROFILE": "There are no projects related to this user.",
+        "NO_POSTS_PROFILE": "There are no projects related to this user."
     },
     "COIN_MARKETS": {"TITLE": "Coin markets"},
     "WALLET": {
