@@ -33,7 +33,7 @@
                 "",
                 "1. Wait for it to recharge again. Each day 22% will be refilled, therefore to have 100% FLOW you will need 5 days.",
                 "",
-                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/  you can access different services that sell or exchange CREA."]
+                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/  you can access different services that sell or exchange CREA."],
         },
         "PERMLINK_ALREADY_EXISTS" : {
             "TITLE": "Invalid title or Permlink",
@@ -41,6 +41,10 @@
                 "It has been detected that you already have a post with the same permlink as this one. This happens when the title you intend to use is very similar to an existing one and generates the same link.",
                 "If you are trying to make an edit, please use the \"Edit Post\" button that you will find on the post page."
             ]
+        },
+        "ACCOUNT_UPDATE_THRESHOLD_EXCEEDED": {
+            "TITLE": "Account update",
+            "BODY": "The account can not be updated more than once in less than 1 hour. Last time: %s."
         }
 
     },
@@ -335,8 +339,6 @@
         "NO_POSTS_EXPLORE": "Explore the trending works.",
         "NO_POSTS_FAQ": "Frequently Asked Questions.",
         "NO_POSTS_PROFILE": "There are no projects related to this user.",
-        "UPDATE_ACCOUNT_TITLE": "Account update",
-        "UPDATE_ACCOUNT_MESSAGE": "The account can not be updated more than once in less than 1 hour. Last time: %s."
     },
     "COIN_MARKETS": {"TITLE": "Coin markets"},
     "WALLET": {

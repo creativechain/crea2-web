@@ -363,7 +363,6 @@ var postUploads = {};
                             if (!err) {
                                 console.log('Preview uploaded', uploadedPreview);
                                 publishContainer.featuredImage = uploadedPreview;
-                                //Vue.set(publishContainer, 'featuredImage', uploadedPreview);
                                 console.log('Featured image loaded!');
                             } else {
                                 console.error(err, newFiles.resized);

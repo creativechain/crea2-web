@@ -1105,8 +1105,8 @@
             }
         } else {
             //Show alert to avoid update
-            var title = lang.PROFILE.UPDATE_ACCOUNT_TITLE;
-            var message = String.format(lang.PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
+            var title = lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.TITLE;
+            var message = String.format(lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.BODY, moment(lastUpdate).fromNow())
             showAlert(title, message);
         }
     }

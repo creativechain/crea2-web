@@ -590,7 +590,7 @@ function catchError(err) {
 function showAlert(title, body) {
     var config = {
         title: title,
-        body: body
+        body: typeof body === 'string' ? [body] : body
     };
 
     creaEvents.emit('crea.alert', config);
