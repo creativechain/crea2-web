@@ -6,7 +6,7 @@
         <span class="h5 text-truncate" v-if="profile.publicName">{{ '{{ profile.publicName }}' }}</span>
         <p class="mb-2 nameUser text-truncate">{{ '{{ "@" + state.user.name }}' }}</p>
         <p class="mb-0 text-truncate" v-if="profile.web"><a target="_blank" v-bind:href="toUrl(profile.web) || '#'">{{ '{{ profile.web }}' }}</a></p>
-        <p class="text-truncate" v-if="profile.about">{{ '{{ profile.about }}' }}</p>
+        <p v-if="profile.about">{{ '{{ profile.about }}' }}</p>
     </div>
     <div v-if="profile.contact" class="row">
         <div class="col text-center">
