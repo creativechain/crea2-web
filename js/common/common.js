@@ -559,7 +559,8 @@ function catchError(err) {
                 console.error(message);
 
                 //RC Special case
-                if (message === ' Account does not have enough flow to vote.') {
+                if (message === ' Account does not have enough flow to vote.' ||
+                    message.includes('RC. Please wait to transact, or energize CREA.')) {
                     title = lang.ERROR.INSUFFICIENT_RC.TITLE;
                     body = lang.ERROR.INSUFFICIENT_RC.BODY;
                     console.log(body)
