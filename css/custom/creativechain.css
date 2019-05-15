@@ -254,9 +254,22 @@
 .view-profile .menu-profile-user .h5 {
   font-size: 14px;
   font-weight: 600; }
-.view-profile .menu-profile-user .ranking-user-info img {
-  width: 16px;
-  margin-right: 5px; }
+.view-profile .menu-profile-user .ranking-user-info .title-buzz-info-profile {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase; }
+.view-profile .menu-profile-user .ranking-user-info .ul-buzz-profile {
+  margin-top: 0;
+  margin-bottom: -7px; }
+  .view-profile .menu-profile-user .ranking-user-info .ul-buzz-profile .li-buzz {
+    margin-right: 7px; }
+    .view-profile .menu-profile-user .ranking-user-info .ul-buzz-profile .li-buzz .img-buzz {
+      height: 20px;
+      width: 18px;
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: contain; }
 
 .view-rewards .box-rewards-autor {
   font-size: 14px; }
@@ -519,6 +532,8 @@
   position: relative;
   margin-bottom: 10px;
   text-align: center; }
+  .view-publish .step-1 .upload-img div:not(.delete-img-step-1) {
+    text-align: left; }
   .view-publish .step-1 .upload-img p {
     word-break: break-word;
     word-break: all;
@@ -723,14 +738,18 @@
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     text-decoration: none !important;
     color: #222222 !important; }
+    .post-view .row-title .user-data .name p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 167px; }
   .post-view .row-title .user-data .title {
     font-size: 14px;
     font-weight: bold; }
+  .post-view .row-title .user-data .ul-buzz-profile li .text-buzz {
+    font-size: 14px; }
 .post-view .row-title .dropdown-price {
   padding-top: 2px;
   padding-left: 11px; }
@@ -759,7 +778,7 @@
   .post-view .row-title .dropdown-price:hover span {
     color: #0073FF; }
 .post-view .row-title .stats-post {
-  margin-top: 20px; }
+  margin-top: 23px; }
 .post-view .row-title .ul-social {
   padding-left: 17px; }
   .post-view .row-title .ul-social p {
@@ -2097,6 +2116,45 @@ img {
     margin-left: 10px; }
   .card-home .row-flex {
     display: flex; }
+
+.li-buzz .img-buzz {
+  height: 20px;
+  width: 18px;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain; }
+.li-buzz .img-buzz.advanced {
+  background-image: url("/img/buzz/advanced.svg"); }
+.li-buzz .img-buzz.advanced:hover {
+  background-image: url("/img/buzz/advanced_active.svg "); }
+.li-buzz .img-buzz.expert {
+  background-image: url("/img/buzz/expert.svg"); }
+.li-buzz .img-buzz.expert:hover {
+  background-image: url("/img/buzz/expert_active.svg "); }
+.li-buzz .img-buzz.genius {
+  background-image: url("/img/buzz/genius.svg"); }
+.li-buzz .img-buzz.genius:hover {
+  background-image: url("/img/buzz/genius_active.svg "); }
+.li-buzz .img-buzz.guru {
+  background-image: url("/img/buzz/guru.svg"); }
+.li-buzz .img-buzz.guru:hover {
+  background-image: url("/img/buzz/guru_active.svg"); }
+.li-buzz .img-buzz.influencer {
+  background-image: url("/img/buzz/influencer.svg"); }
+.li-buzz .img-buzz.influencer:hover {
+  background-image: url("/img/buzz/influencer_active.svg"); }
+.li-buzz .img-buzz.master {
+  background-image: url("/img/buzz/master.svg"); }
+.li-buzz .img-buzz.master:hover {
+  background-image: url("/img/buzz/master_active.svg"); }
+.li-buzz .img-buzz.novice {
+  background-image: url("/img/buzz/novice.svg"); }
+.li-buzz .img-buzz.novice:hover {
+  background-image: url("/img/buzz/novice_active.svg"); }
+.li-buzz .img-buzz.trainee {
+  background-image: url("/img/buzz/trainee.svg "); }
+.li-buzz .img-buzz.trainee:hover {
+  background-image: url("/img/buzz/trainee_active.svg "); }
 
 .dropdown .dropdown__content {
   border-radius: 1px;

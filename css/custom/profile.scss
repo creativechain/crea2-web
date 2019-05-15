@@ -207,9 +207,26 @@
       font-weight: 600;
     }
     .ranking-user-info {
-      img {
-        width: 16px;
-        margin-right: 5px;
+
+      .title-buzz-info-profile {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+      .ul-buzz-profile {
+        margin-top: 0;
+        margin-bottom: -7px;
+        .li-buzz {
+          margin-right: 7px;
+          .img-buzz {
+            height: 20px;
+            width: 18px;
+            background-repeat: no-repeat;
+            background-position: left;
+            background-size: contain;
+          }
+        }
       }
     }
   }

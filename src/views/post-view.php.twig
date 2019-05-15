@@ -14,8 +14,17 @@
                             </div>
                             <div class="user-data">
                                 <h3 class="mb-0 text-truncate title">{{ '{{ state.post.title }}' }}</h3>
-                                <username class="name color--link" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
+                                <ul class="list-inline list-unstyled w-100 ul-buzz-profile">
+                                    <li class="list-inline-item float-left">
+                                        <username class="name color--link" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
+                                    </li>
+                                    <li class="li-buzz list-inline-item float-left">
+                                        <div class="img-buzz master"></div>
+                                    </li>
+                                    <li class="list-inline-item float-right"><span class="text-buzz">12345</span></li>
+                                </ul>
                             </div>
+
                         </div>
                     </div>
 

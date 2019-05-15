@@ -589,6 +589,65 @@ img {
   .row-flex {
     display: flex;
   }
+
+}
+
+.li-buzz {
+  .img-buzz {
+    height: 20px;
+    width: 18px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain ;
+  }
+  .img-buzz.advanced {
+    background-image: url("/img/buzz/advanced.svg");
+  }
+  .img-buzz.advanced:hover {
+    background-image: url("/img/buzz/advanced_active.svg ");
+  }
+  .img-buzz.expert {
+    background-image: url("/img/buzz/expert.svg");
+  }
+  .img-buzz.expert:hover {
+    background-image: url("/img/buzz/expert_active.svg ");
+  }
+  .img-buzz.genius {
+    background-image: url("/img/buzz/genius.svg");
+  }
+  .img-buzz.genius:hover {
+    background-image: url("/img/buzz/genius_active.svg ");
+  }
+  .img-buzz.guru {
+    background-image: url("/img/buzz/guru.svg");
+  }
+  .img-buzz.guru:hover {
+    background-image: url("/img/buzz/guru_active.svg");
+  }
+  .img-buzz.influencer {
+    background-image: url("/img/buzz/influencer.svg");
+  }
+  .img-buzz.influencer:hover {
+    background-image: url("/img/buzz/influencer_active.svg");
+  }
+  .img-buzz.master {
+    background-image: url("/img/buzz/master.svg");
+  }
+  .img-buzz.master:hover {
+    background-image: url("/img/buzz/master_active.svg");
+  }
+  .img-buzz.novice {
+    background-image: url("/img/buzz/novice.svg");
+  }
+  .img-buzz.novice:hover {
+    background-image: url("/img/buzz/novice_active.svg");
+  }
+  .img-buzz.trainee {
+    background-image: url("/img/buzz/trainee.svg ");
+  }
+  .img-buzz.trainee:hover {
+    background-image: url("/img/buzz/trainee_active.svg ");
+  }
 }
 .dropdown .dropdown__content {
   border-radius: 1px;

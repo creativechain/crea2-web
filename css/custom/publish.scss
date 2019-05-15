@@ -36,6 +36,9 @@
       position: relative;
       margin-bottom: 10px;
       text-align: center;
+      div:not(.delete-img-step-1) {
+        text-align: left;
+      }
       p {
         word-break: break-word;
         word-break: all;
