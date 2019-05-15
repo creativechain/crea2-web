@@ -528,6 +528,13 @@
       padding: 0;
     }
   }
+  .card-home {
+    .li-buzz {
+      .dropdown .dropdown__content {
+        left: -140px !important;
+      }
+    }
+  }
 
 }
 
@@ -813,6 +820,14 @@
         height: 278px ;
       }
     }
+    .li-buzz {
+      .dropdown__container.dropdown-info-user {
+        left: -165px !important;
+      }
+      .dropdown .dropdown__content {
+        left: 70px !important;
+      }
+    }
   }
   .view-profile {
     .card__top {
@@ -871,6 +886,14 @@
       height: 228px;
       .img-post-list {
         height: 228px;
+      }
+    }
+    .li-buzz {
+      .dropdown__container.dropdown-info-user {
+        left: -105px !important;
+      }
+      .dropdown .dropdown__content {
+        left: 0px !important;
       }
     }
   }
