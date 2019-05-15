@@ -2149,7 +2149,8 @@ img {
 .li-buzz .img-buzz.master:hover {
   background-image: url("/img/buzz/master_active.svg"); }
 .li-buzz .img-buzz.novice {
-  background-image: url("/img/buzz/novice.svg"); }
+  background-image: url("/img/buzz/novice.svg");
+  width: 20px; }
 .li-buzz .img-buzz.novice:hover {
   background-image: url("/img/buzz/novice_active.svg"); }
 .li-buzz .img-buzz.trainee {
