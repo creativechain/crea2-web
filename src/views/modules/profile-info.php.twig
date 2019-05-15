@@ -51,10 +51,10 @@
             <div class="col-12 ">
                 <ul class="list-inline list-unstyled w-100 ul-buzz-profile">
                     <li class="li-buzz list-inline-item float-left">
-                        <div class="img-buzz master"></div>
+                        <div class="img-buzz" v-bind:class="getBuzzClass(state.user)"></div>
                     </li>
-                    <li class="list-inline-item float-left"><span>Traineer</span></li>
-                    <li class="list-inline-item float-right"><span>1234</span></li>
+                    <li class="list-inline-item float-left"><span>{{ '{{ state.user.buzz.level_title }}' }}</span></li>
+                    <li class="list-inline-item float-right"><span>{{ '{{ state.user.buzz.formatted }}' }}</span></li>
                 </ul>
 
             </div>

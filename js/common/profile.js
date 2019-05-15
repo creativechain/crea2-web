@@ -408,8 +408,12 @@
                         var date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                     },
-                    getBuzz: function getBuzz(reputation) {
-                        return crea.formatter.reputation(reputation);
+                    getBuzzClass: function getBuzzClass(account) {
+                        var buzzClass = {};
+                        var levelName = account.buzz.level_name;
+
+                        buzzClass[levelName] = true;
+                        return buzzClass;
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;
@@ -1216,8 +1220,7 @@
             } else {
                 var accounts = Object.keys(state.accounts);
                 accounts.forEach(function (k) {
-                    state.accounts[k].metadata = jsonify(state.accounts[k].json_metadata);
-                    state.accounts[k].metadata.avatar = state.accounts[k].metadata.avatar || {};
+                    state.accounts[k] = parseAccount(state.accounts[k]);
                 });
 
                 if (state.accounts[username]) {

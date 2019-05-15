@@ -19,9 +19,9 @@
                                         <username class="name color--link" v-bind:inline="1" v-bind:user="state.author.name" v-bind:name="state.author.metadata.publicName"></username>
                                     </li>
                                     <li class="li-buzz list-inline-item float-left">
-                                        <div class="img-buzz master"></div>
+                                        <div class="img-buzz" v-bind:class="getBuzzClass(state.author)"></div>
                                     </li>
-                                    <li class="list-inline-item float-right"><span class="text-buzz">12345</span></li>
+                                    <li class="list-inline-item float-right"><span class="text-buzz">{{ '{{ state.author.buzz.formatted }}' }}</span></li>
                                 </ul>
                             </div>
 

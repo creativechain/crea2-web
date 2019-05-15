@@ -64,7 +64,11 @@ var CONSTANTS = {
         TAG: 21,
         PERMLINK: 255
     },
-    MAX_TAGS: 8
+    MAX_TAGS: 8,
+    BUZZ: {
+        MAX_LOG_NUM: 20,
+        LEVELS: ['novice', 'trainee', 'advanced', 'expert', 'influencer', 'master', 'guru', 'genius']
+    }
 };
 creaEvents.on('crea.session.login', function (session, account) {
     showBanner(session == false);
@@ -212,6 +216,16 @@ function parseAccount(account) {
     if (account) {
         account.metadata = jsonify(account.json_metadata);
         account.metadata.avatar = account.metadata.avatar || {};
+
+        account.metadata.adult_content = account.metadata.adult_content || 'hide';
+        account.metadata.post_rewards = account.metadata.post_rewards || '50';
+        account.metadata.comment_rewards = account.metadata.comment_rewards || '50';
+        account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
+
+        account.buzz = crea.formatter.reputation(account.reputation, CONSTANTS.BUZZ.LEVELS.length, CONSTANTS.BUZZ.MAX_LOG_NUM);
+        account.buzz.level_name = CONSTANTS.BUZZ.LEVELS[account.buzz.level -1];
+        account.buzz.level_title = lang.BUZZ[account.buzz.level -1];
+        //console.log(jsonify(jsonstring(account)));
         return account;
     }
 

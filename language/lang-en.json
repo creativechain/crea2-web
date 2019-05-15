@@ -524,6 +524,9 @@
         "THATS_ERROR": "That’s an error.",
         "WE_KNOW": "That’s all we know."
     },
+    "BUZZ": [
+        "Novice", "Trainee", "Advanced", "Expert", "Influencer", "Master", "Guru", "Genius"
+    ],
     "METADATA": {
         "/": {
             "TITLE": "Creary - Best of Creary",
