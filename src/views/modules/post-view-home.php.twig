@@ -134,7 +134,9 @@
                                     <div class="col-12 col-sm-3 col-md-12 dropdown__content">
                                         <div class="row">
                                             <div class="col text-center">
-                                                <span>{{ '{{ state.accounts[state.content[p].author].buzz.level_title }}' }}</span>
+                                                <span>
+                                                    {{ '{{ state.accounts[state.content[p].author].buzz.level_title }} ({{ state.accounts[state.content[p].author].buzz.formatted }})' }}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
