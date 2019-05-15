@@ -223,6 +223,10 @@ function parseAccount(account) {
         account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
 
         account.buzz = crea.formatter.reputation(account.reputation, CONSTANTS.BUZZ.LEVELS.length, CONSTANTS.BUZZ.MAX_LOG_NUM);
+        //Level 1 for bad users
+        if (account.buzz.level <= 0) {
+            account.buzz.level = 1
+        }
         account.buzz.level_name = CONSTANTS.BUZZ.LEVELS[account.buzz.level -1];
         account.buzz.level_title = lang.BUZZ[account.buzz.level -1];
         //console.log(jsonify(jsonstring(account)));
