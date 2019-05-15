@@ -793,6 +793,9 @@
     margin: 0 auto; }
     .post-view .row-title .ul-social .row-likes .position-relative {
       top: 0; }
+  .post-view .row-title .ul-social .post-like-count.dropdown--active .dropdown__container {
+    pointer-events: auto;
+    z-index: 1000; }
   .post-view .row-title .ul-social .post-like-count {
     position: relative;
     top: 1px;
