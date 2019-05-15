@@ -599,6 +599,7 @@ img {
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain ;
+    margin-top: 1px;
   }
   .img-buzz.advanced {
     background-image: url("/img/buzz/advanced.svg");
@@ -644,6 +645,7 @@ img {
   }
   .img-buzz.trainee {
     background-image: url("/img/buzz/trainee.svg ");
+    width: 16px ;
   }
   .img-buzz.trainee:hover {
     background-image: url("/img/buzz/trainee_active.svg ");
