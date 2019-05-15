@@ -1,6 +1,12 @@
-<svg id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <g id="Layer_2-2_1_">
-    <path id="Trazado_10159" data-name="Trazado 10159" d="M44.722,42.742H42.868v-7.2H40.5V34h6.589v1.54H44.722Z" transform="translate(-33.795 -28.371)" fill="#505050"/>
-    <path id="Trazado_10160" data-name="Trazado 10160" d="M18.146,1.8V18.113H1.838V1.8H18.146M20,0H0V20H20Z" fill="#505050"/>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#505050;}
+</style>
+<g id="Layer_2-2_1_">
+	<path id="Trazado_10159" class="st0" d="M10.9,14.4H9.1V7.2H6.7V5.6h6.6v1.5h-2.4V14.4z"/>
+	<path id="Trazado_10160" class="st0" d="M18.1,1.8v16.3H1.8V1.8H18.1 M20,0H0v20h20V0z"/>
+</g>
 </svg>

@@ -2122,7 +2122,8 @@ img {
   width: 18px;
   background-repeat: no-repeat;
   background-position: right;
-  background-size: contain; }
+  background-size: contain;
+  margin-top: 1px; }
 .li-buzz .img-buzz.advanced {
   background-image: url("/img/buzz/advanced.svg"); }
 .li-buzz .img-buzz.advanced:hover {
@@ -2152,7 +2153,8 @@ img {
 .li-buzz .img-buzz.novice:hover {
   background-image: url("/img/buzz/novice_active.svg"); }
 .li-buzz .img-buzz.trainee {
-  background-image: url("/img/buzz/trainee.svg "); }
+  background-image: url("/img/buzz/trainee.svg ");
+  width: 16px; }
 .li-buzz .img-buzz.trainee:hover {
   background-image: url("/img/buzz/trainee_active.svg "); }
 
