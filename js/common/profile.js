@@ -408,8 +408,12 @@
                         var date = new Date(this.state.user.created);
                         return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
                     },
-                    getBuzz: function getBuzz(reputation) {
-                        return crea.formatter.reputation(reputation);
+                    getBuzzClass: function getBuzzClass(account) {
+                        var buzzClass = {};
+                        var levelName = account.buzz.level_name;
+
+                        buzzClass[levelName] = true;
+                        return buzzClass;
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;
@@ -1105,8 +1109,8 @@
             }
         } else {
             //Show alert to avoid update
-            var title = lang.PROFILE.UPDATE_ACCOUNT_TITLE;
-            var message = String.format(lang.PROFILE.UPDATE_ACCOUNT_MESSAGE, moment(lastUpdate).fromNow());
+            var title = lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.TITLE;
+            var message = String.format(lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.BODY, moment(lastUpdate).fromNow())
             showAlert(title, message);
         }
     }
@@ -1216,8 +1220,7 @@
             } else {
                 var accounts = Object.keys(state.accounts);
                 accounts.forEach(function (k) {
-                    state.accounts[k].metadata = jsonify(state.accounts[k].json_metadata);
-                    state.accounts[k].metadata.avatar = state.accounts[k].metadata.avatar || {};
+                    state.accounts[k] = parseAccount(state.accounts[k]);
                 });
 
                 if (state.accounts[username]) {
@@ -1393,6 +1396,7 @@
 
             if (lastPage) {
                 var beforeDate = new Date().toISOString().replace('Z', '');
+                console.log(clone(lastPage), beforeDate);
                 crea.api.getDiscussionsByAuthorBeforeDate(lastPage.author, lastPage.permlink, beforeDate, 21, function (err, result) {
                     if (err) {
                         console.error(err);
@@ -1404,6 +1408,7 @@
                         discussions.shift();
 
                         //Sort discussions
+                        //Nodes return discussion ordered by last update
                         discussions.sort(function (k1, k2) {
                             var d1 = toLocaleDate(k1.created);
                             var d2 = toLocaleDate(k2.created);
@@ -1416,6 +1421,7 @@
                             var permlink = d.author + '/' + d.permlink;
                             profileContainer.state.content[permlink] = d;
                             profileContainer.state.discussion_idx[''].push(permlink);
+
                         }
 
                         var contentArray = profileContainer.state.discussion_idx[''];

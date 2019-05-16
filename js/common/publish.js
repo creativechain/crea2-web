@@ -3,9 +3,13 @@
 /**
  * Created by ander on 12/10/18.
  */
+var publishContainer;
+var postUploads = {};
 (function () {
-    var publishContainer;
+
     var session, account;
+
+
 
     function setUp(editablePost) {
         var downloadFile = {
@@ -210,12 +214,18 @@
                             } else {
 
                                 that.bodyElements.push(file);
+                                postUploads[file.hash] = loadedFile;
                                 that.error = null;
 
-                                //Set first loaded image as preview
-                                if (file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
-                                    resizeImage(loadedFile, function (resizedFile) {
-                                        var maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
+                                resizeImage(loadedFile, function (resizedFile) {
+                                    var maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
+                                    postUploads[file.hash] = {
+                                        original: loadedFile,
+                                        resized: resizedFile
+                                    };
+
+                                    //Set first loaded image as preview
+                                    if (file.type.indexOf('image/') > -1 && !that.featuredImage.hash) {
                                         uploadToIpfs(resizedFile, maximumPreviewSize, function (err, uploadedPreview) {
                                             if (!err) {
                                                 that.featuredImage = uploadedPreview;
@@ -225,8 +235,9 @@
                                             }
 
                                         })
-                                    })
-                                }
+                                    }
+
+                                });
 
                                 //Clear input
                                 var elem = that.$refs.publishInputFile;
@@ -249,6 +260,7 @@
 
                                 if (!catchError(err)) {
                                     that.featuredImage = file;
+                                    postUploads[file.hash] = loadedFile;
                                     that.error = null;
                                 }
                             });
@@ -327,7 +339,44 @@
 
     function removeElement(index) {
         if (index > -1 && index <= publishContainer.bodyElements.length - 1) {
+            var element = publishContainer.bodyElements[index];
             publishContainer.bodyElements.splice(index, 1);
+
+            //If preview image = element, so set preview image next image in post
+            if (element.type.includes('image/')) {
+                var files = postUploads[element.hash];
+                if (files.resized.name === publishContainer.featuredImage.name && files.resized.size === publishContainer.featuredImage.size) {
+                    publishContainer.featuredImage = {};
+                    delete postUploads[element.hash];
+                }
+            }
+
+            if (!publishContainer.featuredImage.hash) {
+                //Set first image of post body as featuredImage
+                for (var x = 0; x < publishContainer.bodyElements.length; x++) {
+                    var bodyEl = publishContainer.bodyElements[x];
+                    if (bodyEl.type.includes('image/')) {
+                        var maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW['IMAGE'];
+                        var newFiles = postUploads[bodyEl.hash];
+                        console.log('Selected new featured image', newFiles.resized.name, bodyEl.hash);
+                        uploadToIpfs(newFiles.resized, maximumPreviewSize, function (err, uploadedPreview) {
+                            if (!err) {
+                                console.log('Preview uploaded', uploadedPreview);
+                                publishContainer.featuredImage = uploadedPreview;
+                                console.log('Featured image loaded!');
+                            } else {
+                                console.error(err, newFiles.resized);
+                            }
+
+                        });
+
+                        break;
+                    }
+                }
+            }
+
+            publishContainer.$forceUpdate();
+
         }
     }
 

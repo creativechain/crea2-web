@@ -53,7 +53,7 @@
 
         <div class="card__bottom card-show">
             <ul class="list-inline list-unstyled w-100">
-                <li class="w-100">
+                <li class="list-inline-item">
                     <div class="dropdown dropdown-autor">
                         <div class="row-flex">
                             <div class="user-avatar size-25-avatar">
@@ -121,6 +121,30 @@
                     </div>
                 </li>
 
+
+
+
+
+                <li class="list-inline-item float-right li-buzz">
+                    <div class="dropdown cursor-link">
+                        <div class="img-buzz" v-bind:class="getBuzzClass(state.accounts[state.content[p].author])"></div>
+                        <div class="dropdown__container dropdown-info-user">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-7  col-sm-2 col-md-6 dropdown__content">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <span>
+                                                    {{ '{{ state.accounts[state.content[p].author].buzz.level_title }} ({{ state.accounts[state.content[p].author].buzz.formatted }})' }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--end row-->
+                            </div><!--end container-->
+                        </div><!--end dropdown container-->
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

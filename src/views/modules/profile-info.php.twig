@@ -6,7 +6,7 @@
         <span class="h5 text-truncate" v-if="profile.publicName">{{ '{{ profile.publicName }}' }}</span>
         <p class="mb-2 nameUser text-truncate">{{ '{{ "@" + state.user.name }}' }}</p>
         <p class="mb-0 text-truncate" v-if="profile.web"><a target="_blank" v-bind:href="toUrl(profile.web) || '#'">{{ '{{ profile.web }}' }}</a></p>
-        <p class="text-truncate" v-if="profile.about">{{ '{{ profile.about }}' }}</p>
+        <p v-if="profile.about">{{ '{{ profile.about }}' }}</p>
     </div>
     <div v-if="profile.contact" class="row">
         <div class="col text-center">
@@ -41,6 +41,25 @@
     </div>
 
     <div id="more-info-profile">
+        <hr>
+        <div class="row ranking-user-info">
+            <div class="col-12 ">
+                <p class="title-buzz-info-profile">
+                    Buzz
+                </p>
+            </div>
+            <div class="col-12 ">
+                <ul class="list-inline list-unstyled w-100 ul-buzz-profile">
+                    <li class="li-buzz list-inline-item float-left">
+                        <div class="img-buzz" v-bind:class="getBuzzClass(state.user)"></div>
+                    </li>
+                    <li class="list-inline-item float-left"><span>{{ '{{ state.user.buzz.level_title }}' }}</span></li>
+                    <li class="list-inline-item float-right"><span>{{ '{{ state.user.buzz.formatted }}' }}</span></li>
+                </ul>
+
+            </div>
+        </div>
+
         <hr />
         <div id="profile-more-info" class="row profile-summary">
             <div class="col-7 col-md-7">

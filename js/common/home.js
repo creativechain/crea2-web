@@ -99,8 +99,12 @@
                     parseAsset: function parseAsset(asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },
-                    getBuzz: function getBuzz(reputation) {
-                        return crea.formatter.reputation(reputation);
+                    getBuzzClass: function getBuzzClass(account) {
+                        var buzzClass = {};
+                        var levelName = account.buzz.level_name;
+
+                        buzzClass[levelName] = true;
+                        return buzzClass;
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;

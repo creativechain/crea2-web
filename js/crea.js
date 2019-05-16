@@ -29812,23 +29812,31 @@ module.exports = function (creaAPI) {
   }
 
   return {
-    reputation: function reputation(_reputation) {
-      if (_reputation == null) return _reputation;
-      _reputation = parseInt(_reputation);
-      var rep = String(_reputation);
-      var neg = rep.charAt(0) === "-";
-      rep = neg ? rep.substring(1) : rep;
-      var str = rep;
-      var leadingDigits = parseInt(str.substring(0, 4));
-      var log = Math.log(leadingDigits) / Math.log(10);
-      var n = str.length - 1;
-      var out = n + (log - parseInt(log));
-      if (isNaN(out)) out = 0;
-      out = Math.max(out - 9, 0);
-      out = (neg ? -1 : 1) * out;
-      out = out * 9 + 25;
-      out = parseInt(out);
-      return out;
+    reputation: function reputation(_reputation, maxLevel, maxLogNum) {
+      if (_reputation == null) {
+        return _reputation;
+      }
+
+      if (_reputation === 0) {
+        return {
+          raw: _reputation,
+          level: 1,
+          formatted: 0
+        };
+      } else {
+        var neg = _reputation < 0;
+        _reputation = Math.abs(_reputation);
+        var log10 = Math.log10(_reputation);
+        var rawLevel = log10 * maxLevel / maxLogNum;
+        var level = rawLevel > 0 && rawLevel <= 1 ? 1 : Math.floor(rawLevel * (neg ? -1 : 1));
+        var rep = Math.floor(rawLevel * 10 * (neg ? -1 : 1));
+
+        return {
+          raw: _reputation * (neg ? -1 : 1),
+          level: Math.min(level, maxLevel),
+          formatted: rep
+        };
+      }
     },
 
     vestToCrea: function vestToCrea(vestingShares, totalVestingShares, totalVestingFundCrea) {

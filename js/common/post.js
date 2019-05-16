@@ -36,8 +36,6 @@
             }
         }
 
-        console.log(jsonify(jsonstring(state.post)));
-
         if (!postContainer) {
             postContainer = new Vue({
                 el: '#post-view',
@@ -55,6 +53,13 @@
                 methods: {
                     showPost: showPost,
                     humanFileSize: humanFileSize,
+                    getBuzzClass: function getBuzzClass(account) {
+                        var buzzClass = {};
+                        var levelName = account.buzz.level_name;
+
+                        buzzClass[levelName] = true;
+                        return buzzClass;
+                    },
                     cbdToDollar: function cbdToDollar(cbd) {
                         return '$ ' + Asset.parseString(cbd).toPlainString();
                     },

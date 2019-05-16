@@ -49,15 +49,25 @@
         font-size: 14px;
         font-weight: 400;
         margin-bottom: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         text-decoration: none !important;
         color: $color-dark-primary !important;
+        p {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 167px;
+        }
       }
       .title {
         font-size: 14px;
         font-weight: bold;
+      }
+      .ul-buzz-profile {
+        li {
+          .text-buzz {
+            font-size: 14px;
+          }
+        }
       }
     }
 
@@ -102,7 +112,7 @@
       }
     }
     .stats-post {
-      margin-top: 20px;
+      margin-top: 23px;
     }
     .ul-social {
       padding-left: 17px;
@@ -121,6 +131,12 @@
 
         .position-relative {
           top: 0;
+        }
+      }
+      .post-like-count.dropdown--active {
+        .dropdown__container {
+          pointer-events: auto;
+          z-index: 1000;
         }
       }
       .post-like-count {

@@ -1016,7 +1016,7 @@ Vue.component('btn-follow', {
 });
 
 Vue.component('username', {
-    template: "<a v-bind:href=\"'/@' + user\" class=\"color-name\"><p  v-bind:style=\"{ display: inline > 0 ? 'inline' : 'inherit' }\">{{ name || user }}</p></a>",
+    template: "<a v-bind:href=\"'/@' + user\" class=\"color-name\"><p>{{ name || user }}</p></a>",
     props: {
         user: {
             type: String
