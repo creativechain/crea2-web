@@ -133,6 +133,12 @@
           top: 0;
         }
       }
+      .post-like-count.dropdown--active {
+        .dropdown__container {
+          pointer-events: auto;
+          z-index: 1000;
+        }
+      }
       .post-like-count {
         position: relative;
         top: 1px;
