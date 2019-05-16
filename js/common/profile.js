@@ -1396,6 +1396,7 @@
 
             if (lastPage) {
                 var beforeDate = new Date().toISOString().replace('Z', '');
+                console.log(clone(lastPage), beforeDate);
                 crea.api.getDiscussionsByAuthorBeforeDate(lastPage.author, lastPage.permlink, beforeDate, 21, function (err, result) {
                     if (err) {
                         console.error(err);
@@ -1407,6 +1408,7 @@
                         discussions.shift();
 
                         //Sort discussions
+                        //Nodes return discussion ordered by last update
                         discussions.sort(function (k1, k2) {
                             var d1 = toLocaleDate(k1.created);
                             var d2 = toLocaleDate(k2.created);
@@ -1418,7 +1420,10 @@
 
                             var permlink = d.author + '/' + d.permlink;
                             profileContainer.state.content[permlink] = d;
-                            profileContainer.state.discussion_idx[''].push(permlink);
+                            if (!profileContainer.state.discussion_idx[''].includes(permlink)) {
+                                profileContainer.state.discussion_idx[''].push(permlink);
+                            }
+
                         }
 
                         var contentArray = profileContainer.state.discussion_idx[''];
