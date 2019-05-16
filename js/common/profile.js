@@ -1420,9 +1420,7 @@
 
                             var permlink = d.author + '/' + d.permlink;
                             profileContainer.state.content[permlink] = d;
-                            if (!profileContainer.state.discussion_idx[''].includes(permlink)) {
-                                profileContainer.state.discussion_idx[''].push(permlink);
-                            }
+                            profileContainer.state.discussion_idx[''].push(permlink);
 
                         }
 
