@@ -356,3 +356,16 @@ function mixToArray(mixedObj) {
 
     return arr;
 }
+
+/**
+ *
+ * @param {string} tag
+ * @returns {string}
+ */
+function normalizeTag(tag) {
+    if (tag && tag.startsWith('#')) {
+        return normalizeTag(tag.substring(1, tag.length));
+    }
+
+    return tag.toLowerCase();
+}
