@@ -357,7 +357,6 @@
             }
         } else {
             if (isUserFeed(getPathPart())) {
-                //Avoid see feed
                 if (session) {
                     if (getPathPart() !== ('@' + session.account.username)) {
                         showProfile(getPathPart());
@@ -366,6 +365,7 @@
                         creaEvents.emit('crea.content.filter', path);
                     }
                 } else {
+                    //Avoid show feed if current user is not logged
                     showProfile(getPathPart());
                 }
             } else if (path.startsWith('/search')) {

@@ -301,6 +301,36 @@ function getDiscussion(author, permlink, callback) {
 
     crea.api.getDiscussion(author, permlink, callback);
 }
+
+function recommendPost(author, permlink, callback) {
+    var s = Session.getAlive();
+
+    if (s) {
+        var recommendedJson = {
+            account: s.account.username,
+            author: author,
+            permlink: permlink
+        };
+
+        recommendedJson = ['reblog', recommendedJson];
+
+        requireRoleKey(s.account.username, 'posting', function (postingKey) {
+            globalLoading.show = true;
+            crea.broadcast.customJson(postingKey, [], [s.account.username], 'follow', jsonstring(recommendedJson), function (err, result) {
+                globalLoading.show = false;
+
+                if (callback) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
+                }
+            });
+        });
+    }
+
+}
 function ignoreUser(following, ignore, callback) {
     var s = Session.getAlive();
 
@@ -316,10 +346,12 @@ function ignoreUser(following, ignore, callback) {
             crea.broadcast.customJson(postingKey, [], [s.account.username], 'follow', jsonstring(followJson), function (err, result) {
                 globalLoading.show = false;
 
-                if (err) {
-                    callback(err);
-                } else {
-                    callback(null, result);
+                if (callback) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
                 }
             });
         });
