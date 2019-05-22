@@ -61,6 +61,16 @@ $(document).ready(function () {
         $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1" />');
     }
 
+    //efect recommended
+    $( ".card__top" ).hover(
+        function() {
+            $( '.row-circle-recommended' ).removeClass('hidden');
+        }, function() {
+            $( ".row-circle-recommended" ).addClass('hidden');
+        }
+    );
+
+
 }); // With JQuery
 
 $("#ex6").slider();

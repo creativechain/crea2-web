@@ -1984,6 +1984,64 @@ img {
       width: 100%;
       cursor: pointer;
       border-radius: 6px 6px 0 0; }
+    .card-home .card__top .row-circle-recommended {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: #ffffff99;
+      border-radius: 50px;
+      height: 30px;
+      width: 30px;
+      cursor: pointer; }
+      .card-home .card__top .row-circle-recommended div {
+        width: 30px;
+        height: 30px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        top: 0; }
+    .card-home .card__top .icon-recommended.hover-recommended {
+      background-image: url("/img/recommended/recomended-hover.svg"); }
+    .card-home .card__top .icon-recommended.my-active {
+      background-image: url("/img/recommended/recomended-my-active.svg"); }
+    .card-home .card__top .icon-recommended.active {
+      background-image: url("/img/recommended/recomended-active.svg"); }
+    .card-home .card__top .pre-recommended {
+      animation-name: parpadeo;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      -webkit-animation-name: parpadeo;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite; }
+@-moz-keyframes parpadeo {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+@-webkit-keyframes parpadeo {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+@keyframes parpadeo {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+    .card-home .card__top .row-recommended {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #f9f9f9; }
   .card-home .card__body h4 {
     font-size: 14px;
     font-weight: bold;
