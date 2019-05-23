@@ -1397,7 +1397,7 @@
             if (lastPage) {
                 var beforeDate = new Date().toISOString().replace('Z', '');
                 console.log(clone(lastPage), beforeDate);
-                crea.api.getDiscussionsByAuthorBeforeDate(lastPage.author, lastPage.permlink, beforeDate, 21, function (err, result) {
+                crea.api.getDiscussionsByAuthorBeforeDate(lastPage.author, lastPage.permlink, beforeDate, 21, 'created', function (err, result) {
                     if (err) {
                         console.error(err);
                     } else {
