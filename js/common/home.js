@@ -3,8 +3,9 @@
 /**
  * Created by ander on 9/10/18.
  */
+var homePosts;
 (function () {
-    var homePosts;
+
     var lastPage;
     var session, account;
     /**
@@ -86,6 +87,9 @@
                     }
                 },
                 methods: {
+                    isFeed: function () {
+                        return isUserFeed();
+                    },
                     getDefaultAvatar: R.getAvatar,
                     toggleSimpleView: function () {
                         this.simpleView = !this.simpleView;
@@ -386,6 +390,7 @@
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         account = a;
+        //console.log(clone(a));
         beforeInit();
     });
     var onScrollCalling;
@@ -447,7 +452,9 @@
                                     if (err) {
                                         console.error('Error getting', permlink, err);
                                     } else {
-                                        discussions.push(parsePost(result));
+                                        var p = parsePost(result);
+                                        p.reblogged_by = d.reblogged_by;
+                                        discussions.push(p);
 
                                         if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
                                             accounts.push(d.author);
@@ -456,6 +463,8 @@
 
                                     onContentFetched();
                                 });
+                            } else {
+                                homePosts.state.content[permlink].reblogged_by = d.reblogged_by;
                             }
                         });
                     } else {

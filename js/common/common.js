@@ -302,22 +302,25 @@ function getDiscussion(author, permlink, callback) {
     crea.api.getDiscussion(author, permlink, callback);
 }
 
-function recommendPost(author, permlink, callback) {
+function recommendPost(author, permlink, reblog, callback) {
     var s = Session.getAlive();
 
     if (s) {
+        if (typeof reblog === 'function') {
+            callback = reblog;
+            reblog = true;
+        }
+
         var recommendedJson = {
             account: s.account.username,
             author: author,
             permlink: permlink
         };
 
-        recommendedJson = ['reblog', recommendedJson];
+        recommendedJson = [reblog ? 'reblog' : 'unreblog', recommendedJson];
 
         requireRoleKey(s.account.username, 'posting', function (postingKey) {
-            globalLoading.show = true;
             crea.broadcast.customJson(postingKey, [], [s.account.username], 'follow', jsonstring(recommendedJson), function (err, result) {
-                globalLoading.show = false;
 
                 if (callback) {
                     if (err) {

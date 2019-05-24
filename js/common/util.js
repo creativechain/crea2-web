@@ -201,7 +201,7 @@ function toLocaleDate(date) {
  * @returns {*}
  */
 function clone(src) {
-    return Object.assign({}, src);
+    return jsonify(jsonstring(src));
 }
 
 function humanFileSize(size) {

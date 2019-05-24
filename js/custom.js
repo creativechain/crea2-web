@@ -61,14 +61,14 @@ $(document).ready(function () {
         $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1" />');
     }
 
-    //efect recommended
+/*    //efect recommended
     $( ".card__top" ).hover(
         function() {
-            $( '.row-circle-recommended' ).removeClass('hidden');
+            $(this).children( '.row-circle-recommended' ).removeClass('hidden');
         }, function() {
-            $( ".row-circle-recommended" ).addClass('hidden');
+            $(this).children( ".row-circle-recommended" ).addClass('hidden');
         }
-    );
+    );*/
 
 
 }); // With JQuery

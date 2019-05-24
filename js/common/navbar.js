@@ -200,7 +200,9 @@
                                         if (err) {
                                             console.error('Error getting', permlink, err);
                                         } else {
-                                            urlState.content[permlink] = result;
+                                            var p = parsePost(result);
+                                            p.reblogged_by = d.reblogged_by;
+                                            urlState.content[permlink] = p;
                                         }
 
                                         onContentFetched();

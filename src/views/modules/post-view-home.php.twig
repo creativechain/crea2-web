@@ -9,8 +9,8 @@
                 </div>
             </a>
 
-            <!-- activar efecto parpadeo con 2 estilos para cuando hace la peticion: pre-recommended parpadeo-->
-            <div class="row-circle-recommended">
+{#            <!-- activar efecto parpadeo con 2 estilos para cuando hace la peticion: pre-recommended parpadeo-->
+            <div class="row-circle-recommended hidden">
 
                 <!-- Tres posibles estados en la clase: hover-recommended (estado por defecto), my-active, active-->
                 <div class="icon-recommended hover-recommended"></div>
@@ -18,7 +18,8 @@
 
             <div class="row-recommended">
                 <p><img src="/img/recommended/recommended_icon_1.svg" alt="">Recommended by <a href="">Annori</a></p>
-            </div>
+            </div>#}
+            <recommend v-if="session" v-bind:feed="isFeed()" v-bind:user="account.user" v-bind:session="session" v-bind:post="state.content[p]"></recommend>
         </div>
 
         <div class="card__body">
