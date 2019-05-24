@@ -390,13 +390,17 @@ var postUploads = {};
             globalLoading.show = true;
             var tags = publishContainer.tags;
 
+            var nTags = [];
             for (var x = 0; x < tags.length; x++) {
-                tags[x] = tags[x].toLowerCase();
+                var t = normalizeTag(tags[x]);
+                if (!nTags.includes(t)) {
+                    nTags.push(t);
+                }
             }
 
             var metadata = {
                 description: publishContainer.description,
-                tags: tags,
+                tags: nTags,
                 adult: publishContainer.adult,
                 featuredImage: publishContainer.featuredImage,
                 license: publishContainer.getLicense().getFlag()
