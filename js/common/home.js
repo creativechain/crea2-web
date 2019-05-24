@@ -493,7 +493,8 @@ var homePosts;
                                 lastPage++;
                                 http.post({
                                     following: followings,
-                                    page: lastPage
+                                    page: lastPage,
+                                    reblogs: true
                                 });
                             });
                         }
