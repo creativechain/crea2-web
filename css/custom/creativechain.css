@@ -825,6 +825,56 @@
   border-bottom: 1px solid #ececec; }
   .post-view .row-promoter img {
     width: 19px; }
+  .post-view .row-promoter .ul-recommended-post a {
+    width: 65px;
+    color: #222222;
+    font-weight: 600; }
+    .post-view .row-promoter .ul-recommended-post a div {
+      width: 30px;
+      height: 30px;
+      background-size: contain;
+      background-repeat: no-repeat; }
+    .post-view .row-promoter .ul-recommended-post a div.icon-recommended-post {
+      background-image: url("/img/recommended/recommended-post.svg"); }
+    .post-view .row-promoter .ul-recommended-post a div.icon-recommended-post-active {
+      background-image: url("/img/recommended/recommended-post-active.svg"); }
+    .post-view .row-promoter .ul-recommended-post a span {
+      margin-left: 5px; }
+  .post-view .row-promoter .ul-recommended-post a:hover {
+    color: #0073FF;
+    font-weight: 600; }
+    .post-view .row-promoter .ul-recommended-post a:hover div.icon-recommended-post {
+      background-image: url("/img/recommended/recommended-post-active.svg"); }
+  .post-view .row-promoter .ul-recommended-post .pre-recommended {
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite; }
+@-moz-keyframes parpadeo {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+@-webkit-keyframes parpadeo {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+@keyframes parpadeo {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 .post-view .row-project {
   background: #F9F9F9; }
 .post-view .row-title-comment {
