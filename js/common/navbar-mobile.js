@@ -150,5 +150,4 @@
     creaEvents.on('crea.session.logout', function () {
         updateNavbarSession(false, false);
     });
-
 })();

@@ -38,6 +38,7 @@ var R = {
         }
     }
 };
+
 /**
  *
  * @param account
@@ -55,13 +56,12 @@ R.getAvatar = function (account) {
 
     return R.getDefaultAvatar(account.name);
 };
+
 /**
  *
  * @param username
  * @returns {string}
  */
-
-
 R.getDefaultAvatar = function (username) {
     var buffer = new window.Buffer(username);
     var n = parseInt(buffer.toString('hex'), 16);

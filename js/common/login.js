@@ -75,7 +75,7 @@ function login(username, password, callback) {
 }
 
 function logout() {
-    Session.getAlive().logout(); //updateNavbarSession(false);
+    Session.getAlive().logout();
 
     creaEvents.emit('crea.session.logout');
 }

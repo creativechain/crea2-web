@@ -28,7 +28,7 @@
             var username = session.account.username;
             for (var x = 0; x < state.post.down_votes.length; x++) {
                 var v = state.post.down_votes[x];
-                if (v.voter == username) {
+                if (v.voter === username) {
 
                     state.post.reported = true;
                     break;

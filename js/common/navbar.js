@@ -30,7 +30,6 @@
                 return performSearch;
             }(function (event) {
                 cancelEventPropagation(event);
-                var that = this;
 
                 if (this.search) {
                     performSearch(this.search, this.page, isInHome());

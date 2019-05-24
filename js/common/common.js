@@ -71,7 +71,7 @@ var CONSTANTS = {
     }
 };
 creaEvents.on('crea.session.login', function (session, account) {
-    showBanner(session == false);
+    showBanner(session === false);
 });
 
 function showBanner() {

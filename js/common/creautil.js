@@ -28,7 +28,6 @@ function cgyToVests(state, creaEnergy) {
  *
  * @param state
  * @param vestingShares
- * @param nai
  * @returns {Asset}
  */
 

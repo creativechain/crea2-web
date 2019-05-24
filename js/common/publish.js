@@ -466,7 +466,7 @@ var postUploads = {};
                     if (!err) {
                         //If id is 0, post not exists, so publish
                         if (result.id !== 0) {
-                            catchError(lang.ERROR.PERMLINK_ALREADY_EXISTS)
+                            catchError(lang.ERROR.PERMLINK_ALREADY_EXISTS);
                             globalLoading.show = false;
                         } else {
                             publishPost();

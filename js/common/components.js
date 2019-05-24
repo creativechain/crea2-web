@@ -39,7 +39,7 @@ Vue.component('post-amount', {
         symbol: [String],
         symbefore: {
             type: Boolean,
-            default: false
+            'default': false
         }
     },
     methods : {
@@ -100,15 +100,15 @@ Vue.component('slider', {
     props: {
         initvalue: {
             type: Number,
-            default: 0
+            'default': 0
         },
         min: {
             type: Number,
-            default: 0
+            'default': 0
         },
         max: {
             type: Number,
-            default: 100
+            'default': 100
         }
     },
     watch: {
@@ -1026,7 +1026,7 @@ Vue.component('username', {
         },
         inline: {
             type: Number,
-            default: 1
+            'default': 1
         }
     }
 });
@@ -1056,7 +1056,7 @@ Vue.component('avatar', {
 });
 
 Vue.component('taginput', {
-    template: "<input :id=\"id\" class=\"validate-required\" type=\"text\" :value=\"value\" :data-role=\"data-role\" :data-options=\"data-options\" :placeholder=\"placeholder\" />",
+    template: "<input v-bind:id=\"id\" class=\"validate-required\" type=\"text\" v-bind:value=\"value\" v-bind:data-role=\"data-role\" v-bind:data-options=\"data-options\" v-bind:placeholder=\"placeholder\" />",
     props: {
         id: {
             type: String
@@ -1066,7 +1066,7 @@ Vue.component('taginput', {
         },
         'data-role': {
             type: String,
-            default: 'tagsinput'
+            'default': 'tagsinput'
         },
         placeholder: {
             type: String
@@ -1081,15 +1081,16 @@ Vue.component('taginput', {
         console.log('Mounted tags', el, this.id, this.options, this.role); //tags(this.id);
     }
 });
+
 Vue.component('ckeditor', {
-    template: "<textarea :id=\"id\" :value=\"value\" rows=30 cols=80></textarea>",
+    template: "<textarea v-bind:id=\"id\" v-bind:value=\"value\" rows=30 cols=80></textarea>",
     props: {
         value: {
             type: String
         },
         id: {
             type: String,
-            default: 'editor'
+            'default': 'editor'
         }
     },
     beforeUpdate: function beforeUpdate() {

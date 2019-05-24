@@ -9,7 +9,6 @@ if (!String.format) {
     /**
      *
      * @param {string} format
-     * @param args
      * @return {*|void|XML|string}
      */
     String.format = function (format) {
@@ -95,14 +94,13 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+
 /**
  *
  * @param name
  * @param url
  * @returns {*}
  */
-
-
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -112,13 +110,12 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
 /**
  *
  * @param base64
  * @returns {ArrayBuffer}
  */
-
-
 function base64ToBuffer(base64) {
     var binary_string = window.atob(base64);
     var len = binary_string.length;
@@ -136,8 +133,6 @@ function base64ToBuffer(base64) {
  * @param {string} str
  * @returns {string}
  */
-
-
 function toPermalink(str) {
     var re = /[^a-z0-9]+/gi; // global and case insensitive matching of non-char/non-numeric
 
@@ -176,20 +171,19 @@ function copyToClipboard(element) {
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 /**
  *
  * @param {string|number|Date} date
  * @returns {Date}
  */
-
-
 function toLocaleDate(date) {
     if (date) {
         if (typeof date == 'string' || typeof date == 'number') {
             date = new Date(date);
         }
 
-        if (_typeof(date) == 'object') {
+        if (_typeof(date) === 'object') {
             var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
             var offset = date.getTimezoneOffset() / 60;
             var hours = date.getHours();
@@ -200,13 +194,12 @@ function toLocaleDate(date) {
 
     return new Date(0);
 }
+
 /**
  *
  * @param src
  * @returns {*}
  */
-
-
 function clone(src) {
     return Object.assign({}, src);
 }
@@ -216,13 +209,12 @@ function humanFileSize(size) {
     var i = Math.floor(Math.log(size) / Math.log(1024));
     return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + UNIT[i];
 }
+
 /**
  *
  * @param {string} username
  * @returns {boolean}
  */
-
-
 function isUserFeed() {
     var username = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var path = window.location.pathname;
@@ -271,13 +263,12 @@ function getPathPart() {
 function getNavigatorLanguage() {
     return navigator.language.split('-')[0];
 }
+
 /**
  *
  * @param {Array} array
  * @returns {Array}
  */
-
-
 function cleanArray(array) {
     if (Array.isArray(array)) {
         var elements = [];
@@ -291,12 +282,11 @@ function cleanArray(array) {
 
     return array;
 }
+
 /**
  *
  * @returns {boolean}
  */
-
-
 function isSmallScreen() {
     return window.screen.width < 768;
 }
@@ -307,7 +297,7 @@ function isSmallScreen() {
  * @returns {string}
  */
 function removeEmojis(text) {
-    if (text && _typeof(text) == 'string') {
+    if (text && _typeof(text) === 'string') {
         return text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
     }
 

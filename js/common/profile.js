@@ -1303,6 +1303,7 @@
             });
         });
     }
+    
     /**
      *
      * @param {string} wif
@@ -1313,8 +1314,6 @@
      * @param {string} [memo]
      * @param {Function} [callback]
      */
-
-
     function transfer(wif, op, session, to, amount, memo, callback) {
         if (typeof memo === 'function') {
             callback = memo;
