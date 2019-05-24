@@ -134,7 +134,7 @@
         "MODAL_REPORT_REASON3": "Offensive material that incites hatred and violence.",
         "MODAL_REPORT_REASON4": "Project using tag spam (irrelevant tags) or containing spam.",
         "MODAL_REPORT_FOOTER": "Remember that reporting content can influence the visibility and the rewards achieved by the publication. It depends on you to consider these most common cases to report content.",
-        "RECOMMEND_BY": "Recommend by",
+        "RECOMMENDED_BY": "Recommended by",
         "RECOMMEND_MORE": "and %s more"
     },
     "PROFILE_MENU": {

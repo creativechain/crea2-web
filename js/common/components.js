@@ -33,9 +33,9 @@ Vue.component('recommend', {
         '                   <div v-bind:class="recommendedClasses"></div>' +
         '               </div>' +
         '           </template>' +
-        '            <div v-if="feed" class="row-recommended">' +
+        '            <div v-if="feed && recommendedBy()" class="row-recommended">' +
         '                <p>' +
-        '                   <img src="/img/recommended/recommended_icon_1.svg" alt=""> {{ lang.PUBLICATION.RECOMMEND_BY }} <a v-bind:href="\'/@\' + recommendedBy()">@{{ recommendedBy() }}</a> ' +
+        '                   <img src="/img/recommended/recommended_icon_1.svg" alt=""> {{ lang.PUBLICATION.RECOMMENDED_BY }} <a v-bind:href="\'/@\' + recommendedBy()">@{{ recommendedBy() }}</a> ' +
         '                   <template v-if="countRecommended() > 0">' +
         '                       {{ lang.COMMON.AND + " " + countRecommended() + " " + lang.COMMON.MORE }}' +
         '                   </template>' +
@@ -158,14 +158,11 @@ Vue.component('recommend', {
             function() {
                 that.hover = true;
                 that.$forceUpdate();
-                console.log('hover', true);
             }, function() {
                 that.hover = false;
                 that.$forceUpdate();
-                console.log('hover', false);
             }
         );
-        console.log(this.feed, this.recommendedClasses);
     },
     updated: function() {
         if (this.state !== RECOMMEND_STATE.RECOMMEND_OP) {
