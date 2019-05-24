@@ -38,6 +38,23 @@ String.prototype.isEmpty = function () {
 String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
+/**
+ *
+ * @returns {Array}
+ */
+Array.prototype.unique = function() {
+    var uniqueArray = [];
+
+    this.forEach(function (value) {
+        if (uniqueArray.indexOf(value) < 0) {
+            uniqueArray.push(value);
+        }
+    });
+
+    return uniqueArray;
+};
+
 /**
  *
  * @param {Event} event

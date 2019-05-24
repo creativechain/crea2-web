@@ -4,9 +4,10 @@
  * Created by ander on 9/10/18.
  */
 var homePosts;
+var lastPage;
 (function () {
 
-    var lastPage;
+
     var session, account;
     /**
      *

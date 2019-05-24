@@ -231,7 +231,8 @@
                                         Authorization: 'Bearer ' + accessToken
                                     };
                                     http.post({
-                                        following: followings
+                                        following: followings,
+                                        reblogs: true
                                     });
                                 });
                             } else {

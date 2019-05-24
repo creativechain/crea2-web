@@ -3,8 +3,8 @@
 /**
  * Created by ander on 25/09/18.
  */
+var profileContainer;
 (function () {
-    var profileContainer;
     var rewardsContainer = {};
     var blockedContainer;
     var followingContainer;
@@ -1174,7 +1174,7 @@
                             var opsAccounts = {};
                             accounts.forEach(function (u) {
                                 for (var x = 0; x < result.length; x++) {
-                                    if (u == result[x].name) {
+                                    if (u === result[x].name) {
                                         opsAccounts[u] = result[x];
                                         opsAccounts[u].metadata = jsonify(opsAccounts[u].json_metadata);
                                         opsAccounts[u].metadata.avatar = opsAccounts[u].metadata.avatar || {};
@@ -1276,14 +1276,20 @@
             var onState = function onState(err, state) {
                 if (!catchError(err)) {
                     var posts = Object.keys(state.content);
+                    if (profileContainer) {
+                        state.content = Object.assign(profileContainer.state.content, state.content);
+                        posts = posts.concat(profileContainer.state.discussion_idx['']);
+                    }
+
+                    posts = posts.unique();
+                    console.log(clone(state.content));
+                    console.log('Posts:', posts);
 
                     for (var x = 0; x < posts.length; x++) {
                         var k = posts[x];
                         state.content[k] = parsePost(state.content[k]);
-
                     }
 
-                    state.discussion_idx = {};
                     posts.sort(function (k1, k2) {
                         var d1 = new Date(state.content[k1].created);
                         var d2 = new Date(state.content[k2].created);
@@ -1291,7 +1297,7 @@
                     });
 
                     state.discussion_idx[''] = posts;
-
+                    //console.log('Discussion', state.discussion_idx['']);
                     //var contentArray = state.discussion_idx[''];
                     //lastPage = state.content[contentArray[contentArray.length - 1]];
 
@@ -1498,13 +1504,13 @@
                         return d2.getTime() - d1.getTime();
                     });
 
+
                     for (var x = 0; x < discussions.length; x++) {
                         var d = discussions[x];
 
                         var permlink = d.author + '/' + d.permlink;
                         profileContainer.state.content[permlink] = d;
                         profileContainer.state.discussion_idx[''].push(permlink);
-
                     }
 
                     var contentArray = profileContainer.state.discussion_idx[''];
