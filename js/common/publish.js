@@ -433,7 +433,6 @@ var postUploads = {};
                 }
 
                 var operations = [];
-                console.log('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata));
                 operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
 
                 switch (account.user.metadata.post_rewards) {
