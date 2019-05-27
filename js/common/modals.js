@@ -136,7 +136,7 @@
     }
 
     creaEvents.on('crea.alert', function (data) {
-        console.log(data);
+        //console.log(data);
         alertModal.config = data;
         alertModal.show = true;
     });

@@ -1282,7 +1282,7 @@
                         posts = posts.concat(profileContainer.state.discussion_idx['']);
                     }
 
-                    posts = posts.unique();
+                    posts = Array.trim(posts);
                     console.log(clone(state.content));
                     console.log('Posts:', posts);
 

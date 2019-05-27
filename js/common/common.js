@@ -601,9 +601,14 @@ function performSearch(search) {
 
 function catchError(err) {
     if (err) {
-        console.error(err);
         var title;
         var body = [];
+
+        if (err.stack) {
+            console.trace(err.stack);
+        } else {
+            console.error(err);
+        }
 
         if (typeof err === 'string') {
             title = err;

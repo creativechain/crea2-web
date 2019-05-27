@@ -444,6 +444,7 @@
 
                 var keys = [postingKey];
 
+                console.log([keys].concat(operations, [function (err, result) {}]));
                 (_crea$broadcast = crea.broadcast).sendOperations.apply(_crea$broadcast, [keys].concat(operations, [function (err, result) {
                     if (!catchError(err)) {
                         console.log(result);
