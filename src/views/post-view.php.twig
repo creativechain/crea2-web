@@ -123,7 +123,7 @@
             <div class="container row-promoter pt-3 pb-3" style="background-color: white">
                 <div class="row justify-content-between">
                     <div class="col-sm-12 col-md-6">
-                        <ul class="ul-recommended-post">
+{#                        <ul class="ul-recommended-post">
                             <li>
                                 <a href="" class="d-flex">
 
@@ -134,7 +134,8 @@
                                 </a>
                             </li>
 
-                        </ul>
+                        </ul>#}
+                        <recommend-post v-bind:post="state.post" v-bind:session="session" v-bind:user="user"></recommend-post>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
                         <div v-if="session" class="row-promote justify-content-center">

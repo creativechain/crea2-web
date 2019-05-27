@@ -549,33 +549,62 @@
             //Delete first char "/"
             var parts = url.slice(1, url.length).split('/').length;
             var fetchContentState = function fetchContentState(finalUrl) {
+
+
                 crea.api.getState(finalUrl, function (err, result) {
                     if (!catchError(err)) {
-                        //Resolve metadata
-                        var aKeys = Object.keys(result.accounts);
 
-                        if (aKeys.length === 0) {
-                            goTo('/404');
-                        } else {
-                            aKeys.forEach(function (k) {
-                                result.accounts[k] = parseAccount(result.accounts[k]);
-                            });
-                            result.postKey = getPostKey(finalUrl);
-                            result.post = parsePost(result.content[result.postKey]);
-                            result.author = result.accounts[result.post.author]; //Order comments by date, latest first
+                        refreshAccessToken(function (accessToken) {
+                            var finalParts = finalUrl.slice(1, finalUrl.length).split('/');
+                            var author = finalParts[1].slice(1, finalParts[1].length);
+                            var permlink = finalParts[2];
 
-                            var cKeys = Object.keys(result.content);
-                            cKeys.sort(function (k1, k2) {
-                                var d1 = new Date(result.content[k1].created);
-                                var d2 = new Date(result.content[k2].created);
-                                return d2.getTime() - d1.getTime();
+                            var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', author, permlink));
+
+                            var onReblogs = function(reblogs) {
+                                var aKeys = Object.keys(result.accounts);
+
+                                if (aKeys.length === 0) {
+                                    goTo('/404');
+                                } else {
+                                    aKeys.forEach(function (k) {
+                                        result.accounts[k] = parseAccount(result.accounts[k]);
+                                    });
+                                    result.postKey = getPostKey(finalUrl);
+                                    result.post = parsePost(result.content[result.postKey], reblogs);
+                                    result.author = result.accounts[result.post.author]; //Order comments by date, latest first
+
+                                    var cKeys = Object.keys(result.content);
+                                    cKeys.sort(function (k1, k2) {
+                                        var d1 = new Date(result.content[k1].created);
+                                        var d2 = new Date(result.content[k2].created);
+                                        return d2.getTime() - d1.getTime();
+                                    });
+                                    cKeys.forEach(function (c) {
+                                        result[c] = parsePost(result.content[c]);
+                                    });
+                                    result.comments = cKeys;
+                                    setUp(result);
+                                }
+                            };
+
+                            http.when('done', function (response) {
+                                var data = jsonify(response).data;
+
+                                onReblogs(data.reblogged_by);
                             });
-                            cKeys.forEach(function (c) {
-                                result[c] = parsePost(result.content[c]);
+
+                            http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                                console.error(textStatus, errorThrown);
+                                onReblogs();
                             });
-                            result.comments = cKeys;
-                            setUp(result);
-                        }
+
+                            http.headers = {
+                                Authorization: 'Bearer ' + accessToken
+                            };
+
+                            http.get({});
+                        });
                     }
                 });
             };
@@ -583,6 +612,7 @@
             if (parts === 2) {
                 var author = getPathPart().replace('@', '');
                 var permlink = getPathPart(1);
+
                 crea.api.getContent(author, permlink, function (err, result) {
                     if (!catchError(err)) {
                         var post = parsePost(result);
