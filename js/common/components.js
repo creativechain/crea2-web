@@ -36,7 +36,7 @@ Vue.component('recommend', {
         '            <div v-if="feed && recommendedBy()" class="row-recommended">' +
         '                <p>' +
         '                   <img src="/img/recommended/recommended_icon_1.svg" alt=""> {{ lang.PUBLICATION.RECOMMENDED_BY }} <a v-bind:href="\'/@\' + recommendedBy()">@{{ recommendedBy() }}</a> ' +
-        '                   <template v-if="countRecommended() > 0">' +
+        '                   <template v-if="countRecommended() > 1">' +
         '                       {{ lang.COMMON.AND + " " + countRecommended() + " " + lang.COMMON.MORE }}' +
         '                   </template>' +
         '                </p>' +
@@ -125,10 +125,11 @@ Vue.component('recommend', {
             var recommendeds = 0;
             this.user.followings.forEach(function (followed) {
                 if (that.post.reblogged_by.includes(followed)) {
-                    recommendeds += followed;
+                    recommendeds += 1;
                 }
             });
 
+            //sconsole.log(this.post.author + '/' + this.post.permlink, recommendeds);
             return recommendeds;
         },
         makeRecommend: function() {

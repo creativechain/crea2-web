@@ -236,7 +236,11 @@ function parseAccount(account) {
     return account;
 }
 
-function parsePost(post) {
+function parsePost(post, reblogged_by ) {
+    if (!reblogged_by || !Array.isArray(reblogged_by)) {
+        reblogged_by = []
+    }
+
     if (post) {
         post.link = post.author + '/' + post.permlink;
         post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
@@ -268,6 +272,10 @@ function parsePost(post) {
         post.promoted = toStringAsset(post.promoted);
         post.total_payout_value = toStringAsset(post.total_payout_value);
         post.total_pending_value = toStringAsset(post.total_pending_value);
+
+        if (!post.reblogged_by || post.reblogged_by.length === 0) {
+            post.reblogged_by = reblogged_by;
+        }
     }
 
     return post;

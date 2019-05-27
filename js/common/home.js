@@ -229,7 +229,7 @@ var lastPage;
                         var that = this;
                         getDiscussion(post.author, post.permlink, function (err, result) {
                             if (!err) {
-                                var updatedPost = parsePost(result);
+                                var updatedPost = parsePost(result, post.reblogged_by);
                                 that.state.content[updatedPost.link] = updatedPost;
                                 that.$forceUpdate();
                             }
