@@ -3,8 +3,9 @@
 /**
  * Created by ander on 25/09/18.
  */
-var profileContainer;
+
 (function () {
+    var profileContainer;
     var rewardsContainer = {};
     var blockedContainer;
     var followingContainer;
