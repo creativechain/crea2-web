@@ -572,8 +572,9 @@
                                     });
                                     result.postKey = getPostKey(finalUrl);
                                     result.post = parsePost(result.content[result.postKey], reblogs);
-                                    result.author = result.accounts[result.post.author]; //Order comments by date, latest first
+                                    result.author = parseAccount(result.accounts[result.post.author]); //Order comments by date, latest first
 
+                                    console.log(clone(result.author));
                                     var cKeys = Object.keys(result.content);
                                     cKeys.sort(function (k1, k2) {
                                         var d1 = new Date(result.content[k1].created);

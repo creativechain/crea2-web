@@ -135,7 +135,9 @@
         "MODAL_REPORT_REASON4": "Project using tag spam (irrelevant tags) or containing spam.",
         "MODAL_REPORT_FOOTER": "Remember that reporting content can influence the visibility and the rewards achieved by the publication. It depends on you to consider these most common cases to report content.",
         "RECOMMENDED_BY": "Recommended by",
-        "RECOMMEND_MORE": "and %s more"
+        "RECOMMEND_MORE": "and %s more",
+        "BLOCKED_USER_ALERT_TITLE": "Attention!",
+        "BLOCKED_USER_ALERT_MESSAGE": "This user has been reported by many well reputed users of our community. There are different reasons to report users:\n                                Identity supplantation, copyright infringement, spam, fraud or other behaviors considered malicious or negatives for the community."
     },
     "PROFILE_MENU": {
         "LOGOUT": "Logout",
