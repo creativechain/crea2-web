@@ -3,13 +3,11 @@
 /**
  * Created by ander on 12/10/18.
  */
-var publishContainer;
-var postUploads = {};
+
 (function () {
-
     var session, account;
-
-
+    var publishContainer;
+    var postUploads = {};
 
     function setUp(editablePost) {
         var downloadFile = {

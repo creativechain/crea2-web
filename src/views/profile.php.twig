@@ -26,8 +26,18 @@
                                     <h3>{{ lang.PROFILE.NO_POSTS_PROFILE }}</h3>
                                 </div>
                                 <div v-show="navbar.section === 'projects'" class="row project-profile">
-                                    <template v-for="p in state.discussion_idx['']">
-                                        {{ include ('modules/post-view-home.php.twig') }}
+                                    <template v-if="!state.user.buzz.blocked">
+                                        <template v-for="p in state.discussion_idx['']">
+                                            {{ include ('modules/post-view-home.php.twig') }}
+                                        </template>
+                                    </template>
+                                    <template v-else>
+                                        <h3 class="error-color-form font-weight-bold">
+                                            {{ lang.PUBLICATION.BLOCKED_USER_ALERT_TITLE }}
+                                        </h3>
+                                        <p>
+                                            {{ lang.PUBLICATION.BLOCKED_USER_ALERT_MESSAGE }}
+                                        </p>
                                     </template>
                                 </div>
                                 <div v-show="session && account.user.name === state.user.name && navbar.section === 'notifications'" class="row view-notifications" >

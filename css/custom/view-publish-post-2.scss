@@ -184,6 +184,63 @@
     img {
       width: 19px;
     }
+    .ul-recommended-post {
+      a {
+        width: 65px;
+        color: $color-dark-primary;
+        font-weight: 600;
+        div {
+          width: 30px;
+          height: 30px;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+        div.icon-recommended-post {
+          background-image: url("/img/recommended/recommended-post.svg");
+        }
+        div.icon-recommended-post-active {
+          background-image: url("/img/recommended/recommended-post-active.svg");
+        }
+        span {
+          margin-left: 5px;
+        }
+      }
+      a:hover {
+        color: $color-blue-primary;
+        font-weight: 600;
+        div.icon-recommended-post {
+          background-image: url("/img/recommended/recommended-post-active.svg");
+        }
+      }
+      .pre-recommended {
+        animation-name: parpadeo;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-name:parpadeo;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+      }
+      @-moz-keyframes parpadeo{
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
+
+      @-webkit-keyframes parpadeo {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
+
+      @keyframes parpadeo {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
+    }
   }
   .row-project {
     background: $background-modal;

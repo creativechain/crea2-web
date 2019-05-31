@@ -31,22 +31,22 @@
                     <div class="col-12 col-sm-12 col-md-6 text-right mt-3 mb-3 mb-md-0 mt-md-0">
                         <ul class="stats-post">
                             <li class="list-inline-item">
-                                <btn-follow v-if="session && !isSameUser()"
+                                <btn-follow v-if="session && !isSameUser() && !state.author.buzz.blocked"
                                             v-on:follow="onFollow" v-bind:session="session"
                                             v-bind:account="user"
                                             v-bind:user="state.post.author" >
 
                                 </btn-follow>
-                                <div v-else-if="session" class="btn btn--primary" v-on:click="editPost()">
+                                <div v-else-if="session && isSameUser()" class="btn btn--primary" v-on:click="editPost()">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.EDIT_POST }}
                                     </span>
                                 </div>
                             </li>
-                            <li class="ul-social list-inline-item">
+                            <li v-if="!state.author.buzz.blocked" class="ul-social list-inline-item">
                                 <div class="row-likes">
                                     <div class="d-flex w-100">
-                                        <div class="">
+                                        <div>
                                             <post-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post"></post-like>
                                         </div>
                                     </div>
@@ -90,40 +90,66 @@
             <div class="container"  style="background-color: white">
                 <div class="row background-content-post row-content-post">
                     <div class="col-md-12 img-post-view content-post" >
-                        <template v-for="el in state.post.body">
-                            <div v-if="el != null">
-                                <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-word;">
+                        <div v-if="!state.author.buzz.blocked">
+                            <template v-for="el in state.post.body">
+                                <div v-if="el != null">
+                                    <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-word;">
 
+                                    </div>
+                                    <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
+                                        <p>
+                                            <img v-bind:src="el.url" v-bind:type="el.type" alt="" />
+                                        </p>
+                                    </div>
+                                    <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
+                                        <p>
+                                            <video controls >
+                                                <source v-bind:src="el.url" v-bind:type="el.type">
+                                            </video>
+                                        </p>
+                                    </div>
+                                    <div v-else-if="el.type.indexOf('audio/') > -1" class="upload-img">
+                                        <p>
+                                            <audio controls>
+                                                <source v-bind:src="el.url" v-bind:type="el.type">
+                                            </audio>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
-                                    <p>
-                                        <img v-bind:src="el.url" v-bind:type="el.type" alt="" />
-                                    </p>
-                                </div>
-                                <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
-                                    <p>
-                                        <video controls >
-                                            <source v-bind:src="el.url" v-bind:type="el.type">
-                                        </video>
-                                    </p>
-                                </div>
-                                <div v-else-if="el.type.indexOf('audio/') > -1" class="upload-img">
-                                    <p>
-                                        <audio controls>
-                                            <source v-bind:src="el.url" v-bind:type="el.type">
-                                        </audio>
-                                    </p>
-                                </div>
-                            </div>
-                        </template>
+                            </template>
+                        </div>
+                        <div v-else >
+                            <p class="error-color-form font-weight-bold">
+                                {{ lang.PUBLICATION.BLOCKED_USER_ALERT_TITLE }}
+                            </p>
+                            <span>
+                                {{ lang.PUBLICATION.BLOCKED_USER_ALERT_MESSAGE }}
+                            </span>
+
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="container row-promoter pt-3 pb-3" style="background-color: white">
                 <div class="row justify-content-between">
-                    <div class="col-sm-12 text-right">
-                        <div v-if="session" class="row-promote justify-content-center">
+                    <div v-if="!state.author.buzz.blocked" class="col-sm-12 col-md-6">
+{#                        <ul class="ul-recommended-post">
+                            <li>
+                                <a href="" class="d-flex">
+
+                                    <!-- Para activar el parpadeo cuando alguien hace click en el icono, poner esta clases: pre-recommended -->
+                                    <!-- Hay dos estados: icon-recommended-post (por defecto), icon-recommended-post-active cuando esta recomendado -->
+                                    <div class="icon-recommended-post"></div>
+                                    <span>(0)</span>
+                                </a>
+                            </li>
+
+                        </ul>#}
+                        <recommend-post v-bind:post="state.post" v-bind:session="session" v-bind:user="user"></recommend-post>
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-right">
+                        <div v-if="session && !state.author.buzz.blocked" class="row-promote justify-content-center">
                             <div class="modal-instance">
 
                                 <a href="#modal-promote" class="btn btn--transparent modal-trigger">
@@ -183,7 +209,7 @@
             </div>
 
 
-            <div class="container row-project">
+            <div v-if="!state.author.buzz.blocked" class="container row-project">
                 <div class="row">
                     <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
                 </div>
@@ -218,7 +244,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="boxed boxed--border box-comment mb-0 mt-3">
-                            <div v-if="session" class="row">
+                            <div v-if="session && !state.author.buzz.blocked" class="row">
                                 <div class="col-md-12 row-comment">
 
                                     <div class="user-avatar">
@@ -356,7 +382,7 @@
 
                     </div>
                     <div class="col-md-5">
-                        <div v-if="state.post.download.resource" class="boxed boxed--border box-comment  mt--2 mt-3">
+                        <div v-if="state.post.download.resource && !state.author.buzz.blocked" class="boxed boxed--border box-comment  mt--2 mt-3">
                             <div class="row row-download">
                                 <div class="col-md-12 row-format mt-0">
                                     <p class="title">{{ lang.PUBLICATION.FORMAT }}</p>
@@ -502,7 +528,7 @@
                 </div>
             </div>
 
-            <div id="button-like" class="position-circle-fixed">
+            <div id="button-like" v-if="!state.author.buzz.blocked" class="position-circle-fixed">
                 <post-like-big v-on:vote="onVote"
                                v-bind:session="session"
                                v-bind:post="state.post"

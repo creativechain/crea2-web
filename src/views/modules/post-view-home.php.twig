@@ -3,8 +3,12 @@
 
         <div class="card__top">
             <a v-bind:href="state.content[p].url">
-                <div class="img-post-list"
+                <div v-if="!state.accounts[state.content[p].author].buzz.blocked" class="img-post-list"
                      v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(state.content[p]).url + ')' }">
+
+                </div>
+                <div v-else class="img-post-list"
+                     v-bind:style="{ 'background-image': 'url(/img/crea-web/image-block-creary.jpg)' }">
 
                 </div>
             </a>
@@ -26,7 +30,7 @@
             <h4 v-on:click="openPost(state.content[p])">{{ '{{ state.content[p].title }}' }}</h4>
             <!--<p class="description-post-box text-truncate" v-html="getTags(state.content[p])"></p>-->
             <ul class="list-inline list-unstyled w-100">
-                <li class="li-like">
+                <li v-if="!state.accounts[state.content[p].author].buzz.blocked" class="li-like">
                     <like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[p]"></like>
                 </li>
                 <li>
@@ -100,7 +104,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div v-if="session && state.content[p].author !== session.account.username" class="row">
+                                        <div v-if="session && state.content[p].author !== session.account.username && !state.accounts[state.content[p].author].buzz.blocked" class="row">
 
 
                                             <div class="col text-center m-btn-follow">

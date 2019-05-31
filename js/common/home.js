@@ -3,12 +3,13 @@
 /**
  * Created by ander on 9/10/18.
  */
-var homePosts;
-var lastPage;
+
 (function () {
 
-
+    var homePosts;
+    var lastPage;
     var session, account;
+
     /**
      *
      * @param {string} urlFilter
@@ -16,7 +17,6 @@ var lastPage;
      * @param state
      * @returns {License}
      */
-
     function showPosts(urlFilter, filter, state) {
         //console.log(urlFilter, filter, state);
         var content = state.content;

@@ -66,6 +66,7 @@ var CONSTANTS = {
     },
     MAX_TAGS: 8,
     BUZZ: {
+        USER_BLOCK_THRESHOLD: -30,
         MAX_LOG_NUM: 20,
         LEVELS: ['novice', 'trainee', 'advanced', 'expert', 'influencer', 'master', 'guru', 'genius']
     }
@@ -214,14 +215,6 @@ function removeBlockedContents(state, accountState, discussion_idx) {
 
 function parseAccount(account) {
     if (account) {
-        account.metadata = jsonify(account.json_metadata);
-        account.metadata.avatar = account.metadata.avatar || {};
-
-        account.metadata.adult_content = account.metadata.adult_content || 'hide';
-        account.metadata.post_rewards = account.metadata.post_rewards || '50';
-        account.metadata.comment_rewards = account.metadata.comment_rewards || '50';
-        account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
-
         account.buzz = crea.formatter.reputation(account.reputation, CONSTANTS.BUZZ.LEVELS.length, CONSTANTS.BUZZ.MAX_LOG_NUM);
         //Level 1 for bad users
         if (account.buzz.level <= 0) {
@@ -229,6 +222,22 @@ function parseAccount(account) {
         }
         account.buzz.level_name = CONSTANTS.BUZZ.LEVELS[account.buzz.level -1];
         account.buzz.level_title = lang.BUZZ[account.buzz.level -1];
+        account.buzz.blocked = account.buzz.formatted <= CONSTANTS.BUZZ.USER_BLOCK_THRESHOLD;
+
+        account.metadata = jsonify(account.json_metadata);
+
+        if (account.buzz.blocked) {
+            account.metadata.avatar = {};
+        } else {
+            account.metadata.avatar = account.metadata.avatar || {};
+        }
+
+        account.metadata.adult_content = account.metadata.adult_content || 'hide';
+        account.metadata.post_rewards = account.metadata.post_rewards || '50';
+        account.metadata.comment_rewards = account.metadata.comment_rewards || '50';
+        account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
+
+
         //console.log(jsonify(jsonstring(account)));
         return account;
     }
@@ -601,9 +610,14 @@ function performSearch(search) {
 
 function catchError(err) {
     if (err) {
-        console.error(err);
         var title;
         var body = [];
+
+        if (err.stack) {
+            console.trace(err.stack);
+        } else {
+            console.error(err);
+        }
 
         if (typeof err === 'string') {
             title = err;

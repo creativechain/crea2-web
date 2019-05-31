@@ -43,10 +43,10 @@ String.prototype.capitalize = function () {
  *
  * @returns {Array}
  */
-Array.prototype.unique = function() {
+Array.trim = function(array) {
     var uniqueArray = [];
 
-    this.forEach(function (value) {
+    array.forEach(function (value) {
         if (uniqueArray.indexOf(value) < 0) {
             uniqueArray.push(value);
         }
