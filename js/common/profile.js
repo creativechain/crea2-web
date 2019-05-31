@@ -4,6 +4,7 @@
  * Created by ander on 25/09/18.
  */
 
+var lastPage = 1;
 (function () {
     var profileContainer;
     var rewardsContainer = {};
@@ -1224,47 +1225,17 @@
                     callback(err);
                 }
             } else {
+                if (state.accounts[username]) {
+                    state.user = parseAccount(state.accounts[username]);
+                }
                 state.content = {};
                 state.discussion_idx = {
                     '': []
                 };
-                getProfileDiscussions(function (err, discussions) {
-                    var accounts = Object.keys(state.accounts);
-                    accounts.forEach(function (k) {
-                        state.accounts[k] = parseAccount(state.accounts[k]);
-                    });
 
-                    if (state.accounts[username]) {
-                        state.user = state.accounts[username];
-                        crea.formatter.estimateAccountValue(state.user).then(function (value) {
-                            state.user.estimate_account_value = value;
-                        });
-                    }
-
-                    //Sort discussions
-                    //Nodes return discussion ordered by last update
-                    discussions.sort(function (k1, k2) {
-                        var d1 = toLocaleDate(k1.created);
-                        var d2 = toLocaleDate(k2.created);
-                        return d2.getTime() - d1.getTime();
-                    });
-
-                    for (var x = 0; x < discussions.length; x++) {
-                        var d = discussions[x];
-                        var permlink = d.author + '/' + d.permlink;
-                        state.content[permlink] = d;
-                        state.discussion_idx[''].push(permlink);
-
-                    }
-
-                    //var contentArray = state.discussion_idx[''];
-                    //lastPage = state.content[contentArray[contentArray.length - 1]];
-
-                    if (callback) {
-                        callback(err, state);
-                    }
-
-                });
+                if (callback) {
+                    callback(err, state);
+                }
             }
         });
     }
@@ -1276,39 +1247,45 @@
         if (profileName) {
             var onState = function onState(err, state) {
                 if (!catchError(err)) {
-                    var posts = Object.keys(state.content);
-                    if (profileContainer) {
-                        state.content = Object.assign(profileContainer.state.content, state.content);
-                        posts = posts.concat(profileContainer.state.discussion_idx['']);
-                    }
+                    console.log(clone(state));
 
-                    posts = Array.trim(posts);
-                    console.log(clone(state.content));
-                    console.log('Posts:', posts);
+                    getProfileDiscussions(function (err, discussions) {
+                        var accounts = Object.keys(state.accounts);
+                        accounts.forEach(function (k) {
+                            state.accounts[k] = parseAccount(state.accounts[k]);
+                        });
 
-                    for (var x = 0; x < posts.length; x++) {
-                        var k = posts[x];
-                        state.content[k] = parsePost(state.content[k]);
-                    }
+                        if (state.accounts[profileName]) {
+                            state.user = state.accounts[profileName];
+                            crea.formatter.estimateAccountValue(state.user).then(function (value) {
+                                state.user.estimate_account_value = value;
+                            });
+                        }
 
-                    posts.sort(function (k1, k2) {
-                        var d1 = new Date(state.content[k1].created);
-                        var d2 = new Date(state.content[k2].created);
-                        return d2.getTime() - d1.getTime();
+                        //Sort discussions
+                        //Nodes return discussion ordered by last update
+                        discussions.sort(function (k1, k2) {
+                            var d1 = toLocaleDate(k1.created);
+                            var d2 = toLocaleDate(k2.created);
+                            return d2.getTime() - d1.getTime();
+                        });
+
+                        for (var x = 0; x < discussions.length; x++) {
+                            var d = discussions[x];
+                            var permlink = d.author + '/' + d.permlink;
+                            state.content[permlink] = d;
+                            state.discussion_idx[''].push(permlink);
+
+                        }
+
+                        detectNav(state, session, account, profileName);
                     });
-
-                    state.discussion_idx[''] = posts;
-                    //console.log('Discussion', state.discussion_idx['']);
-                    //var contentArray = state.discussion_idx[''];
-                    //lastPage = state.content[contentArray[contentArray.length - 1]];
-
-                    detectNav(state, session, account, profileName);
                 }
             };
 
             if (session && account) {
                 if (session.account.username === profileName) {
-                    var state = clone(account);
+                    //var state = clone(account);
                     //onState(null, state);
                     fetchUserState(profileName, onState);
                 } else {
@@ -1432,7 +1409,6 @@
         http.when('done', function (response) {
             var data = jsonify(response).data;
 
-            ++lastPage;
             var posts = [];
             var count = data.length;
 
@@ -1441,6 +1417,7 @@
                 if (count <= 0) {
                     if (callback) {
                         callback(null, posts);
+
                     }
                 }
             };
@@ -1463,14 +1440,14 @@
 
             if (data.length === 0) {
                 onPostData();
-                --lastPage;
+            } else {
+                ++lastPage;
             }
         });
 
         http.when('fail', function (jqXHR, textStatus, errorThrown) {
             onScrollCalling = false;
             catchError(textStatus);
-            --lastPage;
         });
 
         refreshAccessToken(function (accessToken) {
@@ -1486,42 +1463,35 @@
     }
 
     var onScrollCalling;
-    var lastPage;
     creaEvents.on('crea.scroll.bottom', function () {
         if (!onScrollCalling) {
             onScrollCalling = true;
 
-            if (lastPage) {
-                getProfileDiscussions(function (err, discussions) {
+            getProfileDiscussions(function (err, discussions) {
 
-                    //Remove first duplicate post
-                    //discussions.shift();
+                //Remove first duplicate post
+                //discussions.shift();
 
-                    //Sort discussions
-                    //Nodes return discussion ordered by last update
-                    discussions.sort(function (k1, k2) {
-                        var d1 = toLocaleDate(k1.created);
-                        var d2 = toLocaleDate(k2.created);
-                        return d2.getTime() - d1.getTime();
-                    });
-
-
-                    for (var x = 0; x < discussions.length; x++) {
-                        var d = discussions[x];
-
-                        var permlink = d.author + '/' + d.permlink;
-                        profileContainer.state.content[permlink] = d;
-                        profileContainer.state.discussion_idx[''].push(permlink);
-                    }
-
-                    var contentArray = profileContainer.state.discussion_idx[''];
-                    lastPage = profileContainer.state.content[contentArray[contentArray.length - 1]];
-
-                    profileContainer.$forceUpdate();
-
-                    onScrollCalling = false;
+                //Sort discussions
+                //Nodes return discussion ordered by last update
+                discussions.sort(function (k1, k2) {
+                    var d1 = toLocaleDate(k1.created);
+                    var d2 = toLocaleDate(k2.created);
+                    return d2.getTime() - d1.getTime();
                 });
-            }
+
+
+                for (var x = 0; x < discussions.length; x++) {
+                    var d = discussions[x];
+
+                    var permlink = d.author + '/' + d.permlink;
+                    profileContainer.state.content[permlink] = d;
+                    profileContainer.state.discussion_idx[''].push(permlink);
+                }
+
+                profileContainer.$forceUpdate();
+                onScrollCalling = false;
+            });
         }
 
     });
