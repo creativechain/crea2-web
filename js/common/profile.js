@@ -4,7 +4,6 @@
  * Created by ander on 25/09/18.
  */
 
-var lastPage = 1;
 (function () {
     var profileContainer;
     var rewardsContainer = {};
@@ -14,6 +13,7 @@ var lastPage = 1;
     var walletModalSend;
     var walletModalDeEnergize;
     var defaultModalConfig;
+    var lastPage = 1;
 
     function updateModalDeEnergize(state, session) {
         console.log('Modal De-Energize', jsonify(jsonstring(state)));
