@@ -217,6 +217,7 @@
             nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
         }
 
+        console.log(clone(state));
         if (!profileContainer) {
             profileContainer = new Vue({
                 el: '#profile-container',
@@ -1426,15 +1427,16 @@
                 var permlink = d.author + '/' + d.permlink;
 
                 crea.api.getContent(d.author, d.permlink, function (err, result) {
-                    if (err) {
+                    if (err || result.id <= 0) {
                         console.error('Error getting', permlink, err);
                     } else {
                         var p = parsePost(result);
                         p.reblogged_by = d.reblogged_by;
 
                         posts.push(p);
-                        onPostData();
                     }
+
+                    onPostData();
                 });
             });
 
