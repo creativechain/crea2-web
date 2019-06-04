@@ -398,7 +398,7 @@ faq.en = {
             ],
             "Where do the new CREA tokens come from?": ["In Crea, as in most blockchains such as Bitcoin, Litecoin or Ethereum, each time a block is produced (3 seconds), new tokens are generated. But, unlike other blockchains in which all new currencies go directly to the block producers (called miners), the blockchain of Crea assigns the vast majority (70% of the tokens generated annually) of the new tokens to a fund of reward called \"Reward Pool\". This Reward Pool offers users tokens for their participation in the network either as curators or as content generators."],
             "How is the group of rewards divided between authors and curators?": [
-                "A maximum of 25% of the payment of a publication is given to the curators as a reward for discovering the content. The other 75% is given to the author of the project publication.",
+                "A maximum of 30% of the payment of a publication is given to the curators as a reward for discovering the content. The other 70% is given to the author of the project publication.",
                 "If the curators vote for a publication within the first 30 minutes of its creation, a portion of its curation reward will be added to the author's payment. This proportion is calculated linearly based on the time and the vote hast to be cast between 0 and 30 minutes. As an example: upvoting at 15 minutes will donate half of your potential curation reward to the author."
             ],
             "What can I do with my CREA tokens?": [

@@ -247,7 +247,7 @@ faq.es = {
         },
         "Economía": {
             "¿Cómo se divide el grupo de recompensas entre autores y curadores?": [
-                "Como máximo el 25% del pago de una publicación se otorga a los curadores como recompensa por descubrir el contenido. El otro 75% se otorga al autor de la publicación del proyecto. ",
+                "Como máximo el 30% del pago de una publicación se otorga a los curadores como recompensa por descubrir el contenido. El otro 70% se otorga al autor de la publicación del proyecto. ",
                 "Si los curadores votan por una publicación dentro de los primeros 30 minutos de su creación, una porción de su recompensa de curación se agregará al pago del autor. Esta porción es lineal a la edad del post entre 0 y 30 minutos. Como ejemplo: aumentar la votación a los 15  minutos donará la mitad de su recompensa de curación potencial al autor."
             ],
             "¿Cuánto cuestan las transacciones de CREA a otros usuarios?": ["No hay tarifas por ningún tipo de transferencia o conversión ( Energize o De-Energize) dentro de la red de Crea Network. "],
