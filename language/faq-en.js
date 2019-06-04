@@ -94,7 +94,7 @@ faq.en = {
             "How are the new tokens generated?",
             "Where does the value of the Crea networks tokens come from?"
         ],
-        "Followers, Feeds and Recreary": ["What is a Recreary?"],
+        "Followers, Feeds and Recommended": ["What is a recommendation?"],
         "Creativechain Foundation": [
             "What is the Creativechain Foundation?",
             "Can I invest in Creativechain Foundation?",
@@ -323,9 +323,9 @@ faq.en = {
             "Do I get curation rewards for downvoting posts or comments?": ["No. Since downvoting reduces the rewards on a post/comment, it does not earn curation rewards."],
             "What determines how much of the curation reward goes to the author versus curators?": [
                 "70% of the rewards issued by the CREA network are destined to the rewards for creatives and curators.",
-                "These rewards are allocated so that 75% of the payout goes to the author of the post/comment, and 25% goes to the curator.",
-                "Of the 25% that goes to the curator, that portion will be split between the author and the curator if the curator votes within the first 30 minutes. The split of the 25% between the author and curator during the first 30 minutes is calculated linearly based on the time the vote is cast.",
-                "If a post is upvoted the moment of posting, 100% of the curation reward goes to the author.",
+                "These rewards are allocated so that 70% of the payout goes to the author of the post/comment, and 30% goes to the curator.",
+                "Of the 30% that goes to the curator, that portion will be split between the author and the curator if the curator votes within the first 30 minutes. The split of the 30% between the author and curator during the first 30 minutes is calculated linearly based on the time the vote is cast.",
+                "If a post receives \"like\" the moment of posting, 100% of the curation reward goes to the author.",
                 "At 6 minutes, 80% goes to the author and 20% to the curator.",
                 "At 15 minutes it's at 50/50 split.",
                 "If a post is upvoted 30 min after posting, 100% of the curation reward goes to the curator."
@@ -498,12 +498,14 @@ faq.en = {
             ],
             "What is creary.net?": ["Creary is a social network of multimedia portfolios based on the blockchain that rewards creatives and curators for sharing their digital creations with the community."]
         },
-        "Followers, Feeds and Recreary": {
-            "Why does my Buzz score matter?": [
-                "Many Crearians look at the Buzz level of users before reviewing a project or downloading any material. A high Buzz level means that content is much more likely to be of high quality.",
-                "It is important to know that if a user has a Buzz level lower than 0, Creary will stop displaying his posts and comments automatically."
-            ],
-            "What is a Recreary?": ["It is the function that allows a Crearian share a work of another Crearian in his feed. This function is ideal for discovering others' works and showing them to your followers."]
+        "Followers, Feeds and Recommended": {
+            "What is a recommendation?": [
+                "As the network grows so does the number of daily publications. As a result of this, you may not see many projects that might interest you.",
+                "The recommend function is very useful to let your community know about some projects that you have found and consider of high value and interest for them.",
+                "Recommend is very simple, you just have to click on the icon that appears in the upper right part of the project boxes or in the lower left part inside the project page.",
+                "When you recommend a content this will be visible in your followers feed. In this content, the author of this recommendation will be indicated.",
+                "It is important not to abuse this function and be very selective with those projects that you really want to recommend to the community."
+            ]
         },
         "Creativechain Foundation": {
             "Is it allowed to use the Creary logo?": ["\"Creary\", the Creary logo and any other product or service name, logos or slogans that may appear on the Service are works owned by Creativechain FDN, under a Creative Commons License CC BY-ND. This license allows redistribution, commercial and non-commercial, as long as the work is not modified and transmitted in its entirety, recognizing its original authorship. The appearance of Creary.net and the Service are protected by copyright with a CC BY-NC license, which allows others to remix, adjust and build from their works for non-commercial purposes, and although in their new creations they must recognize the authorship of Creativechain FDN and can not be used commercially, does not necessarily have to be licensed under the same terms. This is applicable to the visual design elements or concepts in HTML/CSS and Javascript available on Creary.net."],
@@ -633,7 +635,7 @@ faq.en = {
         "Voting and Curating",
         "Plagiarism, spam and abuse",
         "Reputation",
-        "Followers, Feeds and Recreary",
+        "Followers, Feeds and Recommended",
         "Technology behind Creary",
         "Creativechain Foundation",
         "Security",

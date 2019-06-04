@@ -61,14 +61,14 @@ faq.es = {
             "¿Cómo envío dinero a otro usuario?",
             "¿Recibiré notificaciones cuando haya actividad con mi cuenta?"
         ],
-        "Seguidores, Feeds y Recreary": ["¿Qué es Recreary? "],
+        "Seguidores, Feeds y Recomendados": ["¿Qué es una recomendación?"],
         "Desarrolladores": ["¿El código Creary.net o de la blockchain de Crea es de código abierto?"],
         "Votación y Curación": [
             "¿Cuál es mi poder de voto?",
             "¿Cuántas veces puedo votar sin agotar mi poder de voto?",
             "¿Puedo votar con menos del 100% de mi poder de voto?",
             "¿Dónde puedo verificar mi poder de voto?",
-            "¿Qué determina qué parte de la recompensa de curación va para el autor frente a los curadores?",
+            "¿Qué determina qué parte de la recompensa de curación se otorga al autor en comparación con los curadores?",
             "¿Recibiré recompensas de curaduría por denunciar, publicaciones o comentarios?",
             "¿Por qué mis votaciones no tienen efecto en las recompensas de una publicación?",
             "¿Hay alguna manera de conseguir que mis votos tengan más influencia? ",
@@ -366,12 +366,14 @@ faq.es = {
                 "Se le pedirá su contraseña maestra o clave activa para confirmar la transacción."
             ]
         },
-        "Seguidores, Feeds y Recreary": {
-            "¿Qué es Recreary? ": ["Es la función que permite a un Crearian compartir un trabajo de otro Crearian en su feed. Esta función es ideal para descubrir trabajos de otros y mostrarlos a tus seguidores. "],
-            "¿Por qué mi nivel de Buzz es importante?": [
-                "Muchos Crearians se fijan en el nivel de Buzz de los usuarios antes de revisar un proyecto o descargar un cualquier material. Un nivel de Buzz alto significa que es mucho más probable que el contenido sea de calidad. ",
-                "Es importante saber que si un usuario tiene un nivel de buzz inferior a 0, Creary dejará de mostrar sus publicaciones y comentarios automáticamente. "
-            ]
+        "Seguidores, Feeds y Recomendados": {
+            "¿Qué es una recomendación?": [
+                "A medida que la red crece, también crece el número de publicaciones diarias. Como resultado de esto, es posible que no vea muchos proyectos que puedan interesarle.",
+                "La función de recomendación es muy útil para informar a su comunidad sobre algunos proyectos que ha encontrado y considera de gran valor e interés para ellos.",
+                "Recomendar es muy simple, solo tienes que hacer clic en el icono que aparece en la parte superior derecha de los cuadros del proyecto o en la parte inferior izquierda dentro de la página del proyecto."
+                "Cuando recomiendas un contenido, este será visible en su feed de seguidores. En este contenido, se indicará el autor de esta recomendación.",
+                "Es importante no abusar de esta función y ser muy selectivo con los proyectos que realmente desea recomendar a la comunidad."
+            ],
         },
         "Desarrolladores": {
             "¿Cómo funciona el protocolo de recuperación de cuentas robadas?": [
@@ -416,17 +418,17 @@ faq.es = {
                 "Los usuarios nuevos solo pueden votar a favor y en contra con una fuerza de voto del 100%.",
                 "Una vez que llegue a unos 500 CREA Energy, verá que aparece un control deslizante de votación cuando vote. Puede usar el control deslizante para ajustar el peso de su voto, entre el 1% y el 100% de la fuerza de voto. Votar con menos de 100% de peso gastará menos poder de voto, pero también tendrá menos influencia en las recompensas del comentario o del post. "
             ],
-            "¿Qué determina qué parte de la recompensa de curación va para el autor frente a los curadores?": [
-                "Del 100% de las recompensas que emite la red de CREA el 70% se destina a las recompensas de creativos y curadores. ",
-                "Dentro de estas porcentaje del 70% el 75% se destina a los autores de la publicación o comentario y el 25% va a los curadores. ",
-                "Del 25% que se destina al curador, esa parte se dividirá entre el autor y el curador si el curador vota dentro de los primeros 30 minutos. La división del 25% entre el autor y el curador durante los primeros 30 minutos se calcula de forma lineal en función del momento en que se emite el voto.",
-                "Si una obra se vota en el justo momento de su publicación, el 100% de la recompensa de curación va al autor.",
-                "A los 6 minutos, el 80% va al autor y el 20% al curador.",
-                "A los 15 minutos es una división 50/50.",
-                "Si una publicación se vota 30 minutos después su publicación, el 100% de la recompensa de curación se destina a los curadores. "
+            "¿Qué determina qué parte de la recompensa de curación se otorga al autor en comparación con los curadores?": [
+                "El 70% de las recompensas emitidas por la red CREA están destinadas a las recompensas para creativos y curadores.",
+                "Estas recompensas se asignan de manera que el 70% de los pagos se destinen al autor de la publicación / comentario y el 30% al curador.",
+                "Del 30% que se destina al curador, esa parte se dividirá entre el autor y el curador si el curador vota dentro de los primeros 30 minutos. La división del 30% entre el autor y el curador durante los primeros 30 minutos se calcula de forma lineal en función del momento en que se emite el voto.",
+                "Si una publicación recibe \"Me gusta\" en el momento de la publicación, el 100% de la recompensa de curación va al autor.",
+                "A los 6 minutos, el 80% va para el autor y el 20% para el curador.",
+                "A los 15 minutos se divide a 50/50.",
+                "Si una publicación se vota 30 minutos después de la publicación, el 100% de la recompensa de curación se destina al curador."
             ],
             "¿Por qué cuando doy un Me gusta a un proyecto, no agrega una recompensa?": [
-                "Si sus \"me gusta\" no dan una recompensa, puede deberse a varias razones.",
+                "Si tus \"Me gusta\" no dan una recompensa, puede deberse a varias razones.",
                 "1- Para tener una mayor influencia en tus gustos, necesitarás tener CREA Energy (CGY) cuanto más CGY tengas, mayor será tu influencia en la distribución de las recompensas. Para obtener más CGY tienes diferentes opciones:",
                 "-La primera opción es ganar recompensas por su actividad en la red social, por ejemplo, creando contenido de calidad, escribiendo comentarios interesantes o dando \"me gusta\" a contenido de calidad.",
                 "-La segunda y más rápida opción es energizar CREA y convertirla en CGY en su billetera. Si no tiene CREA, puede obtenerlo en cualquier punto de venta o intercambio disponible en https://creaproject.io/buy/",
@@ -642,7 +644,7 @@ faq.es = {
         "Votación y Curating",
         "Plagio, spam y abuso",
         "Reputación",
-        "Seguidores, Feeds y Recreary",
+        "Seguidores, Feeds y Recomendados",
         "Tecnología detrás de Creary ",
         "Creativechain Foundation",
         "Seguridad",
