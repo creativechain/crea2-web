@@ -541,6 +541,8 @@
                         return moment(toLocaleDate(date)).fromNow();
                     },
                     onFollow: function onFollow(err, result) {
+                        //Keep same scroll page
+                        --lastPage;
                         updateUserSession();
                     },
                     onVote: function onVote(err, result, post) {
