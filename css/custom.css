@@ -78,3 +78,7 @@ li > .search {
     font-size: 14px;
     font-weight: bold;
 }
+
+p > ul > li {
+    list-style: inside;
+}

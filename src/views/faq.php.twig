@@ -15,8 +15,7 @@
 
                                 <template v-for="r in faq.RESPONSES[cat][q]">
                                     <p v-if="linkfy(r)" v-html="linkfy(r)"></p>
-                                    <p v-else>
-                                        {{ '{{ r }}' }}
+                                    <p v-else v-html="r">
                                     </p>
                                 </template>
 
