@@ -439,7 +439,9 @@ Vue.component('slider', {
 
 Vue.component('post-like-big', {
     template: '' +
-        '<div v-on:mouseover="onOver(true)" v-on:mouseleave="onOver(false)" class="circle-like-post bs-popover-left" v-bind:class="circleClasses" role="button" data-toggle="popover" data-trigger="hover" data-placement="left" data-html="true" v-bind:title="post.up_votes.length  + \' Likes\'" v-bind:data-content="payouts">' +
+        '<div v-on:mouseover="onOver(true)" v-on:mouseleave="onOver(false)" class="circle-like-post bs-popover-left"' +
+        '   v-bind:class="circleClasses" role="button" data-toggle="popover" data-trigger="hover" data-placement="left" ' +
+        '   data-html="true" v-bind:title="tooltipTitle" v-bind:data-original-title="tooltipTitle" v-bind:data-content="payouts">' +
         '   <div class="lds-heart size-20 size-30-like post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
         '       <div></div>' +
         '   </div>' +
@@ -463,16 +465,19 @@ Vue.component('post-like-big', {
     computed: {
         circleClasses: function circleClasses(){
             return {
-                'circle-like-post-active': (!this.over && this.state == this.states.LIKED) || (this.over && (this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END))
+                'circle-like-post-active': (!this.over && this.state === this.states.LIKED) || (this.over && (this.state === this.states.NO_LIKE || this.state === this.states.NO_LIKE_END))
             }
         },
 
         likeClasses: function likeClasses() {
             return {
-                'like-normal': !this.over && (this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END) || (this.over && (this.state == this.states.LIKED || this.state == this.states.LIKED_END)),
-                'like-normal-activate': !this.over && (this.state == this.states.LIKED || this.state == this.states.LIKED_END) || (this.over && (this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END)),
-                'active-like': this.state == this.states.LIKE_OP
+                'like-normal': !this.over && (this.state === this.states.NO_LIKE || this.state === this.states.NO_LIKE_END) || (this.over && (this.state === this.states.LIKED || this.state === this.states.LIKED_END)),
+                'like-normal-activate': !this.over && (this.state === this.states.LIKED || this.state === this.states.LIKED_END) || (this.over && (this.state === this.states.NO_LIKE || this.state === this.states.NO_LIKE_END)),
+                'active-like': this.state === this.states.LIKE_OP
             };
+        },
+        tooltipTitle: function() {
+            return this.post.up_votes.length + ' Likes';
         }
     },
     data: function data() {
@@ -551,8 +556,6 @@ Vue.component('post-like-big', {
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = that.states.LIKE_OP;
                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
-                        console.log(err, result);
-
                         if (err) {
                             that.$emit('vote', err, null, post);
                         } else {
@@ -569,6 +572,15 @@ Vue.component('post-like-big', {
                                 that.state = that.states.NO_LIKE_END;
                             }
                             that.$emit('vote', null, result, post);
+
+                            //Update tooltip;
+                            var circleLike = $('.circle-like-post');
+                            var realTooltip = circleLike.attr('aria-describedby');
+                            console.log('realTooltip', realTooltip);
+                            realTooltip = $('#' + realTooltip);
+                            if (realTooltip.length > 0) {
+                                $('.popover-header').html(that.tooltipTitle)
+                            }
                         }
                     });
                 });
@@ -579,7 +591,7 @@ Vue.component('post-like-big', {
         this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
     },
     updated: function updated() {
-        if (this.state != LIKE_STATE.LIKE_OP) {
+        if (this.state !== LIKE_STATE.LIKE_OP) {
             this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
         }
     }
@@ -634,9 +646,9 @@ Vue.component('post-like', {
     computed: {
         likeClasses: function likeClasses() {
             return {
-                'like-normal': this.state == this.states.NO_LIKE || this.state == this.states.NO_LIKE_END,
-                'like-normal-activate': this.state == this.states.LIKED || this.state == this.states.LIKED_END,
-                'active-like': this.state == this.states.LIKE_OP
+                'like-normal': this.state === this.states.NO_LIKE || this.state === this.states.NO_LIKE_END,
+                'like-normal-activate': this.state === this.states.LIKED || this.state === this.states.LIKED_END,
+                'active-like': this.state === this.states.LIKE_OP
             };
         }
     },
