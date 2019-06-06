@@ -61,14 +61,14 @@ faq.es = {
             "¿Cómo envío dinero a otro usuario?",
             "¿Recibiré notificaciones cuando haya actividad con mi cuenta?"
         ],
-        "Seguidores, Feeds y Recreary": ["¿Qué es Recreary? "],
+        "Seguidores, Feeds y Recomendados": ["¿Qué es una recomendación?"],
         "Desarrolladores": ["¿El código Creary.net o de la blockchain de Crea es de código abierto?"],
         "Votación y Curación": [
             "¿Cuál es mi poder de voto?",
             "¿Cuántas veces puedo votar sin agotar mi poder de voto?",
             "¿Puedo votar con menos del 100% de mi poder de voto?",
             "¿Dónde puedo verificar mi poder de voto?",
-            "¿Qué determina qué parte de la recompensa de curación va para el autor frente a los curadores?",
+            "¿Qué determina qué parte de la recompensa de curación se otorga al autor en comparación con los curadores?",
             "¿Recibiré recompensas de curaduría por denunciar, publicaciones o comentarios?",
             "¿Por qué mis votaciones no tienen efecto en las recompensas de una publicación?",
             "¿Hay alguna manera de conseguir que mis votos tengan más influencia? ",
@@ -99,8 +99,9 @@ faq.es = {
         ],
         "Reputación": [
             "¿Qué es el Buzz en Creary?",
-            "¿Qué causa que mi puntaje de Buzz baje?",
-            "¿Por qué mi nivel de Buzz es importante?"
+            "¿Como se incrementa la reputación?",
+            "¿Qué hace que mi nivel de Buzz baje?",
+            "¿Por qué es importante mi nivel de Buzz?"
         ],
         "Testigos": [
             "¿Qué son los testigos de Crea?",
@@ -246,7 +247,7 @@ faq.es = {
         },
         "Economía": {
             "¿Cómo se divide el grupo de recompensas entre autores y curadores?": [
-                "Como máximo el 25% del pago de una publicación se otorga a los curadores como recompensa por descubrir el contenido. El otro 75% se otorga al autor de la publicación del proyecto. ",
+                "Como máximo el 30% del pago de una publicación se otorga a los curadores como recompensa por descubrir el contenido. El otro 70% se otorga al autor de la publicación del proyecto. ",
                 "Si los curadores votan por una publicación dentro de los primeros 30 minutos de su creación, una porción de su recompensa de curación se agregará al pago del autor. Esta porción es lineal a la edad del post entre 0 y 30 minutos. Como ejemplo: aumentar la votación a los 15  minutos donará la mitad de su recompensa de curación potencial al autor."
             ],
             "¿Cuánto cuestan las transacciones de CREA a otros usuarios?": ["No hay tarifas por ningún tipo de transferencia o conversión ( Energize o De-Energize) dentro de la red de Crea Network. "],
@@ -311,7 +312,7 @@ faq.es = {
             ],
             "¿Qué determina el precio de CREA?": ["El precio de CREA se basa en la oferta y la demanda del token, según lo determinen los compradores y vendedores en los mercados de criptomonedas. Es muy parecido a cómo se determina el precio de un producto o materia prima como el oro. "],
             "¿De dónde vienen los nuevos tokens CREA?": ["En Crea, al igual que en la mayoría de blockchains como Bitcoin, Litecoin o Ethereum, cada vez que se produce un bloque (3 segundos) se generan nuevos tokens. Pero, a diferencia de otras blockchains en las que todas las nuevas monedas van directamente a los productores de bloques (llamados mineros), la blockchain de Crea asigna la gran mayoría (70% de los tokens generados anualmente) de los nuevos tokens a un fondo de recompensa llamado \"Reward Pool\". Este Reward Pool ofrece a los usuarios tokens por su participación en la red ya sea haciendo de curadores o de generadores de contenidos. "],
-            "¿Cuánto tiempo lleva la transferencia de tokens entre usuarios dentro de la red de Crea?": ["Una transferencia de tokens entre cuentas normalmente tomará 3 segundos. La red de crea es una de la redes de pagos en criptomonedas más rápida del ecosistema blockchain. Por ejemplo las transacciones en Bitcoin pueden llevar como mínimo 10 minutos."]
+            "¿Cuánto tiempo lleva la transferencia de tokens entre usuarios dentro de la red de Crea?": ["Una transferencia de tokens entre cuentas normalmente tomará 3 segundos. La red de crea es una de la redes de pagos en criptomonedas más rápida del ecosistema blockchain. Por ejemplo las transacciones en Bitcoin pueden llevar como mínimo 10 minutos."],
             "¿Qué es el FLOW?": [
                 "El FLOW es un tipo de recurso o token no transferible que la cadena de bloques CREA otorga de manera inteligente a cada cuenta de usuario de acuerdo con la cantidad de CREA Energy (CGY) que tiene. El FLUJO es proporcional al CGY.",
                 "El FLOW es un recurso que se consume cada vez que un usuario realiza transacciones (votos, me gusta, comentarios, transferencias o energizaciones).",
@@ -365,12 +366,14 @@ faq.es = {
                 "Se le pedirá su contraseña maestra o clave activa para confirmar la transacción."
             ]
         },
-        "Seguidores, Feeds y Recreary": {
-            "¿Qué es Recreary? ": ["Es la función que permite a un Crearian compartir un trabajo de otro Crearian en su feed. Esta función es ideal para descubrir trabajos de otros y mostrarlos a tus seguidores. "],
-            "¿Por qué mi nivel de Buzz es importante?": [
-                "Muchos Crearians se fijan en el nivel de Buzz de los usuarios antes de revisar un proyecto o descargar un cualquier material. Un nivel de Buzz alto significa que es mucho más probable que el contenido sea de calidad. ",
-                "Es importante saber que si un usuario tiene un nivel de buzz inferior a 0, Creary dejará de mostrar sus publicaciones y comentarios automáticamente. "
-            ]
+        "Seguidores, Feeds y Recomendados": {
+            "¿Qué es una recomendación?": [
+                "A medida que la red crece, también crece el número de publicaciones diarias. Como resultado de esto, es posible que no vea muchos proyectos que puedan interesarle.",
+                "La función de recomendación es muy útil para informar a su comunidad sobre algunos proyectos que ha encontrado y considera de gran valor e interés para ellos.",
+                "Recomendar es muy simple, solo tienes que hacer clic en el icono que aparece en la parte superior derecha de los cuadros del proyecto o en la parte inferior izquierda dentro de la página del proyecto."
+                "Cuando recomiendas un contenido, este será visible en su feed de seguidores. En este contenido, se indicará el autor de esta recomendación.",
+                "Es importante no abusar de esta función y ser muy selectivo con los proyectos que realmente desea recomendar a la comunidad."
+            ],
         },
         "Desarrolladores": {
             "¿Cómo funciona el protocolo de recuperación de cuentas robadas?": [
@@ -415,17 +418,17 @@ faq.es = {
                 "Los usuarios nuevos solo pueden votar a favor y en contra con una fuerza de voto del 100%.",
                 "Una vez que llegue a unos 500 CREA Energy, verá que aparece un control deslizante de votación cuando vote. Puede usar el control deslizante para ajustar el peso de su voto, entre el 1% y el 100% de la fuerza de voto. Votar con menos de 100% de peso gastará menos poder de voto, pero también tendrá menos influencia en las recompensas del comentario o del post. "
             ],
-            "¿Qué determina qué parte de la recompensa de curación va para el autor frente a los curadores?": [
-                "Del 100% de las recompensas que emite la red de CREA el 70% se destina a las recompensas de creativos y curadores. ",
-                "Dentro de estas porcentaje del 70% el 75% se destina a los autores de la publicación o comentario y el 25% va a los curadores. ",
-                "Del 25% que se destina al curador, esa parte se dividirá entre el autor y el curador si el curador vota dentro de los primeros 30 minutos. La división del 25% entre el autor y el curador durante los primeros 30 minutos se calcula de forma lineal en función del momento en que se emite el voto.",
-                "Si una obra se vota en el justo momento de su publicación, el 100% de la recompensa de curación va al autor.",
-                "A los 6 minutos, el 80% va al autor y el 20% al curador.",
-                "A los 15 minutos es una división 50/50.",
-                "Si una publicación se vota 30 minutos después su publicación, el 100% de la recompensa de curación se destina a los curadores. "
+            "¿Qué determina qué parte de la recompensa de curación se otorga al autor en comparación con los curadores?": [
+                "El 70% de las recompensas emitidas por la red CREA están destinadas a las recompensas para creativos y curadores.",
+                "Estas recompensas se asignan de manera que el 70% de los pagos se destinen al autor de la publicación / comentario y el 30% al curador.",
+                "Del 30% que se destina al curador, esa parte se dividirá entre el autor y el curador si el curador vota dentro de los primeros 30 minutos. La división del 30% entre el autor y el curador durante los primeros 30 minutos se calcula de forma lineal en función del momento en que se emite el voto.",
+                "Si una publicación recibe \"Me gusta\" en el momento de la publicación, el 100% de la recompensa de curación va al autor.",
+                "A los 6 minutos, el 80% va para el autor y el 20% para el curador.",
+                "A los 15 minutos se divide a 50/50.",
+                "Si una publicación se vota 30 minutos después de la publicación, el 100% de la recompensa de curación se destina al curador."
             ],
             "¿Por qué cuando doy un Me gusta a un proyecto, no agrega una recompensa?": [
-                "Si sus \"me gusta\" no dan una recompensa, puede deberse a varias razones.",
+                "Si tus \"Me gusta\" no dan una recompensa, puede deberse a varias razones.",
                 "1- Para tener una mayor influencia en tus gustos, necesitarás tener CREA Energy (CGY) cuanto más CGY tengas, mayor será tu influencia en la distribución de las recompensas. Para obtener más CGY tienes diferentes opciones:",
                 "-La primera opción es ganar recompensas por su actividad en la red social, por ejemplo, creando contenido de calidad, escribiendo comentarios interesantes o dando \"me gusta\" a contenido de calidad.",
                 "-La segunda y más rápida opción es energizar CREA y convertirla en CGY en su billetera. Si no tiene CREA, puede obtenerlo en cualquier punto de venta o intercambio disponible en https://creaproject.io/buy/",
@@ -534,21 +537,73 @@ faq.es = {
             ]
         },
         "Reputación": {
-            "¿Qué causa que mi puntaje de Buzz baje?": [
-                "La única forma en que baje tu Buzz es a causa de recibir votos negativos. No obstante no todos estos votos negativos te afectarán:",
-                "- Los reportes negativos de usuarios con una puntuación de Buzz inferior a la tuya no dañará tu puntuación.",
-                "- Si tu proyecto o  comentario que fue votado recibió más likes que reportes negativos , entonces el efecto neto en su puntaje de Buzz seguirá siendo positivo."
-            ],
-            "¿Dónde puedo informar sobre autores, publicaciones o comentarios que contienen plagio, spam o abuso de algún tipo?": ["Primero puedes reportar el contenido desde la misma publicación, después puedes informar directamente a nuestro departamento legal mediante el correo de legal@creary.net . También puedes avisar de cualquier contenido abusivo usando el canal de #crearyabuse desde nuestro servidor de Discord https://discord.gg/RkHFRE"],
             "¿Qué es el Buzz en Creary?": [
-                "Cada usuario tiene una puntuación de Buzz que podrá ver al lado de su nombre o en el apartado del perfil de usuario. La puntuación de Buzz es una de las formas en con las que Creary calcula la cantidad de valor que un usuario ha aportado a la comunidad. ",
-                "El Buzz es un mecanismo que sirve para medir la calidad y confianza que puede dar una cuenta de usuario al mismo. También es un mecanismo que está diseñado para ayudar a reducir el abuso dentro de la red social.",
-                "Tu reputación aumenta cuando otros usuarios votan por tu contenido. El hecho de que alguien con una reputación más alta reporte tu contenido puede hacer que reduzca tu Buzz y hacer que tus publicaciones sean menos visibles. ",
-                "Los usuarios con un puntaje de Buzz inferior no pueden afectar a tu nivel de Buzz."
+                "Como en cualquier red social, una credencial de verificación es el mejor indicador de cómo es un usuario y la calidad que este usuario brinda a la comunidad.",
+                "Creary tiene un sistema de puntuación dedicado que funciona dentro de la cadena de bloques de CREA Network.",
+                "Cada usuario tiene una puntuación de Buzz que puede verse al lado de su nombre o en la sección de perfil de usuario. La puntuación de Buzz es una de las formas en que Creary tiene que calcular el valor que un usuario ha contribuido a la comunidad.",
+                "El Buzz es un mecanismo de gamificación que mide la calidad de una cuenta de usuario mientras motiva a la comunidad a seguir mejorando. También es un mecanismo que está diseñado para ayudar a reducir el abuso dentro de la red social y alentar a las personas a hacer las cosas correctamente.",
+                "La reputación comienza en 1 (Principiante) para todos los usuarios nuevos y es responsabilidad de los usuarios aumentar o disminuir la puntuación a través de su interacción con la cadena de bloques y con otros usuarios."
             ],
-            "¿Por qué mi nivel de Buzz es importante?": [
-                "Muchos Crearians se fijan en el nivel de Buzz de los usuarios antes de revisar un proyecto o descargar un cualquier material. Un nivel de Buzz alto significa que es mucho más probable que el contenido sea de calidad. ",
-                "Es importante saber que si un usuario tiene un nivel de buzz inferior a 0, Creary dejará de mostrar sus publicaciones y comentarios automáticamente. "
+            "¿Como se incrementa la reputación?": [
+                "Tu reputación aumenta cuando a otros usuarios les gusta tu contenido. El hecho de que alguien con una reputación superior informe que su contenido puede reducir su Buzz y hacer que tus publicaciones sean menos visibles",
+                "La reputación no se ve afectada en los siguientes casos:" +
+                "<ul>" +
+                "<li> Cuando recibas recompensas de autor en tu billetera. </li>" +
+                "<li> Cuando ganas recompensas de curación. </li>" +
+                "<li> Cuando haces una publicación o un comentario. </li> </ul>",
+                "El Buzz y el valor de tu cuenta de usuario no están relacionados. No existe una relación directa entre su nivel de Buzz y el valor de tu cuenta que se muestra en su billetera. Esto significa que el nivel de Buzz no se ve afectado por:" +
+                "<ul>" +
+                "<li> La cantidad de CREA en la billetera de un usuario. </li>" +
+                "<li> La cantidad de energía CREA (CGY) que tiene un usuario. </li>" +
+                "<li> La cantidad de CDB en su billetera. </li> </ul>",
+                "La razón por la que el valor de la cuenta de un usuario no afecta a Buzz es porque de esta manera nadie puede comprar su reputación. La reputación se logra con esfuerzo, creatividad y perseverancia. Por lo tanto, podría haber cuentas de usuario con un valor de Miles de dólares y al mismo tiempo tienen un nivel de Buzz muy bajo.",
+                "Ten en cuenta que no todos los gustos afectarán su reputación de la misma manera. Aunque no es el tema de esta publicación, las recompensas de curación obtenidas por los curadores son un aspecto esencial que afectará su reputación. La cantidad de estas recompensas depende sobre los siguientes factores: "+
+                "<ul>" +
+                "<li>Tiempo del \"Me gusta\" desde que se compartió la publicación. </li>" +
+                "<li>Reputación del curador. </li>" +
+                "<li>CREA Energy obtenida por el usuario. </li>" +
+                "<li>El poder de voto restante y el porcentaje (fuerza de voto) de ese \"Me gusta\". </li> </ul>",
+                "Las acciones de recompensa tienen un código complejo detrás, pero una vez calculado, se agrega a su puntaje de reputación, excepto cuando alguien informa su contenido (y tiene una reputación más alta que la suya). En este caso, las acciones de recompensa se restan de su reputación, negativamente afectándolo y bajando tu nivel de Buzz.",
+                "Es importante saber que el nivel de Buzz no aumenta uniformemente, de 2 a 3 es un poco más difícil que de 1 a 2 y así sucesivamente. Por esta razón, es posible que al principio sea más fácil aumentar tu nivel de Buzz.",
+            ],
+            "¿Qué hace que mi nivel de Buzz baje?": [
+                "La única forma de reducir tu Buzz es recibir denuncias / reportes de tu contenido (votos negativos). Sin embargo, no todos los votos negativos te afectarán:" +
+                "<ul>" +
+                "<li>Los reportes negativos de usuarios con una puntuación de Buzz inferior a la tuya no afectarán tu puntuación. </li>" +
+                "<li>Si tu proyecto o comentario recibió más \"Me gusta\" que reportes negativos, entonces el efecto neto en tu puntaje de Buzz seguirá siendo positivo. </li> </ul>",
+                "¿Cómo se calcula el nivel de Buzz? <br /> El núcleo de la Red CREA (blockchain) muestra un número de reputación de varios dígitos que puede ver en el navegador de bloques https://creascan.net en la sección de datos dentro de su @usuario Por ejemplo, en el caso de @creary sería: https://creascan.net/@creary/data ",
+                "<code> @creary (reputación) = 35241066.000 </code>",
+                "Para hacerlo más fácil, la red social creary.net convierte este número mediante una función de log de base 10. Hay 8 niveles:" +
+                "<ul>" +
+                "<li> [<= 19] Principiante </li>" +
+                "<li> [20-29] Aprendiz </li>" +
+                "<li> [30-39] Avanzado </li>" +
+                "<li> [40-49] Experto </li>" +
+                "<li> [50-59] Influencer </li>" +
+                "<li> [60-69] Maestro </li>" +
+                "<li> [70-79] Gurú </li>" +
+                "<li> [>= 80] Genio </li>",
+                "La fórmula ha sido diseñada de la siguiente manera. <br />" +
+                "<code>" +
+                "round ((log10 (raw_reputation)) * max_level / max_log_num) <br />" +
+                "raw_reputation = Reputación sin procesar devuelta por el núcleo. <br />" +
+                "max_level = Número máximo de niveles. <br />" +
+                "max_log_num = Número máximo permitido por la fórmula. </code>",
+                "Ejemplo: <br />" +
+                "<code>" +
+                "max_level = 8 <br />" +
+                "max_log_num = 20 <br />" +
+                "raw_reputation = 35241066.000 <br />" +
+                "log10 (35241066.000) = 7.547049036826153 <br />" +
+                "7.547049036826153 * 8/20 = 3.018819614730461 <br />" +
+                "Buzz: round(3.018819614730461 * 10) = redondo (30,18819614730461) = 30 </code> <br />",
+                "Finalmente, el resultado del nivel Buzz sería 30. Esto corresponde a Avanzado."
+            ],
+            "¿Por qué es importante mi nivel de Buzz?": [
+                "Muchos Crearians miran el nivel de Buzz de los usuarios antes de revisar un proyecto o descargar cualquier proyecto de un usuario. Un alto nivel de Buzz significa que el contenido es mucho más probable que sea de calidad.",
+                "Si tu reputación es inferior a 1, es una evidencia de que no estás haciendo las cosas bien. Situ reputación es de 30 o más, significa que está haciendo un esfuerzo para que sus publicaciones sean apreciadas por la comunidad.",
+                "Es importante saber que si un usuario tiene un nivel de buzz inferior a -30, Creary puede dejar de mostrar sus publicaciones. Esta es una herramienta para detectar cuentas maliciosas que han sido valoradas negativamente por muchos miembros de la comunidad.",
+                "El nivel de Buzz tiene un papel importante en la capacidad de regenerar la Energía de voto. Cuanta más reputación tenga un usuario, más rápido se regenerará su energía para dar influencia a los \"Me gusta\"."
             ]
         },
         "Testigos": {
@@ -589,7 +644,7 @@ faq.es = {
         "Votación y Curating",
         "Plagio, spam y abuso",
         "Reputación",
-        "Seguidores, Feeds y Recreary",
+        "Seguidores, Feeds y Recomendados",
         "Tecnología detrás de Creary ",
         "Creativechain Foundation",
         "Seguridad",

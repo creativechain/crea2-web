@@ -115,10 +115,14 @@
                         var amount = Asset.parseString(post.promoted);
                         return '$ ' + amount.toPlainString();
                     },
-                    getPayout: function getPayout(post, sym) {
+                    getPayout: function getPayout(post, sym, dec) {
 
                         if (!post) {
                             post = this.state.post;
+                        }
+
+                        if (!dec) {
+                            dec = 2;
                         }
 
                         var amount = Asset.parseString(post.pending_payout_value);
@@ -129,7 +133,7 @@
                         } //amount.amount = parseInt(amount.amount / 1000000000);
 
 
-                        return (sym ? '$ ' : '') + amount.toPlainString(2);
+                        return (sym ? '$ ' : '') + amount.toPlainString(dec);
                     },
                     getFriendlyPayout: function getFriendlyPayout() {
                         return this.getPayout(null, false) + ' CBD';
@@ -574,7 +578,7 @@
                                     result.post = parsePost(result.content[result.postKey], reblogs);
                                     result.author = parseAccount(result.accounts[result.post.author]); //Order comments by date, latest first
 
-                                    console.log(clone(result.author));
+                                    //console.log(clone(result.author));
                                     var cKeys = Object.keys(result.content);
                                     cKeys.sort(function (k1, k2) {
                                         var d1 = new Date(result.content[k1].created);
