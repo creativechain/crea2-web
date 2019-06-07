@@ -103,6 +103,7 @@ function handleRoute() {
     $controller->addRoute('/publish', 'publish.php.twig');
     $controller->addRoute('/explore', 'explore.php.twig');
     $controller->addRoute('/~market', 'market.php.twig');
+    $controller->addRoute('/~calculator', 'vote_calculator.php.twig');
     $controller->addRoute('/faq', 'faq.php.twig');
     $controller->addRoute('/recover-account', 'recover-account.php.twig');
     $controller->addRoute('/terms_and_conditions', 'terms_and_conditions.php.twig');

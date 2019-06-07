@@ -64,6 +64,7 @@
         "EXPLORE": "Explore",
         "VOTE": "Vote for Witnesses",
         "MARKET": "Currency Market",
+        "CALCULATOR": "Vote Calculator",
         "PRIVACY": "Privacy Policy",
         "ACCOUNTS": "Accounts Recovery",
         "FAQ": "FAQs",
@@ -532,6 +533,13 @@
     "BUZZ": [
         "Novice", "Trainee", "Advanced", "Expert", "Influencer", "Master", "Guru", "Genius"
     ],
+    "CALCULATOR": {
+        "TITLE": "Vote Calculator",
+        "INPUT_CGY_PLACEHOLDER": "Crea Energy",
+        "INPUT_VOTING_CGY_PLACEHOLDER": "Voting Energy",
+        "INPUT_VOTE_WEIGHT_PLACEHOLDER": "Vote weight",
+        "VOTE_WORTH": "Your vote is worth"
+    },
     "METADATA": {
         "/": {
             "TITLE": "Creary - Best of Creary",
