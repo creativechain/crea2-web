@@ -387,7 +387,7 @@
                 globalLoading.show = true;
                 var parentAuthor = postContainer.state.post.author;
                 var parentPermlink = postContainer.state.post.permlink;
-                var permlink = crea.formatter.commentPermlink(parentAuthor, parentPermlink);
+                var permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
 
                 if (permlink.length > CONSTANTS.TEXT_MAX_SIZE.PERMLINK) {
                     permlink = permlink.substring(0, CONSTANTS.TEXT_MAX_SIZE.PERMLINK);
