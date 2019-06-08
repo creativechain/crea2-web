@@ -4,11 +4,11 @@
  * Created by ander on 7/11/18.
  */
 (function () {
-    var witnessContainer;
+    var calculatorContainer;
 
     function setUpCalculator(session, account, rewardFunds) {
-        if (!witnessContainer) {
-            witnessContainer = new Vue({
+        if (!calculatorContainer) {
+            calculatorContainer = new Vue({
                 el: '#calculator-container',
                 data: {
                     lang: lang,
@@ -46,12 +46,13 @@
                 }
             });
         } else {
-            witnessContainer.session = session;
-            witnessContainer.account = account;
-            witnessContainer.rewardFund = rewardFunds;
+            calculatorContainer.session = session;
+            calculatorContainer.account = account;
+            calculatorContainer.rewardFund = rewardFunds;
         }
 
         creaEvents.emit('crea.dom.ready', 'publish');
+        calculatorContainer.calculate();
     }
 
     function fetchRewardFund(session, account) {
