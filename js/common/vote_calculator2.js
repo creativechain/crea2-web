@@ -37,6 +37,7 @@
                         var rewardBalance = assetToFloat(this.rewardFund.reward_balance);
                         var recentClaims = parseInt(this.rewardFund.recent_claims);
 
+                        tvs = tvs * Math.pow(10, 6);
                         var g = (tvs / tvfs) * (rewardBalance / recentClaims) * price;
 
                         console.log(tvs, tvfs, rewardBalance, recentClaims, basePrice, quotePrice);

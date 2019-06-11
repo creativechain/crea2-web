@@ -36,9 +36,9 @@
                         var rewardBalance = Asset.parse(this.rewardFund.reward_balance);
                         var recentClaims = parseInt(this.rewardFund.recent_claims);
 
-                        var g = (tvs.amount / tvfs.amount) * (rewardBalance.amount / recentClaims) * price.amount;
+                        var g = (tvs.amount / tvfs.toFloat()) * (rewardBalance.toFloat() / recentClaims) * price.toFloat();
 
-                        console.log(tvs.amount, tvfs.amount, rewardBalance.amount, recentClaims, basePrice.amount, quotePrice.amount);
+                        console.log(tvs.toFloat(), tvfs.toFloat(), rewardBalance.toFloat(), recentClaims, basePrice.toFloat(), quotePrice.toFloat());
                         var vote = ((this.calculator.voting_energy / 100) / 50) * this.calculator.cgy * (this.calculator.vote_weight / 100) * g;
                         this.calculator.vote_worth = '$ ' + Asset.parse({amount: vote, nai: 'cbd'}).toPlainString();
                         console.log(g, vote, this.calculator.vote_worth);
