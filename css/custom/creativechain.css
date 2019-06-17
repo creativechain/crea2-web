@@ -1940,7 +1940,7 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 .center-loading {
-  width: 60px;
+  width: 0%;
   margin: 0 auto; }
 
 .container-fluid {
@@ -2368,11 +2368,7 @@ img {
       height: 338px !important; }
 
   .btn {
-    font-size: inherit;
-    line-height: 1.85714286em;
-    min-width: 125px;
-    max-height: 25px;
-    font-weight: normal; } }
+    min-width: 125px; } }
 @media (width: 375px) {
   .card-home .card__top {
     height: 353px !important; }
