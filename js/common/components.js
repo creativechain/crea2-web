@@ -1015,6 +1015,8 @@ Vue.component('like', {
                             }
                             that.$emit('vote', null, result, post);
                         }
+
+                        that.$forceUpdate();
                     });
                 });
             }

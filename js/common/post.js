@@ -88,7 +88,7 @@
                         return moment(toLocaleDate(date)).fromNow();
                     },
                     formatDate: function formatDate(date) {
-                        return moment(toLocaleDate(date)).format('LLLL');
+                        return moment(date + 'Z').format('LLLL');
                     },
                     hasPaid: function hasPaid() {
                         var now = new Date();

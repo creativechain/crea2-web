@@ -514,7 +514,7 @@
                                             <h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2>
                                             <hr>
                                             <p>License: <a v-bind:href="getLicense().getLink()">{{ '{{ getLicense().getTags() }}' }}</a></p>
-                                            <p>Timestamp: {{ '{{ new Date(state.post.created).toLocaleString() }}' }}</p>
+                                            <p>Timestamp: {{ '{{ new Date(state.post.created + "Z").toLocaleString() }}' }}</p>
                                             <p>{{ '{{ state.post.metadata.hash || "-" }}' }}</p>
                                             <ul class="float-left mt-3">
                                                 <li class="li-blockchain-certificate">
