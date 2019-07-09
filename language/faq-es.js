@@ -402,7 +402,7 @@ faq.es = {
             ],
             "¿Por qué mis votaciones no tienen efecto en las recompensas de una publicación?": [
                 "Los usuarios con más CREA Energy (CGY) siempre tendrán una mayor influencia en las recompensas que los usuarios que tengan menos CGY. Normalmente un solo like emitido por un usuario con mucho CGY puede tener más efecto que 100 votos de nuevos usuarios con una pequeña cantidad de de CGY. ",
-                "Pero no te preocupes, la unión hace la fuerza, si su voto por sí solo no tiene un efecto inmediato, cuando se agrega junto con todos los otros votos al final del período de pago de 7 días, pueden afectar al pago final. ",
+                "Pero no te preocupes, la unión hace la fuerza, si su voto por sí solo no tiene un efecto inmediato, cuando se agrega junto con todos los otros votos al final del período de pago de 10 días, pueden afectar al pago final. ",
                 "Si quieres que tus votos tengan más influencia, tendrás que conseguir más CGY publicando contenidos o curando contenidos o bien Energizar más CREA previa a CGY. Si apenas dispones de CREA para energizar y aumentar tu poder de voto, tendrás que adquirirlo en los intercambios y enviarlo a tu monedero de CREA en creary.net. "
             ],
             "¿Cuáles son los motivos válidos para realizar un voto negativo al reportar un contenido?": [
