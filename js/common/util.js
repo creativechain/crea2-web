@@ -39,6 +39,12 @@ String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+if (!Date.fromUTCString) {
+    Date.fromUTCString = function (date) {
+        return new Date(date + 'Z');
+    }
+}
+
 /**
  *
  * @returns {Array}

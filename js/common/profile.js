@@ -745,8 +745,8 @@
         var rewardsOp = [];
 
         state.user.transfer_history.sort(function (r1, r2) {
-            var d1 = toLocaleDate(r1[1].timestamp);
-            var d2 = toLocaleDate(r2[1].timestamp);
+            var d1 = Date.fromUTCString(r1[1].timestamp);
+            var d2 = Date.fromUTCString(r2[1].timestamp);
             return d2.getTime() - d1.getTime();
         });
 
@@ -1063,7 +1063,7 @@
     }
 
     function sendAccountUpdate(event, keys, callback) {
-        var lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
+        var lastUpdate = Date.fromUTCString(profileContainer.state.user.last_account_update);
         var now = new Date();
         var time = now.getTime() - lastUpdate.getTime();
 
@@ -1268,8 +1268,8 @@
                         //Sort discussions
                         //Nodes return discussion ordered by last update
                         discussions.sort(function (k1, k2) {
-                            var d1 = toLocaleDate(k1.created);
-                            var d2 = toLocaleDate(k2.created);
+                            var d1 = Date.fromUTCString(k1.created);
+                            var d2 = Date.fromUTCString(k2.created);
                             return d2.getTime() - d1.getTime();
                         });
 
@@ -1479,8 +1479,8 @@
                 //Sort discussions
                 //Nodes return discussion ordered by last update
                 discussions.sort(function (k1, k2) {
-                    var d1 = toLocaleDate(k1.created);
-                    var d2 = toLocaleDate(k2.created);
+                    var d1 = Date.fromUTCString(k1.created);
+                    var d2 = Date.fromUTCString(k2.created);
                     return d2.getTime() - d1.getTime();
                 });
 
