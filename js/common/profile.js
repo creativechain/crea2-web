@@ -1286,17 +1286,7 @@
                 }
             };
 
-            if (session && account) {
-                if (session.account.username === profileName) {
-                    //var state = clone(account);
-                    //onState(null, state);
-                    fetchUserState(profileName, onState);
-                } else {
-                    fetchUserState(profileName, onState);
-                }
-            } else {
-                fetchUserState(profileName, onState);
-            }
+            fetchUserState(profileName, onState);
         }
     }
 
@@ -1366,6 +1356,7 @@
 
     function handleSession(session, account) {
         var settingsPart = getPathPart(1);
+        settingsPart = settingsPart.toLowerCase() === 'settings';
 
         if (session) {
             if (settingsPart) {
