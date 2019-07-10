@@ -318,14 +318,14 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div v-if="!isSameUser()" class="boxed boxed--border box-report">
+                                <div class="boxed boxed--border box-report">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <ul class="list-inline list-unstyled">
 
                                                 <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)"><p class="p-report link-report"><img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
                                                 <li v-else >
-                                                    <div class="modal-instance ">
+                                                    <div v-if="!isSameUser()" class="modal-instance ">
                                                         <p class="p-report">
                                                             <img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }})
                                                             <a href="#modal-report" class="modal-trigger link-report">{{ lang.PUBLICATION.REPORT_CONTENT }}</a>
@@ -367,6 +367,12 @@
                                                                 </section>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div v-else>
+                                                        <p class="p-report">
+                                                            <img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }})
+                                                            <span>{{ lang.PUBLICATION.REPORTS }}</span>
+                                                        </p>
                                                     </div>
                                                 </li>
 
