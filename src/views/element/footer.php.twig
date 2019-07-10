@@ -11,7 +11,7 @@
                                 <div >
 
                                     <template v-for="b in config.body">
-                                        {{ '{{ b }}' }}<br />
+                                        <p v-html="linkfy(b)"></p>
                                     </template>
                                 </div>
                                 <div class="row mt-3">
