@@ -9,8 +9,16 @@
         "MORE": "more"
     },
     "ERROR": {
-        "1": "Username not exist",
-        "2": "Password is not valid",
+        "1": {
+            "TITLE": "Username not exist",
+            "BODY": ["This user not exist in Crea Network"]
+        },
+        "2": {
+            "TITLE": "Password is not valid",
+            "BODY": [
+                "The password or key entered is not valid for this user."
+            ]
+        },
         "USERNAME_NOT_EXISTS": "Username not exist",
         "INVALID_USERNAME": "Username is not valid",
         "INVALID_EMAIL": "Email is not valid",

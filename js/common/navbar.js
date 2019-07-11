@@ -107,7 +107,7 @@
                                     console.error(err);
 
                                     if (err === Errors.USER_LOGIN_ERROR) {
-                                        that.loginForm.password.error = that.lang.ERROR[err];
+                                        that.loginForm.password.error = that.lang.ERROR[err].TITLE;
                                         console.error(that.lang.ERROR[err]);
                                     } else {
                                         that.loginForm.password.error = that.lang.ERROR.UNKNOWN_ERROR;
