@@ -519,9 +519,10 @@
                                         <div class="feature__body">
                                             <h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2>
                                             <hr>
-                                            <p>License: <a v-bind:href="getLicense().getLink()">{{ '{{ getLicense().getTags() }}' }}</a></p>
+                                            <p>Blockchain: <a v-bind:href="'https://creascan.net' + state.current_route" target="_blank">Project Data</a> </p>
                                             <p>Timestamp: {{ '{{ new Date(state.post.created + "Z").toLocaleString() }}' }}</p>
-                                            <p>{{ '{{ state.post.metadata.hash || "-" }}' }}</p>
+                                            {#<p>{{ '{{ state.post.metadata.hash || "-" }}' }}</p>#}
+                                            <p>License: <a v-bind:href="getLicense().getLink()">{{ '{{ getLicense().getTags() }}' }}</a></p>
                                             <ul class="float-left mt-3">
                                                 <li class="li-blockchain-certificate">
                                                     <template v-for="i in getLicense().getIcons('white')">
