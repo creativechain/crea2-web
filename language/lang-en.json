@@ -77,7 +77,8 @@
         "WELCOME": "Welcome",
         "WHITEPAPER": "Whitepaper",
         "ABOUT": "About",
-        "CREA_UPDATE": "CREA 2.0 update"
+        "CREA_UPDATE": "CREA 2.0 update",
+        "BLOCK_EXPLORER": "Block Explorer"
     },
     "REWARDS": {
         "SECONDARY_MENU_AUTHOR": "Author",
