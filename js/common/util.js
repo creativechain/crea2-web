@@ -55,12 +55,16 @@ Array.trim = function(array) {
     return uniqueArray;
 };
 
+if (!Date.fromUTCString) {
+    Date.fromUTCString = function (date) {
+        return new Date(date + 'Z');
+    }
+}
+
 /**
  *
  * @param {Event} event
  */
-
-
 function cancelEventPropagation(event) {
     if (event && event.preventDefault) {
         event.preventDefault();
@@ -386,8 +390,4 @@ function linkfy(str, target) {
     });
 
     return newStr;
-}
-
-function dateFromUTCString (date) {
-    return new Date(date + 'Z');
 }
