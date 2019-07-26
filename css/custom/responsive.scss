@@ -782,6 +782,29 @@
   }
 }
 
+@media (max-width: 991px) {
+  .box-next-post .next-right {
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 60px;
+    z-index: 0;
+    top: 45%;
+    right: 20px;
+    font-size: 40px;
+  }
+  .box-next-post .next-left {
+    left: 30px;
+    font-size: 40px;
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 20px;
+    z-index: 0;
+    top: 45%;
+  }
+}
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0px !important;

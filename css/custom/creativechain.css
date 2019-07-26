@@ -397,6 +397,9 @@
     margin-bottom: 0; }
   .view-wallet .table-amount tbody tr td:nth-child(2) {
     vertical-align: middle; }
+  .view-wallet .table-amount .img-icon-balances {
+    width: 22px;
+    margin-right: 5px; }
 .view-wallet .table-permission tbody tr td:nth-child(1) {
   width: 70%; }
   .view-wallet .table-permission tbody tr td:nth-child(1) p:nth-child(1) {
@@ -698,6 +701,36 @@
     margin-bottom: 0; }
   .view-publish .step-4 .row-text-finish span {
     font-size: 12px; }
+
+.box-next-post {
+  height: 70px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+  top: 45%; }
+  .box-next-post .next-left {
+    left: 10%;
+    font-size: 40px;
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 60px;
+    z-index: 0;
+    top: 45%; }
+    .box-next-post .next-left a {
+      color: #cacaca; }
+  .box-next-post .next-right {
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 60px;
+    z-index: 0;
+    top: 45%;
+    right: 10%;
+    font-size: 40px; }
+    .box-next-post .next-right a {
+      color: #cacaca; }
 
 .post-view p a, .post-view span a, .post-view label a {
   text-decoration: none; }
@@ -1024,6 +1057,19 @@
       font-size: 12px;
       font-weight: 400;
       color: #484848; }
+  .post-view .box-comment .row-post-comments .row-flag {
+    position: absolute;
+    right: 10px; }
+    .post-view .box-comment .row-post-comments .row-flag .a-flag {
+      width: 15px;
+      height: 15px;
+      background-repeat: no-repeat; }
+    .post-view .box-comment .row-post-comments .row-flag a:hover .a-flag {
+      background-image: url("/img/flag/noun_Flag_35341.svg"); }
+    .post-view .box-comment .row-post-comments .row-flag .a-flag.inactive {
+      background-image: url("/img/flag/noun_Flag_-1.svg"); }
+    .post-view .box-comment .row-post-comments .row-flag .a-flag.active {
+      background-image: url("/img/flag/noun_Flag_-2.svg"); }
 .post-view .box-comment .row-comment {
   display: flex; }
   .post-view .box-comment .row-comment .textarea {
@@ -2887,6 +2933,26 @@ img {
     .li-avatar-navbar .dropdown__container .container {
       min-width: 165px;
       max-width: 165px; } }
+@media (max-width: 991px) {
+  .box-next-post .next-right {
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 60px;
+    z-index: 0;
+    top: 45%;
+    right: 20px;
+    font-size: 40px; }
+
+  .box-next-post .next-left {
+    left: 30px;
+    font-size: 40px;
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 20px;
+    z-index: 0;
+    top: 45%; } }
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0px !important; }
