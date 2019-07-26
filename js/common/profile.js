@@ -745,8 +745,8 @@
         var rewardsOp = [];
 
         state.user.transfer_history.sort(function (r1, r2) {
-            var d1 = toLocaleDate(r1[1].timestamp);
-            var d2 = toLocaleDate(r2[1].timestamp);
+            var d1 = Date.fromUTCString(r1[1].timestamp);
+            var d2 = Date.fromUTCString(r2[1].timestamp);
             return d2.getTime() - d1.getTime();
         });
 
@@ -1063,7 +1063,7 @@
     }
 
     function sendAccountUpdate(event, keys, callback) {
-        var lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
+        var lastUpdate = Date.fromUTCString(profileContainer.state.user.last_account_update);
         var now = new Date();
         var time = now.getTime() - lastUpdate.getTime();
 
@@ -1268,8 +1268,8 @@
                         //Sort discussions
                         //Nodes return discussion ordered by last update
                         discussions.sort(function (k1, k2) {
-                            var d1 = toLocaleDate(k1.created);
-                            var d2 = toLocaleDate(k2.created);
+                            var d1 = Date.fromUTCString(k1.created);
+                            var d2 = Date.fromUTCString(k2.created);
                             return d2.getTime() - d1.getTime();
                         });
 
@@ -1286,17 +1286,7 @@
                 }
             };
 
-            if (session && account) {
-                if (session.account.username === profileName) {
-                    //var state = clone(account);
-                    //onState(null, state);
-                    fetchUserState(profileName, onState);
-                } else {
-                    fetchUserState(profileName, onState);
-                }
-            } else {
-                fetchUserState(profileName, onState);
-            }
+            fetchUserState(profileName, onState);
         }
     }
 
@@ -1366,6 +1356,7 @@
 
     function handleSession(session, account) {
         var settingsPart = getPathPart(1);
+        settingsPart = settingsPart.toLowerCase() === 'settings';
 
         if (session) {
             if (settingsPart) {
@@ -1429,7 +1420,7 @@
                 var permlink = d.author + '/' + d.permlink;
 
                 crea.api.getContent(d.author, d.permlink, function (err, result) {
-                    if (err || result.id <= 0) {
+                    if (err || result.author.length <= 0) {
                         console.error('Error getting', permlink, err);
                     } else {
                         var p = parsePost(result);
@@ -1479,8 +1470,8 @@
                 //Sort discussions
                 //Nodes return discussion ordered by last update
                 discussions.sort(function (k1, k2) {
-                    var d1 = toLocaleDate(k1.created);
-                    var d2 = toLocaleDate(k2.created);
+                    var d1 = Date.fromUTCString(k1.created);
+                    var d2 = Date.fromUTCString(k2.created);
                     return d2.getTime() - d1.getTime();
                 });
 

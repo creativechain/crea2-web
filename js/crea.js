@@ -6318,15 +6318,15 @@ module.exports = function (creaAPI) {
           formatted: 0
         };
       } else {
-        var neg = _reputation < 0;
+        var neg = _reputation < 0 ? -1 : 1;
         _reputation = Math.abs(_reputation);
         var log10 = Math.log10(_reputation);
-        var rawLevel = log10 * maxLevel / maxLogNum;
-        var level = rawLevel > 0 && rawLevel <= 1 ? 1 : Math.floor(rawLevel * (neg ? -1 : 1));
-        var rep = Math.floor(rawLevel * 10 * (neg ? -1 : 1));
+        var rawLevel = log10 * maxLevel / maxLogNum * 1.15;
+        var level = rawLevel > 0 && rawLevel <= 1 ? 1 : Math.floor(rawLevel * neg);
+        var rep = Math.floor(rawLevel * 10 * neg);
 
         return {
-          raw: _reputation * (neg ? -1 : 1),
+          raw: _reputation * neg,
           level: Math.min(level, maxLevel),
           formatted: rep
         };

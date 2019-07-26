@@ -617,6 +617,13 @@ function catchError(err) {
             console.trace(err.stack);
         } else {
             console.error(err);
+            switch (err) {
+                case 1:
+                case 2:
+                    err = lang.ERROR[err];
+            }
+
+            console.log(err);
         }
 
         if (typeof err === 'string') {
@@ -668,6 +675,7 @@ function showAlert(title, body) {
         body: typeof body === 'string' ? [body] : body
     };
 
+    console.log(config);
     creaEvents.emit('crea.alert', config);
 }
 /**

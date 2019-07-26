@@ -422,7 +422,7 @@ faq.en = {
                 "If you still do not have CREA in your wallet, you can buy it with euro or dollar or with bitcoin (BTC) on exchanges like Lescovex.com. You can get BTC in several known exchanges.",
                 "Check the full list https://creaproject.io/buy/ of exchanges where CREA is currently traded."
             ],
-            "When can I obtain my rewards?": ["The period of paying out a reward is 7 days. After this period you can collect the reward by clicking on the yellow button that is displayed on your wallet."],
+            "When can I obtain my rewards?": ["The period of paying out a reward is 10 days. After this period you can collect the reward by clicking on the yellow button that is displayed on your wallet."],
             "What is FLOW?": [
                 "The FLOW is a non-transferable type of resource or token that is granted intelligently by the CREA blockchain to each @user account according to the amount of CREA Energy (CGY) it has. The FLOW is proportional to the CGY.",
                 "The FLOW is a resource that is consumed every time a user makes transactions (votes, likes, comments, transfers or energizations).",

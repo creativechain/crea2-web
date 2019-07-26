@@ -9,8 +9,16 @@
         "MORE": "more"
     },
     "ERROR": {
-        "1": "Username not exist",
-        "2": "Password is not valid",
+        "1": {
+            "TITLE": "Username not exist",
+            "BODY": ["This user not exist in Crea Network"]
+        },
+        "2": {
+            "TITLE": "Password is not valid",
+            "BODY": [
+                "The password or key entered is not valid for this user."
+            ]
+        },
         "USERNAME_NOT_EXISTS": "Username not exist",
         "INVALID_USERNAME": "Username is not valid",
         "INVALID_EMAIL": "Email is not valid",
@@ -28,13 +36,10 @@
                 "The FLOW is a resource that is consumed every time a user makes transactions (votes, likes, comments, transfers or energizations).",
                 "Each transaction has a specific cost in FLOW. If you have enough FLOW to cover the cost, you can make the transaction.",
                 "This system allows in a decentralized way to protect the blockchain from malicious actions such as spam.",
-                "",
                 "What can I do if I run out of FLOW?",
                 "When a user runs out of FLOW, he can do two things:",
-                "",
                 "1. Wait for it to recharge again. Each day 22% will be refilled, therefore to have 100% FLOW you will need 5 days.",
-                "",
-                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/  you can access different services that sell or exchange CREA."]
+                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link https://creaproject.io/buy/ you can access different services that sell or exchange CREA."]
         },
         "PERMLINK_ALREADY_EXISTS" : {
             "TITLE": "Invalid title or Permlink",
@@ -64,6 +69,7 @@
         "EXPLORE": "Explore",
         "VOTE": "Vote for Witnesses",
         "MARKET": "Currency Market",
+        "CALCULATOR": "Vote Calculator",
         "PRIVACY": "Privacy Policy",
         "ACCOUNTS": "Accounts Recovery",
         "FAQ": "FAQs",
@@ -71,7 +77,8 @@
         "WELCOME": "Welcome",
         "WHITEPAPER": "Whitepaper",
         "ABOUT": "About",
-        "CREA_UPDATE": "CREA 2.0 update"
+        "CREA_UPDATE": "CREA 2.0 update",
+        "BLOCK_EXPLORER": "Block Explorer"
     },
     "REWARDS": {
         "SECONDARY_MENU_AUTHOR": "Author",
@@ -115,6 +122,7 @@
         "MORE_PROJECTS": "More Projects",
         "UNBLOCK_USER": "UnBlock all posts by this user",
         "REPORT_CONTENT": "Report content",
+        "REPORTS": "Reports",
         "REMOVE_REPORT": "Remove report",
         "MORE_COMMENTS": "See more comments",
         "YOUR_COMMENTS": "Your comments",
@@ -532,6 +540,13 @@
     "BUZZ": [
         "Novice", "Trainee", "Advanced", "Expert", "Influencer", "Master", "Guru", "Genius"
     ],
+    "CALCULATOR": {
+        "TITLE": "Vote Calculator",
+        "INPUT_CGY_PLACEHOLDER": "Crea Energy",
+        "INPUT_VOTING_CGY_PLACEHOLDER": "Voting Energy",
+        "INPUT_VOTE_WEIGHT_PLACEHOLDER": "Vote weight",
+        "VOTE_WORTH": "Your vote is worth"
+    },
     "METADATA": {
         "/": {
             "TITLE": "Creary - Best of Creary",

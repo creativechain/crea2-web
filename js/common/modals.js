@@ -35,7 +35,8 @@
                         cancelEventPropagation(event);
                         this.cleanModal();
                         this.show = false;
-                    }
+                    },
+                    linkfy: linkfy
                 }
             });
         }
