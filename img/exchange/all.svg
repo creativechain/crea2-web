@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g transform="translate(-63 -213)"><g transform="translate(63 213)" fill="#fff" stroke="#cacaca" stroke-width="1"><rect width="18" height="18" stroke="none"/><rect x="0.5" y="0.5" width="17" height="17" fill="none"/></g><path d="M-5804-3062.5h10.527" transform="translate(5870.5 3279.917)" fill="none" stroke="#ff5766" stroke-width="2"/><path d="M-5804-3062.5h10.527" transform="translate(5870.5 3282.829)" fill="#505050" stroke="#cacaca" stroke-width="1"/><path d="M-5804-3062.5h10.527" transform="translate(5870.5 3285.74)" fill="none" stroke="#cacaca" stroke-width="1"/><path d="M-5804-3062.5h10.527" transform="translate(5870.5 3288.653)" fill="#505050" stroke="#25d77c" stroke-width="2"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <g id="Grupo_9652" data-name="Grupo 9652" transform="translate(-63 -213)">
+    <g id="Rectángulo_1569" data-name="Rectángulo 1569" transform="translate(63 213)" fill="#fff" stroke="#505050" stroke-width="1">
+      <rect width="18" height="18" stroke="none"/>
+      <rect x="0.5" y="0.5" width="17" height="17" fill="none"/>
+    </g>
+    <path id="Trazado_9400" data-name="Trazado 9400" d="M-5804-3062.5h10.527" transform="translate(5870.5 3279.917)" fill="none" stroke="#ff5766" stroke-width="2"/>
+    <path id="Trazado_9401" data-name="Trazado 9401" d="M-5804-3062.5h10.527" transform="translate(5870.5 3282.829)" fill="#505050" stroke="#505050" stroke-width="1"/>
+    <path id="Trazado_13228" data-name="Trazado 13228" d="M-5804-3062.5h10.527" transform="translate(5870.5 3285.74)" fill="none" stroke="#505050" stroke-width="1"/>
+    <path id="Trazado_13229" data-name="Trazado 13229" d="M-5804-3062.5h10.527" transform="translate(5870.5 3288.653)" fill="#505050" stroke="#25d77c" stroke-width="2"/>
+  </g>
+</svg>

@@ -58,6 +58,13 @@ label {
     background-position: 50% 50%;
   }
 }
+.amount-price {
+  span:nth-child(2) {
+    margin-left: -2px;
+    color: $grey-light;
+  }
+}
+
 .dropdown__content-mobile {
   background: #191919 !important;
   border: solid transparent !important;
@@ -135,9 +142,13 @@ label {
   width: 20.857143em;
 }
 .li-avatar-navbar {
+  .dropdown__container {
+    left: -110px !important;
+  }
   .dropdown__content {
     padding: 0 !important;
-    max-width: 200px;
+    left: 0px !important;
+    max-width: 190px;
   }
   ul {
     li:first-child {
@@ -168,9 +179,9 @@ input[type], textarea, select {
   border-radius: 3px;
 }
 .input-checkbox label {
-  width: 20px;
-  height: 20px;
-  background: $grey-circle;
+  width: 18px;
+  height: 18px;
+  background: $background-checkbox;
 }
 .input-checkbox input:checked + label {
   border-color: $active-circle;
@@ -268,7 +279,7 @@ a:hover {
   background-color: rgba(0,0,0,0.1);
 }
 .center-loading {
-  width: 60px;
+  width: 0%;
   margin: 0 auto;
 }
 .container-fluid {
@@ -291,6 +302,18 @@ a:hover {
     width: 30px;
     height: 30px;
     background-position: 50% 50%;
+  }
+  .menu-horizontal {
+    li.active {
+      a {
+        color: $borde-dropdown-price;
+      }
+    }
+    li {
+      a {
+        color: #999999;
+      }
+    }
   }
 }
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
@@ -322,9 +345,16 @@ a:hover {
 #slide-home {
   padding: 75px 0 0;
   min-height: 360px;
+  h1 {
+    font-weight: bold;
+    text-shadow: 0 0 50px rgb(0, 0, 0), 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+  h3 {
+    text-shadow: 0 0 30px black, 0 0 1px rgba(255, 255, 255, 0.7);
+  }
 
   h1, h3, span {
-    color: $color-white;
+    color: $color-white !important;
   }
   .background-image-holder {
     height: 360px;
@@ -364,6 +394,71 @@ img {
       cursor: pointer;
       border-radius: 6px 6px 0 0;
     }
+    .row-circle-recommended {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: #ffffff99;
+      border-radius: 50px;
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+      div {
+        width: 30px;
+        height: 30px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+    .icon-recommended.hover-recommended {
+      background-image: url("/img/recommended/recomended-hover.svg");
+    }
+    .icon-recommended.my-active {
+      background-image: url("/img/recommended/recomended-my-active.svg");
+    }
+    .icon-recommended.active {
+      background-image: url("/img/recommended/recomended-active.svg");
+
+    }
+    .pre-recommended {
+      animation-name: parpadeo;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+
+      -webkit-animation-name:parpadeo;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+    }
+    @-moz-keyframes parpadeo{
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+    }
+
+    @-webkit-keyframes parpadeo {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+    }
+
+    @keyframes parpadeo {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+    }
+
+
+    .row-recommended {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #f9f9f9 ;
+    }
   }
   .card__body {
     h4 {
@@ -373,6 +468,7 @@ img {
       white-space: nowrap;
       overflow: hidden;
       cursor: pointer;
+      margin-bottom: 10px;
     }
     .description-post-box {
       margin-bottom: 0.92857143em;
@@ -394,6 +490,14 @@ img {
     width: 100%;
   }
   .dropdown-price {
+    .dropdown__container {
+      width: 300px;
+      left: -120px !important;
+      .dropdown__content {
+        max-width: 250px;
+        left: 0 !important;
+      }
+    }
     span {
       border: 1px solid #505050;
       border-radius: 25px;
@@ -549,6 +653,68 @@ img {
   }
   .row-flex {
     display: flex;
+  }
+
+}
+
+.li-buzz {
+  .img-buzz {
+    height: 20px;
+    width: 18px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain ;
+    margin-top: 1px;
+  }
+  .img-buzz.advanced {
+    background-image: url("/img/buzz/advanced.svg");
+  }
+  .img-buzz.advanced:hover {
+    background-image: url("/img/buzz/advanced_active.svg ");
+  }
+  .img-buzz.expert {
+    background-image: url("/img/buzz/expert.svg");
+  }
+  .img-buzz.expert:hover {
+    background-image: url("/img/buzz/expert_active.svg ");
+  }
+  .img-buzz.genius {
+    background-image: url("/img/buzz/genius.svg");
+  }
+  .img-buzz.genius:hover {
+    background-image: url("/img/buzz/genius_active.svg ");
+  }
+  .img-buzz.guru {
+    background-image: url("/img/buzz/guru.svg");
+  }
+  .img-buzz.guru:hover {
+    background-image: url("/img/buzz/guru_active.svg");
+  }
+  .img-buzz.influencer {
+    background-image: url("/img/buzz/influencer.svg");
+  }
+  .img-buzz.influencer:hover {
+    background-image: url("/img/buzz/influencer_active.svg");
+  }
+  .img-buzz.master {
+    background-image: url("/img/buzz/master.svg");
+  }
+  .img-buzz.master:hover {
+    background-image: url("/img/buzz/master_active.svg");
+  }
+  .img-buzz.novice {
+    background-image: url("/img/buzz/novice.svg");
+    width: 20px;
+  }
+  .img-buzz.novice:hover {
+    background-image: url("/img/buzz/novice_active.svg");
+  }
+  .img-buzz.trainee {
+    background-image: url("/img/buzz/trainee.svg ");
+    width: 16px ;
+  }
+  .img-buzz.trainee:hover {
+    background-image: url("/img/buzz/trainee_active.svg ");
   }
 }
 .dropdown .dropdown__content {

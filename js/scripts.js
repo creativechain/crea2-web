@@ -1719,14 +1719,16 @@ mr = (function (mr, $, window, document){
         var allPageModals = "<div class=\"all-page-modals\"></div>",
             mainContainer = $('div.main-container');
 
-        if(mainContainer.length){
-            jQuery(allPageModals).insertAfter(mainContainer);
-            mr.modals.allModalsContainer = $('div.all-page-modals');
+        if (!$('.all-page-modals').length) {
+            if(mainContainer.length){
+                jQuery(allPageModals).insertAfter(mainContainer);
+                mr.modals.allModalsContainer = $('div.all-page-modals');
+            } else {
+                jQuery('body').append(allPageModals);
+                mr.modals.allModalsContainer = jQuery('body div.all-page-modals');
+            }
         }
-        else{
-            jQuery('body').append(allPageModals);
-            mr.modals.allModalsContainer = jQuery('body div.all-page-modals');
-        }
+
 
         $('.modal-container').each(function(){
 
@@ -1758,16 +1760,16 @@ mr = (function (mr, $, window, document){
         });
 
 
-        $('.modal-instance').each(function(index){
+        $('.modal-instance:not([modal-attached])').each(function(index){
             var modalInstance = $(this);
             var modal = modalInstance.find('.modal-container');
             var modalContent = modalInstance.find('.modal-content');
             var trigger = modalInstance.find('.modal-trigger');
             
             // Link modal with modal-id attribute
-            
-            trigger.attr('data-modal-index',index);
-            modal.attr('data-modal-index',index);
+            var modalIndex = mr.modals.allModalsContainer.children().length;
+            trigger.attr('data-modal-index',modalIndex);
+            modal.attr('data-modal-index',modalIndex);
             
             // Set unique id for multiple triggers
             
@@ -1776,7 +1778,8 @@ mr = (function (mr, $, window, document){
             }
             
 
-            // Attach the modal to the body            
+            // Attach the modal to the body
+            modalInstance.attr('modal-attached', true);
             modal = modal.detach();
             mr.modals.allModalsContainer.append(modal);
         });
@@ -1787,10 +1790,17 @@ mr = (function (mr, $, window, document){
             var modalTrigger = $(this);
             var uniqueID, targetModal;
             // Determine if the modal id is set by user or is set programatically
-   
+
             if(typeof modalTrigger.attr('data-modal-id') !== typeof undefined){
                 uniqueID = modalTrigger.attr('data-modal-id');
-                targetModal = mr.modals.allModalsContainer.find('.modal-container[data-modal-id="'+uniqueID+'"]');    
+
+                //Find by id
+                targetModal = mr.modals.allModalsContainer.find('.modal-container[id="'+uniqueID+'"]');
+
+                if (targetModal.length < 1) {
+                    targetModal = mr.modals.allModalsContainer.find('.modal-container[data-modal-id="'+uniqueID+'"]');
+                }
+
             }else{
                 uniqueID = $(this).attr('data-modal-index');
                 targetModal = mr.modals.allModalsContainer.find('.modal-container[data-modal-index="'+uniqueID+'"]');
@@ -2461,7 +2471,6 @@ mr = (function (mr, $, window, document){
     mr.sliders.documentReady = function($){
 
         $('.slider').each(function(index){
-            
             var slider = $(this);
             var sliderInitializer = slider.find('ul.slides');
             sliderInitializer.find('>li').addClass('slide');
@@ -2480,8 +2489,7 @@ mr = (function (mr, $, window, document){
                 rightToLeft: false,
                 initialIndex: 0,
                 freeScroll: false
-            }; 
-
+            };
             // Attribute Overrides - options that are overridden by data attributes on the slider element
             var ao = {};
             ao.pageDots = (slider.attr('data-paging') === 'true' && sliderInitializer.find('li').length > 1) ? true : undefined;
@@ -2492,7 +2500,6 @@ mr = (function (mr, $, window, document){
             ao.rightToLeft = slider.attr('data-rtl') === 'true'? true : undefined;
             ao.initialIndex = slider.attr('data-initial') ? parseInt(slider.attr('data-initial'), 10) : undefined;
             ao.freeScroll = slider.attr('data-freescroll') === "true" ? true: undefined;
-
             // Set data attribute to inidicate the number of children in the slider
             slider.attr('data-children',childnum);
 
@@ -2500,7 +2507,6 @@ mr = (function (mr, $, window, document){
             $(this).data('sliderOptions', jQuery.extend({}, themeDefaults, mr.sliders.options, ao));
 
             $(sliderInitializer).flickity($(this).data('sliderOptions'));
-
             $(sliderInitializer).on( 'scroll.flickity', function( event, progress ) {
               if(slider.find('.is-selected').hasClass('controls--dark')){
                 slider.addClass('controls--dark');
@@ -2510,11 +2516,12 @@ mr = (function (mr, $, window, document){
             });
         });
 
-        if(mr.parallax.update){ mr.parallax.update(); }
-        
+        if(mr.parallax.update){
+            mr.parallax.update();
+        }
     };
 
-    mr.components.documentReadyDeferred.push(mr.sliders.documentReady);
+    //mr.components.documentReadyDeferred.push(mr.sliders.documentReady);
     return mr;
 
 }(mr, jQuery, window, document));

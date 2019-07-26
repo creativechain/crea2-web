@@ -24,7 +24,9 @@
     addOnBlur: true,
     maxTags: undefined,
     maxChars: undefined,
-    confirmKeys: [13, 32, 44],
+    confirmKeys: [13, 32, 44, ','],
+    alphanumeric: true,
+    invalidChars: [],
     delimiter: ',',
     delimiterRegex: null,
     cancelConfirmKeysOnEmpty: false,
@@ -464,6 +466,24 @@
         $input.attr('size', Math.max(this.inputSize, size));
       }, self));
 
+      self.$container.bind('paste', function (e) {
+        if (self.options.alphanumeric) {
+          var text = e.originalEvent.clipboardData.getData('text');
+
+          var matched = text.match(/^[a-z0-9-]+$/i);
+          console.log('paste', text, matched);
+          if (!matched) {
+            e.preventDefault();
+          }
+        }
+      });
+
+      /*self.$container.on('keydown', $.proxy(function (event) {
+        if (keyCombinationInList(event, self.options.invalidChars)) {
+          event.preventDefault();
+        }
+      }));*/
+
       self.$container.on('keypress', 'input', $.proxy(function(event) {
          var $input = $(event.target);
 
@@ -487,11 +507,20 @@
             }
          }
 
+        if (self.options.alphanumeric) {
+          var text = String.fromCharCode(event.which);
+          var matched = text.match(/^[a-z0-9-]+$/i);
+          if (!matched) {
+            event.preventDefault();
+          }
+        }
+
          // Reset internal input's size
          var textLength = $input.val().length,
             wordSpace = Math.ceil(textLength / 5),
             size = textLength + wordSpace + 1;
          $input.attr('size', Math.max(this.inputSize, size));
+
       }, self));
 
       // Remove icon clicked
@@ -662,9 +691,10 @@
           if (typeof (keyCombination) === 'number' && keyPressEvent.which === keyCombination) {
               found = true;
               return false;
-          }
-
-          if (keyPressEvent.which === keyCombination.which) {
+          } else if (typeof (keyCombination) === 'string' && keyPressEvent.key === keyCombination) {
+              found = true;
+              return false;
+          } else if (keyPressEvent.which === keyCombination.which) {
               var alt = !keyCombination.hasOwnProperty('altKey') || keyPressEvent.altKey === keyCombination.altKey,
                   shift = !keyCombination.hasOwnProperty('shiftKey') || keyPressEvent.shiftKey === keyCombination.shiftKey,
                   ctrl = !keyCombination.hasOwnProperty('ctrlKey') || keyPressEvent.ctrlKey === keyCombination.ctrlKey;

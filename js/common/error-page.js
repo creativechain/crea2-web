@@ -1,23 +1,24 @@
+"use strict";
+
 /**
  * Created by ander on 7/01/19.
  */
-
 (function () {
-    let errorContainer;
+    var errorContainer;
 
     function setUp() {
         if (!errorContainer) {
             errorContainer = new Vue({
                 el: '#error-container',
                 data: {
-                    lang: getLanguage(),
+                    lang: lang,
                     url: window.location.pathname
                 }
-            })
+            });
         }
     }
 
     creaEvents.on('crea.session.login', function () {
         setUp();
-    })
+    });
 })();

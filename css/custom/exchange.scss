@@ -1,6 +1,19 @@
 .exchange {
+
   .btn-buy-exchange {
     background-color: $color-buy;
+  }
+  .btn-buy-exchange:hover {
+    background-color: #1D9658;
+    border-color: transparent ;
+  }
+  .btn-sell-exchange {
+    background-color: #ff5766;
+    border-color: transparent;
+  }
+  .btn-sell-exchange:hover {
+    background-color: #AD343F;
+    border-color: transparent;
   }
   table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
     border-top: 1px solid transparent;
@@ -33,12 +46,20 @@
       }
     }
   }
+  #market-history_wrapper {
+    .dataTables_scroll {
+      .dataTables_scrollBody {
+        max-height: 553px !important;
+      }
+    }
+  }
   .form-buy-sell {
     padding: 15px !important;
     i {
       right: 15px;
       left: auto;
       top: 6px;
+      color: $grey-light;
     }
     .input-icon input {
       padding-left: 15px;
@@ -46,6 +67,13 @@
     }
     h6:not(:last-child), .h6:not(:last-child) {
       margin-bottom: 10px ;
+    }
+    .title {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    a.btn {
+      max-width: 100px;
     }
   }
   .color--primary-exchange {
@@ -94,13 +122,53 @@
   }
   .ul-market-buy-sell {
     border: 1px solid transparent;
+    display: flex;
+    li:not(.active) {
+      img {
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+      }
+    }
+
     li {
       padding: 5px 10px 7px;
     }
     .table-buy-sell-market {
-      tbody {
+      thead {
         tr {
-
+          th:last-child {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  .table-buy-sell-market {
+    thead {
+      tr {
+        th {
+          width: 33% !important;
+        }
+        th:nth-child(3) {
+          text-align: right;
+        }
+      }
+    }
+  }
+  .buy_left_result_all {
+    tbody {
+      tr {
+        td {
+          width: 33%;
+        }
+      }
+    }
+  }
+  #buy-orders {
+    tbody {
+      tr {
+        td:last-child {
+          text-align: right;
         }
       }
     }
@@ -113,6 +181,26 @@
           font-weight: 700;
         }
       }
+    }
+  }
+  #sell-orders {
+    tbody {
+      tr {
+        td:last-child {
+          text-align: right;
+        }
+      }
+    }
+
+  }
+  #sell-orders_wrapper {
+    .dataTables_scrollBody {
+      min-height: 250px;
+    }
+  }
+  #buy-orders_wrapper {
+    .dataTables_scrollBody {
+      min-height: 250px;
     }
   }
   .tabs-content {
@@ -140,4 +228,23 @@
       }
     }
   }
+  .dataTables_scrollHeadInner {
+    width: 100% !important;
+    .display {
+      width: 100% !important;
+    }
+  }
+  .color-title-table-primary {
+    color: #252525;
+  }
+
 }
+
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .exchange {
+    .container {
+      max-width: 100%;
+    }
+  }
+}
+

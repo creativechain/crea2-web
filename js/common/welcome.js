@@ -1,15 +1,19 @@
+"use strict";
+
 /**
  * Created by ander on 11/10/18.
  */
-
-
 (function () {
-    let welcomeVue;
-
-    let usernameCallback, emailCallback;
+    var welcomeVue;
+    var emailCallback;
+    var usernameInputs = {
+        last: {
+            value: null,
+            date: 0
+        }
+    };
 
     function setUp() {
-        console.log('Welcome setup');
         welcomeVue = new Vue({
             el: '#welcome',
             data: {
@@ -22,7 +26,7 @@
                     password: null,
                     matchPassword: '',
                     terms: '',
-                    policy: '',
+                    policy: ''
                 },
                 validUsername: false,
                 validEmail: false,
@@ -31,61 +35,65 @@
                 checkedPolicy: false,
                 suggestedPassword: '',
                 password: '',
-                lang: getLanguage()
+                lang: lang
             },
             methods: {
                 inputPassword: inputPassword,
                 inputCheckPassword: inputCheckPassword,
                 checkEmail: checkEmail,
-                changeSlide: function (slide, error = null) {
+                changeSlide: function changeSlide(slide) {
+                    var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
                     console.log("Change to slide", slide, error);
+
                     if (!error || error.length == 0) {
                         this.slide = slide;
                     }
                 },
-                suggestPassword: function() {
+                suggestPassword: function suggestPassword() {
                     this.suggestedPassword = 'P' + crea.formatter.createSuggestedPassword();
                     this.password = this.suggestedPassword;
                 },
                 checkUsername: checkUsername,
                 sendConfirmationMail: sendConfirmationMail,
                 createAccount: createAccount,
+                copyToClipboard: copyToClipboard
             }
         });
-
         creaEvents.emit('crea.dom.ready');
     }
 
     function checkUsername() {
-
-        if (usernameCallback) {
-            usernameCallback = null;
-        }
-
-        let target = welcomeVue.$refs.inputusername;
+        var target = welcomeVue.$refs.inputusername;
         target.value = target.value.toLowerCase();
-        let username = target.value;
+        var username = target.value;
+        var time = new Date().getTime();
+        usernameInputs.last.value = username;
+        usernameInputs.last.date = time;
+        usernameInputs[username] = time;
 
         if (!crea.utils.validateAccountName(username)) {
-            let accounts = [ username ];
-            console.log("Checking", accounts);
+            var accounts = [username];
 
-            usernameCallback = function (err, result) {
-                if (err) {
-                    console.error(err);
-                    welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
-                } else if (result[0] != null) {
-                    welcomeVue.error.username = getLanguage().ERROR.USERNAME_EXISTS;
-                } else {
-                    welcomeVue.error.username = null;
-                    welcomeVue.username = username;
-                    console.log("Checking", username);
-                }
+            var usernameCallback = function usernameCallback(err, result) {
+                var userTime = usernameInputs[username];
+
+                if (userTime > usernameInputs.last.date || userTime >= usernameInputs.last.date && username === usernameInputs.last.value) {
+                    if (err) {
+                        console.error(err);
+                        welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
+                    } else if (result[0] != null) {
+                        welcomeVue.error.username = lang.ERROR.USERNAME_EXISTS;
+                    } else {
+                        welcomeVue.error.username = null;
+                        welcomeVue.username = username;
+                    }
+                } //console.log("Checking", username, userTime, usernameInputs.last.value, usernameInputs.last.date, welcomeVue.username);
+
             };
 
-            crea.api.lookupAccountNames(accounts, usernameCallback)
+            crea.api.lookupAccountNames(accounts, usernameCallback);
         } else {
-            welcomeVue.error.username = getLanguage().ERROR.INVALID_USERNAME;
+            welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
         }
     }
 
@@ -94,79 +102,77 @@
             emailCallback = null;
         }
 
-        let email = event.target.value;
+        var email = event.target.value;
         console.log("Checking mail", email, validateEmail(email));
 
         if (validateEmail(email)) {
-
             refreshAccessToken(function (accessToken) {
-                let url = apiOptions.apiUrl + '/validateAccount';
-                let http = new HttpClient(url);
+                var url = apiOptions.apiUrl + '/validateAccount';
+                var http = new HttpClient(url);
 
-                emailCallback = function (data) {
+                emailCallback = function emailCallback(data) {
                     console.log('Validate', data, email);
                     welcomeVue.error.email = null;
                     welcomeVue.email = email;
                 };
-                
+
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).when('fail', function (data, status, error) {
                     console.error('Request failed', data, status, error, email);
+
                     if (data.responseText) {
-                        let response = jsonify(data.responseText);
+                        var response = jsonify(data.responseText);
+
                         if (response.error === 'REGISTERED_EMAIL') {
-                            welcomeVue.error.email = getLanguage().ERROR.EMAIL_EXISTS;
+                            welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
                         }
                     } else {
-                        welcomeVue.error.email = getLanguage().ERROR.UNKNOWN_ERROR;
+                        welcomeVue.error.email = lang.ERROR.UNKNOWN_ERROR;
                     }
                 }).when('done', emailCallback).post({
                     username: welcomeVue.username,
                     email: email
                 });
             });
-
-
         } else {
-            welcomeVue.error.email = getLanguage().ERROR.INVALID_EMAIL;
+            welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
             welcomeVue.email = '';
         }
     }
 
     function inputCheckPassword(event) {
-        let password = event.target.value;
+        var password = event.target.value;
+        var match = welcomeVue.password === password;
 
-        let match = welcomeVue.password === password;
         if (match) {
             welcomeVue.error.matchPassword = null;
             welcomeVue.passwordMatch = true;
         } else {
-            welcomeVue.error.matchPassword = getLanguage().ERROR.PASSWORDS_NOT_MATCH;
+            welcomeVue.error.matchPassword = lang.ERROR.PASSWORDS_NOT_MATCH;
         }
 
         welcomeVue.passwordMatch = match;
     }
 
     function inputPassword(event) {
-        let pass = event.target.value;
+        var pass = event.target.value;
         console.log("Input password", pass);
+
         if (pass && !pass.isEmpty()) {
             welcomeVue.password = event.target.value;
             welcomeVue.error.password = null;
         } else {
-            welcomeVue.error.password = getLanguage().ERROR.INVALID_PASSWORD;
+            welcomeVue.error.password = lang.ERROR.INVALID_PASSWORD;
         }
-
-
     }
 
     function sendConfirmationMail(callback) {
         if (!welcomeVue.error.email) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                let url = apiOptions.apiUrl + '/crearySignUp';
-                let http = new HttpClient(url);
+                var url = apiOptions.apiUrl + '/crearySignUp';
+                var http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
@@ -176,49 +182,46 @@
                     console.log('SignUp', data);
                     welcomeVue.slide = 4;
                     globalLoading.show = false;
+
                     if (callback) {
                         callback();
                     }
                 });
             });
         }
-
     }
 
     function createAccount() {
         if (!welcomeVue.error.matchPassword && welcomeVue.checkedTerms && welcomeVue.checkedPolicy) {
             globalLoading.show = true;
-            let username = welcomeVue.username;
-            let password = welcomeVue.password;
+            var username = welcomeVue.username;
+            var password = welcomeVue.password;
             createBlockchainAccount(username, password, function (err, result) {
                 globalLoading.show = false;
+
                 if (!catchError(err)) {
                     console.log(result);
                     welcomeVue.slide = 8;
                 }
-            })
+            });
         } else {
             console.error('Account could not be created', 'Match pass:', welcomeVue.passwordMatch, 'Terms:', welcomeVue.checkedTerms, 'Policy:', welcomeVue.checkedPolicy);
         }
     }
 
     creaEvents.on('crea.content.loaded', function () {
-        console.log('Content loaded!')
-        new ClipboardJS('.btn_copy');
+        console.log('Content loaded!');
         setUp();
-
-        let token = getParameterByName('token');
-        //console.log('Token', token);
+        var token = getParameterByName('token'); //console.log('Token', token);
 
         if (token) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                let url = apiOptions.apiUrl + '/validate/' + token;
-                let http = new HttpClient(url);
+                var url = apiOptions.apiUrl + '/validate/' + token;
+                var http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).get().when('done', function (data) {
-
                     globalLoading.show = false;
                     data = JSON.parse(data);
                     console.log('SignUp', data);
@@ -233,7 +236,5 @@
         } else {
             welcomeVue.slide = 1;
         }
-    })
-
+    });
 })();
-

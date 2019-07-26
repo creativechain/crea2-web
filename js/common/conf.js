@@ -1,13 +1,12 @@
+"use strict";
+
 /**
  * Created by ander on 30/09/18.
  */
-
-
-let local = false;
-
-let apiOptions = {
-    nodes: ['https://node2.creary.net'],
-    apiUrl : 'https://preapi.creary.net',
+var local = false;
+var apiOptions = {
+    nodes: ['https://nodes.creary.net'],
+    apiUrl: 'https://api.creary.net',
     ipfs: 'https://ipfs.creary.net/ipfs/',
     ipfsd: 'https://preapi.creary.net/ipfs',
     addressPrefix: 'CREA',
@@ -15,7 +14,7 @@ let apiOptions = {
         CREA: 'CREA',
         CGY: 'CGY',
         CBD: 'CBD',
-        VESTS: 'VESTS',
+        VESTS: 'VESTS'
     },
     nai: {
         CREA: '@@000000021',
@@ -30,20 +29,12 @@ localStorage.debug = 'crea:*';
 crea.api.setOptions(apiOptions);
 crea.config.set('address_prefix', apiOptions.addressPrefix);
 crea.config.set('chain_id', apiOptions.chainId);
+var isoLangs = {};
 
-const lang = {};
-const faq = {};
+var faq = {};
 
-/**
- *
- * @returns {*}
- */
-function getLanguage() {
-    let language = localStorage.getItem(CREARY.LANG) || getNavigatorLanguage();
-    if (lang[language]) {
-        return lang[language];
-    }
+var language = $('html').attr('lang');
 
-    return jsonify(jsonstring(lang.en));
-}
-//Vue.config.silent = false;
+$.getJSON('/language/isolangs.json', function(data) {
+    isoLangs = data;
+});

@@ -1,4 +1,16 @@
 .view-wallet {
+  #wallet-tabs {
+    .wallet-balances-tab.active,
+    .wallet-permissions-tab.active,
+    .wallet-password-tab.active {
+      display: list-item;
+    }
+    .wallet-balances-tab,
+    .wallet-permissions-tab,
+    .wallet-password-tab {
+      display: none;
+    }
+  }
   .td-right-balance {
     text-align: right; padding-right: 20px;
   }
@@ -54,7 +66,7 @@
   .li-buy-crea {
     position: absolute;
     right: 15px;
-    top: 0;
+    top: 18px;
     opacity: 1 !important;
   }
   .padding-b-10 {
@@ -79,10 +91,18 @@
   .tabs--folder .tabs-content {
     border: 1px solid transparent;
     padding-top: 0;
+    width: 100%;
   }
   .table-amount {
+    margin-bottom: 0px;
     tbody {
       tr {
+        .dropdown__container {
+          left: 0 !important;
+          .dropdown__content {
+            left: 110px !important;
+          }
+        }
         td:nth-child(1) {
           width: 70%;
           p:nth-child(1) {
@@ -107,12 +127,6 @@
           width: 70%;
           p:nth-child(1) {
             font-weight: bold;
-          }
-          p:nth-child(2) {
-            img {
-              width: 45px !important;
-              margin-right: 10px;
-            }
           }
         }
         td {

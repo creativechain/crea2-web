@@ -1,0 +1,36 @@
+{{ include ('element/navbar.php.twig') }}
+
+<div class="main-container">
+    <section v-cloak id="calculator-container" class="space--sm">
+        <div class="container post-container-home">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="title-explorer">{{ lang.CALCULATOR.TITLE }}</h3>
+                </div>
+            </div>
+
+            <div class="row col-lg-10 offset-lg-1 col-md-12">
+                <div class="row-inputs">
+                    <span>{{  lang.CALCULATOR.INPUT_CGY_PLACEHOLDER }}</span>
+                    <input type="number" v-model="calculator.cgy" placeholder="{{  lang.CALCULATOR.INPUT_CGY_PLACEHOLDER }}" />
+                </div>
+                <div class="row-inputs">
+                    <span>{{  lang.CALCULATOR.INPUT_VOTING_CGY_PLACEHOLDER }}</span>
+                    <input type="number" v-model="calculator.voting_energy" placeholder="{{  lang.CALCULATOR.INPUT_VOTING_CGY_PLACEHOLDER }}" />
+                </div>
+                <div class="row-inputs">
+                    <span>{{  lang.CALCULATOR.INPUT_VOTE_WEIGHT_PLACEHOLDER }}</span>
+                    <input type="number" v-model="calculator.vote_weight" placeholder="{{  lang.CALCULATOR.INPUT_VOTE_WEIGHT_PLACEHOLDER }}" />
+                </div>
+            </div>
+
+            <div class="row">
+                {{ lang.CALCULATOR.VOTE_WORTH  }} {{ '{{ calculator.vote_worth }}' }}
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+    <script src="/js/common/vote_calculator2.js"></script>
+
+
+    {{ include ('element/footer.php.twig') }}

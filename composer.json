@@ -1,0 +1,23 @@
+{
+    "name": "creativechain/creary",
+    "description": "Blockchain-based social network of creative portfolios that rewards creatives and curators",
+    "type": "project",
+    "license": "GNU GPLv3",
+    "authors": [
+        {
+            "name": "Creativechain FDN",
+            "email": "admin@creaproject.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Creary\\": "src/Creary/"
+        }
+    },
+    "require": {
+        "twig/twig": "^2.6",
+        "guzzlehttp/guzzle": "^6.3",
+      "ext-json": "*",
+        "symfony/var-dumper": "^4.2"
+    }
+}

@@ -3,6 +3,10 @@
     display: none;
 }
 
+.cursor-link {
+    cursor: pointer;
+}
+
 .disabled-cursor {
     cursor: not-allowed;
 }
@@ -73,4 +77,8 @@ li > .search {
 .name > .link-username {
     font-size: 14px;
     font-weight: bold;
+}
+
+p > ul > li {
+    list-style: inside;
 }

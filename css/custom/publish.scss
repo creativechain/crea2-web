@@ -35,6 +35,10 @@
     .upload-img {
       position: relative;
       margin-bottom: 10px;
+      text-align: center;
+      div:not(.delete-img-step-1) {
+        text-align: left;
+      }
       p {
         word-break: break-word;
         word-break: all;
@@ -113,7 +117,35 @@
     }
   }
   .step-2 {
-
+    .upload-img {
+      position: relative;
+      margin-bottom: 10px;
+      text-align: center;
+      p {
+        word-break: break-word;
+        word-break: all;
+        padding: 0 40px 0 0;
+      }
+      .delete-img-step-1 {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: $color-white;
+        text-align: center;
+        border-radius: 10px;
+        border: solid 1px #ececec;
+        a {
+          color: $grey-light;
+          position: relative;
+          top: -1px;
+        }
+      }
+      video {
+        width: 100%;
+      }
+    }
     p.disabled {
       color: $grey-light;
     }
@@ -199,6 +231,9 @@
       }
     }
     .ul-icon-license {
+      li {
+        margin-right: 5px !important;
+      }
       img {
         width: 30px;
       }

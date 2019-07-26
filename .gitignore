@@ -2,3 +2,9 @@
 resources
 .htaccess
 webconfig.json
+/vendor/
+/var/
+composer.lock
+robots.txt
+.DS_Store
+composer

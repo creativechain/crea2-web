@@ -49,21 +49,39 @@
         font-size: 14px;
         font-weight: 400;
         margin-bottom: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         text-decoration: none !important;
         color: $color-dark-primary !important;
+        p {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 167px;
+        }
       }
       .title {
         font-size: 14px;
         font-weight: bold;
+      }
+      .ul-buzz-profile {
+        li {
+          .text-buzz {
+            font-size: 14px;
+          }
+        }
       }
     }
 
     .dropdown-price {
       padding-top: 2px;
       padding-left: 11px;
+      .dropdown__container {
+        left: -200px !important;
+        width: 260px;
+        .dropdown__content {
+          max-width: 250px;
+          left: 0px !important;
+        }
+      }
       p {
         margin: 0;
       }
@@ -93,7 +111,20 @@
         color: $active-circle;
       }
     }
+    .stats-post {
+      margin-top: 23px;
+    }
     .ul-social {
+      padding-left: 17px;
+      p {
+        margin-left: 10px;
+        margin-top: 3px;
+      }
+      img {
+        width: 16px;
+        height: 16px;
+        margin-top: 6px;
+      }
       .row-likes {
         display: flex;
         margin: 0 auto;
@@ -102,21 +133,26 @@
           top: 0;
         }
       }
-      li:nth-child(1) {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      li {
-        display: flex;
-        padding: 0;
-        p {
-          margin-left: 10px;
-          margin-top: 3px;
+      .post-like-count.dropdown--active {
+        .dropdown__container {
+          pointer-events: auto;
+          z-index: 1000;
         }
-        img {
-          width: 16px;
-          height: 16px;
-          margin-top: 6px;
+      }
+      .post-like-count {
+        position: relative;
+        top: 1px;
+        left: -15px;
+        .dropdown__container {
+          left: -200px !important;
+          width: 210px;
+          .dropdown__content {
+            left: 70px !important;
+          }
+        }
+        .amount-post-view-home {
+          max-width: 330px;
+          width: 330px !important;
         }
       }
     }
@@ -147,6 +183,63 @@
     border-bottom: 1px solid $border-solid-grey;
     img {
       width: 19px;
+    }
+    .ul-recommended-post {
+      a {
+        width: 65px;
+        color: $color-dark-primary;
+        font-weight: 600;
+        div {
+          width: 30px;
+          height: 30px;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+        div.icon-recommended-post {
+          background-image: url("/img/recommended/recommended-post.svg");
+        }
+        div.icon-recommended-post-active {
+          background-image: url("/img/recommended/recommended-post-active.svg");
+        }
+        span {
+          margin-left: 5px;
+        }
+      }
+      a:hover {
+        color: $color-blue-primary;
+        font-weight: 600;
+        div.icon-recommended-post {
+          background-image: url("/img/recommended/recommended-post-active.svg");
+        }
+      }
+      .pre-recommended {
+        animation-name: parpadeo;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-name:parpadeo;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+      }
+      @-moz-keyframes parpadeo{
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
+
+      @-webkit-keyframes parpadeo {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
+
+      @keyframes parpadeo {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
     }
   }
   .row-project {
@@ -202,11 +295,11 @@
       font-weight: bold;
     }
     .row-publish-tags a {
-      color: $link-color-a-grey;
+      color: $color-dark-primary;
       font-weight: 600;
     }
     .row-publish-tags a:hover {
-      color: $border-btn-transparent;
+      color: $color-blue-primary;
       font-weight: 600;
     }
     .row-publish-description {

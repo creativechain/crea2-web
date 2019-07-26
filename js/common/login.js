@@ -1,26 +1,26 @@
+"use strict";
+
 /**
  * Created by ander on 29/09/18.
  */
-
 function startLogin() {
-    let username = $('#login-username').val();
-    let password = $('#login-password').val();
-
+    var username = $('#login-username').val();
+    var password = $('#login-password').val();
     login(username, password);
-
     return false;
 }
-
 /**
  *
  * @param {string} username
  * @param {string} password
  * @param callback
  */
+
+
 function login(username, password, callback) {
     //Check roles;
+    var session;
 
-    let session;
     if (crea.auth.isWif(password)) {
         //Unknown role
         session = Session.create(username, password, null);
@@ -29,7 +29,6 @@ function login(username, password, callback) {
         session = Session.create(username, password);
     }
 
-
     session.login(function (err, account) {
         if (err) {
             if (callback) {
@@ -37,25 +36,23 @@ function login(username, password, callback) {
             }
         } else {
             session.save();
+            var count = 2;
 
-            let count = 2;
-            let onTaskEnded = function (session, account) {
-
+            var onTaskEnded = function onTaskEnded(session, account) {
                 --count;
 
                 if (count === 0) {
                     creaEvents.emit('crea.session.login', session, account);
+
                     if (callback) {
                         callback(null, session, account);
                     }
                 }
             };
 
-            let followings = [];
-            let blockeds = [];
-
+            var followings = [];
+            var blockeds = [];
             crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
-
                 if (!catchError(err)) {
                     result.following.forEach(function (f) {
                         followings.push(f.following);
@@ -64,25 +61,21 @@ function login(username, password, callback) {
                     onTaskEnded(session, account);
                 }
             });
-
             crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, result) {
                 if (!catchError(err)) {
                     result.following.forEach(function (f) {
                         blockeds.push(f.following);
                     });
                     account.user.blockeds = blockeds;
-                    onTaskEnded(session, account)
-
+                    onTaskEnded(session, account);
                 }
             });
-
         }
     });
-
 }
 
 function logout() {
     Session.getAlive().logout();
-    //updateNavbarSession(false);
-    creaEvents.emit('crea.session.logout')
+
+    creaEvents.emit('crea.session.logout');
 }

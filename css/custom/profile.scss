@@ -1,8 +1,11 @@
 .view-profile {
+  .amount-price {
+    display: inline;
+  }
   .tabs-container {
     .tabs-content {
-      margin-left: -2px;
-      min-width: 101%;
+      margin-left: 0;
+      min-width: 100%;
     }
   }
   .masonry__item:not(:empty) {
@@ -149,6 +152,7 @@
     .title-tags {
       font-weight: bold;
       margin-bottom: 5px;
+      text-transform: uppercase;
     }
     a {
       color: $color-dark-primary;
@@ -169,6 +173,9 @@
     }
   }
   .menu-profile-user {
+    .btn-more-info-profile, .btn-hidden-info-profile {
+      cursor: pointer;
+    }
     a {
       text-decoration: none;
     }
@@ -200,9 +207,26 @@
       font-weight: 600;
     }
     .ranking-user-info {
-      img {
-        width: 16px;
-        margin-right: 5px;
+
+      .title-buzz-info-profile {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+      .ul-buzz-profile {
+        margin-top: 0;
+        margin-bottom: -7px;
+        .li-buzz {
+          margin-right: 7px;
+          .img-buzz {
+            height: 20px;
+            width: 18px;
+            background-repeat: no-repeat;
+            background-position: left;
+            background-size: contain;
+          }
+        }
       }
     }
   }

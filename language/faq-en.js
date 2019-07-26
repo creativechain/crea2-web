@@ -44,7 +44,9 @@ faq.en = {
         ],
         "Witnesses": [
             "What are Crea witnesses?",
-            "How can I vote for witnesses?"
+            "How can I vote for witnesses?",
+            "How to set a CREA witness node?",
+
         ],
         "Voting and Curating": [
             "What is my voting power?",
@@ -55,7 +57,8 @@ faq.en = {
             "Do I get curation rewards for downvoting posts or comments?",
             "Why don't my upvotes have an effect on a post's rewards?",
             "Is there any way to make my vows more powerful?",
-            "What are the valid reasons for downvoting when reporting a content?"
+            "What are the valid reasons for downvoting when reporting a content?",
+            "Why when I give a like to a project, it doesn't add a reward?"
         ],
         "Economy": [
             "Where do the new CREA tokens come from?",
@@ -75,7 +78,9 @@ faq.en = {
             "Will the price of 1 CREA dollar (CBD) always be $ 1.00 USD?",
             "What can I do with my CREA tokens?",
             "What can I do with my CBD tokens?",
-            "How much do CREA transactions cost to other users?"
+            "How much do CREA transactions cost to other users?",
+            "What is FLOW?",
+            "What can I do if I run out of FLOW?"
         ],
         "Diverse": ["Where are the updates and news related to Creary and Crea announced?"],
         "Developers": ["Are the Creary.net or the Crea blockchain codes open source?"],
@@ -89,7 +94,7 @@ faq.en = {
             "How are the new tokens generated?",
             "Where does the value of the Crea networks tokens come from?"
         ],
-        "Followers, Feeds and Recreary": ["What is a Recreary?"],
+        "Followers, Feeds and Recommended": ["What is a recommendation?"],
         "Creativechain Foundation": [
             "What is the Creativechain Foundation?",
             "Can I invest in Creativechain Foundation?",
@@ -98,9 +103,10 @@ faq.en = {
         ],
         "Hidden": ["Where can I ask for help if my question was not answered here?"],
         "Reputation": [
-            "What is the Buzz?",
-            "What makes my Buzz score to go down?",
-            "Why does my Buzz score matter?"
+            "What is the Buzz in Creary?",
+            "How is reputation increased?",
+            "What makes my Buzz level to go down?",
+            "Why is my Buzz level important?"
         ],
         "Accounts": [
             "How do I create an account?",
@@ -283,7 +289,6 @@ faq.en = {
                 "Master password",
                 "The master password is used to manage all the previous keys. A hashing function calculates the corresponding private and public keys based on the master password, the account name and the key type.",
                 "The master password allows you to recover all the private keys of a user account.",
-                "Do not use the master password to log on to creary.net or any other application in the Crea network. Never copy the master password in any publication and do not share it in social networks using messaging or mail systems or other social networks.",
                 "Use the lower privilege keys (Publication Key or Active Key to maintain the security of your account.)"
             ],
             "Are my CREA and CREA Energy tokens insured in case someone hacks into your device or account?": [
@@ -297,7 +302,8 @@ faq.en = {
                 "Crea's blockchain requires a set of nodes (witnesses) to create blocks and uses a consensus protocol called Delegated Proof Of Stake (DPOS). The community chooses \"witnesses\" to act as block producers. This way a government is created that represents the users who voted for them.",
                 "There are 24 full-time witnesses, producing one block each round of 75 seconds. The position of witness number 25 is shared by the backup witnesses who are in the queue to enter the list of the 24 most voted. This type of witnesses are programmed proportionally to the amount of approval of the community weighted by the interest they have. Witnesses are compensated with CREA Energy for each block they create. All users can vote up to 35 network witnesses. If a witness is not doing a good job, users can withdraw their vote to remove that witness from the main list so that their position is occupied by the next most voted witness.Witnesses can publicize their candidacy by offering developments that improve the ecosystem of the Crea network. To maintain the proper functioning of the network it is important that users use their legitimate right to vote for their favourite witnesses."
             ],
-            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/witnesses"]
+            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/~witness"],
+            "How to set a CREA witness node?": ["Here https://creaproject.io/set-crea-witness-node you will find step by step all the necessary indications to become an elected witness in this consensus protocol."]
         },
         "Voting and Curating": {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],
@@ -311,15 +317,15 @@ faq.en = {
             ],
             "Why don't my upvotes have an effect on a post's rewards?": [
                 "Users with more CREA Energy (CGY) are going to have a larger influence on the rewards than users with less CGY. Often, one like from a user with a lot of CGY can have more impact than 100 votes from users with a small amount of CGY.",
-                "But don\u2019t worry, unity is strength, if your vote alone doesn\u2019t have an immediate effect, when added together with all the other votes at the end of the 7 day payment period, they can affect the final payment.",
+                "But don\u2019t worry, unity is strength, if your vote alone doesn\u2019t have an immediate effect, when added together with all the other votes at the end of the 10 day payment period, they can affect the final payment.",
                 "If you want your votes to have more influence, you will have to get more CGY by publishing content, curating content or Energize more CREA to get CGY. If you do not have CREA to Energize and increase your voting power, you will have to get it in the exchanges and send it to your CREA wallet in creary.net."
             ],
             "Do I get curation rewards for downvoting posts or comments?": ["No. Since downvoting reduces the rewards on a post/comment, it does not earn curation rewards."],
             "What determines how much of the curation reward goes to the author versus curators?": [
                 "70% of the rewards issued by the CREA network are destined to the rewards for creatives and curators.",
-                "These rewards are allocated so that 75% of the payout goes to the author of the post/comment, and 25% goes to the curator.",
-                "Of the 25% that goes to the curator, that portion will be split between the author and the curator if the curator votes within the first 30 minutes. The split of the 25% between the author and curator during the first 30 minutes is calculated linearly based on the time the vote is cast.",
-                "If a post is upvoted the moment of posting, 100% of the curation reward goes to the author.",
+                "These rewards are allocated so that 70% of the payout goes to the author of the post/comment, and 30% goes to the curator.",
+                "Of the 30% that goes to the curator, that portion will be split between the author and the curator if the curator votes within the first 30 minutes. The split of the 30% between the author and curator during the first 30 minutes is calculated linearly based on the time the vote is cast.",
+                "If a post receives \"like\" the moment of posting, 100% of the curation reward goes to the author.",
                 "At 6 minutes, 80% goes to the author and 20% to the curator.",
                 "At 15 minutes it's at 50/50 split.",
                 "If a post is upvoted 30 min after posting, 100% of the curation reward goes to the curator."
@@ -338,13 +344,21 @@ faq.en = {
                 "Once you reach about 500 CREA Energy, you will see a voting slider appear when you vote. You can use the slider to adjust the weight of your vote, between 1% and 100% of the voting strength. Voting with less than 100% of weight will spend less voting power, but will also have less influence on the rewards of the comment or post."
             ],
             "Is there any way to make my vows more powerful?": ["Yes. The more CREA Energy you have, the more your votes count. You can easily get CGY if you are a user that publishes quality content and collaborates in the curation of content in an active way. A shortcut to get CGY is to buy CREA in any exchange where the token is available. https://creaproject.io/buy"],
-            "Where can I verify my voting power?": ["You can see your current voting power and other profile data in the blockchain by consulting tools such as https://creascan.net/@youraccount."]
+            "Where can I verify my voting power?": ["You can see your current voting power and other profile data in the blockchain by consulting tools such as https://creascan.net/@youraccount."],
+            "Why when I give a like to a project, it doesn't add a reward?": [
+                "If your likes don’t give a reward, it can be due to several reasons.",
+                "1- To have greater influence on your likes you will need to have CREA Energy (CGY) the more CGY you have your influence in the distribution of the rewards will be greater. To get more CGY you have different options:",
+                "-The first option is to earn rewards for your activity in the social network, for example by creating quality content, writing interesting comments or giving likes to quality content.",
+                "-The second and fastest option is to energize CREA and convert it into CGY on your wallet. If you do not have CREA you can get it at any point of sale or exchange available https://creaproject.io/buy/",
+                "2- It is possible that you are still a newcomer and your BUZZ (reputation) is still very low. You can check your exact reputation at https://creascan.net/@youruser/data, reputation section. If your reputation is 0 or very low, your likes will have very little effect even if you have a lot of CGY.",
+                "3- If you meet the 2 previous requirements and your likes still don’t give rewards, it’s possible that you have exhausted your voting energy. You can check it at https://creascan.net/@youruser where you’ll find a bar that indicates your voting energy in the right column. If this indicator is at 0% or at a very low %, the system will allow you to give likes but they won’t have influence. The voting energy recharges itself, little by little (it can take minutes or hours), the higher your reputation the faster it will recharge."
+            ]
         },
         "Economy": {
             "How much do CREA transactions cost to other users?": ["There are no fees for any type of transfer or conversion (Energize or De-Energize) within the network of Crea Network."],
             "How long does it take to transfer tokens between users within the Crea network?": ["A transfer of tokens between accounts will normally take 3 seconds. The crea network is one of the fastest cryptocurrency payment networks in the blockchain ecosystem. For example, transactions in Bitcoin can take at least 10 minutes."],
             "What do dollar amounts represent for pending payments?": [
-                "The amounts in dollars indicated in the publications and comments are estimates of the potential payment that will occur when the 7-day payment period ends, according to the current voting activity and the CREA price. Therefore, these potential payment amounts may fluctuate up or down until the payment period ends.",
+                "The amounts in dollars indicated in the publications and comments are estimates of the potential payment that will occur when the 10-day payment period ends, according to the current voting activity and the CREA price. Therefore, these potential payment amounts may fluctuate up or down until the payment period ends.",
                 "Payments are made in a combination of CGY and CBD. Sometimes, the blockchain can substitute CREA instead of the CGY according to market conditions.",
                 "The Blockchain calculates the value in dollars of CREA and CGY according to the average price of the last 3.5 days of CREA always informed by the witnesses."
             ],
@@ -384,7 +398,7 @@ faq.en = {
             ],
             "Where do the new CREA tokens come from?": ["In Crea, as in most blockchains such as Bitcoin, Litecoin or Ethereum, each time a block is produced (3 seconds), new tokens are generated. But, unlike other blockchains in which all new currencies go directly to the block producers (called miners), the blockchain of Crea assigns the vast majority (70% of the tokens generated annually) of the new tokens to a fund of reward called \"Reward Pool\". This Reward Pool offers users tokens for their participation in the network either as curators or as content generators."],
             "How is the group of rewards divided between authors and curators?": [
-                "A maximum of 25% of the payment of a publication is given to the curators as a reward for discovering the content. The other 75% is given to the author of the project publication.",
+                "A maximum of 30% of the payment of a publication is given to the curators as a reward for discovering the content. The other 70% is given to the author of the project publication.",
                 "If the curators vote for a publication within the first 30 minutes of its creation, a portion of its curation reward will be added to the author's payment. This proportion is calculated linearly based on the time and the vote hast to be cast between 0 and 30 minutes. As an example: upvoting at 15 minutes will donate half of your potential curation reward to the author."
             ],
             "What can I do with my CREA tokens?": [
@@ -408,7 +422,18 @@ faq.en = {
                 "If you still do not have CREA in your wallet, you can buy it with euro or dollar or with bitcoin (BTC) on exchanges like Lescovex.com. You can get BTC in several known exchanges.",
                 "Check the full list https://creaproject.io/buy/ of exchanges where CREA is currently traded."
             ],
-            "When can I obtain my rewards?": ["The period of paying out a reward is 7 days. After this period you can collect the reward by clicking on the yellow button that is displayed on your wallet."]
+            "When can I obtain my rewards?": ["The period of paying out a reward is 10 days. After this period you can collect the reward by clicking on the yellow button that is displayed on your wallet."],
+            "What is FLOW?": [
+                "The FLOW is a non-transferable type of resource or token that is granted intelligently by the CREA blockchain to each @user account according to the amount of CREA Energy (CGY) it has. The FLOW is proportional to the CGY.",
+                "The FLOW is a resource that is consumed every time a user makes transactions (votes, likes, comments, transfers or energizations).",
+                "Each transaction has a specific cost in FLOW. If you have enough FLOW to cover the cost, you can make the transaction.",
+                "This system allows in a decentralized way to protect the blockchain from malicious actions such as spam."
+            ],
+            "What can I do if I run out of FLOW?": [
+                "When a user runs out of FLOW, he can do two things:",
+                "1. Wait for it to recharge again. Each day 22% will be refilled, therefore to have 100% FLOW you will need 5 days.",
+                "2. The fastest option to increase your FLOW is to buy more CREA and Energize it. Following this link creaproject.io/buy/ you can access different services that sell or exchange CREA."
+            ]
         },
         "Diverse": {
             "Where are the updates and news related to Creary and Crea announced?": [
@@ -420,7 +445,7 @@ faq.en = {
                 "Medium: https://medium.com/creary",
                 "Discord: https://discord.gg/RkHFRE"
             ],
-            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/witnesses"]
+            "How can I vote for witnesses?": ["You can see the voting section inside the right side menu in https://creary.net/~witness"]
         },
         "Developers": {
             "How does the stolen account recovery process work?": [
@@ -473,12 +498,14 @@ faq.en = {
             ],
             "What is creary.net?": ["Creary is a social network of multimedia portfolios based on the blockchain that rewards creatives and curators for sharing their digital creations with the community."]
         },
-        "Followers, Feeds and Recreary": {
-            "Why does my Buzz score matter?": [
-                "Many Crearians look at the Buzz level of users before reviewing a project or downloading any material. A high Buzz level means that content is much more likely to be of high quality.",
-                "It is important to know that if a user has a Buzz level lower than 0, Creary will stop displaying his posts and comments automatically."
-            ],
-            "What is a Recreary?": ["It is the function that allows a Crearian share a work of another Crearian in his feed. This function is ideal for discovering others' works and showing them to your followers."]
+        "Followers, Feeds and Recommended": {
+            "What is a recommendation?": [
+                "As the network grows so does the number of daily publications. As a result of this, you may not see many projects that might interest you.",
+                "The recommend function is very useful to let your community know about some projects that you have found and consider of high value and interest for them.",
+                "Recommend is very simple, you just have to click on the icon that appears in the upper right part of the project boxes or in the lower left part inside the project page.",
+                "When you recommend a content this will be visible in your followers feed. In this content, the author of this recommendation will be indicated.",
+                "It is important not to abuse this function and be very selective with those projects that you really want to recommend to the community."
+            ]
         },
         "Creativechain Foundation": {
             "Is it allowed to use the Creary logo?": ["\"Creary\", the Creary logo and any other product or service name, logos or slogans that may appear on the Service are works owned by Creativechain FDN, under a Creative Commons License CC BY-ND. This license allows redistribution, commercial and non-commercial, as long as the work is not modified and transmitted in its entirety, recognizing its original authorship. The appearance of Creary.net and the Service are protected by copyright with a CC BY-NC license, which allows others to remix, adjust and build from their works for non-commercial purposes, and although in their new creations they must recognize the authorship of Creativechain FDN and can not be used commercially, does not necessarily have to be licensed under the same terms. This is applicable to the visual design elements or concepts in HTML/CSS and Javascript available on Creary.net."],
@@ -504,21 +531,73 @@ faq.en = {
             ]
         },
         "Reputation": {
-            "Where can I report authors, publications or comments that contain plagiarism, spam or abuse of any kind?": ["You can report the content in the same publication, then you can report it directly to our legal department by email at legal@creary.net. You can also warn of any abusive content using the #crearyabuse channel from our Discord server https://discord.gg/RkHFRE"],
-            "Why does my Buzz score matter?": [
-                "Many Crearians look at the Buzz level of users before reviewing a project or downloading any material. A high Buzz level means that content is much more likely to be of high quality.",
-                "It is important to know that if a user has a Buzz level lower than 0, Creary will stop displaying his posts and comments automatically."
+            "What is the Buzz in Creary?": [
+                "As in any social network, a verification badge is the best indicator of how a user is and the quality that this user brings to the community.",
+                "Creary has a dedicated scoring system that works within the CREA Network blockchain.",
+                "Each user has a Buzz score that can be seen next to their name or in the user profile section. The Buzz score is one of the ways that Creary has to calculate the value that a user has contributed to the community.",
+                "The Buzz is a gamification mechanism that measures the quality of a user account while motivating the community to continue improving. It is also a mechanism that is designed to help reduce abuse within the social network while encouraging people to do things correctly.",
+                "Reputation starts at 1 (Novice) for all new users and it is the responsibility of the users to increase or decrease the score through their interaction with the chain of blocks and with other users."
             ],
-            "What is the Buzz?": [
-                "Each user has a Buzz score that can be seen next to his name or in the user profile section. The Buzz score is one way Creary measures the amount of value a user has brought to the community",
-                "The Buzz is a mechanism used to measure the quality and trust generated by a user account. It is also a mechanism that is designed to help reduce abuse within the social network.",
-                "Your Buzz goes up when accounts vote on your content. Getting downvoted by someone with a higher Buzz can push your reputation down and make your posts less visible.",
-                "Users with a lower Buzz score are unable to affect your Buzz."
+            "How is reputation increased?": [
+                "Your reputation increases when other users like your content. The fact that someone with a higher reputation reports your content can reduce your Buzz and make your posts less visible.",
+                "The reputation is not affected in the following cases:" +
+                "<ul>" +
+                "<li>When you receive author rewards in your wallet.</li>" +
+                "<li>When you earn curation rewards.</li>" +
+                "<li>When you make a post or a comment.</li></ul>",
+                "The Buzz and the value of your user account are not related. There is no direct relationship between your Buzz level and the value of your account displayed on your wallet. This means that the Buzz level is not affected by:" +
+                "<ul>" +
+                "<li>The amount of CREA in a user's wallet.</li>" +
+                "<li>The amount of CREA energy (CGY) that a user has.</li>" +
+                "<li>The amount of CBD in your wallet.</li></ul>",
+                "The reason why the value of a user’s account doesn't affect to the Buzz is because this way no one can buy their reputation. The reputation is achieved with effort, creativity and perseverance. So, there could be user accounts with a value of thousands of dollars and at the same time have a very low Buzz.",
+                "Keep in mind that not all likes will affect your reputation in the same way. Although it is not the subject of this publication, the curation rewards obtained by the curators are an essential aspect that will affect your reputation. The amount of these rewards depends on the following factors:" +
+                "<ul>" +
+                "<li>Time of the like since the publication was shared.</li>" +
+                "<li>Reputation of the curator.</li>" +
+                "<li>CREA Energy obtained by the user.</li>" +
+                "<li>The remaining voting power and the percentage (vote strength) of that like.</li></ul>",
+                "Reward actions have a complex code behind, but once calculated, it is added to your reputation score except when someone reports your content (and has a reputation higher than yours). In this case, the reward actions are subtracted from your reputation, negatively affecting it and lowering your Buzz level.",
+                "It is important to know that the level of Buzz does not increase uniformly, going from 2 to 3 is slightly more difficult than going from 1 to 2 and so on. For this reason you may notice that at the beginning it is easier to increase your Buzz level."
             ],
-            "What makes my Buzz score to go down?": [
-                "The only way to lower your Buzz is because of receiving downvotes. However, not all of these downvotes will affect you:",
-                "- Downvotes from users with a Buzz score lower than yours will not affect your score.",
-                "- If your project or comment that was downvoted received more likes than negative reports, then the net effect on your Buzz score will remain positive."
+            "What makes my Buzz level to go down?": [
+                "The only way to lower your Buzz is because of receiving reports/reports of your content (negative votes). However, not all negative votes will affect you:" +
+                "<ul>" +
+                "<li>Negative reports from users with a Buzz score lower than yours will not affect your score.</li>" +
+                "<li>If your project or comment received more likes than negative reports, then the net effect on your Buzz score will remain positive.</li></ul>",
+                "How is the Buzz level calculated <br />The core of the CREA Network (blockchain) shows a multi-digit reputation number that you can see in the block browser https://creascan.net in the data section within your @user. For example, in the case of @creary it would be: https://creascan.net/@creary/data",
+                "<code>@creary (reputation)  = 35241066.000</code>",
+                "To make it easier, the creary.net social network converts this number using a base 10 Log function. There are 8 levels:" +
+                "<ul>" +
+                "<li>[<= 19] Novice</li>" +
+                "<li>[20-29] Trainee</li>" +
+                "<li>[30-39] Advanced</li>" +
+                "<li>[40-49] Expert</li>" +
+                "<li>[50-59] Influencer</li>" +
+                "<li>[60-69] Master</li>" +
+                "<li>[70-79] Guru</li>" +
+                "<li>[>= 80] Genius</li>",
+                "The formula has been designed as follows.<br />" +
+                "<code>" +
+                "round((log10( raw_reputation)) * max_level / max_log_num)<br />" +
+                "raw_reputation = Raw reputation returned by the core.<br />" +
+                "max_level = Max number of levels.<br />" +
+                "max_log_num = Max number allowed by the formula log.</code>",
+                "Example:<br />" +
+                "<code>" +
+                "max_level = 8<br />" +
+                "max_log_num = 20 <br />" +
+                "raw_reputation = 35241066.000<br />" +
+                "log10(35241066.000) = 7.547049036826153<br />" +
+                "7.547049036826153 * 8 / 20 = 3.018819614730461<br />" +
+                "Buzz: round(3.018819614730461 * 10) = round(30,18819614730461) = 30</code><br />",
+                "Finally, the Buzz level result would be 30. This corresponds to Advanced."
+            ],
+            "Why is my Buzz level important?": [
+                "Many Crearians look at the Buzz level of users before reviewing a project or downloading any project from a user. A high Buzz level means that content is much more likely to be quality.",
+                "If your reputation is below 1, it is evidence that you are not doing things right. If your reputation is 30 or more it means that you are making an effort so that your publications are appreciated by the community.",
+                "It is important to know that if a user has a buzz level less than -30, Creary may stop showing their posts. This is a tool for detecting malicious accounts that have been negatively valued by many members of the community.",
+                "The level of Buzz has an important role in the ability to regenerate the Energy of voting. The more reputation a user has, the faster their energy will regenerate to give likes with influence."
             ]
         },
         "Accounts": {
@@ -556,7 +635,7 @@ faq.en = {
         "Voting and Curating",
         "Plagiarism, spam and abuse",
         "Reputation",
-        "Followers, Feeds and Recreary",
+        "Followers, Feeds and Recommended",
         "Technology behind Creary",
         "Creativechain Foundation",
         "Security",
@@ -566,4 +645,4 @@ faq.en = {
         "Crea Network",
         "Hidden"
     ]
-}
+};
