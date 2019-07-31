@@ -160,11 +160,11 @@
     "EDIT_PROFILE": {
         "SECTION_TITLE": "Editar perfil",
         "LANGUAGE": "IDIOMA",
-        "COMMENT_REWARDS": "RECOMPENSA COMENTARIOS",
+        "COMMENT_REWARDS": "RECOMPENSAS COMENTARIOS (Porcentaje en 100% CREA o 50% CREA +50% CBD)",
         "INPUT_ABOUT": "Añade una breve descripción sobre ti",
         "PUBLIC_NAME": "NOMBRE PÚBLICO",
         "CHANGE_IMAGE": "Cambiar imagen de perfil",
-        "POST_REWARDS": "PUBLICACION RECOMPENSAS",
+        "POST_REWARDS": "RECOMPENSAS PUBLICACION (Porcentaje en 100% CREA o 50% CREA +50% CBD)",
         "INPUT_WEBSITE": "Incluye un link",
         "INPUT_PUBLIC_NAME": "Elige un nombre público visible para tu usuario",
         "ADULT_CONTENT": "CONTENIDO ADULTO",
