@@ -127,7 +127,7 @@ faq.es = {
             ],
             "¿Cómo creo una cuenta?": [
                 "El proceso para crear una cuenta en Creary es muy sencillo:",
-                "Haz click en Registrarse desde el menú superior en creary.net para empezar el proceso de registro. ",
+                "Haz click en \u201cSign Up\u201d desde el menú superior en creary.net para empezar el proceso de registro. ",
                 "Lee con atención en cada uno de los pasos. Se te pedirá una dirección de correo y un número de teléfono para verificar que es una persona real. No te preocupes no usaremos estos datos para nada más, solo queremos asegurarnos en la medida de lo posible de que no eres un bot. ",
                 "Recibirás una notificación a tu correo. Simplemente tendrás que seguir la url que se muestra en el correo para continuar con el proceso de registro. ",
                 "Asegúrate de guardar y hacer una copia de seguridad de tu nombre de usuario y contraseña. Es de vital importancia que no pierdas tu contraseña. Recuerda que en un sistema descentralizado no hay control centralizado de tus datos y no hay forma de recuperar tu contraseña o acceder a tu cuenta si se pierde. Una vez que hayas guardado y hecho una copia de seguridad de tu contraseña, finaliza el proceso y ya podrás entrar con tu nombre de usuario y contraseña en Creary.net."
@@ -215,11 +215,11 @@ faq.es = {
                 " "
             ],
             "¿Cómo publicar un trabajo?": [
-                "Desde el botón Publicar tendrás acceso al proceso de publicación que se divide en 4 sencillos pasos. ",
+                "Desde el botón \u201cpublicar\u201d tendrás acceso al proceso de publicación que se divide en 4 sencillos pasos. ",
                 "1. Content: aquí puede construir la presentación de tu proyecto combinando distintos archivos de imagen video o audio con texto. Se creativo! ",
                 "2. Información: en esta sección añadirás la información básica que identifica a tu proyecto como la imagen destacada o el título del trabajo que vas a publicar. ",
                 "3. Descarga: en Creary puedes subir archivos de descarga de mayor calidad y poner un precio por descarga. ",
-                "4. Licencia: finalmente añades la licencia que mejor se ajusta a tu publicación. A continuación, hacemos click en el botón publicar y en pocos segundos tu trabajo será hará visible para la red. "
+                "4. Licencia: finalmente añades la licencia que mejor se ajusta a tu publicación. A continuación, hacemos click en el botón \u201cpublicar\u201d y en pocos segundos tu trabajo será hará visible para la red. "
             ],
             "¿Recibiré notificaciones cuando haya actividad con mi cuenta?": [
                 "Las notificaciones se muestran desde el menú principal con un icono de una campana, si la campana muestra un punto azúl en la parte inferior significa que tiene nuevas notificaciones. ",
@@ -281,7 +281,7 @@ faq.es = {
                 "Los usuarios pueden comprometer su CREA a un cronograma de adjudicaciones de 8 semanas. Este compromiso otorga una sería de beneficios importantes dentro de la plataforma. Al CREA que se ha comprometido se le ha denominado Crea Energy (CGY). Este activo no se puede transferir a otros usuarios y difícilmente se podría usar en intercambios de criptomonedas. ",
                 "Cuando los usuarios votan sobre las publicaciones, su influencia sobre la distribución del conjunto de recompensas es directamente proporcional a la cantidad de CGY que tienen. Esto significa que CGY es un token de acceso que otorga a sus titulares poderes exclusivos dentro de la plataforma Crea. ",
                 "CGY se puede volver a transferir al activo principal CREA durante un período de ocho semanas, a través de 8 pagos semanales iguales.",
-                "CREA Dollar (CBD): CBD o CREA Basado en el Dollar tiene como objetivo intentar tener un correlación de precio con el Dólar. ",
+                "CREA Dollar (CBD): CBD o \u201cCREA Basado en el Dólar\u201d tiene como objetivo intentar tener un correlación de precio con el Dólar. ",
                 "Puede retirarse en cualquier momento por los usuarios. El Core de CREA toma y destruye el CBD y a continuación crea un nuevo CREA. El ratio de conversión se calcula usando el precio en el mercado. Si el valor del CREA es de 10 céntimos, un Crea Dollar podría cambiarse por 10 CREA. Es por ésto que su precio siempre intenta mantenerse estable y cercano al valor de 1 Dólar.",
                 "Más allá de ser un token de reserva de valor también podrá usarse dentro de la plataforma, por ejemplo para comprar espacios promocionados."
             ],
@@ -301,7 +301,7 @@ faq.es = {
                 "Comprar artículos o bienes digitales a través de tiendas de terceros que aceptan tokens CBD. "
             ],
             "¿1 CREA dollar (CBD) siempre valdrá $ 1.00 USD?": ["El valor de mercado de un CBD está determinado por la oferta y la demanda del token. Por lo tanto, es posible que 1 CBD valga más o menos que 1 USD dependiendo de las condiciones del mercado en ese momento."],
-            "¿Cuántos nuevos tokens genera la cadena de bloques?": ["Con el lanzamiento de Crea 2.0 la red comenzó a crear nuevos tokens a una tasa de inflación anual del 7%. La tasa de inflación disminuye a una tasa de 0.01% cada 300,000 bloques, o alrededor de 0.35% por año. La inflación continuará disminuyendo a este ritmo hasta que la tasa de inflación general alcance el 1% (Esto tomará aproximadamente 20 años) Consulta este post para conocer más detalles del sistema de emisión de tokens. https://creaproject.io/crea-distribucion-y-suministro-de-cryptomoneda/ "],
+            "¿Cuántos nuevos tokens genera la cadena de bloques?": ["Con el lanzamiento de Crea 2.0 la red comenzó a crear nuevos tokens a una tasa de inflación anual del 7%. La tasa de inflación disminuye a una tasa de 0.01% cada 300,000 bloques, o alrededor de 0.35% por año. La inflación continuará disminuyendo a este ritmo hasta que la tasa de inflación general alcance el 1% (Esto tomará aproximadamente 20 años) Consulta este post para conocer más detalles del sistema de emisión de tokens. (link) "],
             "¿Qué representan los importes en dólares para pagos pendientes?": [
                 "Los montos en dólares junto a las publicaciones y comentarios son estimaciones del pago potencial que se producirán cuando finalice el período de pago de 10 días, según la actividad de votación actual y el precio de CREA. Por ello estos montos de pago potenciales pueden fluctuar hacia arriba o hacia abajo hasta que finalice el período de pago.",
                 "Los pagos se realizan en una combinación de CGY y CBD. A veces, la blockchain puede sustituir CREA en lugar de los CGY según las condiciones del mercado.",
@@ -324,7 +324,7 @@ faq.es = {
         },
         "Navegación": {
             "¿Cómo veo mis recompensas recientes?": [
-                "Puedes consultar las recompensas obtenidas desde la sección Recompensas dentro de tu perfil de usuario (también puedes acceder a este información en el prefil de otros usuarios). ",
+                "Puedes consultar las recompensas obtenidas desde la sección \u201crecompensas\u201d dentro de tu perfil de usuario (también puedes acceder a este información en el prefil de otros usuarios). ",
                 " "
             ],
             "¿Cómo voto una publicación o comentario en Creary?": ["Para votar un proyecto o comentario, haga clic en el icono \"like\" en la parte inferior de la publicación o comentario."],
@@ -351,7 +351,7 @@ faq.es = {
             ],
             "¿Cómo transfiero mi CREA o CGY a mis ahorros?": [
                 "Llevar tus tokens a ahorros es una medida de seguridad adicional para tu bolsa de tokens ya que quedarán sujetos a un periodo de espera de retiro de 3 días. ",
-                "Puedes ejecutar la acción de Transferir a ahorros desde el menú desplegable de la sección CREA y CREA Dollar de tu monedero. "
+                "Puedes ejecutar la acción de \u201cTransferir a ahorros\u201d desde el menú desplegable de la sección CREA y CREA Dollar de tu monedero. "
             ],
             "¿Cómo envío dinero a otro usuario?": [
                 "Desde tu monedero, haz click en el saldo de CREA y desde  el menú desplegable haz click en 'Transferir'.",
@@ -378,7 +378,7 @@ faq.es = {
             "¿Recibiré recompensas de curaduría por denunciar, publicaciones o comentarios?": ["No. Ya que denunciar un contenido con un voto negativo reduce las recompensas en una publicación / comentario, por esta razón no se obtendrá recompensas de curación."],
             "¿Hay alguna manera de conseguir que mis votos tengan más influencia? ": ["Sí. Cuanto más CREA Energy tengas, más influencia tendrán tus votos. Puedes conseguir fácilmente CGY si eres un usuario que publica contenidos de calidad y colabora en la curación de contenidos de una manera activa. Un atajo para conseguir CGY es comprar CREA en cualquier intercambio que comercie con el token. https://creaproject.io/buy/"],
             "¿Cuánto cuestan las transacciones de CREA a otros usuarios?": ["No hay tarifas por ningún tipo de transferencia o conversión ( Energize o De-Energize) dentro de la red de Crea Network. "],
-            "¿Dónde puedo verificar mi poder de voto?": ["Puede ver tu poder de voto actual y otros datos de tu perfil en la blockchain consultando herramientas como https://creascan.net/@tucuenta."],
+            "¿Dónde puedo verificar mi poder de voto?": ["Puede ver tu poder de voto actual y otros datos de tu perfil en la blockchain consultando herramientas como https://creascan.net/@youraccount."],
             "¿Cuántas veces puedo votar sin agotar mi poder de voto?": [
                 "Cada vez que votes al 100% de poder, perderás el 2% de tu poder de voto restante.",
                 "Puede votar varias veces diariamente, pero cada voto valdrá menos, y necesitará más tiempo para alcanzar el pleno poder de voto nuevamente."
@@ -469,7 +469,7 @@ faq.es = {
                 "No existe la seguridad 100%, pero existen algunas ventajas del protocolo de Crea Network que permiten mitigar cualquier posible daño si su cuenta se ve comprometida y un usuario intenta enviar tus tokens a otra cuenta. ",
                 "Por ejemplo si tus tokens están en forma de CREA Energy, es imposible que un hacker saque más de 1/8 por semana, tiempo suficiente para darte cuenta que estás sufriendo algún tipo de robo. Si tus fichas están ahorradas, hay un período de espera de tres días para que sean transferibles."
             ],
-            "¿Qué puedo hacer si descubro que alguien ha hackeado mi cuenta?": ["Si hiciste tu cuenta a través de Creary.net y tienes constancia de que ha sido comprometida, visita inmediatamente la página Recuperación de cuenta robada. Deberás proporcionar la información que usaste para registrarte, el nombre de tu cuenta de @usuario y una contraseña maestra que haya sido usada en los últimos 30 días antes del hackeo. "]
+            "¿Qué puedo hacer si descubro que alguien ha hackeado mi cuenta?": ["Si hiciste tu cuenta a través de Creary.net y tienes constancia de que ha sido comprometida, visita inmediatamente la página \u201cRecuperación de cuenta robada\u201d. Deberás proporcionar la información que usaste para registrarte, el nombre de tu cuenta de @usuario y una contraseña maestra que haya sido usada en los últimos 30 días antes del hackeo. "]
         },
         "Creativechain Foundation": {
             "¿Puedo invertir en Creativechain Foundation?": [
@@ -611,7 +611,7 @@ faq.es = {
             "¿Hay alguna manera de ver los datos sin procesar que se almacenan en la cadena de bloques?": ["Si, puedes visualizar todos los datos a tiempo real desde creascan.net/@user"],
             "¿Qué es una blockchain?": [
                 "Blockchain o Block chain es un tipo de libro de registros distribuido para mantener un registro permanente y a prueba de manipulaciones de datos transaccionales. Una cadena de bloques, o blockchain, funciona como una base de datos descentralizada que es administrada por computadores pertenecientes a una red de punto a punto, o P2P (peer-to-peer). Cada uno de los equipos de cómputo de la red distribuida mantiene una copia completa del libro de registros para evitar un único punto de fallo y todas las copias se actualizan y validan simultáneamente. ",
-                "Hay que tener en cuenta que la palabra blockchain también se usa para referirse al conjunto de tecnologías que complementan un proyecto que incorpora una blockchain. Este conjunto de tecnologia unidas a una blockchain también se denomina Core o nucleo. "
+                "Hay que tener en cuenta que la palabra \u201cblockchain\u201d también se usa para referirse al conjunto de tecnologías que complementan un proyecto que incorpora una blockchain. Este conjunto de tecnologia unidas a una blockchain también se denomina \u201ccore\u201d. "
             ],
             "¿Qué es la blockchain de Crea?": [
                 "La blockchain de Crea es la base de datos distribuida de acceso público que usa la red social de Creary. En la blockchain de Crea quedan registrados todos los contenidos, descargas, likes, nuevas cuentas de usuario, certificado de derechos de autor, transacciones de tokens, distribución de recompensas  y otras operaciones del sistema. Es donde se almacena todo el contenido de texto y los datos de votación, y es donde se realizan todos los cálculos de recompensa y los pagos a los contenidos. ",
@@ -639,4 +639,3 @@ faq.es = {
         "Ayuda"
     ]
 };
-
