@@ -11,7 +11,7 @@
             el: '#faq-container',
             data: {
                 lang: lang,
-                faq: faq[lang.CODE]
+                faq: faq
             },
             methods: {
                 linkfy: linkfy,

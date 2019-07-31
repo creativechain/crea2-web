@@ -1,4 +1,4 @@
-faq.es = {
+faq = {
     "QUESTIONS": {
         "Cuentas": [
             "¿Cómo creo una cuenta?",
@@ -370,7 +370,7 @@ faq.es = {
             "¿Qué es una recomendación?": [
                 "A medida que la red crece, también crece el número de publicaciones diarias. Como resultado de esto, es posible que no vea muchos proyectos que puedan interesarle.",
                 "La función de recomendación es muy útil para informar a su comunidad sobre algunos proyectos que ha encontrado y considera de gran valor e interés para ellos.",
-                "Recomendar es muy simple, solo tienes que hacer clic en el icono que aparece en la parte superior derecha de los cuadros del proyecto o en la parte inferior izquierda dentro de la página del proyecto."
+                "Recomendar es muy simple, solo tienes que hacer clic en el icono que aparece en la parte superior derecha de los cuadros del proyecto o en la parte inferior izquierda dentro de la página del proyecto.",
                 "Cuando recomiendas un contenido, este será visible en su feed de seguidores. En este contenido, se indicará el autor de esta recomendación.",
                 "Es importante no abusar de esta función y ser muy selectivo con los proyectos que realmente desea recomendar a la comunidad."
             ],
