@@ -1,5 +1,5 @@
 {
-    "CODE": "en",
+    "CODE": "es",
     "COMMON": {
         "OR_CAP": "O",
         "YES": "Yes",
@@ -33,7 +33,7 @@
             "TITLE": "Esta acción no puede ser procesada. FLOW insuficiente",
             "BODY": ["Esto ocurre cuando tu cuenta de usuario no tiene suficiente FLOW",
                 "El FLOW es un tipo de recurso o token no transferible que la blockchain de CREA otorga de manera inteligente a cada cuenta de usuario de acuerdo con la cantidad de CREA Energy (CGY) que tiene. El FLOW es proporcional al CGY",
-                "El FLOW es un recurso que se consume cada vez que un usuario realiza transacciones (votos, me gusta, comentarios, transferencias o energizaciones)"
+                "El FLOW es un recurso que se consume cada vez que un usuario realiza transacciones (votos, me gusta, comentarios, transferencias o energizaciones)",
                 "Cada transacción tiene un coste específico en FLOW. Si tienes suficiente FLOW para cubrir el coste, puedes realizar la transacción",
                 "Este sistema permite proteger la blockchain de forma descentralizada ante acciones maliciosas como el spam",
                 "¿Qué puedo hacer si me quedo sin FLOW?",
