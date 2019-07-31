@@ -1,40 +1,20 @@
-"use strict";
-
-/**
- * Created by ander on 18/10/18.
- */
 (function () {
-    var postContainer;
+
+    var postContainer, otherProjectsContainer;
     var promoteModal;
     var downloadModal;
-    var url = window.location.pathname;
     var session, userAccount;
-    var vueInstances = 3;
 
     function onVueReady() {
-        --vueInstances;
+/*        --vueInstances;
 
         if (vueInstances === 0) {
             creaEvents.emit('crea.dom.ready');
-        }
+        }*/
     }
 
-    function setUp(state) {
-        //updateUrl(state.current_route);
-
-        state.post.reported = false;
-        if (session) {
-            //Set reported by user
-            var username = session.account.username;
-            for (var x = 0; x < state.post.down_votes.length; x++) {
-                var v = state.post.down_votes[x];
-                if (v.voter === username) {
-
-                    state.post.reported = true;
-                    break;
-                }
-            }
-        }
+    function setUp(post, state) {
+        state.post = post;
 
         if (!postContainer) {
             postContainer = new Vue({
@@ -232,7 +212,7 @@
                         return ignoreUser;
                     }(function () {
                         ignoreUser(this.state.post.author, true, function (err, result) {
-                            fetchContent();
+                            updatePostData();
                         });
                     }),
                     vote: function vote(weight) {
@@ -354,7 +334,7 @@
                             },
                             confirmDownload: function confirmDownload() {
                                 if (this.modal.alreadyPayed || this.modal.confirmed) {
-                                    makeDownload(null, session, downloadModal.user, postContainer.state.post, fetchContent);
+                                    makeDownload();
                                 } else {
                                     this.modal.confirmed = true;
                                 }
@@ -370,59 +350,42 @@
                 //This post not has a download, so downloadModal cannot be mounted
                 onVueReady();
             }
-        } else {
-            //No session, so downloadModal and modalPromoted can not be mounted
-            onVueReady();
-            onVueReady();
         }
-
-    }
-
-
-    /**
-     *
-     * @returns {string}
-     */
-
-
-    function getPostKey(postUrl) {
-        if (!postUrl) {
-            postUrl = url;
-        }
-
-        var route = postUrl.replace('@', '').split('/');
-        route.splice(0, 2);
-        return route.join('/');
     }
 
     function fetchOtherProjects(author, permlink) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
-            var otherProjects = new Vue({
-                el: '#more-projects',
-                data: {
-                    otherProjects: discussions
-                },
-                mounted: function mounted() {
-                    mr.sliders.documentReady($);
-                },
-                methods: {
-                    showPost: showPost,
-                    getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage = post.metadata.featuredImage;
+            if (!otherProjectsContainer) {
+                otherProjectsContainer = new Vue({
+                    el: '#more-projects',
+                    data: {
+                        otherProjects: discussions
+                    },
+                    mounted: function mounted() {
+                        mr.sliders.documentReady($);
+                    },
+                    methods: {
+                        showPost: showPost,
+                        getFeaturedImage: function getFeaturedImage(post) {
+                            var featuredImage = post.metadata.featuredImage;
 
-                        if (featuredImage && featuredImage.hash) {
-                            return {
-                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
-                            };
-                        } else if (featuredImage && featuredImage.url) {
-                            return featuredImage;
+                            if (featuredImage && featuredImage.hash) {
+                                return {
+                                    url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
+                                };
+                            } else if (featuredImage && featuredImage.url) {
+                                return featuredImage;
+                            }
+
+                            return {};
                         }
-
-                        return {};
                     }
-                }
-            });
-            otherProjects.$forceUpdate();
+                });
+            } else {
+                otherProjectsContainer.otherProjects = discussions;
+            }
+
+            otherProjectsContainer.$forceUpdate();
         };
 
         var date = new Date().toISOString().replace('Z', '');
@@ -458,120 +421,34 @@
         });
     }
 
-    function fetchContent() {
-        if (url) {
-            //Delete first char "/"
-            var parts = url.slice(1, url.length).split('/').length;
-            var fetchContentState = function fetchContentState(finalUrl) {
-
-
-                crea.api.getState(finalUrl, function (err, result) {
-                    if (!catchError(err)) {
-
-                        refreshAccessToken(function (accessToken) {
-                            var finalParts = finalUrl.slice(1, finalUrl.length).split('/');
-                            var author = finalParts[1].slice(1, finalParts[1].length);
-                            var permlink = finalParts[2];
-
-                            var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', author, permlink));
-
-                            var onReblogs = function(reblogs) {
-                                var aKeys = Object.keys(result.accounts);
-
-                                if (aKeys.length === 0) {
-                                    goTo('/404');
-                                } else {
-                                    aKeys.forEach(function (k) {
-                                        result.accounts[k] = parseAccount(result.accounts[k]);
-                                    });
-                                    result.postKey = getPostKey(finalUrl);
-                                    result.post = parsePost(result.content[result.postKey], reblogs);
-                                    result.author = parseAccount(result.accounts[result.post.author]); //Order comments by date, latest first
-
-                                    //console.log(clone(result.author));
-                                    var cKeys = Object.keys(result.content);
-                                    cKeys.sort(function (k1, k2) {
-                                        var d1 = new Date(result.content[k1].created);
-                                        var d2 = new Date(result.content[k2].created);
-                                        return d2.getTime() - d1.getTime();
-                                    });
-                                    cKeys.forEach(function (c) {
-                                        result[c] = parsePost(result.content[c]);
-                                    });
-                                    result.comments = cKeys;
-                                    setUp(result);
-                                }
-                            };
-
-                            http.when('done', function (response) {
-                                var data = jsonify(response).data;
-
-                                onReblogs(data.reblogged_by);
-                            });
-
-                            http.when('fail', function (jqXHR, textStatus, errorThrown) {
-                                console.error(textStatus, errorThrown);
-                                onReblogs();
-                            });
-
-                            http.headers = {
-                                Authorization: 'Bearer ' + accessToken
-                            };
-
-                            http.get({});
-                        });
-                    }
-                });
-            };
-
-            if (parts === 2) {
-                var author = getPathPart().replace('@', '');
-                var permlink = getPathPart(1);
-
-                crea.api.getContent(author, permlink, function (err, result) {
-                    if (!catchError(err)) {
-                        var post = parsePost(result);
-                        fetchContentState('/' + post.metadata.tags[0] + '/@' + author + '/' + permlink);
-                    }
-                });
-            } else {
-                fetchContentState(url);
-            }
+    function updatePostData() {
+        if (postContainer) {
+            setUp(postContainer.state.post, postContainer.state);
         }
     }
 
-    creaEvents.on('crea.dom.ready', function () {
-        var author = getPathPart();
-        var permlink;
-
-        if (!author.startsWith('@')) {
-            author = getPathPart(1).replace('@', '');
-            permlink = getPathPart(2);
-        } else {
-            author = getPathPart().replace('@', '');
-            permlink = getPathPart(1);
-        }
-
-        fetchOtherProjects(author, permlink);
+    creaEvents.on('navigation.post.data', function (post, state) {
+        setUp(post, state);
+        fetchOtherProjects(post.author, post.permlink);
     });
 
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         userAccount = a;
 
-        fetchContent();
+        updatePostData();
     });
 
     creaEvents.on('crea.session.update', function (s, a) {
         session = s;
         userAccount = a;
-        fetchContent();
+        updatePostData();
     });
 
     creaEvents.on('crea.session.logout', function () {
         session = false;
         userAccount = false;
 
-        fetchContent();
+        updatePostData();
     });
 })();
