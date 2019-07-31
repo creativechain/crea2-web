@@ -1,4 +1,4 @@
-faq.en = {
+faq = {
     "QUESTIONS": {
         "Plagiarism, spam and abuse": [
             "What are the policies on plagiarism or copyright violation?",
