@@ -56,7 +56,7 @@
     },
     "BANNER": {
         "TITLE": "Crea, inspira, influye",
-        "SUBTITLE": "Bienvenido/a a la comunidad descentralizada de portfolios creativos que recompensa a artistas y curadores. ¡Sé creativo!"
+        "SUBTITLE": "Bienvenido a la comunidad descentralizada de portfolios creativos que recompensa a artistas y curadores.  ¡Be creative!"
     },
     "TRENDING": {
         "PAYOUTS": "PAGOS",
@@ -160,11 +160,11 @@
     "EDIT_PROFILE": {
         "SECTION_TITLE": "Editar perfil",
         "LANGUAGE": "IDIOMA",
-        "COMMENT_REWARDS": "RECOMPENSAS COMENTARIOS (Porcentaje en 100% CREA o 50% CREA +50% CBD)",
+        "COMMENT_REWARDS": "RECOMPENSAS COMENTARIOS (Porcentaje 100% CGY o 50% CGY +50% CBD)",
         "INPUT_ABOUT": "Añade una breve descripción sobre ti",
         "PUBLIC_NAME": "NOMBRE PÚBLICO",
         "CHANGE_IMAGE": "Cambiar imagen de perfil",
-        "POST_REWARDS": "RECOMPENSAS PUBLICACION (Porcentaje en 100% CREA o 50% CREA +50% CBD)",
+        "POST_REWARDS": "RECOMPENSAS PUBLICACION (Porcentaje 100% CGY o 50% CGY +50% CBD)",
         "INPUT_WEBSITE": "Incluye un link",
         "INPUT_PUBLIC_NAME": "Elige un nombre público visible para tu usuario",
         "ADULT_CONTENT": "CONTENIDO ADULTO",
@@ -323,7 +323,7 @@
     },
     "PROFILE": {
         "MORE_INFO":"Más info",
-        "TITLE_BLOCKED": "Usuarios Bloqueados",
+        "TITLE_BLOCKED": "Bloqueados",
         "TEXT_CURATION": "Recompensas de curación estimadas en la última semana",
         "TEXT_CURATION_HISTORY": "HISTORIAL RECOMPENSAS DE CURACIÓN",
         "SECONDARY_MENU_NOTIFICATIONS": "Notificaciones",
@@ -343,30 +343,30 @@
         "TITLE_FOLLOWING": "Siguiendo",
         "SECONDARY_MENU_PROJECTS": "Proyectos",
         "TAGS": "TAGS",
-        "TITLE_AUTHOR": "RECOMPENSAS AUTOR",
+        "TITLE_AUTHOR": "RECOMPENSAS DE AUTOR",
         "POSTS": "PUBLICACIONES",
-        "JOINED": "Se unió en",
+        "JOINED": "Se unió en ",
         "NO_POSTS_TITLE": "Bienvenido a tu nueva página de usuario",
         "NO_POSTS_TEXT": "Publica tu trabajo y empieza a compartir tus mejores ideas",
         "NO_POSTS_PUBLISH": "Publica tu trabajo",
         "NO_POSTS_EXPLORE": "Explora los trabajos que son tendencia",
         "NO_POSTS_FAQ": "Preguntas Frecuentes",
-        "NO_POSTS_PROFILE": "No existen proyectos relacionados con este usuario"
+        "NO_POSTS_PROFILE": "No existen proyectos relacionados con este usuario."
     },
     "COIN_MARKETS": {"TITLE": "Mercados de moneda"},
     "WALLET": {
         "DROPDOWN_MENU_ENERGIZE": "Energize",
-        "BALANCES_SAVING_TEXT": "Fondos sujetos a un periodo de espera de 3 días para ser retirados",
-        "PERMISSIONS_TEXT_MEMO": "La clave memo sirve para crear y leer memos (direcciones memorizables)",
+        "BALANCES_SAVING_TEXT": "Fondos sujetos a un periodo de espera de 3 días para ser retirados.",
+        "PERMISSIONS_TEXT_MEMO": "La clave memo sirve para crear y leer memos. ",
         "WITHDRAW_CBD_TITLE": "Retirar CREA dollar",
         "DROPDOWN_MENU_TRANSFER": "Transferir",
         "WITHDRAW_SAVING_TITLE": "Retirar ahorros",
-        "CONVERT_CGY_TEXT": "Tokens que te dan influencia en la comunidad. El nivel de influencia de tus votos dependerá de tu CREA ENERGY acumulado. El CREA ENERGY es intransferible y requiere un periodo de 2 meses (en 8 pagos) para volver a convertirlo en CREA",
-        "DE_ENERGIZE_TEXT": "Estás Des-Energizando %s (%s pagado hasta ahora). Recuerda que si cambias este importe, los tiempos de pago se recalcularán",
-        "BALANCES_CGY_TEXT": "Tokens que te dan influencia en la comunidad. El nivel de influencia de tus votos dependerá de tu CREA ENERGY acumulado",
+        "CONVERT_CGY_TEXT": "Tokens que te dan influencia en la comunidad. El nivel de influencia de tus votos dependerá de tu CREA ENERGY acumulado. El CREA ENERGY es intransferible y requiere un periodo de 2 meses (en 8 pagos) para volver a convertirlo en CREA.",
+        "DE_ENERGIZE_TEXT": "Estás Des-Energizando %s (%s pagado hasta ahora). Recuerda que si cambias este importe, los tiempos de pago se recalcularán.",
+        "BALANCES_CGY_TEXT": "Tokens que te dan influencia en la comunidad. El nivel de influencia de tus votos dependerá de tu CREA ENERGY acumulado.",
         "UPDATE_TEXT": "Actualiza tu monedero de la plataforma 1.0 a la versión web 2.0",
         "WITHDRAW_TITLE": "Retirar CREA",
-        "BALANCES_CBD_TEXT": "Tokens intercambiables que pueden ser transferidos en cualquier momento",
+        "BALANCES_CBD_TEXT": "Tokens intercambiables que pueden ser transferidos en cualquier momento.",
         "DROPDOWN_MENU_WITHDRAW_CREA": "Retirar CREA",
         "PERMISSIONS_TITLE_POSTING": "POSTING KEY",
         "DE_ENERGIZE_ALERT_TEXT": "Es recomendable que dejes un mínimo de 5 CREA ENERGY en tu monedero, de no ser así tu cuenta podría quedarse sin posibilidad de uso",
@@ -378,28 +378,28 @@
         "TRANSFER_CREA_TEXT": "Enviar fondos a otra cuenta de CREA",
         "TRANSFER_CREA_TITLE": "Transferir CREA",
         "TRANSFER_TO_SAVINGS_TITLE": "Transferir a Ahorros",
-        "TRANSFER_TO_SAVINGS_TEXT": "Protege tus fondos solicitando un período de espera de 3 días para su retiro",
+        "TRANSFER_TO_SAVINGS_TEXT": "Protege tus fondos solicitando un período de espera de 3 días para su retiro.",
         "TRANSFER_FROM_SAVINGS_TITLE_CREA": "Retirar CREA",
         "TRANSFER_FROM_SAVINGS_TITLE_CBD": "Retirar CBD",
-        "TRANSFER_FROM_SAVINGS_TEXT": "El retiro de fondos tiene un período de espera de 3 días",
+        "TRANSFER_FROM_SAVINGS_TEXT": "El retiro de fondos tiene un período de espera de 3 días.",
         "UPDATE_TITLE": "Actualiza tu monedero",
         "BALANCES_CREA_TITLE": "CREA",
         "TRANSFER_CBD_TEXT": "Enviar fondos a otra cuenta de CBD",
         "BALANCES_CGY_TITLE": "CREA ENERGY",
         "DROPDOWN_MENU_CANCEL_DE_ENERGIZE": "Cancelar De-energize",
         "TRANSFER_CBD_TITLE": "Transferir CREA DOLLAR",
-        "WITHDRAW_SAVING_TEXT": "Retirar fondos. Requiere un período de espera de 3 días",
-        "PERMISSIONS_TEXT_POSTING": "Con la clave de publicación, los usuarios pueden votar y publicar contenido. Debe ser diferente de las claves activa y de propietario",
+        "WITHDRAW_SAVING_TEXT": "Retirar fondos. Requiere un período de espera de 3 días.",
+        "PERMISSIONS_TEXT_POSTING": "Con la clave de publicación, los usuarios pueden votar y publicar contenido. Debe ser diferente de las claves activa y de propietario.",
         "PERMISSIONS_TITLE_ACTIVE": "ACTIVE KEY",
-        "PERMISSIONS_TEXT_OWNER": "La clave de propietario es la clave maestra de tu cuenta y se requiere para cambiar el resto de claves. La clave privada (contraseña) para acceder la clave de propietario debe también almacenarse offline y en un lugar seguro",
+        "PERMISSIONS_TEXT_OWNER": "La clave de propietario es la clave maestra de tu cuenta y se requiere para cambiar el resto de claves. La clave privada (contraseña) para acceder la clave de propietario debe también almacenarse offline y en un lugar seguro.",
         "DE_ENERGIZE_TITLE": "De-Energize",
         "PERMISSIONS_TITLE_MEMO": "MEMO KEY",
         "BALANCES_CBD_TITLE": "CREA DOLLAR",
         "WITHDRAW_CBD_TEXT": "Retirar fondos. Requiere un período de espera de 3 días",
-        "BALANCES_CREA_TEXT": "Tokens que funcionan como un activo líquido (fácilmente convertibles a efectivo). se pueden transferir a otros usuarios y se pueden convertir en CREA ENERGY en un proceso conocido como Energize",
+        "BALANCES_CREA_TEXT": "Tokens que funcionan como un activo líquido (fácilmente convertibles a efectivo). se pueden transferir a otros usuarios y se pueden convertir en CREA ENERGY en un proceso conocido como Energize.",
         "BALANCES_SAVING_TITLE": "AHORROS",
         "BALANCES_ACCOUNT_TITLE": "Valor aproximado de la cuenta",
-        "BALANCES_ACCOUNT_TEXT": "Es un valor estimado basado en el valor de CREA en dólares estadounidenses",
+        "BALANCES_ACCOUNT_TEXT": "Es un valor estimado basado en el valor de CREA en dólares estadounidenses.",
         "DROPDOWN_MENU_MARKET": "Mercado",
         "UPDATE_INPUT": "Browse file.dat",
         "DROPDOWN_MENU_TRANS_SAVINGS": "Transferir a Ahorros",
@@ -413,7 +413,7 @@
         "PASSWORDS": "Contraseñas",
         "PENDING_REWARDS": "Recompensas pendientes",
         "BALANCE": "Saldo",
-        "NEXT_DE_ENERGIZE": "El próximo De-Energize ocurrirá en"
+        "NEXT_DE_ENERGIZE": "El próximo De-Energize ocurrirá "
     },
     "PROFILE_SETTINGS": {
         "ADULT_WARN": "Advertir",
@@ -474,11 +474,11 @@
         "DROPDOWN_PAST_PAYOUT": "Pagos anteriores",
         "MENU_SKYROCKETS": "Skyrockets",
         "MENU_LOGIN": "Iniciar sesión",
-        "EMPTY_TITLE": "Bienvenido a tu sección destacada de usuarios a los que sigues",
-        "EMPTY_SUBTITLE": "Sigue a gente con gustos similares al tuyo para ver qué ideas nuevas y originales descubren",
+        "EMPTY_TITLE": "Bienvenido a tu sección destacada de usuarios a los que sigues.",
+        "EMPTY_SUBTITLE": "Sigue a gente con gustos similares al tuyo para ver qué ideas nuevas y originales descubren.",
         "PROMOTION_COST": "Coste de promoción",
         "NO_SEARCH_RESULTS_1": "Tu búsqueda no tiene resultados",
-        "NO_SEARCH_RESULTS_2": "Revisa si hay fallos de escritura o prueba con otros términos de búsqueda"
+        "NO_SEARCH_RESULTS_2": "Revisa si hay fallos de escritura o prueba con otros términos de búsqueda."
     },
     "LICENSE": {
         "FREECONTENT": "FreeContent (ContenidoLibre)",
@@ -554,11 +554,11 @@
         },
         "/popular": {
             "TITLE": "Creary - Popular",
-            "DESCRIPTION": "Descubre los portfolios creativos más populares y que acumulan mayores recompensas"
+            "DESCRIPTION": "Descubre los portfolios creativos más populares y que acumulan mayores recompensas."
         },
         "/skyrockets": {
             "TITLE": "Creary - Skyrockets",
-            "DESCRIPTION": "Descubre los proyectos recientes con mayor impacto en la red social de portfolios creativos"
+            "DESCRIPTION": "Descubre los proyectos recientes con mayor impacto en la red social de portfolios creativos."
         },
         "/ahora": {
             "TITLE": "Creary - Ahora",
