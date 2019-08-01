@@ -305,13 +305,13 @@ faq = {
             "¿Qué es el FLOW?": [
                 "El FLOW es un tipo de recurso o token no transferible que la cadena de bloques CREA otorga de manera inteligente a cada cuenta de usuario de acuerdo con la cantidad de CREA Energy (CGY) que tiene. El FLUJO es proporcional al CGY.",
                 "El FLOW es un recurso que se consume cada vez que un usuario realiza transacciones (votos, me gusta, comentarios, transferencias o energizaciones).",
-                "Cada transacción tiene un costo específico en FLOW. Si tiene suficiente FLUJO para cubrir el costo, puede realizar la transacción.",
+                "Cada transacción tiene un costo específico en FLOW. Si tiene suficiente FLOW para cubrir el costo, puede realizar la transacción.",
                 "Este sistema permite de manera descentralizada proteger la cadena de bloques de acciones maliciosas, como el spam."
             ],
             "¿Qué puedo hacer si me quedo sin FLOW?": [
                 "Cuando un usuario se queda sin FLOW, puede hacer dos cosas:",
-                "1. Espere a que se recargue de nuevo. Cada día se rellenará el 22%, por lo tanto, para tener un 100% de FLUJO, necesitará 5 días.",
-                "2. La opción más rápida para aumentar su FLUJO es comprar más CREA y energizarlo. Siguiendo este enlace creaproject.io/buy/ puede acceder a diferentes servicios que venden o intercambian CREA."
+                "1. Espere a que se recargue de nuevo. Cada día se rellenará el 22%, por lo tanto, para tener un 100% de FLOW, necesitará 5 días.",
+                "2. La opción más rápida para aumentar su FLOW es comprar más CREA y energizarlo. Siguiendo este enlace creaproject.io/buy/ puede acceder a diferentes servicios que venden o intercambian CREA."
             ]
         },
         "Navegación": {
