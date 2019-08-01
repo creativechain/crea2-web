@@ -24,12 +24,12 @@ faq = {
             "¿Qué se puede publicar en Creary?",
             "¿Cómo publicar un trabajo?",
             "¿Qué son las etiquetas?",
-            "¿Por qué el botón \"continuar\" en el proceso de publicación aparece en gris?",
+            "¿Por qué el botón 'continuar' en el proceso de publicación aparece en gris?",
             "¿Con qué frecuencia puedo publicar?",
             "¿Puedo borrar algo que publiqué?",
             "¿Qué licencia debo escoger al publicar mi contenido?",
             "¿Dónde se almacenan los textos y archivos que subo desde Creary.net ?",
-            "¿Qué hace \"Promover\" una publicación?"
+            "¿Qué hace 'Promover' una publicación?"
         ],
         "Economía": [
             "¿De dónde viene el valor de los tokens en la red de Crea?",
@@ -198,7 +198,7 @@ faq = {
                 "Si desea actualizar una publicación para que los usuarios no puedan ver el contenido a través de Creary.net, puede editar la publicación y reemplazarla con más contenido o poner  contenido en blanco mientras la publicación esté activa.",
                 "Hay que tener en cuenta que pasados siete días, la publicación ya no se puede editar. "
             ],
-            "¿Qué hace \"Promocionar\" una publicación?": [
+            "¿Qué hace 'Promocionar' una publicación?": [
                 "Existe la opción de promocionar un proyecto en la sección de promocionado. El proyecto que aporte una cantidad mayor para promocionar su post se situará más arriba de la lista y por lo tanto será más visible. ",
                 "Las promociones se ejecutan con CREA Dollar (CBD) y el dinero va a una cuenta especial que nadie posee ni controla. El suministro de CBD enviado a esa cuenta es eliminado por la blockchain de Crea. "
             ],
@@ -218,7 +218,7 @@ faq = {
                 "Si haces click en la campana podrás ver el historial de notificaciones. ",
                 "Estas notificaciones están relacionadas con las interacciones de tus contenidos, comentarios y nuevos usuarios que han empezado a seguir tu cuenta. "
             ],
-            "¿Por qué el botón \"continuar\" en el proceso de publicación aparece en gris?": ["Esto es debido a que no has completado la información suficiente en los campos requeridos. "],
+            "¿Por qué el botón 'continuar' en el proceso de publicación aparece en gris?": ["Esto es debido a que no has completado la información suficiente en los campos requeridos. "],
             "¿Con qué frecuencia puedo publicar?": [
                 "En Creary puedes publicar tantos proyectos como quieras siempre que se publiquen con un espacio mínimo de 5 minutos entre cada publicación. ",
                 "Piensa en cómo quieres mostrar tu trabajo y qué quiere ver tu audiencia. Un usuario que publica constantemente podría ser molesto para la audiencia, te recomendamos dosificar tus publicaciones. No seas pesado, sé creativo."
@@ -251,7 +251,7 @@ faq = {
                 "El CREA Energy delegada aparece en el wallet de un usuario debajo de su balance de de CGY real entre paréntesis."
             ],
             "¿Qué puedo hacer con mis tokens de CREA?": [
-                "\"Energize\" a CREA Energy.",
+                " 'Energize' a CREA Energy.",
                 "Transferirlo a otros usuario como donación para apoyar su proyecto.",
                 "Usarlo para comprar contenidos o bienes digitales dentro de Creary.net.",
                 "Cambiarlo por CBD en el mercado interno.",
@@ -319,7 +319,7 @@ faq = {
                 "Puedes consultar las recompensas obtenidas desde la sección Recompensas dentro de tu perfil de usuario (también puedes acceder a este información en el prefil de otros usuarios). ",
                 " "
             ],
-            "¿Cómo voto una publicación o comentario en Creary?": ["Para votar un proyecto o comentario, haga clic en el icono \"like\" en la parte inferior de la publicación o comentario."],
+            "¿Cómo voto una publicación o comentario en Creary?": ["Para votar un proyecto o comentario, haga clic en el icono 'like' en la parte inferior de la publicación o comentario."],
             "¿Recibiré notificaciones cuando haya actividad con mi cuenta?": [
                 "Las notificaciones se muestran desde el menú principal con un icono de una campana, si la campana muestra un punto azúl en la parte inferior significa que tiene nuevas notificaciones. ",
                 "Si haces click en la campana podrás ver el historial de notificaciones. ",
@@ -546,7 +546,7 @@ faq = {
                 "La única forma de reducir tu Buzz es recibir denuncias / reportes de tu contenido (votos negativos). Sin embargo, no todos los votos negativos te afectarán:" +
                 "<ul>" +
                 "<li>Los reportes negativos de usuarios con una puntuación de Buzz inferior a la tuya no afectarán tu puntuación. </li>" +
-                "<li>Si tu proyecto o comentario recibió más \"Me gusta\" que reportes negativos, entonces el efecto neto en tu puntaje de Buzz seguirá siendo positivo. </li> </ul>",
+                "<li>Si tu proyecto o comentario recibió más 'Me gusta' que reportes negativos, entonces el efecto neto en tu puntaje de Buzz seguirá siendo positivo. </li> </ul>",
                 "¿Cómo se calcula el nivel de Buzz? <br /> El núcleo de la Red CREA (blockchain) muestra un número de reputación de varios dígitos que puede ver en el navegador de bloques https://creascan.net en la sección de datos dentro de su @usuario Por ejemplo, en el caso de @creary sería: https://creascan.net/@creary/data ",
                 "<code> @creary (reputación) = 35241066.000 </code>",
                 "Para hacerlo más fácil, la red social creary.net convierte este número mediante una función de log de base 10. Hay 8 niveles:" +
