@@ -1,4 +1,4 @@
-faq = {
+faq.es = {
     "QUESTIONS": {
         "Cuentas": [
             "¿Cómo creo una cuenta?",
