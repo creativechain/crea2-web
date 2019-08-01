@@ -391,7 +391,7 @@ faq = {
                 "Promote projects within Creary.net.",
                 "Buy items or digital goods through third-party stores that accept CBD tokens."
             ],
-            "How many new tokens does the block chain generate?": ["With the launch of Crea 2.0, the network started creating new tokens at an annual inflation rate of 7%. The inflation rate decreases at a rate of 0.01% per 300,000 blocks, or around 0.35% per year. Inflation will continue to decrease at this rate until the general inflation rate reaches 1% (This will take approximately 20 years) Check this post to know more details of the token emission system. (link)"],
+            "How many new tokens does the block chain generate?": ["With the launch of Crea 2.0, the network started creating new tokens at an annual inflation rate of 7%. The inflation rate decreases at a rate of 0.01% per 300,000 blocks, or around 0.35% per year. Inflation will continue to decrease at this rate until the general inflation rate reaches 1% (This will take approximately 20 years) Check this post to know more details of the token emission system. https://creary.net/crea/@crea/crea-distribution-and-supply-of-cryptocurrency "],
             "What is delegated Crea Energy?": [
                 "CREA Energy (CGY) can be delegated to other users of the network granting all the power derived from having that CGY in your possession. However, users can\u2019t De-Energize to remove that delegated CGY, as it still belongs to the original owner.",
                 "The delegated CREA Energy appears on a user's wallet below itheir actual CGY balance in parentheses."
