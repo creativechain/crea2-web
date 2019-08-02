@@ -215,6 +215,7 @@ function removeBlockedContents(state, accountState, discussion_idx) {
 
 function parseAccount(account) {
     if (account) {
+        account = clone(account);
         account.buzz = crea.formatter.reputation(account.reputation, CONSTANTS.BUZZ.LEVELS.length, CONSTANTS.BUZZ.MAX_LOG_NUM);
         //Level 1 for bad users
         if (account.buzz.level <= 0) {
@@ -251,6 +252,7 @@ function parsePost(post, reblogged_by ) {
     }
 
     if (post) {
+        post = clone(post);
         post.link = post.author + '/' + post.permlink;
         post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
         post.body = cleanArray(post.body);

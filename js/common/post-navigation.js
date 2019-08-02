@@ -13,8 +13,8 @@
         }*/
     }
 
-    function setUp(post, state) {
-        state.post = post;
+    function setUp(state) {
+        console.log(clone(state));
 
         if (!postContainer) {
             postContainer = new Vue({
@@ -31,6 +31,8 @@
                     onVueReady();
                 },
                 methods: {
+                    nextPost: nextPost,
+                    lastPost: lastPost,
                     showPost: showPost,
                     humanFileSize: humanFileSize,
                     getBuzzClass: function getBuzzClass(account) {
@@ -198,7 +200,15 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    makeComment: makeComment,
+                    addComment: function () {
+                        var that = this;
+                        makeComment(this.comment, this.state.post, function (err, result) {
+                            if (!catchError(err)) {
+                                that.comment = '';
+                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                            }
+                        })
+                    },
                     makeDownload: makeDownload,
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {
@@ -245,6 +255,8 @@
             postContainer.session = session;
             postContainer.user = userAccount ? userAccount.user : null;
         }
+
+        postContainer.$forceUpdate();
 
         if (session) {
             if (!promoteModal) {
@@ -423,14 +435,113 @@
 
     function updatePostData() {
         if (postContainer) {
-            setUp(postContainer.state.post, postContainer.state);
+            setUp(postContainer.state);
         }
     }
 
-    creaEvents.on('navigation.post.data', function (post, state) {
-        setUp(post, state);
+    function nextPost(event) {
+        cancelEventPropagation(event);
+        var state = postContainer.state;
+        var postIndex = state.discussions.indexOf(state.author.name + '/' + state.post.permlink);
+
+        if (postIndex >= 0 && postIndex <= state.discussions.length -2) {
+            postIndex++;showPostIndex(postIndex, state);
+        }
+    }
+
+    function lastPost(event) {
+        cancelEventPropagation(event);
+        var state = postContainer.state;
+        var postIndex = state.discussions.indexOf(state.post.author + '/' + state.post.permlink);
+
+        if (postIndex > 0 && postIndex <= state.discussions.length -1) {
+            postIndex--;
+            showPostIndex(postIndex, state);
+        }
+    }
+
+    function showPostIndex(postIndex, state) {
+        state.post = null;
+        postContainer.$forceUpdate();
+
+        var postContent = state.discussions[postIndex];
+        var post = clone(state.content[postContent]);
+        showPostData(post, state, state.discuss, state.category, postIndex);
+    }
+
+    function showPostData(post, state, discuss, category, postIndex) {
+        state = clone(state);
+        state.discuss = discuss;
+        state.category = category;
+        state.discussions = state.discussion_idx[discuss][category];
+        if (!postIndex) {
+            state.postIndex = state.discussion_idx[discuss][category].indexOf(post.author + '/' + post.permlink);
+        }
+
+        var postUrl = "/" + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
+        var postRoute = post.author + '/' + post.permlink;
+        crea.api.getState(postUrl, function (err, postState) {
+            if (!err) {
+                refreshAccessToken(function (accessToken) {
+
+                    var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', post.author, post.permlink));
+
+                    var onReblogs = function(reblogs) {
+                        var aKeys = Object.keys(postState.accounts);
+
+                        if (aKeys.length === 0) {
+                            console.log('No post:', postState)
+                        } else {
+                            aKeys.forEach(function (k) {
+                                state.accounts[k] = parseAccount(postState.accounts[k]);
+                            });
+
+                            state.post = parsePost(postState.content[postRoute], reblogs);
+                            state.author = parseAccount(state.accounts[state.post.author]);
+
+                            //Order comments by date, latest first
+                            var cKeys = Object.keys(postState.content);
+                            cKeys.sort(function (k1, k2) {
+                                var d1 = new Date(postState.content[k1].created);
+                                var d2 = new Date(postState.content[k2].created);
+                                return d2.getTime() - d1.getTime();
+                            });
+                            cKeys.forEach(function (c) {
+                                state.post[c] = parsePost(postState.content[c]);
+                            });
+                            state.post.comments = cKeys;
+
+                            setUp(state);
+                        }
+                    };
+
+                    http.when('done', function (response) {
+                        var data = jsonify(response).data;
+
+                        onReblogs(data.reblogged_by);
+                    });
+
+                    http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                        console.error(textStatus, errorThrown);
+                        onReblogs();
+                    });
+
+                    http.headers = {
+                        Authorization: 'Bearer ' + accessToken
+                    };
+
+                    http.get({});
+                });
+            } else {
+                console.error(err);
+            }
+        });
+
+
         fetchOtherProjects(post.author, post.permlink);
-    });
+    }
+
+    creaEvents.on('navigation.post.data', showPostData);
 
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;

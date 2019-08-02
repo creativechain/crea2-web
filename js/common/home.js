@@ -102,7 +102,7 @@
                     },
                     openPost: function (post, event) {
                         cancelEventPropagation(event);
-                        creaEvents.emit('navigation.post.data', post, homePosts.state);
+                        creaEvents.emit('navigation.post.data', post, this.state, this.discuss, this.category);
                         $('#modal-post').addClass('modal-active');
                     },
                     parseAsset: function parseAsset(asset) {
