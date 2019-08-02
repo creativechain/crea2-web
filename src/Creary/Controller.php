@@ -205,6 +205,7 @@ class Controller
         $language = $this->getLanguage();
         if ($post) {
             //dd($post['author']['metadata']['publicName'], $post['author']['name']);
+            //dd($post);
             $authorName = $post['author']['metadata']['publicName'] ? $post['author']['metadata']['publicName'] : $author;
             $title = 'Creary - ' . $post['title'];
             $metas = array(
@@ -220,7 +221,7 @@ class Controller
                 $this->buildMeta('name', 'twitter:site', '@Crearynet'),
                 $this->buildMeta('name', 'twitter:creator', '@' . $author),
                 $this->buildMeta('name', 'twitter:title', $title),
-                $this->buildMeta('name', 'twitter:description', $post['description']),
+                $this->buildMeta('name', 'twitter:description', $post['metadata']['description']),
                 $this->buildMeta('name', 'twitter:image', $post['metadata']['featuredImage']['url']),
                 $this->buildMeta('name', 'description', $post['metadata']['description']),
             );
