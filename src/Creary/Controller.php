@@ -204,8 +204,6 @@ class Controller
 
         $language = $this->getLanguage();
         if ($post) {
-            //dd($post['author']['metadata']['publicName'], $post['author']['name']);
-            //dd($post);
             $authorName = $post['author']['metadata']['publicName'] ? $post['author']['metadata']['publicName'] : $author;
             $title = 'Creary - ' . $post['title'];
             $metas = array(
