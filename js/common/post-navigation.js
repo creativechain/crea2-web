@@ -1,40 +1,20 @@
-"use strict";
-
-/**
- * Created by ander on 18/10/18.
- */
 (function () {
-    var postContainer;
+
+    var postContainer, otherProjectsContainer;
     var promoteModal;
     var downloadModal;
-    var url = window.location.pathname;
     var session, userAccount;
-    var vueInstances = 3;
 
     function onVueReady() {
-        --vueInstances;
+/*        --vueInstances;
 
         if (vueInstances === 0) {
             creaEvents.emit('crea.dom.ready');
-        }
+        }*/
     }
 
     function setUp(state) {
-        //updateUrl(state.current_route);
-
-        state.post.reported = false;
-        if (session) {
-            //Set reported by user
-            var username = session.account.username;
-            for (var x = 0; x < state.post.down_votes.length; x++) {
-                var v = state.post.down_votes[x];
-                if (v.voter === username) {
-
-                    state.post.reported = true;
-                    break;
-                }
-            }
-        }
+        console.log(clone(state));
 
         if (!postContainer) {
             postContainer = new Vue({
@@ -51,6 +31,8 @@
                     onVueReady();
                 },
                 methods: {
+                    nextPost: nextPost,
+                    lastPost: lastPost,
                     showPost: showPost,
                     humanFileSize: humanFileSize,
                     getBuzzClass: function getBuzzClass(account) {
@@ -218,7 +200,15 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    makeComment: makeComment,
+                    addComment: function () {
+                        var that = this;
+                        makeComment(this.comment, this.state.post, function (err, result) {
+                            if (!catchError(err)) {
+                                that.comment = '';
+                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                            }
+                        })
+                    },
                     makeDownload: makeDownload,
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {
@@ -232,7 +222,7 @@
                         return ignoreUser;
                     }(function () {
                         ignoreUser(this.state.post.author, true, function (err, result) {
-                            fetchContent();
+                            updatePostData();
                         });
                     }),
                     vote: function vote(weight) {
@@ -265,6 +255,8 @@
             postContainer.session = session;
             postContainer.user = userAccount ? userAccount.user : null;
         }
+
+        postContainer.$forceUpdate();
 
         if (session) {
             if (!promoteModal) {
@@ -354,7 +346,7 @@
                             },
                             confirmDownload: function confirmDownload() {
                                 if (this.modal.alreadyPayed || this.modal.confirmed) {
-                                    makeDownload(null, session, downloadModal.user, postContainer.state.post, fetchContent);
+                                    makeDownload();
                                 } else {
                                     this.modal.confirmed = true;
                                 }
@@ -370,59 +362,42 @@
                 //This post not has a download, so downloadModal cannot be mounted
                 onVueReady();
             }
-        } else {
-            //No session, so downloadModal and modalPromoted can not be mounted
-            onVueReady();
-            onVueReady();
         }
-
-    }
-
-
-    /**
-     *
-     * @returns {string}
-     */
-
-
-    function getPostKey(postUrl) {
-        if (!postUrl) {
-            postUrl = url;
-        }
-
-        var route = postUrl.replace('@', '').split('/');
-        route.splice(0, 2);
-        return route.join('/');
     }
 
     function fetchOtherProjects(author, permlink) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
-            var otherProjects = new Vue({
-                el: '#more-projects',
-                data: {
-                    otherProjects: discussions
-                },
-                mounted: function mounted() {
-                    mr.sliders.documentReady($);
-                },
-                methods: {
-                    showPost: showPost,
-                    getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage = post.metadata.featuredImage;
+            if (!otherProjectsContainer) {
+                otherProjectsContainer = new Vue({
+                    el: '#more-projects',
+                    data: {
+                        otherProjects: discussions
+                    },
+                    mounted: function mounted() {
+                        mr.sliders.documentReady($);
+                    },
+                    methods: {
+                        showPost: showPost,
+                        getFeaturedImage: function getFeaturedImage(post) {
+                            var featuredImage = post.metadata.featuredImage;
 
-                        if (featuredImage && featuredImage.hash) {
-                            return {
-                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
-                            };
-                        } else if (featuredImage && featuredImage.url) {
-                            return featuredImage;
+                            if (featuredImage && featuredImage.hash) {
+                                return {
+                                    url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
+                                };
+                            } else if (featuredImage && featuredImage.url) {
+                                return featuredImage;
+                            }
+
+                            return {};
                         }
-
-                        return {};
                     }
-                }
-            });
-            otherProjects.$forceUpdate();
+                });
+            } else {
+                otherProjectsContainer.otherProjects = discussions;
+            }
+
+            otherProjectsContainer.$forceUpdate();
         };
 
         var date = new Date().toISOString().replace('Z', '');
@@ -458,120 +433,133 @@
         });
     }
 
-    function fetchContent() {
-        if (url) {
-            //Delete first char "/"
-            var parts = url.slice(1, url.length).split('/').length;
-            var fetchContentState = function fetchContentState(finalUrl) {
-
-
-                crea.api.getState(finalUrl, function (err, result) {
-                    if (!catchError(err)) {
-
-                        refreshAccessToken(function (accessToken) {
-                            var finalParts = finalUrl.slice(1, finalUrl.length).split('/');
-                            var author = finalParts[1].slice(1, finalParts[1].length);
-                            var permlink = finalParts[2];
-
-                            var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', author, permlink));
-
-                            var onReblogs = function(reblogs) {
-                                var aKeys = Object.keys(result.accounts);
-
-                                if (aKeys.length === 0) {
-                                    goTo('/404');
-                                } else {
-                                    aKeys.forEach(function (k) {
-                                        result.accounts[k] = parseAccount(result.accounts[k]);
-                                    });
-                                    result.postKey = getPostKey(finalUrl);
-                                    result.post = parsePost(result.content[result.postKey], reblogs);
-                                    result.author = parseAccount(result.accounts[result.post.author]); //Order comments by date, latest first
-
-                                    //console.log(clone(result.author));
-                                    var cKeys = Object.keys(result.content);
-                                    cKeys.sort(function (k1, k2) {
-                                        var d1 = new Date(result.content[k1].created);
-                                        var d2 = new Date(result.content[k2].created);
-                                        return d2.getTime() - d1.getTime();
-                                    });
-                                    cKeys.forEach(function (c) {
-                                        result[c] = parsePost(result.content[c]);
-                                    });
-                                    result.comments = cKeys;
-                                    setUp(result);
-                                }
-                            };
-
-                            http.when('done', function (response) {
-                                var data = jsonify(response).data;
-
-                                onReblogs(data.reblogged_by);
-                            });
-
-                            http.when('fail', function (jqXHR, textStatus, errorThrown) {
-                                console.error(textStatus, errorThrown);
-                                onReblogs();
-                            });
-
-                            http.headers = {
-                                Authorization: 'Bearer ' + accessToken
-                            };
-
-                            http.get({});
-                        });
-                    }
-                });
-            };
-
-            if (parts === 2) {
-                var author = getPathPart().replace('@', '');
-                var permlink = getPathPart(1);
-
-                crea.api.getContent(author, permlink, function (err, result) {
-                    if (!catchError(err)) {
-                        var post = parsePost(result);
-                        fetchContentState('/' + post.metadata.tags[0] + '/@' + author + '/' + permlink);
-                    }
-                });
-            } else {
-                fetchContentState(url);
-            }
+    function updatePostData() {
+        if (postContainer) {
+            setUp(postContainer.state);
         }
     }
 
-    creaEvents.on('crea.dom.ready', function () {
-        var author = getPathPart();
-        var permlink;
+    function nextPost(event) {
+        cancelEventPropagation(event);
+        var state = postContainer.state;
+        var postIndex = state.discussions.indexOf(state.author.name + '/' + state.post.permlink);
 
-        if (!author.startsWith('@')) {
-            author = getPathPart(1).replace('@', '');
-            permlink = getPathPart(2);
-        } else {
-            author = getPathPart().replace('@', '');
-            permlink = getPathPart(1);
+        if (postIndex >= 0 && postIndex <= state.discussions.length -2) {
+            postIndex++;showPostIndex(postIndex, state);
+        }
+    }
+
+    function lastPost(event) {
+        cancelEventPropagation(event);
+        var state = postContainer.state;
+        var postIndex = state.discussions.indexOf(state.post.author + '/' + state.post.permlink);
+
+        if (postIndex > 0 && postIndex <= state.discussions.length -1) {
+            postIndex--;
+            showPostIndex(postIndex, state);
+        }
+    }
+
+    function showPostIndex(postIndex, state) {
+        state.post = null;
+        postContainer.$forceUpdate();
+
+        var postContent = state.discussions[postIndex];
+        var post = clone(state.content[postContent]);
+        showPostData(post, state, state.discuss, state.category, postIndex);
+    }
+
+    function showPostData(post, state, discuss, category, postIndex) {
+        state = clone(state);
+        state.discuss = discuss;
+        state.category = category;
+        state.discussions = state.discussion_idx[discuss][category];
+        if (!postIndex) {
+            state.postIndex = state.discussion_idx[discuss][category].indexOf(post.author + '/' + post.permlink);
         }
 
-        fetchOtherProjects(author, permlink);
-    });
+        var postUrl = "/" + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
+        var postRoute = post.author + '/' + post.permlink;
+        crea.api.getState(postUrl, function (err, postState) {
+            if (!err) {
+                refreshAccessToken(function (accessToken) {
+
+                    var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', post.author, post.permlink));
+
+                    var onReblogs = function(reblogs) {
+                        var aKeys = Object.keys(postState.accounts);
+
+                        if (aKeys.length === 0) {
+                            console.log('No post:', postState)
+                        } else {
+                            aKeys.forEach(function (k) {
+                                state.accounts[k] = parseAccount(postState.accounts[k]);
+                            });
+
+                            state.post = parsePost(postState.content[postRoute], reblogs);
+                            state.author = parseAccount(state.accounts[state.post.author]);
+
+                            //Order comments by date, latest first
+                            var cKeys = Object.keys(postState.content);
+                            cKeys.sort(function (k1, k2) {
+                                var d1 = new Date(postState.content[k1].created);
+                                var d2 = new Date(postState.content[k2].created);
+                                return d2.getTime() - d1.getTime();
+                            });
+                            cKeys.forEach(function (c) {
+                                state.post[c] = parsePost(postState.content[c]);
+                            });
+                            state.post.comments = cKeys;
+
+                            setUp(state);
+                        }
+                    };
+
+                    http.when('done', function (response) {
+                        var data = jsonify(response).data;
+
+                        onReblogs(data.reblogged_by);
+                    });
+
+                    http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                        console.error(textStatus, errorThrown);
+                        onReblogs();
+                    });
+
+                    http.headers = {
+                        Authorization: 'Bearer ' + accessToken
+                    };
+
+                    http.get({});
+                });
+            } else {
+                console.error(err);
+            }
+        });
+
+
+        fetchOtherProjects(post.author, post.permlink);
+    }
+
+    creaEvents.on('navigation.post.data', showPostData);
 
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         userAccount = a;
 
-        fetchContent();
+        updatePostData();
     });
 
     creaEvents.on('crea.session.update', function (s, a) {
         session = s;
         userAccount = a;
-        fetchContent();
+        updatePostData();
     });
 
     creaEvents.on('crea.session.logout', function () {
         session = false;
         userAccount = false;
 
-        fetchContent();
+        updatePostData();
     });
 })();

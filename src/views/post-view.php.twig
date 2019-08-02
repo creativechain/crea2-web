@@ -1,8 +1,19 @@
 {{ include ('element/navbar.php.twig') }}
+<div class="box-next-post">
+    <div class="next-left">
+        <a href="">
+            <img src="/img/next_post/esperra.svg" alt="">
+        </a>
+    </div>
+    <div class="next-right">
+        <a href="">
+            <img src="/img/next_post/dreta.svg" alt="">
+        </a>
+    </div>
+</div>
 <div class="main-container post-view">
     <section v-cloak id="post-view">
         <div class=" border-post-view">
-
             <div class="container" style="background-color: white;border-radius: 10px 10px;">
                 <div class="row row-title">
                     <div class="col-12 col-sm-12 col-md-6">
@@ -300,6 +311,12 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row-flag">
+                                                <a href="">
+                                                    <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
+                                                    <div class="a-flag active"></div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,3 +1,39 @@
+.box-next-post {
+  height: 70px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+  top: 45%;
+  .next-left {
+    left: 10%;
+    font-size: 40px;
+
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 60px;
+    z-index: 0;
+    top: 45%;
+    a {
+      color: #cacaca;
+    }
+  }
+  .next-right {
+    height: 60px;
+    text-align: center;
+    position: fixed;
+    width: 60px;
+    z-index: 0;
+    top: 45%;
+    right: 10%;
+    font-size: 40px;
+
+    a {
+      color: #cacaca;
+    }
+  }
+}
 .post-view {
   p a, span a, label a {
     text-decoration: none;
@@ -454,6 +490,27 @@
           }
         }
       }
+      .row-flag {
+        position: absolute;
+        right: 10px;
+        .a-flag {
+          width: 15px;
+          height: 15px;
+          background-repeat: no-repeat;
+        }
+        a:hover {
+          .a-flag {
+            background-image: url("/img/flag/noun_Flag_35341.svg");
+          }
+        }
+        .a-flag.inactive{
+          background-image: url("/img/flag/noun_Flag_-1.svg");
+        }
+        .a-flag.active{
+          background-image: url("/img/flag/noun_Flag_-2.svg");
+        }
+      }
+
     }
     .row-comment {
       display: flex;

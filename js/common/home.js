@@ -100,7 +100,11 @@
                         //creaEvents.emit('crea.content.filter', this.urlFilter);
                         updateUserSession();
                     },
-                    openPost: showPost,
+                    openPost: function (post, event) {
+                        cancelEventPropagation(event);
+                        creaEvents.emit('navigation.post.data', post, this.state, this.discuss, this.category);
+                        $('#modal-post').addClass('modal-active');
+                    },
                     parseAsset: function parseAsset(asset) {
                         return Asset.parse(asset).toFriendlyString();
                     },

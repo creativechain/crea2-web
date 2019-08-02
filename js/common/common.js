@@ -215,6 +215,7 @@ function removeBlockedContents(state, accountState, discussion_idx) {
 
 function parseAccount(account) {
     if (account) {
+        account = clone(account);
         account.buzz = crea.formatter.reputation(account.reputation, CONSTANTS.BUZZ.LEVELS.length, CONSTANTS.BUZZ.MAX_LOG_NUM);
         //Level 1 for bad users
         if (account.buzz.level <= 0) {
@@ -251,6 +252,7 @@ function parsePost(post, reblogged_by ) {
     }
 
     if (post) {
+        post = clone(post);
         post.link = post.author + '/' + post.permlink;
         post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
         post.body = cleanArray(post.body);
@@ -377,6 +379,101 @@ function ignoreUser(following, ignore, callback) {
         });
     } else if (callback) {
         callback(Errors.USER_NOT_LOGGED);
+    }
+}
+
+function makeComment(comment, post, callback) {
+    var session = Session.getAlive();
+
+    if (session && comment.length > 0) {
+        requireRoleKey(session.account.username, 'posting', function (postingKey) {
+            globalLoading.show = true;
+            var parentAuthor = post.author;
+            var parentPermlink = post.permlink;
+            var permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
+
+            if (permlink.length > CONSTANTS.TEXT_MAX_SIZE.PERMLINK) {
+                permlink = permlink.substring(0, CONSTANTS.TEXT_MAX_SIZE.PERMLINK);
+            }
+
+            console.log(permlink.length, parentPermlink.length);
+            var metadata = {
+                tags: [post.metadata.tags[0]]
+            };
+            /*crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username, permlink, '', comment, '', jsonstring(metadata), function (err, result) {
+                globalLoading.show = false;
+
+                if (!catchError(err)) {
+                    postContainer.comment = '';
+                    fetchContent();
+                }
+            });*/
+            crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username, permlink, '', comment, '', jsonstring(metadata), callback);
+        });
+    }
+}
+
+function makeDownload(event, session, user, post, callback) {
+    cancelEventPropagation(event);
+    /*var session = postContainer.session;
+    var user = postContainer.user;
+    var post = postContainer.state.post;*/
+
+    if (session) {
+        requireRoleKey(session.account.username, 'active', function (activeKey) {
+            globalLoading.show = true;
+
+            var downloadResource = function downloadResource() {
+                setTimeout(function () {
+                    var authorBuff = Buffer.from(post.author);
+                    var permlinkBuff = Buffer.from(post.permlink);
+                    var buff = Buffer.concat([authorBuff, permlinkBuff]);
+                    var signature = crea.utils.Signature.signBuffer(buff, activeKey);
+                    var s64 = signature.toBuffer().toString('base64');
+                    crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
+                        globalLoading.show = false;
+
+                        if (!catchError(err)) {
+                            var re = /Qm[a-zA-Z0-9]+/;
+                            var hash = re.exec(result.resource)[0];
+                            console.log(hash); //For .rar, .zip or unrecognized MIME type
+
+                            if (!post.download.type) {
+                                post.download.type = 'application/octet-stream';
+                            }
+
+                            var _url = apiOptions.ipfsd + '/' + post.download.type + '/' + hash + '/' + post.download.name;
+
+                            _url += '?stream=false';
+                            downloadFile(_url, post.download.name);
+                            //Close modal download
+                            $('#modal-download').removeClass('modal-active');
+                        }
+                    });
+                }, 3000);
+            };
+
+            var payDownload = function payDownload() {
+                crea.broadcast.commentDownload(activeKey, session.account.username, post.author, post.permlink, function (err, result) {
+                    if (!catchError(err)) {
+                        downloadResource();
+                        //fetchContent();
+                        if (callback) {
+                            callback();
+                        }
+                    } else {
+                        globalLoading.show = false;
+                    }
+                });
+            };
+
+            if (post.download.downloaders.includes(user.name)) {
+                //Download paid
+                downloadResource();
+            } else {
+                payDownload();
+            }
+        });
     }
 }
 

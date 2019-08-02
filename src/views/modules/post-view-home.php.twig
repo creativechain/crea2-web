@@ -2,7 +2,7 @@
     <div class="card card-2 card-home">
 
         <div class="card__top">
-            <a v-bind:href="state.content[p].url">
+            <a v-bind:href="state.content[p].url" v-on:click="openPost(state.content[p], $event)">
                 <div v-if="!state.accounts[state.content[p].author].buzz.blocked" class="img-post-list"
                      v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(state.content[p]).url + ')' }">
 
