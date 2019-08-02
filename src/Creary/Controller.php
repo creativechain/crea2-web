@@ -111,8 +111,7 @@ class Controller
      * @throws \Exception
      */
     private function getProfileOfCookie() {
-        $profileName = $this->getCookie('creary.username');
-
+        $profileName = $this->getCookie('creary_username');
         if ($profileName) {
             $client = $this->getCrearyClient();
             $profile = $client->getAccount($profileName);
@@ -129,10 +128,12 @@ class Controller
      */
     private function getLanguage() {
         $profile = $this->getProfileOfCookie();
-        $lang = $this->getCookie('creary_language');
-        $lang = $lang ? $lang : 'en';
-        if ($profile) {
+
+        if ($profile && array_key_exists('metadata', $profile) && array_key_exists('avatar', $profile['metadata'])) {
             $lang = $profile['metadata']['lang'];
+        } else {
+            $lang = $this->getCookie('creary_language');
+            $lang = $lang ? $lang : 'en';
         }
 
         return Lang::getLang($lang);
