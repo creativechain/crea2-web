@@ -152,8 +152,10 @@ class Controller
         $page = '/' .URLUtils::splitRequestUri();
 
         $pageMeta = $language->METADATA->{ $page };
+        if (!$pageMeta) {
+            $pageMeta = $language->METADATA->{ '/' };
+        }
 
-        //dd($pageMeta);
         $metas = array(
             $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
             $this->buildMeta('property', 'og:title', $pageMeta->TITLE),
