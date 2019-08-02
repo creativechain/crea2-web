@@ -203,6 +203,7 @@
                     addComment: function () {
                         var that = this;
                         makeComment(this.comment, this.state.post, function (err, result) {
+                            globalLoading.show = false;
                             if (!catchError(err)) {
                                 that.comment = '';
                                 showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
