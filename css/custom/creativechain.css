@@ -1978,7 +1978,7 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 .center-loading {
-  width: 0%;
+  width: 24px;
   margin: 0 auto; }
 
 .container-fluid {
