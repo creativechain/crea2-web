@@ -522,8 +522,19 @@ function uploadToIpfs(file, maxSize, callback) {
                 progress: function (progress, progress2) {
                     console.log(progress, progress2);
                 }
+            };
+
+            var onResponse = function (err, data) {
+                if (!err) {
+                    console.log(data);
+                    var f = new IpfsFile(data.Hash, file.name, file.type, data.size);
+                    console.log(f);
+                    callback(null, f);
+                } else if (callback) {
+                    callback(err);
+                }
             }
-            ipfsClient.add(file, options, function (err, data) {
+/*            ipfsClient.add(file, options, function (err, data) {
                 if (!err) {
                     console.log(data);
                     data = data[0];
@@ -534,6 +545,16 @@ function uploadToIpfs(file, maxSize, callback) {
                     callback(err);
                 }
 
+            });*/
+
+            var http = new HttpClient('https://ipfs.creary.net:5002/api/v0/add?pin=true&stream-channels=true');
+            http.post({
+                file: file
+            }).when('done', function (data) {
+                onResponse(null, jsonify(data));
+            });
+            http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                onResponse(errorThrown, null);
             });
 
 /*            refreshAccessToken(function (accessToken) {
