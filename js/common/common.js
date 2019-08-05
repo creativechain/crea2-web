@@ -505,7 +505,7 @@ function resizeImage(file, callback) {
 function uploadToIpfs(file, maxSize, callback) {
     var ipfsClient = new IpfsHttpClient({
         host: 'ipfs.creary.net',
-        port: 443,
+        port: 5002,
         protocol: 'https'
     });
 
