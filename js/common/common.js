@@ -102,8 +102,14 @@ function showProfile(username) {
     }
 }
 
-function updateUrl(url) {
-    window.history.pushState('', '', url);
+function updateUrl(url, title, data) {
+    if (!title) {
+        title = '';
+    } else {
+        $('title').html(title);
+    }
+
+    window.history.pushState(data, title, url);
 }
 /**
  *
@@ -253,10 +259,11 @@ function parsePost(post, reblogged_by ) {
 
     if (post) {
         post = clone(post);
+        post.metadata = jsonify(post.json_metadata);
         post.link = post.author + '/' + post.permlink;
+        post.url = '/' + post.metadata.tags[0] + '/@' + post.link;
         post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
         post.body = cleanArray(post.body);
-        post.metadata = jsonify(post.json_metadata);
         post.down_votes = [];
         post.up_votes = [];
         post.active_votes.forEach(function (v) {
