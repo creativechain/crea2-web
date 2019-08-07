@@ -444,7 +444,7 @@
     }
     .row-post-comments {
       display: flex;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       .user-comments {
         margin-left: 10px;
         a.color-name {
@@ -500,17 +500,20 @@
         }
         a:hover {
           .a-flag {
-            background-image: url("/img/flag/noun_Flag_35341.svg");
+            background-image: url("/img/flag/noun_Flag_-1.svg");
           }
         }
         .a-flag.inactive{
-          background-image: url("/img/flag/noun_Flag_-1.svg");
+          background-image: url("/img/flag/noun_Flag_35341.svg");
         }
         .a-flag.active{
           background-image: url("/img/flag/noun_Flag_-2.svg");
         }
       }
 
+    }
+    .row-reply-comment {
+      margin-left: 50px;
     }
     .row-comment {
       display: flex;

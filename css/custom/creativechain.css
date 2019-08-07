@@ -1024,7 +1024,7 @@
   font-weight: 600; }
 .post-view .box-comment .row-post-comments {
   display: flex;
-  margin-bottom: 30px; }
+  margin-bottom: 10px; }
   .post-view .box-comment .row-post-comments .user-comments {
     margin-left: 10px; }
     .post-view .box-comment .row-post-comments .user-comments a.color-name p {
@@ -1065,11 +1065,13 @@
       height: 15px;
       background-repeat: no-repeat; }
     .post-view .box-comment .row-post-comments .row-flag a:hover .a-flag {
-      background-image: url("/img/flag/noun_Flag_35341.svg"); }
-    .post-view .box-comment .row-post-comments .row-flag .a-flag.inactive {
       background-image: url("/img/flag/noun_Flag_-1.svg"); }
+    .post-view .box-comment .row-post-comments .row-flag .a-flag.inactive {
+      background-image: url("/img/flag/noun_Flag_35341.svg"); }
     .post-view .box-comment .row-post-comments .row-flag .a-flag.active {
       background-image: url("/img/flag/noun_Flag_-2.svg"); }
+.post-view .box-comment .row-reply-comment {
+  margin-left: 50px; }
 .post-view .box-comment .row-comment {
   display: flex; }
   .post-view .box-comment .row-comment .textarea {
@@ -1760,6 +1762,8 @@
       #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
         margin-bottom: 0;
         max-width: 960px; }
+    #modal-post #post-view .modal-content section .flickity-viewport {
+      height: 237px !important; }
   #modal-post #post-view .modal-content .modal-container .modal-content .modal-close-cross {
     top: 5px; }
 

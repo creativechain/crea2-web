@@ -17,10 +17,14 @@
 
           }
         }
+        .flickity-viewport {
+          height: 237px !important;
+        }
       }
       .modal-container .modal-content .modal-close-cross {
         top: 5px;
       }
     }
+
   }
 }
