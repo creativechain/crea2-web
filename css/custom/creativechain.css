@@ -1750,6 +1750,19 @@
   margin-inline-end: 0px;
   padding-inline-start: 40px; }
 
+#modal-post #post-view {
+  padding: 0;
+  height: 100vh; }
+  #modal-post #post-view .modal-content section {
+    padding: 0; }
+    #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img {
+      margin-left: -17px; }
+      #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
+        margin-bottom: 0;
+        max-width: 960px; }
+  #modal-post #post-view .modal-content .modal-container .modal-content .modal-close-cross {
+    top: 5px; }
+
 body {
   color: #222222;
   font-size: 12px;
