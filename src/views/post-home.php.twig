@@ -1,5 +1,5 @@
 <div id="post-view">
-    <div class="box-next-post" style="z-index: 1000">
+    <div class="box-next-post" style="z-index: 1">
         <div v-if="state.postIndex > 0" class="next-left">
             <div class="cursor-link" v-on:click="lastPost">
                 <img src="/img/next_post/esperra.svg" alt="">
@@ -229,7 +229,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt--1 text-right">
-                                        <div class="btn btn--primary" v-on:click="makeComment(comment, state.post)">
+                                        <div class="btn btn--primary" v-on:click="addComment()">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.POST_COMMENT }}
                                         </span>
@@ -259,7 +259,7 @@
                                                         <username v-bind:inline="1" v-bind:user="state.post[c].author" v-bind:name="state.accounts[state.post[c].author].metadata.publicName"></username>
                                                         <span>{{ '{{ dateFromNow(state.post[c].created) }}' }}</span>
                                                     </p>
-                                                    <p class="comment-user">{{ '{{ state.post[c].body }}' }}</p>
+                                                    <p class="comment-user" v-html="linkfyUser(state.post[c])"></p>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <ul class="list-inline list-unstyled ul-row-share-comment">
@@ -267,6 +267,31 @@
                                                                     <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post[c]"></comment-like>
                                                                     <!--                                                                            <div class="cursor" v-on:click="makeVote(state.post[c])"><img src="/img/icons/like.svg" alt="">{{ '{{ state.post[c].active_votes.length }}' }}</div></li>-->
                                                                 <li><p>{{ '{{ getPayout(state.post[c], true, 3) }}' }}</p></li>
+                                                                <li>
+                                                                    <div class="dropdown dropdown-autor">
+                                                                        <div class="row-flex">
+                                                                            <p>{{ lang.PUBLICATION.REPLY }}</p>
+                                                                        </div>
+                                                                        <div class="dropdown__container">
+                                                                            <div class="container">
+                                                                                <div class="row">
+                                                                                    <div class="col-12 col-sm-3 col-md-12 dropdown__content">
+                                                                                        <div class="textarea">
+                                                                                            <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
+                                                                                        </div>
+                                                                                        <div class="col-md-12 mt--1 text-right">
+                                                                                            <div class="btn btn--primary" v-on:click="addComment()">
+                                                                                                <span class="btn__text">
+                                                                                                    {{ lang.BUTTON.POST_COMMENT }}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
                                                                 <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                             </ul>
                                                         </div>
@@ -412,7 +437,7 @@
                                             <div class="feature__body">
                                                 <h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2>
                                                 <hr>
-                                                <p>Blockchain: <a v-bind:href="'https://creascan.net' + state.current_route" target="_blank">Project Data</a> </p>
+                                                <p>Blockchain: <a v-bind:href="'https://creascan.net' + state.post.url" target="_blank">Project Data</a> </p>
                                                 <p>Timestamp: {{ '{{ new Date(state.post.created + "Z").toLocaleString() }}' }}</p>
                                                 {#<p>{{ '{{ state.post.metadata.hash || "-" }}' }}</p>#}
                                                 <p>License: <a v-bind:href="getLicense().getLink()">{{ '{{ getLicense().getTags() }}' }}</a></p>

@@ -218,7 +218,16 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    makeComment: makeComment,
+                    addComment: function () {
+                        var that = this;
+                        makeComment(this.comment, this.state.post, function (err, result) {
+                            globalLoading.show = false;
+                            if (!catchError(err)) {
+                                that.comment = '';
+                                fetchContent();
+                            }
+                        })
+                    },
                     makeDownload: makeDownload,
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {

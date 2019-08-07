@@ -13,8 +13,12 @@
         }*/
     }
 
-    function setUp(state) {
+    function setUp(state, fromHistory) {
         console.log(clone(state));
+
+        if (!fromHistory) {
+            updateUrl(state.post.url, 'Creary - ' + state.post.title, state);
+        }
 
         if (!postContainer) {
             postContainer = new Vue({
@@ -210,6 +214,23 @@
                             }
                         })
                     },
+                    linkfyUser: function (comment) {
+                        var that = this;
+                        var body = comment.body;
+                        var matches = body.match(/@[\w\.\d-]+/gm);
+
+                        if (matches) {
+                            matches.forEach(function (m) {
+                                var mention = m.replace('@', '');
+                                var user = that.state.accounts[mention];
+                                user = user ? user.metadata.publicName || user.name : user;
+                                var link = '<a href="/' + m + '">' + user + '</a>'
+                                body = body.replace(m, link);
+                            })
+                        }
+
+                        return body;
+                    },
                     makeDownload: makeDownload,
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {
@@ -227,7 +248,6 @@
                         });
                     }),
                     vote: function vote(weight) {
-                        //TODO: SHOW ALERT CONFIRMATION
                         if (this.session) {
                             var that = this;
                             var username = this.session.account.username;
@@ -236,14 +256,15 @@
                                 crea.broadcast.vote(postingKey, username, that.state.post.author, that.state.post.permlink, weight, function (err, result) {
                                     globalLoading.show = false;
                                     catchError(err);
-                                    fetchContent();
+                                    showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
                                 });
                             });
                         }
                     },
                     onVote: function onVote(err) {
+                        var that = this;
                         catchError(err);
-                        updateUserSession();
+                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
                     },
                     onFollow: function onFollow(err, result) {
                         catchError(err);
@@ -277,6 +298,7 @@
                         hideModalPromote: function hideModalPromote(event) {
                             cancelEventPropagation(event);
                             $('#modal-promote').removeClass('modal-active');
+                            $('#modal-post').addClass('modal-active');
                         },
                         makePromotion: function makePromotion(event) {
                             cancelEventPropagation(event);
@@ -541,6 +563,14 @@
 
         fetchOtherProjects(post.author, post.permlink);
     }
+
+    $(window).bind('popstate', function(event) {
+        console.log('pop: ', event);
+        if (event.originalEvent.state && event.originalEvent.state.post) {
+            setUp(event.originalEvent.state, true);
+        }
+
+    });
 
     creaEvents.on('navigation.post.data', showPostData);
 
