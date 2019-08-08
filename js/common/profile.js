@@ -656,8 +656,6 @@
                             globalLoading.show = false;
                         };
 
-                        globalLoading.show = true; //Check current password
-
                         if (this.changePass.oldPass) {
                             //Check if passwords match
                             if (this.changePass.newPass && this.changePass.newPass === this.changePass.matchedPass) {
@@ -673,7 +671,7 @@
                                             }
                                         } else {
                                             //Current pass is valid
-                                            var keys = Account.generate(that.changePass.username, that.changePass.newPass).keys;
+                                            var keys = Account.generate(that.changePass.username, that.changePass.newPass, DEFAULT_ROLES).keys;
                                             sendAccountUpdate(null, keys, function (err, result) {
                                                 var s = Session.getAlive();
 
@@ -1093,7 +1091,9 @@
                     };
                 }
 
+                console.log(keys);
                 requireRoleKey(session.account.username, 'owner', function (ownerKey) {
+                    globalLoading.show = true;
                     crea.broadcast.accountUpdate(ownerKey, session.account.username, createAuth(keys.owner.pub), createAuth(keys.active.pub), createAuth(keys.posting.pub), keys.memo.pub, metadata, function (err, data) {
                         globalLoading.show = false;
 

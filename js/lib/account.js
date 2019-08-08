@@ -49,7 +49,9 @@ var Account =
                     };
                     return new Account(username, keys);
                 } else {
-                    if (DEFAULT_ROLES.indexOf(role) > -1) {
+                    if (Array.isArray(role)) {
+                        neededRoles = role;
+                    } else if (DEFAULT_ROLES.indexOf(role) > -1) {
                         neededRoles.push(role);
                     } else {
                         throw 'Role not valid: ' + role;
