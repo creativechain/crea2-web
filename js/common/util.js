@@ -391,3 +391,54 @@ function linkfy(str, target) {
 
     return newStr;
 }
+
+/**
+ *
+ * @returns {string}
+ */
+function uniqueId() {
+    return Math.random().toString(36).substr(2, 9)
+}
+
+function makeMentions(comment, state) {
+    var body = comment.body || comment;
+
+    //console.log(body);
+    //First, save links that contains @user;
+    var httpMatches = body.match(/(https|http):\/\/[\d\w\/-]*.[\d\w\/-]+[@\d\w\/-]+/g);
+    var httpLinks = {};
+    if (httpMatches) {
+        httpMatches.forEach(function (m) {
+            var httpId = uniqueId();
+            httpLinks[httpId] = m;
+            body = body.replace(m, httpId);
+        })
+    }
+
+    //console.log(httpMatches, httpLinks)
+    //Second, find @users
+    var userMatches = body.match(/@[\w\.\d-]+/gm);
+
+    if (userMatches) {
+        userMatches = Array.trim(userMatches);
+        userMatches.forEach(function (m) {
+
+            var mention = m.replace('@', '');
+            var user = state.accounts[mention];
+            user = user ? user.metadata.publicName || user.name : user;
+            var link = '<a href="/' + m + '">' + user + '</a>';
+            //console.log(m, link)
+            body = body.replace(m, link);
+        });
+
+        //console.log(userMatches);
+    }
+
+    //Third, restore links
+    var httpKeys = Object.keys(httpLinks);
+    httpKeys.forEach(function (k) {
+        body = body.replace(k, httpLinks[k])
+    });
+
+    return body;
+}

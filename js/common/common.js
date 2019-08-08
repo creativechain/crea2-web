@@ -258,6 +258,7 @@ function parsePost(post, reblogged_by ) {
     }
 
     if (post) {
+
         post = clone(post);
         post.metadata = jsonify(post.json_metadata);
         post.link = post.author + '/' + post.permlink;
@@ -275,6 +276,20 @@ function parsePost(post, reblogged_by ) {
                 post.up_votes.push(v);
             }
         });
+
+        var session = Session.getAlive();
+        post.reported = false;
+        if (session) {
+            //Set reported by user
+            var username = session.account.username;
+            for (var x = 0; x < post.down_votes.length; x++) {
+                var v = post.down_votes[x];
+                if (v.voter === username) {
+                    post.reported = true;
+                    break;
+                }
+            }
+        }
 
         var toStringAsset = function toStringAsset(data) {
             if (_typeof(data) === 'object') {
@@ -397,7 +412,14 @@ function makeComment(comment, post, callback) {
             globalLoading.show = true;
             var parentAuthor = post.author;
             var parentPermlink = post.permlink;
-            var permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
+
+            var permlink;
+            if (post.parent_author) {
+                //Reply of comment
+                permlink = uniqueId();
+            } else {
+                permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
+            }
 
             if (permlink.length > CONSTANTS.TEXT_MAX_SIZE.PERMLINK) {
                 permlink = permlink.substring(0, CONSTANTS.TEXT_MAX_SIZE.PERMLINK);
@@ -417,6 +439,25 @@ function makeComment(comment, post, callback) {
             });*/
             crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username, permlink, '', comment, '', jsonstring(metadata), callback);
         });
+    }
+}
+
+function deleteComment(post, session, callback) {
+
+    if (session) {
+        requireRoleKey(session.account.username, 'posting', function (postingKey) {
+            globalLoading.show = true;
+            crea.broadcast.deleteComment(postingKey, post.author, post.permlink, callback);
+        })
+    }
+}
+
+function editComment(comment, post, session, callback) {
+    if (session && post) {
+        requireRoleKey(session.account.username, 'posting', function (postingKey) {
+            globalLoading.show = true;
+            crea.broadcast.comment(postingKey, post.parent_author, post.parent_permlink, post.author, post.permlink, post.title, comment, post.json_metadata, callback)
+        })
     }
 }
 

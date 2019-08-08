@@ -37,6 +37,7 @@
         }
 
         if (!postContainer) {
+            console.log(clone(state));
             postContainer = new Vue({
                 el: '#post-view',
                 data: {
@@ -45,7 +46,8 @@
                     session: session,
                     user: userAccount ? userAccount.user : false,
                     state: state,
-                    comment: ''
+                    comment: '',
+                    active_comment: null
                 },
                 mounted: function mounted() {
                     onVueReady();
@@ -218,15 +220,20 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    addComment: function () {
+                    addComment: function (post) {
                         var that = this;
-                        makeComment(this.comment, this.state.post, function (err, result) {
+                        post = post || this.state.post;
+                        makeComment(this.comment, post, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
                                 that.comment = '';
                                 fetchContent();
                             }
                         })
+                    },
+                    linkfyUser: function (comment) {
+                        //return comment;
+                        return makeMentions(comment, this.state);
                     },
                     makeDownload: makeDownload,
                     ignoreUser: function (_ignoreUser) {
@@ -244,14 +251,14 @@
                             fetchContent();
                         });
                     }),
-                    vote: function vote(weight) {
-                        //TODO: SHOW ALERT CONFIRMATION
+                    vote: function vote(weight, post) {
+                        post = post || this.state.post;
                         if (this.session) {
                             var that = this;
                             var username = this.session.account.username;
                             requireRoleKey(username, 'posting', function (postingKey) {
                                 globalLoading.show = true;
-                                crea.broadcast.vote(postingKey, username, that.state.post.author, that.state.post.permlink, weight, function (err, result) {
+                                crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                     globalLoading.show = false;
                                     catchError(err);
                                     fetchContent();
@@ -505,7 +512,7 @@
                                         return d2.getTime() - d1.getTime();
                                     });
                                     cKeys.forEach(function (c) {
-                                        result[c] = parsePost(result.content[c]);
+                                        result.content[c] = parsePost(result.content[c]);
                                     });
                                     result.comments = cKeys;
                                     setUp(result);

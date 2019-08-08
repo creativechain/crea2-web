@@ -104,7 +104,7 @@
                         <div v-if="!state.author.buzz.blocked">
                             <template v-for="el in state.post.body">
                                 <div v-if="el != null">
-                                    <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-word;">
+                                    <div v-if="el.type.indexOf('text/html') > -1" v-html="linkfyUser(el.value)" style="word-break: break-word;">
 
                                     </div>
                                     <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -315,7 +315,9 @@
                                             <div class="row-flag">
                                                 <a href="">
                                                     <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
-                                                    <div class="a-flag active"></div>
+                                                    <a href="#modal-report-comment" class="modal-trigger link-report" v-on:click="active_comment = state.content[c]">
+                                                        <div class="a-flag" v-bind:class="{ active: state.content[c].reported, inactive: !state.content[c].reported }"></div>
+                                                    </a>
                                                 </a>
                                             </div>
                                         </div>

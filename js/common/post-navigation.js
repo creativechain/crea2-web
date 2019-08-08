@@ -29,7 +29,8 @@
                     session: session,
                     user: userAccount ? userAccount.user : false,
                     state: state,
-                    comment: ''
+                    comment: '',
+                    active_comment: null
                 },
                 mounted: function mounted() {
                     onVueReady();
@@ -204,9 +205,10 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    addComment: function () {
+                    addComment: function (post) {
                         var that = this;
-                        makeComment(this.comment, this.state.post, function (err, result) {
+                        post = post || this.state.post;
+                        makeComment(this.comment, post, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
                                 that.comment = '';
@@ -215,23 +217,18 @@
                         })
                     },
                     linkfyUser: function (comment) {
-                        var that = this;
-                        var body = comment.body;
-                        var matches = body.match(/@[\w\.\d-]+/gm);
-
-                        if (matches) {
-                            matches.forEach(function (m) {
-                                var mention = m.replace('@', '');
-                                var user = that.state.accounts[mention];
-                                user = user ? user.metadata.publicName || user.name : user;
-                                var link = '<a href="/' + m + '">' + user + '</a>'
-                                body = body.replace(m, link);
-                            })
-                        }
-
-                        return body;
+                        return makeMentions(comment, this.state);
                     },
                     makeDownload: makeDownload,
+                    removeComment: function(comment) {
+                        var that = this;
+                        deleteComment(comment, this.session, function (err, result) {
+                            if (!catchError(err)) {
+                                globalLoading.show = false;
+                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                            }
+                        })
+                    },
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {
                             return _ignoreUser.apply(this, arguments);
@@ -247,13 +244,14 @@
                             updatePostData();
                         });
                     }),
-                    vote: function vote(weight) {
+                    vote: function vote(weight, post) {
+                        post = post || this.state.post;
                         if (this.session) {
                             var that = this;
                             var username = this.session.account.username;
                             requireRoleKey(username, 'posting', function (postingKey) {
                                 globalLoading.show = true;
-                                crea.broadcast.vote(postingKey, username, that.state.post.author, that.state.post.permlink, weight, function (err, result) {
+                                crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                     globalLoading.show = false;
                                     catchError(err);
                                     showPostData(that.state.post, that.state, that.state.discuss, that.state.category);

@@ -32,7 +32,7 @@ class Lang
             $lang = 'en';
         }
 
-        $language = file_get_contents(self::LANG_DIR . 'lang-' . $lang . '.json');
+        $language = file_get_contents(self::LANG_DIR . '/' . $lang . '/lang.json');
         return json_decode($language);
     }
 }

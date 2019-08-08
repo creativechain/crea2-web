@@ -104,7 +104,7 @@
                             <div v-if="!state.author.buzz.blocked">
                                 <template v-for="el in state.post.body">
                                     <div v-if="el != null">
-                                        <div v-if="el.type.indexOf('text/html') > -1" v-html="el.value" style="word-break: break-word;">
+                                        <div v-if="el.type.indexOf('text/html') > -1" v-html="linkfyUser(el.value)" style="word-break: break-word;">
 
                                         </div>
                                         <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -256,7 +256,10 @@
                                                 </div>
                                                 <div class="user-comments">
                                                     <p>
+                                                    <div>
                                                         <username v-bind:inline="1" v-bind:user="state.post[c].author" v-bind:name="state.accounts[state.post[c].author].metadata.publicName"></username>
+
+                                                    </div>
                                                         <span>{{ '{{ dateFromNow(state.post[c].created) }}' }}</span>
                                                     </p>
                                                     <p class="comment-user" v-html="linkfyUser(state.post[c])"></p>
@@ -265,11 +268,11 @@
                                                             <ul class="list-inline list-unstyled ul-row-share-comment">
                                                                 <li>
                                                                     <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post[c]"></comment-like>
-                                                                    <!--                                                                            <div class="cursor" v-on:click="makeVote(state.post[c])"><img src="/img/icons/like.svg" alt="">{{ '{{ state.post[c].active_votes.length }}' }}</div></li>-->
+                                                                </li>
                                                                 <li><p>{{ '{{ getPayout(state.post[c], true, 3) }}' }}</p></li>
                                                                 <li>
                                                                     <div class="dropdown dropdown-autor">
-                                                                        <div class="row-flex">
+                                                                        <div class="row-flex cursor-link">
                                                                             <p>{{ lang.PUBLICATION.REPLY }}</p>
                                                                         </div>
                                                                         <div class="dropdown__container">
@@ -279,8 +282,8 @@
                                                                                         <div class="textarea">
                                                                                             <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
                                                                                         </div>
-                                                                                        <div class="col-md-12 mt--1 text-right">
-                                                                                            <div class="btn btn--primary" v-on:click="addComment()">
+                                                                                        <div class="col-md-12 mt--1 text-left">
+                                                                                            <div class="btn btn--primary" v-on:click="addComment(state.post[c])">
                                                                                                 <span class="btn__text">
                                                                                                     {{ lang.BUTTON.POST_COMMENT }}
                                                                                                 </span>
@@ -298,9 +301,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="row-flag">
-                                                    <a href="">
-                                                        <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
-                                                        <div class="a-flag active"></div>
+                                                    <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
+
+                                                    <a href="#modal-report-comment" class="modal-trigger link-report" v-on:click="active_comment = state.post[c]">
+                                                        <div class="a-flag" v-bind:class="{ active: state.post[c].reported, inactive: !state.post[c].reported }"></div>
                                                     </a>
                                                 </div>
                                             </div>
