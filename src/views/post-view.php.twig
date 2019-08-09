@@ -268,7 +268,7 @@
                                         <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mt--1 text-right">
+                                <div class="col-md-12 mt--1 col-post-btn-comment">
                                     <div class="btn btn--primary" v-on:click="addComment">
                                         <span class="btn__text">
                                             {{ lang.BUTTON.POST_COMMENT }}
@@ -307,7 +307,9 @@
                                                                 <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[c]"></comment-like>
                                                                 <!--                                                                            <div class="cursor" v-on:click="makeVote(state.content[c])"><img src="/img/icons/like.svg" alt="">{{ '{{ state.content[c].active_votes.length }}' }}</div></li>-->
                                                             <li><p>{{ '{{ getPayout(state.content[c], true, 3) }}' }}</p></li>
-                                                            <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
+                                                            <li v-if="session"><a href="">{{ lang.PUBLICATION.REPLY }}</a></li>
+                                                            <li v-if="session"><a href="">{{ lang.PUBLICATION.EDIT }}</a></li>
+                                                            <li v-if="session"><a href="">{{ lang.PUBLICATION.DELETE }}</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -319,6 +321,18 @@
                                                         <div class="a-flag" v-bind:class="{ active: state.content[c].reported, inactive: !state.content[c].reported }"></div>
                                                     </a>
                                                 </a>
+                                            </div>
+                                        </div>
+                                        <div class="row-reply-comment">
+                                            <textarea name="" id="" cols="30" rows="3"></textarea>
+
+                                            <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5">
+                                                <span class="btn__text">
+                                                    Post comment
+                                                </span>
+                                            </div>
+                                            <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5">
+                                                <span class="btn__text text__dark">Cancelar</span>
                                             </div>
                                         </div>
                                     </div>
