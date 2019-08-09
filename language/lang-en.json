@@ -117,6 +117,8 @@
         "COMMENTS": "Comments",
         "COMMENT": "Comment",
         "REPLY": "Reply",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
         "TIME_STAMP": "Time Stamp",
         "SHARE": "Share",
         "LIKES": "Likes",

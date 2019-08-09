@@ -1022,6 +1022,8 @@
   color: #3B3B3C;
   font-size: 12px;
   font-weight: 600; }
+.post-view .box-comment .col-post-btn-comment {
+  margin-left: 50px; }
 .post-view .box-comment .row-post-comments {
   display: flex;
   margin-bottom: 10px; }
@@ -1057,6 +1059,10 @@
       font-size: 12px;
       font-weight: 400;
       color: #484848; }
+    .post-view .box-comment .row-post-comments .user-comments .ul-row-share-comment a {
+      color: #222222; }
+    .post-view .box-comment .row-post-comments .user-comments .ul-row-share-comment a:hover {
+      color: #0073FF; }
   .post-view .box-comment .row-post-comments .row-flag {
     position: absolute;
     right: 10px; }
