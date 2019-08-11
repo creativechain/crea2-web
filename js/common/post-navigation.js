@@ -1,8 +1,7 @@
 (function () {
 
     var postContainer, otherProjectsContainer;
-    var promoteModal;
-    var downloadModal;
+    var promoteModal, downloadModal, reportModal;
     var session, userAccount;
 
     function onVueReady() {
@@ -245,6 +244,7 @@
                         });
                     }),
                     vote: function vote(weight, post) {
+                        console.log('Vote', weight, post);
                         post = post || this.state.post;
                         if (this.session) {
                             var that = this;
@@ -382,6 +382,41 @@
             } else {
                 //This post not has a download, so downloadModal cannot be mounted
                 onVueReady();
+            }
+
+            if (!reportModal) {
+                reportModal = new Vue({
+                    el: '#modal-report',
+                    data: {
+                        lang: lang,
+                        session: session,
+                        user: userAccount ? userAccount.user : null,
+                        state: state
+                    },
+                    methods: {
+                        vote: function vote(weight, post) {
+                            console.log('Vote', weight, post);
+                            post = post || this.state.post;
+                            if (this.session) {
+                                var that = this;
+                                var username = this.session.account.username;
+                                requireRoleKey(username, 'posting', function (postingKey) {
+                                    globalLoading.show = true;
+                                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
+                                        globalLoading.show = false;
+                                        catchError(err);
+                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                        $('modal-post').addClass('modal-active');
+                                    });
+                                });
+                            }
+                        }
+                    }
+                })
+            } else {
+                reportModal.session = session;
+                reportModal.user = userAccount ? userAccount.user : null;
+                reportModal.state = state;
             }
         }
     }
