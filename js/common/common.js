@@ -705,7 +705,9 @@ function uploadToIpfs(file, maxSize, callback) {
 function downloadFile(url, filename) {
     var element = document.createElement('a');
     element.setAttribute('href', url);
-    element.setAttribute('target', '_blank');
+
+    //No uncomment, Firefox on OSX do not anything
+    //element.setAttribute('target', '_blank');
     element.setAttribute('download', filename); //element.setAttribute('target', '_blank');
 
     element.style.display = 'none';
