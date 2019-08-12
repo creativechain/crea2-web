@@ -1,5 +1,5 @@
 {{ include ('element/navbar.php.twig') }}
-<div class="box-next-post">
+<div class="box-next-post hidden-sm hidden-xs">
     <div class="next-left">
         <a href="">
             <img src="/img/next_post/esperra.svg" alt="">
@@ -356,7 +356,33 @@
                                         <div class="col-md-12">
                                             <ul class="list-inline list-unstyled">
 
-                                                <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)"><p class="p-report link-report"><img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p></li>
+
+
+                                                <li>
+                                                    <a href="" class="button-report-post"><span>({{ '{{ state.post.down_votes.length }}' }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</span></a>
+                                                </li>
+
+
+                                                <li>
+                                                    <a href="" class="button-block-post"><span>Block all posts by this user</span></a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)">
+                                                    <p class="p-report link-report">
+                                                        <img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p>
+                                                </li>
                                                 <li v-else >
                                                     <div v-if="!isSameUser()" class="modal-instance ">
                                                         <p class="p-report">
