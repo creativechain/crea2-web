@@ -142,11 +142,14 @@
         alertModal.show = true;
     });
     creaEvents.on('crea.auth.role', function (username, role, login, id) {
-        roleModal.id = id;
-        roleModal.inputs.username.value = username;
-        roleModal.role = role;
-        roleModal.login = login;
-        roleModal.show = true;
+        //Executed in timeout for modals visibility conflict
+        setTimeout(function () {
+            roleModal.id = id;
+            roleModal.inputs.username.value = username;
+            roleModal.role = role;
+            roleModal.login = login;
+            roleModal.show = true;
+        }, 300);
     });
     creaEvents.on('crea.content.loaded', function () {
         setUp();

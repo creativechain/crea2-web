@@ -463,9 +463,6 @@ function editComment(comment, post, session, callback) {
 
 function makeDownload(event, session, user, post, callback) {
     cancelEventPropagation(event);
-    /*var session = postContainer.session;
-    var user = postContainer.user;
-    var post = postContainer.state.post;*/
 
     if (session) {
         requireRoleKey(session.account.username, 'active', function (activeKey) {
@@ -493,9 +490,17 @@ function makeDownload(event, session, user, post, callback) {
                             var _url = apiOptions.ipfsd + '/' + post.download.type + '/' + hash + '/' + post.download.name;
 
                             _url += '?stream=false';
-                            downloadFile(_url, post.download.name);
-                            //Close modal download
+
+
                             $('#modal-download').removeClass('modal-active');
+                            if (callback) {
+                                console.log('Callback is present')
+                                callback();
+                            } else {
+                                console.log('Callback null?', callback)
+                            }
+                            //Close modal download
+                            downloadFile(_url, post.download.name);
                         }
                     });
                 }, 3000);
@@ -506,9 +511,6 @@ function makeDownload(event, session, user, post, callback) {
                     if (!catchError(err)) {
                         downloadResource();
                         //fetchContent();
-                        if (callback) {
-                            callback();
-                        }
                     } else {
                         globalLoading.show = false;
                     }
@@ -522,6 +524,9 @@ function makeDownload(event, session, user, post, callback) {
                 payDownload();
             }
         });
+
+    } else {
+        console.log('NO session', session);
     }
 }
 
@@ -700,6 +705,7 @@ function uploadToIpfs(file, maxSize, callback) {
 function downloadFile(url, filename) {
     var element = document.createElement('a');
     element.setAttribute('href', url);
+    element.setAttribute('target', '_blank');
     element.setAttribute('download', filename); //element.setAttribute('target', '_blank');
 
     element.style.display = 'none';
@@ -838,6 +844,7 @@ function requireRoleKey(username, role, login, callback) {
         login = false;
     }
 
+    console.log(username, role, callback != null);
     if (callback) {
         var id = randomNumber(0, Number.MAX_SAFE_INTEGER);
         var session = Session.getAlive();

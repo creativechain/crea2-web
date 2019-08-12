@@ -366,8 +366,12 @@
                                 this.modal.confirmed = false;
                             },
                             confirmDownload: function confirmDownload() {
+                                console.log('Donwload content', this.modal.alreadyPayed, this.modal.confirmed);
                                 if (this.modal.alreadyPayed || this.modal.confirmed) {
-                                    makeDownload();
+                                    makeDownload(null, session, this.user, this.state.post, function () {
+                                        console.log('On download success');
+                                        $('#modal-post').addClass('modal-active');
+                                    })
                                 } else {
                                     this.modal.confirmed = true;
                                 }
@@ -598,7 +602,6 @@
     }
 
     $(window).bind('popstate', function(event) {
-        console.log('pop: ', event);
         if (event.originalEvent.state && event.originalEvent.state.post) {
             setUp(event.originalEvent.state, true);
         }
