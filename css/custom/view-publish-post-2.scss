@@ -1,33 +1,29 @@
+.no-scroll {
+  overflow: hidden
+}
 .box-next-post {
-  height: 70px;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  z-index: 0;
-  top: 45%;
+  z-index: 1;
+  position: relative;
   .next-left {
-    left: 10%;
-    font-size: 40px;
-
-    height: 60px;
+    height: 70px;
     text-align: center;
     position: fixed;
-    width: 60px;
+    width: 5%;
     z-index: 0;
     top: 45%;
+    left: 0;
     a {
       color: #cacaca;
     }
   }
   .next-right {
-    height: 60px;
+    height: 70px;
     text-align: center;
     position: fixed;
-    width: 60px;
+    width: 5%;
     z-index: 0;
     top: 45%;
-    right: 10%;
-    font-size: 40px;
+    right: 0;
 
     a {
       color: #cacaca;
@@ -149,6 +145,7 @@
     }
     .stats-post {
       margin-top: 23px;
+      margin-right: 23px;
     }
     .ul-social {
       padding-left: 17px;
@@ -219,6 +216,9 @@
     border-bottom: 1px solid $border-solid-grey;
     img {
       width: 19px;
+    }
+    .img-share-post {
+      background-image: url("/img/recommended/recommended-post.svg");
     }
     .ul-recommended-post {
       a {
@@ -413,6 +413,49 @@
     }
     .p-report {
       color: $grey-light;
+    }
+    .button-report-post {
+      background-image: url("/img/report-post/report_inactive.svg");
+      background-repeat: no-repeat;
+      padding-left: 20px;
+      background-size: contain;
+      color: #CACACA;
+    }
+    .button-report-post:hover {
+      background-image: url("/img/report-post/report.svg");
+      background-repeat: no-repeat;
+      padding-left: 20px;
+      background-size: contain;
+      color: #505050;
+    }
+    .button-report-post.active {
+      background-image: url("/img/report-post/report.svg");
+      background-repeat: no-repeat;
+      padding-left: 20px;
+      background-size: contain;
+      color: #505050;
+    }
+    .button-block-post {
+      background-image: url("/img/report-post/grupo_9765.svg");
+      background-repeat: no-repeat;
+      padding-left: 25px;
+      background-size: contain;
+
+      color: #CACACA;
+    }
+    .button-block-post:hover {
+      background-image: url("/img/report-post/grupo_9766.svg");
+      background-repeat: no-repeat;
+      padding-left: 25px;
+      color: #505050;
+      background-size: contain;
+    }
+    .button-block-post.active {
+      background-image: url("/img/report-post/grupo_9766.svg");
+      background-repeat: no-repeat;
+      padding-left: 25px;
+      color: #505050;
+      background-size: contain;
     }
   }
   .subtitle-content-publish {

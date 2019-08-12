@@ -702,33 +702,30 @@
   .view-publish .step-4 .row-text-finish span {
     font-size: 12px; }
 
+.no-scroll {
+  overflow: hidden; }
+
 .box-next-post {
-  height: 70px;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  z-index: 0;
-  top: 45%; }
+  z-index: 1;
+  position: relative; }
   .box-next-post .next-left {
-    left: 10%;
-    font-size: 40px;
-    height: 60px;
+    height: 70px;
     text-align: center;
     position: fixed;
-    width: 60px;
+    width: 5%;
     z-index: 0;
-    top: 45%; }
+    top: 45%;
+    left: 0; }
     .box-next-post .next-left a {
       color: #cacaca; }
   .box-next-post .next-right {
-    height: 60px;
+    height: 70px;
     text-align: center;
     position: fixed;
-    width: 60px;
+    width: 5%;
     z-index: 0;
     top: 45%;
-    right: 10%;
-    font-size: 40px; }
+    right: 0; }
     .box-next-post .next-right a {
       color: #cacaca; }
 
@@ -811,7 +808,8 @@
   .post-view .row-title .dropdown-price:hover span {
     color: #0073FF; }
 .post-view .row-title .stats-post {
-  margin-top: 23px; }
+  margin-top: 23px;
+  margin-right: 23px; }
 .post-view .row-title .ul-social {
   padding-left: 17px; }
   .post-view .row-title .ul-social p {
@@ -858,6 +856,8 @@
   border-bottom: 1px solid #ececec; }
   .post-view .row-promoter img {
     width: 19px; }
+  .post-view .row-promoter .img-share-post {
+    background-image: url("/img/recommended/recommended-post.svg"); }
   .post-view .row-promoter .ul-recommended-post a {
     width: 65px;
     color: #222222;
@@ -1003,6 +1003,41 @@
     color: #3B3B3C; }
   .post-view .row-comment-options .p-report {
     color: #999999; }
+  .post-view .row-comment-options .button-report-post {
+    background-image: url("/img/report-post/report_inactive.svg");
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    color: #CACACA; }
+  .post-view .row-comment-options .button-report-post:hover {
+    background-image: url("/img/report-post/report.svg");
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-size: contain;
+    color: #505050; }
+  .post-view .row-comment-options .button-report-post.active {
+    background-image: url("/img/report-post/report.svg");
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-size: contain;
+    color: #505050; }
+  .post-view .row-comment-options .button-block-post {
+    background-image: url("/img/report-post/grupo_9765.svg");
+    background-repeat: no-repeat;
+    padding-left: 25px;
+    background-size: contain;
+    color: #CACACA; }
+  .post-view .row-comment-options .button-block-post:hover {
+    background-image: url("/img/report-post/grupo_9766.svg");
+    background-repeat: no-repeat;
+    padding-left: 25px;
+    color: #505050;
+    background-size: contain; }
+  .post-view .row-comment-options .button-block-post.active {
+    background-image: url("/img/report-post/grupo_9766.svg");
+    background-repeat: no-repeat;
+    padding-left: 25px;
+    color: #505050;
+    background-size: contain; }
 .post-view .subtitle-content-publish {
   font-size: 14px;
   margin: 20px 0 10px;
