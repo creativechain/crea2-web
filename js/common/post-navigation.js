@@ -29,6 +29,7 @@
                     user: userAccount ? userAccount.user : false,
                     state: state,
                     comment: '',
+                    response_comment: '',
                     active_comment: null
                 },
                 mounted: function mounted() {
@@ -200,17 +201,26 @@
 
                         return false;
                     },
+                    isCommentResponse: function(comment, parentComment) {
+                        return comment.parent_author === parentComment.author && comment.parent_permlink === parentComment.permlink;
+                    },
                     editPost: function editPost() {
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    addComment: function (post) {
+                    addComment: function (post, response) {
                         var that = this;
                         post = post || this.state.post;
-                        makeComment(this.comment, post, function (err, result) {
+                        var comment = response ? this.response_comment : this.comment;
+                        makeComment(comment, post, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
-                                that.comment = '';
+
+                                if (response) {
+                                    that.response_comment = '';
+                                } else {
+                                    that.comment = '';
+                                }
                                 showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
                             }
                         })

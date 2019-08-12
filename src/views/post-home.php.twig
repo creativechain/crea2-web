@@ -246,7 +246,7 @@
                                 </div>
 
                                 <template v-for="c in state.post.comments">
-                                    <div v-if="c != state.post.link" class="row">
+                                    <div v-if="isCommentResponse(state.post[c], state.post)" class="row">
                                         <div class="col-md-12">
                                             <div class="row-post-comments">
                                                 <div class="user-avatar">
@@ -271,40 +271,13 @@
                                                                 </li>
                                                                 <li><p>{{ '{{ getPayout(state.post[c], true, 3) }}' }}</p></li>
                                                                 <li v-if="session"><a href="">{{ lang.PUBLICATION.REPLY }}</a></li>
-                                                                <li v-if="session"><a href="">{{ lang.PUBLICATION.EDIT }}</a></li>
-                                                                <li v-if="session"><a href="">{{ lang.PUBLICATION.DELETE }}</a></li>
-
-
-
-
-
-
-
-                                                                <li>
-                                                                    <div class="dropdown dropdown-autor">
-                                                                        <div class="row-flex cursor-link">
-                                                                            <p>{{ lang.PUBLICATION.REPLY }}</p>
-                                                                        </div>
-                                                                        <div class="dropdown__container">
-                                                                            <div class="container">
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-sm-3 col-md-12 dropdown__content">
-                                                                                        <div class="textarea">
-                                                                                            <textarea name="text" placeholder="Message" rows="4" v-model="comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
-                                                                                        </div>
-                                                                                        <div class="col-md-12 mt--1 text-left">
-                                                                                            <div class="btn btn--primary" v-on:click="addComment(state.post[c])">
-                                                                                                <span class="btn__text">
-                                                                                                    {{ lang.BUTTON.POST_COMMENT }}
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                <li v-if="session && state.post[c].author == user.name">
+                                                                    <a href="">{{ lang.PUBLICATION.EDIT }}</a>
                                                                 </li>
+                                                                <li v-if="session && state.post[c].author == user.name && state.post[c].children == 0">
+                                                                    <a href="">{{ lang.PUBLICATION.DELETE }}</a>
+                                                                </li>
+
                                                                 <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                             </ul>
                                                         </div>
@@ -319,16 +292,62 @@
                                                 </div>
                                             </div>
                                             <div class="row-reply-comment">
-                                                <textarea name="" id="" cols="30" rows="3"></textarea>
+                                                <textarea cols="30" rows="3" v-model="response_comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
 
-                                                <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5">
-                                                <span class="btn__text">
-                                                    Post comment
-                                                </span>
+                                                <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5" v-on:click="addComment(state.post[c], true)">
+                                                    <span class="btn__text">
+                                                        {{ lang.BUTTON.POST_COMMENT }}
+                                                    </span>
                                                 </div>
                                                 <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5">
-                                                    <span class="btn__text text__dark">Cancelar</span>
+                                                    <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
                                                 </div>
+
+                                                {# Comments of comments #}
+                                                <template v-for="cc in state.post.comments">
+                                                    <div class="row-post-comments" v-if="isCommentResponse(state.post[cc], state.post[c])">
+                                                        <div class="user-avatar">
+                                                            <a v-bind:href="'/@' + state.post[cc].author">
+                                                                <avatar v-bind:account="state.accounts[state.post[cc].author]"></avatar>
+                                                            </a>
+                                                        </div>
+                                                        <div class="user-comments">
+                                                            <p>
+                                                            <div>
+                                                                <username v-bind:inline="1" v-bind:user="state.post[cc].author" v-bind:name="state.accounts[state.post[cc].author].metadata.publicName"></username>
+
+                                                            </div>
+                                                            <span>{{ '{{ dateFromNow(state.post[c].created) }}' }}</span>
+                                                            </p>
+                                                            <p class="comment-user" v-html="linkfyUser(state.post[cc])"></p>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <ul class="list-inline list-unstyled ul-row-share-comment">
+                                                                        <li>
+                                                                            <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post[cc]"></comment-like>
+                                                                        </li>
+                                                                        <li><p>{{ '{{ getPayout(state.post[cc], true, 3) }}' }}</p></li>
+                                                                        <li v-if="session && state.post[cc].author == user.name">
+                                                                            <a href="">{{ lang.PUBLICATION.EDIT }}</a>
+                                                                        </li>
+                                                                        <li v-if="session && state.post[cc].author == user.name && state.post[cc].children == 0">
+                                                                            <a href="">{{ lang.PUBLICATION.DELETE }}</a>
+                                                                        </li>
+
+                                                                        <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row-flag">
+                                                            <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
+
+                                                            <a href="#modal-report-comment" class="modal-trigger link-report" v-on:click="active_comment = state.post[cc]">
+                                                                <div class="a-flag" v-bind:class="{ active: state.post[cc].reported, inactive: !state.post[cc].reported }"></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </template>
                                             </div>
                                         </div>
                                     </div>
