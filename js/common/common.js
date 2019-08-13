@@ -653,6 +653,7 @@ function resizeImage(file, callback) {
 }
 
 function uploadToIpfs(file, maxSize, callback) {
+
     if (window.File && window.FileReader && window.FileList && window.Blob) {
         if (!maxSize) {
             //If maxSize is undefined means that file format is not allowed
@@ -660,7 +661,48 @@ function uploadToIpfs(file, maxSize, callback) {
                 callback(lang.PUBLISH.FILE_FORMAT_NOT_ALLOWED);
             }
         } else if (file.size <= maxSize) {
-            refreshAccessToken(function (accessToken) {
+
+            var options = {
+                pin: true,
+                progress: function (progress, progress2) {
+                    console.log(progress, progress2);
+                }
+            };
+
+            var onResponse = function (err, data) {
+                if (!err) {
+                    console.log(data);
+                    var f = new IpfsFile(data.Hash, file.name, file.type, data.size);
+                    console.log(f);
+                    callback(null, f);
+                } else if (callback) {
+                    callback(err);
+                }
+            }
+/*            ipfsClient.add(file, options, function (err, data) {
+                if (!err) {
+                    console.log(data);
+                    data = data[0];
+                    var f = new IpfsFile(data.hash, file.name, file.type, data.size);
+                    console.log(f);
+                    callback(null, f);
+                } else if (callback) {
+                    callback(err);
+                }
+
+            });*/
+
+            var http = new HttpClient('https://ipfs.creary.net:5002/api/v0/add?pin=true&stream-channels=true');
+            http.post({
+                file: file
+            }).when('done', function (data) {
+                onResponse(null, jsonify(data));
+            });
+            http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                onResponse(errorThrown, null);
+            });
+
+/*            refreshAccessToken(function (accessToken) {
                 var http = new HttpClient(apiOptions.ipfsd);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
@@ -680,7 +722,7 @@ function uploadToIpfs(file, maxSize, callback) {
                         callback(errorThrown);
                     }
                 });
-            });
+            });*/
         } else {
             globalLoading.show = false;
             console.error('File', file.name, 'too large. Size:', file.size, 'MAX:', maxSize);
