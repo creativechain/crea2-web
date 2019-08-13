@@ -270,15 +270,15 @@
                                                                     <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post[c]"></comment-like>
                                                                 </li>
                                                                 <li><p>{{ '{{ getPayout(state.post[c], true, 3) }}' }}</p></li>
-                                                                <li v-if="session"><a href="">{{ lang.PUBLICATION.REPLY }}</a></li>
+                                                                <li v-if="session">
+                                                                    <a href="#0" v-on:click="active_response = state.post[c]">{{ lang.PUBLICATION.REPLY }}</a>
+                                                                </li>
                                                                 <li v-if="session && state.post[c].author == user.name">
-                                                                    <a href="">{{ lang.PUBLICATION.EDIT }}</a>
+                                                                    <a href="#0" v-on:click="active_response_edit = state.post[c]">{{ lang.PUBLICATION.EDIT }}</a>
                                                                 </li>
                                                                 <li v-if="session && state.post[c].author == user.name && state.post[c].children == 0">
-                                                                    <a href="">{{ lang.PUBLICATION.DELETE }}</a>
+                                                                    <a href="#0">{{ lang.PUBLICATION.DELETE }}</a>
                                                                 </li>
-
-                                                                <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -292,15 +292,17 @@
                                                 </div>
                                             </div>
                                             <div class="row-reply-comment">
-                                                <textarea cols="30" rows="3" v-model="response_comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
+                                                <div v-if="(active_response != null && active_response.link === state.post[c].link) || (active_response_edit != null && active_response_edit.link === state.post[c].link)">
+                                                    <textarea cols="30" rows="3" v-model="response_comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
 
-                                                <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5" v-on:click="addComment(state.post[c], true)">
+                                                    <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5" v-on:click="addComment(state.post[c], true)">
                                                     <span class="btn__text">
                                                         {{ lang.BUTTON.POST_COMMENT }}
                                                     </span>
-                                                </div>
-                                                <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5">
-                                                    <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
+                                                    </div>
+                                                    <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5" v-on:click="active_response = null; response_comment = ''">
+                                                        <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
+                                                    </div>
                                                 </div>
 
                                                 {# Comments of comments #}
@@ -317,7 +319,7 @@
                                                                 <username v-bind:inline="1" v-bind:user="state.post[cc].author" v-bind:name="state.accounts[state.post[cc].author].metadata.publicName"></username>
 
                                                             </div>
-                                                            <span>{{ '{{ dateFromNow(state.post[c].created) }}' }}</span>
+                                                            <span>{{ '{{ dateFromNow(state.post[cc].created) }}' }}</span>
                                                             </p>
                                                             <p class="comment-user" v-html="linkfyUser(state.post[cc])"></p>
                                                             <div class="row">
@@ -328,13 +330,11 @@
                                                                         </li>
                                                                         <li><p>{{ '{{ getPayout(state.post[cc], true, 3) }}' }}</p></li>
                                                                         <li v-if="session && state.post[cc].author == user.name">
-                                                                            <a href="">{{ lang.PUBLICATION.EDIT }}</a>
+                                                                            <a href="" v-on:click="active_response_edit = state.post[cc]">{{ lang.PUBLICATION.EDIT }}</a>
                                                                         </li>
                                                                         <li v-if="session && state.post[cc].author == user.name && state.post[cc].children == 0">
                                                                             <a href="">{{ lang.PUBLICATION.DELETE }}</a>
                                                                         </li>
-
-                                                                        <li class="hidden" v-if="session"><p>{{ lang.PUBLICATION.COMMENT }}</p></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>

@@ -30,7 +30,9 @@
                     state: state,
                     comment: '',
                     response_comment: '',
-                    active_comment: null
+                    active_comment: null,
+                    active_response: null,
+                    active_response_edit: null
                 },
                 mounted: function mounted() {
                     onVueReady();
