@@ -286,21 +286,24 @@
                                                 <div class="row-flag">
                                                     <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
 
-                                                    <a href="#modal-report-comment" class="modal-trigger link-report" v-on:click="active_comment = state.post[c]">
+                                                    <a href="#modal-report-comment" v-if="!state.post[c].reported" class="modal-trigger link-report" v-on:click="setActiveComment(state.post[c])">
+                                                        <div class="a-flag" v-bind:class="{ active: state.post[c].reported, inactive: !state.post[c].reported }"></div>
+                                                    </a>
+                                                    <a href="#0" v-else class="modal-trigger link-report" v-on:click="vote(state.post[c], 0)">
                                                         <div class="a-flag" v-bind:class="{ active: state.post[c].reported, inactive: !state.post[c].reported }"></div>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="row-reply-comment">
-                                                <div v-if="(active_response != null && active_response.link === state.post[c].link) || (active_response_edit != null && active_response_edit.link === state.post[c].link)">
+                                                <div v-if="mustShowCommentField(state.post[c])">
                                                     <textarea cols="30" rows="3" v-model="response_comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
 
-                                                    <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5" v-on:click="addComment(state.post[c], true)">
+                                                    <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5" v-on:click="addComment(state.post[c], true, active_response_edit != null)">
                                                     <span class="btn__text">
                                                         {{ lang.BUTTON.POST_COMMENT }}
                                                     </span>
                                                     </div>
-                                                    <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5" v-on:click="active_response = null; response_comment = ''">
+                                                    <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5" v-on:click="cleanMakeResponse()">
                                                         <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>
                                                     </div>
                                                 </div>
@@ -329,11 +332,11 @@
                                                                             <comment-like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.post[cc]"></comment-like>
                                                                         </li>
                                                                         <li><p>{{ '{{ getPayout(state.post[cc], true, 3) }}' }}</p></li>
-                                                                        <li v-if="session && state.post[cc].author == user.name">
-                                                                            <a href="" v-on:click="active_response_edit = state.post[cc]">{{ lang.PUBLICATION.EDIT }}</a>
+                                                                        <li v-if="session && state.post[cc].author == user.name" v-on:click="editComment(state.post[cc])">
+                                                                            <a href="#0">{{ lang.PUBLICATION.EDIT }}</a>
                                                                         </li>
-                                                                        <li v-if="session && state.post[cc].author == user.name && state.post[cc].children == 0">
-                                                                            <a href="">{{ lang.PUBLICATION.DELETE }}</a>
+                                                                        <li v-if="session && state.post[cc].author == user.name && state.post[cc].children == 0" v-on:click="removeComment(state.post[cc])">
+                                                                            <a href="#0">{{ lang.PUBLICATION.DELETE }}</a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -342,7 +345,10 @@
                                                         <div class="row-flag">
                                                             <!-- dos estados que acompañan a la clase a-flag o inactive o active -->
 
-                                                            <a href="#modal-report-comment" class="modal-trigger link-report" v-on:click="active_comment = state.post[cc]">
+                                                            <a href="#modal-report-comment" v-if="!state.post[cc].reported" class="modal-trigger link-report" v-on:click="setActiveComment(state.post[cc])">
+                                                                <div class="a-flag" v-bind:class="{ active: state.post[cc].reported, inactive: !state.post[cc].reported }"></div>
+                                                            </a>
+                                                            <a href="#0" v-else class="modal-trigger link-report" v-on:click="vote(state.post[cc], 0)">
                                                                 <div class="a-flag" v-bind:class="{ active: state.post[cc].reported, inactive: !state.post[cc].reported }"></div>
                                                             </a>
                                                         </div>

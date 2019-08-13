@@ -404,22 +404,30 @@ function ignoreUser(following, ignore, callback) {
     }
 }
 
-function makeComment(comment, post, callback) {
+function makeComment(comment, post, parentPost, callback) {
     var session = Session.getAlive();
 
     if (session && comment.length > 0) {
         requireRoleKey(session.account.username, 'posting', function (postingKey) {
             globalLoading.show = true;
-            var parentAuthor = post.author;
-            var parentPermlink = post.permlink;
+            var parentAuthor = post ? post.parent_author : parentPost.author;
+            var parentPermlink = post ? post.parent_permlink : parentPost.permlink;
 
             var permlink;
-            if (post.parent_author) {
-                //Reply of comment
-                permlink = uniqueId();
+            if (post) {
+                //Reply edit case;
+                permlink = post.permlink;
             } else {
-                permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
+                //New Reply case
+                if (parentPost.parent_author) {
+                    //Reply of comment
+                    permlink = uniqueId();
+                } else {
+                    //Reply of post/publication
+                    permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
+                }
             }
+
 
             if (permlink.length > CONSTANTS.TEXT_MAX_SIZE.PERMLINK) {
                 permlink = permlink.substring(0, CONSTANTS.TEXT_MAX_SIZE.PERMLINK);
@@ -444,7 +452,7 @@ function makeComment(comment, post, callback) {
 
 function deleteComment(post, session, callback) {
 
-    if (session) {
+    if (session && post && post.author === session.account.username) {
         requireRoleKey(session.account.username, 'posting', function (postingKey) {
             globalLoading.show = true;
             crea.broadcast.deleteComment(postingKey, post.author, post.permlink, callback);

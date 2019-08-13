@@ -1,7 +1,7 @@
 (function () {
 
     var postContainer, otherProjectsContainer;
-    var promoteModal, downloadModal, reportModal;
+    var promoteModal, downloadModal, reportModal, reportCommentModal;
     var session, userAccount;
 
     function onVueReady() {
@@ -210,16 +210,20 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    addComment: function (post, response) {
+                    addComment: function (parentPost, response, edit) {
                         var that = this;
-                        post = post || this.state.post;
+
+                        var post = null;
+                        if (edit) {
+                            post = this.active_response_edit;
+                        }
                         var comment = response ? this.response_comment : this.comment;
-                        makeComment(comment, post, function (err, result) {
+                        makeComment(comment, post, parentPost, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
 
                                 if (response) {
-                                    that.response_comment = '';
+                                    that.cleanMakeResponse();
                                 } else {
                                     that.comment = '';
                                 }
@@ -230,6 +234,24 @@
                     linkfyUser: function (comment) {
                         return makeMentions(comment, this.state);
                     },
+                    mustShowCommentField: function (comment) {
+                        return (this.active_response != null && this.active_response.link === comment.link) || (this.active_response_edit != null && this.active_response_edit.parent_author === comment.author && this.active_response_edit.parent_permlink === comment.permlink);
+                    },
+                    setActiveComment: function(activeComment) {
+                        this.active_comment = activeComment;
+                        if (reportCommentModal) {
+                            reportCommentModal.active_comment = activeComment;
+                            reportCommentModal.$forceUpdate();
+                        }
+
+                        this.$forceUpdate();
+                    },
+                    cleanMakeResponse: function() {
+                        this.active_response = null;
+                        this.active_response_edit = null;
+                        this.response_comment = '';
+                        this.$forceUpdate();
+                    },
                     makeDownload: makeDownload,
                     removeComment: function(comment) {
                         var that = this;
@@ -239,6 +261,10 @@
                                 showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
                             }
                         })
+                    },
+                    editComment: function(comment) {
+                        this.response_comment = comment.body;
+                        this.active_response_edit = comment;
                     },
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {
@@ -255,7 +281,7 @@
                             updatePostData();
                         });
                     }),
-                    vote: function vote(weight, post) {
+                    vote: function vote(post, weight) {
                         console.log('Vote', weight, post);
                         post = post || this.state.post;
                         if (this.session) {
@@ -265,8 +291,10 @@
                                 globalLoading.show = true;
                                 crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                     globalLoading.show = false;
-                                    catchError(err);
-                                    showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                    if (!catchError(err)) {
+                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                        $('#modal-post').addClass('modal-active');
+                                    }
                                 });
                             });
                         }
@@ -433,6 +461,44 @@
                 reportModal.session = session;
                 reportModal.user = userAccount ? userAccount.user : null;
                 reportModal.state = state;
+            }
+
+            if (!reportCommentModal) {
+                reportCommentModal = new Vue({
+                    el: '#modal-report-comment',
+                    data: {
+                        lang: lang,
+                        session: session,
+                        user: userAccount ? userAccount.user : null,
+                        state: state,
+                        active_comment: null
+                    },
+                    methods: {
+                        vote: function vote(post, weight) {
+                            console.log('Vote', weight, post);
+                            post = post || this.state.post;
+                            if (this.session) {
+                                var that = this;
+                                var username = this.session.account.username;
+                                requireRoleKey(username, 'posting', function (postingKey) {
+                                    globalLoading.show = true;
+                                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
+                                        globalLoading.show = false;
+                                        if (!catchError(err)) {
+                                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                            $('#modal-post').addClass('modal-active');
+                                        }
+
+                                    });
+                                });
+                            }
+                        }
+                    }
+                })
+            } else {
+                reportCommentModal.session = session;
+                reportCommentModal.user = userAccount ? userAccount.user : null;
+                reportCommentModal.state = state;
             }
         }
     }
