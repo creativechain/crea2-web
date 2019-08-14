@@ -423,10 +423,10 @@ function makeMentions(comment, state) {
         userMatches = Array.trim(userMatches);
         userMatches.forEach(function (m) {
 
-            var mention = m.replace('@', '');
+            var mention = m.replace('@', '').toLowerCase();
             var user = state.accounts[mention];
             user = user ? user.metadata.publicName || user.name : user;
-            var link = '<a href="/' + m + '">' + user + '</a>';
+            var link = '<a href="/' + mention + '">' + user + '</a>';
             //console.log(m, link)
             body = body.replace(m, link);
         });
