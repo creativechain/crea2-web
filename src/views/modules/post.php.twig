@@ -282,9 +282,9 @@
                                             <textarea cols="30" rows="3" v-model="response_comment" v-bind:maxlength="CONSTANTS.TEXT_MAX_SIZE.COMMENT"></textarea>
 
                                             <div class="btn btn--primary mt-3 mb-3 mt-md-3 mb-md-5" v-on:click="addComment(state.post[c], true, active_response_edit != null)">
-                                                    <span class="btn__text">
-                                                        {{ lang.BUTTON.POST_COMMENT }}
-                                                    </span>
+                                                <span class="btn__text">
+                                                    {{ lang.BUTTON.POST_COMMENT }}
+                                                </span>
                                             </div>
                                             <div class="btn btn--sm mt-0 mb-3 mt-md-3 mb-md-5" v-on:click="cleanMakeResponse()">
                                                 <span class="btn__text text__dark">{{ lang.BUTTON.CANCEL }}</span>

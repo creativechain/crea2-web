@@ -414,9 +414,11 @@ function makeComment(comment, post, parentPost, callback) {
             var parentPermlink = post ? post.parent_permlink : parentPost.permlink;
 
             var permlink;
+            var tags = [];
             if (post) {
                 //Reply edit case;
                 permlink = post.permlink;
+                tags.push(post.metadata.tags[0])
             } else {
                 //New Reply case
                 if (parentPost.parent_author) {
@@ -426,6 +428,8 @@ function makeComment(comment, post, parentPost, callback) {
                     //Reply of post/publication
                     permlink = toPermalink(crea.formatter.commentPermlink(parentAuthor, parentPermlink));
                 }
+
+                tags.push(parentPost.metadata.tags[0])
             }
 
 
@@ -435,7 +439,7 @@ function makeComment(comment, post, parentPost, callback) {
 
             console.log(permlink.length, parentPermlink.length);
             var metadata = {
-                tags: [post.metadata.tags[0]]
+                tags: tags
             };
             /*crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username, permlink, '', comment, '', jsonstring(metadata), function (err, result) {
                 globalLoading.show = false;
