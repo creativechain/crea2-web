@@ -372,13 +372,13 @@
                                             </li>
 
 
-                                            {#<li v-on:click="ignoreUser">
-                                                <a href="" class="button-block-post">
+                                            <li v-on:click="ignoreUser">
+                                                <a href="#0" class="button-block-post">
                                                     <span>{{ lang.PUBLICATION.BLOCK_USER }}</span>
                                                 </a>
                                             </li>
 
-                                            <li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)">
+                                            {#<li v-if="state.post.reported" class="cursor-link" v-on:click="vote(0)">
                                                 <p class="p-report link-report">
                                                     <img src="/img/icons/report_content.svg" alt="" />({{ '{{ state.post.down_votes.length }}' }}) {{ lang.PUBLICATION.REMOVE_REPORT }}</p>
                                             </li>
