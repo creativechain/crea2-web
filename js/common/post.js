@@ -5,36 +5,21 @@
  */
 (function () {
     var postContainer;
-    var promoteModal;
-    var downloadModal;
+    var promoteModal, downloadModal, reportModal, reportCommentModal;
     var url = window.location.pathname;
     var session, userAccount;
-    var vueInstances = 3;
+    var vueInstances = 5;
 
-    function onVueReady() {
+    function onVueReady(force) {
         --vueInstances;
 
-        if (vueInstances === 0) {
+        if (vueInstances === 0 || force) {
             creaEvents.emit('crea.dom.ready');
         }
     }
 
     function setUp(state) {
         //updateUrl(state.current_route);
-
-        state.post.reported = false;
-        if (session) {
-            //Set reported by user
-            var username = session.account.username;
-            for (var x = 0; x < state.post.down_votes.length; x++) {
-                var v = state.post.down_votes[x];
-                if (v.voter === username) {
-
-                    state.post.reported = true;
-                    break;
-                }
-            }
-        }
 
         if (!postContainer) {
             console.log(clone(state));
@@ -47,7 +32,10 @@
                     user: userAccount ? userAccount.user : false,
                     state: state,
                     comment: '',
-                    active_comment: null
+                    response_comment: '',
+                    active_comment: null,
+                    active_response: null,
+                    active_response_edit: null
                 },
                 mounted: function mounted() {
                     onVueReady();
@@ -216,17 +204,30 @@
 
                         return false;
                     },
+                    isCommentResponse: function(comment, parentComment) {
+                        return comment.parent_author === parentComment.author && comment.parent_permlink === parentComment.permlink;
+                    },
                     editPost: function editPost() {
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    addComment: function (post) {
+                    addComment: function (parentPost, response, edit) {
                         var that = this;
-                        post = post || this.state.post;
-                        makeComment(this.comment, post, function (err, result) {
+
+                        var post = null;
+                        if (edit) {
+                            post = this.active_response_edit;
+                        }
+                        var comment = response ? this.response_comment : this.comment;
+                        makeComment(comment, post, parentPost, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
-                                that.comment = '';
+
+                                if (response) {
+                                    that.cleanMakeResponse();
+                                } else {
+                                    that.comment = '';
+                                }
                                 fetchContent();
                             }
                         })
@@ -235,7 +236,38 @@
                         //return comment;
                         return makeMentions(comment, this.state);
                     },
+                    mustShowCommentField: function (comment) {
+                        return (this.active_response != null && this.active_response.link === comment.link) || (this.active_response_edit != null && this.active_response_edit.parent_author === comment.author && this.active_response_edit.parent_permlink === comment.permlink);
+                    },
+                    setActiveComment: function(activeComment) {
+                        this.active_comment = activeComment;
+                        if (reportCommentModal) {
+                            reportCommentModal.active_comment = activeComment;
+                            reportCommentModal.$forceUpdate();
+                        }
+
+                        this.$forceUpdate();
+                    },
+                    cleanMakeResponse: function() {
+                        this.active_response = null;
+                        this.active_response_edit = null;
+                        this.response_comment = '';
+                        this.$forceUpdate();
+                    },
                     makeDownload: makeDownload,
+                    removeComment: function(comment) {
+                        var that = this;
+                        deleteComment(comment, this.session, function (err, result) {
+                            if (!catchError(err)) {
+                                globalLoading.show = false;
+                                fetchContent();
+                            }
+                        })
+                    },
+                    editComment: function(comment) {
+                        this.response_comment = comment.body;
+                        this.active_response_edit = comment;
+                    },
                     ignoreUser: function (_ignoreUser) {
                         function ignoreUser() {
                             return _ignoreUser.apply(this, arguments);
@@ -251,7 +283,7 @@
                             fetchContent();
                         });
                     }),
-                    vote: function vote(weight, post) {
+                    vote: function vote(post, weight) {
                         post = post || this.state.post;
                         if (this.session) {
                             var that = this;
@@ -370,7 +402,7 @@
                             },
                             confirmDownload: function confirmDownload() {
                                 if (this.modal.alreadyPayed || this.modal.confirmed) {
-                                    makeDownload(null, session, downloadModal.user, postContainer.state.post, fetchContent);
+                                    makeDownload(null, session, this.user, this.state.post, fetchContent);
                                 } else {
                                     this.modal.confirmed = true;
                                 }
@@ -386,10 +418,88 @@
                 //This post not has a download, so downloadModal cannot be mounted
                 onVueReady();
             }
+
+            if (!reportModal) {
+                reportModal = new Vue({
+                    el: '#modal-report',
+                    data: {
+                        lang: lang,
+                        session: session,
+                        user: userAccount ? userAccount.user : null,
+                        state: state
+                    },
+                    mounted: function mounted() {
+                        onVueReady();
+                    },
+                    methods: {
+                        vote: function vote(weight, post) {
+                            console.log('Vote', weight, post);
+                            post = post || this.state.post;
+                            if (this.session) {
+                                var that = this;
+                                var username = this.session.account.username;
+                                requireRoleKey(username, 'posting', function (postingKey) {
+                                    globalLoading.show = true;
+                                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
+                                        globalLoading.show = false;
+                                        catchError(err);
+                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                        $('modal-post').addClass('modal-active');
+                                    });
+                                });
+                            }
+                        }
+                    }
+                })
+            } else {
+                reportModal.session = session;
+                reportModal.user = userAccount ? userAccount.user : null;
+                reportModal.state = state;
+            }
+
+            if (!reportCommentModal) {
+                reportCommentModal = new Vue({
+                    el: '#modal-report-comment',
+                    data: {
+                        lang: lang,
+                        session: session,
+                        user: userAccount ? userAccount.user : null,
+                        state: state,
+                        active_comment: null
+                    },
+                    mounted: function mounted() {
+                        onVueReady();
+                    },
+                    methods: {
+                        vote: function vote(post, weight) {
+                            console.log('Vote', weight, post);
+                            post = post || this.state.post;
+                            if (this.session) {
+                                var that = this;
+                                var username = this.session.account.username;
+                                requireRoleKey(username, 'posting', function (postingKey) {
+                                    globalLoading.show = true;
+                                    crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
+                                        globalLoading.show = false;
+                                        if (!catchError(err)) {
+                                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                            $('#modal-post').addClass('modal-active');
+                                        }
+
+                                    });
+                                });
+                            }
+                        }
+                    }
+                })
+            } else {
+                reportCommentModal.session = session;
+                reportCommentModal.user = userAccount ? userAccount.user : null;
+                reportCommentModal.state = state;
+            }
         } else {
             //No session, so downloadModal and modalPromoted can not be mounted
-            onVueReady();
-            onVueReady();
+            onVueReady(true);
         }
 
     }
@@ -512,9 +622,9 @@
                                         return d2.getTime() - d1.getTime();
                                     });
                                     cKeys.forEach(function (c) {
-                                        result.content[c] = parsePost(result.content[c]);
+                                        result.post[c] = parsePost(result.content[c]);
                                     });
-                                    result.comments = cKeys;
+                                    result.post.comments = cKeys;
                                     setUp(result);
                                 }
                             };

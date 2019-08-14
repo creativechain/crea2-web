@@ -12,12 +12,8 @@
         }*/
     }
 
-    function setUp(state, fromHistory) {
+    function setUp(state) {
         console.log(clone(state));
-
-        if (!fromHistory) {
-            updateUrl(state.post.url, 'Creary - ' + state.post.title, state);
-        }
 
         if (!postContainer) {
             postContainer = new Vue({
