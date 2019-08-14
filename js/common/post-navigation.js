@@ -13,6 +13,8 @@
     }
 
     function setUp(state) {
+
+        updateUrl(state.post.url, 'Creary - ' + state.post.title, state);
         console.log(clone(state));
 
         if (!postContainer) {
