@@ -190,6 +190,7 @@
                             if (!catchError(err)) {
                                 file.resource = file.url;
                                 that.downloadFile = Object.assign(that.downloadFile, jsonify(jsonstring(file)));
+                                that.editablePost.downloadUploaded = file.size > 0;
                             }
                         });
                     }
@@ -495,6 +496,7 @@
                         var price = Asset.parse(post.download.price);
                         post.download.price = parseFloat(price.toPlainString());
                         post.download.currency = price.asset.symbol;
+                        post.downloadUploaded = false;
                         setUp(post);
                     }
                 });
