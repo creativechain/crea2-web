@@ -522,7 +522,7 @@ function uploadToIpfs(file, maxSize, callback) {
             var onResponse = function (err, data) {
                 if (!err) {
                     console.log(data);
-                    var f = new IpfsFile(data.Hash, file.name, file.type, data.size);
+                    var f = new IpfsFile(data.Hash, file.name, file.type, data.Size);
                     console.log(f);
                     callback(null, f);
                 } else if (callback) {
