@@ -163,11 +163,11 @@ function isInHome() {
 }
 
 function showModal(id) {
-    mr.modals.showModal($(id));
+    mr.modals.showModal(id);
 }
 
 function hideModal(id) {
-    mr.modals.showModal($(id));
+    mr.modals.hideModal(id);
 }
 function createBlockchainAccount(username, password, callback) {
     var keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
@@ -510,8 +510,7 @@ function makeDownload(event, session, user, post, callback) {
 
                             _url += '?stream=false';
 
-
-                            $('#modal-download').removeClass('modal-active');
+                            hideModal('#modal-download');
                             if (callback) {
                                 console.log('Callback is present')
                                 callback();

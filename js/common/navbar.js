@@ -82,8 +82,8 @@
                                                 console.log('applying menus');*/
                     },
                     closeLogin: function closeLogin() {
-                        $('#modal-login').removeClass('modal-active');
-                        $('#modal-login-d').removeClass('modal-active');
+                        hideModal('#modal-login');
+                        hideModal('#modal-login-d');
                     },
                     logout: logout,
                     login: function (_login) {

@@ -66,7 +66,7 @@
                     },
                     hideModalDeEnergize: function hideModalDeEnergize(event) {
                         cancelEventPropagation(event);
-                        $('#wallet-de-energize').parent().removeClass('modal-active');
+                        hideModal($('#wallet-de-energize').parent());
                     },
                     makeDeEnergize: function makePowerDown(event, amount) {
                         cancelEventPropagation(event);
@@ -127,7 +127,7 @@
                     },
                     hideModalSend: function hideModalSend(event) {
                         cancelEventPropagation(event);
-                        $('#wallet-send').removeClass('modal-active');
+                        hideModal('#wallet-send');
                         this.clearFields();
                     },
                     clearFields: function clearFields() {

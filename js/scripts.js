@@ -1915,10 +1915,10 @@ mr = (function (mr, $, window, document){
         }
     };
 
-    mr.modals.closeActiveModal = function(){
-        var modal      = jQuery('body div.modal-active'), 
-            closeEvent = document.createEvent('Event');
+    mr.modals.hideModal = function (modal) {
+        var closeEvent = document.createEvent('Event');
 
+        modal = $(modal);
         mr.util.idleSrc(modal, 'iframe');
         mr.util.pauseVideo(modal);
 
@@ -1935,6 +1935,11 @@ mr = (function (mr, $, window, document){
             closeEvent.initEvent('modalClosed.modals.mr', true, true);
             modal.removeClass('modal-active').trigger('modalClosed.modals.mr').get(0).dispatchEvent(closeEvent);
         }
+    };
+
+    mr.modals.closeActiveModal = function(){
+        var modal      = jQuery('body div.modal-active');
+        mr.modals.hideModal(modal);
     };
 
     mr.modals.autoplayVideo = function(modal){

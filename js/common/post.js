@@ -331,7 +331,7 @@
                     methods: {
                         hideModalPromote: function hideModalPromote(event) {
                             cancelEventPropagation(event);
-                            $('#modal-promote').removeClass('modal-active');
+                            hideModal('#modal-promote');
                         },
                         makePromotion: function makePromotion(event) {
                             cancelEventPropagation(event);
@@ -444,7 +444,7 @@
                                         globalLoading.show = false;
                                         catchError(err);
                                         showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                        $('modal-post').addClass('modal-active');
+                                        showModal('#modal-post');
                                     });
                                 });
                             }
@@ -483,7 +483,7 @@
                                         globalLoading.show = false;
                                         if (!catchError(err)) {
                                             showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                            $('#modal-post').addClass('modal-active');
+                                            showModal('#modal-post');
                                         }
 
                                     });

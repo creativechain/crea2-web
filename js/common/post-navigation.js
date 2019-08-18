@@ -291,7 +291,7 @@
                                     globalLoading.show = false;
                                     if (!catchError(err)) {
                                         showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                        $('#modal-post').addClass('modal-active');
+                                        showModal('#modal-post');
                                     }
                                 });
                             });
@@ -333,8 +333,8 @@
                     methods: {
                         hideModalPromote: function hideModalPromote(event) {
                             cancelEventPropagation(event);
-                            $('#modal-promote').removeClass('modal-active');
-                            $('#modal-post').addClass('modal-active');
+                            hideModal('#modal-promote');
+                            showModal('#modal-post');
                         },
                         makePromotion: function makePromotion(event) {
                             cancelEventPropagation(event);
@@ -408,7 +408,7 @@
                                 if (this.modal.alreadyPayed || this.modal.confirmed) {
                                     makeDownload(null, session, this.user, this.state.post, function () {
                                         console.log('On download success');
-                                        $('#modal-post').addClass('modal-active');
+                                        showModal('#modal-post');
                                     })
                                 } else {
                                     this.modal.confirmed = true;
@@ -448,7 +448,7 @@
                                         globalLoading.show = false;
                                         catchError(err);
                                         showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                        $('modal-post').addClass('modal-active');
+                                        showModal('#modal-post');
                                     });
                                 });
                             }
@@ -484,7 +484,7 @@
                                         globalLoading.show = false;
                                         if (!catchError(err)) {
                                             showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                            $('#modal-post').addClass('modal-active');
+                                            showModal('#modal-post');
                                         }
 
                                     });
