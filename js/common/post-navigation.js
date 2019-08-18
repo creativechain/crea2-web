@@ -581,7 +581,8 @@
         var postIndex = state.discussions.indexOf(state.author.name + '/' + state.post.permlink);
 
         if (postIndex >= 0 && postIndex <= state.discussions.length -2) {
-            postIndex++;showPostIndex(postIndex, state);
+            postIndex++;
+            showPostIndex(postIndex, state);
         }
     }
 
@@ -612,6 +613,8 @@
         state.discussions = state.discussion_idx[discuss][category];
         if (!postIndex) {
             state.postIndex = state.discussion_idx[discuss][category].indexOf(post.author + '/' + post.permlink);
+        } else {
+            state.postIndex = postIndex;
         }
 
         var postUrl = "/" + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
