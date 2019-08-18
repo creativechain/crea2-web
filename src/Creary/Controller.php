@@ -271,7 +271,7 @@ class Controller
                 $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
                 $this->buildMeta('property', 'og:title', $title),
                 $this->buildMeta('property', 'og:image', $profile['metadata']['avatar']['url']),
-                $this->buildMeta('property', 'og:description', $profile['metadata']['description']),
+                $this->buildMeta('property', 'og:description', $profile['metadata']['about']),
                 $this->buildMeta('property', 'og:type', 'profile'),
                 $this->buildMeta('property', 'profile:first_name', $publicName ? $publicName : $profileName),
                 $this->buildMeta('property', 'profile:username', $profileName),
@@ -279,9 +279,9 @@ class Controller
                 $this->buildMeta('name', 'twitter:site', '@Crearynet'),
                 $this->buildMeta('name', 'twitter:creator', '@' . $profileName),
                 $this->buildMeta('name', 'twitter:title', $title),
-                $this->buildMeta('name', 'twitter:description', $profile['metadata']['description']),
+                $this->buildMeta('name', 'twitter:description', $profile['metadata']['about']),
                 $this->buildMeta('name', 'twitter:image', $profile['metadata']['avatar']['url']),
-                $this->buildMeta('name', 'description', $profile['metadata']['description']),
+                $this->buildMeta('name', 'description', $profile['metadata']['about']),
             );
 
             $tags = $profile['metadata']['tags'];
