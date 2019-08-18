@@ -162,6 +162,13 @@ function isInHome() {
     return filters.includes(window.location.pathname);
 }
 
+function showModal(id) {
+    mr.modals.showModal($(id));
+}
+
+function hideModal(id) {
+    mr.modals.showModal($(id));
+}
 function createBlockchainAccount(username, password, callback) {
     var keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
     refreshAccessToken(function (accessToken) {

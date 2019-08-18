@@ -708,4 +708,17 @@
 
         updatePostData();
     });
+
+    creaEvents.on('crea.modal.ready', function () {
+        console.log('MODALS Ready');
+        setTimeout(function () {
+            $('#modal-post').on('modalOpened.modals.mr', function () {
+                console.log('Showing modal');
+                $('body').css({ overflow: 'hidden'});
+            }).on('modalClosed.modals.mr', function () {
+                console.log('Closing modal');
+                $('body').css({ overflow: ''});
+            })
+        }, 1000);
+    });
 })();

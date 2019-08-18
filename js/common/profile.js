@@ -411,7 +411,7 @@
                     openPost: function (post, event) {
                         cancelEventPropagation(event);
                         creaEvents.emit('navigation.post.data', post, this.state, '', 'profile');
-                        $('#modal-post').addClass('modal-active');
+                        showModal('#modal-post');
                     },
                     showProfile: showProfile,
                     getJoinDate: function getJoinDate() {
