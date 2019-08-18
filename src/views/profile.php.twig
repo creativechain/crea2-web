@@ -27,7 +27,7 @@
                                 </div>
                                 <div v-show="navbar.section === 'projects'" class="row project-profile">
                                     <template v-if="!state.user.buzz.blocked">
-                                        <template v-for="p in state.discussion_idx['']">
+                                        <template v-for="p in state.discussion_idx[''].profile">
                                             {{ include ('modules/post-view-home.php.twig') }}
                                         </template>
                                     </template>
@@ -88,6 +88,8 @@
         </section>
     </div>
 
+    {{ include('post-view-navigation.php.twig') }}
+    <script src="/js/common/post-navigation.js"></script>
     <script src="/js/compressor.min.js"></script>
     <script src="/js/common/profile.js"></script>
 

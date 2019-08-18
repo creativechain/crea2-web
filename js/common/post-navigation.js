@@ -607,7 +607,7 @@
 
     function showPostData(post, state, discuss, category, postIndex) {
         state = clone(state);
-        state.discuss = discuss;
+        state.discuss = discuss || '';
         state.category = category;
         state.discussions = state.discussion_idx[discuss][category];
         if (!postIndex) {

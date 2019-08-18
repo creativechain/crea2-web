@@ -408,7 +408,11 @@
                                 return Asset.parse(asset).toFriendlyString(null, true);
                         }
                     },
-                    openPost: showPost,
+                    openPost: function (post, event) {
+                        cancelEventPropagation(event);
+                        creaEvents.emit('navigation.post.data', post, this.state, '', 'profile');
+                        $('#modal-post').addClass('modal-active');
+                    },
                     showProfile: showProfile,
                     getJoinDate: function getJoinDate() {
                         var date = new Date(this.state.user.created);
@@ -1233,7 +1237,9 @@
                 }
                 state.content = {};
                 state.discussion_idx = {
-                    '': []
+                    '': {
+                        profile: []
+                    }
                 };
 
                 if (callback) {
@@ -1277,7 +1283,7 @@
                             var d = discussions[x];
                             var permlink = d.author + '/' + d.permlink;
                             state.content[permlink] = d;
-                            state.discussion_idx[''].push(permlink);
+                            state.discussion_idx[''].profile.push(permlink);
 
                         }
 
@@ -1481,7 +1487,7 @@
 
                     var permlink = d.author + '/' + d.permlink;
                     profileContainer.state.content[permlink] = d;
-                    profileContainer.state.discussion_idx[''].push(permlink);
+                    profileContainer.state.discussion_idx[''].profile.push(permlink);
                 }
 
                 profileContainer.$forceUpdate();
