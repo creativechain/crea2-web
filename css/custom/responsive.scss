@@ -846,6 +846,12 @@
 
 }
 
+@media (min-width: 320px) and (max-width: 1024px) {
+  .box-next-post {
+    display: none;
+  }
+}
+
 @media (min-width: 1200px) {
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 40px !important;

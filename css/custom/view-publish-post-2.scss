@@ -471,6 +471,18 @@
     }
   }
   .box-comment {
+    overflow: initial;
+    .dropdown-like-comment {
+      left: 160px !important;
+    }
+    .dropdown-price {
+      border: 1px solid #505050;
+      border-radius: 25px;
+      padding: 0 10px;
+      p {
+        margin-bottom: 0;
+      }
+    }
     h3.title {
       font-size: 14px;
       font-weight: bold;
