@@ -2650,6 +2650,10 @@ img {
   .dropdown-price .dropdown__content {
     left: -18.344px !important; } }
 @media (max-width: 767px) {
+  #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
+    margin-bottom: 0;
+    max-width: 100%; }
+
   #post-view .flickity-viewport {
     height: 250px !important; }
     #post-view .flickity-viewport .img-more-projects {
