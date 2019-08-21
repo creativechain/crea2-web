@@ -1093,10 +1093,6 @@
         color: #484848;
         word-break: break-word;
         margin-bottom: 10px; }
-      .post-view .box-comment .row-post-comments .user-comments .ul-row-share-comment li:nth-child(2) {
-        border: solid 1px #3B3B3C;
-        border-radius: 20px;
-        padding: 0 15px; }
       .post-view .box-comment .row-post-comments .user-comments .ul-row-share-comment img {
         width: 16px;
         height: 16px;
@@ -1820,6 +1816,8 @@
         height: 237px !important; }
     #modal-post #post-view .modal-content .modal-container .modal-content .modal-close-cross {
       top: 5px; }
+    #modal-post #post-view .modal-content .ul-row-share-comment .dropdown--active .price {
+      left: -140px !important; }
 
 body {
   color: #222222;

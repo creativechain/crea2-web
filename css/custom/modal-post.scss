@@ -25,6 +25,13 @@
       .modal-container .modal-content .modal-close-cross {
         top: 5px;
       }
+      .ul-row-share-comment {
+        .dropdown--active {
+          .price {
+            left: -140px !important;
+          }
+        }
+      }
     }
 
   }
