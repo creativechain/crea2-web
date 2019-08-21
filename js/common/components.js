@@ -758,7 +758,23 @@ Vue.component('comment-like', {
         '   <div class="lds-heart size-20 comment-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
         '       <div></div>' +
         '   </div>' +
-        '   <span>{{ post.up_votes.length }}</span>' +
+        '   <div class="dropdown inline">' +
+        '       <span class="dropdown__trigger">{{ post.up_votes.length }}</span>' +
+        '       <div class="dropdown__container">' +
+        '           <div class="container">' +
+        '               <div class="row">' +
+        '                   <div class="col-4 col-sm-3 col-md-6 col-lg-2 dropdown__content dropdown-like-comment">' +
+        '                       <ul>' +
+        '                           <li v-for="v in (post.up_votes.length > 10 ? 10 : post.up_votes.length)">' +
+        '                               <a v-if="(v-1) < 10" class="text-truncate" v-bind:href="\'/@\' + post.up_votes[v-1].voter">+{{ post.up_votes[v-1].voter }}</a>' +
+        '                               <span v-else class="text-truncate" >+{{ "..and " + post.up_votes.length - 10  + " users"}}</span>' +
+        '                           </li>' +
+        '                       </ul>' +
+        '                   </div>' +
+        '               </div>' +
+        '           </div>' +
+        '       </div>' +
+        '   </div>' +
         '</div>',
     props: {
         session: [Object, Boolean],

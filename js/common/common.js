@@ -69,6 +69,11 @@ var CONSTANTS = {
         USER_BLOCK_THRESHOLD: -30,
         MAX_LOG_NUM: 20,
         LEVELS: ['novice', 'trainee', 'advanced', 'expert', 'influencer', 'master', 'guru', 'genius']
+    },
+    POST: {
+        MAX_OTHER_PROJECTS: 12,
+        MAX_COMMENT_SHOWN: 10,
+        COMMENT_SHOW_INTERVAL: 10
     }
 };
 creaEvents.on('crea.session.login', function (session, account) {

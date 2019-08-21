@@ -29,8 +29,11 @@
                     comment: '',
                     response_comment: '',
                     active_comment: null,
+                    active_comment_edit: null,
                     active_response: null,
-                    active_response_edit: null
+                    active_response_edit: null,
+                    comments_shown: CONSTANTS.POST.MAX_COMMENT_SHOWN,
+                    navigation: true
                 },
                 mounted: function mounted() {
                     onVueReady();
@@ -77,13 +80,14 @@
                     formatDate: function formatDate(date) {
                         return moment(date + 'Z').format('LLLL');
                     },
-                    hasPaid: function hasPaid() {
+                    hasPaid: function hasPaid(post) {
+                        post = post || this.state.post;
                         var now = new Date();
-                        var payout = toLocaleDate(this.state.post.cashout_time);
+                        var payout = toLocaleDate(post.cashout_time);
                         return now.getTime() > payout.getTime();
                     },
-                    getPayoutPostDate: function getPayoutPostDate() {
-                        var post = this.state.post;
+                    getPayoutPostDate: function getPayoutPostDate(post) {
+                        post = post || this.state.post;
                         var date = toLocaleDate(post.cashout_time);
 
                         if (this.hasPaid(post)) {
@@ -104,9 +108,7 @@
                     },
                     getPayout: function getPayout(post, sym, dec) {
 
-                        if (!post) {
-                            post = this.state.post;
-                        }
+                        post = post || this.state.post;
 
                         if (!dec) {
                             dec = 2;
@@ -114,7 +116,7 @@
 
                         var amount = Asset.parseString(post.pending_payout_value);
 
-                        if (this.hasPaid()) {
+                        if (this.hasPaid(post)) {
                             amount = Asset.parseString(post.total_payout_value);
                             amount = amount.add(Asset.parseString(post.curator_payout_value));
                         } //amount.amount = parseInt(amount.amount / 1000000000);
@@ -122,13 +124,17 @@
 
                         return (sym ? '$ ' : '') + amount.toPlainString(dec);
                     },
-                    getFriendlyPayout: function getFriendlyPayout() {
-                        return this.getPayout(null, false) + ' CBD';
+                    getFriendlyPayout: function getFriendlyPayout(post) {
+                        post = post || this.state.post;
+                        return this.getPayout(post, false) + ' CBD';
                     },
-                    getPendingPayouts: function getPendingPayouts(asset) {
+                    getPendingPayouts: function getPendingPayouts(post, asset) {
+                        if (asset) {
+                            console.log('Asset:', asset)
+                        }
                         asset = asset ? asset.toLowerCase() : '';
 
-                        var post = this.state.post;
+                        post = post || this.state.post;
                         var PRICE_PER_CREA = Asset.parse({
                             amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(),
                             nai: 'cbd'
@@ -166,6 +172,10 @@
                             default:
                                 return '(' + PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_CGY.toFriendlyString(null, false) + ')';
                         }
+                    },
+                    showMoreComments: function() {
+                        this.comments_shown += CONSTANTS.POST.COMMENT_SHOW_INTERVAL;
+                        this.$forceUpdate();
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;
@@ -208,22 +218,19 @@
                         var route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
-                    addComment: function (parentPost, response, edit) {
+                    addComment: function (parentPost, commentReply, editingResponse) {
                         var that = this;
 
-                        var post = null;
-                        if (edit) {
-                            post = this.active_response_edit;
-                        }
-                        var comment = response ? this.response_comment : this.comment;
+                        var post = editingResponse;
+                        var comment = commentReply ? this.response_comment : this.comment;
                         makeComment(comment, post, parentPost, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
 
-                                if (response) {
+                                if (commentReply) {
                                     that.cleanMakeResponse();
                                 } else {
-                                    that.comment = '';
+                                    that.cleanMakeComment();
                                 }
                                 showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
                             }
@@ -242,6 +249,11 @@
                             reportCommentModal.$forceUpdate();
                         }
 
+                        this.$forceUpdate();
+                    },
+                    setActiveCommentEdit: function(editComment) {
+                        this.active_comment_edit = editComment;
+                        this.comment = editComment.body;
                         this.$forceUpdate();
                     },
                     cleanMakeResponse: function() {
@@ -503,37 +515,48 @@
 
     function fetchOtherProjects(author, permlink) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
-            if (!otherProjectsContainer) {
-                otherProjectsContainer = new Vue({
-                    el: '#more-projects',
-                    data: {
-                        otherProjects: discussions
-                    },
-                    mounted: function mounted() {
-                        mr.sliders.documentReady($);
-                    },
-                    methods: {
-                        showPost: showPost,
-                        getFeaturedImage: function getFeaturedImage(post) {
-                            var featuredImage = post.metadata.featuredImage;
+            console.log('Others', discussions)
+            otherProjectsContainer = new Vue({
+                el: '#more-projects',
+                data: {
+                    otherProjects: discussions,
+                    navigation: true
+                },
+                updated: function() {
+                    mr.sliders.documentReady($);
+                    console.log('Slider updated');
+                },
+                methods: {
+                    loadPost: function (post, event) {
+                        cancelEventPropagation(event)
+                        var state = postContainer.state;
+                        var moreProjects = [];
+                        this.otherProjects.forEach(function (d) {
+                            moreProjects.push(d.link);
+                            state.content[d.link] = d;
+                        });
 
-                            if (featuredImage && featuredImage.hash) {
-                                return {
-                                    url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
-                                };
-                            } else if (featuredImage && featuredImage.url) {
-                                return featuredImage;
-                            }
+                        state.discussion_idx[''].more_projects = moreProjects;
+                        showPostData(post, postContainer.state, '', 'more_projects', moreProjects.indexOf(post.link));
+                    },
+                    getFeaturedImage: function getFeaturedImage(post) {
+                        var featuredImage = post.metadata.featuredImage;
 
-                            return {};
+                        if (featuredImage && featuredImage.hash) {
+                            return {
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
+                            };
+                        } else if (featuredImage && featuredImage.url) {
+                            return featuredImage;
                         }
+
+                        return {};
                     }
-                });
-            } else {
-                otherProjectsContainer.otherProjects = discussions;
-            }
+                }
+            });
 
             otherProjectsContainer.$forceUpdate();
+            console.log('More projects updated');
         };
 
         var date = new Date().toISOString().replace('Z', '');
@@ -545,18 +568,20 @@
         }, function (err, result) {
             if (!catchError(err)) {
                 var discussions = [];
+                console.log('Other projects', result);
+
                 result.discussions.forEach(function (d) {
-                    d.metadata = jsonify(d.json_metadata);
+                    d = parsePost(d, d.reblogged_by);
 
                     if (d.permlink !== permlink && d.metadata.featuredImage) {
                         discussions.push(d);
                     }
                 });
 
-                if (discussions.length > 12) {
+                if (discussions.length > CONSTANTS.POST.MAX_OTHER_PROJECTS) {
                     var selectedDiscuss = [];
 
-                    for (var x = 0; x < 12; x++) {
+                    for (var x = 0; x < CONSTANTS.POST.MAX_OTHER_PROJECTS; x++) {
                         var r = randomNumber(0, discussions.length - 1);
                         selectedDiscuss.push(discussions.splice(r, 1)[0]);
                     }
@@ -589,7 +614,7 @@
     function lastPost(event) {
         cancelEventPropagation(event);
         var state = postContainer.state;
-        var postIndex = state.discussions.indexOf(state.post.author + '/' + state.post.permlink);
+        var postIndex = state.discussions.indexOf(state.post.link);
 
         if (postIndex > 0 && postIndex <= state.discussions.length -1) {
             postIndex--;
@@ -651,6 +676,10 @@
                             state.post.comments = cKeys;
 
                             setUp(state);
+
+                            setTimeout(function () {
+                                fetchOtherProjects(post.author, post.permlink);
+                            }, 300);
                         }
                     };
 
@@ -675,9 +704,6 @@
                 console.error(err);
             }
         });
-
-
-        fetchOtherProjects(post.author, post.permlink);
     }
 
     $(window).bind('popstate', function(event) {
