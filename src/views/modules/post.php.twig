@@ -400,10 +400,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </li>
-                                                                <li v-if="session && state.post[c].author == user.name">
+                                                                <li v-if="session && state.post[cc].author == user.name">
                                                                     <a href="#0" v-on:click="active_response_edit = state.post[cc]">{{ lang.PUBLICATION.EDIT }}</a>
                                                                 </li>
-                                                                <li v-if="session && state.post[c].author == user.name && state.post[c].children == 0" v-on:click="removeComment(state.post[cc])">
+                                                                <li v-if="session && state.post[cc].author == user.name && state.post[cc].children == 0" v-on:click="removeComment(state.post[cc])">
                                                                     <a href="#0">{{ lang.PUBLICATION.DELETE }}</a>
                                                                 </li>
                                                             </ul>

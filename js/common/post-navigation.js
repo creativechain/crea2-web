@@ -244,7 +244,7 @@ var postContainer;
                                 } else {
                                     that.cleanMakeComment();
                                 }
-                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                             }
                         })
                     },
@@ -268,6 +268,12 @@ var postContainer;
                         this.comment = editComment.body;
                         this.$forceUpdate();
                     },
+                    cleanMakeComment: function() {
+                        this.active_comment = null;
+                        this.active_comment_edit = null;
+                        this.comment = '';
+                        this.$forceUpdate();
+                    },
                     cleanMakeResponse: function() {
                         this.active_response = null;
                         this.active_response_edit = null;
@@ -280,7 +286,7 @@ var postContainer;
                         deleteComment(comment, this.session, function (err, result) {
                             if (!catchError(err)) {
                                 globalLoading.show = false;
-                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                             }
                         })
                     },
@@ -314,7 +320,7 @@ var postContainer;
                                 crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                     globalLoading.show = false;
                                     if (!catchError(err)) {
-                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                                         showModal('#modal-post');
                                     }
                                 });
@@ -324,11 +330,11 @@ var postContainer;
                     onVote: function onVote(err) {
                         var that = this;
                         catchError(err);
-                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                     },
                     onFollow: function onFollow(err, result) {
                         catchError(err);
-                        updateUserSession();
+                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                     }
                 }
             });
@@ -471,7 +477,7 @@ var postContainer;
                                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                         globalLoading.show = false;
                                         catchError(err);
-                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                                         showModal('#modal-post');
                                     });
                                 });
@@ -507,7 +513,7 @@ var postContainer;
                                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                         globalLoading.show = false;
                                         if (!catchError(err)) {
-                                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
+                                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                                             showModal('#modal-post');
                                         }
 
@@ -548,8 +554,13 @@ var postContainer;
                             state.content[d.link] = d;
                         });
 
-                        state.discussion_idx[''].more_projects = moreProjects;
-                        showPostData(post, postContainer.state, '', 'more_projects', moreProjects.indexOf(post.link));
+                        var discuss = state.discuss || '';
+                        if (!state.discussion_idx[discuss]) {
+                            state.discussion_idx[discuss] = {};
+                        }
+
+                        state.discussion_idx[discuss].more_projects = moreProjects;
+                        showPostData(post, postContainer.state, discuss, 'more_projects', moreProjects.indexOf(post.link));
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;
@@ -635,16 +646,18 @@ var postContainer;
     }
 
     function showPostIndex(postIndex, state) {
-        //state.post = null;
-        postContainer.$set(postContainer.state, 'post', null);
-        postContainer.$forceUpdate();
-
         var postContent = state.discussions[postIndex];
         var post = clone(state.content[postContent]);
         showPostData(post, state, state.discuss, state.category, postIndex);
     }
 
-    function showPostData(post, state, discuss, category, postIndex) {
+    function showPostData(post, state, discuss, category, postIndex, postRefresh) {
+        //state.post = null;
+        if (!postRefresh && postContainer) {
+            postContainer.$set(postContainer.state, 'post', null);
+            postContainer.$forceUpdate();
+        }
+
         state = clone(state);
         state.discuss = discuss || '';
         state.category = category;
