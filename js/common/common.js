@@ -931,11 +931,12 @@ function requireRoleKey(username, role, login, callback) {
     }
 }
 
+
 creaEvents.on('crea.content.prepare', function () {
     globalLoading = new Vue({
         el: '#global-loading',
         data: {
-            show: false
+            show: true
         }
     });
 

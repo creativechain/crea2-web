@@ -4,9 +4,15 @@
  * Created by ander on 11/10/18.
  */
 (function () {
-    document.addEventListener('DOMContentLoaded', function () {
-        creaEvents.emit('crea.content.prepare');
+    window.addEventListener('load', function (ev) {
+        console.log("Resources loaded");
         creaEvents.emit('crea.content.loaded');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("DOM loaded");
+        creaEvents.emit('crea.content.prepare');
+
         var session = Session.getAlive();
 
         if (session) {
@@ -71,7 +77,11 @@
 
         //console.log(navLang, CreaCookies.get('creary.language'));
     }
-    creaEvents.on('crea.session.login', updateCookies);
+    creaEvents.on('crea.session.login', function () {
+        globalLoading.show = false;
+        updateCookies();
+    });
+
     creaEvents.on('crea.session.update', updateCookies);
     creaEvents.on('crea.session.logout', updateCookies);
 

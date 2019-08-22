@@ -1,6 +1,7 @@
+var postContainer;
 (function () {
 
-    var postContainer, otherProjectsContainer;
+    var otherProjectsContainer;
     var promoteModal, downloadModal, reportModal, reportCommentModal;
     var session, userAccount;
 
@@ -34,6 +35,17 @@
                     active_response_edit: null,
                     comments_shown: CONSTANTS.POST.MAX_COMMENT_SHOWN,
                     navigation: true
+                },
+                watch: {
+                    state: {
+                        immediate: true,
+                        deep: true,
+                        handler: function handler(newVal, oldVal) {
+                            if (newVal) {
+                                globalLoading.show = !newVal.post;
+                            }
+                        }
+                    }
                 },
                 mounted: function mounted() {
                     onVueReady();
@@ -623,7 +635,8 @@
     }
 
     function showPostIndex(postIndex, state) {
-        state.post = null;
+        //state.post = null;
+        postContainer.$set(postContainer.state, 'post', null);
         postContainer.$forceUpdate();
 
         var postContent = state.discussions[postIndex];
