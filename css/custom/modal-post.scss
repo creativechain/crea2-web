@@ -13,9 +13,14 @@
     height: 100vh;
 
     .modal-content {
+      overflow-x: hidden;
+      overflow-y: hidden;
       max-height: 100%;
       section {
         padding: 60px 0;
+        .border-post-view {
+          margin-bottom: 50px;
+        }
         .row-content-post {
           .img-post-view {
             .upload-img {

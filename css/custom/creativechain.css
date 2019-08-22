@@ -1812,9 +1812,13 @@
   padding: 0;
   height: 100vh; }
   #modal-post #post-view .modal-content {
+    overflow-x: hidden;
+    overflow-y: hidden;
     max-height: 100%; }
     #modal-post #post-view .modal-content section {
       padding: 60px 0; }
+      #modal-post #post-view .modal-content section .border-post-view {
+        margin-bottom: 50px; }
       #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img {
         margin-left: -17px; }
         #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
