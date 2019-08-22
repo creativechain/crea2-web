@@ -90,7 +90,7 @@ function handleRoute() {
 
     $controller->addRoute('/', 'home.php.twig');
     $controller->addRoute('^\/([\w\d\-\/]+)\/([\w\d\-\/]+)\/?$', 'home.php.twig'); // TAG PROJECTS
-    $controller->addRoute('^\/(skyrockets|votes|responses|popular|popular30|promoted|cashout|payout|payout_comments|now|active)\/?$', 'home.php.twig'); //CATEGORIES
+    $controller->addRoute('^\/(skyrockets|votes|responses|popular|promoted|cashout|payout|now|active)\/?$', 'home.php.twig'); //CATEGORIES
     $controller->addRoute('^\/(@[\w\.\d-]+)\/(feed)\/?$', 'home.php.twig');
     $controller->addRoute('^\/(@[\w\.\d-]+)\/?$', 'profile.php.twig', 'profile');
     $controller->addRoute('^\/(@[\w\.\d-]+)\/(projects|following|followers|curation-rewards|author-rewards|blocked|wallet|settings|passwords|balances|permissions)\/?$', 'profile.php.twig', 'profile');
@@ -103,8 +103,8 @@ function handleRoute() {
     $controller->addRoute('/publish', 'publish.php.twig');
     $controller->addRoute('/explore', 'explore.php.twig');
     $controller->addRoute('/~market', 'market.php.twig');
-    $controller->addRoute('/~calculator', 'vote_calculator.php.twig');
-    $controller->addRoute('/~calculator2', 'vote_calculator2.php.twig');
+    //$controller->addRoute('/~calculator', 'vote_calculator.php.twig');
+    //$controller->addRoute('/~calculator2', 'vote_calculator2.php.twig');
     $controller->addRoute('/faq', 'faq.php.twig');
     $controller->addRoute('/recover-account', 'recover-account.php.twig');
     $controller->addRoute('/terms_and_conditions', 'terms_and_conditions.php.twig');
