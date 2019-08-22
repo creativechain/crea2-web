@@ -643,7 +643,7 @@
                                     <div class="feature__body">
                                         <h2 class="title-certificate">{{ lang.PUBLICATION.CERTIFICATE }}</h2>
                                         <hr>
-                                        <p>Blockchain: <a v-bind:href="'https://creascan.net' + state.post.url" target="_blank">Project Data</a> </p>
+                                        <p>Blockchain: <a v-bind:href="'https://creascan.net' + state.post.url + '/data'" target="_blank">Project Data</a> </p>
                                         <p>Timestamp: {{ '{{ new Date(state.post.created + "Z").toLocaleString() }}' }}</p>
                                         {#<p>{{ '{{ state.post.metadata.hash || "-" }}' }}</p>#}
                                         <p>License: <a v-bind:href="getLicense().getLink()" target="_blank">{{ '{{ getLicense().getTags() }}' }}</a></p>
