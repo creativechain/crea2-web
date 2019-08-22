@@ -1816,9 +1816,9 @@
     overflow-y: hidden;
     max-height: 100%; }
     #modal-post #post-view .modal-content section {
-      padding: 60px 0; }
+      padding: 25px 0; }
       #modal-post #post-view .modal-content section .border-post-view {
-        margin-bottom: 50px; }
+        margin-bottom: 30px; }
       #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img {
         margin-left: -17px; }
         #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
