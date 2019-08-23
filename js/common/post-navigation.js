@@ -1,7 +1,7 @@
-var postContainer;
+
 (function () {
 
-    var otherProjectsContainer;
+    var postContainer, otherProjectsContainer;
     var promoteModal, downloadModal, reportModal, reportCommentModal;
     var session, userAccount;
 
@@ -531,12 +531,14 @@ var postContainer;
         }
     }
 
-    function fetchOtherProjects(author, permlink) {
+    function fetchOtherProjects(author, permlink, state) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
             console.log('Others', discussions)
             otherProjectsContainer = new Vue({
                 el: '#more-projects',
                 data: {
+                    lang: lang,
+                    state: state,
                     otherProjects: discussions,
                     navigation: true
                 },
@@ -704,7 +706,7 @@ var postContainer;
                             setUp(state);
 
                             setTimeout(function () {
-                                fetchOtherProjects(post.author, post.permlink);
+                                fetchOtherProjects(post.author, post.permlink, state);
                             }, 300);
                         }
                     };
