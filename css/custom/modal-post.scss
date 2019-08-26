@@ -34,8 +34,12 @@
           }
         }
         .flickity-viewport {
-          height: 237px !important;
+          height: 237px;
         }
+      }
+      .size-20-comment {
+        width: 30px !important;
+        height: 15px !important;
       }
       .modal-container .modal-content .modal-close-cross {
         top: 5px;

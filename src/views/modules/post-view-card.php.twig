@@ -30,9 +30,55 @@
             <h4 v-on:click="openPost(state.content[p])">{{ '{{ state.content[p].title }}' }}</h4>
             <!--<p class="description-post-box text-truncate" v-html="getTags(state.content[p])"></p>-->
             <ul class="list-inline list-unstyled w-100">
-                <li v-if="!state.accounts[state.content[p].author].buzz.blocked" class="li-like">
-                    <like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[p]"></like>
+
+                <!-- maquetacion like fichas home -->
+                <li class="ul-social li-like-home list-inline-item pos-relative">
+                    <div class="row-likes">
+                        <div class="d-flex w-100">
+                            <div>
+                                <div class="text-right">
+                                    <div class="lds-heart size-20 post-like like-normal">
+                                        <div></div>
+                                    </div>
+                                    <div class="dropdown inline post-like-count">
+                                        <span class="dropdown__trigger"> 25</span>
+                                        <div class="dropdown__container"><div>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3 col-md-6 col-lg-2 dropdown__content amount-post-view-home">
+                                                        <ul class="list-inline text-right">
+                                                            <li class="list-inline-item w-100"><a href="/@jrubin" class="text-truncate">+jrubin</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@thayden" class="text-truncate">+thayden</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@csmanolo" class="text-truncate">+csmanolo</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@comandosuricato" class="text-truncate">+comandosuricato</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@gamma" class="text-truncate">+gamma</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@wow" class="text-truncate">+wow</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@franois" class="text-truncate">+franois</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@filippounits" class="text-truncate">+filippounits</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@azbeen" class="text-truncate">+azbeen</a></li>
+                                                            <li class="list-inline-item w-100"><a href="/@boreal" class="text-truncate">+boreal</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
+
+
+
+
+
+                <!--<li v-if="!state.accounts[state.content[p].author].buzz.blocked" class="li-like">
+                    <like v-on:vote="onVote" v-bind:session="session" v-bind:post="state.content[p]"></like>
+                </li>-->
+
+
+
+
                 <li>
                     <div class="dropdown dropdown-price">
                         <span class="dropdown__trigger"> {{ '{{ getPayout(state.content[p]) }}' }}

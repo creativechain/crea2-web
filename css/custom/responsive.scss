@@ -267,6 +267,17 @@
 }
 
 @media (max-width: 767px) {
+
+  .li-like-home {
+    .post-like-count {
+      text-align: left;
+      .dropdown__container {
+        left: 0 !important;
+        width: 100%;
+      }
+    }
+  }
+
   #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
     margin-bottom: 0;
     max-width: 100%;

@@ -130,7 +130,7 @@
 
         <div class="container row-promoter pt-3 pb-3" style="background-color: white">
             <div class="row justify-content-between">
-                <div v-if="!state.author.buzz.blocked" class="col-sm-12 col-md-6">
+                <div v-if="!state.author.buzz.blocked" class="col-6 col-sm-6 col-md-6">
                     {#                        <ul class="ul-recommended-post">
                                                 <li>
                                                     <a href="" class="d-flex">
@@ -145,7 +145,7 @@
                                             </ul>#}
                     <recommend-post v-bind:post="state.post" v-bind:session="session" v-bind:user="user"></recommend-post>
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
+                <div class="col-6 col-sm-6 col-md-6 text-right">
                     <div v-if="session && !state.author.buzz.blocked" class="row-promote justify-content-center">
 
                         <div {#class="modal-instance"#}>
