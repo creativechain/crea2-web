@@ -536,18 +536,39 @@
         return route.join('/');
     }
 
-    function fetchOtherProjects(author, permlink) {
+    function fetchOtherProjects(author, permlink, state) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
             var otherProjects = new Vue({
                 el: '#more-projects',
                 data: {
-                    otherProjects: discussions
+                    lang: lang,
+                    state: state,
+                    otherProjects: discussions,
+                    navigation: false
                 },
                 mounted: function () {
                     mr.sliders.documentReady($);
                 },
                 methods: {
-                    loadPost: showPost,
+                    loadPost: function (post, event) {
+                        cancelEventPropagation(event);
+                        console.log('loading')
+                        var state = postContainer.state;
+                        var moreProjects = [];
+                        this.otherProjects.forEach(function (d) {
+                            moreProjects.push(d.link);
+                            state.content[d.link] = d;
+                        });
+
+                        var discuss = state.discuss || '';
+                        if (!state.discussion_idx[discuss]) {
+                            state.discussion_idx[discuss] = {};
+                        }
+
+                        state.discussion_idx[discuss].more_projects = moreProjects;
+                        creaEvents.emit('navigation.post.data', post, postContainer.state, discuss, 'more_projects', moreProjects.indexOf(post.link));
+                        showModal('#modal-post');
+                    },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage = post.metadata.featuredImage;
 
@@ -641,6 +662,8 @@
                                     });
                                     result.post.comments = cKeys;
                                     setUp(result);
+
+                                    fetchOtherProjects(result.post.author, result.post.permlink, result);
                                 }
                             };
 
@@ -680,21 +703,6 @@
             }
         }
     }
-
-    creaEvents.on('crea.dom.ready', function () {
-        var author = getPathPart();
-        var permlink;
-
-        if (!author.startsWith('@')) {
-            author = getPathPart(1).replace('@', '');
-            permlink = getPathPart(2);
-        } else {
-            author = getPathPart().replace('@', '');
-            permlink = getPathPart(1);
-        }
-
-        fetchOtherProjects(author, permlink);
-    });
 
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;

@@ -20,7 +20,7 @@
 
         if (!postContainer) {
             postContainer = new Vue({
-                el: '#post-view',
+                el: '#post-navigation-view',
                 data: {
                     lang: lang,
                     CONSTANTS: CONSTANTS,
@@ -535,7 +535,7 @@
         var loadOtherProjects = function loadOtherProjects(discussions) {
             console.log('Others', discussions)
             otherProjectsContainer = new Vue({
-                el: '#more-projects',
+                el: '#more-projects-navigation',
                 data: {
                     lang: lang,
                     state: state,
@@ -655,12 +655,14 @@
 
     function showPostData(post, state, discuss, category, postIndex, postRefresh) {
         //state.post = null;
+        console.log('post', post);
         if (!postRefresh && postContainer) {
             postContainer.$set(postContainer.state, 'post', null);
             postContainer.$forceUpdate();
         }
 
         state = clone(state);
+        console.log(state);
         state.discuss = discuss || '';
         state.category = category;
         state.discussions = state.discussion_idx[discuss][category];

@@ -45,7 +45,7 @@
             <div class="container post-container-home">
                 <div class="row">
                     <template v-for="p in state.discussion_idx[discuss][category]">
-                        {{ include ('modules/post-view-home.php.twig') }}
+                        {{ include ('modules/post-view-card.php.twig') }}
                     </template>
                 </div>
             </div>
@@ -93,7 +93,7 @@
 
     </div>
 
-    {{ include('post-view-navigation.php.twig') }}
+    {{ include('modules/post-view-navigation.php.twig') }}
     <script src="/js/common/post-navigation.js"></script>
     <script src="/js/common/home.js"></script>
 

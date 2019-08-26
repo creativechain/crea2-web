@@ -1,4 +1,4 @@
-<section v-cloak id="post-view">
+<section v-cloak>
     <div class="border-post-view">
         <div class="container" style="background-color: white;border-radius: 10px 10px;">
             <div class="row row-title">
@@ -165,29 +165,17 @@
             </div>
         </div>
 
-
-        <div v-pre>
-            <div id="more-projects" v-if="!state.author.buzz.blocked && otherProjects.length > 0" class="container row-project">
-                <div class="row">
-                    <div class="col-md-12"><p class="subtitle-content-publish">{{ lang.PUBLICATION.MORE_PROJECTS }}</p></div>
+        <div v-if="navigation">
+            <div v-pre>
+                <div id="more-projects-navigation" v-if="!state.author.buzz.blocked && otherProjects.length > 0" class="container row-project">
+                    {{ include('modules/more-projects.php.twig') }}
                 </div>
-
-                <div class="row">
-                    <div class="col">
-                        <div class="slider slider--columns" data-autoplay="false">
-                            <ul class="slides">
-                                <li v-for="o in otherProjects" class="col-6 col-sm-6 col-md-4 mb-2">
-                                    <a v-bind:href="o.url" v-on:click="loadPost(o, $event)">
-                                        <div class="img-more-projects"
-                                             v-bind:style="{ 'background-image': 'url(' + getFeaturedImage(o).url + ')' }">
-
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--end of col-->
+            </div>
+        </div>
+        <div v-else >
+            <div v-pre>
+                <div id="more-projects" v-if="!state.author.buzz.blocked && otherProjects.length > 0" class="container row-project">
+                    {{ include('modules/more-projects.php.twig') }}
                 </div>
             </div>
         </div>

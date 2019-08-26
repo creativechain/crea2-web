@@ -1,8 +1,12 @@
 {{ include ('element/navbar.php.twig') }}
 
 <div class="main-container post-view">
-    {{ include ('modules/post.php.twig') }}
-    {{ include('modules/post-modals.php.twig') }}
+    <div id="post-view">
+        {{ include ('modules/post.php.twig') }}
+    </div>
+
+    {{ include('modules/post-view-navigation.php.twig') }}
+    <script src="/js/common/post-navigation.js"></script>
     <script src="/js/common/post.js"></script>
 
 {{ include ('element/footer.php.twig') }}

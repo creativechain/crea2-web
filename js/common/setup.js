@@ -64,6 +64,7 @@
     });
 
     function updateCookies(session) {
+        console.log('Cookie session', session);
         if (session) {
             CreaCookies.set('creary.username', session.account.username);
         } else {
@@ -77,9 +78,9 @@
 
         //console.log(navLang, CreaCookies.get('creary.language'));
     }
-    creaEvents.on('crea.session.login', function () {
+    creaEvents.on('crea.session.login', function (session) {
         globalLoading.show = false;
-        updateCookies();
+        updateCookies(session);
     });
 
     creaEvents.on('crea.session.update', updateCookies);
