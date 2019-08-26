@@ -731,7 +731,7 @@
 
 .post-view p a, .post-view span a, .post-view label a {
   text-decoration: none; }
-.post-view #post-view {
+.post-view section {
   padding: 80px 0 25px; }
 .post-view .boxed {
   margin-bottom: 20px;
