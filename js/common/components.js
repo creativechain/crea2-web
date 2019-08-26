@@ -755,7 +755,7 @@ Vue.component('post-like', {
 Vue.component('comment-like', {
     template: '' +
         '<div>' +
-        '   <div class="lds-heart size-20 comment-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
+        '   <div class="lds-heart size-20 size-20-comment comment-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
         '       <div></div>' +
         '   </div>' +
         '   <div class="dropdown inline">' +

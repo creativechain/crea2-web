@@ -22,5 +22,15 @@
         </div>
     </div>
 
+
+
+    <div id="button-like" v-if="!state.author.buzz.blocked" class="position-circle-fixed">
+        <post-like-big v-on:vote="onVote"
+                       v-bind:session="session"
+                       v-bind:post="state.post"
+                       v-bind:payouts="getPendingPayouts(state.post)">
+
+        </post-like-big>
+    </div>
 </div>
 

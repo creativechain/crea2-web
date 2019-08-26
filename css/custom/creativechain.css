@@ -1589,6 +1589,10 @@
   width: 26px;
   height: 26px; }
 
+.size-20-comment {
+  width: 30px !important;
+  height: 15px !important; }
+
 .size-20 {
   width: 40px;
   height: 10px; }
@@ -1825,7 +1829,10 @@
           margin-bottom: 0;
           max-width: 960px; }
       #modal-post #post-view .modal-content section .flickity-viewport {
-        height: 237px !important; }
+        height: 237px; }
+    #modal-post #post-view .modal-content .size-20-comment {
+      width: 30px !important;
+      height: 15px !important; }
     #modal-post #post-view .modal-content .modal-container .modal-content .modal-close-cross {
       top: 5px; }
     #modal-post #post-view .modal-content .ul-row-share-comment .dropdown--active .price {
@@ -2660,6 +2667,12 @@ img {
   .dropdown-price .dropdown__content {
     left: -18.344px !important; } }
 @media (max-width: 767px) {
+  .li-like-home .post-like-count {
+    text-align: left; }
+    .li-like-home .post-like-count .dropdown__container {
+      left: 0 !important;
+      width: 100%; }
+
   #modal-post #post-view .modal-content section .row-content-post .img-post-view .upload-img img {
     margin-bottom: 0;
     max-width: 100%; }
