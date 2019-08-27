@@ -20,7 +20,7 @@ var IpfsFile = function IpfsFile(hash, name, type, size) {
 };
 
 var creaEvents = new EventEmitter();
-
+moment.locale($('html').attr('lang'));
 var bannerVue;
 var globalLoading;
 var CONSTANTS = {
@@ -76,6 +76,7 @@ var CONSTANTS = {
         COMMENT_SHOW_INTERVAL: 10
     }
 };
+
 creaEvents.on('crea.session.login', function (session, account) {
     showBanner(session === false);
 });
