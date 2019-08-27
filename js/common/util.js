@@ -238,7 +238,7 @@ function humanFileSize(size) {
  */
 function isUserFeed() {
     var username = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var path = window.location.pathname;
+    var path = currentPage ? currentPage.pathname : window.location.pathname;
     var regexp = '(\/@[a-zA-Z0-9]+\/feed)';
 
     if (username) {
@@ -268,14 +268,15 @@ function toUrl(string) {
 }
 /**
  *
- * @param index
+ * @param {string} path
+ * @param {number} index
  * @returns {string}
  */
 
 
-function getPathPart() {
-    var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var path = window.location.pathname;
+function getPathPart(path, index) {
+    index = index !== undefined ? index : 0;
+    path = path || (currentPage ? currentPage.pathname : null) || window.location.pathname;
     var parts = path.split('/');
     parts.splice(0, 1);
     return parts[index] || '';

@@ -690,7 +690,7 @@
 
             if (parts === 2) {
                 var author = getPathPart().replace('@', '');
-                var permlink = getPathPart(1);
+                var permlink = getPathPart(null,1);
 
                 crea.api.getContent(author, permlink, function (err, result) {
                     if (!catchError(err)) {

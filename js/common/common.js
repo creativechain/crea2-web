@@ -23,6 +23,7 @@ var creaEvents = new EventEmitter();
 moment.locale($('html').attr('lang'));
 var bannerVue;
 var globalLoading;
+var currentPage;
 var CONSTANTS = {
     ACCOUNT: {
         UPDATE_THRESHOLD: 1000 * 60 * 60
@@ -573,7 +574,7 @@ function updateUserSession() {
                     --count;
 
                     if (count === 0) {
-                        creaEvents.emit('crea.session.login', session, account);
+                        creaEvents.emit('crea.session.update', session, account);
                     }
                 };
 

@@ -1,7 +1,6 @@
 
 (function () {
 
-    var currentPage;
     var postContainer, otherProjectsContainer;
     var promoteModal, downloadModal, reportModal, reportCommentModal;
     var session, userAccount;
@@ -335,9 +334,11 @@
                         }
                     },
                     onFollow: function onFollow(err, result) {
+                        console.log('on follow-nav', err, result);
                         var that = this;
                         if (!catchError(err)) {
-                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
+                            updateUserSession();
+                            //showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
                         }
                     }
                 }
@@ -549,6 +550,15 @@
                 updated: function() {
                     mr.sliders.documentReady($);
                     console.log('Slider updated');
+                    var fl = $('.flickity-slider');
+                    var count = fl.length;
+                    fl.each(function (index) {
+                        var sl = $(this);
+                        if (index < (count -1)) {
+                            sl.parent().remove()
+                        }
+                    });
+
                 },
                 methods: {
                     loadPost: function (post, event) {
@@ -659,27 +669,28 @@
 
     function showPostData(post, state, discuss, category, postIndex, postRefresh) {
         //state.post = null;
-        console.log('post', post);
         if (!postRefresh && postContainer) {
             postContainer.$set(postContainer.state, 'post', null);
             postContainer.$forceUpdate();
         }
 
         state = clone(state);
-        console.log(state);
-        state.discuss = discuss || '';
-        state.category = category;
-        state.discussions = state.discussion_idx[discuss][category];
-        if (!postIndex) {
-            state.postIndex = state.discussion_idx[discuss][category].indexOf(post.author + '/' + post.permlink);
-        } else {
-            state.postIndex = postIndex;
-        }
+        console.log(discuss, category, state);
 
         var postUrl = "/" + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
         var postRoute = post.author + '/' + post.permlink;
         crea.api.getState(postUrl, function (err, postState) {
             if (!err) {
+                postState.discussion_idx = state.discussion_idx;
+                postState.discuss = discuss || '';
+                postState.category = category;
+                postState.discussions = postState.discussion_idx[discuss][category];
+                if (!postIndex) {
+                    postState.postIndex = postState.discussion_idx[discuss][category].indexOf(post.author + '/' + post.permlink);
+                } else {
+                    postState.postIndex = postIndex;
+                }
+
                 refreshAccessToken(function (accessToken) {
 
                     var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', post.author, post.permlink));
@@ -691,11 +702,11 @@
                             console.log('No post:', postState)
                         } else {
                             aKeys.forEach(function (k) {
-                                state.accounts[k] = parseAccount(postState.accounts[k]);
+                                postState.accounts[k] = parseAccount(postState.accounts[k]);
                             });
 
-                            state.post = parsePost(postState.content[postRoute], reblogs);
-                            state.author = parseAccount(state.accounts[state.post.author]);
+                            postState.post = parsePost(postState.content[postRoute], reblogs);
+                            postState.author = parseAccount(postState.accounts[postState.post.author]);
 
                             //Order comments by date, latest first
                             var cKeys = Object.keys(postState.content);
@@ -705,14 +716,14 @@
                                 return d2.getTime() - d1.getTime();
                             });
                             cKeys.forEach(function (c) {
-                                state.post[c] = parsePost(postState.content[c]);
+                                postState.post[c] = parsePost(postState.content[c]);
                             });
-                            state.post.comments = cKeys;
+                            postState.post.comments = cKeys;
 
-                            setUp(state);
+                            setUp(postState);
 
                             setTimeout(function () {
-                                fetchOtherProjects(post.author, post.permlink, state);
+                                fetchOtherProjects(post.author, post.permlink, postState);
                             }, 300);
                         }
                     };
@@ -769,7 +780,7 @@
         updatePostData();
     });
 
-    creaEvents.on('crea.dom.ready', function () {
+    creaEvents.on('crea.content.prepare', function () {
        currentPage = {
            pathname: window.location.pathname,
            title: document.title

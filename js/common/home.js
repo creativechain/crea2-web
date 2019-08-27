@@ -18,7 +18,7 @@
      * @returns {License}
      */
     function showPosts(urlFilter, filter, state) {
-        //console.log(urlFilter, filter, state);
+        console.log(urlFilter, filter, state);
         var content = state.content;
         var accounts = state.accounts;
         var cKeys = Object.keys(content);
@@ -45,7 +45,7 @@
         }
 
         var category = resolveFilter('/' + getPathPart()).replace('/', '');
-        var discuss = getPathPart(1) || '';
+        var discuss = getPathPart(null, 1) || '';
 
         if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
             cKeys = newKeys;
@@ -355,7 +355,7 @@
     });
 
     function beforeInit(urlFilter) {
-        var path = window.location.pathname;
+        var path = currentPage ? currentPage.pathname : window.location.pathname;
 
         if (path === '/') {
             if (session) {
@@ -390,6 +390,7 @@
     creaEvents.on('crea.session.update', function (s, a) {
         homePosts.session = session = s;
         homePosts.account = account = a;
+        --lastPage;
         beforeInit(homePosts.urlFilter);
     });
     creaEvents.on('crea.session.login', function (s, a) {
@@ -398,6 +399,7 @@
         //console.log(clone(a));
         beforeInit();
     });
+
     var onScrollCalling;
     creaEvents.on('crea.scroll.bottom', function () {
         if (!onScrollCalling) {

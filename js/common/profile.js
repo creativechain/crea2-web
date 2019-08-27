@@ -1039,7 +1039,7 @@
 
 
     function detectNav(state, session, account, usernameFilter) {
-        var nav = getPathPart(1);
+        var nav = getPathPart(null,1);
         var walletNav = 'balances';
 
         if (!nav || nav.isEmpty()) {
@@ -1361,7 +1361,7 @@
     }
 
     function handleSession(session, account) {
-        var settingsPart = getPathPart(1);
+        var settingsPart = getPathPart(null, 1);
         settingsPart = settingsPart.toLowerCase() === 'settings';
 
         if (session) {
@@ -1398,7 +1398,10 @@
     }
 
     creaEvents.on('crea.session.login', handleSession);
-    creaEvents.on('crea.session.update', handleSession);
+    creaEvents.on('crea.session.update', function (session, account) {
+        --lastPage;
+        handleSession(session, account);
+    });
 
     function getProfileDiscussions(callback) {
         if (!lastPage) {
