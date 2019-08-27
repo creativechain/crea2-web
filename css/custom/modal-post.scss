@@ -8,7 +8,7 @@
 
 }
 #modal-post {
-  #post-view {
+  #post-navigation-view {
     padding: 0;
     height: 100vh;
 
@@ -37,6 +37,11 @@
           height: 237px;
         }
       }
+      .box-comment {
+        .dropdown-like-comment {
+          left: 0 !important;
+        }
+      }
       .size-20-comment {
         width: 30px !important;
         height: 15px !important;
@@ -47,7 +52,7 @@
       .ul-row-share-comment {
         .dropdown--active {
           .price {
-            left: -140px !important;
+            left: -135px !important;
           }
         }
       }
