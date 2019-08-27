@@ -168,12 +168,19 @@ function isInHome() {
 }
 
 function showModal(id) {
+    /*$(id).on('modalOpened.modals.mr', function () {
+        creaEvents.emit('crea.modal.show.' + id)
+    }).on('modalClosed.modals.mr', function () {
+        creaEvents.emit('crea.modal.hide.' + id)
+    })*/
+
     mr.modals.showModal(id);
 }
 
 function hideModal(id) {
     mr.modals.hideModal(id);
 }
+
 function createBlockchainAccount(username, password, callback) {
     var keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
     refreshAccessToken(function (accessToken) {
