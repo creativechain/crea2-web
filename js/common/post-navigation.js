@@ -1,6 +1,7 @@
 
 (function () {
 
+    var currentPage;
     var postContainer, otherProjectsContainer;
     var promoteModal, downloadModal, reportModal, reportCommentModal;
     var session, userAccount;
@@ -329,12 +330,15 @@
                     },
                     onVote: function onVote(err) {
                         var that = this;
-                        catchError(err);
-                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
+                        if (!catchError(err)) {
+                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
+                        }
                     },
                     onFollow: function onFollow(err, result) {
-                        catchError(err);
-                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
+                        var that = this;
+                        if (!catchError(err)) {
+                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category, null, true);
+                        }
                     }
                 }
             });
@@ -765,15 +769,24 @@
         updatePostData();
     });
 
+    creaEvents.on('crea.dom.ready', function () {
+       currentPage = {
+           pathname: window.location.pathname,
+           title: document.title
+       }
+    });
+
     creaEvents.on('crea.modal.ready', function () {
         console.log('MODALS Ready');
         setTimeout(function () {
             $('#modal-post').on('modalOpened.modals.mr', function () {
                 console.log('Showing modal');
                 $('body').css({ overflow: 'hidden'});
+
             }).on('modalClosed.modals.mr', function () {
                 console.log('Closing modal');
                 $('body').css({ overflow: ''});
+                updateUrl(currentPage.pathname, currentPage.title);
             })
         }, 1000);
     });
