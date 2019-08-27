@@ -548,7 +548,7 @@
                 },
                 methods: {
                     loadPost: function (post, event) {
-                        cancelEventPropagation(event)
+                        cancelEventPropagation(event);
                         var state = postContainer.state;
                         var moreProjects = [];
                         this.otherProjects.forEach(function (d) {
