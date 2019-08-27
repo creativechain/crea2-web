@@ -1060,7 +1060,7 @@ Vue.component('new-like', {
         '               <div class="dropdown inline post-like-count">' +
         '                   <span class="dropdown__trigger"> {{ post.up_votes.length }}</span>' +
         '                   <div class="dropdown__container">' +
-        '                       <div>' +
+        '                       <div class="container">' +
         '                           <div class="row">' +
         '                               <div class="col-4 col-sm-3 col-md-6 col-lg-2 dropdown__content amount-post-view-home">' +
         '                                   <ul class="list-inline text-right">' +
