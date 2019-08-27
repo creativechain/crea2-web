@@ -24,7 +24,7 @@
 
 
 
-    <div id="button-like" v-if="!state.author.buzz.blocked" class="position-circle-fixed">
+    <div id="button-like" v-if="navigation && !state.author.buzz.blocked" class="position-circle-fixed">
         <post-like-big v-on:vote="onVote"
                        v-bind:session="session"
                        v-bind:post="state.post"
