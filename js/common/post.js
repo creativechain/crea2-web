@@ -4,7 +4,7 @@
  * Created by ander on 18/10/18.
  */
 (function () {
-    var postContainer;
+    var postContainer, otherProjects;
     var promoteModal, downloadModal, reportModal, reportCommentModal;
     var url = window.location.pathname;
     var session, userAccount;
@@ -538,7 +538,7 @@
 
     function fetchOtherProjects(author, permlink, state) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
-            var otherProjects = new Vue({
+            otherProjects = new Vue({
                 el: '#more-projects',
                 data: {
                     lang: lang,
@@ -546,8 +546,20 @@
                     otherProjects: discussions,
                     navigation: false
                 },
-                mounted: function () {
+                updated: function () {
                     mr.sliders.documentReady($);
+
+                    var fl = $('#more-projects .flickity-slider');
+                    var count = fl.length;
+                    console.log('Slider post updated', count);
+                    setTimeout(function () {
+                        fl.each(function (index) {
+                            var sl = $(this);
+                            if (sl.children().length === 0) {
+                                sl.parent().remove()
+                            }
+                        });
+                    }, 500);
                 },
                 methods: {
                     loadPost: function (post, event) {
@@ -584,6 +596,7 @@
                     }
                 }
             });
+
             otherProjects.$forceUpdate();
         };
 

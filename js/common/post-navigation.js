@@ -539,6 +539,7 @@
     function fetchOtherProjects(author, permlink, state) {
         var loadOtherProjects = function loadOtherProjects(discussions) {
             console.log('Others', discussions)
+
             otherProjectsContainer = new Vue({
                 el: '#more-projects-navigation',
                 data: {
@@ -549,16 +550,18 @@
                 },
                 updated: function() {
                     mr.sliders.documentReady($);
-                    console.log('Slider updated');
-                    var fl = $('.flickity-slider');
-                    var count = fl.length;
-                    fl.each(function (index) {
-                        var sl = $(this);
-                        if (index < (count -1)) {
-                            sl.parent().remove()
-                        }
-                    });
 
+                    var fl = $('#more-projects-navigation .flickity-slider');
+                    var count = fl.length;
+                    console.log('Slider modal updated', count);
+                    setTimeout(function () {
+                        fl.each(function (index) {
+                            var sl = $(this);
+                            if (sl.children().length === 0) {
+                                sl.parent().remove()
+                            }
+                        });
+                    }, 500);
                 },
                 methods: {
                     loadPost: function (post, event) {
@@ -594,8 +597,8 @@
                 }
             });
 
+
             otherProjectsContainer.$forceUpdate();
-            console.log('More projects updated');
         };
 
         var date = new Date().toISOString().replace('Z', '');
