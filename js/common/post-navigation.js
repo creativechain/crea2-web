@@ -665,6 +665,7 @@
     }
 
     function showPostIndex(postIndex, state) {
+        console.log('postIndex', postIndex);
         var postContent = state.discussions[postIndex];
         var post = clone(state.content[postContent]);
         showPostData(post, state, state.discuss, state.category, postIndex);
@@ -678,20 +679,20 @@
         }
 
         state = clone(state);
-        console.log(discuss, category, state);
+        console.log(discuss, category, state, post);
 
         var postUrl = "/" + post.metadata.tags[0] + '/@' + post.author + '/' + post.permlink;
         var postRoute = post.author + '/' + post.permlink;
         crea.api.getState(postUrl, function (err, postState) {
             if (!err) {
-                postState.discussion_idx = state.discussion_idx;
-                postState.discuss = discuss || '';
-                postState.category = category;
-                postState.discussions = postState.discussion_idx[discuss][category];
+
+                state.discuss = discuss || '';
+                state.category = category;
+                state.discussions = state.discussion_idx[discuss][category];
                 if (!postIndex) {
-                    postState.postIndex = postState.discussion_idx[discuss][category].indexOf(post.author + '/' + post.permlink);
+                    state.postIndex = state.discussions.indexOf(post.author + '/' + post.permlink);
                 } else {
-                    postState.postIndex = postIndex;
+                    state.postIndex = postIndex;
                 }
 
                 refreshAccessToken(function (accessToken) {
@@ -705,11 +706,11 @@
                             console.log('No post:', postState)
                         } else {
                             aKeys.forEach(function (k) {
-                                postState.accounts[k] = parseAccount(postState.accounts[k]);
+                                state.accounts[k] = parseAccount(postState.accounts[k]);
                             });
 
-                            postState.post = parsePost(postState.content[postRoute], reblogs);
-                            postState.author = parseAccount(postState.accounts[postState.post.author]);
+                            state.post = parsePost(postState.content[postRoute], reblogs);
+                            state.author = parseAccount(postState.accounts[state.post.author]);
 
                             //Order comments by date, latest first
                             var cKeys = Object.keys(postState.content);
@@ -719,14 +720,14 @@
                                 return d2.getTime() - d1.getTime();
                             });
                             cKeys.forEach(function (c) {
-                                postState.post[c] = parsePost(postState.content[c]);
+                                state.post[c] = parsePost(postState.content[c]);
                             });
-                            postState.post.comments = cKeys;
+                            state.post.comments = cKeys;
 
-                            setUp(postState);
+                            setUp(state);
 
                             setTimeout(function () {
-                                fetchOtherProjects(post.author, post.permlink, postState);
+                                fetchOtherProjects(post.author, post.permlink, state);
                             }, 300);
                         }
                     };
