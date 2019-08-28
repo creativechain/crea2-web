@@ -485,7 +485,7 @@
                         onVueReady();
                     },
                     methods: {
-                        vote: function vote(post, weight) {
+                        vote: function vote(weight, post) {
                             console.log('Report comment', weight, post);
                             post = post || this.state.post;
                             if (this.session) {

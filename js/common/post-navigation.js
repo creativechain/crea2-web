@@ -309,7 +309,7 @@
                             updatePostData();
                         });
                     }),
-                    vote: function vote(post, weight) {
+                    vote: function vote(weight, post) {
                         console.log('Vote', weight, post);
                         post = post || this.state.post;
                         if (this.session) {
@@ -507,7 +507,7 @@
                         active_comment: null
                     },
                     methods: {
-                        vote: function vote(post, weight) {
+                        vote: function vote(weight, post) {
                             console.log('Vote', weight, post);
                             post = post || this.state.post;
                             if (this.session) {
