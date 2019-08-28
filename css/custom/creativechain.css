@@ -1830,6 +1830,8 @@
           max-width: 960px; }
       #modal-post #post-navigation-view .modal-content section .flickity-viewport {
         height: 237px; }
+    #modal-post #post-navigation-view .modal-content .box-comment hr {
+      margin: 1.85714286em -23px; }
     #modal-post #post-navigation-view .modal-content .box-comment .dropdown-like-comment {
       left: 0 !important; }
     #modal-post #post-navigation-view .modal-content .size-20-comment {
@@ -2496,7 +2498,7 @@ img {
       height: 338px !important; }
 
   .btn {
-    min-width: 125px; } }
+    min-width: 110px; } }
 @media (width: 375px) {
   .card-home .card__top {
     height: 353px !important; }
@@ -2657,6 +2659,9 @@ img {
       color: white;
       text-transform: none; } }
 @media (max-width: 640px) {
+  #modal-post #post-navigation-view .modal-content .box-comment hr {
+    margin: 1.85714286em -17px; }
+
   .post-view .dropdown-price .dropdown__container {
     left: -100px !important; }
 
@@ -2669,6 +2674,10 @@ img {
   .dropdown-price .dropdown__content {
     left: -18.344px !important; } }
 @media (max-width: 767px) {
+  #modal-post #post-navigation-view .modal-content section .row-content-post .img-post-view .upload-img img {
+    margin-bottom: 0;
+    max-width: 100%; }
+
   .li-like-home .post-like-count {
     text-align: left; }
     .li-like-home .post-like-count .dropdown__container {
@@ -2679,6 +2688,8 @@ img {
     margin-bottom: 0;
     max-width: 100%; }
 
+  #post-view section {
+    padding: 0; }
   #post-view .flickity-viewport {
     height: 250px !important; }
     #post-view .flickity-viewport .img-more-projects {
@@ -2937,6 +2948,9 @@ img {
   #home-banner {
     margin: 0px 0 -50px; } }
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .post-view section {
+    padding: 0; }
+
   .view-wallet .table-amount tbody tr .dropdown__container .dropdown__content {
     left: 0 !important; }
 
