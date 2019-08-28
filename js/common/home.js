@@ -652,6 +652,13 @@
         }
     });
 
+    creaEvents.on('crea.content.filter', function (filter) {
+        currentPage = {
+            pathname: filter,
+            title: document.title
+        };
+        console.log(currentPage);
+    });
 
     creaEvents.on('crea.dom.ready', function () {
         $("#view-changer").click(function () {
