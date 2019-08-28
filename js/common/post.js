@@ -298,7 +298,7 @@
                             fetchContent();
                         });
                     }),
-                    vote: function vote(post, weight) {
+                    vote: function vote(weight, post) {
                         post = post || this.state.post;
                         if (this.session) {
                             var that = this;
@@ -458,8 +458,7 @@
                                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                         globalLoading.show = false;
                                         catchError(err);
-                                        showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                        showModal('#modal-post');
+                                        fetchContent();
                                     });
                                 });
                             }
@@ -487,7 +486,7 @@
                     },
                     methods: {
                         vote: function vote(post, weight) {
-                            console.log('Vote', weight, post);
+                            console.log('Report comment', weight, post);
                             post = post || this.state.post;
                             if (this.session) {
                                 var that = this;
@@ -496,10 +495,8 @@
                                     globalLoading.show = true;
                                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
                                         globalLoading.show = false;
-                                        if (!catchError(err)) {
-                                            showPostData(that.state.post, that.state, that.state.discuss, that.state.category);
-                                            showModal('#modal-post');
-                                        }
+                                        catchError(err);
+                                        fetchContent();
 
                                     });
                                 });

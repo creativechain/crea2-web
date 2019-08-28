@@ -321,7 +321,7 @@
                                             <a href="#modal-report-comment" data-modal-id="modal-report-comment"  v-if="!state.post[c].reported" class="modal-trigger link-report" v-on:click="setActiveComment(state.post[c])">
                                                 <div class="a-flag" v-bind:class="{ active: state.post[c].reported, inactive: !state.post[c].reported }"></div>
                                             </a>
-                                            <a href="#0" v-else class="link-report" v-on:click="vote(state.post[c], 0)">
+                                            <a href="#0" v-else class="link-report" v-on:click="vote(0, state.post[c])">
                                                 <div class="a-flag" v-bind:class="{ active: state.post[c].reported, inactive: !state.post[c].reported }"></div>
                                             </a>
                                         </div>
@@ -424,7 +424,7 @@
                                                     <a href="#modal-report-comment" data-modal-id="modal-report-comment"v-if="!state.post[cc].reported" class="modal-trigger link-report" v-on:click="setActiveComment(state.post[cc])">
                                                         <div class="a-flag" v-bind:class="{ active: state.post[cc].reported, inactive: !state.post[cc].reported }"></div>
                                                     </a>
-                                                    <a href="#0" v-else class="link-report" v-on:click="vote(state.post[cc], 0)">
+                                                    <a href="#0" v-else class="link-report" v-on:click="vote(0, state.post[cc],)">
                                                         <div class="a-flag" v-bind:class="{ active: state.post[cc].reported, inactive: !state.post[cc].reported }"></div>
                                                     </a>
                                                 </div>

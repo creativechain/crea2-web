@@ -657,7 +657,6 @@
             pathname: filter,
             title: document.title
         };
-        console.log(currentPage);
     });
 
     creaEvents.on('crea.dom.ready', function () {
