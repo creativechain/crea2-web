@@ -13,6 +13,7 @@
     height: 100vh;
 
     .modal-content {
+      overflow: scroll;
       overflow-x: hidden;
       overflow-y: hidden;
       max-height: 100%;

@@ -1816,6 +1816,7 @@
   padding: 0;
   height: 100vh; }
   #modal-post #post-navigation-view .modal-content {
+    overflow: scroll;
     overflow-x: hidden;
     overflow-y: hidden;
     max-height: 100%; }
@@ -2674,6 +2675,12 @@ img {
   .dropdown-price .dropdown__content {
     left: -18.344px !important; } }
 @media (max-width: 767px) {
+  .modal-content {
+    overflow: scroll !important;
+    overflow-x: scroll !important;
+    overflow-y: scroll !important;
+    max-height: 100%; }
+
   #modal-post #post-navigation-view .modal-content section .row-content-post .img-post-view .upload-img img {
     margin-bottom: 0;
     max-width: 100%; }
