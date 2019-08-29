@@ -441,7 +441,9 @@
                                         });
 
                                         homePosts.state.discussion_idx[discuss][category] = removeBlockedContents(homePosts.state, account, homePosts.state.discussion_idx[discuss][category]);
+                                        homePosts.state.discussions = homePosts.state.discussion_idx[discuss][category];
                                         homePosts.$forceUpdate();
+                                        creaEvents.emit('navigation.state.update', homePosts.state);
                                     }
 
                                     onScrollCalling = false;
@@ -580,8 +582,10 @@
                                     });
 
                                     homePosts.state.discussion_idx[discuss][category] = removeBlockedContents(homePosts.state, account, homePosts.state.discussion_idx[discuss][category]);
+                                    homePosts.state.discussions = homePosts.state.discussion_idx[discuss][category];
                                     lastPage = discussions[discussions.length - 1];
                                     homePosts.$forceUpdate();
+                                    creaEvents.emit('navigation.state.update', homePosts.state);
                                 }
 
                                 onScrollCalling = false;

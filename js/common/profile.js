@@ -1493,8 +1493,11 @@
                     profileContainer.state.discussion_idx[''].profile.push(permlink);
                 }
 
+                profileContainer.state.discussions = profileContainer.state.discussion_idx[''].profile;
                 profileContainer.$forceUpdate();
                 onScrollCalling = false;
+
+                creaEvents.emit('navigation.state.update', profileContainer.state);
             });
         }
 

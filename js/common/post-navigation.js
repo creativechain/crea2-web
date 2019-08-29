@@ -650,6 +650,10 @@
         if (postIndex >= 0 && postIndex <= state.discussions.length -2) {
             postIndex++;
             showPostIndex(postIndex, state);
+
+            if (postIndex >= state.discussions.length -5) {
+                creaEvents.emit('crea.scroll.bottom')
+            }
         }
     }
 
@@ -693,6 +697,11 @@
                     state.postIndex = state.discussions.indexOf(post.author + '/' + post.permlink);
                 } else {
                     state.postIndex = postIndex;
+                }
+
+                console.log(state.postIndex, state.discussions.length);
+                if (state.postIndex >= (state.discussions.length -5)) {
+                    creaEvents.emit('crea.scroll.bottom');
                 }
 
                 refreshAccessToken(function (accessToken) {
@@ -760,6 +769,22 @@
             setUp(event.originalEvent.state, true);
         }
 
+    });
+
+    creaEvents.on('navigation.state.update', function (state) {
+        console.log('updating navigation state');
+        if (postContainer) {
+            var postState = postContainer.state;
+
+            state.post = postState.post;
+            state.postIndex = state.discussions.indexOf(postState.post.link);
+            state.author = postState.author;
+            state.discuss = postState.discuss;
+            state.category = postState.category;
+
+            postContainer.state = state;
+            postContainer.$forceUpdate();
+        }
     });
 
     creaEvents.on('navigation.post.data', showPostData);
