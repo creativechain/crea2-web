@@ -37,6 +37,8 @@
         var filter = resolveFilter(urlFilter);
         updateUrl(urlFilter);
 
+        currentPage.pathname = urlFilter;
+
         crea.api.getState(filter, function (err, urlState) {
             if (!catchError(err)) {
                 if (isUserFeed()) {
