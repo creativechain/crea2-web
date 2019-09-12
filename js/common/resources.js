@@ -35,6 +35,9 @@ var R = {
             ADVANCED: '/img/crea-web/roll/advanced.svg',
             TRAINEE: '/img/crea-web/roll/trainee.svg',
             NOVICE: '/img/crea-web/roll/novice.svg'
+        },
+        POST: {
+            NSFW: '/img/post/nsfw.jpg'
         }
     }
 };

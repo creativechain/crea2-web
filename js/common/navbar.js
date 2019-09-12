@@ -234,7 +234,8 @@
                                     };
                                     http.post({
                                         following: followings,
-                                        reblogs: true
+                                        reblogs: true,
+                                        adult: navbarContainer.user.metadata.adult_content
                                     });
                                 });
                             } else {

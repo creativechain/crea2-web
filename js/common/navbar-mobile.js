@@ -102,7 +102,9 @@
                                         Authorization: 'Bearer ' + accessToken
                                     };
                                     http.post({
-                                        following: followings
+                                        following: followings,
+                                        reblogs: true,
+                                        adult: account.user.metadata.adult_content
                                     });
                                 });
                             } else {

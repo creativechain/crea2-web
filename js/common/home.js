@@ -116,7 +116,14 @@
                         return buzzClass;
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage = post.metadata.featuredImage;
+                        var featuredImage;
+                        if (this.account && this.account.user.metadata.adult_content === 'warn' && post.adult_content) {
+                            featuredImage = {
+                                url: R.IMG.POST.NSFW
+                            }
+                        } else {
+                            featuredImage = post.metadata.featuredImage;
+                        }
 
                         if (featuredImage && featuredImage.hash) {
                             return {
@@ -393,6 +400,7 @@
         --lastPage;
         beforeInit(homePosts.urlFilter);
     });
+
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
         account = a;
@@ -503,7 +511,8 @@
                                 http.post({
                                     following: followings,
                                     page: lastPage,
-                                    reblogs: true
+                                    reblogs: true,
+                                    adult: account.user.metadata.adult_content
                                 });
                             });
                         }

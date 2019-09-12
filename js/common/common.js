@@ -226,7 +226,16 @@ function removeBlockedContents(state, accountState, discussion_idx) {
 
                 //If author is blocked, post must be blocked
                 if (accountState.user.blockeds.indexOf(c.author) < 0) {
-                    allowedContents.push(ck);
+                    if (c.adult_content) {
+                        //console.log('Adult Filtering:', c.title, c.metadata.adult, c.metadata.tags);
+                        if (accountState.user.metadata.adult_content !== 'hide') {
+                            //Filter adult content
+                            allowedContents.push(ck);
+                        }
+                    } else {
+                        //No adult, include
+                        allowedContents.push(ck);
+                    }
                 }
             });
 
@@ -260,7 +269,7 @@ function parseAccount(account) {
             account.metadata.avatar = account.metadata.avatar || {};
         }
 
-        account.metadata.adult_content = account.metadata.adult_content || 'hide';
+        account.metadata.adult_content = 'hide';//account.metadata.adult_content || 'warn';
         account.metadata.post_rewards = account.metadata.post_rewards || '50';
         account.metadata.comment_rewards = account.metadata.comment_rewards || '50';
         account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
@@ -282,10 +291,19 @@ function parsePost(post, reblogged_by ) {
 
         post = clone(post);
         post.metadata = jsonify(post.json_metadata);
+        post.metadata.tags = post.metadata.tags || [];
         post.link = post.author + '/' + post.permlink;
         post.url = '/' + post.metadata.tags[0] + '/@' + post.link;
         post.body = isJSON(post.body) ? jsonify(post.body) : post.body;
         post.body = cleanArray(post.body);
+
+        //Has adult content
+        post.adult_content = post.metadata.adult || (post.metadata.tags &&
+            (post.metadata.tags.includes('nsfw') ||
+                post.metadata.tags.includes('adult') ||
+                post.metadata.tags.includes('nude') ||
+                post.metadata.tags.includes('porn')));
+
         post.down_votes = [];
         post.up_votes = [];
         post.active_votes.forEach(function (v) {
