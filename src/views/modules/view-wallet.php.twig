@@ -343,6 +343,17 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <p>{{ lang.WALLET.BALANCES_DELEGATED_CGY_TITLE }}</p>
+                                    <p>{{ lang.WALLET.BALANCES_DELEGATED_CGY_TEXT }}</p>
+                                </td>
+                                <td class="td-right-balance">
+                                    <div>
+                                        <amount v-bind:value="getDelegatedCGY().toFriendlyString(null, false)"></amount>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <p>{{ lang.WALLET.BALANCES_SAVING_TITLE }}</p>
                                     <p>{{ lang.WALLET.BALANCES_SAVING_TEXT }}</p>
                                 </td>
@@ -406,7 +417,7 @@
                                 <td class="colo-primary">
                                     {{ '{{ nextDeEnergize }}' }}
                                 </td>
-                                <td><!--NO DELETE--></td>
+                                <td>{#NO DELETE#}</td>
                             </tr>
                             </tbody>
                         </table>

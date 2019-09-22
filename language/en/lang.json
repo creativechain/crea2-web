@@ -412,6 +412,8 @@
         "WITHDRAW_CBD_TEXT": "Withdraw funds. A 3 day waiting period is required.",
         "BALANCES_CREA_TEXT": "Tokens that work as a liquid asset (easily convertible to cash); they can be transferred to other users and can be converted into CREA ENERGY in a process known as \u201cEnergize\u201d.",
         "BALANCES_SAVING_TITLE": "SAVINGS",
+        "BALANCES_DELEGATED_CGY_TITLE": "DELEGATED CGY",
+        "BALANCES_DELEGATED_CGY_TEXT": "DELEGATED CGY",
         "BALANCES_ACCOUNT_TITLE": "Approximate account value",
         "BALANCES_ACCOUNT_TEXT": "It is an estimated value based on the value of CREA in US Dollars.",
         "DROPDOWN_MENU_MARKET": "Market",

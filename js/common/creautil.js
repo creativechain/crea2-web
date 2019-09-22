@@ -82,6 +82,6 @@ function delegatedCrea(account, props) {
     var vestingCrea = totalVestCrea * (vests / totalVests);
     return Asset.parse({
         amount: vestingCrea,
-        nai: 'crea'
+        nai: 'cgy'
     });
 }

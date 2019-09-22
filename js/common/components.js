@@ -1174,11 +1174,10 @@ Vue.component('new-like', {
                 var username = session ? session.account.username : null;
                 var percent = that.hasVote() ? 0 : 10000;
 
+                console.log(this.hasVote(), percent);
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = that.states.LIKE_OP;
                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, percent, function (err, result) {
-                        console.log(err, result);
-
                         if (err) {
                             that.$emit('vote', err, null, post);
                         } else {
@@ -1198,6 +1197,7 @@ Vue.component('new-like', {
                         }
 
                         that.$forceUpdate();
+                        console.log(err, that.state);
                     });
                 });
             }
@@ -1210,6 +1210,8 @@ Vue.component('new-like', {
         if (this.state !== LIKE_STATE.LIKE_OP) {
             this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
         }
+
+        console.error('like updated', this.state, this.likeClasses);
     }
 });
 

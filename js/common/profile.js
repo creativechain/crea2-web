@@ -214,7 +214,10 @@
         var nextDeEnergize = null;
 
         if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
-            nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+            var date = toLocaleDate(state.user.next_vesting_withdrawal);
+            if (date.getTime() > 0) {
+                nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+            }
         }
 
         console.log(clone(state));
@@ -574,6 +577,9 @@
                     },
                     getCGYBalance: function getCGYBalance() {
                         return vestingCrea(this.state.user, this.state.props);
+                    },
+                    getDelegatedCGY: function () {
+                        return delegatedCrea(this.state.user, this.state.props);
                     },
                     hasRewardBalance: function hasRewardBalance() {
                         var crea = Asset.parse(this.state.user.reward_crea_balance);
