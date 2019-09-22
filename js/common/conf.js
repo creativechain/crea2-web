@@ -5,7 +5,7 @@
  */
 var local = false;
 var apiOptions = {
-    nodes: ['https://supportnodes.creary.net'],
+    nodes: ['https://nodes.creary.net'],
     apiUrl: 'https://api.creary.net',
     ipfs: 'https://ipfs.creary.net/ipfs/',
     ipfsd: 'https://api.creary.net/ipfs',

@@ -31,7 +31,7 @@ class CrearyClient
      * @return mixed
      */
     private function callRequest(array $requestBody) {
-        $response = $this->httpClient->post('https://supportnodes.creary.net', array( 'json' => $requestBody));
+        $response = $this->httpClient->post('https://nodes.creary.net', array( 'json' => $requestBody));
         return json_decode((string) $response->getBody(), true);
     }
 
