@@ -82,3 +82,8 @@ li > .search {
 p > ul > li {
     list-style: inside;
 }
+
+.refused-payout {
+    text-decoration: line-through;
+    color: #999!important;
+}

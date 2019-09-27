@@ -236,7 +236,7 @@
                             }
                         })
                     },
-                    linkfyUser: function (comment) {
+                    linkfy: function (comment) {
                         //return comment;
                         return makeMentions(comment, this.state);
                     },

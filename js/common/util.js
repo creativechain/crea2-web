@@ -435,7 +435,20 @@ function makeMentions(comment, state) {
         //console.log(userMatches);
     }
 
-    //Third, restore links
+    //Third, find #tags
+    var tagMatches = body.match(/[#][a-zA-Z0-9]{2,}/gm);
+    if (tagMatches) {
+        tagMatches = Array.trim(tagMatches);
+        tagMatches.forEach(function (m) {
+
+            var tag = m.replace('#', '').toLowerCase();
+            var link = '<a href="/popular/' + tag + '">#' + tag + '</a>';
+            //console.log(m, link)
+            body = body.replace(m, link);
+        });
+    }
+
+    //Fourth, restore links
     var httpKeys = Object.keys(httpLinks);
     httpKeys.forEach(function (k) {
         body = body.replace(k, httpLinks[k])

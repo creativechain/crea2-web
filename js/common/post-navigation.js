@@ -248,7 +248,7 @@
                             }
                         })
                     },
-                    linkfyUser: function (comment) {
+                    linkfy: function (comment) {
                         return makeMentions(comment, this.state);
                     },
                     mustShowCommentField: function (comment) {

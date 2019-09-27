@@ -82,7 +82,11 @@
                         <div class="dropdown__container price">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-12 dropdown__content amount-post-view-home">
+                                    <div v-if="state.content[p].refused_payouts" class="col-md-12 dropdown__content amount-post-view-home">
+                                        <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout(state.content[p]) }}' }}</pay></p>
+                                        <p v-if="hasPromotion(state.content[p])">{{ lang.HOME.PROMOTION_COST }} : {{ '{{ getPromotion(state.content[p]) }}' }}</p>
+                                    </div>
+                                    <div v-else class="col-md-12 dropdown__content amount-post-view-home">
                                         <p class="title">{{ '{{ hasPaid(state.content[p]) ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.content[p]) }}' }}</p>
                                         <p v-if="!hasPaid(state.content[p])">
                                             {#(<amount class="amount-price" v-bind:value="getPendingPayouts(state.content[p], 'cbd')"></amount>,
@@ -105,7 +109,6 @@
                     </p>
                 </li>
             </ul>
-
         </div>
 
         <div class="card__bottom card-show">
@@ -146,16 +149,12 @@
                                             </div>
                                         </div>
                                         <div v-if="session && state.content[p].author !== session.account.username && !state.accounts[state.content[p].author].buzz.blocked" class="row">
-
-
                                             <div class="col text-center m-btn-follow">
                                                 <btn-follow class="button-follow" v-on:follow="onFollow"
                                                             v-bind:session="session" v-bind:account="account.user"
                                                             v-bind:user="state.content[p].author">
                                                 </btn-follow>
                                             </div>
-
-
                                         </div>
                                         <div class="row">
                                             <div class="col">
@@ -177,10 +176,6 @@
                         </div><!--end dropdown container-->
                     </div>
                 </li>
-
-
-
-
 
                 <li class="list-inline-item float-right li-buzz">
                     <div class="dropdown cursor-link">

@@ -338,6 +338,7 @@ function parsePost(post, reblogged_by ) {
             return data;
         };
 
+        post.refused_payouts = Asset.parse(post.max_accepted_payout).amount <= 0;
         post.curator_payout_value = toStringAsset(post.curator_payout_value);
         post.max_accepted_payout = toStringAsset(post.max_accepted_payout);
         post.pending_payout_value = toStringAsset(post.pending_payout_value);

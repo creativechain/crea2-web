@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="op.op.type == 'transfer_to_savings_operation'" class="row-list-user">
+        <div v-else-if="op.op.type == 'transfer_to_savings_operation'" class="row-list-user">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-8 col-md-8">
@@ -141,6 +141,31 @@
                     <div class="col-4 col-md-4 text-right">
                         <div class="list-amount">
                             <p v-if="account && op.op.value.from === state.user.name">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else-if="op.op.type == 'comment_download_operation'" class="row-list-user">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-8 col-md-8">
+                        <div class="row-list-user-display">
+                            <div class="user-avatar">
+                                <a v-bind:href="'/@' + op.op.value.downloader">
+                                    <avatar v-bind:account="history.accounts[op.op.value.downloader]"></avatar>
+                                </a>
+                            </div>
+                            <div class="list-data-user">
+                                <p>
+                                    <username v-bind:user="op.op.value.downloader" v-bind:name="history.accounts[op.op.value.downloader].metadata.publicName"></username>
+                                    <span>{{ '{{ dateFromNow(op.timestamp) }}' }}</span>
+                                </p>
+
+                                <p >
+                                    {{ lang.HISTORY.COMMENT_DOWNLOAD ~ '{{ op.op.value.comment_permlink }}' }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

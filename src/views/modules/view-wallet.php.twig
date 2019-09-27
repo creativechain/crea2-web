@@ -413,6 +413,12 @@
                                     <p class="total-active">${{ '{{ state.user.estimate_account_value }}' }}</p>
                                 </td>
                             </tr>
+                            <tr v-if="savingsWithdrawNote">
+                                <td class="colo-primary">
+                                    {{ '{{ savingsWithdrawNote }}' }}
+                                </td>
+                                <td><!--NO DELETE--></td>
+                            </tr>
                             <tr v-if="nextDeEnergize">
                                 <td class="colo-primary">
                                     {{ '{{ nextDeEnergize }}' }}

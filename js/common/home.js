@@ -347,17 +347,55 @@
                 //Accounts
                 for (var _a in state.accounts) {
                     homePosts.state.accounts[_a] = parseAccount(state.accounts[_a]);
-                } //Posts
-
-
-                for (var _c3 in state.content) {
-                    homePosts.state.content[_c3] = parsePost(state.content[_c3]);
                 }
 
                 state = homePosts.state;
             }
 
-            showPosts(urlFilter, filter, state);
+            var ck = Object.keys(state.content);
+            var reblogsFetched = 0;
+            var onAllReblogs = function () {
+                reblogsFetched++;
+
+                if (reblogsFetched >= ck.length) {
+                    showPosts(urlFilter, filter, state);
+                }
+            };
+
+            var onReblogs = function (k, d, reblogs) {
+                console.log(k, reblogs)
+                state.content[k] = parsePost(d, reblogs);
+            };
+
+            refreshAccessToken(function (accessToken) {
+
+                for (var x = 0; x < ck.length; x++) {
+                    var d = state.content[ck[x]];
+
+                    (function (x, ck, d) {
+                        var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', d.author, d.permlink));
+
+                        http.when('done', function (response) {
+                            var data = jsonify(response).data;
+                            onReblogs(ck[x], d, data.reblogged_by);
+                            onAllReblogs();
+                        });
+
+                        http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                            console.error(textStatus, errorThrown);
+                            onReblogs(ck[x], d);
+                            onAllReblogs();
+                        });
+
+                        http.headers = {
+                            Authorization: 'Bearer ' + accessToken
+                        };
+
+                        http.get({});
+                    })(x, ck, d)
+
+                }
+            });
         }
     });
 
@@ -555,52 +593,89 @@
                 }
 
                 if (apiCall) {
-                    apiCall(lastPage.author, lastPage.permlink, 21, function (err, result) {
-                        if (err) {
-                            console.error(err);
-                        } else {
-                            //Get new accounts
-                            var discussions = result.discussions; //Remove first duplicate post
+                    refreshAccessToken(function (accessToken) {
+                        apiCall(lastPage.author, lastPage.permlink, 21, function (err, result) {
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                //Get new accounts
+                                var discussions = result.discussions; //Remove first duplicate post
 
-                            discussions.shift();
-                            var accounts = [];
+                                discussions.shift();
+                                var accounts = [];
 
-                            for (var x = 0; x < discussions.length; x++) {
-                                var d = discussions[x];
-                                discussions[x] = parsePost(d);
+                                var reblogsFetched = 0;
+                                var onAllReblogs = function () {
+                                    reblogsFetched++;
+                                    if (reblogsFetched >= discussions.length) {
+                                        //Get new accounts
+                                        getAccounts(accounts, function (err, newAccounts) {
+                                            if (!catchError(err)) {
+                                                //Update accounts
+                                                newAccounts.forEach(function (a) {
+                                                    homePosts.state.accounts[a.name] = a;
+                                                }); //Update Posts
 
-                                if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
-                                    accounts.push(d.author);
+                                                var discuss = homePosts.discuss;
+                                                discussions.forEach(function (d) {
+                                                    var permlink = d.author + '/' + d.permlink;
+                                                    homePosts.state.content[permlink] = d;
+
+                                                    homePosts.state.discussion_idx[discuss][category].push(permlink);
+                                                });
+
+                                                homePosts.state.discussion_idx[discuss][category] = removeBlockedContents(homePosts.state, account, homePosts.state.discussion_idx[discuss][category]);
+                                                homePosts.state.discussions = homePosts.state.discussion_idx[discuss][category];
+                                                lastPage = discussions[discussions.length - 1];
+                                                homePosts.$forceUpdate();
+                                                creaEvents.emit('navigation.state.update', homePosts.state);
+                                            }
+
+                                            onScrollCalling = false;
+                                        });
+                                    }
+
+                                };
+
+                                for (var x = 0; x < discussions.length; x++) {
+                                    var d = discussions[x];
+
+                                    (function (x, d, discussions) {
+                                        var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', d.author, d.permlink));
+
+                                        var onReblogs = function (reblogs) {
+
+                                            discussions[x] = parsePost(d, reblogs);
+
+                                            if (!homePosts.state.accounts[d.author] && !accounts.includes(d.author)) {
+                                                accounts.push(d.author);
+                                            }
+                                        };
+
+                                        http.when('done', function (response) {
+                                            var data = jsonify(response).data;
+                                            onReblogs(data.reblogged_by);
+                                            onAllReblogs();
+                                        });
+
+                                        http.when('fail', function (jqXHR, textStatus, errorThrown) {
+                                            console.error(textStatus, errorThrown);
+                                            onReblogs();
+                                            onAllReblogs();
+                                        });
+
+                                        http.headers = {
+                                            Authorization: 'Bearer ' + accessToken
+                                        };
+
+                                        http.get({});
+                                    })(x, d, discussions)
+
                                 }
                             }
+                        });
+                    })
 
-                            //Get new accounts
-                            getAccounts(accounts, function (err, newAccounts) {
-                                if (!catchError(err)) {
-                                    //Update accounts
-                                    newAccounts.forEach(function (a) {
-                                        homePosts.state.accounts[a.name] = a;
-                                    }); //Update Posts
-
-                                    var discuss = homePosts.discuss;
-                                    discussions.forEach(function (d) {
-                                        var permlink = d.author + '/' + d.permlink;
-                                        homePosts.state.content[permlink] = d;
-
-                                        homePosts.state.discussion_idx[discuss][category].push(permlink);
-                                    });
-
-                                    homePosts.state.discussion_idx[discuss][category] = removeBlockedContents(homePosts.state, account, homePosts.state.discussion_idx[discuss][category]);
-                                    homePosts.state.discussions = homePosts.state.discussion_idx[discuss][category];
-                                    lastPage = discussions[discussions.length - 1];
-                                    homePosts.$forceUpdate();
-                                    creaEvents.emit('navigation.state.update', homePosts.state);
-                                }
-
-                                onScrollCalling = false;
-                            });
-                        }
-                    });
                 }
 
             }

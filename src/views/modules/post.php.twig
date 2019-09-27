@@ -63,7 +63,10 @@
                                 <div class="dropdown__container price">
                                     <div class="">
                                         <div class="row">
-                                            <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
+                                            <div  v-if="state.post.refused_payouts" class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
+                                                <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout() }}' }}</pay></p>
+                                            </div>
+                                            <div v-else class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                 <p class="title">{{ '{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout() }}' }}</p>
                                                 <p v-if="!hasPaid()">
                                                     {{ '{{ getPendingPayouts(state.post) }}' }}
@@ -90,7 +93,7 @@
                     <div v-if="!state.author.buzz.blocked">
                         <template v-for="el in state.post.body">
                             <div v-if="el != null">
-                                <div v-if="el.type.indexOf('text/html') > -1" v-html="linkfyUser(el.value)" style="word-break: break-word;">
+                                <div v-if="el.type.indexOf('text/html') > -1" v-html="linkfy(el.value)" style="word-break: break-word;">
 
                                 </div>
                                 <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
@@ -247,7 +250,7 @@
                                                 <username v-bind:inline="1" v-bind:user="state.post[c].author" v-bind:name="state.accounts[state.post[c].author].metadata.publicName"></username>
                                                 <span>{{ '{{ dateFromNow(state.post[c].created) }}' }}</span>
                                             </p>
-                                            <p class="comment-user" v-html="linkfyUser(state.post[c])"></p>
+                                            <p class="comment-user" v-html="linkfy(state.post[c])"></p>
                                             <div class="row">
                                                 <div class="col-md-12">
 
@@ -286,7 +289,10 @@
                                                                 <div class="dropdown__container price" style="left: -756.312px;">
                                                                     <div>
                                                                         <div class="row">
-                                                                            <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
+                                                                            <div  v-if="state.post[c].refused_payouts"  class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
+                                                                                <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout(state.post[c]) }}' }}</pay></p>
+                                                                            </div>
+                                                                            <div v-else class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                                                 <p class="title">{{ '{{ hasPaid(state.post[c]) ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.post[c]) }}' }}</p>
                                                                                 <p v-if="!hasPaid()">
                                                                                     {{ '{{ getPendingPayouts(state.post[c]) }}' }}
@@ -355,7 +361,7 @@
                                                     </div>
                                                     <span>{{ '{{ dateFromNow(state.post[cc].created) }}' }}</span>
                                                     </p>
-                                                    <p class="comment-user" v-html="linkfyUser(state.post[cc])"></p>
+                                                    <p class="comment-user" v-html="linkfy(state.post[cc])"></p>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <!-- Hay que sustituir este <ul> por el tuyo L313 -->
@@ -375,8 +381,11 @@
                                                                         </span>
                                                                         <div class="dropdown__container price" style="left: -756.312px;">
                                                                             <div>
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
+                                                                                <div class="row" v-bind:data="state.post.refused_payouts">
+                                                                                    <div  v-if="state.post[cc].refused_payouts"  class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
+                                                                                        <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout(state.post[cc]) }}' }}</pay></p>
+                                                                                    </div>
+                                                                                    <div v-else class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                                                         <p class="title">{{ '{{ hasPaid(state.post[cc]) ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.post[cc]) }}' }}</p>
                                                                                         <p v-if="!hasPaid()">
                                                                                             {{ '{{ getPendingPayouts(state.post[cc]) }}' }}
