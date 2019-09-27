@@ -211,10 +211,17 @@
         var navSection = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'projects';
         var walletSection = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'balance';
         //console.log('Updating profile', jsonify(jsonstring(account)), jsonify(jsonstring(state)));
+        var withdrawingSavings = state.user ? state.user.savings_withdraw_requests : 0;
+
         var nextDeEnergize = null;
+        var savingsWithdrawNote = null;
 
         if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
             nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+        }
+
+        if (withdrawingSavings > 0) {
+            savingsWithdrawNote = String.format(lang.WALLET.SAVINGS_WITHDRAWAL_TEXT, withdrawingSavings);
         }
 
         console.log(clone(state));
@@ -255,6 +262,7 @@
                         error: null
                     },
                     nextDeEnergize: nextDeEnergize,
+                    savingsWithdrawNote: savingsWithdrawNote,
                     simpleView: false //No used, but is needed
                 },
                 updated: function updated() {
@@ -1172,6 +1180,9 @@
                         } else if (h.op.type === 'curation_reward_operation') {
                             addIfNotExists(h.op.value.curator);
                             addIfNotExists(h.op.value.comment_author);
+                        } else if (h.op.type === 'comment_download_operation') {
+                            addIfNotExists(h.op.value.downloader);
+                            addIfNotExists(h.op.value.comment_author);
                         }
 
                         history.push(h);
@@ -1184,9 +1195,7 @@
                             accounts.forEach(function (u) {
                                 for (var x = 0; x < result.length; x++) {
                                     if (u === result[x].name) {
-                                        opsAccounts[u] = result[x];
-                                        opsAccounts[u].metadata = jsonify(opsAccounts[u].json_metadata);
-                                        opsAccounts[u].metadata.avatar = opsAccounts[u].metadata.avatar || {};
+                                        opsAccounts[u] = parseAccount(result[x]);
                                         break;
                                     }
                                 }

@@ -30,7 +30,8 @@ faq = {
             "Can I delete something that I published?",
             "Which license should I choose when publishing my content?",
             "Where are the texts and files that I upload to Creary.net stored?",
-            "What does \"Promoting\" a post do?"
+            "What does \"Promoting\" a post do?",
+            "What audio or video formats can I use?"
         ],
         "Security": [
             "How can I keep my Crea account secure?",
@@ -246,6 +247,12 @@ faq = {
                 "It is not very effective to store the heaviest files such as images or videos directly on the blockchain, so we connect the blockchain to the Interplanetary file system (from the Englishː Inter Planetary File System - IPFS). IPFS is a protocol and network designed to create a content-addressable peer-to-peer method for storing and sharing hypermedia in a distributed file system.",
                 "Creary uses this system to store content of any kind: videos, audio, images or download files. Therefore Creary.net does not centrally store files on servers.",
                 "For this reason and unlike the metadata embedded in the blockchain of Crea, Creary does not guarantee 100% content such as videos, audio, images or download files, are hosted on the network perpetually. Therefore, we always recommend that you keep a copy of the original content to re-register or even credit your property to third parties using the original hash and the data recorded in the blockchain of Crea."
+            ],
+            "What audio or video formats can I use?": [
+                "The most common supported formats by browsers (Firefox or Chrome) are these:",
+                "Audio: MP4, MP3, WAVE, WebM, Ogg, AAC",
+                "Video: WebM, Ogg, MP4, MP3, AAC",
+                "The best thing is MP4 or WebM, they are light formats and they maintain the quality very well."
             ]
         },
         "Security": {

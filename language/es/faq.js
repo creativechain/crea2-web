@@ -29,7 +29,8 @@ faq = {
             "¿Puedo borrar algo que publiqué?",
             "¿Qué licencia debo escoger al publicar mi contenido?",
             "¿Dónde se almacenan los textos y archivos que subo desde Creary.net ?",
-            "¿Qué hace 'Promover' una publicación?"
+            "¿Qué hace 'Promover' una publicación?",
+            "¿Qué formatos de audio o video puedo usar?"
         ],
         "Economía": [
             "¿De dónde viene el valor de los tokens en la red de Crea?",
@@ -231,6 +232,12 @@ faq = {
                 "Por esta razón y a diferencia de los metadatos incrustados en la blockchain de Crea, Creary no garantiza al 100% los contenidos como videos, audio, imágenes o archivos de descarga, se alojen en la red de forma perpetua. Por ello recomendamos siempre guardar una copia del contenido original para volver a realizar un nuevo registro o incluso poder acreditar su propiedad ante terceros haciendo uso del hash original y de los datos registrados en la blockchain de Crea.  "
             ],
             "¿Qué licencia debo escoger al publicar mi contenido?": ["Creary permite registrar tu contenido en la blockchain de Crea, esto genera una estampa que certifica la autoría de un contenido. Al mismo tiempo puedes indicar con qué licencia quieres distribuir tu obra. En Creary.net se ofrecen varios tipos de licencia para contenidos, principalmente se trata de licencias Creative Commons. Puedes seleccionar la que más se ajuste a tu tipo de trabajo (algunas son más o menos restrictivas). Si quieres saber más sobre el funcionamiento de estas licencias, consulta en las preguntas frecuentes en: https://creativecommons.org/faq/"]
+            "¿Qué formatos de audio o video puedo usar?": [
+                "Los formatos admitidos más comunes por los navegadores (Firefox o Chrome) son estos:",
+                "Audio: MP4, MP3, WAVE, WebM, Ogg, AAC",
+                "Video: WebM, Ogg, MP4, MP3, AAC",
+                "Lo mejor es MP4 o WebM, son formatos ligeros y mantienen muy bien la calidad."
+            ]
         },
         "Economía": {
             "¿De dónde viene el valor de los tokens en la red de Crea?": [

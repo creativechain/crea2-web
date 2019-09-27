@@ -377,6 +377,7 @@
         "WITHDRAW_SAVING_TITLE": "Retirar ahorros",
         "CONVERT_CGY_TEXT": "Tokens que te dan influencia en la comunidad. El nivel de influencia de tus votos dependerá de tu CREA ENERGY acumulado. El CREA ENERGY es intransferible y requiere un periodo de 2 meses (en 8 pagos) para volver a convertirlo en CREA.",
         "DE_ENERGIZE_TEXT": "Estás Des-Energizando %s (%s pagado hasta ahora). Recuerda que si cambias este importe, los tiempos de pago se recalcularán.",
+        "SAVINGS_WITHDRAWAL_TEXT": "Tienes %s solicitudes en marcha de retiros de ahorros.",
         "BALANCES_CGY_TEXT": "Tokens que te dan influencia en la comunidad. El nivel de influencia de tus votos dependerá de tu CREA ENERGY acumulado.",
         "UPDATE_TEXT": "Actualiza tu monedero de la plataforma 1.0 a la versión web 2.0",
         "WITHDRAW_TITLE": "Retirar CREA",
@@ -486,6 +487,7 @@
         "MENU_PROMOTED": "Promocionado",
         "DROPDOWN_PENDING_PAYOUT": "Pagos pendientes",
         "DROPDOWN_PAST_PAYOUT": "Pagos anteriores",
+        "DROPDOWN_REFUSED_PAYOUT": "Pagos rechazados",
         "MENU_SKYROCKETS": "Skyrockets",
         "MENU_LOGIN": "Iniciar sesión",
         "EMPTY_TITLE": "Bienvenido a tu sección destacada de usuarios a los que sigues.",
@@ -515,7 +517,8 @@
         "POSTED": "Ha publicado",
         "COMMENTED": "Ha comentado",
         "VOTED_FOR": "Ha votado a",
-        "CREATE_ACCOUNT": "Creó la cuenta"
+        "CREATE_ACCOUNT": "Creó la cuenta",
+        "COMMENT_DOWNLOAD": "Descargó "
     },
     "MARKET": {
         "MARKETS": "Mercados",
