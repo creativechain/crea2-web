@@ -85,3 +85,16 @@ function delegatedCrea(account, props) {
         nai: 'cgy'
     });
 }
+
+function receivedDelegatedCGY(account, props) {
+    var delegatedVests = 0; //parseFloat(Asset.parse(account.delegated_vesting_shares).toPlainString(null, false));
+    var receivedVests = parseFloat(Asset.parse(account.received_vesting_shares).toPlainString(null, false));
+    var vests = delegatedVests - receivedVests;
+    var totalVests = parseFloat(Asset.parse(props.total_vesting_shares).toPlainString(null, false));
+    var totalVestCrea = parseFloat(Asset.parse(props.total_vesting_fund_crea).toPlainString(null, false));
+    var vestingCrea = totalVestCrea * (vests / totalVests);
+    return Asset.parse({
+        amount: vestingCrea,
+        nai: 'cgy'
+    });
+}

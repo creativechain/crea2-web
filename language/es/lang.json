@@ -414,7 +414,7 @@
         "BALANCES_CREA_TEXT": "Tokens que funcionan como un activo líquido (fácilmente convertibles a efectivo). se pueden transferir a otros usuarios y se pueden convertir en CREA ENERGY en un proceso conocido como Energize.",
         "BALANCES_SAVING_TITLE": "AHORROS",
         "BALANCES_DELEGATED_CGY_TITLE": "CGY DELEGADO",
-        "BALANCES_DELEGATED_CGY_TEXT": "CGY DELEGADO",
+        "BALANCES_DELEGATED_CGY_TEXT": "Es el CREA Energy delegado por otro usuario. Puedes beneficiarte de este CGY pero no puedes desenergizar, ya que pertenece al propietario original.",
         "BALANCES_ACCOUNT_TITLE": "Valor aproximado de la cuenta",
         "BALANCES_ACCOUNT_TEXT": "Es un valor estimado basado en el valor de CREA en dólares estadounidenses.",
         "DROPDOWN_MENU_MARKET": "Mercado",
@@ -517,7 +517,7 @@
         "CURATE": "Recibido por curación",
         "PRODUCED": "Recibido por producción de bloques",
         "POSTED": "Ha publicado",
-        "COMMENTED": "Ha comentado",
+        "COMMENTED": "Ha comentado en",
         "VOTED_FOR": "Ha votado a",
         "CREATE_ACCOUNT": "Creó la cuenta",
         "COMMENT_DOWNLOAD": "Descargó "

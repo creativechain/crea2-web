@@ -129,7 +129,7 @@
                                 </p>
 
                                 <p v-if="op.op.value.parent_author != ''">
-                                    {{ lang.HISTORY.COMMENTED ~ '{{ op.op.value.parent_permlink }}' }}
+                                    {{ lang.HISTORY.COMMENTED ~ ' {{ op.op.value.parent_permlink }}' }}
                                 </p>
                                 <p v-else >
                                     {{ lang.HISTORY.POSTED ~ '{{ op.op.value.title }}' }}
@@ -187,7 +187,7 @@
                                     <span>{{ '{{ dateFromNow(op.timestamp) }}' }}</span>
                                 </p>
                                 <p>
-                                    {{ lang.HISTORY.VOTED_FOR ~ '{{ op.op.value.permlink }}' }}
+                                    {{ lang.HISTORY.VOTED_FOR ~ ' {{ op.op.value.permlink }}' }}
                                 </p>
                             </div>
                         </div>

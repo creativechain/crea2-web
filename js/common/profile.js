@@ -587,7 +587,7 @@
                         return vestingCrea(this.state.user, this.state.props);
                     },
                     getDelegatedCGY: function () {
-                        return delegatedCrea(this.state.user, this.state.props);
+                        return receivedDelegatedCGY(this.state.user, this.state.props);
                     },
                     hasRewardBalance: function hasRewardBalance() {
                         var crea = Asset.parse(this.state.user.reward_crea_balance);

@@ -426,7 +426,7 @@ function makeMentions(comment, state) {
 
             var mention = m.replace('@', '').toLowerCase();
             var user = state.accounts[mention];
-            user = user ? user.metadata.publicName || user.name : user;
+            user = user ? user.metadata.publicName || user.name : m;
             var link = '<a href="/@' + mention + '">' + user + '</a>';
             //console.log(m, link)
             body = body.replace(m, link);
