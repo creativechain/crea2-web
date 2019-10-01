@@ -406,10 +406,10 @@ function makeMentions(comment, state) {
 
     //console.log(body);
     //First, save links that contains @user;
-    var httpMatches = body.match(/(https|http):\/\/[\d\w\/-]*.[\d\w\/-]+[@\d\w\/-]+/g);
+    var httpUserMatches = body.match(/(https|http):\/\/[\d\w\/-]*.[\d\w\/-]+[@\d\w\/-]+/g);
     var httpLinks = {};
-    if (httpMatches) {
-        httpMatches.forEach(function (m) {
+    if (httpUserMatches) {
+        httpUserMatches.forEach(function (m) {
             var httpId = uniqueId();
             httpLinks[httpId] = m;
             body = body.replace(m, httpId);
@@ -429,7 +429,9 @@ function makeMentions(comment, state) {
             user = user ? user.metadata.publicName || user.name : m;
             var link = '<a href="/@' + mention + '">' + user + '</a>';
             //console.log(m, link)
-            body = body.replace(m, link);
+            body = body.replace(m + ' ', link + ' ');
+            body = body.replace(' ' + m + ' ', ' ' + link + ' ');
+            body = body.replace(' ' + m, ' ' + link);
         });
 
         //console.log(userMatches);
@@ -444,7 +446,9 @@ function makeMentions(comment, state) {
             var tag = m.replace('#', '').toLowerCase();
             var link = '<a href="/popular/' + tag + '">#' + tag + '</a>';
             //console.log(m, link)
-            body = body.replace(m, link);
+            body = body.replace(m + ' ', link + ' ');
+            body = body.replace(' ' + m + ' ', ' ' + link + ' ');
+            body = body.replace(' ' + m, ' ' + link);
         });
     }
 
