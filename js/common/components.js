@@ -1210,8 +1210,6 @@ Vue.component('new-like', {
         if (this.state !== LIKE_STATE.LIKE_OP) {
             this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
         }
-
-        console.error('like updated', this.state, this.likeClasses);
     }
 });
 

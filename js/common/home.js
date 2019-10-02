@@ -363,7 +363,6 @@
             };
 
             var onReblogs = function (k, d, reblogs) {
-                console.log(k, reblogs)
                 state.content[k] = parsePost(d, reblogs);
             };
 
