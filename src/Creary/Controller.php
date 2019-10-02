@@ -204,25 +204,35 @@ class Controller
 
         $language = $this->getLanguage();
         if ($post) {
-            $authorName = $post['author']['metadata']['publicName'] ? $post['author']['metadata']['publicName'] : $author;
+            $authorName = $author;
+            $blocked = $post['author']['metadata']['blocked'];
+            if (!$blocked) {
+                $authorName = $post['author']['metadata']['publicName'] ? $post['author']['metadata']['publicName'] : $author;
+            }
+
             $title = 'Creary - ' . $post['title'];
-            $metas = array(
-                $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
-                $this->buildMeta('property', 'og:title', $title),
-                $this->buildMeta('property', 'og:image', $post['metadata']['featuredImage']['url']),
-                $this->buildMeta('property', 'og:description', $post['metadata']['description']),
-                $this->buildMeta('property', 'og:type', 'article'),
-                $this->buildMeta('property', 'article:published_time', $post['created']),
-                $this->buildMeta('property', 'article:modified_time', $post['last_update']),
-                $this->buildMeta('property', 'article:author', $authorName),
-                $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
-                $this->buildMeta('name', 'twitter:site', '@Crearynet'),
-                $this->buildMeta('name', 'twitter:creator', '@' . $author),
-                $this->buildMeta('name', 'twitter:title', $title),
-                $this->buildMeta('name', 'twitter:description', $post['metadata']['description']),
-                $this->buildMeta('name', 'twitter:image', $post['metadata']['featuredImage']['url']),
-                $this->buildMeta('name', 'description', $post['metadata']['description']),
-            );
+
+            if ($blocked) {
+                $metas = array();
+            } else {
+                $metas = array(
+                    $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
+                    $this->buildMeta('property', 'og:title', $title),
+                    $this->buildMeta('property', 'og:image', $post['metadata']['featuredImage']['url']),
+                    $this->buildMeta('property', 'og:description', $post['metadata']['description']),
+                    $this->buildMeta('property', 'og:type', 'article'),
+                    $this->buildMeta('property', 'article:published_time', $post['created']),
+                    $this->buildMeta('property', 'article:modified_time', $post['last_update']),
+                    $this->buildMeta('property', 'article:author', $authorName),
+                    $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
+                    $this->buildMeta('name', 'twitter:site', '@Crearynet'),
+                    $this->buildMeta('name', 'twitter:creator', '@' . $author),
+                    $this->buildMeta('name', 'twitter:title', $title),
+                    $this->buildMeta('name', 'twitter:description', $post['metadata']['description']),
+                    $this->buildMeta('name', 'twitter:image', $post['metadata']['featuredImage']['url']),
+                    $this->buildMeta('name', 'description', $post['metadata']['description']),
+                );
+            }
 
             $tags = $post['metadata']['tags'];
             if ($tags) {
@@ -262,29 +272,36 @@ class Controller
 
         $language = $this->getLanguage();
         if ($profile) {
-            $publicName = $profile['metadata']['publicName'];
-            if ($publicName) {
-                $title = 'Creary - ' . $publicName . ' (@' . $profileName . ')';
-            } else {
-                $title = 'Creary - @' . $profileName;
-            }
+            $blocked = $profile['metadata']['blocked'];
 
-            $metas = array(
-                $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
-                $this->buildMeta('property', 'og:title', $title),
-                $this->buildMeta('property', 'og:image', $profile['metadata']['avatar']['url']),
-                $this->buildMeta('property', 'og:description', $profile['metadata']['about']),
-                $this->buildMeta('property', 'og:type', 'profile'),
-                $this->buildMeta('property', 'profile:first_name', $publicName ? $publicName : $profileName),
-                $this->buildMeta('property', 'profile:username', $profileName),
-                $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
-                $this->buildMeta('name', 'twitter:site', '@Crearynet'),
-                $this->buildMeta('name', 'twitter:creator', '@' . $profileName),
-                $this->buildMeta('name', 'twitter:title', $title),
-                $this->buildMeta('name', 'twitter:description', $profile['metadata']['about']),
-                $this->buildMeta('name', 'twitter:image', $profile['metadata']['avatar']['url']),
-                $this->buildMeta('name', 'description', $profile['metadata']['about']),
-            );
+            if ($blocked) {
+                $metas = array();
+                $title = 'Creary';
+            } else {
+                $publicName = $profile['metadata']['publicName'];
+                if ($publicName) {
+                    $title = 'Creary - ' . $publicName . ' (@' . $profileName . ')';
+                } else {
+                    $title = 'Creary - @' . $profileName;
+                }
+
+                $metas = array(
+                    $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
+                    $this->buildMeta('property', 'og:title', $title),
+                    $this->buildMeta('property', 'og:image', $profile['metadata']['avatar']['url']),
+                    $this->buildMeta('property', 'og:description', $profile['metadata']['about']),
+                    $this->buildMeta('property', 'og:type', 'profile'),
+                    $this->buildMeta('property', 'profile:first_name', $publicName ? $publicName : $profileName),
+                    $this->buildMeta('property', 'profile:username', $profileName),
+                    $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
+                    $this->buildMeta('name', 'twitter:site', '@Crearynet'),
+                    $this->buildMeta('name', 'twitter:creator', '@' . $profileName),
+                    $this->buildMeta('name', 'twitter:title', $title),
+                    $this->buildMeta('name', 'twitter:description', $profile['metadata']['about']),
+                    $this->buildMeta('name', 'twitter:image', $profile['metadata']['avatar']['url']),
+                    $this->buildMeta('name', 'description', $profile['metadata']['about']),
+                );
+            }
 
             $tags = $profile['metadata']['tags'];
             if ($tags) {

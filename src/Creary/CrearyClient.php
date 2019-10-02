@@ -87,6 +87,7 @@ class CrearyClient
         if (array_key_exists('result', $response)) {
             $account = $response['result'][0];
             $account['metadata'] = json_decode($account['json_metadata'], true);
+            $account['metadata']['blocked'] = intval($account['reputation']) < 0;
 
             return $account;
         }
