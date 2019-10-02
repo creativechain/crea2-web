@@ -366,6 +366,7 @@
                 state.content[k] = parsePost(d, reblogs);
             };
 
+
             refreshAccessToken(function (accessToken) {
 
                 for (var x = 0; x < ck.length; x++) {
