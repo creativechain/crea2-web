@@ -237,4 +237,5 @@
             welcomeVue.slide = 1;
         }
     });
+
 })();

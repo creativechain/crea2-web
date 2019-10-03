@@ -2,14 +2,14 @@
 
 (function () {
 
-    var marketContainer;
-    var tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
-    var chart;
+    let marketContainer;
+    let tablesInitiated, buyTable, buyAllTable, sellTable, sellAllTable, userOrdersTable, marketHistoryTable;
+    let chart;
 
-    var session = null;
-    var account = null;
+    let session = null;
+    let account = null;
 
-    var socket = new RpcWsClient('wss://nodes.creary.net');
+    let socket = new RpcWsClient('wss://nodes.creary.net');
     socket.connect();
 
     socket.on('ws.message', function (data, id) {
@@ -51,10 +51,10 @@
                         return moment(toLocaleDate(date)).fromNow();
                     },
                     priceFor: function (base, quote) {
-                        var assetBase = Asset.parse(base);
-                        var assetQuote = Asset.parse(quote);
+                        let assetBase = Asset.parse(base);
+                        let assetQuote = Asset.parse(quote);
 
-                        var plainPrice = assetQuote.toFloat() / assetBase.toFloat();
+                        let plainPrice = assetQuote.toFloat() / assetBase.toFloat();
                         return Asset.parse({
                             amount: plainPrice,
                             nai: assetQuote.asset.symbol
@@ -94,34 +94,34 @@
                     },
                     inputBuy: function (event, field) {
                         field = field.toLowerCase();
-                        var charCode = (event.which) ? event.which : event.keyCode;
+                        let charCode = (event.which) ? event.which : event.keyCode;
                         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
                             cancelEventPropagation(event);
                             return false;
                         }
 
-                        var value = event.target.value;
-                        var formValue = Asset.parse({amount: value, nai: 'crea', exponent: 3}).toPlainString();
+                        let value = event.target.value;
+                        let formValue = Asset.parse({amount: value, nai: 'crea', exponent: 3}).toPlainString();
 
                         //console.log(formValue, field);
                         if (!isNaN(value) || !isNaN(formValue)) {
 
-                            var amount = this.buyForm.amount;
+                            let amount = this.buyForm.amount;
                             switch (field) {
                                 case 'price':
                                     //change only total if amount != 0
                                     // total = amount * price
                                     if (amount) {
-                                        var t = (amount * formValue).toString();
+                                        let t = (amount * formValue).toString();
                                         this.buyForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
                                 case 'amount':
                                     //change only total if price != 0
                                     // total = amount * price
-                                    var price = this.buyForm.price;
+                                    let price = this.buyForm.price;
                                     if (price) {
-                                        var t = (formValue * price).toString();
+                                        let t = (formValue * price).toString();
                                         this.buyForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
@@ -129,7 +129,7 @@
                                     //change only price if amount != 0
                                     // price = total / amount
                                     if (amount) {
-                                        var p = (formValue / amount).toString();
+                                        let p = (formValue / amount).toString();
                                         this.buyForm.price = Asset.parse({amount: p, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                             }
@@ -160,34 +160,34 @@
                     },
                     inputSell: function (event, field) {
                         field = field.toLowerCase();
-                        var charCode = (event.which) ? event.which : event.keyCode;
+                        let charCode = (event.which) ? event.which : event.keyCode;
                         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
                             cancelEventPropagation(event);
                             return false;
                         }
 
-                        var value = event.target.value;
-                        var formValue = Asset.parse({amount: value, nai: 'crea', exponent: 3}).toPlainString();
+                        let value = event.target.value;
+                        let formValue = Asset.parse({amount: value, nai: 'crea', exponent: 3}).toPlainString();
 
                         //console.log(formValue, field);
                         if (!isNaN(value) || !isNaN(formValue)) {
 
-                            var amount = this.sellForm.amount;
+                            let amount = this.sellForm.amount;
                             switch (field) {
                                 case 'price':
                                     //change only total if amount != 0
                                     // total = amount * price
                                     if (amount) {
-                                        var t = (amount * value).toString();
+                                        let t = (amount * value).toString();
                                         this.sellForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
                                 case 'amount':
                                     //change only total if price != 0
                                     // total = amount * price
-                                    var price = this.sellForm.price;
+                                    let price = this.sellForm.price;
                                     if (price) {
-                                        var t = (value * price).toString();
+                                        let t = (value * price).toString();
                                         this.sellForm.total = Asset.parse({amount: t, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                                     break;
@@ -195,7 +195,7 @@
                                     //change only price if amount != 0
                                     // price = total / amount
                                     if (amount) {
-                                        var p = (value / amount).toString();
+                                        let p = (value / amount).toString();
                                         this.sellForm.price = Asset.parse({amount: p, nai: 'cbd', exponent: 3}).toPlainString();
                                     }
                             }
@@ -204,12 +204,12 @@
                     },
                     makeOrder: function (type) {
                         type = type.toLowerCase();
-                        var that = this;
-                        var username = session ? session.account.username : null;
+                        let that = this;
+                        let username = session ? session.account.username : null;
                         requireRoleKey(username, 'active', function (activeKey, username) {
-                            var amountToSell, minToReceive, expiration, orderId;
+                            let amountToSell, minToReceive, expiration, orderId;
 
-                            var now = new Date();
+                            let now = new Date();
                             expiration = new Date(now.getTime() + (60 * 60 * 24 * 27 * 1000)); //28 days
                             orderId = randomNumber(0, 0xFFFFFFFF); //MAX uint32_t
 
@@ -273,7 +273,7 @@
     function fetchOpenOrders() {
 
         if (session) {
-            var data = {
+            let data = {
                 method: 'condenser_api.get_open_orders',
                 params: [session.account.username]
             };
@@ -281,10 +281,10 @@
             socket.send(data, function (err, result) {
                 if (!catchError(err)) {
 
-                    var parseOpenOrder = function (order) {
-                        var priceBase = Asset.parse(order.sell_price.base);
-                        var priceQuote = Asset.parse(order.sell_price.quote);
-                        var type = priceBase.asset.symbol === 'CREA' ? 'Sell' : 'Buy';
+                    let parseOpenOrder = function (order) {
+                        let priceBase = Asset.parse(order.sell_price.base);
+                        let priceQuote = Asset.parse(order.sell_price.quote);
+                        let type = priceBase.asset.symbol === 'CREA' ? 'Sell' : 'Buy';
 
                         return {
                             date: moment(order.created).format('MMM DD, YYYY H:mm:ss'),
@@ -301,7 +301,7 @@
                         };
                     };
 
-                    var userOrders = [];
+                    let userOrders = [];
 
                     result.forEach(function (o) {
                         userOrders.push(parseOpenOrder(o));
@@ -319,7 +319,7 @@
     }
 
     function fetchTicker() {
-        var data = {
+        let data = {
             method: 'market_history_api.get_ticker',
             params: {}
         };
@@ -346,7 +346,7 @@
     }
 
     function loadOrderBook () {
-        var data = {
+        let data = {
             method: 'condenser_api.get_order_book',
             params: [100]
         };
@@ -354,12 +354,12 @@
         socket.send(data, function (err, result) {
             if (!catchError(err)) {
                 //parse order book
-                var asks = []; //Offer CREA - Demand CBD
-                var bids = []; //Demand CREA - Offer CBD
-                var asksData = mixToArray(buyTable.rows().data());
-                var bidsData = mixToArray(sellTable.rows().data());
+                let asks = []; //Offer CREA - Demand CBD
+                let bids = []; //Demand CREA - Offer CBD
+                let asksData = mixToArray(buyTable.rows().data());
+                let bidsData = mixToArray(sellTable.rows().data());
 
-                var parseOrder = function(order) {
+                let parseOrder = function(order) {
                     return {
                         price: order.order_price,
                         crea: order.crea,
@@ -368,8 +368,8 @@
                     };
                 };
 
-                var accumulativeAsk = 0;
-                var accumulativeBid = 0;
+                let accumulativeAsk = 0;
+                let accumulativeBid = 0;
                 result.bids.forEach(function (ask, index) {
                     ask.order_price = Asset.parse({
                         amount: ask.real_price,
@@ -427,10 +427,10 @@
                     sellAllTable.rows.add(bids).draw();
 
                     //Set scroll to bottom
-                    var sellTableScroll = $(sellTable.table().node()).parent();
+                    let sellTableScroll = $(sellTable.table().node()).parent();
                     sellTableScroll.scrollTop(sellTableScroll.get(0).scrollHeight);
 
-                    var sellAllTableScroll = $(sellAllTable.table().node()).parent();
+                    let sellAllTableScroll = $(sellAllTable.table().node()).parent();
                     sellAllTableScroll.scrollTop(sellAllTableScroll.get(0).scrollHeight);
                 }
             }
@@ -448,7 +448,7 @@
 
     }
     function loadRecentTrades() {
-        var data = {
+        let data = {
             method: 'market_history_api.get_recent_trades',
             params: {
                 limit: 100
@@ -457,9 +457,9 @@
 
         socket.send(data, function (err, result) {
             if (!err) {
-                var trades = [];
+                let trades = [];
 
-                var buyLastPrice, sellLastPrice;
+                let buyLastPrice, sellLastPrice;
                 //Order by date DESC
                 result.trades.sort(function (a, b) {
                     return new Date(b.date).getTime() - new Date(a.date).getTime();
@@ -467,8 +467,8 @@
 
                 result.trades.forEach(function (t) {
                     t.date = moment(toLocaleDate(t.date)).fromNow();
-                    var currentPays = Asset.parse(t.current_pays);
-                    var openPays = Asset.parse(t.open_pays);
+                    let currentPays = Asset.parse(t.current_pays);
+                    let openPays = Asset.parse(t.open_pays);
 
                     t.current_pays = currentPays.toPlainString();
                     t.open_pays = openPays.toPlainString();
@@ -498,7 +498,7 @@
                 //marketContainer.recentTrades = trades;
                 //marketContainer.$forceUpdate();
 
-                var lastTrades = mixToArray(marketHistoryTable.rows().data());
+                let lastTrades = mixToArray(marketHistoryTable.rows().data());
                 if (!isEqual(lastTrades, trades)) {
                     marketHistoryTable.clear();
                     marketHistoryTable.rows.add(trades).draw();
@@ -513,8 +513,8 @@
     }
 
     function fetchDataToChart() {
-        var now = moment();
-        var data = {
+        let now = moment();
+        let data = {
             method: 'market_history_api.get_market_history',
             params: {
                 bucket_seconds: 86400, //15, 30, 60, 3600, 86400
@@ -525,9 +525,9 @@
 
         socket.send(data, function (err, result) {
             if (!err) {
-                var buckets = [];
+                let buckets = [];
                 result.buckets.forEach(function (b) {
-                    var buck = {
+                    let buck = {
                         date: moment(b.open).format('DD-MM-YYYY H:mm'),
                         open: Asset.parse({amount: b.non_crea.open, nai: 'cbd'}).toFloat(),
                         high: Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat(),
@@ -552,7 +552,7 @@
 
     function refreshData(interval, inmediate) {
 
-        var refresh = function () {
+        let refresh = function () {
             fetchTicker();
             fetchOpenOrders();
             loadOrderBook();
@@ -583,13 +583,13 @@
 
             chart.dateFormatter.inputDateFormat = "dd-MM-yyyy HH:mm";
 
-            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
             dateAxis.renderer.grid.template.location = 0;
 
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
             valueAxis.tooltip.disabled = true;
 
-            var series = chart.series.push(new am4charts.CandlestickSeries());
+            let series = chart.series.push(new am4charts.CandlestickSeries());
             series.dataFields.dateX = "date";
             series.dataFields.valueY = "close";
             series.dataFields.openValueY = "open";
@@ -611,7 +611,7 @@
             chart.cursor = new am4charts.XYCursor();
 
 // a separate series for scrollbar
-            var lineSeries = chart.series.push(new am4charts.LineSeries());
+            let lineSeries = chart.series.push(new am4charts.LineSeries());
             lineSeries.dataFields.dateX = "date";
             lineSeries.dataFields.valueY = "close";
 // need to set on default state, as initially series is "show"
@@ -622,7 +622,7 @@
             lineSeries.fillOpacity = 0.5;
             lineSeries.strokeOpacity = 0.5;
 
-            var scrollbarX = new am4charts.XYChartScrollbar();
+            let scrollbarX = new am4charts.XYChartScrollbar();
             scrollbarX.series.push(lineSeries);
             chart.scrollbarX = scrollbarX;
 

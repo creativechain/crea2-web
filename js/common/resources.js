@@ -47,7 +47,6 @@ var R = {
  * @param account
  * @returns {string}
  */
-
 R.getAvatar = function (account) {
     if (account.metadata && account.metadata.avatar) {
         if (account.metadata.avatar.hash) {

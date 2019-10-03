@@ -24,14 +24,13 @@ function cgyToVests(state, creaEnergy) {
         nai: apiOptions.nai.VESTS
     });
 }
+
 /**
  *
  * @param state
  * @param vestingShares
  * @returns {Asset}
  */
-
-
 function vestsToCgy(state, vestingShares) {
     var nai = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'cgy';
     var vests = vestingShares;
@@ -47,14 +46,13 @@ function vestsToCgy(state, vestingShares) {
         nai: nai
     });
 }
+
 /**
  *
  * @param account
  * @param props
  * @returns {Asset}
  */
-
-
 function vestingCrea(account, props) {
     var vests = parseFloat(Asset.parse(account.vesting_shares).toPlainString(null, false));
     var totalVests = parseFloat(Asset.parse(props.total_vesting_shares).toPlainString(null, false));
@@ -65,14 +63,13 @@ function vestingCrea(account, props) {
         nai: apiOptions.nai.CGY
     });
 }
+
 /**
  *
  * @param account
  * @param props
  * @returns {Asset}
  */
-
-
 function delegatedCrea(account, props) {
     var delegatedVests = parseFloat(Asset.parse(account.delegated_vesting_shares).toPlainString(null, false));
     var receivedVests = parseFloat(Asset.parse(account.received_vesting_shares).toPlainString(null, false));
@@ -86,6 +83,12 @@ function delegatedCrea(account, props) {
     });
 }
 
+/**
+ *
+ * @param account
+ * @param props
+ * @returns {*}
+ */
 function receivedDelegatedCGY(account, props) {
     var delegatedVests = 0; //parseFloat(Asset.parse(account.delegated_vesting_shares).toPlainString(null, false));
     var receivedVests = parseFloat(Asset.parse(account.received_vesting_shares).toPlainString(null, false));

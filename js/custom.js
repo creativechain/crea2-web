@@ -1,11 +1,11 @@
 "use strict";
 
 $(document).ready(function () {
-    var navbarC = $('#navbar-container');
-    var navbarR = $('#navbar-right-menu');
-    var navbarS = $('#navbar-search');
-    var footer = $('footer');
-    var welcome = $('.view-welcome');
+    let navbarC = $('#navbar-container');
+    let navbarR = $('#navbar-right-menu');
+    let navbarS = $('#navbar-search');
+    let footer = $('footer');
+    let welcome = $('.view-welcome');
 
     if (welcome.length > 0) {
         navbarC.addClass('hidden');

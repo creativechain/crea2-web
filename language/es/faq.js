@@ -4,7 +4,6 @@ faq = {
             "¿Cómo creo una cuenta?",
             "¿Por qué tengo que proporcionar mi correo electrónico?",
             "¿Puedo crear una cuenta de Crea sin un correo electrónico?",
-            "¿Puedo eliminar o desactivar mi cuenta?",
             "¿Qué sucede si mi correo electrónico cambia?",
             "¿Puedo cambiar mi nombre de usuario?",
             "¿Puedo eliminar o desactivar mi cuenta?"
@@ -121,9 +120,12 @@ faq = {
     },
     "RESPONSES": {
         "Cuentas": {
-            "¿Puedo crear una cuenta de Crea sin un correo electrónico?": ["Si quieres crear una cuenta de Crea desde Creary.net tendrás que seguir las indicaciones del proceso de registro. Pero ya que la blockchain de Crea es una red descentralizada y de código abierto, cualquiera puede crear una cuenta de usuarios desde una aplicación de terceros sin pasar por Creary.net y será igualmente válida para entrar en Creary.net."],
-            "¿Qué sucede si mi correo electrónico cambia?": ["Puedes continuar usando la cuenta incluso si el correo electrónico o el número de teléfono que está vinculado a la cuenta ha cambiado."],
-            "¿Puedo eliminar o desactivar mi cuenta?": ["El nombre de usuario y las cuentas no pueden ser desactivadas o eliminadas. La cuenta junto con toda su actividad queda almacenada permanentemente en la blockchain de Crea. "],
+            "¿Puedo crear una cuenta de Crea sin un correo electrónico?": [
+                "Si quieres crear una cuenta de Crea desde Creary.net tendrás que seguir las indicaciones del proceso de registro. Pero ya que la blockchain de Crea es una red descentralizada y de código abierto, cualquiera puede crear una cuenta de usuarios desde una aplicación de terceros sin pasar por Creary.net y será igualmente válida para entrar en Creary.net."
+            ],
+            "¿Qué sucede si mi correo electrónico cambia?": [
+                "Puedes continuar usando la cuenta incluso si el correo electrónico o el número de teléfono que está vinculado a la cuenta ha cambiado."
+            ],
             "¿Por qué tengo que proporcionar mi correo electrónico?": [
                 "Crear una cuenta en la blockchain de Crea cuesta un cantidad de tokens muy pequeña. Cuando alguien crea una cuenta desde Creary.net, Creativechain FDN aporta la cantidad de tokens necesarios para pagar esta comisión de creación de cuenta de usuario. ",
                 "Para evitar que usuarios malintencionados abusen del registro y crean varias cuentas tenemos que verificar mínimamente a los usuarios para asegurarnos que solo se crea una cuenta por persona"
@@ -135,8 +137,12 @@ faq = {
                 "Recibirás una notificación a tu correo. Simplemente tendrás que seguir la url que se muestra en el correo para continuar con el proceso de registro. ",
                 "Asegúrate de guardar y hacer una copia de seguridad de tu nombre de usuario y contraseña. Es de vital importancia que no pierdas tu contraseña. Recuerda que en un sistema descentralizado no hay control centralizado de tus datos y no hay forma de recuperar tu contraseña o acceder a tu cuenta si se pierde. Una vez que hayas guardado y hecho una copia de seguridad de tu contraseña, finaliza el proceso y ya podrás entrar con tu nombre de usuario y contraseña en Creary.net."
             ],
-            "¿Puedo cambiar mi nombre de usuario?": ["Los nombres de cuenta no pueden cambiarse ya que son un identificador único que está ligado a la blockchain. Si desea un nuevo nombre de cuenta, debe crear una nueva cuenta ."],
-            "¿Puedo eliminar o desactivar mi cuenta?": ["El nombre de usuario y las cuentas no pueden ser desactivadas o eliminadas. La cuenta junto con toda su actividad queda almacenada permanentemente en la blockchain de Crea. "]
+            "¿Puedo cambiar mi nombre de usuario?": [
+                "Los nombres de cuenta no pueden cambiarse ya que son un identificador único que está ligado a la blockchain. Si desea un nuevo nombre de cuenta, debe crear una nueva cuenta."
+            ],
+            "¿Puedo eliminar o desactivar mi cuenta?": [
+                "El nombre de usuario y las cuentas no pueden ser desactivadas o eliminadas. La cuenta junto con toda su actividad queda almacenada permanentemente en la blockchain de Crea."
+            ]
         },
         "Crea Network ": {
             "¿Dónde se anuncian las actualizaciones y noticias relacionadas con el proyecto?": [
@@ -151,9 +157,9 @@ faq = {
         },
         "Información básica": {
             "¿Cómo funciona?": [
-                "Creary es la primera aplicación que funciona sobre la blockchain de Crea. En Creary cualquiera puede publicar contenidos digitales y ser recompensado por su trabajo creativo según los votos recibidos por parte de la comunidad. ",
+                "Creary es la primera aplicación que funciona sobre la blockchain de Crea. En Creary cualquiera puede publicar contenidos digitales y ser recompensado por su trabajo creativo según los votos recibidos por parte de la comunidad.",
                 "Los usuarios son recompensados con criptomonedas llamadas CREA.",
-                "De manera continua la blockchain de Crea acuña nuevas monedas que se distribuyen entre todos los participantes. Esto es posible gracias a Proof of Creation, un tipo de algoritmo que emite recompensas en forma de tokens para recompensar el trabajo de creación y curación de contenidos de la plataforma.  Los usuarios que tengan más monedas CREA y que estas estén convertidas en CREA Energy, decidirán dónde se distribuye una mayor parte de las recompensas emitidas por la blockchain. ",
+                "De manera continua la blockchain de Crea acuña nuevas monedas que se distribuyen entre todos los participantes. Esto es posible gracias a Proof of Creation, un tipo de algoritmo que emite recompensas en forma de tokens para recompensar el trabajo de creación y curación de contenidos de la plataforma.  Los usuarios que tengan más monedas CREA y que estas estén convertidas en CREA Energy, decidirán dónde se distribuye una mayor parte de las recompensas emitidas por la blockchain.",
                 " ",
                 "Los usuarios pueden comprar y vender trabajos creativos de cualquier formato multimedia usando CREA. ",
                 "Estos intercambios suceden forma instantánea en una red distribuida sin intermediarios donde los usuarios pueden conectar directamente y evitar tasas o comisiones que encarecen el trabajo creativo de los autores. ",
@@ -179,13 +185,17 @@ faq = {
                 "2- Almacenar la contraseña fuera de línea para que, en caso de fallo del disco duro, puedas recuperarla. Hazlo en un pendrive, disco duro externo e incluso tenlo impreso en papel en más de un lugar. ",
                 "3- No compartas tu contraseña con otras personas o con sitios web de terceros. Podrían robar tus tokens. Si crees que tu cuenta ha sido comprometida debes cambiar tu contraseña de inmediato. "
             ],
-            "¿Cómo se generan los nuevos tokens?": ["La red Crea genera continuamente nuevos tokens digitales para recompensar a los creadores de contenido y curadores. El 70% de los tokens recién creados se transfieren a los usuarios que agregan valor a la red de Creary al publicar, comentar y votar las publicaciones de otras personas. El resto se tokens se distribuyen en un 15% a los titulares de CREA Energy y el otro 15% a los testigos que trabajan generando nuevos bloques en la blockchain de Crea. "],
-            "¿Qué es creary.net?": ["Creary es una red social de portfolios multimedia basada en la blockchain que recompensa a creativos y curadores por compartir sus creaciones digitales con la comunidad. "],
+            "¿Cómo se generan los nuevos tokens?": [
+                "La red Crea genera continuamente nuevos tokens digitales para recompensar a los creadores de contenido y curadores. El 70% de los tokens recién creados se transfieren a los usuarios que agregan valor a la red de Creary al publicar, comentar y votar las publicaciones de otras personas. El resto se tokens se distribuyen en un 15% a los titulares de CREA Energy y el otro 15% a los testigos que trabajan generando nuevos bloques en la blockchain de Crea."
+            ],
+            "¿Qué es creary.net?": [
+                "Creary es una red social de portfolios multimedia basada en la blockchain que recompensa a creativos y curadores por compartir sus creaciones digitales con la comunidad."
+            ],
             "¿De dónde viene el valor de los tokens en la red de Crea?": [
                 "Crea es una sistema basado en una blockchain que emite tokens que se otorgan como puntos de recompensa a los usuarios que aportan contenidos y valor a la red.",
                 "La adquisición de estos tokens otorga poder de voto a sus propietarios dentro de la red. Esto significa que los usuarios con más tokens tendrán más poder de influencia en el red. La influencia es un poder muy valorado en cualquier ecosistema social llegando a cuantificar este valor con un precio que los usuarios estarán dispuestos a pagar para conseguir más influencia. ",
                 "Pero estos tokens también funcionan como criptomonedas con las que los usuarios de la red pueden comprar otros artículos ofrecidos por los usuarios de la red. De este modo su valor no está solo relacionado con la influencia si no con la posibilidad de adquirir ciertos artículos que solo se distribuyen en esta red. ",
-                "Gracias a la tecnología blockchain, estos tokens se pueden intercambiar en los mercados de bienes digitales. Si las moneda o los artículos son transferibles entre usuarios, entonces pueden venderlos o comprarlos en los mercados. Por esta razón y al igual que en cualquier sistema económico el precio de un token siempre estará sujeto a la oferta y la demanda.  "
+                "Gracias a la tecnología blockchain, estos tokens se pueden intercambiar en los mercados de bienes digitales. Si las moneda o los artículos son transferibles entre usuarios, entonces pueden venderlos o comprarlos en los mercados. Por esta razón y al igual que en cualquier sistema económico el precio de un token siempre estará sujeto a la oferta y la demanda."
             ],
             "¿Cuesta algo publicar, comentar o votar?": ["La red de Crea está libre de comisiones por lo que publicar, comentar y votar sobre el contenido es gratis. Es más, recuerda que estamos cambiando el paradigma de las redes sociales y lo más probable es que por publicar, comentar, o votar seas recompensado con tokens."]
         },
@@ -231,7 +241,7 @@ faq = {
                 "Creary usa este sistema para almacenar los contenidos ya sean videos, audio, imágenes o archivos de descarga. Por lo tanto Creary.net no almacena archivos en servidores de manera centralizada. ",
                 "Por esta razón y a diferencia de los metadatos incrustados en la blockchain de Crea, Creary no garantiza al 100% los contenidos como videos, audio, imágenes o archivos de descarga, se alojen en la red de forma perpetua. Por ello recomendamos siempre guardar una copia del contenido original para volver a realizar un nuevo registro o incluso poder acreditar su propiedad ante terceros haciendo uso del hash original y de los datos registrados en la blockchain de Crea.  "
             ],
-            "¿Qué licencia debo escoger al publicar mi contenido?": ["Creary permite registrar tu contenido en la blockchain de Crea, esto genera una estampa que certifica la autoría de un contenido. Al mismo tiempo puedes indicar con qué licencia quieres distribuir tu obra. En Creary.net se ofrecen varios tipos de licencia para contenidos, principalmente se trata de licencias Creative Commons. Puedes seleccionar la que más se ajuste a tu tipo de trabajo (algunas son más o menos restrictivas). Si quieres saber más sobre el funcionamiento de estas licencias, consulta en las preguntas frecuentes en: https://creativecommons.org/faq/"]
+            "¿Qué licencia debo escoger al publicar mi contenido?": ["Creary permite registrar tu contenido en la blockchain de Crea, esto genera una estampa que certifica la autoría de un contenido. Al mismo tiempo puedes indicar con qué licencia quieres distribuir tu obra. En Creary.net se ofrecen varios tipos de licencia para contenidos, principalmente se trata de licencias Creative Commons. Puedes seleccionar la que más se ajuste a tu tipo de trabajo (algunas son más o menos restrictivas). Si quieres saber más sobre el funcionamiento de estas licencias, consulta en las preguntas frecuentes en: https://creativecommons.org/faq/"],
             "¿Qué formatos de audio o video puedo usar?": [
                 "Los formatos admitidos más comunes por los navegadores (Firefox o Chrome) son estos:",
                 "Audio: MP4, MP3, WAVE, WebM, Ogg, AAC",
@@ -368,7 +378,7 @@ faq = {
                 "Recomendar es muy simple, solo tienes que hacer clic en el icono que aparece en la parte superior derecha de los cuadros del proyecto o en la parte inferior izquierda dentro de la página del proyecto.",
                 "Cuando recomiendas un contenido, este será visible en su feed de seguidores. En este contenido, se indicará el autor de esta recomendación.",
                 "Es importante no abusar de esta función y ser muy selectivo con los proyectos que realmente desea recomendar a la comunidad."
-            ],
+            ]
         },
         "Desarrolladores": {
             "¿El código Creary.net o de la blockchain de Crea es de código abierto?": ["Si, puede encontrar el repositorio completo en https://github.com/creativechain "]

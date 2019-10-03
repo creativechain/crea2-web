@@ -38,7 +38,7 @@
             </div>
         </div>
     </section>
-    <script src="/js/common/navbar-mobile.js"></script>
+    <script src="{{ js_path }}/common/navbar-mobile{{ js_ext }}"></script>
 
     <div v-cloak id="home-posts">
         <section v-if="state.discussion_idx[discuss][category].length > 0" class="pt-4">
@@ -94,7 +94,7 @@
     </div>
 
     {{ include('modules/post-view-navigation.php.twig') }}
-    <script src="/js/common/post-navigation.js"></script>
-    <script src="/js/common/home.js"></script>
+    <script src="{{ js_path }}/common/post-navigation{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/home{{ js_ext }}"></script>
 
 {{ include ('element/footer.php.twig') }}

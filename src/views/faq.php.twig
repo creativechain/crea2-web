@@ -1,7 +1,7 @@
 {{ include ('element/navbar.php.twig') }}
 
 
-<script src="/language/{{ lang.CODE }}/faq.js"></script>
+<script src="{{ lang_path }}/{{ lang.CODE }}/faq{{ js_ext }}"></script>
 <div class="main-container view-faq">
     <section v-cloak id="faq-container">
         <div class="container">
@@ -47,5 +47,5 @@
         <!--end of container-->
     </section>
 
-    <script src="/js/common/faq.js"></script>
+    <script src="{{ js_path }}/common/faq{{ js_ext }}"></script>
     {{ include ('element/footer.php.twig') }}

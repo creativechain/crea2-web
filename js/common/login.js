@@ -3,20 +3,20 @@
 /**
  * Created by ander on 29/09/18.
  */
+
 function startLogin() {
     var username = $('#login-username').val();
     var password = $('#login-password').val();
     login(username, password);
     return false;
 }
+
 /**
  *
  * @param {string} username
  * @param {string} password
  * @param callback
  */
-
-
 function login(username, password, callback) {
     //Check roles;
     var session;

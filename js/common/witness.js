@@ -64,7 +64,9 @@
     creaEvents.on('crea.session.login', function (session, account) {
         fetchUserAccount(session, account);
     });
+
     creaEvents.on('crea.session.update', function (session, account) {
         fetchUserAccount(session, account);
     });
+
 })();

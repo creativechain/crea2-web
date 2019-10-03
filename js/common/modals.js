@@ -151,7 +151,9 @@
             roleModal.show = true;
         }, 300);
     });
+
     creaEvents.on('crea.content.loaded', function () {
         setUp();
     });
+
 })();

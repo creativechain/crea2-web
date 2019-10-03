@@ -19,4 +19,5 @@
         setUp();
         creaEvents.emit('crea.dom.ready', 'publish');
     });
+
 })();

@@ -84,9 +84,11 @@
                             noFeedContent();
                         }
                     });
+
                     http.when('fail', function (jqXHR, textStatus, errorThrown) {
                         catchError(textStatus);
                     });
+
                     var username = getPathPart().replace('/', '').replace('@', '');
                     crea.api.getFollowing(username, '', 'blog', 1000, function (err, result) {
                         if (!catchError(err)) {
@@ -154,4 +156,5 @@
     creaEvents.on('crea.session.logout', function () {
         updateNavbarSession(false, false);
     });
+
 })();

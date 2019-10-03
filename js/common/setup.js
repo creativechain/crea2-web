@@ -84,6 +84,7 @@
     });
 
     creaEvents.on('crea.session.update', updateCookies);
+
     creaEvents.on('crea.session.logout', updateCookies);
 
     creaEvents.on('crea.modal.ready', function (remove) {
@@ -128,4 +129,5 @@
         //Build modals
         creaEvents.emit('crea.modal.ready');
     });
+
 })();

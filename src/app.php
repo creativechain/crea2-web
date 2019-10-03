@@ -86,6 +86,7 @@ function handleRoute() {
     );
 
     $controller = new Controller(new ViewRender(__DIR__ . '/views', $renderOptions), new Router());
+    $controller->setDebugMode($debug);
 
 
     $controller->addRoute('/', 'home.php.twig');

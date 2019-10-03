@@ -1515,6 +1515,6 @@
                 creaEvents.emit('navigation.state.update', profileContainer.state);
             });
         }
-
     });
+
 })();

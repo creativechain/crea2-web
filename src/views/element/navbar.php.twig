@@ -83,32 +83,32 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         window.lang = {{ lang|json_encode|raw }};
     </script>
 
-    <script src="/js/js-cookie-2.2.0.min.js"></script>
-    <script src="/js/jquery-3.1.1.min.js"></script>
-    <script src="/js/common/start.js"></script>
-    <script src="/js/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    <script src="/js/tagsinput.js"></script>
-    <script src="/js/moment.min.js"></script>
-    <script src="/js/buffer.js"></script>
-    <script src="/js/event-emitter.js"></script>
-    <script src="/js/crea.js"></script>
-    {#<script src="/js/crea.min.js"></script>#}
+    <script src="{{ js_path }}/common/start{{ js_ext }}"></script>
+    <script src="{{ js_path }}/vue{{ js_ext }}"></script>
 
-    <script src="/js/common/ls.js"></script>
-    <script src="/js/common/conf.js"></script>
-    <script src="/js/common/resources.js"></script>
-    <script src="/js/common/components.js"></script>
-    <script src="/js/common/util.js"></script>
-    <script src="/js/common/creautil.js"></script>
-    <script src="/js/common/http.js"></script>
-    <script src="/js/lib/amount.js"></script>
-    <script src="/js/lib/license.js"></script>
-    <script src="/js/lib/error.js"></script>
-    <script src="/js/lib/account.js"></script>
-    <script src="/js/lib/session.js"></script>
-    <script src="/js/common/login.js"></script>
-    <script src="/js/common/common.js"></script>
+    <script src="{{ js_path }}/tagsinput{{ js_ext }}"></script>
+    <script src="{{ js_path }}/moment{{ js_ext }}"></script>
+    <script src="{{ js_path }}/buffer{{ js_ext }}"></script>
+    <script src="{{ js_path }}/event-emitter{{ js_ext }}"></script>
+    <script src="{{ js_path }}/crea{{ js_ext }}"></script>
+
+    <script src="{{ js_path }}/common/ls{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/conf{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/resources{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/components{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/util{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/creautil{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/http{{ js_ext }}"></script>
+    <script src="{{ js_path }}/lib/amount{{ js_ext }}"></script>
+    <script src="{{ js_path }}/lib/license{{ js_ext }}"></script>
+    <script src="{{ js_path }}/lib/error{{ js_ext }}"></script>
+    <script src="{{ js_path }}/lib/account{{ js_ext }}"></script>
+    <script src="{{ js_path }}/lib/session{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/login{{ js_ext }}"></script>
+    <script src="{{ js_path }}/common/common{{ js_ext }}"></script>
 
 </head>
 <body id="body" class=" " >
@@ -637,4 +637,4 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         </div>
     </nav>
 </div>
-<script src="/js/common/navbar.js"></script>
+<script src="{{ js_path }}/common/navbar{{ js_ext }}"></script>

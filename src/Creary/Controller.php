@@ -26,6 +26,8 @@ class Controller
      */
     private $callMap;
 
+    private $debugMode = false;
+
     /**
      * Controller constructor.
      * @param ViewRender $viewRender
@@ -37,6 +39,16 @@ class Controller
         $this->router = $router;
         $this->callMap = array();
     }
+
+    /**
+     * @param bool $debugMode
+     */
+    public function setDebugMode(bool $debugMode): void
+    {
+        $this->debugMode = $debugMode;
+    }
+
+
 
     /**
      * @param string $route
@@ -170,11 +182,11 @@ class Controller
             $this->buildMeta('name', 'description', $pageMeta->DESCRIPTION),
         );
 
-        return $this->viewRender->render($view, array(
-            'lang' => $language,
-            'metas' => $metas,
-            'title' => $pageMeta->TITLE
-        ));
+        $renderParams = $this->getDefaultRenderParams();
+        $renderParams['metas'] = $metas;
+        $renderParams['title'] = $pageMeta->TITLE;
+
+        return $this->viewRender->render($view, $renderParams);
     }
 
     /**
@@ -202,7 +214,7 @@ class Controller
         $client = $this->getCrearyClient();
         $post = $client->getPost($author, $permlink);
 
-        $language = $this->getLanguage();
+        $renderParams = $this->getDefaultRenderParams();
         if ($post) {
             $authorName = $author;
             $blocked = $post['author']['metadata']['blocked'];
@@ -242,15 +254,12 @@ class Controller
                 }
             }
 
-            return $this->viewRender->render($view, array(
-                'lang' => $language,
-                'post' => $post,
-                'metas' => $metas,
-                'title' => $title
-            ));
+            $renderParams['post'] = $post;
+            $renderParams['metas'] = $metas;
+            $renderParams['title'] = $title;
         }
 
-        return $this->viewRender->render($view);
+        return $this->viewRender->render($view, $renderParams);
 
     }
 
@@ -270,7 +279,8 @@ class Controller
         $client = $this->getCrearyClient();
         $profile = $client->getAccount($profileName);
 
-        $language = $this->getLanguage();
+        $renderParams = $this->getDefaultRenderParams();
+
         if ($profile) {
             $blocked = $profile['metadata']['blocked'];
 
@@ -308,17 +318,22 @@ class Controller
                 $metas[] = $this->buildMeta('name', 'keywords', implode(',', $tags));
             }
 
-            return $this->viewRender->render($view, array(
-                'lang' => $language,
-                'profile' => $profile,
-                'metas' => $metas,
-                'title' => $title
-            ));
+            $renderParams['profile'] = $profile;
+            $renderParams['metas'] = $metas;
+            $renderParams['title'] = $title;
         }
 
-        return $this->viewRender->render($view, array(
-            'lang' => $language
-        ));
+        return $this->viewRender->render($view, $renderParams);
 
+    }
+
+    public function getDefaultRenderParams() {
+        return array(
+            'lang' => $this->getLanguage(),
+            'debug' => $this->debugMode,
+            'js_path' => $this->debugMode ? '/js' : '/src/js',
+            'lang_path' => $this->debugMode ? '/language' : '/src/language',
+            'js_ext' => $this->debugMode ? '.js' : '.min.js'
+        );
     }
 }

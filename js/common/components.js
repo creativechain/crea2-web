@@ -26,6 +26,15 @@ var RECOMMEND_STATE = {
     NO_RECOMMENDED: 2
 };
 
+var FOLLOW_STATE = {
+    NO_FOLLOWING: 0,
+    UNFOLLOWED: 1,
+    FOLLOWING: 2,
+    FOLLOWED: 3,
+    UNFOLLOWING_OP: 4,
+    FOLLOWING_OP: 5
+};
+
 Vue.component('recommend-post', {
     template: '' +
         '<ul class="ul-recommended-post">' +
@@ -1314,15 +1323,6 @@ Vue.component('witness-like', {
         }
     }
 });
-
-var FOLLOW_STATE = {
-    NO_FOLLOWING: 0,
-    UNFOLLOWED: 1,
-    FOLLOWING: 2,
-    FOLLOWED: 3,
-    UNFOLLOWING_OP: 4,
-    FOLLOWING_OP: 5
-};
 
 Vue.component('btn-follow', {
     template: "<div v-on:click=\"performFollow\" v-on:mouseleave=\"onleave\" v-on:mouseover=\"onover\" class=\"btn btn-sm running ld ld-ext-right font-weight-bold\" v-bind:class=\"btnClasses\">\n<div class=\"btn__text ld-spin-fast ld\" v-bind:class=\"textClasses\"></div>{{ text }}<div></div>\n</div>",

@@ -729,7 +729,7 @@ function uploadToIpfs(file, maxSize, callback) {
                 } else if (callback) {
                     callback(err);
                 }
-            }
+            };
 /*            ipfsClient.add(file, options, function (err, data) {
                 if (!err) {
                     console.log(data);

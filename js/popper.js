@@ -2578,7 +2578,6 @@
      * An ES6 getter that will return the height of the virtual reference element.
      */
 
-
     Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
     Popper.placements = placements;
     Popper.Defaults = Defaults;

@@ -716,7 +716,6 @@
      * ------------------------------------------------------------------------
      */
 
-
     $$$1.fn[NAME] = Tooltip._jQueryInterface;
     $$$1.fn[NAME].Constructor = Tooltip;
 
