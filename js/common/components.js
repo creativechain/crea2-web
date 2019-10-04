@@ -1606,8 +1606,9 @@ Vue.component('ckeditor', {
 
         config.removeDialogTabs = 'image:advanced;link:advanced';
         config.resize_enabled = true; //config.extraPlugins = 'html5audio,html5video';
+        config.extraPlugins = 'videodetector';
 
-        CKEDITOR.replace(ckeditorId, config); //CKEDITOR.disableAutoInline = true;
+        var editor = CKEDITOR.replace(ckeditorId, config); //CKEDITOR.disableAutoInline = true;
         //CKEDITOR.inline(ckeditorId, config);
 
         CKEDITOR.instances[ckeditorId].setData(this.value);

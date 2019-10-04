@@ -153,7 +153,7 @@ class License {
                     str += '-';
                 }
 
-                str += getLanguage().LICENSE[perm.name.toUpperCase()];
+                str += lang.LICENSE[perm.name.toUpperCase()];
             }
         });
 

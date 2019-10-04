@@ -511,8 +511,12 @@
 
     creaEvents.on('crea.session.login', function (s, a) {
         session = s;
-        publishContainer.session = s;
-        publishContainer.$forceUpdate();
+
+        if (publishContainer) {
+            publishContainer.session = s;
+            publishContainer.$forceUpdate();
+        }
+
         account = a;
         creaEvents.emit('crea.dom.ready');
     });
