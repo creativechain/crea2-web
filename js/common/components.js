@@ -1605,7 +1605,8 @@ Vue.component('ckeditor', {
         config.format_tags = 'p;h1;h2;h3;h4;pre'; // Simplify the dialog windows.
 
         config.removeDialogTabs = 'image:advanced;link:advanced';
-        config.resize_enabled = true; //config.extraPlugins = 'html5audio,html5video';
+        config.resize_enabled = true; 
+        //config.extraPlugins = 'html5audio,html5video';
         config.extraPlugins = 'videodetector';
 
         var editor = CKEDITOR.replace(ckeditorId, config); //CKEDITOR.disableAutoInline = true;
