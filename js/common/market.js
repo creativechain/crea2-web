@@ -610,14 +610,15 @@
 
             chart.cursor = new am4charts.XYCursor();
 
-// a separate series for scrollbar
+            // a separate series for scrollbar
             let lineSeries = chart.series.push(new am4charts.LineSeries());
             lineSeries.dataFields.dateX = "date";
             lineSeries.dataFields.valueY = "close";
-// need to set on default state, as initially series is "show"
+
+            // need to set on default state, as initially series is "show"
             lineSeries.defaultState.properties.visible = false;
 
-// hide from legend too (in case there is one)
+            // hide from legend too (in case there is one)
             lineSeries.hiddenInLegend = true;
             lineSeries.fillOpacity = 0.5;
             lineSeries.strokeOpacity = 0.5;

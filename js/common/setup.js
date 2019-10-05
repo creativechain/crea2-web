@@ -78,6 +78,7 @@
 
         //console.log(navLang, CreaCookies.get('creary.language'));
     }
+
     creaEvents.on('crea.session.login', function (session) {
         globalLoading.show = false;
         updateCookies(session);
