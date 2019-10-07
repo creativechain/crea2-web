@@ -32,23 +32,27 @@ CKEDITOR.dialog.add( 'videoDialog', function( editor ) {
             //detectamos el video
             var respuesta = detectar(dialog);
             var url = "";
+            var styleClass = "videodetector";
 
-            if(respuesta.reproductor == "youtube"){
-                var url = "https://www.youtube.com/embed/"+respuesta.id_video+"?autohide=1&controls=1&showinfo=0";
+            if(respuesta.reproductor === "youtube"){
+                url = "https://www.youtube.com/embed/"+respuesta.id_video+"?autohide=1&controls=1&showinfo=0";
             }
-            else if(respuesta.reproductor == "vimeo"){
-                var url = "https://player.vimeo.com/video/"+respuesta.id_video+"?portrait=0";
+            else if(respuesta.reproductor === "vimeo"){
+                url = "https://player.vimeo.com/video/"+respuesta.id_video+"?portrait=0";
+                styleClass += ' vimeo'
             }
-            else if(respuesta.reproductor == "dailymotion"){
-                var url = "https://www.dailymotion.com/embed/video/"+respuesta.id_video;
+            else if(respuesta.reproductor === "dailymotion"){
+                url = "https://www.dailymotion.com/embed/video/"+respuesta.id_video;
             }
 
             var p = new CKEDITOR.dom.element('div');
-            p.setAttribute('class', 'videodetector');
+            p.setAttribute('class', styleClass);
 
             var iframe = new CKEDITOR.dom.element('iframe');
             iframe.setAttribute('src', url);
             iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'fullscreen');
+            iframe.setAttribute('allowfullscreen');
             p.append(iframe);
 
 

@@ -87,3 +87,22 @@ p > ul > li {
     text-decoration: line-through;
     color: #999!important;
 }
+
+.videodetector {
+    position      : relative;
+    width         : 100%;
+    height        : 0;
+    padding-bottom: 60%;
+}
+
+.vimeo {
+    padding: 56.25% 0 0 0;
+}
+
+.videodetector iframe {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    width   : 100%;
+    height  : 100%;
+}

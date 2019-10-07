@@ -5,6 +5,10 @@
     padding-bottom: 60%;
 }
 
+.vimeo {
+    padding: 56.25% 0 0 0;
+}
+
 .videodetector iframe {
     position: absolute;
     top     : 0;
