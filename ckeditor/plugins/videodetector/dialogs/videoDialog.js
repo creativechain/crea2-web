@@ -45,6 +45,10 @@ CKEDITOR.dialog.add( 'videoDialog', function( editor ) {
                 url = "https://www.dailymotion.com/embed/video/"+respuesta.id_video;
             }
 
+            if (editor.onembedvideo) {
+                editor.onembedvideo(url, respuesta)
+            }
+
             var p = new CKEDITOR.dom.element('div');
             p.setAttribute('class', styleClass);
 
@@ -69,7 +73,7 @@ CKEDITOR.dialog.add( 'videoDialog', function( editor ) {
             p.append(remove_btn);*/
 
             console.log('adding video', p);
-            editor.insertElement(p);
+            //editor.insertElement(p);
 
             // edit_btn.on('click', function(){
             //     new CKEDITOR.dialog(editor, 'videoDialog');

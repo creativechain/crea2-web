@@ -38,6 +38,14 @@
                         <source v-bind:src="bodyElements[k].url" v-bind:type="bodyElements[k].type">
                     </audio>
                 </div>
+                <div v-else-if="bodyElements[k].type.indexOf('embed/') > -1"
+                     v-bind:class="{ vimeo: bodyElements[k].player === 'vimeo' }"
+                     class="upload-img videodectector">
+                    <div class="delete-img-step-1" style="z-index: 1" v-on:click="removeElement(k)">
+                        <a href="#">X</a>
+                    </div>
+                    <iframe class="videoembed" v-bind:src="bodyElements[k].value" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
+                </div>
             </div>
 
         </template>
@@ -48,7 +56,7 @@
                     <h4 class="title-steps">{{ lang.PUBLISH.CONTENT_TEXT }}</h4>
                     <span class="description-step-title">{{ lang.PUBLISH.CONTENT_SECONDARY_SENTENCE }}</span>
                 </div>
-                <ckeditor v-on:input="editorInput"></ckeditor>
+                <ckeditor v-on:input="editorInput" v-on:embedvideo="editorEmbedVideo"></ckeditor>
             </div>
             <div v-if="editor.show" class="row mt-3 justify-content-end" style="z-index: 1;position: relative;">
                 <div class="col-6 col-md-4 col-lg-3 text-center">

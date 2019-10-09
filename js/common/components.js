@@ -1612,6 +1612,10 @@ Vue.component('ckeditor', {
         var editor = CKEDITOR.replace(ckeditorId, config); //CKEDITOR.disableAutoInline = true;
         //CKEDITOR.inline(ckeditorId, config);
 
+        editor.onembedvideo = function (url, data) {
+            that.$emit('embedvideo', url, data)
+        };
+
         CKEDITOR.instances[ckeditorId].setData(this.value);
         var that = this;
         CKEDITOR.instances[ckeditorId].on('change', function () {

@@ -99,7 +99,7 @@ p > ul > li {
     padding: 56.25% 0 0 0;
 }
 
-.videodetector iframe {
+.videoembed {
     position: absolute;
     top     : 0;
     left    : 0;

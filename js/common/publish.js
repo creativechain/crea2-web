@@ -279,6 +279,15 @@
                 editorInput: function editorInput(data) {
                     this.editor.editing = data.length > 0;
                 },
+                editorEmbedVideo: function(url, data) {
+                    let embedElement = {
+                        type: 'embed/' + data.reproductor,
+                        value: url,
+                        player: data.reproductor
+                    };
+
+                    this.bodyElements.push(embedElement);
+                },
                 updateText: updateText,
                 removeTitleEmojis: removeTitleEmojis,
                 removeDescriptionEmojis: removeDescriptionEmojis,
