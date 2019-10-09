@@ -116,9 +116,12 @@
                                     </p>
                                 </div>
                                 <div v-else-if="el.type.indexOf('embed/') > -1"
-                                     v-bind:class="{ vimeo: bodyElements[k].player === 'vimeo' }"
-                                     class="upload-img videodectector">
-                                    <iframe class="videoembed" v-bind:src="el.value" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
+                                     {#v-bind:class="{ vimeo: el.player === 'vimeo' }"#}
+                                     class="upload-img">
+                                    <div class="videodetector">
+                                        <iframe class="videoembed" v-bind:src="el.value" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
+
+                                    </div>
                                 </div>
                             </div>
                         </template>
