@@ -17,13 +17,13 @@
 
                 </div>
                 <div v-else-if="bodyElements[k].type.indexOf('image/') > -1" class="upload-img">
-                    <div class="delete-img-step-1" v-on:click="removeElement(k)">
+                    <div class="delete-img-step-1" style="z-index: 1" v-on:click="removeElement(k)">
                         <a href="#">X</a>
                     </div>
                     <img v-bind:src="bodyElements[k].url" alt="" />
                 </div>
                 <div v-else-if="bodyElements[k].type.indexOf('video/') > -1" class="upload-img">
-                    <div class="delete-img-step-1" v-on:click="removeElement(k)">
+                    <div class="delete-img-step-1" style="z-index: 1" v-on:click="removeElement(k)">
                         <a href="#">X</a>
                     </div>
                     <video controls>
@@ -31,7 +31,7 @@
                     </video>
                 </div>
                 <div v-else-if="bodyElements[k].type.indexOf('audio/') > -1" class="upload-img">
-                    <div class="delete-img-step-1" v-on:click="removeElement(k)">
+                    <div class="delete-img-step-1" style="z-index: 1" v-on:click="removeElement(k)">
                         <a href="#">X</a>
                     </div>
                     <audio controls>
