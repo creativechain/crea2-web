@@ -20,9 +20,13 @@
                 slide: 0,
                 username: '',
                 email: '',
+                phone: '',
+                phone_code: '',
                 error: {
                     username: '',
                     email: '',
+                    phone: '',
+                    phone_code: '',
                     password: null,
                     matchPassword: '',
                     terms: '',
@@ -30,6 +34,8 @@
                 },
                 validUsername: false,
                 validEmail: false,
+                validPhone: false,
+                sentSMS: false,
                 passwordMatch: false,
                 checkedTerms: false,
                 checkedPolicy: false,
@@ -41,6 +47,8 @@
                 inputPassword: inputPassword,
                 inputCheckPassword: inputCheckPassword,
                 checkEmail: checkEmail,
+                checkPhone: checkPhone,
+                verifyPhone: verifyPhone,
                 changeSlide: function changeSlide(slide) {
                     var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
                     console.log("Change to slide", slide, error);
@@ -141,6 +149,64 @@
         }
     }
 
+    function checkPhone() {
+        var token = getParameterByName('token'); //console.log('Token', token);
+
+        if (token) {
+            globalLoading.show = true;
+            refreshAccessToken(function (accessToken) {
+                var url = apiOptions.apiUrl + `/validation-phone/${token}`;
+                var http = new HttpClient(url);
+                http.setHeaders({
+                    Authorization: 'Bearer ' + accessToken
+                }).post({
+                    phone: welcomeVue.phone
+                }).when('done', function (data) {
+                    globalLoading.show = false;
+                    data = JSON.parse(data);
+                    console.log('Phone validation', data);
+                    welcomeVue.validPhone = true;
+                    welcomeVue.sentSMS = true;
+                    welcomeVue.error.phone = '';
+                }).when('fail', function (jqXHR, textStatus, errorThrown) {
+                    console.error(jqXHR, textStatus, errorThrown);
+                    let response = jsonify(jqXHR.responseText);
+                    welcomeVue.error.phone = lang.ERROR[response.error];
+                    globalLoading.show = false;
+                });
+            });
+        } else {
+            welcomeVue.slide = 1;
+        }
+    }
+    
+    function verifyPhone() {
+        var token = getParameterByName('token'); //console.log('Token', token);
+
+        refreshAccessToken(function (accessToken) {
+            var url = apiOptions.apiUrl + `/validate-phone/${token}`;
+            var http = new HttpClient(url);
+            http.setHeaders({
+                Authorization: 'Bearer ' + accessToken
+            }).post({
+                phoneCode: welcomeVue.phone_code
+            }).when('done', function (data) {
+                globalLoading.show = false;
+                data = JSON.parse(data);
+                console.log('Phone verified', data);
+                welcomeVue.username = data.data.username;
+                welcomeVue.suggestPassword();
+                welcomeVue.slide = 5;
+                welcomeVue.error.phone_code = '';
+            }).when('fail', function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+                let response = jsonify(jqXHR.responseText);
+                welcomeVue.error.phone_code = lang.ERROR[response.error];
+                globalLoading.show = false;
+            });
+        })
+    }
+
     function inputCheckPassword(event) {
         var password = event.target.value;
         var match = welcomeVue.password === password;
@@ -212,12 +278,13 @@
     creaEvents.on('crea.content.loaded', function () {
         console.log('Content loaded!');
         setUp();
-        var token = getParameterByName('token'); //console.log('Token', token);
+
+        var token = getParameterByName('token');
 
         if (token) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                var url = apiOptions.apiUrl + '/validate/' + token;
+                var url = apiOptions.apiUrl + `/validation/${token}`;
                 var http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
@@ -226,16 +293,17 @@
                     data = JSON.parse(data);
                     console.log('SignUp', data);
                     welcomeVue.username = data.data.username;
-                    welcomeVue.suggestPassword();
                     welcomeVue.slide = 5;
                 }).when('fail', function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR, textStatus, errorThrown);
+                    console.error(jqXHR, textStatus, errorThrown);
+                    //TODO: SHOW ERROR
                     goTo('/' + jqXHR.status);
                 });
             });
         } else {
             welcomeVue.slide = 1;
         }
+
     });
 
 })();

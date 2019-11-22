@@ -51,7 +51,11 @@
         "ACCOUNT_UPDATE_THRESHOLD_EXCEEDED": {
             "TITLE": "Account update",
             "BODY": "The account can not be updated more than once in less than 1 hour. Last time: %s."
-        }
+        },
+        "DUPLICATE_PHONE": "Phone already in use.",
+        "INVALID_PHONE": "Phone is invalid. Please check and sure that phone number includes the country prefix",
+        "SMS_REQUEST_LIMIT": "SMS Limit Reached. Try again later.",
+        "INVALID_PHONE_VERIFICATION": "Verification Code ins invalid"
 
     },
     "BANNER": {
@@ -230,7 +234,9 @@
         "REPORT": "Report content",
         "REPORT_COMMENT": "Report comment",
         "UNLOCK": "Unlock",
-        "PAY": "Pay"
+        "PAY": "Pay",
+        "VERIFY_PHONE": "Verify phone number",
+        "SEND_CODE_AGAIN": "Send new code"
     },
     "WELCOME": {
         "SLIDE1_TITLE": "Discover the Crea community!",
@@ -247,6 +253,9 @@
         "SLIDE4_TEXT1": "Check your email and click on the email validation link.",
         "SLIDE5_TITLE": "Congratulations",
         "SLIDE5_TEXT1": "Your email has been verified correctly.",
+        "SLIDE5_TEXT2": "Please, confirm your phone. We will only use your phone number to confirm your account. We will not deliver this information to anyone. When entering your phone number an SMS will be sent with a confirmation code that you must enter in the next step.",
+        "SLIDE5_INPUT_PLACEHOLDER": "Type your phone with country prefix",
+        "SLIDE5_INPUT_PLACEHOLDER2": "Enter code received in SMS",
         "SLIDE6_TITLE": "Password",
         "SLIDE6_TEXT1": "Keep your password in a safe place. <strong>IMPORTANTE:</strong> If you ever lose your password, \nyour account will be irretrievably lost and you will not be able to access your content or your tokens. We do \nnot have your password, and we can not help you recover it.",
         "SLIDE6_INPUT_PLACEHOLDER": "Type your password",

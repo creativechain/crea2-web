@@ -222,17 +222,46 @@
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ '{{ username }}' }}!</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
+                                <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT2 }}</p>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
+                                <input id="reg-phone" type="phone" v-model="phone" v-bind:class="{ 'validate-required': true, 'field-error': error.phone && error.phone.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE5_INPUT_PLACEHOLDER" />
+                                <span v-if="error.phone && error.phone.length > 0" class="error-color-form">{{ '{{ error.phone }}' }}</span>
+                            </div>
+                        </div>
+
+                        <div v-if="sentSMS" class="row">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
+                                <input id="reg-phone-code" type="text" v-model="phone_code" v-bind:class="{ 'validate-required': true, 'field-error': error.phone_code && error.phone_code.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE5_INPUT_PLACEHOLDER2" />
+                                <span v-if="error.phone_code && error.phone_code.length > 0" class="error-color-form">{{ '{{ error.phone_code }}' }}</span>
+                            </div>
+                        </div>
+
                         <div class="row mt--1">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
                                 <div class="row justify-content-center">
                                     <div class="col-6">
-                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(6)">
+                                        <div v-if="!sentSMS" class="btn btn--primary w-100" v-on:click="checkPhone()">
                                             <span class="btn__text">
                                                 {{ lang.BUTTON.CONTINUE }}
                                             </span>
                                         </div>
+                                        <div  v-else>
+                                            <div class="btn btn--primary w-100" v-on:click="verifyPhone()">
+                                                <span class="btn__text">
+                                                    {{ lang.BUTTON.VERIFY_PHONE }}
+                                                </span>
+                                            </div>
+
+                                            <div class="btn btn--primary w-100" v-on:click="checkPhone()">
+                                                <span class="btn__text">
+                                                    {{ lang.BUTTON.SEND_CODE_AGAIN }}
+                                                </span>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
