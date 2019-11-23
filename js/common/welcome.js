@@ -196,7 +196,7 @@
                 console.log('Phone verified', data);
                 welcomeVue.username = data.data.username;
                 welcomeVue.suggestPassword();
-                welcomeVue.slide = 5;
+                welcomeVue.slide = 6; //Set Password step
                 welcomeVue.error.phone_code = '';
             }).when('fail', function (jqXHR, textStatus, errorThrown) {
                 console.error(jqXHR, textStatus, errorThrown);

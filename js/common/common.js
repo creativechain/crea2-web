@@ -634,8 +634,8 @@ function refreshAccessToken(callback) {
         var http = new HttpClient(url);
         var params = {
             grant_type: 'client_credentials',
-            client_id: '1_11gxxww27idwo0skoo8s4k0g044skswwkcg08c88swgsowkwgk',
-            client_secret: 'jf8ltr7u5fk0gwssos4g8w8kwc4owosk4gcs0g4wk4k8ks0wk'
+            client_id: '2_3kv2vskswbsw4kk8ogcockkosck4cwwcgww4ggw40gs40gg4g4',
+            client_secret: '3w3b7ca2f12ckwk448kg840wskc08wc0wwk80kkg80c4oco0co'
         };
         http.when('done', function (data) {
             data = JSON.parse(data);
