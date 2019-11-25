@@ -51,7 +51,11 @@
         "ACCOUNT_UPDATE_THRESHOLD_EXCEEDED": {
             "TITLE": "Actualización de cuenta",
             "BODY": "La cuenta no puede ser actualizada más de una vez por hora. Última actualización: %s."
-        }
+        },
+        "DUPLICATE_PHONE": "Este número de teléfono ya está en uso.",
+        "INVALID_PHONE": "Número de teléfono inválido. Por favor, asegúrate de que el número de teléfono incluye el prefijo del país.",
+        "SMS_REQUEST_LIMIT": "Demasiados SMS enviados. Inténtalo de nuevo mas tarde.",
+        "INVALID_PHONE_VERIFICATION": "El código de verificación es incorrecto."
 
     },
     "BANNER": {
@@ -230,7 +234,9 @@
         "REPORT": "Reportar contenido",
         "REPORT_COMMENT": "Reportar comentario",
         "UNLOCK": "Desbloquear",
-        "PAY": "Pagar"
+        "PAY": "Pagar",
+        "VERIFY_PHONE": "Verificar número de teléfono",
+        "SEND_CODE_AGAIN": "Enviar nuevo código"
     },
     "WELCOME": {
         "SLIDE1_TITLE": "¡Descubre la comunidad de Crea!",
@@ -247,6 +253,9 @@
         "SLIDE4_TEXT1": "Comprueba tu correo electrónico y haz clic en el enlace de validación que te hemos enviado.",
         "SLIDE5_TITLE": "¡Enhorabuena!",
         "SLIDE5_TEXT1": "Tu email ha sido verificado correctamente",
+        "SLIDE5_TEXT2": "Por favor, confirma tu número de teléfono. Sólo usaremos tu número de tléfono para confirmar tu cuenta. No daremos acceso a esta información a terceros. Cuando indiques tu número de teléfono recibirás un SMS con un código de confirmación que deberás enviarnos en el siguiente paso.",
+        "SLIDE5_INPUT_PLACEHOLDER": "Escribe tu número de teléfono con el prefijo del país",
+        "SLIDE5_INPUT_PLACEHOLDER2": "Introduce el código de verificación recibido en el SMS",
         "SLIDE6_TITLE": "Contraseña",
         "SLIDE6_TEXT1": "Guarda tu contraseña en un lugar seguro. <strong>IMPORTANTE:</strong> Si alguna vez pierdes tu contraseña, tu cuenta se perderá y no podrás acceder a su contenido ni a sus tokens. No conocemos tu contraseña y no podremos ayudarte a recuperarla.",
         "SLIDE6_INPUT_PLACEHOLDER": "Escribe tu contraseña",
