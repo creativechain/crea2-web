@@ -22,6 +22,7 @@
                 email: '',
                 phone: '',
                 phone_code: '',
+                country_code: '',
                 error: {
                     username: '',
                     email: '',
@@ -41,7 +42,8 @@
                 checkedPolicy: false,
                 suggestedPassword: '',
                 password: '',
-                lang: lang
+                lang: lang,
+                countryCodes: countryCodes
             },
             methods: {
                 inputPassword: inputPassword,
@@ -49,11 +51,10 @@
                 checkEmail: checkEmail,
                 checkPhone: checkPhone,
                 verifyPhone: verifyPhone,
-                changeSlide: function changeSlide(slide) {
-                    var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+                changeSlide: function changeSlide(slide, error) {
                     console.log("Change to slide", slide, error);
 
-                    if (!error || error.length == 0) {
+                    if (!error || error.length === 0) {
                         this.slide = slide;
                     }
                 },
@@ -160,7 +161,7 @@
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
-                    phone: welcomeVue.phone
+                    phone: welcomeVue.country_code + welcomeVue.phone
                 }).when('done', function (data) {
                     globalLoading.show = false;
                     data = JSON.parse(data);
@@ -196,7 +197,7 @@
                 console.log('Phone verified', data);
                 welcomeVue.username = data.data.username;
                 welcomeVue.suggestPassword();
-                welcomeVue.slide = 6; //Set Password step
+                welcomeVue.slide = 7; //Set Password step
                 welcomeVue.error.phone_code = '';
             }).when('fail', function (jqXHR, textStatus, errorThrown) {
                 console.error(jqXHR, textStatus, errorThrown);

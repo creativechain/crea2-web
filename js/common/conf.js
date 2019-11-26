@@ -30,6 +30,7 @@ crea.api.setOptions(apiOptions);
 crea.config.set('address_prefix', apiOptions.addressPrefix);
 crea.config.set('chain_id', apiOptions.chainId);
 var isoLangs = {};
+var countryCodes = {};
 
 var faq = {};
 
@@ -37,4 +38,8 @@ var language = $('html').attr('lang');
 
 $.getJSON('/language/isolangs.json', function(data) {
     isoLangs = data;
+});
+
+$.getJSON('/language/country_codes.json', function(data) {
+    countryCodes = data;
 });

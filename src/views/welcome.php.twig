@@ -222,19 +222,74 @@
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
                                 <h1>{{ lang.WELCOME.SLIDE5_TITLE }} {{ '{{ username }}' }}!</h1>
                                 <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT1 }}</p>
-                                <p class="lead">{{ lang.WELCOME.SLIDE5_TEXT2 }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt--1">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(6)">
+                                            <span class="btn__text">
+                                                {{ lang.BUTTON.CONTINUE }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="text-center">
+                            <ul class="list-inline list-unstyled ul-row-pagination">
+                                <li><p class="circle-welcome active"></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6-->
+    <section v-bind:class="{ hidden: slide !== 6, imageblock: true, switchable: true, 'height-100': true }">
+        <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
+            <div class="background-image-holder">
+                <img alt="image" src="/img/welcome/creary_slide_6-sms.jpg" class="logo-welcome" />
+            </div>
+        </div>
+        <div class="container pos-vertical-center content-slide-welcome ">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="welcome-content">
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 ">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
+                                <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE6_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input id="reg-phone" type="phone" v-model="phone" v-bind:class="{ 'validate-required': true, 'field-error': error.phone && error.phone.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE5_INPUT_PLACEHOLDER" />
+                            <div class="col-lg-6 offset-lg-1 col-md-6 text-center row-inputs">
+                                <label>{{ lang.WELCOME.SLIDE6_SELECT_COUNTRY }}</label>
+                                <div class="input-select">
+                                    <select v-model="country_code">
+                                        <option v-for="l in countryCodes" v-bind:value="l.dial_code">{{ '("+" + {{ l.callingCodes[0] }}) {{ l.name }}' }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 offset-lg-1 col-md-6 text-center row-inputs">
+                                <input id="reg-phone" type="phone" v-model="phone" v-bind:class="{ 'validate-required': true, 'field-error': error.phone && error.phone.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
                                 <span v-if="error.phone && error.phone.length > 0" class="error-color-form">{{ '{{ error.phone }}' }}</span>
                             </div>
                         </div>
 
                         <div v-if="sentSMS" class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input id="reg-phone-code" type="text" v-model="phone_code" v-bind:class="{ 'validate-required': true, 'field-error': error.phone_code && error.phone_code.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE5_INPUT_PLACEHOLDER2" />
+                                <input id="reg-phone-code" type="text" v-model="phone_code" v-bind:class="{ 'validate-required': true, 'field-error': error.phone_code && error.phone_code.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER2" />
                                 <span v-if="error.phone_code && error.phone_code.length > 0" class="error-color-form">{{ '{{ error.phone_code }}' }}</span>
                             </div>
                         </div>
@@ -273,78 +328,9 @@
                         <div class="text-center">
                             <ul class="list-inline list-unstyled ul-row-pagination">
                                 <li><p class="circle-welcome active"></p></li>
-                                <li><p class="circle-welcome "></p></li>
-                                <li><p class="circle-welcome "></p></li>
-                                <li><p class="circle-welcome "></p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 6-->
-    <section v-bind:class="{ hidden: slide !== 6, imageblock: true, switchable: true, 'height-100': true }">
-        <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
-            <div class="background-image-holder">
-                <img alt="image" src="/img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
-            </div>
-        </div>
-        <div class="container pos-vertical-center content-slide-welcome ">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="welcome-content">
-                        <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 ">
-                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-
-                                <h1>{{ lang.WELCOME.SLIDE6_TITLE }}</h1>
-                                <p class="lead">{{ lang.SLIDE6_TEXT1 }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input id="welcome-slide6-input" v-on:input="inputPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.password }" type="text" v-bind:value="suggestedPassword" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
-                            <span v-if="error.password" class="error-color-form">{{ '{{ error.password }}' }}</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="btn btn--transparent w-100" v-on:click="copyToClipboard('welcome-slide6-input')">
-                                            <span class="btn__text btn_copy">
-                                                {{ lang.BUTTON.COPY_PASSWORD }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="btn btn--black w-100" v-on:click="suggestPassword()">
-                                            <span class="btn__text color--white">
-                                                {{ lang.BUTTON.NEW_PASSWORD }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 offset-md-3">
-                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(7, error.password)">
-                                            <span class="btn__text">
-                                               {{ lang.BUTTON.CONTINUE }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="text-center">
-                            <ul class="list-inline list-unstyled ul-row-pagination">
                                 <li><p class="circle-welcome active"></p></li>
-                                <li><p class="circle-welcome active"></p></li>
-                                <li><p class="circle-welcome"></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                                <li><p class="circle-welcome "></p></li>
                                 <li><p class="circle-welcome "></p></li>
                             </ul>
                         </div>
@@ -368,14 +354,85 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
+
                                 <h1>{{ lang.WELCOME.SLIDE7_TITLE }}</h1>
-                                <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT1 }}</p>
-                                <p class="lead">{{ lang.WELCOME.SLIDE7_TEXT2 }}</p>
+                                <p class="lead">{{ lang.SLIDE7_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
-                                <input v-on:input="inputCheckPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.matchPassword }" type="text" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE7_INPUT_PLACEHOLDER" />
+                                <input id="welcome-slide7-input" v-on:input="inputPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.password }" type="text" v-bind:value="suggestedPassword" v-bind:placeholder="lang.WELCOME.SLIDE7_INPUT_PLACEHOLDER" />
+                            <span v-if="error.password" class="error-color-form">{{ '{{ error.password }}' }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="btn btn--transparent w-100" v-on:click="copyToClipboard('welcome-slide7-input')">
+                                            <span class="btn__text btn_copy">
+                                                {{ lang.BUTTON.COPY_PASSWORD }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="btn btn--black w-100" v-on:click="suggestPassword()">
+                                            <span class="btn__text color--white">
+                                                {{ lang.BUTTON.NEW_PASSWORD }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 offset-md-3">
+                                        <div class="btn btn--primary w-100" v-on:click="changeSlide(8, error.password)">
+                                            <span class="btn__text">
+                                               {{ lang.BUTTON.CONTINUE }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="text-center">
+                            <ul class="list-inline list-unstyled ul-row-pagination">
+                                <li><p class="circle-welcome active"></p></li>
+                                <li><p class="circle-welcome active"></p></li>
+                                <li><p class="circle-welcome active"></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                                <li><p class="circle-welcome "></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8-->
+    <section v-bind:class="{ hidden: slide !== 8, imageblock: true, switchable: true, 'height-100': true }">
+        <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
+            <div class="background-image-holder">
+                <img alt="image" src="/img/welcome/creary_slide_6-7@2x.jpg" class="logo-welcome" />
+            </div>
+        </div>
+        <div class="container pos-vertical-center content-slide-welcome ">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="welcome-content">
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 ">
+                                <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
+                                <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
+                                <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT2 }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1 col-md-12 text-center row-inputs">
+                                <input v-on:input="inputCheckPassword" v-bind:class="{ 'validate-required': true, 'field-error': error.matchPassword }" type="text" name="My Input" v-bind:placeholder="lang.WELCOME.SLIDE8_INPUT_PLACEHOLDER" />
                                 <span v-if="error.matchPassword" class="error-color-form">{{ '{{ error.matchPassword }}' }}</span>
                             </div>
                         </div>
@@ -386,7 +443,7 @@
                                     <label for="welcome-check-terms"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedTerms }">
-                                    <a href="/terms_and_conditions" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX1 }}</a>
+                                    <a href="/terms_and_conditions" target="_blank">{{ lang.WELCOME.SLIDE8_CHECKBOX1 }}</a>
                                 </span>
                             </div>
                         </div>
@@ -397,7 +454,7 @@
                                     <label for="welcome-check-policy"></label>
                                 </div>
                                 <span v-bind:class="{ 'error-color-form': !checkedPolicy }">
-                                    <a href="/privacy_policy" target="_blank">{{ lang.WELCOME.SLIDE7_CHECKBOX2 }}</a>
+                                    <a href="/privacy_policy" target="_blank">{{ lang.WELCOME.SLIDE8_CHECKBOX2 }}</a>
                                 </span>
                             </div>
                         </div>
@@ -421,6 +478,7 @@
                                 <li><p class="circle-welcome active"></p></li>
                                 <li><p class="circle-welcome active"></p></li>
                                 <li><p class="circle-welcome active"></p></li>
+                                <li><p class="circle-welcome active"></p></li>
                                 <li><p class="circle-welcome "></p></li>
                             </ul>
                         </div>
@@ -430,8 +488,8 @@
         </div>
     </section>
 
-    <!-- Slide 8-->
-    <section v-bind:class="{ hidden: slide !== 8, imageblock: true, switchable: true, 'height-100': true }">
+    <!-- Slide 9-->
+    <section v-bind:class="{ hidden: slide !== 9, imageblock: true, switchable: true, 'height-100': true }">
         <div class="imageblock__content col-lg-6 col-md-6 col-sm-12 pos-right">
             <div class="background-image-holder">
                 <img alt="image" src="/img/welcome/creary_slide_8@2x.jpg" class="logo-welcome" />
@@ -444,8 +502,8 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 ">
                                 <img class="logo-welcome" src="/img/welcome/logo-welcome.png" alt="" />
-                                <h1>{{ lang.WELCOME.SLIDE8_TITLE }}</h1>
-                                <p class="lead">{{ lang.WELCOME.SLIDE8_TEXT1 }}</p>
+                                <h1>{{ lang.WELCOME.SLIDE9_TITLE }}</h1>
+                                <p class="lead">{{ lang.WELCOME.SLIDE9_TEXT1 }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -465,6 +523,7 @@
                     <div class="row justify-content-center">
                         <div class="text-center">
                             <ul class="list-inline list-unstyled ul-row-pagination">
+                                <li><p class="circle-welcome active"></p></li>
                                 <li><p class="circle-welcome active"></p></li>
                                 <li><p class="circle-welcome active"></p></li>
                                 <li><p class="circle-welcome active"></p></li>
