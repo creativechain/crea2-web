@@ -38,7 +38,7 @@ var FOLLOW_STATE = {
 Vue.component('autocomplete',  {
     template: '' +
         '<div>' +
-        '   <input ref="countryInput" type="text" v-bind:placeholder="placeholder" v-on:input="onInput">' +
+        '   <input ref="countryInput" autocomplete="none" type="text" v-bind:placeholder="placeholder" v-on:input="onInput">' +
         '   <div class="autocomplete-items">' +
         '       <template v-for="i in matchedItems" >' +
         '           <div v-on:click="selectItem(i)">' +
