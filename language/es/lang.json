@@ -255,7 +255,7 @@
     "SLIDE5_TEXT1": "Tu email ha sido verificado correctamente",
     "SLIDE6_TITLE": "Verificación SMS",
     "SLIDE6_TEXT1": "Por favor, confirma tu número de teléfono. Sólo usaremos tu número de tléfono para confirmar tu cuenta. No daremos acceso a esta información a terceros. Cuando indiques tu número de teléfono recibirás un SMS con un código de confirmación que deberás enviarnos en el siguiente paso.",
-    "SLIDE6_SELECT_COUNTRY": "Select country code",
+    "SLIDE6_SELECT_COUNTRY": "Escribe el país y selecciona tu prefijo telefónico",
     "SLIDE6_INPUT_PLACEHOLDER": "Escribe tu número de teléfono",
     "SLIDE6_INPUT_PLACEHOLDER2": "Introduce el código de verificación recibido en el SMS",
     "SLIDE7_TITLE": "Contraseña",

@@ -275,11 +275,13 @@
                         <div class="row">
                             <div class="col-lg-6 offset-lg-1 col-md-6 text-center row-inputs">
                                 <label>{{ lang.WELCOME.SLIDE6_SELECT_COUNTRY }}</label>
-                                <div class="input-select">
-                                    <select v-model="country_code">
-                                        <option v-for="l in countryCodes" v-bind:value="l.dial_code">{{ '("+" + {{ l.callingCodes[0] }}) {{ l.name }}' }}</option>
-                                    </select>
-                                </div>
+                                <autocomplete
+                                        v-bind:items="countryCodes"
+                                        placeholder="Select country prefix"
+                                        v-on:item="onPhonePrefix"
+                                >
+                                </autocomplete>
+
                             </div>
                             <div class="col-lg-6 offset-lg-1 col-md-6 text-center row-inputs">
                                 <input id="reg-phone" type="phone" v-model="phone" v-bind:class="{ 'validate-required': true, 'field-error': error.phone && error.phone.length > 0 }" v-bind:placeholder="lang.WELCOME.SLIDE6_INPUT_PLACEHOLDER" />
@@ -306,16 +308,16 @@
                                     </div>
                                     <div  v-else>
                                         <div class="col-md-6 col-6">
-                                            <div class="btn btn--primary w-100" v-on:click="verifyPhone()">
+                                            <div class="btn btn--transparent w-100" v-on:click="checkPhone()">
                                                     <span class="btn__text">
-                                                        {{ lang.BUTTON.VERIFY_PHONE }}
+                                                        {{ lang.BUTTON.SEND_CODE_AGAIN }}
                                                     </span>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-6">
-                                            <div class="btn btn--primary w-100" v-on:click="checkPhone()">
+                                            <div class="btn btn--primary w-100" v-on:click="verifyPhone()">
                                                     <span class="btn__text">
-                                                        {{ lang.BUTTON.SEND_CODE_AGAIN }}
+                                                        {{ lang.BUTTON.VERIFY_PHONE }}
                                                     </span>
                                             </div>
                                         </div>

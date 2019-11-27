@@ -3,8 +3,9 @@
 /**
  * Created by ander on 11/10/18.
  */
+var welcomeVue;
 (function () {
-    var welcomeVue;
+
     var emailCallback;
     var usernameInputs = {
         last: {
@@ -51,6 +52,10 @@
                 checkEmail: checkEmail,
                 checkPhone: checkPhone,
                 verifyPhone: verifyPhone,
+                onPhonePrefix: function (item) {
+                    console.log('Prefix selected', item);
+                    this.country_code = item.callingCodes[0];
+                },
                 changeSlide: function changeSlide(slide, error) {
                     console.log("Change to slide", slide, error);
 
@@ -68,6 +73,7 @@
                 copyToClipboard: copyToClipboard
             }
         });
+
         creaEvents.emit('crea.dom.ready');
     }
 

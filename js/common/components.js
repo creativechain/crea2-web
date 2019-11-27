@@ -35,6 +35,56 @@ var FOLLOW_STATE = {
     FOLLOWING_OP: 5
 };
 
+Vue.component('autocomplete',  {
+    template: '' +
+        '<div>' +
+        '   <input ref="countryInput" type="text" v-bind:placeholder="placeholder" v-on:input="onInput">' +
+        '   <div class="autocomplete-items">' +
+        '       <template v-for="i in matchedItems" >' +
+        '           <div v-on:click="selectItem(i)">' +
+        '               <strong>{{ i.textMatched }}</strong>{{ i.textUnmatched }} (+{{ i.callingCodes[0] }})' +
+        '           </div>' +
+        '       </template>' +
+        '   </div>' +
+        '</div>',
+
+    props: {
+        items: Array,
+        placeholder: String,
+    },
+    data: function() {
+        return {
+            value: '',
+            selectedItem: null,
+            matchedItems: [],
+        }
+    },
+    methods: {
+        onInput: function (event) {
+
+            let search = event.target.value.toLowerCase();
+            let filteredItems = [];
+            for (let x = 0; x < this.items.length; x++) {
+                let i = this.items[x];
+                if (i.name.toLowerCase().startsWith(search)) {
+                    i.textMatched = i.name.substr(0, search.length);
+                    i.textUnmatched = i.name.substr(search.length, i.name.length);
+                    filteredItems.push(i);
+                }
+            }
+
+            this.matchedItems = filteredItems;
+
+        },
+        selectItem: function (item) {
+            this.selectedItem = item;
+            this.$refs.countryInput.value = `${item.name} (+${item.callingCodes[0]})`;
+            this.matchedItems = [];
+            this.$emit('item', item);
+        }
+    }
+});
+
 Vue.component('recommend-post', {
     template: '' +
         '<ul class="ul-recommended-post">' +
