@@ -10,6 +10,12 @@
       text-decoration: none;
     }
   }
+
+  .row-inputs {
+    input {
+      line-height:2;
+    }
+  }
   .col-policy {
     .error-color-form {
       height: 20px;

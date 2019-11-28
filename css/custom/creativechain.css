@@ -5,6 +5,8 @@
   .view-welcome .col-terms a {
     font-size: 14px;
     text-decoration: none; }
+  .view-welcome .row-inputs input {
+    line-height: 2; }
   .view-welcome .col-policy .error-color-form {
     height: 20px; }
   .view-welcome .col-policy a {
