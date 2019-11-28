@@ -235,7 +235,7 @@
         "REPORT_COMMENT": "Report comment",
         "UNLOCK": "Unlock",
         "PAY": "Pay",
-        "VERIFY_PHONE": "Verify phone number",
+        "VERIFY_PHONE": "Verify phone",
         "SEND_CODE_AGAIN": "Send new code"
     },
     "WELCOME": {

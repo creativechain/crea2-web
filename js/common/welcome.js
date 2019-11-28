@@ -274,7 +274,7 @@ var welcomeVue;
 
                 if (!catchError(err)) {
                     console.log(result);
-                    welcomeVue.slide = 8;
+                    welcomeVue.slide = 9;
                 }
             });
         } else {
