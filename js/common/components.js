@@ -38,7 +38,7 @@ var FOLLOW_STATE = {
 Vue.component('autocomplete',  {
     template: '' +
         '<div>' +
-        '   <input ref="countryInput" autocomplete="none" type="text" v-bind:placeholder="placeholder" v-on:input="onInput" v-on:focus="onFocus" v-on:blur="onBlur">' +
+        '   <input ref="countryInput" autocomplete="none" type="text" v-bind:placeholder="placeholder" v-on:input="onInput" v-on:focus="onFocus" v-on:focusout="onBlur">' +
         '   <div class="autocomplete-items">' +
         '       <template v-for="i in matchedItems" >' +
         '           <div v-on:click="selectItem(i)">' +
@@ -69,10 +69,14 @@ Vue.component('autocomplete',  {
             this.matchedItems = this.items;
         },
         onBlur: function () {
-            this.matchedItems = [];
+            //this.matchedItems = [];
+            let that = this;
+            setTimeout(function () {
+                that.matchedItems = [];
+            }, 200);
+
         },
         onInput: function (event) {
-
             let search = event.target.value.toLowerCase();
             let filteredItems = [];
             for (let x = 0; x < this.items.length; x++) {
