@@ -38,11 +38,16 @@ var FOLLOW_STATE = {
 Vue.component('autocomplete',  {
     template: '' +
         '<div>' +
-        '   <input ref="countryInput" autocomplete="none" type="text" v-bind:placeholder="placeholder" v-on:input="onInput">' +
+        '   <input ref="countryInput" autocomplete="none" type="text" v-bind:placeholder="placeholder" v-on:input="onInput" v-on:focus="onFocus" v-on:blur="onBlur">' +
         '   <div class="autocomplete-items">' +
         '       <template v-for="i in matchedItems" >' +
         '           <div v-on:click="selectItem(i)">' +
-        '               <strong>{{ i.textMatched }}</strong>{{ i.textUnmatched }} (+{{ i.callingCodes[0] }})' +
+        '               <p v-if="i.textMatched">' +
+        '                   <strong >{{ i.textMatched }}</strong>{{ i.textUnmatched }} (+{{ i.callingCodes[0] }})' +
+        '               </p>' +
+        '               <p v-else>' +
+        '                   {{ i.name }} (+{{ i.callingCodes[0] }})' +
+        '               </p>' +
         '           </div>' +
         '       </template>' +
         '   </div>' +
@@ -60,6 +65,12 @@ Vue.component('autocomplete',  {
         }
     },
     methods: {
+        onFocus: function() {
+            this.matchedItems = this.items;
+        },
+        onBlur: function () {
+            this.matchedItems = [];
+        },
         onInput: function (event) {
 
             let search = event.target.value.toLowerCase();
