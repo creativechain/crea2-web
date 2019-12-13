@@ -567,9 +567,9 @@ Vue.component('post-like-big', {
             this.over = isOver;
         },
         hasPaid: function hasPaid() {
-            var now = new Date();
+            var now = moment();
             var payout = toLocaleDate(this.$props.post.cashout_time);
-            return now.getTime() > payout.getTime();
+            return now.isAfter(payout);
         },
         getVote: function getVote() {
             var session = this.$props.session;
@@ -728,9 +728,9 @@ Vue.component('post-like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = new Date();
+            var now = moment();
             var payout = toLocaleDate(this.$props.post.cashout_time);
-            return now.getTime() > payout.getTime();
+            return now.isAfter(payout);
         },
         getVote: function getVote() {
             var session = this.$props.session;
@@ -883,9 +883,9 @@ Vue.component('comment-like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = new Date();
+            var now = moment();
             var payout = toLocaleDate(this.$props.post.cashout_time);
-            return now.getTime() > payout.getTime();
+            return now.isAfter(payout);
         },
         getVote: function getVote() {
             var session = this.$props.session;
@@ -1022,9 +1022,9 @@ Vue.component('like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = new Date();
+            var now = moment();
             var payout = toLocaleDate(this.$props.post.cashout_time);
-            return now.getTime() > payout.getTime();
+            return now.isAfter(payout);
         },
         getVote: function getVote() {
             var session = this.$props.session;
@@ -1187,9 +1187,9 @@ Vue.component('new-like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = new Date();
+            var now = moment();
             var payout = toLocaleDate(this.$props.post.cashout_time);
-            return now.getTime() > payout.getTime();
+            return now.isAfter(payout);
         },
         getVote: function getVote() {
             var session = this.$props.session;

@@ -87,16 +87,17 @@
                         return License.fromFlag(this.state.post.metadata.license);
                     },
                     dateFromNow: function dateFromNow(date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     formatDate: function formatDate(date) {
                         return moment(date + 'Z').format('LLLL');
                     },
                     hasPaid: function hasPaid(post) {
                         post = post || this.state.post;
-                        var now = new Date();
+
+                        var now = moment();
                         var payout = toLocaleDate(post.cashout_time);
-                        return now.getTime() > payout.getTime();
+                        return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
                         post = post || this.state.post;
@@ -106,7 +107,7 @@
                             date = toLocaleDate(post.last_payout);
                         }
 
-                        return moment(date).fromNow();
+                        return date.fromNow();
                     },
                     hasPromotion: function hasPromotion() {
                         var post = this.state.post;

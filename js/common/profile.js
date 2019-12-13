@@ -219,7 +219,7 @@
         if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
             var date = toLocaleDate(state.user.next_vesting_withdrawal);
             if (date.getTime() > 0) {
-                nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, moment(toLocaleDate(state.user.next_vesting_withdrawal)).fromNow());
+                nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, toLocaleDate(state.user.next_vesting_withdrawal)).fromNow();
             }
         }
 
@@ -476,9 +476,9 @@
                         return linkedTags;
                     },
                     hasPaid: function hasPaid(post) {
-                        var now = new Date();
+                        var now = moment();
                         var payout = toLocaleDate(post.cashout_time);
-                        return now.getTime() > payout.getTime();
+                        return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
                         var date = toLocaleDate(post.cashout_time);
@@ -487,7 +487,7 @@
                             date = toLocaleDate(post.last_payout);
                         }
 
-                        return moment(date).fromNow();
+                        return date.fromNow();
                     },
                     hasPromotion: function hasPromotion(post) {
                         var amount = Asset.parseString(post.promoted);
@@ -550,10 +550,10 @@
                         return '(' + PENDING_PAYOUT_PRINTED_CBD.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_PRINTED_CREA.toFriendlyString(null, false) + ', ' + PENDING_PAYOUT_CGY.toFriendlyString(null, false);
                     },
                     dateFromNow: function dateFromNow(date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     getFutureDate: function getFutureDate(date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     onFollow: function onFollow(err, result) {
                         //Keep same scroll page

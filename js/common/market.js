@@ -48,7 +48,7 @@
                 methods: {
                     parseAsset: Asset.parse,
                     dateFromNow: function (date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     priceFor: function (base, quote) {
                         let assetBase = Asset.parse(base);
@@ -466,7 +466,7 @@
                 });
 
                 result.trades.forEach(function (t) {
-                    t.date = moment(toLocaleDate(t.date)).fromNow();
+                    t.date = toLocaleDate(t.date).fromNow();
                     let currentPays = Asset.parse(t.current_pays);
                     let openPays = Asset.parse(t.open_pays);
 
