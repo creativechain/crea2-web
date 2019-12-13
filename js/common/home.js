@@ -117,7 +117,7 @@
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage;
-                        if (!this.account || this.account && this.account.user.metadata.adult_content === 'warn' && post.adult_content) {
+                        if (!this.account && post.adult_content || this.account && this.account.user.metadata.adult_content === 'warn' && post.adult_content) {
                             featuredImage = {
                                 url: R.IMG.POST.NSFW
                             }
