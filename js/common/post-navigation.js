@@ -725,9 +725,9 @@
                             //Order comments by date, latest first
                             var cKeys = Object.keys(postState.content);
                             cKeys.sort(function (k1, k2) {
-                                var d1 = new Date(postState.content[k1].created);
-                                var d2 = new Date(postState.content[k2].created);
-                                return d2.getTime() - d1.getTime();
+                                var d1 = toLocaleDate(postState.content[k1].created);
+                                var d2 = toLocaleDate(postState.content[k2].created);
+                                return d2.valueOf() - d1.valueOf();
                             });
                             cKeys.forEach(function (c) {
                                 state.post[c] = parsePost(postState.content[c]);

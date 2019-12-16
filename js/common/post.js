@@ -664,9 +664,9 @@
                                     //console.log(clone(result.author));
                                     var cKeys = Object.keys(result.content);
                                     cKeys.sort(function (k1, k2) {
-                                        var d1 = new Date(result.content[k1].created);
-                                        var d2 = new Date(result.content[k2].created);
-                                        return d2.getTime() - d1.getTime();
+                                        var d1 = toLocaleDate(result.content[k1].created);
+                                        var d2 = toLocaleDate(result.content[k2].created);
+                                        return d2.valueOf() - d1.valueOf();
                                     });
                                     cKeys.forEach(function (c) {
                                         result.post[c] = parsePost(result.content[c]);

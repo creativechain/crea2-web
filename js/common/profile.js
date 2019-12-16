@@ -218,7 +218,7 @@
 
         if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
             var date = toLocaleDate(state.user.next_vesting_withdrawal);
-            if (date.getTime() > 0) {
+            if (date.valueOf() > 0) {
                 nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, toLocaleDate(state.user.next_vesting_withdrawal)).fromNow();
             }
         }
@@ -426,8 +426,8 @@
                     },
                     showProfile: showProfile,
                     getJoinDate: function getJoinDate() {
-                        var date = new Date(this.state.user.created);
-                        return this.lang.PROFILE.JOINED + moment(date.getTime(), 'x').format('MMMM YYYY');
+                        var date = toLocaleDate(this.state.user.created);
+                        return this.lang.PROFILE.JOINED + date.format('MMMM YYYY');
                     },
                     getBuzzClass: function getBuzzClass(account) {
                         var buzzClass = {};
@@ -753,26 +753,26 @@
             rewardsWeekCBD: 0,
             totalRewardsCBD: 0
         };
-        var today = new Date();
+        var today = moment();
         var oneDay = 60 * 60 * 24 * 1000;
-        var yesterday = new Date(today.getTime() - oneDay).getTime();
-        var lastWeek = new Date(today.getTime() - 7 * oneDay).getTime();
+        var yesterday = today.subtract(1, 'day').valueOf();
+        var lastWeek =today.subtract(7, 'days').valueOf();
         var firstDate, finalDate;
         var rewardsOp = [];
 
         state.user.transfer_history.sort(function (r1, r2) {
-            var d1 = Date.fromUTCString(r1[1].timestamp);
-            var d2 = Date.fromUTCString(r2[1].timestamp);
-            return d2.getTime() - d1.getTime();
+            var d1 = toLocaleDate(r1[1].timestamp);
+            var d2 = toLocaleDate(r2[1].timestamp);
+            return d2.valueOf() - d1.valueOf();
         });
 
         state.user.transfer_history.forEach(function (item) {
             if (item[1].op[0] === 'author_reward' && rewardType === 'author_reward') {
                 if (!finalDate) {
-                    finalDate = new Date(item[1].timestamp).getTime();
+                    finalDate = toLocaleDate(item[1].timestamp).valueOf();
                 }
 
-                firstDate = new Date(item[1].timestamp).getTime();
+                firstDate = toLocaleDate(item[1].timestamp).valueOf();
                 var vest = Asset.parseString(item[1].op[1].vesting_payout);
 
                 var _crea = Asset.parseString(item[1].op[1].crea_payout);
@@ -797,10 +797,10 @@
                 rewardsOp.push(item);
             } else if (item[1].op[0] === 'curation_reward' && rewardType === 'curation_reward') {
                 if (!finalDate) {
-                    finalDate = new Date(item[1].timestamp).getTime();
+                    finalDate = toLocaleDate(item[1].timestamp).valueOf();
                 }
 
-                firstDate = new Date(item[1].timestamp).getTime();
+                firstDate = toLocaleDate(item[1].timestamp).valueOf();
 
                 var _vest = Asset.parseString(item[1].op[1].reward);
 
@@ -1079,9 +1079,9 @@
     }
 
     function sendAccountUpdate(event, keys, callback) {
-        var lastUpdate = Date.fromUTCString(profileContainer.state.user.last_account_update);
-        var now = new Date();
-        var time = now.getTime() - lastUpdate.getTime();
+        var lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
+        var now = moment();
+        var time = now.valueOf() - lastUpdate.valueOf();
 
         if (time >= CONSTANTS.ACCOUNT.UPDATE_THRESHOLD) {
             var session = Session.getAlive();
@@ -1289,9 +1289,9 @@
                         //Sort discussions
                         //Nodes return discussion ordered by last update
                         discussions.sort(function (k1, k2) {
-                            var d1 = Date.fromUTCString(k1.created);
-                            var d2 = Date.fromUTCString(k2.created);
-                            return d2.getTime() - d1.getTime();
+                            var d1 = toLocaleDate(k1.created);
+                            var d2 = toLocaleDate(k2.created);
+                            return d2.valueOf() - d1.valueOf();
                         });
 
                         for (var x = 0; x < discussions.length; x++) {
@@ -1363,7 +1363,7 @@
 
                 case CONSTANTS.TRANSFER.TRANSFER_FROM_SAVINGS_CREA:
                 case CONSTANTS.TRANSFER.TRANSFER_FROM_SAVINGS_CBD:
-                    crea.broadcast.transferFromSavings(wif, from, parseInt(new Date().getTime() / 1000), to, amount, memo, callback);
+                    crea.broadcast.transferFromSavings(wif, from, parseInt(moment().valueOf() / 1000), to, amount, memo, callback);
                     break;
 
                 case CONSTANTS.TRANSFER.TRANSFER_TO_VESTS:
@@ -1494,9 +1494,9 @@
                 //Sort discussions
                 //Nodes return discussion ordered by last update
                 discussions.sort(function (k1, k2) {
-                    var d1 = Date.fromUTCString(k1.created);
-                    var d2 = Date.fromUTCString(k2.created);
-                    return d2.getTime() - d1.getTime();
+                    var d1 = toLocaleDate(k1.created);
+                    var d2 = toLocaleDate(k2.created);
+                    return d2.valueOf() - d1.valueOf();
                 });
 
 

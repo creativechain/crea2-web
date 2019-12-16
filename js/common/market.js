@@ -209,8 +209,8 @@
                         requireRoleKey(username, 'active', function (activeKey, username) {
                             let amountToSell, minToReceive, expiration, orderId;
 
-                            let now = new Date();
-                            expiration = new Date(now.getTime() + (60 * 60 * 24 * 27 * 1000)); //28 days
+                            let now = moment();
+                            expiration = now.add(28, 'days').toDate(); //28 days
                             orderId = randomNumber(0, 0xFFFFFFFF); //MAX uint32_t
 
                             if (type === 'buy') {
@@ -287,8 +287,8 @@
                         let type = priceBase.asset.symbol === 'CREA' ? 'Sell' : 'Buy';
 
                         return {
-                            date: moment(order.created).format('MMM DD, YYYY H:mm:ss'),
-                            expiration: moment(order.expiration).format('MMM DD, YYYY H:mm:ss'),
+                            date: toLocaleDate(order.created).format('MMM DD, YYYY H:mm:ss'),
+                            expiration: toLocaleDate(order.expiration).format('MMM DD, YYYY H:mm:ss'),
                             type: type,
                             price: '$' + Asset.parse({
                                 amount: (type === 'Buy' ? priceBase.toFloat() / priceQuote.toFloat() : priceQuote.toFloat() / priceBase.toFloat()) + 0.0001,
