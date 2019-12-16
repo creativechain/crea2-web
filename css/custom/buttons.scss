@@ -245,3 +245,22 @@
     transform: scale(0.9);
   }
 }
+
+
+
+
+.loading-button {
+  width: 100%;
+  position: relative;
+  > div {
+    position: absolute;
+    right: 5px;
+    top: -2px;
+    .spinner {
+      width: 17px;
+      height: 17px;
+    }
+  }
+}
+
+
