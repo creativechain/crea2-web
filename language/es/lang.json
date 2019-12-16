@@ -54,7 +54,7 @@
     },
     "DUPLICATE_PHONE": "Este número de teléfono ya está en uso.",
     "INVALID_PHONE": "Número de teléfono inválido. Por favor, asegúrate de que el número de teléfono incluye el prefijo del país.",
-    "SMS_REQUEST_LIMIT": "Demasiados SMS enviados. Inténtalo de nuevo mas tarde.",
+    "SMS_REQUEST_LIMIT": "Demasiados solicitudes SMS enviadas. Inténtalo de nuevo pasados 30 min desde la última solicitud.",
     "INVALID_PHONE_VERIFICATION": "El código de verificación es incorrecto."
 
   },
