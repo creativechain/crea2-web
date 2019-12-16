@@ -52,7 +52,7 @@
             cKeys.sort(function (k1, k2) {
                 var d1 = toLocaleDate(content[k1].created);
                 var d2 = toLocaleDate(content[k2].created);
-                return d2.getTime() - d1.getTime();
+                return d2.valueOf() - d1.valueOf();
             });
             state.discussion_idx[discuss] = {};
             state.discussion_idx[discuss][category] = cKeys;
@@ -474,7 +474,7 @@
                                         discussions.sort(function (k1, k2) {
                                             var d1 = toLocaleDate(k1.created);
                                             var d2 = toLocaleDate(k2.created);
-                                            return d2.getTime() - d1.getTime();
+                                            return d2.valueOf() - d1.valueOf();
                                         });
                                         var discuss = homePosts.discuss;
                                         var category = homePosts.category; //Update Posts
