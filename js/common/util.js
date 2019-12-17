@@ -200,20 +200,10 @@ function randomNumber(min, max) {
  */
 function toLocaleDate(date) {
     if (date) {
-        if (typeof date === 'number') {
-            date = moment(date).format('YYYY-MM-DDTHH:mm:ss');
-        }
-
-        if (typeof date == 'string') {
-            date = moment(date)
-        }
-
-        if (_typeof(date) === 'object') {
-            return moment(date);
-        }
+        return moment.utc(date);
     }
 
-    return moment(0);
+    return moment.utc(0);
 }
 
 /**
