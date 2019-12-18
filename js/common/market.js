@@ -527,11 +527,15 @@
             if (!err) {
                 let buckets = [];
                 result.buckets.forEach(function (b) {
+                    let high = Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat();
+                    let low = Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat();
+
+                    //Is a bug? high and low values sometimes are changed
                     let buck = {
-                        date: moment(b.open).format('DD-MM-YYYY H:mm'),
+                        date: toLocaleDate(b.open).format('DD-MM-YYYY H:mm'),
                         open: Asset.parse({amount: b.non_crea.open, nai: 'cbd'}).toFloat(),
-                        high: Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat(),
-                        low: Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat(),
+                        high: high > low ?  high : low,
+                        low: low > high ? high : low,
                         close: Asset.parse({amount: b.non_crea.close, nai: 'cbd'}).toFloat()
                     };
 
