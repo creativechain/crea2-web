@@ -1,45 +1,28 @@
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
-
-function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 /**
  * Created by ander on 10/10/18.
  */
-var ASSET_CREA = {
+let ASSET_CREA = {
     exponent: 3,
     symbol: apiOptions.symbol.CREA
 };
-var ASSET_CBD = {
+
+let ASSET_CBD = {
     exponent: 3,
     symbol: apiOptions.symbol.CBD
 };
-var ASSET_CGY = {
+
+let ASSET_CGY = {
     exponent: 3,
     symbol: apiOptions.symbol.CGY
 };
-var ASSET_VESTS = {
+
+let ASSET_VESTS = {
     exponent: 6,
     symbol: apiOptions.symbol.VESTS
 };
-var NAI = {
+
+let NAI = {
     "@@000000013": ASSET_CBD,
     "cbd": ASSET_CBD,
     "@@000000021": ASSET_CREA,
@@ -50,325 +33,334 @@ var NAI = {
     "@@000000005": ASSET_CGY
 };
 
-var MonetaryFormat =
-    /*#__PURE__*/
-    function () {
-        function MonetaryFormat() {
-            _classCallCheck(this, MonetaryFormat);
+class MonetaryFormat {
+    constructor() {
+        this.maxDigits = 2;
+    }
 
-            this.maxDigits = 2;
+    digits(maxDigits) {
+        if (isNaN(maxDigits)) {
+            maxDigits = 2;
         }
 
-        _createClass(MonetaryFormat, [{
-            key: "digits",
-            value: function digits(maxDigits) {
-                if (isNaN(maxDigits)) {
-                    maxDigits = 2;
-                }
+        this.maxDigits = maxDigits;
+    }
 
-                this.maxDigits = maxDigits;
-            }
-        }, {
-            key: "abbr",
-            value: function abbr(value) {
-                value = parseFloat(value);
+    abbr(value) {
+        value = parseFloat(value);
 
-                if (value < 10000) {
-                    return value;
-                }
+        if (value < 10000) {
+            return value;
+        }
 
-                var newValue = value;
-                var suffixes = ["", "K", "M", "B", "T"];
-                var suffixNum = 0;
+        let newValue = value;
+        let suffixes = ["", "K", "M", "B", "T"];
+        let suffixNum = 0;
 
-                while (newValue >= 10000) {
-                    newValue /= 1000;
-                    suffixNum++;
-                }
+        while (newValue >= 10000) {
+            newValue /= 1000;
+            suffixNum++;
+        }
 
-                newValue = Math.round(newValue * 100) / 100; //2 decimals places
+        newValue = Math.round(newValue * 100) / 100; //2 decimals places
 
-                newValue += suffixes[suffixNum];
-                return newValue;
-            }
-            /**
-             *
-             * @param {Number} value
-             * @param {Number} exponent
-             * @param {Boolean} abbr
-             * @returns {string}
-             */
+        newValue += suffixes[suffixNum];
+        return newValue;
+    }
 
-        }, {
-            key: "format",
-            value: function format(value, exponent) {
-                var abbr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    format(value, exponent, abbr = true) {
 
-                if (typeof value !== "number") {
-                    value = 0;
-                }
+        if (typeof value !== "number") {
+            value = 0;
+        }
 
-                if (typeof exponent !== "number") {
-                    exponent = 2;
-                }
+        if (typeof exponent !== "number") {
+            exponent = 2;
+        }
 
-                var toFloat = (value / Math.pow(10, exponent)).toFixed(this.maxDigits);
+        let toFloat = (value / Math.pow(10, exponent)).toFixed(this.maxDigits);
 
-                if (abbr) {
-                    return this.abbr(toFloat);
-                } else {
-                    return toFloat;
-                }
-            }
-        }]);
+        if (abbr) {
+            return this.abbr(toFloat);
+        } else {
+            return toFloat;
+        }
+    }
+}
 
-        return MonetaryFormat;
-    }();
+class Asset {
+    constructor(amount, asset) {
+        this.amount = amount;
+        this.asset = asset
+    }
+    
+    add(val) {
+        if (val.asset.symbol === this.asset.symbol) {
+            this.amount += val.amount;
+        }
 
-var Asset =
-    /*#__PURE__*/
-    function () {
+        return this;
+    }
+
+    subtract(val) {
+        if (val.asset.symbol === this.asset.symbol) {
+            this.amount -= val.amount;
+        }
+
+        return this;
+    }
+
+    divide(val) {
+        this.amount /= val;
+        return this;
+    }
+
+    multiply(val) {
+        this.amount *= val;
+        return this;
+    }
+
+    /**
+     *
+     * @param assetEval
+     * @param mode
+     * @param strict
+     * @returns {boolean}
+     * @private
+     */
+    _evaluate(assetEval, mode, strict = true) {
+        mode = mode ? mode.toLowerCase() : mode;
+
         /**
          *
-         * @param {Number} amount
-         * @param {{exponent: Number, symbol: String}} asset
+         * @returns {boolean}
          */
-        function Asset(amount, asset) {
-            _classCallCheck(this, Asset);
+        let evaluate = () => {
+            switch (mode) {
+                case 'gt':
+                    return this.toFloat() > assetEval.toFloat();
+                case 'gte':
+                    return this.toFloat() >= assetEval.toFloat();
+                case 'lt':
+                    return this.toFloat() < assetEval.toFloat();
+                case 'lte':
+                    return this.toFloat() <= assetEval.toFloat();
+                default:
+                    return this.toFloat() === assetEval.toFloat();
+            }
+        };
+        
+        if (strict) {
+            if (assetEval.asset.symbol) {
+                if (assetEval.asset.symbol === this.asset.symbol) {
+                    return evaluate();
+                }
 
-            this.amount = amount;
-            this.asset = asset;
+                throw new Error(`Symbol currency must be '${this.asset.symbol}'`);
+            }
+
+            throw new Error('Symbol currency not found');
+        } else {
+            return evaluate();
         }
-        /**
-         *
-         * @param val
-         * @returns {Asset}
-         */
+    }
 
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isGT(asset, strict = true) {
+        return this._evaluate(asset, 'gt', strict);
+    }
 
-        _createClass(Asset, [{
-            key: "add",
-            value: function add(val) {
-                if (val.asset.symbol === this.asset.symbol) {
-                    this.amount += val.amount;
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isGTE(asset, strict = true) {
+        return this._evaluate(asset, 'gte', strict);
+
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isLT(asset, strict = true) {
+        return this._evaluate(asset, 'lt', strict);
+
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isLTE(asset, strict = true) {
+        return this._evaluate(asset, 'tle', strict);
+
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isEqual(asset, strict = true) {
+        return this._evaluate(asset, 'equal', strict);
+
+    }
+
+    /**
+     *
+     * @param maxDecimals
+     * @returns {*|string}
+     */
+    toPlainString(maxDecimals) {
+        let abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+        if (isNaN(maxDecimals) || maxDecimals === null) {
+            maxDecimals = this.asset.exponent;
+        }
+
+        let mf = new MonetaryFormat();
+        mf.digits(maxDecimals);
+        return mf.format(Math.abs(this.amount), this.asset.exponent, abbr);
+    }
+
+    /**
+     *
+     * @param maxDecimals
+     * @returns {string}
+     */
+    toFriendlyString(maxDecimals) {
+        let abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        return this.toPlainString(maxDecimals, abbr) + " " + this.asset.symbol;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    toString() {
+        return this.toFriendlyString(this.asset.exponent);
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    toFloat() {
+        return parseFloat(this.toPlainString(null, false));
+    }
+
+    /**
+     *
+     * @returns {Asset}
+     */
+    clone() {
+        let asset = new Asset();
+        asset.asset = JSON.parse(JSON.stringify(this.asset));
+        asset.amount = this.amount;
+        return asset;
+    }
+
+    /**
+     *
+     * @param assetData
+     * @param log
+     * @returns {Asset}
+     */
+    static parse(assetData, log) {
+
+        if (log) {
+            console.log('Asset log:', assetData);
+        }
+        if (typeof assetData === 'string') {
+            return Asset.parseString(assetData);
+        }
+
+        let nai = assetData.asset ? NAI[assetData.asset.symbol.toLowerCase()] : NAI[assetData.nai.toLowerCase()];
+        nai = Object.assign({}, nai);
+        nai.exponent = assetData.exponent || nai.exponent;
+
+        if (typeof assetData.amount === 'number') {
+            if (assetData.amount % 1 !== 0 || assetData.round) {
+                if (assetData.precision) {
+                    assetData.amount = assetData.amount / Math.pow(10, assetData.precision);
                 }
-
-                return this;
+                assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.exponent));
             }
-            /**
-             *
-             * @param val
-             * @returns {Asset}
-             */
+        } else if (typeof assetData.amount === 'string') {
+            assetData.amount = assetData.amount.replace(',', '.');
 
-        }, {
-            key: "subtract",
-            value: function subtract(val) {
-                if (val.asset.symbol === this.asset.symbol) {
-                    this.amount -= val.amount;
-                }
-
-                return this;
-            }
-            /**
-             *
-             * @param val
-             * @returns {Asset}
-             */
-
-        }, {
-            key: "divide",
-            value: function divide(val) {
-                this.amount /= val;
-                return this;
-            }
-            /**
-             *
-             * @param val
-             * @returns {Asset}
-             */
-
-        }, {
-            key: "multiply",
-            value: function multiply(val) {
-                this.amount *= val;
-                return this;
-            }
-            /**
-             *
-             * @param maxDecimals
-             * @param {Boolean} abbr
-             * @returns {string}
-             */
-
-        }, {
-            key: "toPlainString",
-            value: function toPlainString(maxDecimals) {
-                var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-                if (isNaN(maxDecimals) || maxDecimals === null) {
-                    maxDecimals = this.asset.exponent;
-                }
-
-                var mf = new MonetaryFormat();
-                mf.digits(maxDecimals);
-                return mf.format(Math.abs(this.amount), this.asset.exponent, abbr);
-            }
-        }, {
-            key: "toFriendlyString",
-
-            /**
-             *
-             * @param {Number} maxDecimals
-             * @param {Boolean} abbr
-             * @returns {string}
-             */
-            value: function toFriendlyString(maxDecimals) {
-                var abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-                return this.toPlainString(maxDecimals, abbr) + " " + this.asset.symbol;
-            }
-        }, {
-            key: "toString",
-            value: function toString() {
-                return this.toFriendlyString(this.asset.exponent);
-            }
-        }, {
-            key: "toFloat",
-
-            /**
-             *
-             * @returns {Number}
-             */
-            value: function toFloat() {
-                return parseFloat(this.toPlainString(null, false));
-            }
-            /**
-             *
-             * @param assetData
-             * @returns {Asset}
-             */
-
-        }], [{
-            key: "parse",
-            value: function parse(assetData, log) {
-
-                if (log) {
-                    console.log('Asset log:', assetData);
-                }
-                if (typeof assetData === 'string') {
-                    return Asset.parseString(assetData);
-                }
-
-                var nai = assetData.asset ? NAI[assetData.asset.symbol.toLowerCase()] : NAI[assetData.nai.toLowerCase()];
-                nai = Object.assign({}, nai);
-                nai.exponent = assetData.exponent || nai.exponent;
-
-                if (typeof assetData.amount === 'number') {
-                    if (assetData.amount % 1 !== 0 || assetData.round) {
-                        if (assetData.precision) {
-                            assetData.amount = assetData.amount / Math.pow(10, assetData.precision);
-                        }
-                        assetData.amount = Math.round(assetData.amount * Math.pow(10, nai.exponent));
-                    }
-                } else if (typeof assetData.amount === 'string') {
-                    assetData.amount = assetData.amount.replace(',', '.');
-
-                    if (!isNaN(assetData.amount)) {
-                        if (assetData.amount % 1 !== 0) {
-                            assetData.amount = parseFloat(assetData.amount);
-                        } else {
-                            if (assetData.precision) {
-                                assetData.amount = assetData.amount / Math.pow(10, assetData.precision);
-                            }
-
-                            assetData.amount = parseInt(assetData.amount * Math.pow(10, nai.exponent));
-                            assetData.precision = nai.exponent;
-                        }
-
-                        return Asset.parse(assetData);
-                    }
+            if (!isNaN(assetData.amount)) {
+                if (assetData.amount % 1 !== 0) {
+                    assetData.amount = parseFloat(assetData.amount);
                 } else {
-                    assetData.amount = 0;
+                    if (assetData.precision) {
+                        assetData.amount = assetData.amount / Math.pow(10, assetData.precision);
+                    }
+
+                    assetData.amount = parseInt(assetData.amount * Math.pow(10, nai.exponent));
+                    assetData.precision = nai.exponent;
                 }
 
-                return new Asset(assetData.amount, nai);
-
+                return Asset.parse(assetData);
             }
-            /**
-             *
-             * @param {string} assetString
-             * @returns {Asset}
-             */
-
-        }, {
-            key: "parseString",
-            value: function parseString(assetString) {
-                var strSplitted = assetString.split(' ');
-                var amount = parseFloat(strSplitted[0]);
-                var symbol = strSplitted[1];
-                var nai = NAI[symbol.toLowerCase()];
-
-                amount = Math.round(amount * Math.pow(10, nai.exponent));
-
-                return Asset.parse({amount: amount, nai: symbol.toLowerCase()});
-            }
-        }]);
-
-        return Asset;
-    }();
-
-var Crea =
-    /*#__PURE__*/
-    function (_Asset) {
-        _inherits(Crea, _Asset);
-
-        function Crea(amount) {
-            _classCallCheck(this, Crea);
-
-            return _possibleConstructorReturn(this, _getPrototypeOf(Crea).call(this, amount, ASSET_CREA));
+        } else {
+            assetData.amount = 0;
         }
 
-        return Crea;
-    }(Asset);
+        return new Asset(assetData.amount, nai);
 
-var CreaDollar =
-    /*#__PURE__*/
-    function (_Asset2) {
-        _inherits(CreaDollar, _Asset2);
+    }
 
-        function CreaDollar(amount) {
-            _classCallCheck(this, CreaDollar);
+    /**
+     *
+     * @param assetString
+     * @returns {Asset}
+     */
+    static parseString(assetString) {
+        let strSplitted = assetString.split(' ');
+        let amount = parseFloat(strSplitted[0]);
+        let symbol = strSplitted[1];
+        let nai = NAI[symbol.toLowerCase()];
 
-            return _possibleConstructorReturn(this, _getPrototypeOf(CreaDollar).call(this, amount, ASSET_CBD));
-        }
+        amount = Math.round(amount * Math.pow(10, nai.exponent));
 
-        return CreaDollar;
-    }(Asset);
+        return Asset.parse({amount: amount, nai: symbol.toLowerCase()});
+    }
+}
 
-var Vests =
-    /*#__PURE__*/
-    function (_Asset3) {
-        _inherits(Vests, _Asset3);
+class Crea extends Asset {
+    constructor(amount) {
+        super(amount, ASSET_CREA)
+    }
+}
 
-        function Vests(amount) {
-            _classCallCheck(this, Vests);
+class CreaDollar extends Asset {
+    constructor(amount) {
+        super(amount, ASSET_CBD)
+    }
+}
 
-            return _possibleConstructorReturn(this, _getPrototypeOf(Vests).call(this, amount, ASSET_VESTS));
-        }
+class Vests extends Asset {
+    constructor(amount) {
+        super(amount, ASSET_VESTS)
+    }
+}
 
-        return Vests;
-    }(Asset);
-
-var CreaEnergy =
-    /*#__PURE__*/
-    function (_Asset4) {
-        _inherits(CreaEnergy, _Asset4);
-
-        function CreaEnergy(amount) {
-            _classCallCheck(this, CreaEnergy);
-
-            return _possibleConstructorReturn(this, _getPrototypeOf(CreaEnergy).call(this, amount, ASSET_CGY));
-        }
-
-        return CreaEnergy;
-    }(Asset);
+class CreaEnergy extends Asset {
+    constructor(amount) {
+        super(amount, ASSET_CGY)
+    }
+}

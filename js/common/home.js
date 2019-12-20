@@ -52,7 +52,7 @@
             cKeys.sort(function (k1, k2) {
                 var d1 = toLocaleDate(content[k1].created);
                 var d2 = toLocaleDate(content[k2].created);
-                return d2.getTime() - d1.getTime();
+                return d2.valueOf() - d1.valueOf();
             });
             state.discussion_idx[discuss] = {};
             state.discussion_idx[discuss][category] = cKeys;
@@ -117,7 +117,7 @@
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
                         var featuredImage;
-                        if (this.account && this.account.user.metadata.adult_content === 'warn' && post.adult_content) {
+                        if (!this.account && post.adult_content || this.account && this.account.user.metadata.adult_content === 'warn' && post.adult_content) {
                             featuredImage = {
                                 url: R.IMG.POST.NSFW
                             }
@@ -146,12 +146,12 @@
                         return linkedTags.join(', ');
                     },
                     getFutureDate: function getFutureDate(date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     hasPaid: function hasPaid(post) {
-                        var now = new Date();
+                        var now = moment();
                         var payout = toLocaleDate(post.cashout_time);
-                        return now.getTime() > payout.getTime();
+                        return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
                         var date = toLocaleDate(post.cashout_time);
@@ -160,7 +160,7 @@
                             date = toLocaleDate(post.last_payout);
                         }
 
-                        return moment(date).fromNow();
+                        return date.fromNow();
                     },
                     hasPromotion: function hasPromotion(post) {
                         var amount = Asset.parseString(post.promoted);
@@ -474,7 +474,7 @@
                                         discussions.sort(function (k1, k2) {
                                             var d1 = toLocaleDate(k1.created);
                                             var d2 = toLocaleDate(k2.created);
-                                            return d2.getTime() - d1.getTime();
+                                            return d2.valueOf() - d1.valueOf();
                                         });
                                         var discuss = homePosts.discuss;
                                         var category = homePosts.category; //Update Posts

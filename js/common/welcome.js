@@ -81,7 +81,7 @@ var welcomeVue;
         var target = welcomeVue.$refs.inputusername;
         target.value = target.value.toLowerCase();
         var username = target.value;
-        var time = new Date().getTime();
+        var time = moment().valueOf();
         usernameInputs.last.value = username;
         usernameInputs.last.date = time;
         usernameInputs[username] = time;

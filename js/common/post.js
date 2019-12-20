@@ -78,16 +78,17 @@
                         return License.fromFlag(this.state.post.metadata.license);
                     },
                     dateFromNow: function dateFromNow(date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     formatDate: function formatDate(date) {
                         return moment(date + 'Z').format('LLLL');
                     },
                     hasPaid: function hasPaid(post) {
                         post = post || this.state.post;
-                        var now = new Date();
+
+                        var now = moment();
                         var payout = toLocaleDate(post.cashout_time);
-                        return now.getTime() > payout.getTime();
+                        return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
                         post = post || this.state.post;
@@ -97,7 +98,7 @@
                             date = toLocaleDate(post.last_payout);
                         }
 
-                        return moment(date).fromNow();
+                        return date.fromNow();
                     },
                     hasPromotion: function hasPromotion() {
                         var post = this.state.post;
@@ -663,9 +664,9 @@
                                     //console.log(clone(result.author));
                                     var cKeys = Object.keys(result.content);
                                     cKeys.sort(function (k1, k2) {
-                                        var d1 = new Date(result.content[k1].created);
-                                        var d2 = new Date(result.content[k2].created);
-                                        return d2.getTime() - d1.getTime();
+                                        var d1 = toLocaleDate(result.content[k1].created);
+                                        var d2 = toLocaleDate(result.content[k2].created);
+                                        return d2.valueOf() - d1.valueOf();
                                     });
                                     cKeys.forEach(function (c) {
                                         result.post[c] = parsePost(result.content[c]);

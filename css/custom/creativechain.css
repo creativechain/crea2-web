@@ -1638,6 +1638,17 @@
     transform: scale(0.95); }
   100% {
     transform: scale(0.9); } }
+.loading-button {
+  width: 100%;
+  position: relative; }
+  .loading-button > div {
+    position: absolute;
+    right: 5px;
+    top: -2px; }
+    .loading-button > div .spinner {
+      width: 17px;
+      height: 17px; }
+
 .view-recorver-account .title-explorer {
   font-size: 25px;
   font-weight: 600; }

@@ -196,24 +196,14 @@ function randomNumber(min, max) {
 /**
  *
  * @param {string|number|Date} date
- * @returns {Date}
+ * @returns {moment}
  */
 function toLocaleDate(date) {
     if (date) {
-        if (typeof date == 'string' || typeof date == 'number') {
-            date = new Date(date);
-        }
-
-        if (_typeof(date) === 'object') {
-            var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-            var offset = date.getTimezoneOffset() / 60;
-            var hours = date.getHours();
-            newDate.setHours(hours - offset);
-            return newDate;
-        }
+        return moment.utc(date);
     }
 
-    return new Date(0);
+    return moment.utc(0);
 }
 
 /**

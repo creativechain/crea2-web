@@ -48,7 +48,7 @@
                 methods: {
                     parseAsset: Asset.parse,
                     dateFromNow: function (date) {
-                        return moment(toLocaleDate(date)).fromNow();
+                        return toLocaleDate(date).fromNow();
                     },
                     priceFor: function (base, quote) {
                         let assetBase = Asset.parse(base);
@@ -209,8 +209,8 @@
                         requireRoleKey(username, 'active', function (activeKey, username) {
                             let amountToSell, minToReceive, expiration, orderId;
 
-                            let now = new Date();
-                            expiration = new Date(now.getTime() + (60 * 60 * 24 * 27 * 1000)); //28 days
+                            let now = moment();
+                            expiration = now.add(28, 'days').toDate(); //28 days
                             orderId = randomNumber(0, 0xFFFFFFFF); //MAX uint32_t
 
                             if (type === 'buy') {
@@ -287,8 +287,8 @@
                         let type = priceBase.asset.symbol === 'CREA' ? 'Sell' : 'Buy';
 
                         return {
-                            date: moment(order.created).format('MMM DD, YYYY H:mm:ss'),
-                            expiration: moment(order.expiration).format('MMM DD, YYYY H:mm:ss'),
+                            date: toLocaleDate(order.created).format('MMM DD, YYYY H:mm:ss'),
+                            expiration: toLocaleDate(order.expiration).format('MMM DD, YYYY H:mm:ss'),
                             type: type,
                             price: '$' + Asset.parse({
                                 amount: (type === 'Buy' ? priceBase.toFloat() / priceQuote.toFloat() : priceQuote.toFloat() / priceBase.toFloat()) + 0.0001,
@@ -318,26 +318,31 @@
         }
     }
 
-    function fetchTicker() {
+    /**
+     *
+     * @param {Asset} low24h
+     * @param {Asset} high24h
+     */
+    function fetchTicker(low24h, high24h) {
         let data = {
             method: 'market_history_api.get_ticker',
             params: {}
         };
 
-        socket.send(data, function (err, result) {
+        socket.send(data, function (err, ticker) {
             if (!err) {
 
-                result.latest = Asset.parse({amount: result.latest, nai: 'cbd', exponent: 6}).toPlainString();
-                result.lowest_ask = Asset.parse({amount: result.lowest_ask, nai: 'cbd', exponent: 6}).toPlainString();
-                result.highest_bid = Asset.parse({amount: result.highest_bid, nai: 'cbd', exponent: 6}).toPlainString();
-                result.percent_change = parseFloat(result.percent_change).toFixed(3);
-                result.penultimate = marketContainer.ticker.penultimate;
+                ticker.latest = Asset.parse({amount: ticker.latest, nai: 'cbd', exponent: 6}).toPlainString();
+                ticker.lowest_ask = low24h.toPlainString();
+                ticker.highest_bid = high24h.toPlainString();
+                ticker.percent_change = parseFloat(ticker.percent_change).toFixed(3);
+                ticker.penultimate = marketContainer.ticker.penultimate;
 
-                if (marketContainer.ticker.latest !== result.latest) {
-                    result.penultimate = marketContainer.ticker.latest;
+                if (marketContainer.ticker.latest !== ticker.latest) {
+                    ticker.penultimate = marketContainer.ticker.latest;
                 }
 
-                marketContainer.ticker = result;
+                marketContainer.ticker = ticker;
                 marketContainer.$forceUpdate();
             } else {
                 console.error('Error getting ticker', err);
@@ -447,6 +452,7 @@
         }
 
     }
+
     function loadRecentTrades() {
         let data = {
             method: 'market_history_api.get_recent_trades',
@@ -460,40 +466,67 @@
                 let trades = [];
 
                 let buyLastPrice, sellLastPrice;
+                let now = moment();
+                let yesterday = moment().subtract(1, 'day');
+                let low24h;
+                let high24h;
+                
                 //Order by date DESC
-                result.trades.sort(function (a, b) {
-                    return new Date(b.date).getTime() - new Date(a.date).getTime();
+                result.trades.sort(function (trade1, trade2) {
+                    return toLocaleDate(trade2.date).valueOf() - toLocaleDate(trade1.date).valueOf();
                 });
+                let prices = [];
 
-                result.trades.forEach(function (t) {
-                    t.date = moment(toLocaleDate(t.date)).fromNow();
-                    let currentPays = Asset.parse(t.current_pays);
-                    let openPays = Asset.parse(t.open_pays);
+                result.trades.forEach(function (trade) {
+                    let tradeDate = toLocaleDate(trade.date);
+                    trade.date = tradeDate.fromNow();
+                    let currentPays = Asset.parse(trade.current_pays);
+                    let openPays = Asset.parse(trade.open_pays);
 
-                    t.current_pays = currentPays.toPlainString();
-                    t.open_pays = openPays.toPlainString();
+                    trade.current_pays = currentPays.toPlainString();
+                    trade.open_pays = openPays.toPlainString();
 
-                    t.cbd = currentPays.asset.symbol === 'CBD' ? t.current_pays : t.open_pays;
-                    t.crea = currentPays.asset.symbol === 'CBD' ? t.open_pays : t.current_pays;
-                    t.type = currentPays.asset.symbol === 'CBD' ? 'buy' : 'sell';
+                    trade.cbd = currentPays.asset.symbol === 'CBD' ? trade.current_pays : trade.open_pays;
+                    trade.crea = currentPays.asset.symbol === 'CBD' ? trade.open_pays : trade.current_pays;
+                    trade.type = currentPays.asset.symbol === 'CBD' ? 'buy' : 'sell';
 
                     //Show price in CBD
-                    t.price = Asset.parse({
-                        amount: currentPays.asset.symbol === 'CBD' ? (t.current_pays / t.open_pays) : (t.open_pays / t.current_pays),
+                    let tradePrice = Asset.parse({
+                        amount: currentPays.asset.symbol === 'CBD' ? (trade.current_pays / trade.open_pays) : (trade.open_pays / trade.current_pays),
                         nai: 'cbd',
                         exponent: 6
-                    }).toPlainString();
+                    });
 
-                    trades.push(t);
+                    trade.price = tradePrice.toPlainString();
+                    if (tradeDate.isBetween(yesterday, now)) {
+                        if (low24h) {
+                            low24h = tradePrice.isLT(low24h) ? tradePrice.clone(): low24h;
+                        } else {
+                            low24h = tradePrice.clone();
+                        }
 
-                    if (t.type === 'sell' && !buyLastPrice) {
-                        buyLastPrice = t.price;
+                        if (high24h) {
+                            high24h = tradePrice.isGT(high24h) ? tradePrice.clone(): high24h;
+                        } else {
+                            high24h = tradePrice.clone();
+                        }
+
+                        prices.push(tradePrice.clone());
+                    }
+                    
+
+                    trades.push(trade);
+
+                    if (trade.type === 'sell' && !buyLastPrice) {
+                        buyLastPrice = trade.price;
                     }
 
-                    if (t.type === 'buy' && !sellLastPrice) {
-                        sellLastPrice = t.price;
+                    if (trade.type === 'buy' && !sellLastPrice) {
+                        sellLastPrice = trade.price;
                     }
                 });
+
+                fetchTicker(low24h, high24h);
 
                 //marketContainer.recentTrades = trades;
                 //marketContainer.$forceUpdate();
@@ -527,11 +560,15 @@
             if (!err) {
                 let buckets = [];
                 result.buckets.forEach(function (b) {
+                    let high = Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat();
+                    let low = Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat();
+
+                    //Is a bug? high and low values sometimes are changed
                     let buck = {
-                        date: moment(b.open).format('DD-MM-YYYY H:mm'),
+                        date: toLocaleDate(b.open).format('DD-MM-YYYY H:mm'),
                         open: Asset.parse({amount: b.non_crea.open, nai: 'cbd'}).toFloat(),
-                        high: Asset.parse({amount: b.non_crea.high, nai: 'cbd'}).toFloat(),
-                        low: Asset.parse({amount: b.non_crea.low, nai: 'cbd'}).toFloat(),
+                        high: high > low ?  high : low,
+                        low: low > high ? high : low,
                         close: Asset.parse({amount: b.non_crea.close, nai: 'cbd'}).toFloat()
                     };
 
@@ -553,7 +590,6 @@
     function refreshData(interval, inmediate) {
 
         let refresh = function () {
-            fetchTicker();
             fetchOpenOrders();
             loadOrderBook();
             loadRecentTrades();
