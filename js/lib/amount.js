@@ -120,6 +120,110 @@ class Asset {
         return this;
     }
 
+    /**
+     *
+     * @param assetEval
+     * @param mode
+     * @param strict
+     * @returns {boolean}
+     * @private
+     */
+    _evaluate(assetEval, mode, strict = true) {
+        mode = mode ? mode.toLowerCase() : mode;
+
+        /**
+         *
+         * @returns {boolean}
+         */
+        let evaluate = () => {
+            switch (mode) {
+                case 'gt':
+                    return this.toFloat() > assetEval.toFloat();
+                case 'gte':
+                    return this.toFloat() >= assetEval.toFloat();
+                case 'lt':
+                    return this.toFloat() < assetEval.toFloat();
+                case 'lte':
+                    return this.toFloat() <= assetEval.toFloat();
+                default:
+                    return this.toFloat() === assetEval.toFloat();
+            }
+        };
+        
+        if (strict) {
+            if (assetEval.asset.symbol) {
+                if (assetEval.asset.symbol === this.asset.symbol) {
+                    return evaluate();
+                }
+
+                throw new Error(`Symbol currency must be '${this.asset.symbol}'`);
+            }
+
+            throw new Error('Symbol currency not found');
+        } else {
+            return evaluate();
+        }
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isGT(asset, strict = true) {
+        return this._evaluate(asset, 'gt', strict);
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isGTE(asset, strict = true) {
+        return this._evaluate(asset, 'gte', strict);
+
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isLT(asset, strict = true) {
+        return this._evaluate(asset, 'lt', strict);
+
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isLTE(asset, strict = true) {
+        return this._evaluate(asset, 'tle', strict);
+
+    }
+
+    /**
+     *
+     * @param asset
+     * @param strict
+     * @returns {boolean}
+     */
+    isEqual(asset, strict = true) {
+        return this._evaluate(asset, 'equal', strict);
+
+    }
+
+    /**
+     *
+     * @param maxDecimals
+     * @returns {*|string}
+     */
     toPlainString(maxDecimals) {
         let abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
@@ -132,19 +236,49 @@ class Asset {
         return mf.format(Math.abs(this.amount), this.asset.exponent, abbr);
     }
 
+    /**
+     *
+     * @param maxDecimals
+     * @returns {string}
+     */
     toFriendlyString(maxDecimals) {
         let abbr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         return this.toPlainString(maxDecimals, abbr) + " " + this.asset.symbol;
     }
 
+    /**
+     *
+     * @returns {string}
+     */
     toString() {
         return this.toFriendlyString(this.asset.exponent);
     }
 
+    /**
+     *
+     * @returns {number}
+     */
     toFloat() {
         return parseFloat(this.toPlainString(null, false));
     }
 
+    /**
+     *
+     * @returns {Asset}
+     */
+    clone() {
+        let asset = new Asset();
+        asset.asset = JSON.parse(JSON.stringify(this.asset));
+        asset.amount = this.amount;
+        return asset;
+    }
+
+    /**
+     *
+     * @param assetData
+     * @param log
+     * @returns {Asset}
+     */
     static parse(assetData, log) {
 
         if (log) {
@@ -190,6 +324,11 @@ class Asset {
 
     }
 
+    /**
+     *
+     * @param assetString
+     * @returns {Asset}
+     */
     static parseString(assetString) {
         let strSplitted = assetString.split(' ');
         let amount = parseFloat(strSplitted[0]);
