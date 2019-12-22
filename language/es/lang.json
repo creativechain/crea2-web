@@ -429,6 +429,8 @@
     "BALANCES_ACCOUNT_TITLE": "Valor aproximado de la cuenta",
     "BALANCES_ACCOUNT_TEXT": "Es un valor estimado basado en el valor de CREA en dólares estadounidenses.",
     "DROPDOWN_MENU_MARKET": "Mercado",
+    "DROPDOWN_MENU_BUY_ONECOMET": "Comprar con Tarjeta",
+    "DROPDOWN_MENU_BUY_SELL": "Comprar / Vender",
     "UPDATE_INPUT": "Browse file.dat",
     "DROPDOWN_MENU_TRANS_SAVINGS": "Transferir a Ahorros",
     "DROPDOWN_MENU_DE_ENERGIZE": "De-energize",
