@@ -5,24 +5,24 @@
  */
 
 (function () {
-    var profileContainer;
-    var rewardsContainer = {};
-    var blockedContainer;
-    var followingContainer;
-    var followerContainer;
-    var walletModalSend;
-    var walletModalDeEnergize;
-    var defaultModalConfig;
-    var lastPage = 1;
+    let profileContainer;
+    let rewardsContainer = {};
+    let blockedContainer;
+    let followingContainer;
+    let followerContainer;
+    let walletModalSend;
+    let walletModalDeEnergize;
+    let defaultModalConfig;
+    let lastPage = 1;
 
     function updateModalDeEnergize(state, session) {
         console.log('Modal De-Energize', jsonify(jsonstring(state)));
-        var vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString(null, false));
-        var delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString(null, false));
-        var maxPowerDown = vestsCrea - delegatedVesting;
-        var withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(null, false), apiOptions.nai.CREA);
-        var toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(null, false), apiOptions.nai.CREA);
-        var withdrawNote = '';
+        let vestsCrea = parseFloat(vestingCrea(state.user, state.props).toPlainString(null, false));
+        let delegatedVesting = parseFloat(delegatedCrea(state.user, state.props).toPlainString(null, false));
+        let maxPowerDown = vestsCrea - delegatedVesting;
+        let withdrawn = vestsToCgy(state, new Vests(state.user.withdrawn).toFriendlyString(null, false), apiOptions.nai.CREA);
+        let toWithdraw = vestsToCgy(state, new Vests(state.user.to_withdraw).toFriendlyString(null, false), apiOptions.nai.CREA);
+        let withdrawNote = '';
 
         if (toWithdraw.amount - withdrawn.amount > 0) {
             withdrawNote = String.format(lang.WALLET.DE_ENERGIZE_TEXT, toWithdraw.toFriendlyString(null, false), withdrawn.toFriendlyString(null, false));
@@ -45,7 +45,7 @@
                     formatString: String.format,
                     onAmount: function onAmount(amount) {
                         amount += 0.0001;
-                        var asset = Asset.parse({
+                        let asset = Asset.parse({
                             amount: amount,
                             nai: apiOptions.nai.CREA
                         });
@@ -54,7 +54,7 @@
                     },
                     onManualChange: function onManualChange(event) {
                         if (event) {
-                            var amount = event.target.valueAsNumber;
+                            let amount = event.target.valueAsNumber;
 
                             if (isNaN(amount)) {
                                 amount = 0;
@@ -70,13 +70,13 @@
                     },
                     makeDeEnergize: function makePowerDown(event, amount) {
                         cancelEventPropagation(event);
-                        var that = this;
-                        var username = this.session.account.username;
+                        let that = this;
+                        let username = this.session.account.username;
                         requireRoleKey(username, 'active', function (activeKey) {
                             globalLoading.show = true;
-                            var finalAmount = that.finalAmount + ' CREA';
+                            let finalAmount = that.finalAmount + ' CREA';
                             console.log(finalAmount);
-                            var vests = cgyToVests(that.state, finalAmount);
+                            let vests = cgyToVests(that.state, finalAmount);
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;
 
@@ -111,14 +111,14 @@
                     toError: false
                 },
                 mounted: function mounted() {
-                    var that = this;
+                    let that = this;
                     $('#wallet-send').on('modalClosed.modals.mr', function () {
                         that.clearFields();
                     });
                 },
                 methods: {
                     shouldShowMemo: function shouldShowMemo() {
-                        var avoidMemoOps = ['transfer_to_vests', 'transfer_to_savings_crea', 'transfer_to_savings_cbd'];
+                        let avoidMemoOps = ['transfer_to_vests', 'transfer_to_savings_crea', 'transfer_to_savings_cbd'];
                         return !avoidMemoOps.includes(this.config.op);
                     },
                     cancelSend: function cancelSend(event) {
@@ -143,13 +143,13 @@
                     sendCrea: function sendCrea() {
                         if (this.toError || !this.amount) {//TODO: SHOW ERRORS
                         } else if (this.config.confirmed) {
-                            var that = this;
-                            var amountData = {
+                            let that = this;
+                            let amountData = {
                                 amount: that.amount,
                                 nai: that.config.nai.toLowerCase(),
                                 round: true
                             };
-                            var amount = Asset.parse(amountData).toFriendlyString(null, false);
+                            let amount = Asset.parse(amountData).toFriendlyString(null, false);
                             requireRoleKey(this.session.account.username, 'active', function (activeKey) {
                                 globalLoading.show = true;
                                 console.log('Key:', activeKey, that.config.op);
@@ -170,12 +170,12 @@
                         }
                     },
                     validateDestiny: function validateDestiny(event) {
-                        var username = event.target.value;
+                        let username = event.target.value;
 
                         if (!crea.utils.validateAccountName(username)) {
-                            var accounts = [username];
+                            let accounts = [username];
                             console.log("Checking", accounts);
-                            var that = this;
+                            let that = this;
                             crea.api.lookupAccountNames(accounts, function (err, result) {
                                 if (err) {
                                     console.error(err);
@@ -208,18 +208,18 @@
 
 
     function updateProfileView(state, session, account, usernameFilter) {
-        var navSection = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'projects';
-        var walletSection = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'balance';
+        let navSection = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'projects';
+        let walletSection = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'balance';
         //console.log('Updating profile', jsonify(jsonstring(account)), jsonify(jsonstring(state)));
-        var withdrawingSavings = state.user ? state.user.savings_withdraw_requests : 0;
+        let withdrawingSavings = state.user ? state.user.savings_withdraw_requests : 0;
 
-        var nextDeEnergize = null;
-        var savingsWithdrawNote = null;
+        let nextDeEnergize = null;
+        let savingsWithdrawNote = null;
 
         if (state.user.to_withdraw > 0 && session && state.user.name === session.account.username) {
-            var date = toLocaleDate(state.user.next_vesting_withdrawal);
+            let date = toLocaleDate(state.user.next_vesting_withdrawal);
             if (date.valueOf() > 0) {
-                nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, toLocaleDate(state.user.next_vesting_withdrawal)).fromNow();
+                nextDeEnergize = String.format(lang.WALLET.NEXT_DE_ENERGIZE, toLocaleDate(state.user.next_vesting_withdrawal).fromNow());
             }
         }
 
@@ -269,13 +269,13 @@
                     simpleView: false //No used, but is needed
                 },
                 updated: function updated() {
-                    var t = $('#wallet-tabs').prev();
+                    let t = $('#wallet-tabs').prev();
 
                     if (t.is(':empty')) {
                         t.remove();
                     }
 
-                    var inputTags = $('#profile-edit-tags');
+                    let inputTags = $('#profile-edit-tags');
                     inputTags.tagsinput({
                         maxTags: CONSTANTS.MAX_TAGS,
                         maxChars: CONSTANTS.TEXT_MAX_SIZE.TAG,
@@ -298,8 +298,8 @@
                         this.showPriv[auth] = false;
                     },
                     getPrivKey: function getPrivKey(auth) {
-                        var that = this;
-                        var username = this.session ? this.session.account.username : '';
+                        let that = this;
+                        let username = this.session ? this.session.account.username : '';
                         requireRoleKey(username, auth, function (authKey) {
                             that.showPriv[auth] = authKey;
                         });
@@ -314,7 +314,7 @@
                         }
                     },
                     prepareModal: function prepareModal(op) {
-                        var config;
+                        let config;
 
                         switch (op) {
                             case 'transfer_crea':
@@ -401,8 +401,8 @@
                         return this.session && this.session.account.username == state.user.name;
                     },
                     parseAsset: function parseAsset(asset) {
-                        var maxDecimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-                        var abbr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+                        let maxDecimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+                        let abbr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
                         return Asset.parse(asset).toFriendlyString(maxDecimals, abbr);
                     },
                     assetPart: function assetPart(asset, part) {
@@ -426,18 +426,18 @@
                     },
                     showProfile: showProfile,
                     getJoinDate: function getJoinDate() {
-                        var date = toLocaleDate(this.state.user.created);
+                        let date = toLocaleDate(this.state.user.created);
                         return this.lang.PROFILE.JOINED + date.format('MMMM YYYY');
                     },
                     getBuzzClass: function getBuzzClass(account) {
-                        var buzzClass = {};
-                        var levelName = account.buzz.level_name;
+                        let buzzClass = {};
+                        let levelName = account.buzz.level_name;
 
                         buzzClass[levelName] = true;
                         return buzzClass;
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage = post.metadata.featuredImage;
+                        let featuredImage = post.metadata.featuredImage;
 
                         if (featuredImage && featuredImage.hash) {
                             return {
@@ -450,8 +450,8 @@
                         return {};
                     },
                     getTags: function getTags(post) {
-                        var tags = post.metadata.tags;
-                        var linkedTags = []; //Select only 8 first tags
+                        let tags = post.metadata.tags;
+                        let linkedTags = []; //Select only 8 first tags
 
                         tags = tags.slice(0, 7);
                         tags.forEach(function (t) {
@@ -461,7 +461,7 @@
                     },
                     getLinkedTags: function getLinkedTags(tags, asString) {
                         //<a v-bind:href="'/popular/' + x">{{ x }}</a>
-                        var linkedTags = [];
+                        let linkedTags = [];
 
                         if (tags) {
                             tags.forEach(function (t) {
@@ -476,12 +476,12 @@
                         return linkedTags;
                     },
                     hasPaid: function hasPaid(post) {
-                        var now = moment();
-                        var payout = toLocaleDate(post.cashout_time);
+                        let now = moment();
+                        let payout = toLocaleDate(post.cashout_time);
                         return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
-                        var date = toLocaleDate(post.cashout_time);
+                        let date = toLocaleDate(post.cashout_time);
 
                         if (this.hasPaid(post)) {
                             date = toLocaleDate(post.last_payout);
@@ -490,11 +490,11 @@
                         return date.fromNow();
                     },
                     hasPromotion: function hasPromotion(post) {
-                        var amount = Asset.parseString(post.promoted);
+                        let amount = Asset.parseString(post.promoted);
                         return amount.amount > 0;
                     },
                     getPromotion: function getPromotion(post) {
-                        var amount = Asset.parseString(post.promoted);
+                        let amount = Asset.parseString(post.promoted);
                         return '$ ' + amount.toPlainString();
                     },
                     parseJSON: function parseJSON(strJson) {
@@ -509,7 +509,7 @@
                         return {};
                     },
                     getPayout: function getPayout(post) {
-                        var amount = Asset.parseString(post.pending_payout_value);
+                        let amount = Asset.parseString(post.pending_payout_value);
 
                         if (this.hasPaid(post)) {
                             amount = Asset.parseString(post.total_payout_value);
@@ -520,29 +520,29 @@
                         return '$ ' + amount.toPlainString();
                     },
                     getPendingPayouts: function getPendingPayouts(post) {
-                        var PRICE_PER_CREA = Asset.parse({
+                        let PRICE_PER_CREA = Asset.parse({
                             amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(),
                             nai: 'cbd'
                         });
-                        var CBD_PRINT_RATE = this.state.props.cbd_print_rate;
-                        var CBD_PRINT_RATE_MAX = 10000;
-                        var payout = Asset.parseString(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
+                        let CBD_PRINT_RATE = this.state.props.cbd_print_rate;
+                        let CBD_PRINT_RATE_MAX = 10000;
+                        let payout = Asset.parseString(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
 
-                        var PENDING_PAYOUT = payout;
-                        var PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
-                        var PENDING_PAYOUT_CBD = Asset.parse({
+                        let PENDING_PAYOUT = payout;
+                        let PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
+                        let PENDING_PAYOUT_CBD = Asset.parse({
                             amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS,
                             nai: 'cbd'
                         });
-                        var PENDING_PAYOUT_CGY = Asset.parse({
+                        let PENDING_PAYOUT_CGY = Asset.parse({
                             amount: NaNOr(((PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'cgy'
                         });
-                        var PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
+                        let PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
                             amount: NaNOr((PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX)), 0),
                             nai: 'cbd'
                         });
-                        var PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
+                        let PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
                             amount: NaNOr(((PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'crea'
                         });
@@ -563,10 +563,10 @@
                     onVote: function onVote(err, result, post) {
                         catchError(err);
                         //updateUserSession();
-                        var that = this;
+                        let that = this;
                         getDiscussion(post.author, post.permlink, function (err, result) {
                             if (!err) {
-                                var updatedPost = parsePost(result);
+                                let updatedPost = parsePost(result);
                                 that.state.content[updatedPost.link] = updatedPost;
                                 that.$forceUpdate();
                             }
@@ -580,7 +580,7 @@
                         return new License(LICENSE.FREE_CONTENT);
                     },
                     getCGYReward: function getCGYReward() {
-                        var reward = parseFloat(this.state.user.reward_vesting_crea.split(' ')[0]);
+                        let reward = parseFloat(this.state.user.reward_vesting_crea.split(' ')[0]);
                         return reward + ' CGY';
                     },
                     getCGYBalance: function getCGYBalance() {
@@ -590,17 +590,17 @@
                         return receivedDelegatedCGY(this.state.user, this.state.props);
                     },
                     hasRewardBalance: function hasRewardBalance() {
-                        var crea = Asset.parse(this.state.user.reward_crea_balance);
-                        var cbd = Asset.parse(this.state.user.reward_cbd_balance);
-                        var vests = Asset.parse(this.state.user.reward_vesting_balance);
+                        let crea = Asset.parse(this.state.user.reward_crea_balance);
+                        let cbd = Asset.parse(this.state.user.reward_cbd_balance);
+                        let vests = Asset.parse(this.state.user.reward_vesting_balance);
                         return crea.amount > 0 || cbd.amount > 0 || vests.amount > 0;
                     },
                     cancelPowerDown: function cancelPowerDown(event) {
                         cancelEventPropagation(event);
-                        var username = this.session.account.username;
+                        let username = this.session.account.username;
                         requireRoleKey(username, 'active', function (activeKey) {
                             globalLoading.show = true;
-                            var vests = new Vests(0);
+                            let vests = new Vests(0);
                             crea.broadcast.withdrawVesting(activeKey, username, vests.toFriendlyString(null, false), function (err, result) {
                                 globalLoading.show = false;
 
@@ -623,13 +623,13 @@
                         return false;
                     },
                     onLoadAvatar: function onLoadAvatar(event) {
-                        var files = event.target.files;
+                        let files = event.target.files;
 
                         if (files.length > 0) {
                             globalLoading.show = true;
-                            var that = this;
-                            var file = files[0];
-                            var maximumSize = CONSTANTS.FILE_MAX_SIZE.PROFILE[file.type.toUpperCase().split('/')[0]];
+                            let that = this;
+                            let file = files[0];
+                            let maximumSize = CONSTANTS.FILE_MAX_SIZE.PROFILE[file.type.toUpperCase().split('/')[0]];
                             resizeImage(file, function (resizedImage) {
                                 uploadToIpfs(resizedImage, maximumSize, function (err, uploadedFile) {
                                     globalLoading.show = false;
@@ -667,9 +667,9 @@
                         });
                     }),
                     changePassword: function changePassword() {
-                        var that = this;
+                        let that = this;
 
-                        var setError = function setError(error) {
+                        let setError = function setError(error) {
                             that.changePass.error = error;
                             globalLoading.show = false;
                         };
@@ -679,7 +679,7 @@
                             if (this.changePass.newPass && this.changePass.newPass === this.changePass.matchedPass) {
                                 //Check radio inputs
                                 if (this.changePass.checkedLostPass && this.changePass.checkedStoredPass) {
-                                    var _session = Session.create(this.changePass.username, this.changePass.oldPass); //Check if current is valid
+                                    let _session = Session.create(this.changePass.username, this.changePass.oldPass); //Check if current is valid
 
 
                                     _session.login(function (err, result) {
@@ -689,9 +689,9 @@
                                             }
                                         } else {
                                             //Current pass is valid
-                                            var keys = Account.generate(that.changePass.username, that.changePass.newPass, DEFAULT_ROLES).keys;
+                                            let keys = Account.generate(that.changePass.username, that.changePass.newPass, DEFAULT_ROLES).keys;
                                             sendAccountUpdate(null, keys, function (err, result) {
-                                                var s = Session.getAlive();
+                                                let s = Session.getAlive();
 
                                                 if (s) {
                                                     s.logout();
@@ -741,8 +741,8 @@
     }
 
     function setUpRewards(rewardView, session, state) {
-        var rewardType = rewardView.replace('s', '').replace('-', '_');
-        var rewards = {
+        let rewardType = rewardView.replace('s', '').replace('-', '_');
+        let rewards = {
             rewards24Vests: 0,
             rewardsWeekVests: 0,
             totalRewardsVests: 0,
@@ -753,16 +753,16 @@
             rewardsWeekCBD: 0,
             totalRewardsCBD: 0
         };
-        var today = moment();
-        var oneDay = 60 * 60 * 24 * 1000;
-        var yesterday = today.subtract(1, 'day').valueOf();
-        var lastWeek =today.subtract(7, 'days').valueOf();
-        var firstDate, finalDate;
-        var rewardsOp = [];
+        let today = moment();
+        let oneDay = 60 * 60 * 24 * 1000;
+        let yesterday = today.subtract(1, 'day').valueOf();
+        let lastWeek =today.subtract(7, 'days').valueOf();
+        let firstDate, finalDate;
+        let rewardsOp = [];
 
         state.user.transfer_history.sort(function (r1, r2) {
-            var d1 = toLocaleDate(r1[1].timestamp);
-            var d2 = toLocaleDate(r2[1].timestamp);
+            let d1 = toLocaleDate(r1[1].timestamp);
+            let d2 = toLocaleDate(r2[1].timestamp);
             return d2.valueOf() - d1.valueOf();
         });
 
@@ -773,11 +773,11 @@
                 }
 
                 firstDate = toLocaleDate(item[1].timestamp).valueOf();
-                var vest = Asset.parseString(item[1].op[1].vesting_payout);
+                let vest = Asset.parseString(item[1].op[1].vesting_payout);
 
-                var _crea = Asset.parseString(item[1].op[1].crea_payout);
+                let _crea = Asset.parseString(item[1].op[1].crea_payout);
 
-                var cbd = Asset.parseString(item[1].op[1].cbd_payout);
+                let cbd = Asset.parseString(item[1].op[1].cbd_payout);
 
                 if (firstDate > lastWeek) {
                     if (firstDate > yesterday) {
@@ -802,7 +802,7 @@
 
                 firstDate = toLocaleDate(item[1].timestamp).valueOf();
 
-                var _vest = Asset.parseString(item[1].op[1].reward);
+                let _vest = Asset.parseString(item[1].op[1].reward);
 
                 if (firstDate > lastWeek) {
                     if (firstDate > yesterday) {
@@ -938,7 +938,7 @@
 
 
     function fetchRewards(session) {
-        var username = getPathPart().replace('@', '');
+        let username = getPathPart().replace('@', '');
         fetchUserState(username, 'transfers', function (err, state) {
             if (!catchError(err)) {
                 setUpRewards('author-rewards', session, state);
@@ -951,7 +951,7 @@
         if (session) {
             crea.api.getFollowing(session.account.username, '', 'ignore', 1000, function (err, followings) {
                 if (!catchError(err)) {
-                    var accounts = [];
+                    let accounts = [];
                     followings = followings.following;
                     followings.forEach(function (r) {
                         if (r.follower === session.account.username) {
@@ -964,10 +964,10 @@
                     if (accounts.length) {
                         crea.api.getAccounts(accounts, function (err, blockeds) {
                             if (!catchError(err)) {
-                                var data = {};
+                                let data = {};
 
-                                for (var x = 0; x < blockeds.length; x++) {
-                                    var c = blockeds[x];
+                                for (let x = 0; x < blockeds.length; x++) {
+                                    let c = blockeds[x];
                                     c.metadata = jsonify(c.json_metadata);
                                     data[c.name] = c;
                                 }
@@ -987,10 +987,10 @@
     }
 
     function fetchFollowing(state, session, account) {
-        var onFetchFollowing = function onFetchFollowing(accountState) {
+        let onFetchFollowing = function onFetchFollowing(accountState) {
             crea.api.getAccounts(accountState.user.followings, function (err, result) {
                 if (!catchError(err)) {
-                    var followings = {};
+                    let followings = {};
                     result.forEach(function (a) {
                         a.metadata = jsonify(a.json_metadata);
                         a.metadata.avatar = a.metadata.avatar || {};
@@ -1006,7 +1006,7 @@
         } else {
             crea.api.getFollowing(state.user.name, '', 'blog', 1000, function (err, result) {
                 if (!catchError(err)) {
-                    var followings = [];
+                    let followings = [];
                     result.following.forEach(function (f) {
                         followings.push(f.following);
                     });
@@ -1018,10 +1018,10 @@
     }
 
     function fetchFollowers(state, session, account) {
-        var onFetchFollowers = function onFetchFollowers(accountState) {
+        let onFetchFollowers = function onFetchFollowers(accountState) {
             crea.api.getAccounts(accountState.user.followers, function (err, result) {
                 if (!catchError(err)) {
-                    var followers = {};
+                    let followers = {};
                     result.forEach(function (a) {
                         a.metadata = jsonify(a.json_metadata);
                         a.metadata.avatar = a.metadata.avatar || {};
@@ -1034,7 +1034,7 @@
 
         crea.api.getFollowers(state.user.name, '', 'blog', 1000, function (err, result) {
             if (!catchError(err)) {
-                var followers = [];
+                let followers = [];
                 result.followers.forEach(function (f) {
                     followers.push(f.follower);
                 });
@@ -1053,8 +1053,8 @@
 
 
     function detectNav(state, session, account, usernameFilter) {
-        var nav = getPathPart(null,1);
-        var walletNav = 'balances';
+        let nav = getPathPart(null,1);
+        let walletNav = 'balances';
 
         if (!nav || nav.isEmpty()) {
             nav = 'projects';
@@ -1079,20 +1079,20 @@
     }
 
     function sendAccountUpdate(event, keys, callback) {
-        var lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
-        var now = moment();
-        var time = now.valueOf() - lastUpdate.valueOf();
+        let lastUpdate = toLocaleDate(profileContainer.state.user.last_account_update);
+        let now = moment();
+        let time = now.valueOf() - lastUpdate.valueOf();
 
         if (time >= CONSTANTS.ACCOUNT.UPDATE_THRESHOLD) {
-            var session = Session.getAlive();
+            let session = Session.getAlive();
 
             if (session) {
-                var metadata = profileContainer.profile;
+                let metadata = profileContainer.profile;
                 metadata.tags = $('#profile-edit-tags').val().split(' ');
                 metadata = jsonstring(metadata);
 
                 if (!keys) {
-                    var user = profileContainer.state.user;
+                    let user = profileContainer.state.user;
                     keys = {
                         memo: {
                             pub: user.memo_key
@@ -1137,8 +1137,8 @@
             }
         } else {
             //Show alert to avoid update
-            var title = lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.TITLE;
-            var message = String.format(lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.BODY, moment(lastUpdate).fromNow())
+            let title = lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.TITLE;
+            let message = String.format(lang.ERROR.ACCOUNT_UPDATE_THRESHOLD_EXCEEDED.BODY, toLocaleDate(lastUpdate).fromNow());
             showAlert(title, message);
         }
     }
@@ -1153,12 +1153,12 @@
             crea.api.getAccountHistory(username, -1, 50, function (err, result) {
                 if (!catchError(err)) {
                     result.history = result.history.reverse();
-                    var accounts = [];
-                    var history = [];
+                    let accounts = [];
+                    let history = [];
                     result.history.forEach(function (h) {
                         h = h[1];
 
-                        var addIfNotExists = function addIfNotExists(account) {
+                        let addIfNotExists = function addIfNotExists(account) {
                             if (account && accounts.indexOf(account) < 0) {
                                 accounts.push(account);
                             }
@@ -1197,9 +1197,9 @@
                         if (err) {
                             console.error(err);
                         } else {
-                            var opsAccounts = {};
+                            let opsAccounts = {};
                             accounts.forEach(function (u) {
-                                for (var x = 0; x < result.length; x++) {
+                                for (let x = 0; x < result.length; x++) {
                                     if (u === result[x].name) {
                                         opsAccounts[u] = parseAccount(result[x]);
                                         break;
@@ -1223,9 +1223,9 @@
 
 
     function fetchUserState(username) {
-        var view = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-        var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-        var stateUrl;
+        let view = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+        let callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+        let stateUrl;
 
         if (!username.startsWith('/@')) {
             stateUrl = '/@' + username;
@@ -1265,16 +1265,16 @@
     }
 
     function handleView(session, account) {
-        var profileName = getPathPart();
+        let profileName = getPathPart();
         profileName = profileName.replace('@', '');
 
         if (profileName) {
-            var onState = function onState(err, state) {
+            let onState = function onState(err, state) {
                 if (!catchError(err)) {
                     console.log(clone(state));
 
                     getProfileDiscussions(function (err, discussions) {
-                        var accounts = Object.keys(state.accounts);
+                        let accounts = Object.keys(state.accounts);
                         accounts.forEach(function (k) {
                             state.accounts[k] = parseAccount(state.accounts[k]);
                         });
@@ -1289,14 +1289,14 @@
                         //Sort discussions
                         //Nodes return discussion ordered by last update
                         discussions.sort(function (k1, k2) {
-                            var d1 = toLocaleDate(k1.created);
-                            var d2 = toLocaleDate(k2.created);
+                            let d1 = toLocaleDate(k1.created);
+                            let d2 = toLocaleDate(k2.created);
                             return d2.valueOf() - d1.valueOf();
                         });
 
-                        for (var x = 0; x < discussions.length; x++) {
-                            var d = discussions[x];
-                            var permlink = d.author + '/' + d.permlink;
+                        for (let x = 0; x < discussions.length; x++) {
+                            let d = discussions[x];
+                            let permlink = d.author + '/' + d.permlink;
                             state.content[permlink] = d;
                             state.discussion_idx[''].profile.push(permlink);
 
@@ -1316,9 +1316,9 @@
             event.preventDefault();
         }
 
-        var creaBalance = profileContainer.state.user.reward_crea_balance;
-        var cbd = profileContainer.state.user.reward_cbd_balance;
-        var cgy = profileContainer.state.user.reward_vesting_balance;
+        let creaBalance = profileContainer.state.user.reward_crea_balance;
+        let cbd = profileContainer.state.user.reward_cbd_balance;
+        let cgy = profileContainer.state.user.reward_vesting_balance;
         requireRoleKey(profileContainer.session.account.username, 'posting', function (activeKey) {
             globalLoading.show = true;
             crea.broadcast.claimRewardBalance(activeKey, profileContainer.session.account.username, creaBalance, cbd, cgy, function (err, result) {
@@ -1348,7 +1348,7 @@
         }
 
         if (session) {
-            var from = session.account.username;
+            let from = session.account.username;
 
             switch (op) {
                 case CONSTANTS.TRANSFER.TRANSFER_CREA:
@@ -1376,12 +1376,12 @@
     }
 
     function handleSession(session, account) {
-        var settingsPart = getPathPart(null, 1);
+        let settingsPart = getPathPart(null, 1);
         settingsPart = settingsPart.toLowerCase() === 'settings';
 
         if (session) {
             if (settingsPart) {
-                var username = getPathPart();
+                let username = getPathPart();
                 if ('@' + session.account.username !== username) {
                     showProfile(username);
                     return;
@@ -1403,7 +1403,7 @@
                 };
             }
         } else if (settingsPart) {
-            var username = getPathPart();
+            let username = getPathPart();
             showProfile(username);
             return;
 
@@ -1423,14 +1423,14 @@
             lastPage = 1;
         }
 
-        var http = new HttpClient(apiOptions.apiUrl + '/creary/blog');
+        let http = new HttpClient(apiOptions.apiUrl + '/creary/blog');
         http.when('done', function (response) {
-            var data = jsonify(response).data;
+            let data = jsonify(response).data;
 
-            var posts = [];
-            var count = data.length;
+            let posts = [];
+            let count = data.length;
 
-            var onPostData = function() {
+            let onPostData = function() {
                 --count;
                 if (count <= 0) {
                     if (callback) {
@@ -1441,13 +1441,13 @@
             };
 
             data.forEach(function (d) {
-                var permlink = d.author + '/' + d.permlink;
+                let permlink = d.author + '/' + d.permlink;
 
                 crea.api.getContent(d.author, d.permlink, function (err, result) {
                     if (err || result.author.length <= 0) {
                         console.error('Error getting', permlink, err);
                     } else {
-                        var p = parsePost(result);
+                        let p = parsePost(result);
                         p.reblogged_by = d.reblogged_by;
 
                         posts.push(p);
@@ -1481,7 +1481,7 @@
         });
     }
 
-    var onScrollCalling;
+    let onScrollCalling;
     creaEvents.on('crea.scroll.bottom', function () {
         if (!onScrollCalling) {
             onScrollCalling = true;
@@ -1494,16 +1494,16 @@
                 //Sort discussions
                 //Nodes return discussion ordered by last update
                 discussions.sort(function (k1, k2) {
-                    var d1 = toLocaleDate(k1.created);
-                    var d2 = toLocaleDate(k2.created);
+                    let d1 = toLocaleDate(k1.created);
+                    let d2 = toLocaleDate(k2.created);
                     return d2.valueOf() - d1.valueOf();
                 });
 
 
-                for (var x = 0; x < discussions.length; x++) {
-                    var d = discussions[x];
+                for (let x = 0; x < discussions.length; x++) {
+                    let d = discussions[x];
 
-                    var permlink = d.author + '/' + d.permlink;
+                    let permlink = d.author + '/' + d.permlink;
                     profileContainer.state.content[permlink] = d;
                     profileContainer.state.discussion_idx[''].profile.push(permlink);
                 }
