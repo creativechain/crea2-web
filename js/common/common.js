@@ -270,7 +270,7 @@ function parseAccount(account) {
         }
 
         account.metadata.adult_content = account.metadata.adult_content || 'warn';
-        account.metadata.post_rewards = account.metadata.post_rewards || '50';
+        account.metadata.post_rewards = account.metadata.post_rewards || '100';
         account.metadata.comment_rewards = account.metadata.comment_rewards || '50';
         account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
 

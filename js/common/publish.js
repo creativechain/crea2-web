@@ -449,7 +449,10 @@
                     case '0':
                         operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
                         break;
+                    case '50':
+                        break;
                     case '100':
+                    default:
                         operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
                         break;
                 }
