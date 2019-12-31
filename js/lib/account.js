@@ -36,10 +36,20 @@ class Account {
             return new Account(username, keys);
         } else {
 
-            if (DEFAULT_ROLES.indexOf(role) > -1) {
-                neededRoles.push(role);
+            let validateRole = function (r) {
+                if (DEFAULT_ROLES.indexOf(r) > -1) {
+                    neededRoles.push(r);
+                } else {
+                    throw 'Role not valid: ' + r;
+                }
+            };
+
+            if (Array.isArray(role)) {
+                role.forEach(function (r) {
+                    validateRole(r);
+                })
             } else {
-                throw 'Role not valid: ' + role;
+                validateRole(role);
             }
 
             let privKeys = crea.auth.getPrivateKeys(username, password, neededRoles);

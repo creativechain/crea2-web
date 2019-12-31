@@ -5,22 +5,22 @@
  */
 
 (function () {
-    var session, account;
-    var publishContainer;
-    var postUploads = {};
+    let session, account;
+    let publishContainer;
+    let postUploads = {};
 
     function setUp(editablePost) {
-        var downloadFile = {
+        let downloadFile = {
             price: 0,
             currency: 'CREA'
         };
-        var featuredImage = {};
-        var license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
+        let featuredImage = {};
+        let license = editablePost ? License.fromFlag(editablePost.metadata.license) : License.fromFlag(LICENSE.NO_LICENSE.flag);
 
         if (editablePost) {
             //
             //downloadFile = editablePost.download;
-            var mFi = editablePost.metadata.featuredImage;
+            let mFi = editablePost.metadata.featuredImage;
             featuredImage = mFi.url ? mFi : mfi ? {
                 url: mFi
             } : featuredImage;
@@ -70,8 +70,8 @@
                 }
 
                 if (this.step === 2) {
-                    var inputTags = $('#publish-tags');
-                    var that = this;
+                    let inputTags = $('#publish-tags');
+                    let that = this;
 
                     if (!this.tagsConfig.init) {
                         inputTags.tagsinput({
@@ -89,7 +89,7 @@
                             }
                         });
                         inputTags.on('itemRemoved', function (event) {
-                            var i = that.tags.indexOf(event.item);
+                            let i = that.tags.indexOf(event.item);
 
                             if (i > -1) {
                                 that.tags.splice(i, 1);
@@ -98,7 +98,7 @@
                         this.tagsConfig.addedEvents = true;
 
                         if (editablePost) {
-                            var tags = editablePost.metadata.tags;
+                            let tags = editablePost.metadata.tags;
                             tags.forEach(function (t) {
                                 inputTags.tagsinput('add', t);
                             });
@@ -114,7 +114,7 @@
             },
             methods: {
                 getLicense: function getLicense() {
-                    var license;
+                    let license;
 
                     if (this.noLicense === LICENSE.NON_PERMISSION.flag) {
                         license = License.fromFlag(this.noLicense);
@@ -133,7 +133,7 @@
                     }
                 },
                 nextStep: function nextStep() {
-                    var that = this;
+                    let that = this;
 
                     if (!this.editor.show) {
                         //Check errors before continue
@@ -168,22 +168,22 @@
                 },
                 loadFile: function loadFile(event) {
                     if (!this.editor.show) {
-                        var elem = this.$refs.publishInputFile;
+                        let elem = this.$refs.publishInputFile;
                         elem.click();
                     }
                 },
                 loadFeaturedImage: function loadFeaturedImage(event) {
-                    var elem = this.$refs.publishInputCover;
+                    let elem = this.$refs.publishInputCover;
                     elem.click();
                 },
                 onInputDownloadFile: function onInputDownloadFile(event) {
-                    var files = event.target.files;
-                    var that = this;
+                    let files = event.target.files;
+                    let that = this;
 
                     if (files.length > 0) {
                         globalLoading.show = true;
-                        var loadedFile = files[0];
-                        var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.DOWNLOAD;
+                        let loadedFile = files[0];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.DOWNLOAD;
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
 
@@ -198,15 +198,22 @@
                     }
                 },
                 onLoadFile: function onLoadFile(event) {
-                    var that = this;
-                    var files = event.target.files;
+                    let that = this;
+                    let files = event.target.files;
+                    let loadedFile = files[0];
 
-                    console.log('File loading', event);
+                    console.log('File loading', loadedFile);
                     if (files.length > 0) {
                         globalLoading.show = true;
-                        var loadedFile = files[0];
-                        var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
-                        console.log('file:', loadedFile, 'MaxSize:', maximumSize);
+
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
+
+                        //Only GIF images can be to 10 MB
+                        if (loadedFile.type.toLowerCase().includes('image/gif')) {
+                            maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.GIF;
+                        }
+
+                        console.log('file:', loadedFile, 'MaxSize:', maximumSize, 'isGif', loadedFile.type.toLowerCase().includes('image/gif'));
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;
 
@@ -219,7 +226,7 @@
                                 that.error = null;
 
                                 resizeImage(loadedFile, function (resizedFile) {
-                                    var maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
+                                    let maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
                                     postUploads[file.hash] = {
                                         original: loadedFile,
                                         resized: resizedFile
@@ -241,20 +248,20 @@
                                 });
 
                                 //Clear input
-                                var elem = that.$refs.publishInputFile;
+                                let elem = that.$refs.publishInputFile;
                                 $(elem).val('');
                             }
                         });
                     }
                 },
                 onLoadFeaturedImage: function onLoadFeaturedImage(event) {
-                    var that = this;
-                    var files = event.target.files;
+                    let that = this;
+                    let files = event.target.files;
 
                     if (files.length > 0) {
                         globalLoading.show = true;
-                        var loadedFile = files[0];
-                        var maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
+                        let loadedFile = files[0];
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW[loadedFile.type.toUpperCase().split('/')[0]];
                         resizeImage(loadedFile, function (resizedFile) {
                             uploadToIpfs(resizedFile, maximumSize, function (err, file) {
                                 globalLoading.show = false;
@@ -301,19 +308,19 @@
     }
 
     function removeTitleEmojis(event) {
-        var target = event.target;
+        let target = event.target;
         publishContainer.title = removeEmojis(target.value);
     }
 
     function removeDescriptionEmojis(event) {
-        var target = event.target;
+        let target = event.target;
         publishContainer.description = removeEmojis(target.value);
     }
 
     function updateText() {
-        var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
-        var editor = CKEDITOR.instances['editor'];
-        var text = editor.getData();
+        let index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+        let editor = CKEDITOR.instances['editor'];
+        let text = editor.getData();
 
         if (!text.isEmpty()) {
             if (index > -1) {
@@ -338,8 +345,8 @@
         if (index > -1) {
             publishContainer.editor.show = true;
             setTimeout(function () {
-                var editor = CKEDITOR.instances['editor'];
-                var text = publishContainer.bodyElements[index].value;
+                let editor = CKEDITOR.instances['editor'];
+                let text = publishContainer.bodyElements[index].value;
                 editor.setData(text);
                 publishContainer.updatingIndex = index;
                 publishContainer.editor.editing = true;
@@ -349,12 +356,12 @@
 
     function removeElement(index) {
         if (index > -1 && index <= publishContainer.bodyElements.length - 1) {
-            var element = publishContainer.bodyElements[index];
+            let element = publishContainer.bodyElements[index];
             publishContainer.bodyElements.splice(index, 1);
 
             //If preview image = element, so set preview image next image in post
             if (element.type.includes('image/')) {
-                var files = postUploads[element.hash];
+                let files = postUploads[element.hash];
                 if (files.resized.name === publishContainer.featuredImage.name && files.resized.size === publishContainer.featuredImage.size) {
                     publishContainer.featuredImage = {};
                     delete postUploads[element.hash];
@@ -363,11 +370,11 @@
 
             if (!publishContainer.featuredImage.hash) {
                 //Set first image of post body as featuredImage
-                for (var x = 0; x < publishContainer.bodyElements.length; x++) {
-                    var bodyEl = publishContainer.bodyElements[x];
+                for (let x = 0; x < publishContainer.bodyElements.length; x++) {
+                    let bodyEl = publishContainer.bodyElements[x];
                     if (bodyEl.type.includes('image/')) {
-                        var maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW['IMAGE'];
-                        var newFiles = postUploads[bodyEl.hash];
+                        let maximumPreviewSize = CONSTANTS.FILE_MAX_SIZE.POST_PREVIEW['IMAGE'];
+                        let newFiles = postUploads[bodyEl.hash];
                         console.log('Selected new featured image', newFiles.resized.name, bodyEl.hash);
                         uploadToIpfs(newFiles.resized, maximumPreviewSize, function (err, uploadedPreview) {
                             if (!err) {
@@ -392,30 +399,30 @@
 
     function makePublication(event) {
         cancelEventPropagation(event);
-        var username = session.account.username;
+        let username = session.account.username;
         requireRoleKey(username, 'posting', function (postingKey) {
-            var _crea$broadcast;
+            let _crea$broadcast;
 
             //All tags must be lowercase;
             globalLoading.show = true;
-            var tags = publishContainer.tags;
+            let tags = publishContainer.tags;
 
-            var nTags = [];
-            for (var x = 0; x < tags.length; x++) {
-                var t = normalizeTag(tags[x]);
+            let nTags = [];
+            for (let x = 0; x < tags.length; x++) {
+                let t = normalizeTag(tags[x]);
                 if (!nTags.includes(t)) {
                     nTags.push(t);
                 }
             }
 
-            var metadata = {
+            let metadata = {
                 description: publishContainer.description,
                 tags: nTags,
                 adult: publishContainer.adult,
                 featuredImage: publishContainer.featuredImage,
                 license: publishContainer.getLicense().getFlag()
             };
-            var download = publishContainer.downloadFile;
+            let download = publishContainer.downloadFile;
 
             if (!download.price) {
                 download.price = 0;
@@ -428,21 +435,21 @@
             }
 
             //Build body
-            var body = jsonstring(publishContainer.bodyElements);
-            var title = publishContainer.title;
-            var editing = !!publishContainer.editablePost;
-            var permlink = editing ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
+            let body = jsonstring(publishContainer.bodyElements);
+            let title = publishContainer.title;
+            let editing = !!publishContainer.editablePost;
+            let permlink = editing ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
 
-            var publishPost = function () {
+            let publishPost = function () {
                 if (editing && publishContainer.editablePost.metadata.tags) {
-                    var category = publishContainer.editablePost.metadata.tags[0];
+                    let category = publishContainer.editablePost.metadata.tags[0];
 
                     if (category && !metadata.tags.includes(category)) {
                         metadata.tags.unshift(category);
                     }
                 }
 
-                var operations = [];
+                let operations = [];
                 operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
 
                 switch (account.user.metadata.post_rewards) {
@@ -457,12 +464,12 @@
                         break;
                 }
 
-                var keys = [postingKey];
+                let keys = [postingKey];
 
                 (_crea$broadcast = crea.broadcast).sendOperations.apply(_crea$broadcast, [keys].concat(operations, [function (err, result) {
                     if (!catchError(err)) {
                         console.log(result);
-                        var post = {
+                        let post = {
                             url: '/' + toPermalink(metadata.tags[0]) + '/@' + session.account.username + "/" + permlink
                         };
                         showPost(post);
@@ -495,19 +502,19 @@
     }
 
     creaEvents.on('crea.content.loaded', function () {
-        var edit = getParameterByName('edit');
+        let edit = getParameterByName('edit');
 
         if (edit) {
-            var author = edit.split('/')[0];
-            var permlink = edit.split('/')[1]; //Check if author is the user
+            let author = edit.split('/')[0];
+            let permlink = edit.split('/')[1]; //Check if author is the user
 
-            var s = Session.getAlive();
+            let s = Session.getAlive();
 
             if (s && s.account.username === author) {
                 crea.api.getDiscussion(author, permlink, function (err, post) {
                     if (!catchError(err)) {
                         post = parsePost(post);
-                        var price = Asset.parse(post.download.price);
+                        let price = Asset.parse(post.download.price);
                         post.download.price = parseFloat(price.toPlainString());
                         post.download.currency = price.asset.symbol;
                         post.downloadUploaded = false;

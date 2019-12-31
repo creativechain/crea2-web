@@ -240,18 +240,18 @@ function isUserFeed() {
 }
 /**
  *
- * @param {string} string
+ * @param {string} web
  * @returns {string}
  */
 
 
-function toUrl(string) {
-    if (string) {
-        if (!string.startsWith('http://') && !string.startsWith('https://')) {
-            string = 'http://' + string;
+function toUrl(web) {
+    if (web) {
+        if (!web.startsWith('http://') && !web.startsWith('https://')) {
+            web = 'http://' + web;
         }
 
-        return string;
+        return web;
     }
 
     return null;

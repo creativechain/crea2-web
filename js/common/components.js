@@ -4,7 +4,7 @@
  * Created by ander on 16/10/18.
  */
 
-var LIKE_STATE = {
+let LIKE_STATE = {
     LIKE_OP: 0,
     NO_LIKE: 1,
     LIKED: 2,
@@ -12,7 +12,7 @@ var LIKE_STATE = {
     LIKED_END: 4
 };
 
-var WITNESS_STATE = {
+let WITNESS_STATE = {
     VOTE_OP: 0,
     NO_VOTE: 1,
     VOTED: 2,
@@ -20,13 +20,13 @@ var WITNESS_STATE = {
     VOTED_END: 4
 };
 
-var RECOMMEND_STATE = {
+let RECOMMEND_STATE = {
     RECOMMEND_OP: 0,
     RECOMMENDED: 1,
     NO_RECOMMENDED: 2
 };
 
-var FOLLOW_STATE = {
+let FOLLOW_STATE = {
     NO_FOLLOWING: 0,
     UNFOLLOWED: 1,
     FOLLOWING: 2,
@@ -105,7 +105,7 @@ Vue.component('recommend-post', {
         '<ul class="ul-recommended-post">' +
         '   <li>' +
         '       <a href="#0" class="d-flex" v-on:click="makeRecommend">' +
-        '           <!-- Para activar el parpadeo cuando alguien hace click en el icono, poner esta clases: pre-recommended -->' +
+        '           <!-- Para actilet el parpadeo cuando alguien hace click en el icono, poner esta clases: pre-recommended -->' +
         '           <!-- Hay dos estados: icon-recommended-post (por defecto), icon-recommended-post-active cuando esta recomendado -->' +
         '           <div v-bind:class="recommendedClasses" v-on:mouseover="onHover(true)" v-on:mouseleave="onHover(false)"></div>' +
         '           <span>({{ countRecommended() }})</span>' +
@@ -170,7 +170,7 @@ Vue.component('recommend-post', {
         makeRecommend: function(event) {
             cancelEventPropagation(event);
 
-            var that = this;
+            let that = this;
             if (!this.isRecommendedByUser() && this.state !== this.states.RECOMMEND_OP) {
                 this.state = RECOMMEND_STATE.RECOMMEND_OP;
                 recommendPost(that.post.author, that.post.permlink, true, function (err, result) {
@@ -189,7 +189,7 @@ Vue.component('recommend-post', {
         }
     },
     mounted: function() {
-        var that = this;
+        let that = this;
         this.state = this.isRecommendedByUser() ? RECOMMEND_STATE.RECOMMENDED : RECOMMEND_STATE.NO_RECOMMENDED;
     },
     updated: function() {
@@ -283,8 +283,8 @@ Vue.component('recommend', {
             return this.post.reblogged_by.includes(this.user.name);
         },
         recommendedBy: function () {
-            var that = this;
-            var recommended = false;
+            let that = this;
+            let recommended = false;
             this.user.followings.forEach(function (followed) {
                 if (that.post.reblogged_by.includes(followed)) {
                     recommended = followed;
@@ -294,8 +294,8 @@ Vue.component('recommend', {
             return recommended;
         },
         countRecommended: function() {
-            var that = this;
-            var recommendeds = 0;
+            let that = this;
+            let recommendeds = 0;
             this.user.followings.forEach(function (followed) {
                 if (that.post.reblogged_by.includes(followed)) {
                     recommendeds += 1;
@@ -306,7 +306,7 @@ Vue.component('recommend', {
             return recommendeds;
         },
         makeRecommend: function() {
-            var that = this;
+            let that = this;
             if (!this.isRecommendedByUser() && this.state !== this.states.RECOMMEND_OP) {
                 this.state = RECOMMEND_STATE.RECOMMEND_OP;
                 recommendPost(that.post.author, that.post.permlink, true, function (err, result) {
@@ -325,7 +325,7 @@ Vue.component('recommend', {
         }
     },
     mounted: function() {
-        var that = this;
+        let that = this;
         this.state = this.isRecommendedByUser() ? RECOMMEND_STATE.RECOMMENDED : RECOMMEND_STATE.NO_RECOMMENDED;
         //efect recommended
         $(this.$el).parent().hover(
@@ -466,8 +466,8 @@ Vue.component('slider', {
                 return true;
             }
 
-            var offsets = $(this.$el).offset();
-            var mouseOffset = ev.pageX - offsets.left;
+            let offsets = $(this.$el).offset();
+            let mouseOffset = ev.pageX - offsets.left;
             this.calcValues(mouseOffset);
             return true;
         },
@@ -480,16 +480,16 @@ Vue.component('slider', {
         },
         calcInitValue: function calcInitValue() {
             if (this.initvalue !== this.lastInitValue) {
-                var width = this.$el.offsetWidth;
-                var mouseOffset = this.initvalue * width / this.max;
+                let width = this.$el.offsetWidth;
+                let mouseOffset = this.initvalue * width / this.max;
                 this.lastInitValue = this.initvalue;
                 this.calcValues(mouseOffset);
             }
         },
         calcValues: function calcValues(mouseOffset) {
-            var width = this.$el.offsetWidth;
-            var val = mouseOffset * this.max / width;
-            var percentage = val / this.max * 100;
+            let width = this.$el.offsetWidth;
+            let val = mouseOffset * this.max / width;
+            let percentage = val / this.max * 100;
 
             if (val < 0) {
                 val = 0;
@@ -567,19 +567,19 @@ Vue.component('post-like-big', {
             this.over = isOver;
         },
         hasPaid: function hasPaid() {
-            var now = moment();
-            var payout = toLocaleDate(this.$props.post.cashout_time);
+            let now = moment();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
             return now.isAfter(payout);
         },
         getVote: function getVote() {
-            var session = this.$props.session;
-            var post = this.$props.post;
+            let session = this.$props.session;
+            let post = this.$props.post;
 
             if (session && post) {
-                var upVotes = post.up_votes;
+                let upVotes = post.up_votes;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
                         return vote;
@@ -590,14 +590,14 @@ Vue.component('post-like-big', {
             return null;
         },
         removeVote: function removeVote(username) {
-            var post = this.post;
+            let post = this.post;
 
             if (post) {
-                var upVotes = post.up_votes;
-                var i = -1;
+                let upVotes = post.up_votes;
+                let i = -1;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (username === vote.voter) {
                         i = x;
@@ -612,7 +612,7 @@ Vue.component('post-like-big', {
             }
         },
         hasVote: function hasVote() {
-            var v = this.getVote();
+            let v = this.getVote();
             return v != null;
         },
         makeVote: function makeVote(event) {
@@ -621,11 +621,11 @@ Vue.component('post-like-big', {
             }
 
             if (this.state !== this.states.LIKE_OP) {
-                var that = this;
-                var session = this.$props.session;
-                var post = this.$props.post;
-                var username = session ? session.account.username : null;
-                var percent = that.hasVote() ? 0 : 10000;
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+                let username = session ? session.account.username : null;
+                let percent = that.hasVote() ? 0 : 10000;
 
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = that.states.LIKE_OP;
@@ -648,8 +648,8 @@ Vue.component('post-like-big', {
                             that.$emit('vote', null, result, post);
 
                             //Update tooltip;
-                            var circleLike = $('.circle-like-post');
-                            var realTooltip = circleLike.attr('aria-describedby');
+                            let circleLike = $('.circle-like-post');
+                            let realTooltip = circleLike.attr('aria-describedby');
                             console.log('realTooltip', realTooltip);
                             realTooltip = $('#' + realTooltip);
                             if (realTooltip.length > 0) {
@@ -728,19 +728,19 @@ Vue.component('post-like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = moment();
-            var payout = toLocaleDate(this.$props.post.cashout_time);
+            let now = moment();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
             return now.isAfter(payout);
         },
         getVote: function getVote() {
-            var session = this.$props.session;
-            var post = this.$props.post;
+            let session = this.$props.session;
+            let post = this.$props.post;
 
             if (session && post) {
-                var upVotes = post.up_votes;
+                let upVotes = post.up_votes;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
                         return vote;
@@ -751,14 +751,14 @@ Vue.component('post-like', {
             return null;
         },
         removeVote: function removeVote(username) {
-            var post = this.post;
+            let post = this.post;
 
             if (post) {
-                var upVotes = post.up_votes;
-                var i = -1;
+                let upVotes = post.up_votes;
+                let i = -1;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (username === vote.voter) {
                         i = x;
@@ -774,7 +774,7 @@ Vue.component('post-like', {
             }
         },
         hasVote: function hasVote() {
-            var v = this.getVote();
+            let v = this.getVote();
             return v != null;
         },
         makeVote: function makeVote(event) {
@@ -783,11 +783,11 @@ Vue.component('post-like', {
             }
 
             if (this.state !== this.states.LIKE_OP) {
-                var that = this;
-                var session = this.$props.session;
-                var post = this.$props.post;
-                var username = session ? session.account.username : null;
-                var percent = that.hasVote() ? 0 : 10000;
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+                let username = session ? session.account.username : null;
+                let percent = that.hasVote() ? 0 : 10000;
 
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = that.states.LIKE_OP;
@@ -883,19 +883,19 @@ Vue.component('comment-like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = moment();
-            var payout = toLocaleDate(this.$props.post.cashout_time);
+            let now = moment();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
             return now.isAfter(payout);
         },
         getVote: function getVote() {
-            var session = this.$props.session;
-            var post = this.$props.post;
+            let session = this.$props.session;
+            let post = this.$props.post;
 
             if (session && post) {
-                var upVotes = post.up_votes;
+                let upVotes = post.up_votes;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
                         return vote;
@@ -906,14 +906,14 @@ Vue.component('comment-like', {
             return null;
         },
         removeVote: function removeVote(username) {
-            var post = this.post;
+            let post = this.post;
 
             if (post) {
-                var upVotes = post.up_votes;
-                var i = -1;
+                let upVotes = post.up_votes;
+                let i = -1;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (username === vote.voter) {
                         i = x;
@@ -929,7 +929,7 @@ Vue.component('comment-like', {
             }
         },
         hasVote: function hasVote() {
-            var v = this.getVote();
+            let v = this.getVote();
             return v != null;
         },
         makeVote: function makeVote(event) {
@@ -938,11 +938,11 @@ Vue.component('comment-like', {
             }
 
             if (this.state !== this.states.LIKE_OP) {
-                var that = this;
-                var session = this.$props.session;
-                var post = this.$props.post;
-                var username = session ? session.account.username : null;
-                var percent = that.hasVote() ? 0 : 10000;
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+                let username = session ? session.account.username : null;
+                let percent = that.hasVote() ? 0 : 10000;
 
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = that.states.LIKE_OP;
@@ -1022,19 +1022,19 @@ Vue.component('like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = moment();
-            var payout = toLocaleDate(this.$props.post.cashout_time);
+            let now = moment();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
             return now.isAfter(payout);
         },
         getVote: function getVote() {
-            var session = this.$props.session;
-            var post = this.$props.post;
+            let session = this.$props.session;
+            let post = this.$props.post;
 
             if (session && post) {
-                var upVotes = post.up_votes;
+                let upVotes = post.up_votes;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
                         return vote;
@@ -1045,14 +1045,14 @@ Vue.component('like', {
             return null;
         },
         removeVote: function removeVote(username) {
-            var post = this.post;
+            let post = this.post;
 
             if (post) {
-                var upVotes = post.up_votes;
-                var i = -1;
+                let upVotes = post.up_votes;
+                let i = -1;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (username === vote.voter) {
                         i = x;
@@ -1068,7 +1068,7 @@ Vue.component('like', {
             }
         },
         hasVote: function hasVote() {
-            var v = this.getVote();
+            let v = this.getVote();
             return v != null;
         },
         makeVote: function makeVote(event) {
@@ -1077,11 +1077,11 @@ Vue.component('like', {
             }
 
             if (this.state !== this.states.LIKE_OP) {
-                var that = this;
-                var session = this.$props.session;
-                var post = this.$props.post;
-                var username = session ? session.account.username : null;
-                var percent = that.hasVote() ? 0 : 10000;
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+                let username = session ? session.account.username : null;
+                let percent = that.hasVote() ? 0 : 10000;
 
                 requireRoleKey(username, 'posting', function (postingKey, username) {
                     that.state = that.states.LIKE_OP;
@@ -1128,7 +1128,7 @@ Vue.component('new-like', {
         '   <div class="d-flex w-100">' +
         '       <div>' +
         '           <div class="text-right">' +
-        '               <div class="lds-heart size-20 post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
+        '               <div ref="heart_like" class="lds-heart size-20 post-like" v-bind:class="likeClasses" v-on:click="makeVote">' +
         '                   <div></div>' +
         '               </div>' +
         '               <div class="dropdown inline post-like-count">' +
@@ -1187,19 +1187,19 @@ Vue.component('new-like', {
     },
     methods: {
         hasPaid: function hasPaid() {
-            var now = moment();
-            var payout = toLocaleDate(this.$props.post.cashout_time);
+            let now = moment();
+            let payout = toLocaleDate(this.$props.post.cashout_time);
             return now.isAfter(payout);
         },
         getVote: function getVote() {
-            var session = this.$props.session;
-            var post = this.$props.post;
+            let session = this.$props.session;
+            let post = this.$props.post;
 
             if (session && post) {
-                var upVotes = post.up_votes;
+                let upVotes = post.up_votes;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (session.account.username === vote.voter) {
                         return vote;
@@ -1210,14 +1210,14 @@ Vue.component('new-like', {
             return null;
         },
         removeVote: function removeVote(username) {
-            var post = this.post;
+            let post = this.post;
 
             if (post) {
-                var upVotes = post.up_votes;
-                var i = -1;
+                let upVotes = post.up_votes;
+                let i = -1;
 
-                for (var x = 0; x < upVotes.length; x++) {
-                    var vote = upVotes[x];
+                for (let x = 0; x < upVotes.length; x++) {
+                    let vote = upVotes[x];
 
                     if (username === vote.voter) {
                         i = x;
@@ -1233,7 +1233,7 @@ Vue.component('new-like', {
             }
         },
         hasVote: function hasVote() {
-            var v = this.getVote();
+            let v = this.getVote();
             return v != null;
         },
         makeVote: function makeVote(event) {
@@ -1242,11 +1242,11 @@ Vue.component('new-like', {
             }
 
             if (this.state !== this.states.LIKE_OP) {
-                var that = this;
-                var session = this.$props.session;
-                var post = this.$props.post;
-                var username = session ? session.account.username : null;
-                var percent = that.hasVote() ? 0 : 10000;
+                let that = this;
+                let session = this.$props.session;
+                let post = this.$props.post;
+                let username = session ? session.account.username : null;
+                let percent = that.hasVote() ? 0 : 10000;
 
                 console.log(this.hasVote(), percent);
                 requireRoleKey(username, 'posting', function (postingKey, username) {
@@ -1270,8 +1270,12 @@ Vue.component('new-like', {
                             that.$emit('vote', null, result, post);
                         }
 
+                        console.log(err, that.state, that.$refs.heart_like);
+
+                        //Clear focus for heart-like. Needed in Smartphone view
+                        that.$refs.heart_like.blur();
                         that.$forceUpdate();
-                        console.log(err, that.state);
+
                     });
                 });
             }
@@ -1281,6 +1285,7 @@ Vue.component('new-like', {
         this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
     },
     updated: function updated() {
+        console.log('Updating card like', this.state, this.hasVote());
         if (this.state !== LIKE_STATE.LIKE_OP) {
             this.state = this.hasVote() ? LIKE_STATE.LIKED : LIKE_STATE.NO_LIKE;
         }
@@ -1327,7 +1332,7 @@ Vue.component('witness-like', {
     },
     methods: {
         removeVote: function removeVote() {
-            var i = this.account.witness_votes.indexOf(this.witness.owner);
+            let i = this.account.witness_votes.indexOf(this.witness.owner);
             if (i > -1) {
                 this.account.witness_votes.splice(i, 1);
             }
@@ -1335,8 +1340,8 @@ Vue.component('witness-like', {
             this.$forceUpdate();
         },
         hasVote: function hasVote() {
-            var session = this.$props.session;
-            var account = this.$props.account;
+            let session = this.$props.session;
+            let account = this.$props.account;
 
             if (session && account) {
                 return account.witness_votes.indexOf(this.$props.witness.owner) >= 0;
@@ -1350,11 +1355,11 @@ Vue.component('witness-like', {
             }
 
             if (this.state !== this.states.VOTE_OP) {
-                var that = this;
-                var session = this.$props.session;
-                var witness = this.$props.witness;
-                var username = session ? session.account.username : null;
-                var vote = !this.hasVote();
+                let that = this;
+                let session = this.$props.session;
+                let witness = this.$props.witness;
+                let username = session ? session.account.username : null;
+                let vote = !this.hasVote();
                 console.log('Voting for', witness.owner, vote);
 
                 requireRoleKey(username, 'active', function (activeKey, username) {
@@ -1465,14 +1470,14 @@ Vue.component('btn-follow', {
         },
         performFollow: function performFollow() {
             if (!this.isStateOp()) {
-                var operation = 'follow';
-                var that = this;
-                var session = this.$props.session;
-                var lastState = this.state;
+                let operation = 'follow';
+                let that = this;
+                let session = this.$props.session;
+                let lastState = this.state;
                 this.state = this.isStateFollowing(this.state) ? this.states.UNFOLLOWING_OP : this.states.FOLLOWING_OP;
 
                 if (session) {
-                    var followJson = {
+                    let followJson = {
                         follower: session.account.username,
                         following: this.$props.user,
                         what: this.isStateFollowing(lastState) ? [] : ['blog']
@@ -1599,7 +1604,7 @@ Vue.component('taginput', {
         }
     },
     mounted: function mounted() {
-        var el = $('#' + this.id); //this['data-options'] = JSON.parse(this['data-options']);
+        let el = $('#' + this.id); //this['data-options'] = JSON.parse(this['data-options']);
 
         console.log('Mounted tags', el, this.id, this.options, this.role); //tags(this.id);
     }
@@ -1617,7 +1622,7 @@ Vue.component('ckeditor', {
         }
     },
     beforeUpdate: function beforeUpdate() {
-        var ckeditorId = this.id;
+        let ckeditorId = this.id;
 
         if (this.value !== CKEDITOR.instances[ckeditorId].getData()) {
             CKEDITOR.instances[ckeditorId].setData(this.value);
@@ -1630,11 +1635,11 @@ Vue.component('ckeditor', {
         }
     },
     mounted: function mounted() {
-        var _this = this;
+        let _this = this;
 
-        var ckeditorId = this.id;
+        let ckeditorId = this.id;
         console.log(this.value);
-        var config = {};
+        let config = {};
         config.toolbarGroups = [{
             name: 'clipboard',
             groups: ['clipboard', 'undo']
@@ -1686,7 +1691,7 @@ Vue.component('ckeditor', {
         //config.extraPlugins = 'html5audio,html5video';
         config.extraPlugins = 'videodetector';
 
-        var editor = CKEDITOR.replace(ckeditorId, config); //CKEDITOR.disableAutoInline = true;
+        let editor = CKEDITOR.replace(ckeditorId, config); //CKEDITOR.disableAutoInline = true;
         //CKEDITOR.inline(ckeditorId, config);
 
         editor.onembedvideo = function (url, data) {
@@ -1694,9 +1699,9 @@ Vue.component('ckeditor', {
         };
 
         CKEDITOR.instances[ckeditorId].setData(this.value);
-        var that = this;
+        let that = this;
         CKEDITOR.instances[ckeditorId].on('change', function () {
-            var ckeditorData = CKEDITOR.instances[ckeditorId].getData();
+            let ckeditorData = CKEDITOR.instances[ckeditorId].getData();
 
             if (ckeditorData !== _this.value) {
                 that.$emit('input', ckeditorData);
@@ -1704,7 +1709,7 @@ Vue.component('ckeditor', {
         });
     },
     destroyed: function destroyed() {
-        var ckeditorId = this.id;
+        let ckeditorId = this.id;
 
         if (CKEDITOR.instances[ckeditorId]) {
             CKEDITOR.instances[ckeditorId].destroy();

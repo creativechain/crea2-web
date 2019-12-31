@@ -344,7 +344,8 @@
   "WITNESS": {
     "VOTE_WITNESSES": "TESTIGOS",
     "VOTE_INFORMATION": "INFORMACION",
-    "VOTE_TITLE": "Votar a Testigos"
+    "VOTE_TITLE": "Votar a Testigos",
+    "HOW_TO": "<a href='https://creaproject.io/configurar-nodo-testigo-crea/' target='_blank'>Cómo configurar un nodo testigo</a>"
   },
   "PROFILE": {
     "MORE_INFO":"Más info",

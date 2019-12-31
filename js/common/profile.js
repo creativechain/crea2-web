@@ -651,21 +651,11 @@
                     },
                     claimRewards: claimRewards,
                     sendAccountUpdate: sendAccountUpdate,
-                    ignoreUser: function (_ignoreUser) {
-                        function ignoreUser() {
-                            return _ignoreUser.apply(this, arguments);
-                        }
-
-                        ignoreUser.toString = function () {
-                            return _ignoreUser.toString();
-                        };
-
-                        return ignoreUser;
-                    }(function () {
+                    ignoreUser: function () {
                         ignoreUser(this.state.user.name, true, function (err, result) {
                             updateUserSession();
                         });
-                    }),
+                    },
                     changePassword: function changePassword() {
                         let that = this;
 
@@ -679,10 +669,10 @@
                             if (this.changePass.newPass && this.changePass.newPass === this.changePass.matchedPass) {
                                 //Check radio inputs
                                 if (this.changePass.checkedLostPass && this.changePass.checkedStoredPass) {
-                                    let _session = Session.create(this.changePass.username, this.changePass.oldPass); //Check if current is valid
+                                    let session = Session.create(this.changePass.username, this.changePass.oldPass); //Check if current is valid
 
 
-                                    _session.login(function (err, result) {
+                                    session.login(function (err, result) {
                                         if (err) {
                                             if (err === Errors.USER_LOGIN_ERROR) {
                                                 setError(that.lang.CHANGE_PASSWORD.ERROR_CURRENT_PASSWORD);

@@ -45,8 +45,8 @@ var CONSTANTS = {
             AUDIO: 100 * 1024 * 1024,
             VIDEO: 200 * 1024 * 1024,
             IMAGE: 5 * 1024 * 1024,
+            GIF: 10 * 1024 * 1024, //Only GIF files must be up to 10 MB
             DOWNLOAD: 200 * 1024 * 1024 //200 MB
-
         },
         POST_PREVIEW: {
             IMAGE: 1024 * 500
@@ -274,6 +274,11 @@ function parseAccount(account) {
         account.metadata.comment_rewards = account.metadata.comment_rewards || '50';
         account.metadata.lang = account.metadata.lang || getNavigatorLanguage();
 
+
+        //remove https:// or http:// on web metadata
+        if (account.metadata.web) {
+            account.metadata.web = account.metadata.web.replace('https://', '').replace('http://', '');
+        }
 
         //console.log(jsonify(jsonstring(account)));
         return account;

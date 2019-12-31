@@ -282,11 +282,33 @@ class Controller
         $renderParams = $this->getDefaultRenderParams();
 
         if ($profile) {
+            //dd($profile);
+
+            //Blocked == If user has negative reputation, is a blocked user. Metadata must be a default user
             $blocked = $profile['metadata']['blocked'];
 
             if ($blocked) {
-                $metas = array();
-                $title = 'Creary';
+                $publicName = $profile['metadata']['publicName'];
+                $title = 'Creary - @' . $profileName;
+
+
+                $metas = array(
+                    $this->buildMeta('property', 'og:url', URLUtils::getFQDNUri()),
+                    $this->buildMeta('property', 'og:title', $title),
+                    $this->buildMeta('property', 'og:image', $profile['metadata']['avatar']['url']),
+                    $this->buildMeta('property', 'og:description', $profile['metadata']['about']),
+                    $this->buildMeta('property', 'og:type', 'profile'),
+                    $this->buildMeta('property', 'profile:first_name', $publicName ? $publicName : $profileName),
+                    $this->buildMeta('property', 'profile:username', $profileName),
+                    $this->buildMeta('name', 'twitter:card', 'summary_large_image'),
+                    $this->buildMeta('name', 'twitter:site', '@Crearynet'),
+                    $this->buildMeta('name', 'twitter:creator', '@' . $profileName),
+                    $this->buildMeta('name', 'twitter:title', $title),
+                    $this->buildMeta('name', 'twitter:description', $profile['metadata']['about']),
+                    $this->buildMeta('name', 'twitter:image', $profile['metadata']['avatar']['url']),
+                    $this->buildMeta('name', 'description', $profile['metadata']['about']),
+                );
+
             } else {
                 $publicName = $profile['metadata']['publicName'];
                 if ($publicName) {
