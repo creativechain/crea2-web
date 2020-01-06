@@ -64,7 +64,7 @@
                                     <div class="">
                                         <div class="row">
                                             <div  v-if="state.post.refused_payouts" class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
-                                                <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout() }}' }}</pay></p>
+                                                <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <span class="refused-payout">{{ '{{ getPayout() }}' }}</span></p>
                                             </div>
                                             <div v-else class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                 <p class="title">{{ '{{ hasPaid() ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout() }}' }}</p>
@@ -298,7 +298,7 @@
                                                                     <div>
                                                                         <div class="row">
                                                                             <div  v-if="state.post[c].refused_payouts"  class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
-                                                                                <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout(state.post[c]) }}' }}</pay></p>
+                                                                                <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <span class="refused-payout">{{ '{{ getPayout(state.post[c]) }}' }}</span></p>
                                                                             </div>
                                                                             <div v-else class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                                                 <p class="title">{{ '{{ hasPaid(state.post[c]) ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.post[c]) }}' }}</p>
@@ -391,7 +391,7 @@
                                                                             <div>
                                                                                 <div class="row" v-bind:data="state.post.refused_payouts">
                                                                                     <div  v-if="state.post[cc].refused_payouts"  class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
-                                                                                        <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout(state.post[cc]) }}' }}</pay></p>
+                                                                                        <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <span class="refused-payout">{{ '{{ getPayout(state.post[cc]) }}' }}</span></p>
                                                                                     </div>
                                                                                     <div v-else class="col-12 col-sm-12 col-md-12 dropdown__content amount-post-view-home">
                                                                                         <p class="title">{{ '{{ hasPaid(state.post[cc]) ? lang.HOME.DROPDOWN_PAST_PAYOUT : lang.HOME.DROPDOWN_PENDING_PAYOUT }} {{ getPayout(state.post[cc]) }}' }}</p>

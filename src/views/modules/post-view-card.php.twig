@@ -35,7 +35,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div v-if="state.content[p].refused_payouts" class="col-md-12 dropdown__content amount-post-view-home">
-                                        <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <pay class="refused-payout">{{ '{{ getPayout(state.content[p]) }}' }}</pay></p>
+                                        <p class="error-color-form">{{ lang.HOME.DROPDOWN_REFUSED_PAYOUT }} <span class="refused-payout">{{ '{{ getPayout(state.content[p]) }}' }}</span></p>
                                         <p v-if="hasPromotion(state.content[p])">{{ lang.HOME.PROMOTION_COST }} : {{ '{{ getPromotion(state.content[p]) }}' }}</p>
                                     </div>
                                     <div v-else class="col-md-12 dropdown__content amount-post-view-home">
