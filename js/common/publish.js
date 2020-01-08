@@ -206,11 +206,12 @@
                     if (files.length > 0) {
                         globalLoading.show = true;
 
-                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[loadedFile.type.toUpperCase().split('/')[0]];
+                        let [fileType, fileFormat] = loadedFile.type.toUpperCase().split('/');
+                        let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileType];
 
-                        //Only GIF images can be to 10 MB
-                        if (loadedFile.type.toLowerCase().includes('image/gif')) {
-                            maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY.GIF;
+                        //Set specific file format sizes
+                        if (CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileFormat]) {
+                            maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileFormat];
                         }
 
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize, 'isGif', loadedFile.type.toLowerCase().includes('image/gif'));

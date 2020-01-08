@@ -45,7 +45,8 @@ var CONSTANTS = {
             AUDIO: 100 * 1024 * 1024,
             VIDEO: 200 * 1024 * 1024,
             IMAGE: 5 * 1024 * 1024,
-            GIF: 10 * 1024 * 1024, //Only GIF files must be up to 10 MB
+            GIF: 10 * 1024 * 1024,
+            WEBP: 10 * 1024 * 1024,
             DOWNLOAD: 200 * 1024 * 1024 //200 MB
         },
         POST_PREVIEW: {
