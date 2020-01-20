@@ -210,7 +210,7 @@
                             let amountToSell, minToReceive, expiration, orderId;
 
                             let now = moment();
-                            expiration = now.add(28, 'days').toDate(); //28 days
+                            expiration = now.add(27, 'days').toDate(); //28 days
                             orderId = randomNumber(0, 0xFFFFFFFF); //MAX uint32_t
 
                             if (type === 'buy') {
