@@ -208,6 +208,17 @@ function toLocaleDate(date) {
 
 /**
  *
+ * @param {Date} date
+ * @returns {moment}
+ */
+function toUTCDate(date) {
+    let dateString = date.toISOString();
+    console.log('Date tot utc', date, dateString);
+    return moment(dateString, 'YYYY-MM-DDTHH:mm:ss.SZ');
+}
+
+/**
+ *
  * @param src
  * @returns {*}
  */

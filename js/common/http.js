@@ -11,7 +11,7 @@ class HttpClient extends EventEmitter {
         this.method = null;
         this.headers = {};
         this.mimeType = 'multipart/form-data';
-        this.contentType = false
+        this.contentType = false;
         this.xhr = null;
     }
 
