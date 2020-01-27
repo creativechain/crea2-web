@@ -3,7 +3,7 @@
 /**
  * Created by ander on 22/10/18.
  */
-var R = {
+let R = {
     IMG: {
         DEFAULT_AVATAR: ['/img/avatar/avatar1.png', '/img/avatar/avatar2.png', '/img/avatar/avatar3.png', '/img/avatar/avatar4.png', '/img/avatar/avatar5.png'],
         LIKE: {
@@ -65,8 +65,8 @@ R.getAvatar = function (account) {
  * @returns {string}
  */
 R.getDefaultAvatar = function (username) {
-    var buffer = new window.Buffer(username);
-    var n = parseInt(buffer.toString('hex'), 16);
+    let buffer = new window.Buffer(username);
+    let n = parseInt(buffer.toString('hex'), 16);
     n = n % R.IMG.DEFAULT_AVATAR.length;
     return R.IMG.DEFAULT_AVATAR[n];
 };

@@ -1,6 +1,6 @@
 
 (function () {
-    var navbarMobile;
+    let navbarMobile;
 
     function updateNavbarSession(session, userData) {
 
@@ -34,7 +34,7 @@
             cancelEventPropagation(event);
         }
 
-        var filter = resolveFilter(urlFilter);
+        let filter = resolveFilter(urlFilter);
         updateUrl(urlFilter);
 
         currentPage.pathname = urlFilter;
@@ -42,21 +42,21 @@
         crea.api.getState(filter, function (err, urlState) {
             if (!catchError(err)) {
                 if (isUserFeed()) {
-                    var http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
+                    let http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
 
-                    var noFeedContent = function noFeedContent() {
+                    let noFeedContent = function noFeedContent() {
                         //User not follows anything, load empty content
                         urlState.content = {};
                         creaEvents.emit('crea.posts', urlFilter, filter, urlState);
                     };
 
                     http.when('done', function (response) {
-                        var data = jsonify(response).data;
+                        let data = jsonify(response).data;
 
                         if (data.length) {
-                            var count = data.length;
+                            let count = data.length;
 
-                            var onContentFetched = function onContentFetched() {
+                            let onContentFetched = function onContentFetched() {
                                 count--;
 
                                 if (count <= 0) {
@@ -66,7 +66,7 @@
 
                             urlState.content = {};
                             data.forEach(function (d) {
-                                var permlink = d.author + '/' + d.permlink;
+                                let permlink = d.author + '/' + d.permlink;
 
                                 if (!urlState.content[permlink]) {
                                     crea.api.getContent(d.author, d.permlink, function (err, result) {
@@ -89,10 +89,10 @@
                         catchError(textStatus);
                     });
 
-                    var username = getPathPart().replace('/', '').replace('@', '');
+                    let username = getPathPart().replace('/', '').replace('@', '');
                     crea.api.getFollowing(username, '', 'blog', 1000, function (err, result) {
                         if (!catchError(err)) {
-                            var followings = [];
+                            let followings = [];
                             result.following.forEach(function (f) {
                                 followings.push(f.following);
                             });

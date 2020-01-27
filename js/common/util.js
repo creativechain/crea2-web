@@ -200,10 +200,10 @@ function randomNumber(min, max) {
  */
 function toLocaleDate(date) {
     if (date) {
-        return moment.utc(date);
+        return moment.utc(date).local();
     }
 
-    return moment.utc(0);
+    return moment.utc(0).local();
 }
 
 /**

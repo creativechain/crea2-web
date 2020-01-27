@@ -4,7 +4,7 @@
  * Created by ander on 7/01/19.
  */
 (function () {
-    var errorContainer;
+    let errorContainer;
 
     function setUp() {
         if (!errorContainer) {

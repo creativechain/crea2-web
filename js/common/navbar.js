@@ -4,9 +4,9 @@
  * Created by ander on 25/09/18.
  */
 (function () {
-    var navbarContainer;
+    let navbarContainer;
 
-    var navbarSearch = new Vue({
+    let navbarSearch = new Vue({
         el: '#navbar-search',
         data: {
             lang: lang,
@@ -37,7 +37,7 @@
             })
         }
     });
-    var navbarRightMenu = new Vue({
+    let navbarRightMenu = new Vue({
         el: '#navbar-right-menu',
         data: {
             lang: lang
@@ -98,7 +98,7 @@
                         return login;
                     }(function (event) {
                         cancelEventPropagation(event);
-                        var that = this;
+                        let that = this;
 
                         if (!this.loginForm.username.error) {
                             login(this.loginForm.username.value, this.loginForm.password.value, function (err) {
@@ -136,12 +136,12 @@
     }
 
     function checkUsername(event) {
-        var target = event.target;
-        var username = target.value.toLowerCase();
+        let target = event.target;
+        let username = target.value.toLowerCase();
         navbarContainer.loginForm.username.value = username; //console.log(target.value, username);
 
         if (!crea.utils.validateAccountName(username)) {
-            var accounts = [username];
+            let accounts = [username];
             console.log("Checking", accounts);
             crea.api.lookupAccountNames(accounts, function (err, result) {
                 if (err) {
@@ -163,7 +163,7 @@
             cancelEventPropagation(event);
         }
 
-        var filter = resolveFilter(urlFilter);
+        let filter = resolveFilter(urlFilter);
         updateUrl(urlFilter);
 
         currentPage.pathname = urlFilter;
@@ -171,21 +171,21 @@
         crea.api.getState(filter, function (err, urlState) {
             if (!catchError(err)) {
                 if (isUserFeed()) {
-                    var http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
+                    let http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
 
-                    var noFeedContent = function noFeedContent() {
+                    let noFeedContent = function noFeedContent() {
                         //User not follows anything, load empty content
                         urlState.content = {};
                         creaEvents.emit('crea.posts', urlFilter, filter, urlState);
                     };
 
                     http.when('done', function (response) {
-                        var data = jsonify(response).data;
+                        let data = jsonify(response).data;
 
                         if (data.length) {
-                            var count = data.length;
+                            let count = data.length;
 
-                            var onContentFetched = function onContentFetched() {
+                            let onContentFetched = function onContentFetched() {
                                 count--;
 
                                 if (count <= 0) {
@@ -195,14 +195,14 @@
 
                             urlState.content = {};
                             data.forEach(function (d) {
-                                var permlink = d.author + '/' + d.permlink;
+                                let permlink = d.author + '/' + d.permlink;
 
                                 if (!urlState.content[permlink]) {
                                     crea.api.getContent(d.author, d.permlink, function (err, result) {
                                         if (err) {
                                             console.error('Error getting', permlink, err);
                                         } else {
-                                            var p = parsePost(result);
+                                            let p = parsePost(result);
                                             p.reblogged_by = d.reblogged_by;
                                             urlState.content[permlink] = p;
                                         }
@@ -218,10 +218,10 @@
                     http.when('fail', function (jqXHR, textStatus, errorThrown) {
                         catchError(textStatus);
                     });
-                    var username = getPathPart().replace('/', '').replace('@', '');
+                    let username = getPathPart().replace('/', '').replace('@', '');
                     crea.api.getFollowing(username, '', 'blog', 1000, function (err, result) {
                         if (!catchError(err)) {
-                            var followings = [];
+                            let followings = [];
                             result.following.forEach(function (f) {
                                 followings.push(f.following);
                             });

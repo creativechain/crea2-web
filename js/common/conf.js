@@ -3,8 +3,8 @@
 /**
  * Created by ander on 30/09/18.
  */
-var local = false;
-var apiOptions = {
+let local = false;
+let apiOptions = {
     nodes: ['https://supportnodes.creary.net'],
     apiUrl: 'https://api.creary.net',
     ipfs: 'https://ipfs.creary.net/ipfs/',
@@ -29,12 +29,12 @@ localStorage.debug = 'crea:*';
 crea.api.setOptions(apiOptions);
 crea.config.set('address_prefix', apiOptions.addressPrefix);
 crea.config.set('chain_id', apiOptions.chainId);
-var isoLangs = {};
-var countryCodes = {};
+let isoLangs = {};
+let countryCodes = {};
 
-var faq = {};
+let faq = {};
 
-var language = $('html').attr('lang');
+let language = $('html').attr('lang');
 
 $.getJSON('/language/isolangs.json', function(data) {
     isoLangs = data;

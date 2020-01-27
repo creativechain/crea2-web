@@ -6,9 +6,9 @@
 
 (function () {
 
-    var homePosts;
-    var lastPage;
-    var session, account;
+    let homePosts;
+    let lastPage;
+    let session, account;
 
     /**
      *
@@ -19,13 +19,13 @@
      */
     function showPosts(urlFilter, filter, state) {
         console.log(urlFilter, filter, state);
-        var content = state.content;
-        var accounts = state.accounts;
-        var cKeys = Object.keys(content);
-        var newKeys = [];
+        let content = state.content;
+        let accounts = state.accounts;
+        let cKeys = Object.keys(content);
+        let newKeys = [];
 
-        for (var x = 0; x < cKeys.length; x++) {
-            var k = cKeys[x];
+        for (let x = 0; x < cKeys.length; x++) {
+            let k = cKeys[x];
 
             if (!content[k].parent_author) {
                 content[k].metadata = jsonify(content[k].json_metadata);
@@ -34,7 +34,7 @@
         }
 
         state.content = content;
-        var aKeys = Object.keys(accounts);
+        let aKeys = Object.keys(accounts);
         aKeys.forEach(function (k) {
             accounts[k] = parseAccount(accounts[k]);
         });
@@ -44,14 +44,14 @@
             filter = filter.substring(1);
         }
 
-        var category = resolveFilter('/' + getPathPart()).replace('/', '');
-        var discuss = getPathPart(null, 1) || '';
+        let category = resolveFilter('/' + getPathPart()).replace('/', '');
+        let discuss = getPathPart(null, 1) || '';
 
         if (isUserFeed(getPathPart()) && !state.discussion_idx[discuss]) {
             cKeys = newKeys;
             cKeys.sort(function (k1, k2) {
-                var d1 = toLocaleDate(content[k1].created);
-                var d2 = toLocaleDate(content[k2].created);
+                let d1 = toLocaleDate(content[k1].created);
+                let d2 = toLocaleDate(content[k2].created);
                 return d2.valueOf() - d1.valueOf();
             });
             state.discussion_idx[discuss] = {};
@@ -60,7 +60,7 @@
         } else if (window.location.pathname === '/search') {
             lastPage = getParameterByName('page') || 1;
         } else {
-            var contentArray = state.discussion_idx[discuss][category];
+            let contentArray = state.discussion_idx[discuss][category];
             lastPage = state.content[contentArray[contentArray.length - 1]];
         }
 
@@ -109,14 +109,14 @@
                         return Asset.parse(asset).toFriendlyString();
                     },
                     getBuzzClass: function getBuzzClass(account) {
-                        var buzzClass = {};
-                        var levelName = account.buzz.level_name;
+                        let buzzClass = {};
+                        let levelName = account.buzz.level_name;
 
                         buzzClass[levelName] = true;
                         return buzzClass;
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage;
+                        let featuredImage;
                         if (!this.account && post.adult_content || this.account && this.account.user.metadata.adult_content === 'warn' && post.adult_content) {
                             featuredImage = {
                                 url: R.IMG.POST.NSFW
@@ -136,8 +136,8 @@
                         return {};
                     },
                     getTags: function getTags(post) {
-                        var tags = post.metadata.tags;
-                        var linkedTags = []; //Select only 8 first tags
+                        let tags = post.metadata.tags;
+                        let linkedTags = []; //Select only 8 first tags
 
                         tags = tags.slice(0, 7);
                         tags.forEach(function (t) {
@@ -149,12 +149,12 @@
                         return toLocaleDate(date).fromNow();
                     },
                     hasPaid: function hasPaid(post) {
-                        var now = moment();
-                        var payout = toLocaleDate(post.cashout_time);
+                        let now = moment();
+                        let payout = toLocaleDate(post.cashout_time);
                         return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
-                        var date = toLocaleDate(post.cashout_time);
+                        let date = toLocaleDate(post.cashout_time);
 
                         if (this.hasPaid(post)) {
                             date = toLocaleDate(post.last_payout);
@@ -163,15 +163,15 @@
                         return date.fromNow();
                     },
                     hasPromotion: function hasPromotion(post) {
-                        var amount = Asset.parseString(post.promoted);
+                        let amount = Asset.parseString(post.promoted);
                         return amount.amount > 0;
                     },
                     getPromotion: function getPromotion(post) {
-                        var amount = Asset.parseString(post.promoted);
+                        let amount = Asset.parseString(post.promoted);
                         return '$ ' + amount.toPlainString();
                     },
                     getPayout: function getPayout(post) {
-                        var amount = Asset.parseString(post.pending_payout_value);
+                        let amount = Asset.parseString(post.pending_payout_value);
 
                         if (this.hasPaid(post)) {
                             amount = Asset.parseString(post.total_payout_value);
@@ -184,29 +184,29 @@
                     getPendingPayouts: function getPendingPayouts(post, asset) {
                         asset = asset ? asset.toLowerCase() : '';
 
-                        var PRICE_PER_CREA = Asset.parse({
+                        let PRICE_PER_CREA = Asset.parse({
                             amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(),
                             nai: 'cbd'
                         });
-                        var CBD_PRINT_RATE = this.state.props.cbd_print_rate;
-                        var CBD_PRINT_RATE_MAX = 10000;
-                        var payout = Asset.parse(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
+                        let CBD_PRINT_RATE = this.state.props.cbd_print_rate;
+                        let CBD_PRINT_RATE_MAX = 10000;
+                        let payout = Asset.parse(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
 
-                        var PENDING_PAYOUT = payout;
-                        var PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
-                        var PENDING_PAYOUT_CBD = Asset.parse({
+                        let PENDING_PAYOUT = payout;
+                        let PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
+                        let PENDING_PAYOUT_CBD = Asset.parse({
                             amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS,
                             nai: 'cbd'
                         });
-                        var PENDING_PAYOUT_CGY = Asset.parse({
+                        let PENDING_PAYOUT_CGY = Asset.parse({
                             amount: NaNOr(((PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'cgy'
                         });
-                        var PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
+                        let PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
                             amount: NaNOr((PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX)), 0),
                             nai: 'cbd'
                         });
-                        var PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
+                        let PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
                             amount: NaNOr(((PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'crea'
                         });
@@ -237,10 +237,10 @@
                     onVote: function onVote(err, result, post) {
                         catchError(err);
                         //updateUserSession();
-                        var that = this;
+                        let that = this;
                         getDiscussion(post.author, post.permlink, function (err, result) {
                             if (!err) {
-                                var updatedPost = parsePost(result, post.reblogged_by);
+                                let updatedPost = parsePost(result, post.reblogged_by);
                                 that.state.content[updatedPost.link] = updatedPost;
                                 that.$forceUpdate();
                             }
@@ -271,10 +271,10 @@
     }
 
     creaEvents.on('crea.posts', function (urlFilter, filter, state) {
-        var authors = [];
+        let authors = [];
 
-        for (var c in state.content) {
-            var author = state.content[c].author;
+        for (let c in state.content) {
+            let author = state.content[c].author;
 
             if (!authors.includes(author)) {
                 authors.push(author);
@@ -288,7 +288,7 @@
             //Retrieve another accounts
             getAccounts(authors, function (err, result) {
                 if (!catchError(err)) {
-                    var accounts = {};
+                    let accounts = {};
                     result.forEach(function (a) {
                         accounts[a.name] = a;
                     });
@@ -296,12 +296,12 @@
                     if (homePosts) {
                         //On Session update
                         //Accounts
-                        for (var a in accounts) {
+                        for (let a in accounts) {
                             homePosts.state.accounts[a] = accounts[a];
                         } //Posts
 
 
-                        for (var _c in state.content) {
+                        for (let _c in state.content) {
                             homePosts.state.content[_c] = parsePost(state.content[_c]);
                         }
 
@@ -314,23 +314,23 @@
                 }
             });
         } else if (homePosts && homePosts.urlFilter === urlFilter && urlFilter === '/search') {
-            var query = getParameterByName('query');
+            let query = getParameterByName('query');
 
             if (query === homePosts.search && query !== null) {
                 //Accounts
-                for (var a in state.accounts) {
+                for (let a in state.accounts) {
                     homePosts.state.accounts[a] = parseAccount(state.accounts[a]);
                 } //Posts
 
 
-                for (var _c2 in state.content) {
+                for (let _c2 in state.content) {
                     homePosts.state.content[_c2] = parsePost(state.content[_c2]);
                 } //Order
 
 
-                var newPosts = state.discussion_idx[""].search;
+                let newPosts = state.discussion_idx[""].search;
 
-                for (var x = 0; x < newPosts.length; x++) {
+                for (let x = 0; x < newPosts.length; x++) {
                     if (!homePosts.state.discussion_idx[''].search.includes(newPosts[x])) {
                         homePosts.state.discussion_idx[''].search.push(newPosts[x]);
                     }
@@ -345,16 +345,16 @@
             if (homePosts && homePosts.urlFilter === urlFilter) {
                 //On Session update
                 //Accounts
-                for (var _a in state.accounts) {
+                for (let _a in state.accounts) {
                     homePosts.state.accounts[_a] = parseAccount(state.accounts[_a]);
                 }
 
                 state = homePosts.state;
             }
 
-            var ck = Object.keys(state.content);
-            var reblogsFetched = 0;
-            var onAllReblogs = function () {
+            let ck = Object.keys(state.content);
+            let reblogsFetched = 0;
+            let onAllReblogs = function () {
                 reblogsFetched++;
 
                 if (reblogsFetched >= ck.length) {
@@ -362,20 +362,20 @@
                 }
             };
 
-            var onReblogs = function (k, d, reblogs) {
+            let onReblogs = function (k, d, reblogs) {
                 state.content[k] = parsePost(d, reblogs);
             };
 
             refreshAccessToken(function (accessToken) {
 
-                for (var x = 0; x < ck.length; x++) {
-                    var d = state.content[ck[x]];
+                for (let x = 0; x < ck.length; x++) {
+                    let d = state.content[ck[x]];
 
                     (function (x, ck, d) {
-                        var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', d.author, d.permlink));
+                        let http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', d.author, d.permlink));
 
                         http.when('done', function (response) {
-                            var data = jsonify(response).data;
+                            let data = jsonify(response).data;
                             onReblogs(ck[x], d, data.reblogged_by);
                             onAllReblogs();
                         });
@@ -399,7 +399,7 @@
     });
 
     function beforeInit(urlFilter) {
-        var path = currentPage ? currentPage.pathname : window.location.pathname;
+        let path = currentPage ? currentPage.pathname : window.location.pathname;
 
         if (path === '/') {
             if (session) {
@@ -422,8 +422,8 @@
                     showProfile(getPathPart());
                 }
             } else if (path.startsWith('/search')) {
-                var search = getParameterByName('query');
-                var page = getParameterByName('page') || 1;
+                let search = getParameterByName('query');
+                let page = getParameterByName('page') || 1;
                 performSearch(search, page, true);
             } else {
                 creaEvents.emit('crea.content.filter', path);
@@ -445,22 +445,22 @@
         beforeInit();
     });
 
-    var onScrollCalling;
+    let onScrollCalling;
     creaEvents.on('crea.scroll.bottom', function () {
         if (!onScrollCalling) {
             onScrollCalling = true;
 
             if (isUserFeed()) {
-                var http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
+                let http = new HttpClient(apiOptions.apiUrl + '/creary/feed');
                 http.when('done', function (response) {
-                    var data = jsonify(response).data;
+                    let data = jsonify(response).data;
 
                     if (data.length) {
-                        var count = data.length;
-                        var discussions = [];
-                        var accounts = [];
+                        let count = data.length;
+                        let discussions = [];
+                        let accounts = [];
 
-                        var onContentFetched = function onContentFetched() {
+                        let onContentFetched = function onContentFetched() {
                             count--;
 
                             if (count <= 0) {
@@ -472,15 +472,15 @@
                                         }); //Sort
 
                                         discussions.sort(function (k1, k2) {
-                                            var d1 = toLocaleDate(k1.created);
-                                            var d2 = toLocaleDate(k2.created);
+                                            let d1 = toLocaleDate(k1.created);
+                                            let d2 = toLocaleDate(k2.created);
                                             return d2.valueOf() - d1.valueOf();
                                         });
-                                        var discuss = homePosts.discuss;
-                                        var category = homePosts.category; //Update Posts
+                                        let discuss = homePosts.discuss;
+                                        let category = homePosts.category; //Update Posts
 
                                         discussions.forEach(function (d) {
-                                            var permlink = d.author + '/' + d.permlink;
+                                            let permlink = d.author + '/' + d.permlink;
                                             homePosts.state.content[permlink] = d;
                                             homePosts.state.discussion_idx[discuss][category].push(permlink);
                                         });
@@ -499,14 +499,14 @@
                         };
 
                         data.forEach(function (d) {
-                            var permlink = d.author + '/' + d.permlink;
+                            let permlink = d.author + '/' + d.permlink;
 
                             if (!homePosts.state.content[permlink]) {
                                 crea.api.getContent(d.author, d.permlink, function (err, result) {
                                     if (err) {
                                         console.error('Error getting', permlink, err);
                                     } else {
-                                        var p = parsePost(result);
+                                        let p = parsePost(result);
                                         p.reblogged_by = d.reblogged_by;
                                         discussions.push(p);
 
@@ -530,10 +530,10 @@
                     onScrollCalling = false;
                     catchError(textStatus);
                 });
-                var username = getPathPart().replace('/', '').replace('@', '');
+                let username = getPathPart().replace('/', '').replace('@', '');
                 crea.api.getFollowing(username, '', 'blog', 1000, function (err, result) {
                     if (!catchError(err)) {
-                        var followings = [];
+                        let followings = [];
                         result.following.forEach(function (f) {
                             followings.push(f.following);
                         });
@@ -556,8 +556,8 @@
                     }
                 });
             } else if (window.location.pathname === '/search') {
-                var query = getParameterByName('query');
-                var postCount = Object.keys(homePosts.state.content).length;
+                let query = getParameterByName('query');
+                let postCount = Object.keys(homePosts.state.content).length;
 
                 if (postCount > 0 && postCount % 20 === 0) {
                     globalLoading.show = true;
@@ -567,8 +567,8 @@
                     });
                 }
             } else {
-                var apiCall;
-                var category = homePosts.category;
+                let apiCall;
+                let category = homePosts.category;
 
                 switch (category) {
                     case 'now':
@@ -598,13 +598,13 @@
                                 console.error(err);
                             } else {
                                 //Get new accounts
-                                var discussions = result.discussions; //Remove first duplicate post
+                                let discussions = result.discussions; //Remove first duplicate post
 
                                 discussions.shift();
-                                var accounts = [];
+                                let accounts = [];
 
-                                var reblogsFetched = 0;
-                                var onAllReblogs = function () {
+                                let reblogsFetched = 0;
+                                let onAllReblogs = function () {
                                     reblogsFetched++;
                                     if (reblogsFetched >= discussions.length) {
                                         //Get new accounts
@@ -615,9 +615,9 @@
                                                     homePosts.state.accounts[a.name] = a;
                                                 }); //Update Posts
 
-                                                var discuss = homePosts.discuss;
+                                                let discuss = homePosts.discuss;
                                                 discussions.forEach(function (d) {
-                                                    var permlink = d.author + '/' + d.permlink;
+                                                    let permlink = d.author + '/' + d.permlink;
                                                     homePosts.state.content[permlink] = d;
 
                                                     homePosts.state.discussion_idx[discuss][category].push(permlink);
@@ -636,13 +636,13 @@
 
                                 };
 
-                                for (var x = 0; x < discussions.length; x++) {
-                                    var d = discussions[x];
+                                for (let x = 0; x < discussions.length; x++) {
+                                    let d = discussions[x];
 
                                     (function (x, d, discussions) {
-                                        var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', d.author, d.permlink));
+                                        let http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', d.author, d.permlink));
 
-                                        var onReblogs = function (reblogs) {
+                                        let onReblogs = function (reblogs) {
 
                                             discussions[x] = parsePost(d, reblogs);
 
@@ -652,7 +652,7 @@
                                         };
 
                                         http.when('done', function (response) {
-                                            var data = jsonify(response).data;
+                                            let data = jsonify(response).data;
                                             onReblogs(data.reblogged_by);
                                             onAllReblogs();
                                         });
@@ -682,14 +682,14 @@
     });
 
     creaEvents.on('crea.search.content', function (data) {
-        var searchState = {
+        let searchState = {
             content: {},
             accounts: {},
             discussion: []
         };
-        var count = 0;
+        let count = 0;
 
-        var onFinish = function onFinish(state) {
+        let onFinish = function onFinish(state) {
             count++;
 
             if (count >= data.length) {
@@ -706,10 +706,10 @@
             }
         };
 
-        var _loop = function _loop(x) {
-            var getState = function getState(r) {
-                var permalink = r.author + '/' + r.permlink;
-                var url = '/' + r.tags[0] + '/@' + permalink;
+        let _loop = function _loop(x) {
+            let getState = function getState(r) {
+                let permalink = r.author + '/' + r.permlink;
+                let url = '/' + r.tags[0] + '/@' + permalink;
                 crea.api.getState(url, function (err, result) {
                     if (err) {
                         console.error(err);
@@ -726,7 +726,7 @@
             getState(data[x]);
         };
 
-        for (var x = 0; x < data.length; x++) {
+        for (let x = 0; x < data.length; x++) {
             _loop(x);
         }
 

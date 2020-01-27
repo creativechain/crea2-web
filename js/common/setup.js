@@ -13,7 +13,7 @@
         console.log("DOM loaded");
         creaEvents.emit('crea.content.prepare');
 
-        var session = Session.getAlive();
+        let session = Session.getAlive();
 
         if (session) {
             session.login(function (err, account) {
@@ -26,8 +26,8 @@
 
                     creaEvents.emit('crea.session.login', false);
                 } else {
-                    var count = 2;
-                    var onTaskEnded = function onTaskEnded(session, account) {
+                    let count = 2;
+                    let onTaskEnded = function onTaskEnded(session, account) {
                         --count;
 
                         if (count === 0) {
@@ -35,8 +35,8 @@
                         }
                     };
 
-                    var followings = [];
-                    var blockeds = [];
+                    let followings = [];
+                    let blockeds = [];
                     crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
                         if (!catchError(err)) {
                             result.following.forEach(function (f) {
@@ -73,7 +73,7 @@
 
         //Send language
         //console.log('cookies');
-        var navLang = navigator.language.toLowerCase().split('-')[0];
+        let navLang = navigator.language.toLowerCase().split('-')[0];
         CreaCookies.set('creary.language', navLang);
 
         //console.log(navLang, CreaCookies.get('creary.language'));
@@ -105,9 +105,9 @@
     creaEvents.on('crea.dom.ready', function () {
         $.holdReady(false);
         $(window).scroll(function (event) {
-            var scrollHeight = $(document).height();
-            var scrollPosition = $(window).height() + $(window).scrollTop();
-            var bottom = (scrollHeight - scrollPosition) / scrollHeight;
+            let scrollHeight = $(document).height();
+            let scrollPosition = $(window).height() + $(window).scrollTop();
+            let bottom = (scrollHeight - scrollPosition) / scrollHeight;
 
             if (bottom <= 0.01) {
                 // when scroll to bottom of the page
@@ -116,9 +116,9 @@
         }); //Inputs length validations;
 
         $('input, textarea').each(function (index, element) {
-            var limit = parseInt($(element).attr('maxlength'));
+            let limit = parseInt($(element).attr('maxlength'));
             $(element).keypress(function (e) {
-                var length = e.target.value.length;
+                let length = e.target.value.length;
 
                 if (e.charCode > 0 && length === limit) {
                     cancelEventPropagation(e);

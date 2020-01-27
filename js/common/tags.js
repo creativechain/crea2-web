@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-    var tagsContainer;
+    let tagsContainer;
 
     function setUp(state, session, account) {
         if (!tagsContainer) {

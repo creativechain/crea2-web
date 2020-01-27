@@ -4,11 +4,11 @@
  * Created by ander on 18/10/18.
  */
 (function () {
-    var postContainer, otherProjects;
-    var promoteModal, downloadModal, reportModal, reportCommentModal;
-    var url = window.location.pathname;
-    var session, userAccount;
-    var vueInstances = 5;
+    let postContainer, otherProjects;
+    let promoteModal, downloadModal, reportModal, reportCommentModal;
+    let url = window.location.pathname;
+    let session, userAccount;
+    let vueInstances = 5;
 
     function onVueReady(force) {
         --vueInstances;
@@ -47,8 +47,8 @@
                     showPost: showPost,
                     humanFileSize: humanFileSize,
                     getBuzzClass: function getBuzzClass(account) {
-                        var buzzClass = {};
-                        var levelName = account.buzz.level_name;
+                        let buzzClass = {};
+                        let levelName = account.buzz.level_name;
 
                         buzzClass[levelName] = true;
                         return buzzClass;
@@ -86,13 +86,13 @@
                     hasPaid: function hasPaid(post) {
                         post = post || this.state.post;
 
-                        var now = moment();
-                        var payout = toLocaleDate(post.cashout_time);
+                        let now = moment();
+                        let payout = toLocaleDate(post.cashout_time);
                         return now.isAfter(payout);
                     },
                     getPayoutPostDate: function getPayoutPostDate(post) {
                         post = post || this.state.post;
-                        var date = toLocaleDate(post.cashout_time);
+                        let date = toLocaleDate(post.cashout_time);
 
                         if (this.hasPaid(post)) {
                             date = toLocaleDate(post.last_payout);
@@ -101,13 +101,13 @@
                         return date.fromNow();
                     },
                     hasPromotion: function hasPromotion() {
-                        var post = this.state.post;
-                        var amount = Asset.parseString(post.promoted);
+                        let post = this.state.post;
+                        let amount = Asset.parseString(post.promoted);
                         return amount.amount > 0;
                     },
                     getPromotion: function getPromotion() {
-                        var post = this.state.post;
-                        var amount = Asset.parseString(post.promoted);
+                        let post = this.state.post;
+                        let amount = Asset.parseString(post.promoted);
                         return '$ ' + amount.toPlainString();
                     },
                     getPayout: function getPayout(post, sym, dec) {
@@ -118,7 +118,7 @@
                             dec = 2;
                         }
 
-                        var amount = Asset.parseString(post.pending_payout_value);
+                        let amount = Asset.parseString(post.pending_payout_value);
 
                         if (this.hasPaid()) {
                             amount = Asset.parseString(post.total_payout_value);
@@ -136,29 +136,29 @@
                         asset = asset ? asset.toLowerCase() : '';
 
                         post = post || this.state.post;
-                        var PRICE_PER_CREA = Asset.parse({
+                        let PRICE_PER_CREA = Asset.parse({
                             amount: Asset.parseString(this.state.feed_price.base).toFloat() / Asset.parseString(this.state.feed_price.quote).toFloat(),
                             nai: 'cbd'
                         });
-                        var CBD_PRINT_RATE = this.state.props.cbd_print_rate;
-                        var CBD_PRINT_RATE_MAX = 10000;
-                        var payout = Asset.parseString(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
+                        let CBD_PRINT_RATE = this.state.props.cbd_print_rate;
+                        let CBD_PRINT_RATE_MAX = 10000;
+                        let payout = Asset.parseString(post.pending_payout_value); //payout.amount = parseInt(payout.amount / 1000000000);
 
-                        var PENDING_PAYOUT = payout;
-                        var PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
-                        var PENDING_PAYOUT_CBD = Asset.parse({
+                        let PENDING_PAYOUT = payout;
+                        let PERCENT_CREA_DOLLARS = post.percent_crea_dollars / 20000;
+                        let PENDING_PAYOUT_CBD = Asset.parse({
                             amount: PENDING_PAYOUT.toFloat() * PERCENT_CREA_DOLLARS,
                             nai: 'cbd'
                         });
-                        var PENDING_PAYOUT_CGY = Asset.parse({
+                        let PENDING_PAYOUT_CGY = Asset.parse({
                             amount: NaNOr(((PENDING_PAYOUT.toFloat() - PENDING_PAYOUT_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'cgy'
                         });
-                        var PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
+                        let PENDING_PAYOUT_PRINTED_CBD = Asset.parse({
                             amount: NaNOr((PENDING_PAYOUT_CBD.toFloat() * (CBD_PRINT_RATE / CBD_PRINT_RATE_MAX)), 0),
                             nai: 'cbd'
                         });
-                        var PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
+                        let PENDING_PAYOUT_PRINTED_CREA = Asset.parse({
                             amount: NaNOr(((PENDING_PAYOUT_CBD.toFloat() - PENDING_PAYOUT_PRINTED_CBD.toFloat()) / PRICE_PER_CREA.toFloat()), 0),
                             nai: 'crea'
                         });
@@ -179,7 +179,7 @@
                         this.$forceUpdate();
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage = post.metadata.featuredImage;
+                        let featuredImage = post.metadata.featuredImage;
 
                         if (featuredImage && featuredImage.hash) {
                             return {
@@ -193,8 +193,8 @@
                     },
                     getLinkedTags: function getLinkedTags(asString) {
                         //<a v-bind:href="'/popular/' + x">{{ x }}</a>
-                        var tags = this.state.post.metadata.tags;
-                        var linkedTags = [];
+                        let tags = this.state.post.metadata.tags;
+                        let linkedTags = [];
                         tags.forEach(function (t) {
                             linkedTags.push('<a href="/search?page=1&query=' + encodeURIComponent(t) + '">' + t + '</a>');
                         });
@@ -216,14 +216,14 @@
                         return comment.parent_author === parentComment.author && comment.parent_permlink === parentComment.permlink;
                     },
                     editPost: function editPost() {
-                        var route = this.state.post.author + '/' + this.state.post.permlink;
+                        let route = this.state.post.author + '/' + this.state.post.permlink;
                         goTo('/publish?edit=' + encodeURIComponent(route));
                     },
                     addComment: function (parentPost, commentReply, editingResponse) {
-                        var that = this;
+                        let that = this;
 
-                        var post = editingResponse;
-                        var comment = commentReply ? this.response_comment : this.comment;
+                        let post = editingResponse;
+                        let comment = commentReply ? this.response_comment : this.comment;
                         makeComment(comment, post, parentPost, function (err, result) {
                             globalLoading.show = false;
                             if (!catchError(err)) {
@@ -272,7 +272,7 @@
                     },
                     makeDownload: makeDownload,
                     removeComment: function(comment) {
-                        var that = this;
+                        let that = this;
                         deleteComment(comment, this.session, function (err, result) {
                             if (!catchError(err)) {
                                 globalLoading.show = false;
@@ -302,8 +302,8 @@
                     vote: function vote(weight, post) {
                         post = post || this.state.post;
                         if (this.session) {
-                            var that = this;
-                            var username = this.session.account.username;
+                            let that = this;
+                            let username = this.session.account.username;
                             requireRoleKey(username, 'posting', function (postingKey) {
                                 globalLoading.show = true;
                                 crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
@@ -351,17 +351,17 @@
                         },
                         makePromotion: function makePromotion(event) {
                             cancelEventPropagation(event);
-                            var from = this.session.account.username;
-                            var to = 'null';
-                            var memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
-                            var amount = parseFloat(this.amount) + 0.0001;
+                            let from = this.session.account.username;
+                            let to = 'null';
+                            let memo = "@" + this.state.post.author + '/' + this.state.post.permlink;
+                            let amount = parseFloat(this.amount) + 0.0001;
                             console.log(amount);
                             amount = Asset.parse({
                                 amount: amount,
                                 nai: apiOptions.nai.CBD
                             }).toFriendlyString(null, false);
                             console.log(amount);
-                            var that = this;
+                            let that = this;
                             requireRoleKey(from, 'active', function (activeKey) {
                                 globalLoading.show = true;
                                 crea.broadcast.transfer(activeKey, from, to, amount, memo, function (err, result) {
@@ -384,10 +384,10 @@
 
             if (state.post.download.resource) {
                 if (!downloadModal) {
-                    var price = Asset.parse(state.post.download.price);
+                    let price = Asset.parse(state.post.download.price);
 
-                    var balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString('0.000 CREA') : Asset.parseString('0.000 CBD');
-                    var alreadyPayed = false;
+                    let balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString('0.000 CREA') : Asset.parseString('0.000 CBD');
+                    let alreadyPayed = false;
 
                     if (session) {
                         balance = price.asset.symbol === apiOptions.symbol.CREA ? Asset.parseString(userAccount.user.balance) : Asset.parseString(userAccount.user.cbd_balance);
@@ -452,8 +452,8 @@
                             console.log('Vote', weight, post);
                             post = post || this.state.post;
                             if (this.session) {
-                                var that = this;
-                                var username = this.session.account.username;
+                                let that = this;
+                                let username = this.session.account.username;
                                 requireRoleKey(username, 'posting', function (postingKey) {
                                     globalLoading.show = true;
                                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
@@ -490,8 +490,8 @@
                             console.log('Report comment', weight, post);
                             post = post || this.state.post;
                             if (this.session) {
-                                var that = this;
-                                var username = this.session.account.username;
+                                let that = this;
+                                let username = this.session.account.username;
                                 requireRoleKey(username, 'posting', function (postingKey) {
                                     globalLoading.show = true;
                                     crea.broadcast.vote(postingKey, username, post.author, post.permlink, weight, function (err, result) {
@@ -529,13 +529,13 @@
             postUrl = url;
         }
 
-        var route = postUrl.replace('@', '').split('/');
+        let route = postUrl.replace('@', '').split('/');
         route.splice(0, 2);
         return route.join('/');
     }
 
     function fetchOtherProjects(author, permlink, state) {
-        var loadOtherProjects = function loadOtherProjects(discussions) {
+        let loadOtherProjects = function loadOtherProjects(discussions) {
             otherProjects = new Vue({
                 el: '#more-projects',
                 data: {
@@ -547,12 +547,12 @@
                 updated: function () {
                     mr.sliders.documentReady($);
 
-                    var fl = $('#more-projects .flickity-slider');
-                    var count = fl.length;
+                    let fl = $('#more-projects .flickity-slider');
+                    let count = fl.length;
                     console.log('Slider post updated', count);
                     setTimeout(function () {
                         fl.each(function (index) {
-                            var sl = $(this);
+                            let sl = $(this);
                             if (sl.children().length === 0) {
                                 sl.parent().remove()
                             }
@@ -563,14 +563,14 @@
                     loadPost: function (post, event) {
                         cancelEventPropagation(event);
                         console.log('loading')
-                        var state = postContainer.state;
-                        var moreProjects = [];
+                        let state = postContainer.state;
+                        let moreProjects = [];
                         this.otherProjects.forEach(function (d) {
                             moreProjects.push(d.link);
                             state.content[d.link] = d;
                         });
 
-                        var discuss = state.discuss || '';
+                        let discuss = state.discuss || '';
                         if (!state.discussion_idx[discuss]) {
                             state.discussion_idx[discuss] = {};
                         }
@@ -580,7 +580,7 @@
                         showModal('#modal-post');
                     },
                     getFeaturedImage: function getFeaturedImage(post) {
-                        var featuredImage = post.metadata.featuredImage;
+                        let featuredImage = post.metadata.featuredImage;
 
                         if (featuredImage && featuredImage.hash) {
                             return {
@@ -598,7 +598,7 @@
             otherProjects.$forceUpdate();
         };
 
-        var date = new Date().toISOString().replace('Z', '');
+        let date = new Date().toISOString().replace('Z', '');
         crea.api.getDiscussionsByAuthorBeforeDateWith({
             start_permlink: '',
             limit: 100,
@@ -606,7 +606,7 @@
             author: author
         }, function (err, result) {
             if (!catchError(err)) {
-                var discussions = [];
+                let discussions = [];
                 result.discussions.forEach(function (d) {
                     d.metadata = jsonify(d.json_metadata);
 
@@ -616,10 +616,10 @@
                 });
 
                 if (discussions.length > 12) {
-                    var selectedDiscuss = [];
+                    let selectedDiscuss = [];
 
-                    for (var x = 0; x < 12; x++) {
-                        var r = randomNumber(0, discussions.length - 1);
+                    for (let x = 0; x < 12; x++) {
+                        let r = randomNumber(0, discussions.length - 1);
                         selectedDiscuss.push(discussions.splice(r, 1)[0]);
                     }
 
@@ -634,22 +634,22 @@
     function fetchContent() {
         if (url) {
             //Delete first char "/"
-            var parts = url.slice(1, url.length).split('/').length;
-            var fetchContentState = function fetchContentState(finalUrl) {
+            let parts = url.slice(1, url.length).split('/').length;
+            let fetchContentState = function fetchContentState(finalUrl) {
 
 
                 crea.api.getState(finalUrl, function (err, result) {
                     if (!catchError(err)) {
 
                         refreshAccessToken(function (accessToken) {
-                            var finalParts = finalUrl.slice(1, finalUrl.length).split('/');
-                            var author = finalParts[1].slice(1, finalParts[1].length);
-                            var permlink = finalParts[2];
+                            let finalParts = finalUrl.slice(1, finalUrl.length).split('/');
+                            let author = finalParts[1].slice(1, finalParts[1].length);
+                            let permlink = finalParts[2];
 
-                            var http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', author, permlink));
+                            let http = new HttpClient(apiOptions.apiUrl + String.format('/creary/%s/%s', author, permlink));
 
-                            var onReblogs = function(reblogs) {
-                                var aKeys = Object.keys(result.accounts);
+                            let onReblogs = function(reblogs) {
+                                let aKeys = Object.keys(result.accounts);
 
                                 if (aKeys.length === 0) {
                                     goTo('/404');
@@ -662,10 +662,10 @@
                                     result.author = parseAccount(result.accounts[result.post.author]); //Order comments by date, latest first
 
                                     //console.log(clone(result.author));
-                                    var cKeys = Object.keys(result.content);
+                                    let cKeys = Object.keys(result.content);
                                     cKeys.sort(function (k1, k2) {
-                                        var d1 = toLocaleDate(result.content[k1].created);
-                                        var d2 = toLocaleDate(result.content[k2].created);
+                                        let d1 = toLocaleDate(result.content[k1].created);
+                                        let d2 = toLocaleDate(result.content[k2].created);
                                         return d2.valueOf() - d1.valueOf();
                                     });
                                     cKeys.forEach(function (c) {
@@ -679,7 +679,7 @@
                             };
 
                             http.when('done', function (response) {
-                                var data = jsonify(response).data;
+                                let data = jsonify(response).data;
 
                                 onReblogs(data.reblogged_by);
                             });
@@ -700,12 +700,12 @@
             };
 
             if (parts === 2) {
-                var author = getPathPart().replace('@', '');
-                var permlink = getPathPart(null,1);
+                let author = getPathPart().replace('@', '');
+                let permlink = getPathPart(null,1);
 
                 crea.api.getContent(author, permlink, function (err, result) {
                     if (!catchError(err)) {
-                        var post = parsePost(result);
+                        let post = parsePost(result);
                         fetchContentState('/' + post.metadata.tags[0] + '/@' + author + '/' + permlink);
                     }
                 });

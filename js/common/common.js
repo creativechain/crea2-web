@@ -9,7 +9,7 @@ function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Con
 /**
  * Created by ander on 25/09/18.
  */
-var IpfsFile = function IpfsFile(hash, name, type, size) {
+let IpfsFile = function IpfsFile(hash, name, type, size) {
     _classCallCheck(this, IpfsFile);
 
     this.hash = hash;
@@ -19,12 +19,12 @@ var IpfsFile = function IpfsFile(hash, name, type, size) {
     this.url = 'https://ipfs.creary.net/ipfs/' + hash;
 };
 
-var creaEvents = new EventEmitter();
+let creaEvents = new EventEmitter();
 moment.locale($('html').attr('lang'));
-var bannerVue;
-var globalLoading;
-var currentPage;
-var CONSTANTS = {
+let bannerVue;
+let globalLoading;
+let currentPage;
+let CONSTANTS = {
     ACCOUNT: {
         UPDATE_THRESHOLD: 1000 * 60 * 60
     },
@@ -84,7 +84,7 @@ creaEvents.on('crea.session.login', function (session, account) {
 });
 
 function showBanner() {
-    var show = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    let show = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
     if (bannerVue) {
         bannerVue.showBanner = show;
@@ -159,9 +159,9 @@ function resolveFilter(filter) {
  * @returns {boolean}
  */
 function isInHome() {
-    var filters = ['/skyrockets', '/popular', '/now', '/popular30', '/created', '/promoted', '/votes', '/actives', '/cashout', '/responses', '/payout', '/payout_comments']; //Check if path is user feed
+    let filters = ['/skyrockets', '/popular', '/now', '/popular30', '/created', '/promoted', '/votes', '/actives', '/cashout', '/responses', '/payout', '/payout_comments']; //Check if path is user feed
 
-    var s = Session.getAlive();
+    let s = Session.getAlive();
 
     if (s && isUserFeed(s.account.username)) {
         return true;
@@ -185,9 +185,9 @@ function hideModal(id) {
 }
 
 function createBlockchainAccount(username, password, callback) {
-    var keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
+    let keys = crea.auth.getPrivateKeys(username, password, DEFAULT_ROLES);
     refreshAccessToken(function (accessToken) {
-        var http = new HttpClient(apiOptions.apiUrl + '/createCrearyAccount');
+        let http = new HttpClient(apiOptions.apiUrl + '/createCrearyAccount');
         http.when('done', function (data) {
             data = jsonify(data);
 
@@ -217,12 +217,12 @@ function removeBlockedContents(state, accountState, discussion_idx) {
     //console.log('State:', jsonify(jsonstring(state)), 'Account:', jsonify(jsonstring(accountState)), 'discussion:', discussion_idx);
     if (state) {
         //Remove post for blocked users
-        var cKeys = discussion_idx ? discussion_idx : Object.keys(state.content);
+        let cKeys = discussion_idx ? discussion_idx : Object.keys(state.content);
 
         if (accountState) {
-            var allowedContents = [];
+            let allowedContents = [];
             cKeys.forEach(function (ck) {
-                var c = state.content[ck];
+                let c = state.content[ck];
 
 
                 //If author is blocked, post must be blocked
@@ -322,13 +322,13 @@ function parsePost(post, reblogged_by ) {
             }
         });
 
-        var session = Session.getAlive();
+        let session = Session.getAlive();
         post.reported = false;
         if (session) {
             //Set reported by user
-            var username = session.account.username;
-            for (var x = 0; x < post.down_votes.length; x++) {
-                var v = post.down_votes[x];
+            let username = session.account.username;
+            for (let x = 0; x < post.down_votes.length; x++) {
+                let v = post.down_votes[x];
                 if (v.voter === username) {
                     post.reported = true;
                     break;
@@ -336,8 +336,8 @@ function parsePost(post, reblogged_by ) {
             }
         }
 
-        var toStringAsset = function toStringAsset(data) {
-            if (_typeof(data) === 'object') {
+        let toStringAsset = function toStringAsset(data) {
+            if (typeof data === 'object') {
                 return Asset.parse(data).toFriendlyString(null, false);
             }
 
@@ -366,7 +366,7 @@ function getAccounts(accounts, callback) {
             if (err) {
                 callback(err);
             } else {
-                for (var x = 0; x < result.length; x++) {
+                for (let x = 0; x < result.length; x++) {
                     result[x] = parseAccount(result[x]);
                 }
 
@@ -380,7 +380,7 @@ function getDiscussion(author, permlink, callback) {
 
     if (typeof permlink === 'function') {
         callback = permlink;
-        var all;
+        let all;
         [all, author, permlink] = /([\w\.\d-]+)\/([\w\d-]+)/gm.exec(author);
     } else {
         author = /[\w\.\d-]+/gm.exec(author)[0];
@@ -390,7 +390,7 @@ function getDiscussion(author, permlink, callback) {
 }
 
 function recommendPost(author, permlink, reblog, callback) {
-    var s = Session.getAlive();
+    let s = Session.getAlive();
 
     if (s) {
         if (typeof reblog === 'function') {
@@ -398,7 +398,7 @@ function recommendPost(author, permlink, reblog, callback) {
             reblog = true;
         }
 
-        var recommendedJson = {
+        let recommendedJson = {
             account: s.account.username,
             author: author,
             permlink: permlink
@@ -422,10 +422,10 @@ function recommendPost(author, permlink, reblog, callback) {
 
 }
 function ignoreUser(following, ignore, callback) {
-    var s = Session.getAlive();
+    let s = Session.getAlive();
 
     if (s) {
-        var followJson = {
+        let followJson = {
             follower: s.account.username,
             following: following,
             what: ignore ? ['ignore'] : []
@@ -451,16 +451,16 @@ function ignoreUser(following, ignore, callback) {
 }
 
 function makeComment(comment, post, parentPost, callback) {
-    var session = Session.getAlive();
+    let session = Session.getAlive();
 
     if (session && comment.length > 0) {
         requireRoleKey(session.account.username, 'posting', function (postingKey) {
             globalLoading.show = true;
-            var parentAuthor = post ? post.parent_author : parentPost.author;
-            var parentPermlink = post ? post.parent_permlink : parentPost.permlink;
+            let parentAuthor = post ? post.parent_author : parentPost.author;
+            let parentPermlink = post ? post.parent_permlink : parentPost.permlink;
 
-            var permlink;
-            var tags = [];
+            let permlink;
+            let tags = [];
             if (post) {
                 //Reply edit case;
                 permlink = post.permlink;
@@ -484,7 +484,7 @@ function makeComment(comment, post, parentPost, callback) {
             }
 
             console.log(permlink.length, parentPermlink.length);
-            var metadata = {
+            let metadata = {
                 tags: tags
             };
             /*crea.broadcast.comment(postingKey, parentAuthor, parentPermlink, session.account.username, permlink, '', comment, '', jsonstring(metadata), function (err, result) {
@@ -526,32 +526,32 @@ function makeDownload(event, session, user, post, callback) {
         requireRoleKey(session.account.username, 'active', function (activeKey) {
             globalLoading.show = true;
 
-            var downloadResource = function downloadResource() {
+            let downloadResource = function downloadResource() {
                 setTimeout(function () {
-                    var authorBuff = Buffer.from(post.author);
-                    var permlinkBuff = Buffer.from(post.permlink);
-                    var buff = Buffer.concat([authorBuff, permlinkBuff]);
-                    var signature = crea.utils.Signature.signBuffer(buff, activeKey);
-                    var s64 = signature.toBuffer().toString('base64');
+                    let authorBuff = Buffer.from(post.author);
+                    let permlinkBuff = Buffer.from(post.permlink);
+                    let buff = Buffer.concat([authorBuff, permlinkBuff]);
+                    let signature = crea.utils.Signature.signBuffer(buff, activeKey);
+                    let s64 = signature.toBuffer().toString('base64');
                     crea.api.getDownload(session.account.username, post.author, post.permlink, s64, function (err, result) {
                         globalLoading.show = false;
 
                         if (!catchError(err)) {
-                            var re = /Qm[a-zA-Z0-9]+/;
-                            var hash = re.exec(result.resource)[0];
+                            let re = /Qm[a-zA-Z0-9]+/;
+                            let hash = re.exec(result.resource)[0];
                             console.log(hash); //For .rar, .zip or unrecognized MIME type
 
                             if (!post.download.type) {
                                 post.download.type = 'application/octet-stream';
                             }
 
-                            var _url = apiOptions.ipfsd + '/' + post.download.type + '/' + hash + '/' + post.download.name;
+                            let _url = apiOptions.ipfsd + '/' + post.download.type + '/' + hash + '/' + post.download.name;
 
                             _url += '?stream=false';
 
                             hideModal('#modal-download');
                             if (callback) {
-                                console.log('Callback is present')
+                                console.log('Callback is present');
                                 callback();
                             } else {
                                 console.log('Callback null?', callback)
@@ -563,7 +563,7 @@ function makeDownload(event, session, user, post, callback) {
                 }, 3000);
             };
 
-            var payDownload = function payDownload() {
+            let payDownload = function payDownload() {
                 crea.broadcast.commentDownload(activeKey, session.account.username, post.author, post.permlink, function (err, result) {
                     if (!catchError(err)) {
                         downloadResource();
@@ -588,14 +588,14 @@ function makeDownload(event, session, user, post, callback) {
 }
 
 function updateUserSession() {
-    var session = Session.getAlive();
+    let session = Session.getAlive();
 
     if (session) {
         session.login(function (err, account) {
             if (!catchError(err)) {
-                var count = 2;
+                let count = 2;
 
-                var onTaskEnded = function onTaskEnded(session, account) {
+                let onTaskEnded = function onTaskEnded(session, account) {
                     --count;
 
                     if (count === 0) {
@@ -603,8 +603,8 @@ function updateUserSession() {
                     }
                 };
 
-                var followings = [];
-                var blockeds = [];
+                let followings = [];
+                let blockeds = [];
                 crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
                     if (!catchError(err)) {
                         result.following.forEach(function (f) {
@@ -631,14 +631,14 @@ function updateUserSession() {
 }
 
 function refreshAccessToken(callback) {
-    var now = new Date().getTime();
-    var expiration = localStorage.getItem(CREARY.ACCESS_TOKEN_EXPIRATION);
+    let now = new Date().getTime();
+    let expiration = localStorage.getItem(CREARY.ACCESS_TOKEN_EXPIRATION);
     expiration = isNaN(expiration) ? 0 : expiration;
 
     if (expiration <= now) {
-        var url = apiOptions.apiUrl + '/oauth/v2/token';
-        var http = new HttpClient(url);
-        var params = {
+        let url = apiOptions.apiUrl + '/oauth/v2/token';
+        let http = new HttpClient(url);
+        let params = {
             grant_type: 'client_credentials',
             client_id: '1_2e5ws1sr915wk0o4kksc0swwoc8kc4wgkgcksscgkkko404g8c',
             client_secret: '3c2x9uf9uwg0ook0kksk8koccsk44w0gg4csos04ows444ko4k'
@@ -654,24 +654,24 @@ function refreshAccessToken(callback) {
         });
         http.post(params);
     } else if (callback) {
-        var accessToken = localStorage.getItem(CREARY.ACCESS_TOKEN);
+        let accessToken = localStorage.getItem(CREARY.ACCESS_TOKEN);
         callback(accessToken);
     }
 }
 
 function resizeImage(file, callback) {
-    var MAX_PIXEL_SIZE = 500;
+    let MAX_PIXEL_SIZE = 500;
     console.log(file);
     if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
         //Only PNG, JPG, JPEG
 
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function (event) {
 
-            var tmpImage = new Image();
+            let tmpImage = new Image();
 
             tmpImage.onload = function () {
-                var options;
+                let options;
                 if (tmpImage.width <= tmpImage.height && tmpImage.width > MAX_PIXEL_SIZE) {
                     options = {
                         maxWidth: MAX_PIXEL_SIZE,
@@ -719,17 +719,17 @@ function uploadToIpfs(file, maxSize, callback) {
             }
         } else if (file.size <= maxSize) {
 
-            var options = {
+            let options = {
                 pin: true,
                 progress: function (progress, progress2) {
                     console.log(progress, progress2);
                 }
             };
 
-            var onResponse = function (err, data) {
+            let onResponse = function (err, data) {
                 if (!err) {
                     console.log(data);
-                    var f = new IpfsFile(data.Hash, file.name, file.type, data.Size);
+                    let f = new IpfsFile(data.Hash, file.name, file.type, data.Size);
                     console.log(f);
                     callback(null, f);
                 } else if (callback) {
@@ -740,7 +740,7 @@ function uploadToIpfs(file, maxSize, callback) {
                 if (!err) {
                     console.log(data);
                     data = data[0];
-                    var f = new IpfsFile(data.hash, file.name, file.type, data.size);
+                    let f = new IpfsFile(data.hash, file.name, file.type, data.size);
                     console.log(f);
                     callback(null, f);
                 } else if (callback) {
@@ -749,7 +749,7 @@ function uploadToIpfs(file, maxSize, callback) {
 
             });*/
 
-            var http = new HttpClient('https://ipfs.creary.net:5002/api/v0/add?pin=true&stream-channels=true');
+            let http = new HttpClient('https://ipfs.creary.net:5002/api/v0/add?pin=true&stream-channels=true');
             http.post({
                 file: file
             }).when('done', function (data) {
@@ -760,7 +760,7 @@ function uploadToIpfs(file, maxSize, callback) {
             });
 
 /*            refreshAccessToken(function (accessToken) {
-                var http = new HttpClient(apiOptions.ipfsd);
+                let http = new HttpClient(apiOptions.ipfsd);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
@@ -770,7 +770,7 @@ function uploadToIpfs(file, maxSize, callback) {
                     console.log(data);
 
                     if (callback) {
-                        var f = new IpfsFile(data.data.hash, file.name, file.type, file.size);
+                        let f = new IpfsFile(data.data.hash, file.name, file.type, file.size);
                         callback(null, f);
                     }
                 });
@@ -802,7 +802,7 @@ function uploadToIpfs(file, maxSize, callback) {
 
 
 function downloadFile(url, filename) {
-    var element = document.createElement('a');
+    let element = document.createElement('a');
     element.setAttribute('href', url);
 
     //No uncomment, Firefox on OSX do not anything
@@ -816,22 +816,22 @@ function downloadFile(url, filename) {
 }
 
 function performSearch(search) {
-    var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    var inHome = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-    var callback = arguments.length > 3 ? arguments[3] : undefined;
-    var path = '/search?query=' + encodeURIComponent(search) + '&page=' + page;
+    let page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    let inHome = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    let callback = arguments.length > 3 ? arguments[3] : undefined;
+    let path = '/search?query=' + encodeURIComponent(search) + '&page=' + page;
 
     if (inHome) {
         updateUrl(path);
         refreshAccessToken(function (accessToken) {
-            var http = new HttpClient(apiOptions.apiUrl + '/searchCreaContent');
+            let http = new HttpClient(apiOptions.apiUrl + '/searchCreaContent');
             http.setHeaders({
                 Authorization: 'Bearer ' + accessToken
             });
             http.when('done', function (response) {
-                var data = jsonify(response).data;
+                let data = jsonify(response).data;
 
-                for (var x = 0; x < data.length; x++) {
+                for (let x = 0; x < data.length; x++) {
                     data[x].tags = jsonify(data[x].tags);
                 }
 
@@ -862,8 +862,8 @@ function performSearch(search) {
 
 function catchError(err) {
     if (err) {
-        var title;
-        var body = [];
+        let title;
+        let body = [];
 
         if (err.stack) {
             console.trace(err.stack);
@@ -888,8 +888,8 @@ function catchError(err) {
             }
 
             if (err.message) {
-                var m = err.message.split(':');
-                var message = m[m.length - 1];
+                let m = err.message.split(':');
+                let message = m[m.length - 1];
                 console.error(message);
 
                 //RC Special case
@@ -919,10 +919,8 @@ function catchError(err) {
  * @param {string} title
  * @param {...string} body
  */
-
-
 function showAlert(title, body) {
-    var config = {
+    let config = {
         title: title,
         body: typeof body === 'string' ? [body] : body
     };
@@ -930,6 +928,7 @@ function showAlert(title, body) {
     console.log(config);
     creaEvents.emit('crea.alert', config);
 }
+
 /**
  *
  * @param {string} username
@@ -937,8 +936,6 @@ function showAlert(title, body) {
  * @param {boolean} login
  * @param {function} callback
  */
-
-
 function requireRoleKey(username, role, login, callback) {
     if (typeof login === 'function') {
         callback = login;
@@ -947,8 +944,8 @@ function requireRoleKey(username, role, login, callback) {
 
     console.log(username, role, callback != null);
     if (callback) {
-        var id = randomNumber(0, Number.MAX_SAFE_INTEGER);
-        var session = Session.getAlive();
+        let id = randomNumber(0, Number.MAX_SAFE_INTEGER);
+        let session = Session.getAlive();
 
         if (session && session.account.keys[role]) {
             callback(session.account.keys[role].prv, session.account.username);

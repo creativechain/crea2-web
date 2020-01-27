@@ -4,7 +4,7 @@
  * Created by ander on 28/12/18.
  */
 (function () {
-    var faqContainer;
+    let faqContainer;
 
     function setUp() {
         faqContainer = new Vue({

@@ -4,11 +4,11 @@
  * Created by ander on 21/12/18.
  */
 (function () {
-    var roleModal;
-    var alertModal;
+    let roleModal;
+    let alertModal;
 
     function setUpAlertModal() {
-        var defaultData = {
+        let defaultData = {
             title: '',
             body: []
         };
@@ -22,7 +22,7 @@
                     show: false
                 },
                 mounted: function mounted() {
-                    var that = this;
+                    let that = this;
                     $('#modal-alert').on('modalClosed.modals.mr', function () {
                         that.closeModal();
                     });
@@ -43,7 +43,7 @@
     }
 
     function setUpRoleModal() {
-        var defaultData = {
+        let defaultData = {
             username: {
                 disabled: false,
                 value: '',
@@ -68,7 +68,7 @@
                     show: false
                 },
                 mounted: function mounted() {
-                    var that = this;
+                    let that = this;
                     $('#modal-role').on('modalClosed.modals.mr', function () {
                         that.closeModal();
                     });
@@ -86,11 +86,11 @@
                         this.show = false;
                     },
                     checkUsername: function checkUsername(event) {
-                        var username = event.target.value.split('/')[0];
-                        var that = this;
+                        let username = event.target.value.split('/')[0];
+                        let that = this;
 
                         if (!crea.utils.validateAccountName(username)) {
-                            var accounts = [username];
+                            let accounts = [username];
                             crea.api.lookupAccountNames(accounts, function (err, result) {
                                 if (err) {
                                     console.error(err);
@@ -109,11 +109,11 @@
                         cancelEventPropagation(event);
 
                         if (!this.inputs.username.error && this.inputs.password.value) {
-                            var that = this;
-                            var username = this.inputs.username.value.split('/')[0];
-                            var role = this.role;
-                            var password = this.inputs.password.value;
-                            var s = Session.create(username, password, role);
+                            let that = this;
+                            let username = this.inputs.username.value.split('/')[0];
+                            let role = this.role;
+                            let password = this.inputs.password.value;
+                            let s = Session.create(username, password, role);
                             s.login(function (err, result) {
                                 if (!catchError(err)) {
                                     if (that.login) {

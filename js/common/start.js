@@ -9,7 +9,7 @@ $.holdReady(true);
  * @returns {{set: set, get: (function(*=): *), remove: remove}}
  * @constructor
  */
-var CookieManager = function() {
+let CookieManager = function() {
     return {
         get: function(name) {
             return Cookies.get(name);
@@ -29,7 +29,7 @@ var CookieManager = function() {
  * @returns {{set: set, get: (function(*=): *), remove: remove}}
  */
 function createCookieInstance(attributes) {
-    var m = CookieManager();
+    let m = CookieManager();
     return {
         get: function(name) {
             return m.get(name);
@@ -43,6 +43,6 @@ function createCookieInstance(attributes) {
     }
 }
 
-var CreaCookies = createCookieInstance({
+let CreaCookies = createCookieInstance({
     domain: window.location.hostname
 });

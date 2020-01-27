@@ -4,7 +4,7 @@
  * Created by ander on 30/12/18.
  */
 (function () {
-    var recoverContainer;
+    let recoverContainer;
 
     function setUp() {
         recoverContainer = new Vue({

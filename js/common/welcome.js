@@ -3,11 +3,11 @@
 /**
  * Created by ander on 11/10/18.
  */
-var welcomeVue;
+let welcomeVue;
 (function () {
 
-    var emailCallback;
-    var usernameInputs = {
+    let emailCallback;
+    let usernameInputs = {
         last: {
             value: null,
             date: 0
@@ -78,19 +78,19 @@ var welcomeVue;
     }
 
     function checkUsername() {
-        var target = welcomeVue.$refs.inputusername;
+        let target = welcomeVue.$refs.inputusername;
         target.value = target.value.toLowerCase();
-        var username = target.value;
-        var time = moment().valueOf();
+        let username = target.value;
+        let time = moment().valueOf();
         usernameInputs.last.value = username;
         usernameInputs.last.date = time;
         usernameInputs[username] = time;
 
         if (!crea.utils.validateAccountName(username)) {
-            var accounts = [username];
+            let accounts = [username];
 
-            var usernameCallback = function usernameCallback(err, result) {
-                var userTime = usernameInputs[username];
+            let usernameCallback = function usernameCallback(err, result) {
+                let userTime = usernameInputs[username];
 
                 if (userTime > usernameInputs.last.date || userTime >= usernameInputs.last.date && username === usernameInputs.last.value) {
                     if (err) {
@@ -117,13 +117,13 @@ var welcomeVue;
             emailCallback = null;
         }
 
-        var email = event.target.value;
+        let email = event.target.value;
         console.log("Checking mail", email, validateEmail(email));
 
         if (validateEmail(email)) {
             refreshAccessToken(function (accessToken) {
-                var url = apiOptions.apiUrl + '/validateAccount';
-                var http = new HttpClient(url);
+                let url = apiOptions.apiUrl + '/validateAccount';
+                let http = new HttpClient(url);
 
                 emailCallback = function emailCallback(data) {
                     console.log('Validate', data, email);
@@ -137,7 +137,7 @@ var welcomeVue;
                     console.error('Request failed', data, status, error, email);
 
                     if (data.responseText) {
-                        var response = jsonify(data.responseText);
+                        let response = jsonify(data.responseText);
 
                         if (response.error === 'REGISTERED_EMAIL') {
                             welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
@@ -157,13 +157,13 @@ var welcomeVue;
     }
 
     function checkPhone() {
-        var token = getParameterByName('token'); //console.log('Token', token);
+        let token = getParameterByName('token'); //console.log('Token', token);
 
         if (token) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                var url = apiOptions.apiUrl + `/validation-phone/${token}`;
-                var http = new HttpClient(url);
+                let url = apiOptions.apiUrl + `/validation-phone/${token}`;
+                let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
@@ -188,11 +188,11 @@ var welcomeVue;
     }
     
     function verifyPhone() {
-        var token = getParameterByName('token'); //console.log('Token', token);
+        let token = getParameterByName('token'); //console.log('Token', token);
 
         refreshAccessToken(function (accessToken) {
-            var url = apiOptions.apiUrl + `/validate-phone/${token}`;
-            var http = new HttpClient(url);
+            let url = apiOptions.apiUrl + `/validate-phone/${token}`;
+            let http = new HttpClient(url);
             http.setHeaders({
                 Authorization: 'Bearer ' + accessToken
             }).post({
@@ -215,8 +215,8 @@ var welcomeVue;
     }
 
     function inputCheckPassword(event) {
-        var password = event.target.value;
-        var match = welcomeVue.password === password;
+        let password = event.target.value;
+        let match = welcomeVue.password === password;
 
         if (match) {
             welcomeVue.error.matchPassword = null;
@@ -229,7 +229,7 @@ var welcomeVue;
     }
 
     function inputPassword(event) {
-        var pass = event.target.value;
+        let pass = event.target.value;
         console.log("Input password", pass);
 
         if (pass && !pass.isEmpty()) {
@@ -244,8 +244,8 @@ var welcomeVue;
         if (!welcomeVue.error.email) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                var url = apiOptions.apiUrl + '/crearySignUp';
-                var http = new HttpClient(url);
+                let url = apiOptions.apiUrl + '/crearySignUp';
+                let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
@@ -267,8 +267,8 @@ var welcomeVue;
     function createAccount() {
         if (!welcomeVue.error.matchPassword && welcomeVue.checkedTerms && welcomeVue.checkedPolicy) {
             globalLoading.show = true;
-            var username = welcomeVue.username;
-            var password = welcomeVue.password;
+            let username = welcomeVue.username;
+            let password = welcomeVue.password;
             createBlockchainAccount(username, password, function (err, result) {
                 globalLoading.show = false;
 
@@ -286,13 +286,13 @@ var welcomeVue;
         console.log('Content loaded!');
         setUp();
 
-        var token = getParameterByName('token');
+        let token = getParameterByName('token');
 
         if (token) {
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
-                var url = apiOptions.apiUrl + `/validation/${token}`;
-                var http = new HttpClient(url);
+                let url = apiOptions.apiUrl + `/validation/${token}`;
+                let http = new HttpClient(url);
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).get().when('done', function (data) {

@@ -5,8 +5,8 @@
  */
 
 function startLogin() {
-    var username = $('#login-username').val();
-    var password = $('#login-password').val();
+    let username = $('#login-username').val();
+    let password = $('#login-password').val();
     login(username, password);
     return false;
 }
@@ -19,7 +19,7 @@ function startLogin() {
  */
 function login(username, password, callback) {
     //Check roles;
-    var session;
+    let session;
 
     if (crea.auth.isWif(password)) {
         //Unknown role
@@ -36,9 +36,9 @@ function login(username, password, callback) {
             }
         } else {
             session.save();
-            var count = 2;
+            let count = 2;
 
-            var onTaskEnded = function onTaskEnded(session, account) {
+            let onTaskEnded = function onTaskEnded(session, account) {
                 --count;
 
                 if (count === 0) {
@@ -50,8 +50,8 @@ function login(username, password, callback) {
                 }
             };
 
-            var followings = [];
-            var blockeds = [];
+            let followings = [];
+            let blockeds = [];
             crea.api.getFollowing(session.account.username, '', 'blog', 1000, function (err, result) {
                 if (!catchError(err)) {
                     result.following.forEach(function (f) {
