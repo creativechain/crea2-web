@@ -33,7 +33,7 @@
                 session: session,
                 LICENSE: LICENSE,
                 CONSTANTS: CONSTANTS,
-                step: 1,
+                step: 0,
                 editablePost: editablePost,
                 bodyElements: editablePost ? editablePost.body : [],
                 tags: [],

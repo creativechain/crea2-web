@@ -338,7 +338,9 @@
     "FILE_TOO_LARGE": "El archivo es demasiado grande",
     "FILE_FORMAT_NOT_ALLOWED": "Este formato de archivo no está permitido",
     "NO_TITLE_TAG_OR_IMAGE": "Debes añadir una imagen destacada, un título y una etiqueta como mínimo",
-    "RELOAD_DOWNLOAD_FILE": "Es necesario volver a cargar el archivo de descarga:"
+    "RELOAD_DOWNLOAD_FILE": "Es necesario volver a cargar el archivo de descarga:",
+    "PUBLISH_NOT_AVAILABLE_TITLE": "Publicaciones en Mantenimiento",
+    "PUBLISH_NOT_AVAILABLE_SUBTITLE": "En estos momentos las publicaciones se encuentra en mantenimiento. Podras volver a publicar tus obras muy pronto."
 
   },
   "WITNESS": {

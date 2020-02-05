@@ -20,7 +20,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <template v-if="step == 1">
+                        <div v-if="step == 0">
+                            {{ include ('publish/publish-step-0.php.twig') }}
+                        </div>
+                        <template v-else-if="step == 1">
                             {{ include ('publish/publish-step-1.php.twig') }}
                         </template>
                         <template v-else-if="step == 2">
@@ -33,12 +36,12 @@
                             {{ include ('publish/publish-step-4.php.twig') }}
                         </template>
                         <div class="w-100 text-center">
-                            <div v-if="step !== 4" v-bind:class="{ disabled: editor.show }" class="btn btn--primary" v-on:click="nextStep">
+                            <div v-if="step !== 4 && step > 0" v-bind:class="{ disabled: editor.show }" class="btn btn--primary" v-on:click="nextStep">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.CONTINUE }}
                                     </span>
                             </div>
-                            <div v-else class="btn btn--primary" v-on:click="makePublication">
+                            <div v-else-if="step > 0" class="btn btn--primary" v-on:click="makePublication">
                                     <span class="btn__text">
                                         {{ lang.BUTTON.PUBLISH }}
                                     </span>
