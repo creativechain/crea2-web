@@ -10,7 +10,7 @@ class IpfsFile  {
         this.name = name;
         this.type = type;
         this.size = size;
-        this.url = 'https://ipfs.creary.net/ipfs/' + hash;
+        this.url = 'https://ipfs3.creary.net/ipfs/' + hash;
     }
 }
 
@@ -744,7 +744,7 @@ function uploadToIpfs(file, maxSize, callback) {
 
             });*/
 
-            let http = new HttpClient('https://ipfs.creary.net:5002/api/v0/add?pin=true&stream-channels=true');
+            let http = new HttpClient('https://ipfs3.creary.net:5002/api/v0/add?pin=true&stream-channels=true');
             http.post({
                 file: file
             }).when('done', function (data) {
