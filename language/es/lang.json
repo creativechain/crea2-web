@@ -333,7 +333,7 @@
     "LICENSE_SHARE": "Sí, siempre y cuando se compartan del mismo modo",
     "LICENSE_NO_LICENSE": "Sin licencia. (nadie puede usar tu trabajo sin tu permiso)",
     "LICENSE_TEXT_PUBLISH": "Estás a punto de publicar tu proyecto. ¡Vamos!",
-    "LICENSE_TEXT_INMUTABLE": "El contenido de tu proyecto es inmutable. Se puede volver a editar pero no eliminar de la blockchain¡",
+    "LICENSE_TEXT_INMUTABLE": "El contenido de tu proyecto es inmutable. Se puede volver a editar pero no eliminar de la blockchain!",
     "NO_ELEMENTS_ERROR": "Debes añadir al menos un elemento (imagen, audio, video o texto)",
     "FILE_TOO_LARGE": "El archivo es demasiado grande",
     "FILE_FORMAT_NOT_ALLOWED": "Este formato de archivo no está permitido",
