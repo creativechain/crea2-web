@@ -465,7 +465,7 @@
                             rewards = '50';
                     }
                 }
-                switch (account.user.metadata.post_rewards) {
+                switch (rewards) {
                     case '0':
                         operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
                         break;
