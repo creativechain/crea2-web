@@ -452,7 +452,19 @@
 
                 let operations = [];
                 operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
-
+                let rewards = account.user.metadata.post_rewards;
+                if (editing) {
+                    switch (publishContainer.editablePost.percent_crea_dollars) {
+                        case 10000:
+                            rewards = '0';
+                            break;
+                        case 0:
+                            rewards = '100';
+                            break;
+                        default:
+                            rewards = '50';
+                    }
+                }
                 switch (account.user.metadata.post_rewards) {
                     case '0':
                         operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
