@@ -50,7 +50,7 @@ let R = {
 R.getAvatar = function (account) {
     if (account.metadata && account.metadata.avatar) {
         if (account.metadata.avatar.hash) {
-            return 'https://ipfs3.creary.net/ipfs/' + account.metadata.avatar.hash;
+            return 'https://ipfs.creary.net/ipfs/' + account.metadata.avatar.hash;
         } else if (account.metadata.avatar.url) {
             return account.metadata.avatar.url;
         }
