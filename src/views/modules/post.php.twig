@@ -98,20 +98,20 @@
                                 </div>
                                 <div v-else-if="el.type.indexOf('image/') > -1" class="upload-img">
                                     <p>
-                                        <img v-bind:src="'https://ipfs3.creary.net/ipfs/' + el.hash" v-bind:type="el.type" alt="" />
+                                        <img v-bind:src="'https://ipfs.creary.net/ipfs/' + el.hash" v-bind:type="el.type" alt="" />
                                     </p>
                                 </div>
                                 <div v-else-if="el.type.indexOf('video/') > -1" class="upload-img">
                                     <p>
                                         <video controls >
-                                            <source v-bind:src="'https://ipfs3.creary.net/ipfs/' + el.hash" v-bind:type="el.type">
+                                            <source v-bind:src="'https://ipfs.creary.net/ipfs/' + el.hash" v-bind:type="el.type">
                                         </video>
                                     </p>
                                 </div>
                                 <div v-else-if="el.type.indexOf('audio/') > -1" class="upload-img">
                                     <p>
                                         <audio controls>
-                                            <source v-bind:src="'https://ipfs3.creary.net/ipfs/' + el.hash" v-bind:type="el.type">
+                                            <source v-bind:src="'https://ipfs.creary.net/ipfs/' + el.hash" v-bind:type="el.type">
                                         </audio>
                                     </p>
                                 </div>

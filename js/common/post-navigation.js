@@ -195,7 +195,7 @@
 
                         if (featuredImage && featuredImage.hash) {
                             return {
-                                url: 'https://ipfs3.creary.net/ipfs/' + featuredImage.hash
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
                             };
                         } else if (featuredImage && featuredImage.url) {
                             return featuredImage;
@@ -587,7 +587,7 @@
 
                         if (featuredImage && featuredImage.hash) {
                             return {
-                                url: 'https://ipfs3.creary.net/ipfs/' + featuredImage.hash
+                                url: 'https://ipfs.creary.net/ipfs/' + featuredImage.hash
                             };
                         } else if (featuredImage && featuredImage.url) {
                             return featuredImage;
