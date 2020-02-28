@@ -570,6 +570,7 @@
         "MESSAGE_503_1": "We’re down for maintenance.",
         "MESSAGE_503_2": "We’ll be back shortly.",
         "THATS_ERROR": "That’s an error.",
+        "MAINTENANCE": "Maintenance",
         "WE_KNOW": "That’s all we know."
     },
     "BUZZ": [
