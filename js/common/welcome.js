@@ -54,7 +54,11 @@ let welcomeVue;
                 verifyPhone: verifyPhone,
                 onPhonePrefix: function (item) {
                     console.log('Prefix selected', item);
-                    this.country_code = item.callingCodes[0];
+                    if (typeof item === 'string') {
+                        this.country_code = item;
+                    } else {
+                        this.country_code = item.callingCodes[0];
+                    }
                 },
                 changeSlide: function changeSlide(slide, error) {
                     console.log("Change to slide", slide, error);
@@ -160,6 +164,9 @@ let welcomeVue;
         let token = getParameterByName('token'); //console.log('Token', token);
 
         if (token) {
+            //Normalize phone, remove spaces and '+'
+            let phone = welcomeVue.country_code + welcomeVue.phone;
+            phone = phone.replace(' ', '').replace('+', '');
             globalLoading.show = true;
             refreshAccessToken(function (accessToken) {
                 let url = apiOptions.apiUrl + `/validation-phone/${token}`;
@@ -167,7 +174,7 @@ let welcomeVue;
                 http.setHeaders({
                     Authorization: 'Bearer ' + accessToken
                 }).post({
-                    phone: welcomeVue.country_code + welcomeVue.phone
+                    phone: phone
                 }).when('done', function (data) {
                     globalLoading.show = false;
                     data = JSON.parse(data);

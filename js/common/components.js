@@ -71,6 +71,8 @@ Vue.component('autocomplete',  {
         onBlur: function () {
             //this.matchedItems = [];
             let that = this;
+            let phonePrefix = this.$refs.countryInput.value;
+            this.$emit('item', phonePrefix);
             setTimeout(function () {
                 that.matchedItems = [];
             }, 200);
