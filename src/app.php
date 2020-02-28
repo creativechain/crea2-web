@@ -112,6 +112,7 @@ function handleRoute() {
     $controller->addRoute('/privacy_policy', 'privacy_policy.php.twig');
     $controller->addRoute('/404', 'errors/404.php.twig');
     $controller->addRoute('/503', 'errors/503.php.twig');
+    $controller->addRoute('/~maintenance', 'errors/503.php.twig');
 
 
     echo $controller->handle();
@@ -136,7 +137,7 @@ if (loadConfig()) {
         handleRoute();
     } else if (boolval($CONFIG['maintenance'])) {
         http_response_code(503);
-        header('Location: https://' . $_SERVER['SERVER_NAME'] . '/503');
+        header('Location: https://' . $_SERVER['SERVER_NAME'] . '/~maintenance');
         die();
     } else {
         handleRoute();

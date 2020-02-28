@@ -570,6 +570,7 @@
     "MESSAGE_503_1": "Estamos fuera de servicio por mantenimiento",
     "MESSAGE_503_2": "Regresaremos en un momento",
     "THATS_ERROR": "Ha ocurrido un error",
+    "MAINTENANCE": "Mantenimiento",
     "WE_KNOW": "Es todo lo que sabemos"
   },
   "BUZZ": [
