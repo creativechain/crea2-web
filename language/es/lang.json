@@ -411,6 +411,7 @@
     "TRANSFER_FROM_SAVINGS_TITLE_CREA": "Retirar CREA",
     "TRANSFER_FROM_SAVINGS_TITLE_CBD": "Retirar CBD",
     "TRANSFER_FROM_SAVINGS_TEXT": "El retiro de fondos tiene un período de espera de 3 días.",
+    "TRANSFER_FROM_SAVINGS_EXCHANGE_TEXT": "No recomendamos enviar saldo a un exchange desde la sección ahorros. Utiliza la función de transferir",
     "UPDATE_TITLE": "Actualiza tu monedero",
     "BALANCES_CREA_TITLE": "CREA",
     "TRANSFER_CBD_TEXT": "Enviar fondos a otra cuenta de CBD",

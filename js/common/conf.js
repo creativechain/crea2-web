@@ -36,6 +36,8 @@ let faq = {};
 
 let language = $('html').attr('lang');
 
+const SAVINGS_BLACK_LIST = ['exrates', 'exrates1', 'exrates-test', 'exrates-test-2', 'exratesfull', 'skytali7'];
+
 $.getJSON('/language/isolangs.json', function(data) {
     isoLangs = data;
 });

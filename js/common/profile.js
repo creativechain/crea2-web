@@ -108,7 +108,8 @@
                     amount: 0,
                     memo: '',
                     config: clone(defaultModalConfig),
-                    toError: false
+                    toError: false,
+                    toExchange: false
                 },
                 mounted: function mounted() {
                     let that = this;
@@ -182,6 +183,14 @@
                                     that.toError = true;
                                 } else {
                                     that.toError = result[0] == null;
+                                }
+                                switch (that.config.op) {
+                                    case 'transfer_from_savings_crea':
+                                    case 'transfer_from_savings_cbd':
+                                        that.toExchange = SAVINGS_BLACK_LIST.includes(username);
+                                        break;
+                                    default:
+                                        that.toExchange = false;
                                 }
                             });
                         } else {
@@ -355,6 +364,7 @@
                                 config = {
                                     title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CBD,
                                     text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT,
+                                    exchange_text: lang.WALLET.TRANSFER_FROM_SAVINGS_EXCHANGE_TEXT,
                                     button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.symbol.CBD,
                                     total_amount: Asset.parseString(this.state.user.savings_cbd_balance)
@@ -365,6 +375,7 @@
                                 config = {
                                     title: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TITLE_CREA,
                                     text: this.lang.WALLET.TRANSFER_FROM_SAVINGS_TEXT,
+                                    exchange_text: lang.WALLET.TRANSFER_FROM_SAVINGS_EXCHANGE_TEXT,
                                     button: this.lang.BUTTON.TRANSFER,
                                     nai: apiOptions.symbol.CREA,
                                     total_amount: Asset.parseString(this.state.user.savings_balance)
