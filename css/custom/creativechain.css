@@ -3202,7 +3202,7 @@ img {
     min-width: 249px;
     max-width: 250px; }
   .card-home .card__top {
-    height: 256px; }
+    height: 230px; }
     .card-home .card__top .img-post-list {
       height: 228px; }
   .card-home .li-buzz .dropdown__container.dropdown-info-user {
@@ -3222,6 +3222,9 @@ img {
     right: 0;
     width: 260px; }
     .li-avatar-navbar .dropdown__container .dropdown__content {
-      left: 110px !important; } }
+      left: 110px !important; }
+
+  #profile-container .card-home .dropdown-price span {
+    padding: 0 5px; } }
 
 /*# sourceMappingURL=creativechain.css.map */

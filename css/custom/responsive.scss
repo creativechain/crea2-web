@@ -1027,7 +1027,7 @@
       max-width: 250px;
     }
     .card__top {
-      height: 256px;
+      height: 230px;
       .img-post-list {
         height: 228px;
       }
@@ -1068,7 +1068,15 @@
       }
     }
   }
-
+  #profile-container {
+    .card-home {
+      .dropdown-price {
+        span {
+          padding: 0 5px;
+        }
+      }
+    }
+  }
 
 }
 
