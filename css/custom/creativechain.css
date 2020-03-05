@@ -3226,5 +3226,8 @@ img {
 
   #profile-container .card-home .dropdown-price span {
     padding: 0 5px; } }
+@media (min-width: 2501px) {
+  #profile-container .card-home .dropdown-price span {
+    padding: 0 5px; } }
 
 /*# sourceMappingURL=creativechain.css.map */
