@@ -311,7 +311,7 @@
         "INFO_TITLE": "Cover",
         "SECONDARY_MENU_INFO": "Information",
         "FILE_TYPE_INFO": "(image, audio, video)",
-        "IMAGE_MAX_FILE_SIZE": "Image Max: %s. GIF, WebP Max: %s",
+        "IMAGE_MAX_FILE_SIZE": "Image Max: %s",
         "AUDIO_MAX_FILE_SIZE": "Audio Max: %s",
         "VIDEO_MAX_FILE_SIZE": "Video Max: %s",
         "PROJECT_INFO": "Project information",
