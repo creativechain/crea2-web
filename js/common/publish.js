@@ -209,6 +209,10 @@
                         let [fileType, fileFormat] = loadedFile.type.toUpperCase().split('/');
                         let maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileType];
 
+                        //Reset maximum size of video files to allow only webm or mo4
+                        if (fileType.includes('VIDEO')) {
+                            maximumSize = 0;
+                        }
                         //Set specific file format sizes
                         if (CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileFormat]) {
                             maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileFormat];
