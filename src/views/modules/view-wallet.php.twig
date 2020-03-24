@@ -485,7 +485,12 @@
                                     <p>{{ lang.WALLET.PERMISSIONS_TEXT_OWNER }}</p>
                                 </td>
                                 <td style="text-align: right">
-
+                                    <div v-if="session && !showPriv.owner" class="btn btn--sm" v-on:click="getPrivKey('owner')">
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.SHOW_PRIV_KEY }}</span>
+                                    </div>
+                                    <div v-else-if="session" class="btn btn--sm" v-on:click="hidePrivKey('owner')">
+                                        <span class="btn__text text__dark font-weight-bold">{{ lang.BUTTON.HIDE_PRIV_KEY }}</span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
