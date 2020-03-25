@@ -218,6 +218,12 @@
                             maximumSize = CONSTANTS.FILE_MAX_SIZE.POST_BODY[fileFormat];
                         }
 
+                        //Show alert for video formats not allowed
+                        if (fileType.includes('VIDEO') && maximumSize <= 0) {
+                            globalLoading.show = false;
+                            return catchError({ TITLE: lang.PUBLISH.FILE_NOT_ALLOWED, BODY: [lang.PUBLISH.ALLOWED_VIDEO_FORMATS]})
+                        }
+
                         console.log('file:', loadedFile, 'MaxSize:', maximumSize, 'isGif', loadedFile.type.toLowerCase().includes('image/gif'));
                         uploadToIpfs(loadedFile, maximumSize, function (err, file) {
                             globalLoading.show = false;

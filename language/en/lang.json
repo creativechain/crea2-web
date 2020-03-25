@@ -313,7 +313,7 @@
         "FILE_TYPE_INFO": "(image, audio, video)",
         "IMAGE_MAX_FILE_SIZE": "Image Max: %s",
         "AUDIO_MAX_FILE_SIZE": "Audio Max: %s",
-        "VIDEO_MAX_FILE_SIZE": "Video Max: %s",
+        "VIDEO_MAX_FILE_SIZE": "Video only format .MP4 y .WebM Max: %s",
         "PROJECT_INFO": "Project information",
         "SECONDARY_MENU_LICENSE": "License",
         "INFO_DESCRIPTION": "SHORT DESCRIPTION",
@@ -340,7 +340,9 @@
         "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag",
         "RELOAD_DOWNLOAD_FILE": "It's necessary to reload the download file: %s",
         "PUBLISH_NOT_AVAILABLE_TITLE": "Maintenance Publications",
-        "PUBLISH_NOT_AVAILABLE_SUBTITLE": "The publications are currently under maintenance. You will can publish your works again very soon."
+        "PUBLISH_NOT_AVAILABLE_SUBTITLE": "The publications are currently under maintenance. You will can publish your works again very soon.",
+        "FILE_NOT_ALLOWED": "File not allowed",
+        "ALLOWED_VIDEO_FORMATS": "Only MP4 and WebM video formats are supported."
 
     },
     "WITNESS": {
