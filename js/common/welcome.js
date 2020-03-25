@@ -63,9 +63,46 @@ let welcomeVue;
                 changeSlide: function changeSlide(slide, error) {
                     console.log("Change to slide", slide, error);
 
-                    if (!error || error.length === 0) {
-                        this.slide = slide;
+                    let that = this;
+
+                    //Validate username
+                    if (this.slide === 2) {
+
+                        this.checkUsername(function (err, result, username) {
+                            if (err) {
+                                console.error(err);
+                                that.error.username = lang.ERROR.INVALID_USERNAME;
+                            } else if (result[0] != null) {
+                                that.error.username = lang.ERROR.USERNAME_EXISTS;
+                            } else {
+                                that.error.username = null;
+                                that.username = username;
+                                that.slide = slide;
+                            }
+                        });
+                    } else if (this.slide === 3) {
+                        this.checkEmail(function (err, email) {
+                            if (err) {
+                                welcomeVue.error.email = err;
+                                welcomeVue.email = '';
+                            } else {
+                                welcomeVue.error.email = null;
+                                welcomeVue.email = email;
+                                that.sendConfirmationMail(function (err, result) {
+                                    if (!catchError(err)) {
+                                        that.slide = slide;
+                                    }
+                                });
+
+                            }
+                        });
+                    } else {
+                        if (!error || error.length === 0) {
+                            this.slide = slide;
+                        }
                     }
+
+
                 },
                 suggestPassword: function suggestPassword() {
                     this.suggestedPassword = 'P' + crea.formatter.createSuggestedPassword();
@@ -81,7 +118,7 @@ let welcomeVue;
         creaEvents.emit('crea.dom.ready');
     }
 
-    function checkUsername() {
+    function checkUsername(callback) {
         let target = welcomeVue.$refs.inputusername;
         target.value = target.value.toLowerCase();
         let username = target.value;
@@ -97,17 +134,10 @@ let welcomeVue;
                 let userTime = usernameInputs[username];
 
                 if (userTime > usernameInputs.last.date || userTime >= usernameInputs.last.date && username === usernameInputs.last.value) {
-                    if (err) {
-                        console.error(err);
-                        welcomeVue.error.username = lang.ERROR.INVALID_USERNAME;
-                    } else if (result[0] != null) {
-                        welcomeVue.error.username = lang.ERROR.USERNAME_EXISTS;
-                    } else {
-                        welcomeVue.error.username = null;
-                        welcomeVue.username = username;
+                    if (callback) {
+                        callback(err, result, username);
                     }
-                } //console.log("Checking", username, userTime, usernameInputs.last.value, usernameInputs.last.date, welcomeVue.username);
-
+                }
             };
 
             crea.api.lookupAccountNames(accounts, usernameCallback);
@@ -116,12 +146,13 @@ let welcomeVue;
         }
     }
 
-    function checkEmail(event) {
+    function checkEmail(callback) {
         if (!emailCallback) {
             emailCallback = null;
         }
 
-        let email = event.target.value;
+        let target = welcomeVue.$refs.regemail;
+        let email = target.value;
         console.log("Checking mail", email, validateEmail(email));
 
         if (validateEmail(email)) {
@@ -133,6 +164,7 @@ let welcomeVue;
                     console.log('Validate', data, email);
                     welcomeVue.error.email = null;
                     welcomeVue.email = email;
+                    callback(null, email);
                 };
 
                 http.setHeaders({
@@ -144,10 +176,10 @@ let welcomeVue;
                         let response = jsonify(data.responseText);
 
                         if (response.error === 'REGISTERED_EMAIL') {
-                            welcomeVue.error.email = lang.ERROR.EMAIL_EXISTS;
+                            callback(lang.ERROR.EMAIL_EXISTS, null)
                         }
                     } else {
-                        welcomeVue.error.email = lang.ERROR.UNKNOWN_ERROR;
+                        callback(lang.ERROR.UNKNOWN_ERROR, null)
                     }
                 }).when('done', emailCallback).post({
                     username: welcomeVue.username,
@@ -155,8 +187,7 @@ let welcomeVue;
                 });
             });
         } else {
-            welcomeVue.error.email = lang.ERROR.INVALID_EMAIL;
-            welcomeVue.email = '';
+            callback(lang.ERROR.INVALID_EMAIL, null)
         }
     }
 
@@ -258,13 +289,19 @@ let welcomeVue;
                 }).post({
                     username: welcomeVue.username,
                     email: $('#reg-email').val()
+                }).when('fail', function (jqXHR, textStatus, errorThrown) {
+                    globalLoading.show = false;
+                    let response = jsonify(jqXHR.responseText);
+                    if (callback) {
+                        callback(lang.ERROR[response.error], null);
+                    }
                 }).when('done', function (data) {
                     console.log('SignUp', data);
                     welcomeVue.slide = 4;
                     globalLoading.show = false;
 
                     if (callback) {
-                        callback();
+                        callback(null, data);
                     }
                 });
             });
