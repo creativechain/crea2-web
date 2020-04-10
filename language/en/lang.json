@@ -19,6 +19,10 @@
                 "The password or key entered is not valid for this user."
             ]
         },
+        "4": {
+            "TITLE": "Unexpected error",
+            "BODY": ["An unexpected error has been occurred. Please, try again later."]
+        },
         "USERNAME_NOT_EXISTS": "Username not exist",
         "INVALID_USERNAME": "Username is not valid",
         "INVALID_EMAIL": "Email is not valid",
@@ -54,7 +58,7 @@
         },
         "DUPLICATE_PHONE": "Phone already in use.",
         "INVALID_PHONE": "Phone is invalid. Please check and sure that phone number includes the country prefix",
-        "SMS_REQUEST_LIMIT": "SMS Request Limit Reached. Try again after 30 min since the last request.",
+        "SMS_REQUEST_LIMIT": "Wait at least 30 min from the last code request to be able to make a new one with this phone number.",
         "INVALID_PHONE_VERIFICATION": "Verification Code is invalid"
 
     },
@@ -340,9 +344,7 @@
         "NO_TITLE_TAG_OR_IMAGE": "You must add a featured image, a title and at least one tag",
         "RELOAD_DOWNLOAD_FILE": "It's necessary to reload the download file: %s",
         "PUBLISH_NOT_AVAILABLE_TITLE": "Maintenance Publications",
-        "PUBLISH_NOT_AVAILABLE_SUBTITLE": "The publications are currently under maintenance. You will can publish your works again very soon.",
-        "FILE_NOT_ALLOWED": "File not allowed",
-        "ALLOWED_VIDEO_FORMATS": "Only MP4 and WebM video formats are supported."
+        "PUBLISH_NOT_AVAILABLE_SUBTITLE": "The publications are currently under maintenance. You will can publish your works again very soon."
 
     },
     "WITNESS": {

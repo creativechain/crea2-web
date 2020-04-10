@@ -350,6 +350,7 @@ let welcomeVue;
                     console.log('SignUp', data);
                     welcomeVue.username = data.data.username;
                     welcomeVue.slide = 5;
+                    welcomeVue.sentSMS = (data.data.phoneToken !== null && data.data.phoneToken !== undefined);
                 }).when('fail', function (jqXHR, textStatus, errorThrown) {
                     console.error(jqXHR, textStatus, errorThrown);
                     //TODO: SHOW ERROR

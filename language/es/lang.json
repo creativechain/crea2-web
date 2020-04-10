@@ -19,6 +19,10 @@
         "La contraseña o clave proporcionada para este usuario no es válida"
       ]
     },
+    "4": {
+      "TITLE": "Error inesperado",
+      "BODY": ["Ha ocurrido un error inesperado. Por favor, inténtalo mas tarde."]
+    },
     "USERNAME_NOT_EXISTS": "Este nombre de usuario no existe",
     "INVALID_USERNAME": "Este nombre de usuario no es válido",
     "INVALID_EMAIL": "Este Email no es válido",
@@ -54,7 +58,7 @@
     },
     "DUPLICATE_PHONE": "Este número de teléfono ya está en uso.",
     "INVALID_PHONE": "Número de teléfono inválido. Por favor, asegúrate de que el número de teléfono incluye el prefijo del país.",
-    "SMS_REQUEST_LIMIT": "Demasiados solicitudes SMS enviadas. Inténtalo de nuevo pasados 30 min desde la última solicitud.",
+    "SMS_REQUEST_LIMIT": "Espera al menos 30 min desde la última petición de código para poder realizar una nueva con este número de teléfono.",
     "INVALID_PHONE_VERIFICATION": "El código de verificación es incorrecto."
 
   },
@@ -340,16 +344,14 @@
     "NO_TITLE_TAG_OR_IMAGE": "Debes añadir una imagen destacada, un título y una etiqueta como mínimo",
     "RELOAD_DOWNLOAD_FILE": "Es necesario volver a cargar el archivo de descarga:",
     "PUBLISH_NOT_AVAILABLE_TITLE": "Publicaciones en Mantenimiento",
-    "PUBLISH_NOT_AVAILABLE_SUBTITLE": "En estos momentos las publicaciones se encuentra en mantenimiento. Podras volver a publicar tus obras muy pronto.",
-    "FILE_NOT_ALLOWED": "Archivo no permitido",
-    "ALLOWED_VIDEO_FORMATS": "Solo se admiten los formatos de video .MP4 y WebM."
+    "PUBLISH_NOT_AVAILABLE_SUBTITLE": "En estos momentos las publicaciones se encuentra en mantenimiento. Podras volver a publicar tus obras muy pronto."
 
   },
   "WITNESS": {
     "VOTE_WITNESSES": "TESTIGOS",
     "VOTE_INFORMATION": "INFORMACION",
     "VOTE_TITLE": "Votar a Testigos",
-    "HOW_TO": "<a href='https://creaproject.io/configurar-nodo-testigo-crea/' target='_blank'>Cómo configurar un nodo testigo</a>"
+    "HOW_TO": "<a href=\"https://creaproject.io/configurar-nodo-testigo-crea/\" target=\"_blank\">Cómo configurar un nodo testigo</a>"
   },
   "PROFILE": {
     "MORE_INFO":"Más info",
@@ -599,11 +601,11 @@
       "TITLE": "Creary - Skyrockets",
       "DESCRIPTION": "Descubre los proyectos recientes con mayor impacto en la red social de portfolios creativos."
     },
-    "/ahora": {
+    "/now": {
       "TITLE": "Creary - Ahora",
       "DESCRIPTION": "Descubre los proyectos creativos ordenados por momento de publicación empezando por los más recientes"
     },
-    "/promocionado": {
+    "/promoted": {
       "TITLE": "Creary - Promocionado",
       "DESCRIPTION": "Descubre los portfolios digitales de arte promocionados por los miembros de la comunidad"
     },

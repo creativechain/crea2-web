@@ -448,11 +448,11 @@
             //Build body
             let body = jsonstring(publishContainer.bodyElements);
             let title = publishContainer.title;
-            let editing = !!publishContainer.editablePost;
-            let permlink = editing ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
+            let isEditing = (publishContainer.editablePost !== null && publishContainer.editablePost !== undefined);
+            let permlink = isEditing ? publishContainer.editablePost.permlink : toPermalink(title); //Add category to tags if is editing
 
             let publishPost = function () {
-                if (editing && publishContainer.editablePost.metadata.tags) {
+                if (isEditing && publishContainer.editablePost.metadata.tags) {
                     let category = publishContainer.editablePost.metadata.tags[0];
 
                     if (category && !metadata.tags.includes(category)) {
@@ -462,34 +462,25 @@
 
                 let operations = [];
                 operations.push(crea.broadcast.commentBuilder('', toPermalink(metadata.tags[0]), username, permlink, title, body, jsonstring(download), jsonstring(metadata)));
-                let rewards = account.user.metadata.post_rewards;
-                if (editing) {
-                    switch (publishContainer.editablePost.percent_crea_dollars) {
-                        case 10000:
-                            rewards = '0';
+
+                if (!isEditing) {
+                    let rewards = account.user.metadata.post_rewards;
+                    switch (rewards) {
+                        case '0':
+                            operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
                             break;
-                        case 0:
-                            rewards = '100';
+                        case '50':
                             break;
+                        case '100':
                         default:
-                            rewards = '50';
+                            operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
+                            break;
                     }
-                }
-                switch (rewards) {
-                    case '0':
-                        operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '0.000 CBD', 10000, true, true, []));
-                        break;
-                    case '50':
-                        break;
-                    case '100':
-                    default:
-                        operations.push(crea.broadcast.commentOptionsBuilder(username, permlink, '1000000.000 CBD', 0, true, true, []));
-                        break;
                 }
 
                 let keys = [postingKey];
 
-                (_crea$broadcast = crea.broadcast).sendOperations.apply(_crea$broadcast, [keys].concat(operations, [function (err, result) {
+                crea.broadcast.sendOperations(keys, ...operations, function (err, result) {
                     if (!catchError(err)) {
                         console.log(result);
                         let post = {
@@ -499,10 +490,10 @@
                     } else {
                         globalLoading.show = false;
                     }
-                }]));
+                });
             };
 
-            if (!editing) {
+            if (!isEditing) {
                 //Check if already has a post with same permlink
                 crea.api.getDiscussion(username, permlink, function (err, result) {
                     console.log(err, result);
